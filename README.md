@@ -1,2 +1,1 @@
-# VibboTea-Store
-Vibbo tea store
+# Vibbo Store Theme
