@@ -115,3 +115,7 @@ body {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+.font-bricolage {
+    font-family: 'Bricolage', serif;
+}

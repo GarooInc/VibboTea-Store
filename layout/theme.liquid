@@ -21,6 +21,9 @@
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'application.css' | asset_url | stylesheet_tag: preload: true }}
 
+    {% comment %} Custom Fonts {% endcomment %}
+    {{ 'custom-fonts.css' | asset_url | stylesheet_tag }}
+
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
