@@ -13,10 +13,16 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "menu": "main-menu-1",
+        "logo": "shopify://shop_images/logo_vibbo.png",
+        "background_image": "shopify://shop_images/fondo_header.png",
+        "page_title": "WELLNESS <br> WITHOUT  <br> THE B.S.",
+        "page_descripction": "REAL TEA, REAL BENEFITS"
+      }
     }
   },
   "order": [
     "header"
-  ],
+  ]
 }
