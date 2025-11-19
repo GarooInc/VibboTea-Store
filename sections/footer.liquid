@@ -1,41 +1,60 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
+<footer 
+  class="w-full h-[60vh] bg-gray-950 text-white flex items-start justify-between"
+  style="width: 100vw; margin-left: calc(50% - 50vw);"
+>
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="w-1/2 flex flex-col items-start justify-start px-20 space-y-4 pt-25">
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
+    {% if section.settings.logo %}
+      <img 
+        src="{{ section.settings.logo | image_url: width: 300 }}" 
+        alt="Logo"
+        class="w-40 object-contain"
+      >
     {% endif %}
+
+    {% if section.settings.descripcion %}
+      <p class="text-lg text-white pt-3 ">
+        {{ section.settings.descripcion }}
+      </p>
+    {% endif %}
+
+     <!-- Social Media Icons -->
+        <div class="flex gap-6 order-1 flex-1 w-full justify-end md:justify-between">
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" class="footer-icon hover:opacity-70 transition-opacity" aria-label="Facebook">
+              {%- render 'iconCart' -%}
+            </a>
+
+          
+        </div>
+
+      <nav class="flex flex-col items-end space-y-2 text-white pt-50">
+      {% for link in section.settings.menu2.links %}
+        <a href="{{ link.url }}" class="text-lg hover:text-gray-300 transition">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
   </div>
+
+  <!-- COLUMNA DERECHA -->
+  <div class="w-1/2 h-full flex flex-col items-end justify-start px-20 pt-20">
+
+    <nav class="flex flex-row items-center space-x-6">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}" class="text-lg font-semibold hover:text-gray-300 transition p-2">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+  </div>
+
 </footer>
 
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
+
+
 
 {% schema %}
 {
@@ -47,11 +66,42 @@
       "label": "t:labels.menu"
     },
     {
+      "type": "link_list",
+      "id": "menu2",
+      "label": "t:labels.menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "descripcion",
+      "label": "Description",
+      "default": "Bienvenido a Nuestra Tienda"
+    },
+    {
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": "t:labels.show_payment_icons",
       "default": true
-    }
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Tiktok URL"
+    },
   ]
 }
 {% endschema %}
