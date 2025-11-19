@@ -1,35 +1,59 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+<header 
+  class="relative w-screen h-screen bg-cover bg-center flex items-center justify-center overflow-hidden"
+  style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-image: url({{ section.settings.background_image | image_url }});"
+>
+  {% comment %} {# Logo #} {% endcomment %}
+  <div class="absolute top-12 left-20 ">
+    {% if section.settings.logo %}
+      <img 
+        src="{{ section.settings.logo | image_url: width: 200 }}" 
+        alt="Logo"
+        class="w-45 object-contain "
+      >
+    {% else %}
+      <h2 class="text-xl font-bold text-white">
+        {{ shop.name }}
+      </h2>
+    {% endif %}
   </div>
 
-  <div class="header__icons">
+  <div class="">
+  {% comment %} {# Title centered #} {% endcomment %}
+  <div class="mx-auto text-center">
+    <h1 class="text-[10vw] md:text-[10vw] font-bold text-white drop-shadow-lg leading-[0.9] tracking-tight">
+      {{ section.settings.page_title }}
+    </h1>
+  </div>
+
+  <div class="mx-auto text-center">
+    <p class="text-[2vw] md:text-[2.5vw] pt-4 text-white drop-shadow-lg leading-[0.9] tracking-tight">
+      {{ section.settings.page_descripction }}
+    </p>
+  </div></div>
+
+
+  {% comment %} {# Icons (menú derecho) #} {% endcomment %}
+  <div class="absolute top-4 right-4 flex gap-4 items-center text-white">
     {% if shop.customer_accounts_enabled %}
       {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
     {% endif %}
 
-    <a href="{{ routes.cart_url }}">
+    <a href="{{ routes.cart_url }}" class="relative">
       {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
+        <sup class="absolute -right-3 -top-2 bg-red-600 text-white text-xs rounded-full px-1">
+          {{ cart.item_count }}
+        </sup>
       {% endif %}
-
       {{ 'icon-cart.svg' | inline_asset_content }}
     </a>
   </div>
+
 </header>
 
+
 {% stylesheet %}
-  header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  body {
+    overflow-x: hidden;
   }
   header a {
     position: relative;
@@ -54,13 +78,36 @@
 
 {% schema %}
 {
-  "name": "t:general.header",
+  "name": "Custom Header",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "Menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Bienvenido a Nuestra Tienda"
+    },
+    {
+      "type": "text",
+      "id": "page_descripction",
+      "label": "Page Descripction",
+      "default": "text"
     }
   ]
 }
+
 {% endschema %}
