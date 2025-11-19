@@ -1,54 +1,72 @@
 <footer 
-  class="w-full h-[60vh] bg-gray-950 text-white flex items-start justify-between"
+  class="w-full h-[55vh]  bg-gray-950 text-white flex items-start justify-between"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
   <!-- COLUMNA IZQUIERDA -->
-  <div class="w-1/2 flex flex-col items-start justify-start px-20 space-y-4 pt-25">
-
+  <div class="w-1/2 flex flex-col justify-between items-start  pl-20 pt-20 h-full">
+    <div>
     {% if section.settings.logo %}
       <img 
         src="{{ section.settings.logo | image_url: width: 300 }}" 
         alt="Logo"
-        class="w-40 object-contain"
+        class="w-40 object-contain "
       >
     {% endif %}
-
+  <!-- descripcion debajo del footer -->
     {% if section.settings.descripcion %}
-      <p class="text-lg text-white pt-3 ">
+      <p class="text-[1vw] text-white mt-2 pt-5 pr-[15vw] leading-tight">
         {{ section.settings.descripcion }}
       </p>
-    {% endif %}
+    {% endif %}</div>
 
-     <!-- Social Media Icons -->
-        <div class="flex gap-6 order-1 flex-1 w-full justify-end md:justify-between">
-            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" class="footer-icon hover:opacity-70 transition-opacity" aria-label="Facebook">
-              {%- render 'iconCart' -%}
+      <!-- seccion de iconos de redes sociales -->
+      <div class="flex pl-2 gap-4 pb-20">
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              aria-label="Facebook">
+              {%- render 'fb' -%}
             </a>
-
-          
         </div>
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              aria-label="Instagram">
+              {%- render 'ig' -%}
+            </a>
+        </div>
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              aria-label="Tiktok">
+              {%- render 'tiktok' -%}
+            </a>
+        </div>
+       
+      </div>
 
-      <nav class="flex flex-col items-end space-y-2 text-white pt-50">
-      {% for link in section.settings.menu2.links %}
-        <a href="{{ link.url }}" class="text-lg hover:text-gray-300 transition">
-          {{ link.title }}
-        </a>
-      {% endfor %}
-    </nav>
+      <div class="flex flex-row space-y-1 md:pb-15">
+        <a class="hover:opacity-70 transition-opacity pr-5">Privacy Policy</a>
+        <a class="hover:opacity-70 pr-5">Terms of Service</a>
+        <a class="hover:opacity-70 ">Cookies Policy</a>
+      </div>
 
-  </div>
+      </div>
 
   <!-- COLUMNA DERECHA -->
-  <div class="w-1/2 h-full flex flex-col items-end justify-start px-20 pt-20">
-
-    <nav class="flex flex-row items-center space-x-6">
-      {% for link in section.settings.menu.links %}
-        <a href="{{ link.url }}" class="text-lg font-semibold hover:text-gray-300 transition p-2">
-          {{ link.title }}
-        </a>
-      {% endfor %}
-    </nav>
-
+  <div class="w-1/2 h-full flex flex-col items-start justify-start px-20 pt-15 pr-20">
+      <nav class="flex flex-row items-center ">
+        
+        {% for link in section.settings.menu.links %}
+          <div class="flex flex-col items-start pl-[5vw] pt-8">
+          <a href="{{ link.url }}" class="text-2xl hover:text-gray-300 transition  ">
+            {{ link.title }}
+          </a>   
+          <p class="text-xs">Vision & mission</p> 
+        </div> 
+        {% endfor %}
+      </nav>
+      
   </div>
 
 </footer>
@@ -65,11 +83,7 @@
       "id": "menu",
       "label": "t:labels.menu"
     },
-    {
-      "type": "link_list",
-      "id": "menu2",
-      "label": "t:labels.menu"
-    },
+   
     {
       "type": "image_picker",
       "id": "logo",
