@@ -1,44 +1,57 @@
 
 <div 
-class="w-screen min-h-[55vh]  bg-gray-200 flex justify-between"
+class="w-screen min-h-[55vh] bg-gray-200 flex flex-col-reverse md:flex-row justify-between"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
-  <div class="w-full md:w-1/2 flex justify-center items-center pt-10">
+  <div class="w-full md:w-1/2 flex justify-center items-end pt-10">
     <img 
       src="{{ section.settings.imagen | image_url: width: 600 }}" 
       alt="Imagen"
-      class="w-[35vw] max-w-md object-contain"
+      class="md:w-[35vw] w-[50vw] max-w-md object-contain"
     >
   </div>
 
-  <div class="w-full md:w-1/2 flex justify-center items-center px-10">
-    <div class="text-left max-w-[500px]">
-      <h2 class="text-6xl font-semibold font-bricolage mb-4">Join the tribe.</h2>
-      <p class="text-xs leading-relaxed">
-        Sign Up to our newsletter and be the first to know about our launch and 
-        exclusive offers
-      </p>
-        <div class="w-full max-w-xl pt-5">
-            <form class="flex w-full bg-white rounded-full overflow-hidden shadow">
-            
-            <input 
-                type="email" 
-                placeholder="Enter your Email Address"
-                class="flex-1 px-6 py-3 text-gray-700 placeholder-gray-400 focus:outline-none"
-            >
-            
-            <button 
-                type="submit"
-                class="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition"
-            >
-                Subscribe
-            </button>
+  <div class="w-full md:w-1/2 flex justify-center items-center px-10 pt-15">
+  <div class="text-left w-[90%] max-w-[350px] md:max-w-[500px]">
+    <h2 class="md:text-6xl text-4xl font-semibold font-bricolage mb-4">Join the tribe.</h2>
 
-            </form>
-        </div>
+    <p class="text-xs leading-relaxed">
+      Sign Up to our newsletter and be the first to know about our launch and 
+      exclusive offers
+    </p>
+
+    <div class="w-full pt-5">
+      <form class="md:flex grid  grid-cols-2 w-full bg-white rounded-full overflow-hidden shadow">
+          
+        <!-- MOBILE -->
+        <input 
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="md:hidden md:flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+          />
+
+          <!-- DESKTOP -->
+          <input 
+            type="email"
+            name="email"
+            placeholder="Enter your Email Address"
+            class="hidden md:flex flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+          />
+        
+        <button 
+          type="submit"
+          class="bg-black text-white  px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
+        >
+          Subscribe
+        </button>
+
+      </form>
     </div>
   </div>
+</div>
+
 
 </div>
 
