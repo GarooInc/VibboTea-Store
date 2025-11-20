@@ -12,9 +12,17 @@
     "main": {
       "type": "hello-world",
       "settings": {}
+    },
+    "newsletter_ri4VmU": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "imagen": "shopify://shop_images/newsletter.png"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "newsletter_ri4VmU"
   ]
 }
