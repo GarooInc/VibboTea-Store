@@ -1,0 +1,64 @@
+
+<div 
+class="w-screen min-h-[55vh]  bg-gray-200 flex justify-between"
+style="width: 100vw; margin-left: calc(50% - 50vw);"
+>
+
+  <div class="w-full md:w-1/2 flex justify-center items-center pt-10">
+    <img 
+      src="{{ section.settings.imagen | image_url: width: 600 }}" 
+      alt="Imagen"
+      class="w-[35vw] max-w-md object-contain"
+    >
+  </div>
+
+  <div class="w-full md:w-1/2 flex justify-center items-center px-10">
+    <div class="text-left max-w-[500px]">
+      <h2 class="text-6xl font-semibold font-bricolage mb-4">Join the tribe.</h2>
+      <p class="text-xs leading-relaxed">
+        Sign Up to our newsletter and be the first to know about our launch and 
+        exclusive offers
+      </p>
+        <div class="w-full max-w-xl pt-5">
+            <form class="flex w-full bg-white rounded-full overflow-hidden shadow">
+            
+            <input 
+                type="email" 
+                placeholder="Enter your Email Address"
+                class="flex-1 px-6 py-3 text-gray-700 placeholder-gray-400 focus:outline-none"
+            >
+            
+            <button 
+                type="submit"
+                class="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition"
+            >
+                Subscribe
+            </button>
+
+            </form>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+    }
+  ]
+}
+{% endschema %}
