@@ -2,7 +2,7 @@
   class="relative w-screen h-screen bg-cover bg-center flex items-center justify-center overflow-hidden"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-image: url({{ section.settings.background_image | image_url }});"
 >
-<div class="absolute top-0 left-0 w-full grid grid-cols-3 items-center px-10 py-6 z-30
+<div class="absolute top-0 left-0 w-full grid grid-cols-3 items-center p-[3.5vh]  z-30
             bg-black/40">
 
   <!-- LOGO (col 1) -->
@@ -25,7 +25,8 @@
     {% for link in section.settings.menu.links %}
       <a 
         href="{{ link.url }}" 
-        class="font-sf-pro font-light text-[2vw] md:text-[1.2vw] lg:text-[0.9vw] xl:text-[0.8vw] p-4 md:text-sm tracking-wider uppercase text-white  hover:text-gray-500 transition-colors duration-200 whitespace-nowrap"
+        class="font-sf-pro font-light font-bricolage text-[2vw] md:text-[1.2vw] lg:text-[0.9vw] xl:text-[0.9vw] p-4 md:text-sm tracking-wider
+         uppercase text-white  hover:text-gray-500 transition-colors duration-200 whitespace-nowrap"
       >
         {{ link.title }}
       </a>
@@ -61,13 +62,13 @@
   <div class="">
   {% comment %} {# Title centered #} {% endcomment %}
   <div class="mx-auto text-center">
-    <h1 class="text-[10vw] md:text-[10vw] font-bold text-white drop-shadow-lg leading-[0.9] tracking-tight">
+    <h1 class="text-[10vw] md:text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] ">
       {{ section.settings.page_title }}
     </h1>
   </div>
 
   <div class="mx-auto text-center">
-    <p class="text-[2vw] md:text-[2.5vw] pt-4 text-white drop-shadow-lg leading-[0.9] tracking-tight">
+    <p class="text-[2vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
       {{ section.settings.page_descripction }}
     </p>
   </div></div>

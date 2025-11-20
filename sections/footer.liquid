@@ -1,7 +1,8 @@
 <footer 
-  class="w-full h-[55vh]  bg-gray-950 text-white flex items-start justify-between"
+  class="w-screen min-h-[55vh]  bg-gray-950 text-white flex items-start justify-between"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
+
   <!-- COLUMNA IZQUIERDA -->
   <div class="w-1/2 flex flex-col justify-between items-start  pl-20 pt-20 h-full">
     <div>
@@ -14,23 +15,23 @@
     {% endif %}
   <!-- descripcion debajo del footer -->
     {% if section.settings.descripcion %}
-      <p class="text-[1vw] text-white mt-2 pt-5 pr-[15vw] leading-tight">
+      <p class="text-[1vw] text-white mt-2 pt-5 pr-[15vw] font-bricolage leading-tight">
         {{ section.settings.descripcion }}
       </p>
     {% endif %}</div>
 
       <!-- seccion de iconos de redes sociales -->
-      <div class="flex pl-2 gap-4 pb-20">
+      <div class="flex pl-2 gap-4 pb-20 ">
         <div class="flex justify-end md:justify-between ">
             <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
               aria-label="Facebook">
               {%- render 'fb' -%}
             </a>
         </div>
         <div class="flex justify-end md:justify-between ">
             <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
               aria-label="Instagram">
               {%- render 'ig' -%}
             </a>
@@ -59,10 +60,10 @@
         
         {% for link in section.settings.menu.links %}
           <div class="flex flex-col items-start  pt-8">
-          <a href="{{ link.url }}" class=" text-[1.8vw] hover:text-gray-300 transition whitespace-nowrap ">
+          <a href="{{ link.url }}" class=" text-[1.8vw] hover:text-gray-300 transition font-bricolage whitespace-nowrap ">
             {{ link.title }}
           </a>   
-          <p class="text-xs">Vision & mission</p> 
+          <p class="text-xs font-bricolage">Vision & mission</p> 
         </div> 
         {% endfor %}
       </nav>

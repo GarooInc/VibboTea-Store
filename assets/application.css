@@ -28,8 +28,11 @@
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
+    --font-weight-extralight: 200;
     --font-weight-light: 300;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -211,6 +214,9 @@
   .static {
     position: static;
   }
+  .sticky {
+    position: sticky;
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -243,6 +249,9 @@
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
+  }
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
@@ -296,11 +305,17 @@
   .h-\[60vh\] {
     height: 60vh;
   }
+  .h-auto {
+    height: auto;
+  }
   .h-full {
     height: 100%;
   }
   .h-screen {
     height: 100vh;
+  }
+  .min-h-\[55vh\] {
+    min-height: 55vh;
   }
   .w-0 {
     width: calc(var(--spacing) * 0);
@@ -343,6 +358,9 @@
   }
   .w-screen {
     width: 100vw;
+  }
+  .max-w-full {
+    max-width: 100%;
   }
   .flex-1 {
     flex: 1;
@@ -615,6 +633,21 @@
   .p-30 {
     padding: calc(var(--spacing) * 30);
   }
+  .p-\[2vh\] {
+    padding: 2vh;
+  }
+  .p-\[3\.2vh\] {
+    padding: 3.2vh;
+  }
+  .p-\[3\.5vh\] {
+    padding: 3.5vh;
+  }
+  .p-\[3vh\] {
+    padding: 3vh;
+  }
+  .p-\[5vh\] {
+    padding: 5vh;
+  }
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
@@ -626,6 +659,9 @@
   }
   .px-40 {
     padding-inline: calc(var(--spacing) * 40);
+  }
+  .px-50 {
+    padding-inline: calc(var(--spacing) * 50);
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
@@ -922,6 +958,10 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .font-extralight {
+    --tw-font-weight: var(--font-weight-extralight);
+    font-weight: var(--font-weight-extralight);
+  }
   .font-light {
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
@@ -937,6 +977,9 @@
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
+  }
+  .text-wrap {
+    text-wrap: wrap;
   }
   .whitespace-nowrap {
     white-space: nowrap;
@@ -1018,9 +1061,29 @@
       }
     }
   }
+  .md\:mt-10 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 10);
+    }
+  }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
   .md\:justify-between {
     @media (width >= 48rem) {
       justify-content: space-between;
+    }
+  }
+  .md\:p-\[2vh\] {
+    @media (width >= 48rem) {
+      padding: 2vh;
+    }
+  }
+  .md\:p-\[3\.5vh\] {
+    @media (width >= 48rem) {
+      padding: 3.5vh;
     }
   }
   .md\:pb-15 {
@@ -1069,6 +1132,11 @@
       color: vw;
     }
   }
+  .lg\:p-\[2vh\] {
+    @media (width >= 64rem) {
+      padding: 2vh;
+    }
+  }
   .lg\:text-\[0\.9vw\] {
     @media (width >= 64rem) {
       font-size: 0.9vw;
@@ -1102,6 +1170,16 @@
   .xl\:text-\[0\.8vw\] {
     @media (width >= 80rem) {
       font-size: 0.8vw;
+    }
+  }
+  .xl\:text-\[0\.9vw\] {
+    @media (width >= 80rem) {
+      font-size: 0.9vw;
+    }
+  }
+  .xl\:text-\[5vw\] {
+    @media (width >= 80rem) {
+      font-size: 5vw;
     }
   }
   .\[\&_svg\]\:fill-white {
