@@ -218,6 +218,9 @@
   .static {
     position: static;
   }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -236,6 +239,12 @@
   .z-30 {
     z-index: 30;
   }
+  .m-10 {
+    margin: calc(var(--spacing) * 10);
+  }
+  .m-30 {
+    margin: calc(var(--spacing) * 30);
+  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -244,6 +253,9 @@
   }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
   }
   .mb-\[10\] {
     margin-bottom: 10;
@@ -309,6 +321,9 @@
   .min-h-\[80vh\] {
     min-height: 80vh;
   }
+  .min-h-\[90vh\] {
+    min-height: 90vh;
+  }
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
@@ -320,6 +335,15 @@
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
+  }
+  .w-\[1\] {
+    width: 1;
+  }
+  .w-\[1wv\] {
+    width: 1wv;
+  }
+  .w-\[5wv\] {
+    width: 5wv;
   }
   .w-\[50vw\] {
     width: 50vw;
@@ -378,6 +402,12 @@
   .flex-wrap {
     flex-wrap: wrap;
   }
+  .place-content-between {
+    place-content: space-between;
+  }
+  .content-between {
+    align-content: space-between;
+  }
   .items-center {
     align-items: center;
   }
@@ -386,6 +416,9 @@
   }
   .items-start {
     align-items: flex-start;
+  }
+  .justify-around {
+    justify-content: space-around;
   }
   .justify-between {
     justify-content: space-between;
@@ -401,6 +434,21 @@
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
+  }
+  .gap-5 {
+    gap: calc(var(--spacing) * 5);
+  }
+  .gap-10 {
+    gap: calc(var(--spacing) * 10);
+  }
+  .gap-15 {
+    gap: calc(var(--spacing) * 15);
+  }
+  .gap-18 {
+    gap: calc(var(--spacing) * 18);
+  }
+  .gap-20 {
+    gap: calc(var(--spacing) * 20);
   }
   .space-y-1 {
     :where(& > :not(:last-child)) {
@@ -487,8 +535,26 @@
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
+  }
   .p-8 {
     padding: calc(var(--spacing) * 8);
+  }
+  .p-10 {
+    padding: calc(var(--spacing) * 10);
+  }
+  .p-15 {
+    padding: calc(var(--spacing) * 15);
+  }
+  .p-20 {
+    padding: calc(var(--spacing) * 20);
+  }
+  .p-25 {
+    padding: calc(var(--spacing) * 25);
+  }
+  .p-30 {
+    padding: calc(var(--spacing) * 30);
   }
   .p-\[3\.5vh\] {
     padding: 3.5vh;
@@ -510,6 +576,9 @@
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
+  }
+  .pt-2 {
+    padding-top: calc(var(--spacing) * 2);
   }
   .pt-4 {
     padding-top: calc(var(--spacing) * 4);
@@ -538,11 +607,23 @@
   .pb-10 {
     padding-bottom: calc(var(--spacing) * 10);
   }
+  .pb-20 {
+    padding-bottom: calc(var(--spacing) * 20);
+  }
+  .pb-30 {
+    padding-bottom: calc(var(--spacing) * 30);
+  }
   .pl-2 {
     padding-left: calc(var(--spacing) * 2);
   }
   .pl-10 {
     padding-left: calc(var(--spacing) * 10);
+  }
+  .pl-12 {
+    padding-left: calc(var(--spacing) * 12);
+  }
+  .pl-20 {
+    padding-left: calc(var(--spacing) * 20);
   }
   .pl-\[5vw\] {
     padding-left: 5vw;
@@ -616,6 +697,18 @@
   }
   .text-\[5vw\] {
     font-size: 5vw;
+  }
+  .text-\[6\.5vw\] {
+    font-size: 6.5vw;
+  }
+  .text-\[6vw\] {
+    font-size: 6vw;
+  }
+  .text-\[7vw\] {
+    font-size: 7vw;
+  }
+  .text-\[8vw\] {
+    font-size: 8vw;
   }
   .text-\[10px\] {
     font-size: 10px;
@@ -812,6 +905,11 @@
       justify-content: center;
     }
   }
+  .md\:p-20 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 20);
+    }
+  }
   .md\:pt-15 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 15);
@@ -894,6 +992,26 @@
   .md\:text-\[2\.5vw\] {
     @media (width >= 48rem) {
       font-size: 2.5vw;
+    }
+  }
+  .md\:text-\[3\.3vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.3vw;
+    }
+  }
+  .md\:text-\[3\.5vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.5vw;
+    }
+  }
+  .md\:text-\[3vw\] {
+    @media (width >= 48rem) {
+      font-size: 3vw;
+    }
+  }
+  .md\:text-\[4vw\] {
+    @media (width >= 48rem) {
+      font-size: 4vw;
     }
   }
   .md\:text-\[10vw\] {

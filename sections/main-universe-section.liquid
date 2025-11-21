@@ -1,0 +1,83 @@
+<div 
+class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between"
+style="width: 100vw; margin-left: calc(50% - 50vw);"
+>
+
+    <div class="w-full flex justify-start items-start p-20">
+        <div class="text-black text-[6vw] md:text-[3.3vw] font-bricolage font-semibold">
+            {{ section.settings.title }}
+        </div>
+    </div>
+
+    <div class="w-full flex justify-center items-center ">
+        <div class="grid grid-cols-2 w-full gap-20 p-20 pt-5 pb-30">
+            <div class="relative w-full">
+                <img 
+                    src="{{ section.settings.imagen | image_url: width: 600 }}" 
+                    alt="Imagen 1"
+                    class="w-full object-contain"
+                >
+                    {% comment %} texto  {% endcomment %}
+                <div class="absolute inset-0 w-full flex justify-center items-center">
+                    <p class="text-white  text-5xl font-semibold drop-shadow-lg">
+                    {{ section.settings.texto1 }}
+                    </p>
+                </div>
+            </div>
+            
+            <div>
+                <img 
+                    src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
+                    alt="Imagen 2"
+                    class="w-full object-contain"
+                >
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Section Universe",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen2",
+      "label": "Image2"
+    },
+    {
+      "type": "text",
+      "id": "text-imagen1",
+      "label": "Text Imagen 1",
+      "default": "texto 1"
+    },
+    {
+      "type": "text",
+      "id": "text-imagen2",
+      "label": "Text Imagen 2",
+      "default": "texto 2"
+    },
+    
+  ],
+  "presets": [
+    {
+      "name": "Section Universe",
+    }
+  ]
+}
+{% endschema %}
