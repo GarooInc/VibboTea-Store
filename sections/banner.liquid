@@ -1,0 +1,64 @@
+
+<div 
+class="w-screen min-h-[80vh] bg-[#FFF9E8] flex flex-col-reverse md:flex-row justify-between"
+style="width: 100vw; margin-left: calc(50% - 50vw);"
+>
+
+    <div class="w-full md:w-1/2 flex justify-start items-end pt-10">
+        <div class="relative inline-block">
+  
+            <img 
+                src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
+                alt="Imagen 2"
+                class="pl-[11vw] pb-10"
+            >
+            <img 
+                src="{{ section.settings.imagen | image_url: width: 400 }}" 
+                alt="Imagen 1"
+                class="absolute left-0 bottom-0"
+            >
+
+            </div>
+    </div>
+
+
+    <div class="w-full md:w-1/2 flex justify-left items-center  pt-15 pr-30">
+        <div class="text-black text-[2vw] font-bricolage">
+            {{ section.settings.page_descripction }}
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen2",
+      "label": "Image2"
+    },
+    {
+      "type": "richtext",
+      "id": "page_descripction",
+      "label": "Page Descripction",
+      "default": "<p>Workers y and Farmers</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner",
+    }
+  ]
+}
+{% endschema %}
