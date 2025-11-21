@@ -17,24 +17,14 @@
         {%-  render 'icon-hamburger' %}
       </button></div>
       <!-- MOBILE MENU -->
-      <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-black/90 text-white z-50 p-10">
-
-        <!-- Botón cerrar (X) -->
-        <button 
-          type="button" 
-          class="absolute top-5 right-5 text-white text-3xl"
-          onclick="toggleMobileMenu()"
-          aria-label="Close menu"
-        >
-          &times;
-        </button>
-
-        <div class="flex flex-col space-y-6 text-xl font-bricolage mt-10">
+      <div id="mobile-menu" class="lg:hidden hidden fixed top-0 left-0 w-full h-screen bg-black z-1 px-8">
+        <nav class="flex flex-col space-y-4 justify-center items-center h-full ">
           {% for link in section.settings.menu.links %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="text-2xl tracking-wider text-gray-300 transition-colors duration-200 uppercase text-center py-2">
+              {{ link.title }}
+            </a>
           {% endfor %}
-        </div>
-
+        </nav>
       </div>
 
 
