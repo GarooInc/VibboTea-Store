@@ -9,9 +9,90 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "banner_ei7gFw": {
+      "type": "banner",
+      "name": "Banner",
+      "settings": {
+        "imagen": "shopify://shop_images/Hojas1_1.png",
+        "imagen2": "shopify://shop_images/Jaguar_Patineta_1.png",
+        "page_descripction": "<p><strong>Only 1 in 5 of tea workers and farmers </strong>surveyed said they earn enough income every month to support their families with essentials.</p>"
+      }
+    },
+    "main_universe_section_yaVDzH": {
+      "type": "main-universe-section",
+      "name": "Section Universe",
+      "settings": {
+        "title": "The universe of VIBBO",
+        "imagen": "shopify://shop_images/Frame_1321316181.png",
+        "imagen2": "shopify://shop_images/Frame_1321316180.png",
+        "text-imagen1": "Rise, \nRest, \nReset.",
+        "text-imagen2": "Detox",
+        "imagen1-url": "",
+        "imagen2-url": ""
+      }
+    },
+    "main_socials_section_7yLtAb": {
+      "type": "main-socials-section",
+      "name": "Section socials",
+      "settings": {
+        "title": "You snooze, \nyou lose.",
+        "imagen": "shopify://shop_images/designer-choosing-colour-for-interior-2025-03-05-06-34-07-utc_2.png",
+        "imagen2": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2.png",
+        "imagen3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png",
+        "text-follow": "Follow our socials, never miss a brew.",
+        "instagram-url": ""
+      }
+    },
+    "faq_UxEWVW": {
+      "type": "faq",
+      "blocks": {
+        "faq_tHqFtF": {
+          "type": "faq",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
+        },
+        "faq_in4TRB": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I place an order?",
+            "answer": ""
+          }
+        },
+        "faq_GefwmB": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I apply a discount code?",
+            "answer": ""
+          }
+        },
+        "faq_r8XVV9": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": ""
+          }
+        },
+        "faq_iAy7pW": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_tHqFtF",
+        "faq_in4TRB",
+        "faq_GefwmB",
+        "faq_r8XVV9",
+        "faq_iAy7pW"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "title": "FAQ"
+      }
     },
     "newsletter_ri4VmU": {
       "type": "newsletter",
@@ -22,7 +103,10 @@
     }
   },
   "order": [
-    "main",
+    "banner_ei7gFw",
+    "main_universe_section_yaVDzH",
+    "main_socials_section_7yLtAb",
+    "faq_UxEWVW",
     "newsletter_ri4VmU"
   ]
 }
