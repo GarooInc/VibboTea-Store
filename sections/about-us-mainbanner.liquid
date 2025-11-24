@@ -1,0 +1,80 @@
+<section 
+  class="relative  min-h-screen flex items-center justify-center text-white w-full full-width "
+>
+  {% if section.settings.background_image %}
+    <img 
+      src="{{ section.settings.background_image | image_url: width: 2500 }}"
+      alt="Background image"
+      width="{{ section.settings.background_image.width }}"
+      height="{{ section.settings.background_image.height }}"
+      class="absolute inset-0 w-full h-full object-cover min-h-screen z-0"
+    >
+  {% endif %}
+
+  <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-1"></div>
+
+  <div class="relative z-10 text-center flex justify-center items-center gap-20 pt-20  md:my-0 flex-col w-full mx-auto font-bricolage ">
+    <div class="flex flex-col gap-2 justify-center items-center">
+        {% if section.settings.eyebrow %}
+        <p class="uppercase md:text-3xl text-2xl font-bold mb-4 text-black">
+            {{ section.settings.eyebrow }}
+        </p>
+        {% endif %}
+
+        <h1 class="font-bold leading-tight text-4xl md:text-6xl mb-6 text-black md:p-0 px-4">
+        {{ section.settings.heading_line_1 }}<br>
+        {{ section.settings.heading_line_2 }}<br>
+        {{ section.settings.heading_line_3 }}
+        </h1>
+    </div>
+    {% if section.settings.body_text %}
+      <div class="text-base md:text-lg text-white/90 mx-auto md:pt-20 px-10 w-full md:max-w-4xl">
+        {{ section.settings.body_text }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Banner About Us",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagen de fondo"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior",
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Título línea 1",
+      "default": "Wellness without"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Título línea 2",
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Título línea 3",
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Texto descriptivo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Banner About Us"
+    }
+  ]
+}
+{% endschema %}
