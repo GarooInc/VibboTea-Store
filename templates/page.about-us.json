@@ -39,11 +39,19 @@
         "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle, we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
         "heading_2": "<p>it starts </p><p>with a cup </p><p>of tea.</p>"
       }
+    },
+    "about_us_imagebanner_epTcFr": {
+      "type": "about-us-imagebanner",
+      "name": "Image About Us",
+      "settings": {
+        "image": "shopify://shop_images/about-us-banner.png"
+      }
     }
   },
   "order": [
     "main",
     "about_us_mainbanner_NRXVwk",
+    "about_us_imagebanner_epTcFr",
     "about_us_tribebanner_c9LPif"
   ]
 }
