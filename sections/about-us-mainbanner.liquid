@@ -5,14 +5,14 @@
     <img 
       src="{{ section.settings.background_image | image_url: width: 2500 }}"
       alt="Background image"
+      width="{{ section.settings.background_image.width }}"
+      height="{{ section.settings.background_image.height }}"
       class="absolute inset-0 w-full h-full object-cover min-h-screen z-0"
     >
   {% endif %}
 
-  <!---- Overlay ---->
-  <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-5"></div>
+  <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-1"></div>
 
-  <!-- Content -->
   <div class="relative z-10 text-center flex justify-center items-center gap-20 pt-20  md:my-0 flex-col w-full mx-auto font-bricolage ">
     <div class="flex flex-col gap-2 justify-center items-center">
         {% if section.settings.eyebrow %}
@@ -28,9 +28,9 @@
         </h1>
     </div>
     {% if section.settings.body_text %}
-      <p class="text-base md:text-lg text-white/90 md:max-w-4xl mx-auto md:pt-20 lg:px-0 px-10">
+      <div class="text-base md:text-lg text-white/90 mx-auto md:pt-20 px-10 w-full md:max-w-4xl">
         {{ section.settings.body_text }}
-      </p>
+      </div>
     {% endif %}
   </div>
 </section>
@@ -66,10 +66,9 @@
       "label": "Título línea 3",
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "body_text",
-      "label": "Texto descriptivo",
-      "default": "Everyone deserves real wellness, not just empty quick-fixes. Everything you need already comes from the earth, and our tea delivers just that: high-quality, purpose driven blends crafted to fuel your day and reset your rhythm. No gimmicks, just honest rituals for people who want to be present."
+      "label": "Texto descriptivo"
     }
   ],
   "presets": [
