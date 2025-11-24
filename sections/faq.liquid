@@ -1,0 +1,108 @@
+<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center">
+  <div class="md:min-w-4xl min-w-sm mx-auto text-center px-4">
+
+    {% if section.settings.title != blank %}
+      <h2 class="text-3xl md:text-5xl font-semibold mb-12">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <p class="text-sm mb-12 p-4">
+      Read below for a good time.
+    </p>
+
+    <div class="w-full">
+
+      {% for block in section.blocks %}
+      <div class="w-full pb-5" {{ block.shopify_attributes }}>
+        
+        <div 
+          class="faq-card border border-gray-300 rounded-xl px-4 py-5 cursor-pointer"
+          data-faq
+        >
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bricolage text-left">
+              {{ block.settings.question }}
+            </h3>
+
+            <button class="faq-toggle transition-transform duration-300" aria-label="toggle">
+              {%- render 'arrow-faq1' -%}
+            </button>
+          </div>
+
+          <!-- Respuesta oculta -->
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-500">
+            <p class="text-gray-700 mt-3 pr-10 text-left">
+              {{ block.settings.answer }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqs = document.querySelectorAll("[data-faq]");
+
+    faqs.forEach(faq => {
+      const toggle = faq.querySelector(".faq-toggle");
+      const content = faq.querySelector(".faq-content");
+
+      faq.addEventListener("click", () => {
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+        if (isOpen) {
+          content.style.maxHeight = "0px";
+          toggle.style.transform = "rotate(0deg)";
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          toggle.style.transform = "rotate(180deg)";
+        }
+      });
+    });
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Preguntas frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ"
+    }
+  ]
+}
+{% endschema %}
