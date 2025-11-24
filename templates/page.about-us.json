@@ -12,9 +12,22 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "about_us_mainbanner_NRXVwk": {
+      "type": "about-us-mainbanner",
+      "name": "Main Banner About Us",
+      "settings": {
+        "background_image": "shopify://shop_images/about-usvibbo.png",
+        "eyebrow": "MEET VIBBO",
+        "heading_line_1": "Wellness without",
+        "heading_line_2": "the B.S., real tea made",
+        "heading_line_3": "for modern-day villains.",
+        "body_text": "<p>Everyone deserves real wellness, not just empty quick-fixes. Everything you need already comes from the earth, and our tea delivers just that: high-quality, purpose driven blends crafted to fuel your day and reset your rhythm. No gimmicks, just honest rituals for people who want to be present.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "about_us_mainbanner_NRXVwk"
   ]
 }
