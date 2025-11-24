@@ -12,25 +12,54 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
     <div class="w-full flex justify-center items-center ">
         <div class="grid grid-cols-2 w-full gap-20 p-20 pt-5 pb-30">
             <div class="relative w-full">
-                <img 
-                    src="{{ section.settings.imagen | image_url: width: 600 }}" 
-                    alt="Imagen 1"
-                    class="w-full object-contain"
-                >
-                    {% comment %} texto  {% endcomment %}
-                <div class="absolute inset-0 w-full flex justify-center items-center">
-                    <p class="text-white  text-5xl font-semibold drop-shadow-lg">
-                    {{ section.settings.texto1 }}
-                    </p>
-                </div>
+              <img 
+                  src="{{ section.settings.imagen | image_url: width: 600 }}" 
+                  alt="Imagen 1"
+                  class="w-full object-contain"
+              >
+
+              <!-- TEXTO ENCIMA DE LA IMAGEN -->
+              <div class="absolute inset-0 ">
+                  <h2 class="text-white text-6xl pl-10 pt-25 font-bricolage font-semibold">
+                      {{ section.settings.text-imagen1 | newline_to_br}}
+                  </h2>
+              </div>
+              <div class="absolute bottom-20 left-10 bg-white h-12 w-42 flex justify-left items-center rounded-full">
+                <p class="text-black text-base p-4 font-bricolage">
+                    Get pumped
+                </p>
+                <a href="{{ section.settings.imagen1-url }}" target="_blank" rel="noopener" 
+                  class="hover:opacity-70 transition-opacity scale-80" 
+                  aria-label="Imagen 1 URL">
+                  {%- render 'arrow' -%}
+                </a>
             </div>
+
+          </div>
+
             
-            <div>
+            <div class="relative w-full">
                 <img 
                     src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
                     alt="Imagen 2"
                     class="w-full object-contain"
                 >
+                  <!-- TEXTO ENCIMA DE LA IMAGEN -->
+              <div class="absolute inset-0 ">
+                  <h2 class="text-white text-6xl pl-10 pt-25 font-bricolage font-semibold">
+                      {{ section.settings.text-imagen2 | newline_to_br}}
+                  </h2>
+              </div>
+              <div class="absolute bottom-20 left-10 bg-white h-12 w-42 flex justify-left items-center rounded-full">
+                <p class="text-black text-base p-4 font-bricolage">
+                    Get purified
+                </p>
+                  <a href="{{ section.settings.imagen1-url }}" target="_blank" rel="noopener" 
+                    class="hover:opacity-70 transition-opacity scale-80" 
+                    aria-label="Imagen 1 URL">
+                    {%- render 'arrow' -%}
+                  </a>
+              </div>
             </div>
         </div>
     </div>
@@ -61,16 +90,26 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "label": "Image2"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "text-imagen1",
       "label": "Text Imagen 1",
       "default": "texto 1"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "text-imagen2",
       "label": "Text Imagen 2",
       "default": "texto 2"
+    },
+    {
+      "type": "url",
+      "id": "imagen1-url",
+      "label": "Imagen1 URL"
+    },
+    {
+      "type": "url",
+      "id": "imagen2-url",
+      "label": "Imagen2 URL"
     },
     
   ],
