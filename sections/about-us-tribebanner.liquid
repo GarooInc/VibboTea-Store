@@ -4,7 +4,7 @@
     <img
       src="{{ section.settings.plant_top_left | image_url: width: 400 }}"
       alt="Decoración planta"
-      class="pointer-events-none select-none absolute -top-6 -left-4 xl:w-[400px] lg:w-[320px] w-[280px]"
+      class="pointer-events-none select-none absolute -top-6 -left-4 xl:w-[400px] md:w-[300px] w-[280px]"
         width="{{ section.settings.plant_top_left.width }}"
         height="{{ section.settings.plant_top_left.height }}"
     >
@@ -14,36 +14,36 @@
     <img
       src="{{ section.settings.plant_bottom_right | image_url: width: 400 }}"
       alt="Decoración planta"
-      class="pointer-events-none select-none absolute -bottom-10 -right-4 xl:w-[400px] lg:w-[320px] w-[280px]"
+      class="pointer-events-none select-none absolute -bottom-10 -right-4 xl:w-[400px] md:w-[300px] w-[280px]"
       width="{{ section.settings.plant_bottom_right.width }}"
       height="{{ section.settings.plant_bottom_right.height }}"
     >
   {%- endif -%}
 
-  <div class="relative mx-auto px-6 lg:px-40 space-y-16 md:space-y-24 md:py-0 py-40 flex flex-col gap-10">
+  <div class="relative mx-auto px-6 lg:px-40 space-y-16 md:space-y-24 lg:py-0 py-40 flex flex-col gap-10">
 
     {%- comment -%} FILA 1 {%- endcomment -%}
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
       <div class="space-y-4 md:space-y-6 lg:pt-10">
         {%- if section.settings.title_1 != blank -%}
-          <h2 class="text-4xl lg:text-6xl font-bold tracking-tight text-black md:text-left text-right">
+          <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-black md:text-left text-right">
             {{ section.settings.title_1 }}
           </h2>
         {%- endif -%}
 
         {%- if section.settings.body_1 != blank -%}
-          <p class="text-base lg:text-4xl text-neutral-800 max-w-sm md:text-left text-right">
+          <div class="text-xl md:text-4xl text-neutral-800  md:text-left text-right">
             {{ section.settings.body_1 }}
-          </p>
+          </div>
         {%- endif -%}
       </div>
 
-      <div class="flex justify-center md:justify-end">
+      <div class="flex justify-center md:justify-end w-full">
         {%- if section.settings.image_1 != blank -%}
           <img
             src="{{ section.settings.image_1 | image_url: width: 900 }}"
             alt="imagen persona"
-            class=" max-w-md rounded-3xl object-cover w-sm xl:w-full"
+            class=" rounded-3xl object-cover md:w-full"
             width="{{ section.settings.image_1.width }}"
             height="{{ section.settings.image_1.height }}"
           >
@@ -52,14 +52,14 @@
     </div>
 
     {%- comment -%} FILA 2 {%- endcomment -%}
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
       <div class="order-1 md:order-1 flex justify-start">
         {%- if section.settings.image_2 != blank -%}
-          <div class="relative w-full max-w-xl">
+          <div class="relative w-full ">
             <img
               src="{{ section.settings.image_2 | image_url: width: 900 }}"
               alt="imagen taza de té"
-              class="w-full rounded-3xl object-cover"
+              class="rounded-3xl object-cover md:w-full"
               width="{{ section.settings.image_2.width }}"
               height="{{ section.settings.image_2.height }}"
             >
@@ -69,13 +69,13 @@
 
       <div class="order-2 md:order-2 space-y-4 md:space-y-6">
         {%- if section.settings.body_2_small != blank -%}
-          <p class="text-lg md:text-xl text-neutral-800">
+          <div class="text-xl text-neutral-800">
             {{ section.settings.body_2_small }}
-          </p>
+          </div>
         {%- endif -%}
 
         {%- if section.settings.heading_2 != blank -%}
-          <h3 class="text-4xl lg:text-6xl font-bold leading-tight tracking-tight text-black">
+          <h3 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-black">
             {{ section.settings.heading_2 }}
           </h3>
         {%- endif -%}
