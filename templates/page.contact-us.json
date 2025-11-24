@@ -14,36 +14,44 @@
       "disabled": true,
       "settings": {}
     },
-    "about_us_mainbanner_NRXVwk": {
-      "type": "about-us-mainbanner",
-      "name": "Main Banner About Us",
+    "faq_B9ngBx": {
+      "type": "faq",
+      "blocks": {
+        "faq_8LfbFc": {
+          "type": "faq",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
+        },
+        "faq_DCVrBE": {
+          "type": "faq",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
+        },
+        "faq_Niak4e": {
+          "type": "faq",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
+        }
+      },
+      "block_order": [
+        "faq_8LfbFc",
+        "faq_DCVrBE",
+        "faq_Niak4e"
+      ],
+      "name": "FAQ",
       "settings": {
-        "background_image": "shopify://shop_images/about-usvibbo.png",
-        "eyebrow": "MEET VIBBO",
-        "heading_line_1": "Wellness without",
-        "heading_line_2": "the B.S., real tea made",
-        "heading_line_3": "for modern-day villains.",
-        "body_text": "<p>Everyone deserves real wellness, not just empty quick-fixes. Everything you need already comes from the earth, and our tea delivers just that: high-quality, purpose driven blends crafted to fuel your day and reset your rhythm. No gimmicks, just honest rituals for people who want to be present.</p>"
-      }
-    },
-    "about_us_tribebanner_c9LPif": {
-      "type": "about-us-tribebanner",
-      "name": "Tribe Banner About Us",
-      "settings": {
-        "plant_top_left": "shopify://shop_images/about-us-hojas1.png",
-        "plant_bottom_right": "shopify://shop_images/about-us-hojas2.png",
-        "title_1": "The Tribe",
-        "body_1": "<p>We could brag about how pretty our plants and faces are, but that's not the point.</p>",
-        "image_1": "shopify://shop_images/about-us-girl.png",
-        "image_2": "shopify://shop_images/about-us-tea.png",
-        "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle, we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
-        "heading_2": "<p>it starts </p><p>with a cup </p><p>of tea.</p>"
+        "title": "FAQ"
       }
     }
   },
   "order": [
     "main",
-    "about_us_mainbanner_NRXVwk",
-    "about_us_tribebanner_c9LPif"
+    "faq_B9ngBx"
   ]
 }
