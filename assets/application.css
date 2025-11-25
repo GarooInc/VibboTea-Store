@@ -20,6 +20,7 @@
     --spacing: 0.25rem;
     --container-sm: 24rem;
     --container-md: 28rem;
+    --container-xl: 36rem;
     --container-4xl: 56rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
@@ -56,6 +57,7 @@
     --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -244,11 +246,32 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
+  .top-1\/2 {
+    top: calc(1/2 * 100%);
+  }
   .-right-4 {
     right: calc(var(--spacing) * -4);
   }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+  .right-4 {
+    right: calc(var(--spacing) * 4);
+  }
+  .right-10 {
+    right: calc(var(--spacing) * 10);
+  }
+  .right-15 {
+    right: calc(var(--spacing) * 15);
+  }
   .right-20 {
     right: calc(var(--spacing) * 20);
+  }
+  .right-25 {
+    right: calc(var(--spacing) * 25);
   }
   .right-48 {
     right: calc(var(--spacing) * 48);
@@ -258,6 +281,18 @@
   }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
+  }
+  .bottom-5 {
+    bottom: calc(var(--spacing) * 5);
+  }
+  .bottom-8 {
+    bottom: calc(var(--spacing) * 8);
+  }
+  .bottom-10 {
+    bottom: calc(var(--spacing) * 10);
+  }
+  .bottom-15 {
+    bottom: calc(var(--spacing) * 15);
   }
   .bottom-20 {
     bottom: calc(var(--spacing) * 20);
@@ -273,6 +308,9 @@
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
+  }
+  .left-4 {
+    left: calc(var(--spacing) * 4);
   }
   .left-10 {
     left: calc(var(--spacing) * 10);
@@ -359,10 +397,6 @@
     width: calc(var(--spacing) * 2);
     height: calc(var(--spacing) * 2);
   }
-  .size-2\.5 {
-    width: calc(var(--spacing) * 2.5);
-    height: calc(var(--spacing) * 2.5);
-  }
   .size-6 {
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
@@ -377,14 +411,44 @@
   .h-30 {
     height: calc(var(--spacing) * 30);
   }
-  .h-\[300px\] {
-    height: 300px;
+  .h-\[5\] {
+    height: 5;
+  }
+  .h-\[5hv\] {
+    height: 5hv;
+  }
+  .h-\[5hw\] {
+    height: 5hw;
+  }
+  .h-\[5vw\] {
+    height: 5vw;
+  }
+  .h-\[20vw\] {
+    height: 20vw;
+  }
+  .h-\[40vw\] {
+    height: 40vw;
+  }
+  .h-\[45vw\] {
+    height: 45vw;
+  }
+  .h-\[46vw\] {
+    height: 46vw;
+  }
+  .h-\[47vw\] {
+    height: 47vw;
+  }
+  .h-\[50vw\] {
+    height: 50vw;
   }
   .h-\[400px\] {
     height: 400px;
   }
   .h-\[600px\] {
     height: 600px;
+  }
+  .h-auto {
+    height: auto;
   }
   .h-full {
     height: 100%;
@@ -412,9 +476,6 @@
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
-  }
-  .w-1\/3 {
-    width: calc(1/3 * 100%);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -446,6 +507,9 @@
   .max-w-md {
     max-width: var(--container-md);
   }
+  .max-w-xl {
+    max-width: var(--container-xl);
+  }
   .min-w-sm {
     min-width: var(--container-sm);
   }
@@ -458,8 +522,19 @@
   .flex-shrink-0 {
     flex-shrink: 0;
   }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .scale-70 {
     --tw-scale-x: 70%;
@@ -523,6 +598,9 @@
   }
   .justify-start {
     justify-content: flex-start;
+  }
+  .gap-0 {
+    gap: calc(var(--spacing) * 0);
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -619,10 +697,22 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-black\/30 {
+    background-color: color-mix(in srgb, #000 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
+    }
+  }
   .bg-black\/40 {
     background-color: color-mix(in srgb, #000 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+    }
+  }
+  .bg-black\/50 {
+    background-color: color-mix(in srgb, #000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
   .bg-gray-100 {
@@ -671,6 +761,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
@@ -685,6 +778,9 @@
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -745,6 +841,9 @@
   }
   .pt-25 {
     padding-top: calc(var(--spacing) * 25);
+  }
+  .pr-4 {
+    padding-right: calc(var(--spacing) * 4);
   }
   .pr-5 {
     padding-right: calc(var(--spacing) * 5);
@@ -999,6 +1098,10 @@
     --tw-ease: var(--ease-in);
     transition-timing-function: var(--ease-in);
   }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+  }
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
@@ -1007,10 +1110,37 @@
     -webkit-user-select: none;
     user-select: none;
   }
+  .hover\:bg-black\/50 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #000 50%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-black\/75 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #000 75%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-black) 75%, transparent);
+        }
+      }
+    }
+  }
   .hover\:bg-gray-800 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-800);
+      }
+    }
+  }
+  .hover\:bg-transparent {
+    &:hover {
+      @media (hover: hover) {
+        background-color: transparent;
       }
     }
   }
@@ -1028,6 +1158,13 @@
       }
     }
   }
+  .hover\:opacity-60 {
+    &:hover {
+      @media (hover: hover) {
+        opacity: 60%;
+      }
+    }
+  }
   .hover\:opacity-70 {
     &:hover {
       @media (hover: hover) {
@@ -1039,6 +1176,16 @@
     &:focus {
       --tw-outline-style: none;
       outline-style: none;
+    }
+  }
+  .disabled\:cursor-not-allowed {
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .disabled\:opacity-50 {
+    &:disabled {
+      opacity: 50%;
     }
   }
   .md\:absolute {
@@ -1066,11 +1213,6 @@
       margin-top: calc(var(--spacing) * 20);
     }
   }
-  .md\:block {
-    @media (width >= 48rem) {
-      display: block;
-    }
-  }
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
@@ -1090,11 +1232,6 @@
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 20);
       height: calc(var(--spacing) * 20);
-    }
-  }
-  .md\:h-\[300px\] {
-    @media (width >= 48rem) {
-      height: 300px;
     }
   }
   .md\:min-h-screen {
@@ -1372,6 +1509,21 @@
     }
   }
 }
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-scale-x {
   syntax: "*";
   inherits: false;
@@ -1610,6 +1762,9 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
