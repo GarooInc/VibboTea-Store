@@ -1,0 +1,57 @@
+<section class="full-width flex flex-col font-bricolage">
+  <div class="w-full mx-auto px-6 lg:px-28 bg-[#FFF4DA] md:py-20 py-10">
+
+    {% if section.settings.eyebrow != blank %}
+      <p class="text-lg md:text-2xl font-bold text-black">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    {% if section.settings.title != blank %}
+      <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-black pt-4 max-w-2xl">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+      <p class="text-xl text-neutral-800 pt-4">{{ section.settings.text }}</p>
+    {% endif %}
+    </div>
+    {% if section.settings.image %}
+        <div class="w-full">
+        <img src="{{ section.settings.image | image_url }}" alt="" class="zero-bs-image">
+        </div>
+    {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Pledge Banner About Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior (eyebrow)",
+      "default": "Our Zero B.S. Pledge"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "<p>Fourteen years ofcuration, decades of tradition.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto pequeño",
+      "default": "Not sediments sold as gold, no microplastics, no U.S. chemicals like in your usual cup; only the best make the cut."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pledge Banner About Us"
+    }
+  ]
+}
+{% endschema %}
