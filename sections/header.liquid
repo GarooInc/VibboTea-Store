@@ -23,7 +23,7 @@
       <div id="mobile-menu" class="lg:hidden hidden fixed top-0 left-0 w-full h-screen bg-black z-1 px-8">
         <nav class="flex flex-col space-y-4 justify-center items-center h-full ">
           {% for link in section.settings.menu.links %}
-            <a href="{{ link.url }}" class="text-2xl tracking-wider text-gray-300 transition-colors duration-200 uppercase text-center py-2">
+            <a href="{{ link.url }}" class="text-2xl tracking-wider text-gray-300 transition-colors duration-200  text-center py-2 font-bricolage">
               {{ link.title }}
             </a>
           {% endfor %}
