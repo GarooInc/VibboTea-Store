@@ -5,7 +5,7 @@
   {% comment %} {# Title centered #} {% endcomment %}
   <div class="mx-auto text-center">
     <h1 class="text-[16vw] md:text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] ">
-      {{ section.settings.page_title }}
+      {{ section.settings.page_title | newline_to_br }}
     </h1>
   </div>
 
@@ -33,7 +33,7 @@
       "label": "Background Image"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "page_title",
       "label": "Page Title",
       "default": "Bienvenido a Nuestra Tienda"
