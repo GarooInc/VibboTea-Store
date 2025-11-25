@@ -1,9 +1,9 @@
 <div 
-class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between"
+class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between pb-20"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
-    <div class="w-full flex justify-start items-start p-20">
+    <div class="w-full flex justify-start items-start px-20 pb-10 pt-20">
         <div class="text-black text-[6vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
@@ -16,6 +16,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
                   src="{{ section.settings.imagen | image_url: width: 600 }}" 
                   alt="Imagen 1"
                   class="w-full object-contain"
+                  width="{{ section.settings.background_image.width }}"
+                  height="{{ section.settings.background_image.height }}"
               >
             </div>
 
@@ -25,6 +27,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
                     src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
                     alt="Imagen 2"
                     class="w-full object-contain"
+                    width="{{ section.settings.background_image.width }}"
+                    height="{{ section.settings.background_image.height }}"
                 >
               
             </div>
@@ -34,20 +38,22 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
                     src="{{ section.settings.imagen3 | image_url: width: 600 }}" 
                     alt="Imagen 3"
                     class="w-full object-contain"
+                    width="{{ section.settings.background_image.width }}"
+                    height="{{ section.settings.background_image.height }}"
                 >
               
             </div>
         </div>
     </div>
-    <div class="absolute bottom-17 right-20  h-12  
+    <div class="absolute bottom-35 right-20  h-12  
                 flex justify-start items-center 
                  pl-3">
                 <p class="text-black font-bricolage " > Follow our socials, never miss a brew.</p>
             
             </div>
-    <div class="absolute bottom-4 right-20 bg-[#EBEBEB] h-12 w-42 
+    <div class="absolute bottom-22 right-48 bg-[#EBEBEB] h-12 w-42  
                 flex justify-start items-center rounded-full 
-                border border-black pl-3">
+                border border-black pl-3 ">
 
         <p class="text-black text-base font-bricolage">
            @drinkvvibbo

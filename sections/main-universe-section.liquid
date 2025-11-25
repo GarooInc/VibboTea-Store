@@ -2,8 +2,12 @@
 class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
+  {% assign mp4_url = section.settings.primary_video_url %}
+    
 
-    <div class="w-full flex justify-start items-start p-20">
+      
+
+    <div class="w-full flex justify-start items-start px-20 py-10 pt-20">
         <div class="text-black text-[6vw] md:text-[3.3vw] font-bricolage font-semibold">
             {{ section.settings.title }}
         </div>
@@ -11,12 +15,18 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
     <div class="w-full flex justify-center items-center ">
         <div class="grid grid-cols-2 w-full gap-20 p-20 pt-5 pb-30">
-            <div class="relative w-full">
-              <img 
-                  src="{{ section.settings.imagen | image_url: width: 600 }}" 
-                  alt="Imagen 1"
-                  class="w-full object-contain"
-              >
+            <div class="relative w-full aspect-square overflow-hidden">
+
+              <video 
+                src="{{ mp4_url }}" 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                class="absolute inset-0 w-full object-cover rounded-2xl">
+              </video>
+
+
 
               <!-- TEXTO ENCIMA DE LA IMAGEN -->
               <div class="absolute inset-0 ">
@@ -38,12 +48,15 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
           </div>
 
             
-            <div class="relative w-full">
-                <img 
-                    src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
-                    alt="Imagen 2"
-                    class="w-full object-contain"
-                >
+            <div class="relative w-full ">
+                <video 
+                  src="{{ mp4_url }}" 
+                  autoplay 
+                  loop 
+                  muted 
+                  playsinline
+                  class="absolute inset-0 w-full object-cover rounded-2xl">
+                </video>
                   <!-- TEXTO ENCIMA DE LA IMAGEN -->
               <div class="absolute inset-0 ">
                   <h2 class="text-white text-6xl pl-10 pt-25 font-bricolage font-semibold">
@@ -79,15 +92,16 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "label": "Title",
       "default": "Title"
     },
-    {
-      "type": "image_picker",
-      "id": "imagen",
-      "label": "Image"
+    
+     {
+      "type": "url",
+      "id": "primary_video_url",
+      "label": "Video URL (MP4 o YouTube)"
     },
-    {
-      "type": "image_picker",
-      "id": "imagen2",
-      "label": "Image2"
+     {
+      "type": "url",
+      "id": "primary_video_url2",
+      "label": "Video URL (MP4 o YouTube)"
     },
     {
       "type": "textarea",
@@ -101,16 +115,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "label": "Text Imagen 2",
       "default": "texto 2"
     },
-    {
-      "type": "url",
-      "id": "imagen1-url",
-      "label": "Imagen1 URL"
-    },
-    {
-      "type": "url",
-      "id": "imagen2-url",
-      "label": "Imagen2 URL"
-    },
+    
     
   ],
   "presets": [
