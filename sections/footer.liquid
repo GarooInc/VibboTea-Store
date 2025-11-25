@@ -11,6 +11,8 @@
         src="{{ section.settings.logo | image_url: width: 300 }}" 
         alt="Logo"
         class="w-40 object-contain "
+        width="{{ section.settings.background_image.width }}"
+        height="{{ section.settings.background_image.height }}"
       >
     {% endif %}
   <!-- descripcion debajo del footer -->

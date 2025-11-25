@@ -1,71 +1,76 @@
 <div 
-class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between pb-20"
+class="w-screen min-h-[90vh] bg-[#EBEBEB] flex flex-col justify-between pb-20 relative"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
-    <div class="w-full flex justify-start items-start px-20 pb-10 pt-20">
-        <div class="text-black text-[6vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
+    <!-- TÍTULO -->
+    <div class="w-full flex justify-start items-start px-5 md:px-20 pb-10 pt-20">
+        <div class="text-black text-[8vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
     </div>
 
-    <div class="w-full flex justify-center items-center ">
-        <div class="grid grid-cols-3 w-full gap-8 p-20 pt-5 pb-30">
+    <!-- GRID IMÁGENES -->
+    <div class="w-full flex justify-center items-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-6 md:gap-8 p-5 md:p-20 pt-5 pb-10">
+
             <div class="relative w-full">
               <img 
-                  src="{{ section.settings.imagen | image_url: width: 600 }}" 
+                  src="{{ section.settings.imagen | image_url: width: 900 }}" 
                   alt="Imagen 1"
-                  class="w-full object-contain"
+                  class="w-full h-full object-cover rounded-xl"
                   width="{{ section.settings.background_image.width }}"
                   height="{{ section.settings.background_image.height }}"
               >
             </div>
 
-            
             <div class="relative w-full">
-                <img 
-                    src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
-                    alt="Imagen 2"
-                    class="w-full object-contain"
-                    width="{{ section.settings.background_image.width }}"
-                    height="{{ section.settings.background_image.height }}"
-                >
-              
+              <img 
+                  src="{{ section.settings.imagen2 | image_url: width: 900 }}" 
+                  alt="Imagen 2"
+                  class="w-full h-full object-cover rounded-xl"
+                  width="{{ section.settings.background_image.width }}"
+                  height="{{ section.settings.background_image.height }}"
+              >
             </div>
 
             <div class="relative w-full">
-                <img 
-                    src="{{ section.settings.imagen3 | image_url: width: 600 }}" 
-                    alt="Imagen 3"
-                    class="w-full object-contain"
-                    width="{{ section.settings.background_image.width }}"
-                    height="{{ section.settings.background_image.height }}"
-                >
-              
+              <img 
+                  src="{{ section.settings.imagen3 | image_url: width: 900 }}" 
+                  alt="Imagen 3"
+                  class="w-full h-full object-cover rounded-xl"
+                  width="{{ section.settings.background_image.width }}"
+                  height="{{ section.settings.background_image.height }}"
+              >
             </div>
+
         </div>
     </div>
-    <div class="absolute bottom-35 right-20  h-12  
-                flex justify-start items-center 
-                 pl-3">
-                <p class="text-black font-bricolage " > Follow our socials, never miss a brew.</p>
-            
-            </div>
-    <div class="absolute bottom-22 right-48 bg-[#EBEBEB] h-12 w-42  
-                flex justify-start items-center rounded-full 
-                border border-black pl-3 ">
 
-        <p class="text-black text-base font-bricolage">
-           @drinkvvibbo
-        </p>
+    <div class="flex flex-col md:flex-none items-center md:items-start mt-5 md:mt-0 py-5">
 
-        <a href="{{ section.settings.imagen1-url }}" 
-           target="_blank" 
-           rel="noopener"
-           class="ml-2 hover:opacity-70 transition-opacity scale-80 pl-1" 
-           aria-label="Imagen 1 URL">
-            {%- render 'arrow' -%}
-        </a>
+        <div class="md:absolute md:bottom-35 md:right-20 h-12 flex items-center pl-3 text-center md:text-left">
+            <p class="text-black font-bricolage text-[4vw] md:text-base "> 
+                Follow our socials, never miss a brew.
+            </p>
+        </div>
+
+        <div class="md:absolute md:bottom-22 md:right-48 bg-[#EBEBEB] h-12 w-auto px-4  
+                    flex justify-center items-center rounded-full 
+                    border border-black mt-3 md:mt-0">
+
+            <p class="text-black text-[4vw] md:text-base font-bricolage mr-2">
+                @drinkvvibbo
+            </p>
+
+            <a href="{{ section.settings.imagen1-url }}" 
+               target="_blank" 
+               rel="noopener"
+               class="hover:opacity-70 transition-opacity scale-75 md:scale-100 pl-1" 
+               aria-label="Imagen 1 URL">
+                {%- render 'arrow' -%}
+            </a>
+        </div>
     </div>
 
 </div>
