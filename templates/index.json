@@ -9,13 +9,73 @@
  */
 {
   "sections": {
-    "banner_ei7gFw": {
-      "type": "banner",
-      "name": "Banner",
+    "header_section_CjR7UB": {
+      "type": "header-section",
+      "name": "Header Main section",
       "settings": {
-        "imagen": "shopify://shop_images/Hojas1_1.png",
-        "imagen2": "shopify://shop_images/Jaguar_Patineta_1.png",
-        "page_descripction": "<p><strong>Only 1 in 5 of tea workers and farmers </strong>surveyed said they earn enough income every month to support their families with essentials.</p>"
+        "background_image": "shopify://shop_images/bg-home-vibbo.png",
+        "page_title": "WELLNESS\nWITHOUT\nTHE B.S.",
+        "page_descripction": "REAL TEA, REAL BENEFITS"
+      }
+    },
+    "main_section_slidder_rVJmxn": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_mBdE8G": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fun_fact_1.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_fTwR9R": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fun_fact_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_4Jni8y": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fun_fact_3.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_MRXFQA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fun_fact_4.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_UyjxKz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fun_fact_5.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_Hjb93p": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Cierre.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_mBdE8G",
+        "slide_fTwR9R",
+        "slide_4Jni8y",
+        "slide_MRXFQA",
+        "slide_UyjxKz",
+        "slide_Hjb93p"
+      ],
+      "name": "Slider Imágenes",
+      "settings": {
+        "autoplay": true,
+        "interval": 5000
       }
     },
     "main_universe_section_yaVDzH": {
@@ -23,12 +83,10 @@
       "name": "Section Universe",
       "settings": {
         "title": "The universe of VIBBO",
-        "imagen": "shopify://shop_images/Frame_1321316181.png",
-        "imagen2": "shopify://shop_images/Frame_1321316180.png",
+        "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+        "primary_video_url2": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
         "text-imagen1": "Rise, \nRest, \nReset.",
-        "text-imagen2": "Detox",
-        "imagen1-url": "",
-        "imagen2-url": ""
+        "text-imagen2": "Detox"
       }
     },
     "main_socials_section_7yLtAb": {
@@ -103,7 +161,8 @@
     }
   },
   "order": [
-    "banner_ei7gFw",
+    "header_section_CjR7UB",
+    "main_section_slidder_rVJmxn",
     "main_universe_section_yaVDzH",
     "main_socials_section_7yLtAb",
     "faq_UxEWVW",
