@@ -26,6 +26,23 @@
         "body_text": "<p>Everyone deserves real wellness, not just empty quick-fixes. Everything you need already comes from the earth, and our tea delivers just that: high-quality, purpose driven blends crafted to fuel your day and reset your rhythm. No gimmicks, just honest rituals for people who want to be present.</p>"
       }
     },
+    "about_us_pledgebanner_Y4TGTa": {
+      "type": "about-us-pledgebanner",
+      "name": "Pledge Banner About Us",
+      "settings": {
+        "eyebrow": "Our Zero B.S. Pledge",
+        "title": "<p>Fourteen years of curation, decades </p><p>of tradition.</p>",
+        "text": "Not sediments sold as gold, no microplastics, no U.S. chemicals like in your usual cup; only the best make the cut.",
+        "image": "shopify://shop_images/about-us-teabags.png"
+      }
+    },
+    "about_us_imagebanner_epTcFr": {
+      "type": "about-us-imagebanner",
+      "name": "Image About Us",
+      "settings": {
+        "image": "shopify://shop_images/about-us-banner.png"
+      }
+    },
     "about_us_tribebanner_c9LPif": {
       "type": "about-us-tribebanner",
       "name": "Tribe Banner About Us",
@@ -39,18 +56,12 @@
         "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle, we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
         "heading_2": "<p>it starts </p><p>with a cup </p><p>of tea.</p>"
       }
-    },
-    "about_us_imagebanner_epTcFr": {
-      "type": "about-us-imagebanner",
-      "name": "Image About Us",
-      "settings": {
-        "image": "shopify://shop_images/about-us-banner.png"
-      }
     }
   },
   "order": [
     "main",
     "about_us_mainbanner_NRXVwk",
+    "about_us_pledgebanner_Y4TGTa",
     "about_us_imagebanner_epTcFr",
     "about_us_tribebanner_c9LPif"
   ]
