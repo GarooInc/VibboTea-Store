@@ -4,7 +4,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); ">
     {% for block in section.blocks %}
       {% assign img = block.settings.image %}
       <div class="slide absolute inset-0    {% if forloop.first %}active{% endif %}">
-        <img src="{{ img | img_url: '800x800' }}" 
+        <img src="{{ img | img_url: '2000x2000' }}" 
           class="w-full h-full object-cover"
           width="800" height="800" alt="{{ block.settings.alt | escape }}"
         />
