@@ -1,0 +1,102 @@
+<div class="custom-slider relative w-screen mx-auto h-[46vw]"
+style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); ">
+  <div class="slides-wrapper relative w-full h-auto">
+    {% for block in section.blocks %}
+      {% assign img = block.settings.image %}
+      <div class="slide absolute inset-0    {% if forloop.first %}active{% endif %}">
+        <img src="{{ img | img_url: '2000x2000' }}" 
+          class="w-full h-full object-cover"
+          width="800" height="800" alt="{{ block.settings.alt | escape }}"
+        />
+      </div>
+    {% endfor %}
+  </div>
+
+
+
+  <!-- Flechas -->
+  <div class="absolute grid grid-cols-2 md:bottom-5 md:right-5 bottom-3 right-2">
+    <button class="prev text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-5 h-5 md:w-30 md:h-30 justify-center md:pl-15">
+        {%- render 'arrow-slidder2' -%}
+      </div>
+    </button>
+
+    <button class="next text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-5 h-5 md:w-30 md:h-30">
+        {%- render 'arrow-slidder' -%}
+      </div>
+    </button>
+  </div>
+  
+</div>
+
+
+<style>
+
+
+.custom-slider .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.custom-slider .slide.active {
+  opacity: 1;
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".custom-slider .slide");
+  const nextBtn = document.querySelector(".custom-slider .next");
+  const prevBtn = document.querySelector(".custom-slider .prev");
+
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
+
+  nextBtn.addEventListener("click", () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  });
+});
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Slider Facts",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Imagen",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "alt", "label": "Texto alternativo", "default": "Imagen del slider" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Slider Facts" }]
+}
+{% endschema %}
