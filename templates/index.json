@@ -128,7 +128,7 @@
       ],
       "name": "Slider Imágenes",
       "settings": {
-        "title": "Not your grandma’s cup of tea—your everyday ritual: hot, iced, or blended.",
+        "title": "Not your grandma’s cup of tea—your\neveryday ritual: hot, iced, or blended.",
         "autoplay": true,
         "interval": 5000
       }
