@@ -74,8 +74,7 @@
       ],
       "name": "Slider Imágenes",
       "settings": {
-        "autoplay": true,
-        "interval": 5000
+        "autoplay": true
       }
     },
     "main_universe_section_yaVDzH": {
@@ -87,6 +86,51 @@
         "primary_video_url2": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
         "text-imagen1": "Rise, \nRest, \nReset.",
         "text-imagen2": "Detox"
+      }
+    },
+    "main_section_slidder_qL94nG": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_rALcFw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_t7XFKR": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315913.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_aWLfj4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315915.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_Axt4KG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_rALcFw",
+        "slide_t7XFKR",
+        "slide_aWLfj4",
+        "slide_Axt4KG"
+      ],
+      "name": "Slider Imágenes",
+      "settings": {
+        "title": "Not your grandma’s cup of tea—your everyday ritual: hot, iced, or blended.",
+        "autoplay": true,
+        "interval": 5000
       }
     },
     "main_socials_section_7yLtAb": {
@@ -164,6 +208,7 @@
     "header_section_CjR7UB",
     "main_section_slidder_rVJmxn",
     "main_universe_section_yaVDzH",
+    "main_section_slidder_qL94nG",
     "main_socials_section_7yLtAb",
     "faq_UxEWVW",
     "newsletter_ri4VmU"
