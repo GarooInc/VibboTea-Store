@@ -15,8 +15,8 @@
       "type": "header",
       "settings": {
         "menu": "main-menu-1",
-        "logo": "shopify://shop_images/logo_black.png",
-        "header_background": "white"
+        "logo": "shopify://shop_images/logo_vibbo.png",
+        "header_background": "semi-transparent"
       }
     }
   },
