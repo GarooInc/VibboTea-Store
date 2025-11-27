@@ -15,10 +15,8 @@
       "type": "header",
       "settings": {
         "menu": "main-menu-1",
-        "logo": "shopify://shop_images/logo_vibbo.png",
-        "background_image": "shopify://shop_images/bg-home-vibbo.png",
-        "page_title": "WELLNESS  WITHOUT   THE B.S.",
-        "page_descripction": "REAL TEA, REAL BENEFITS"
+        "logo": "shopify://shop_images/logo_black.png",
+        "header_background": "white"
       }
     }
   },

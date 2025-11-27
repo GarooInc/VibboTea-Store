@@ -14,6 +14,13 @@
       "disabled": true,
       "settings": {}
     },
+    "contact_us_drYiMR": {
+      "type": "contact-us",
+      "name": "Contact us",
+      "settings": {
+        "title": "Speak up or shut \nup — Just kidding, \nspeak up."
+      }
+    },
     "faq_B9ngBx": {
       "type": "faq",
       "blocks": {
@@ -52,6 +59,7 @@
   },
   "order": [
     "main",
+    "contact_us_drYiMR",
     "faq_B9ngBx"
   ]
 }
