@@ -16,7 +16,7 @@
       "settings": {
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/logo_vibbo.png",
-        "header_background": "semi-transparent"
+        "header_background": "white"
       }
     }
   },
