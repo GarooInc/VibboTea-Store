@@ -128,6 +128,22 @@
             "ingredient_4_name": "",
             "ingredient_5_name": ""
           }
+        },
+        "slide_XyUMq4": {
+          "type": "slide",
+          "settings": {
+            "background_color": "#ffffff",
+            "map_image": "shopify://shop_images/zacapa.png",
+            "map_alt": "Mapa",
+            "richtext": "<p>Taste the difference;</p>",
+            "place_title": "Zacapa",
+            "ingredient_1_image": "shopify://shop_images/grapesdried.png",
+            "ingredient_1_name": "Dried grapes",
+            "ingredient_2_name": "",
+            "ingredient_3_name": "",
+            "ingredient_4_name": "",
+            "ingredient_5_name": ""
+          }
         }
       },
       "block_order": [
@@ -135,7 +151,8 @@
         "slide_yNYwj4",
         "slide_azLw3q",
         "slide_F9LBWe",
-        "slide_c3xQcT"
+        "slide_c3xQcT",
+        "slide_XyUMq4"
       ],
       "name": "Slider Places",
       "settings": {
