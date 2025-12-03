@@ -1,18 +1,18 @@
-<div class="custom-slider relative w-screen mx-auto h-[46vw]"
-style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); ">
-  <div class="slides-wrapper relative w-full h-auto">
+<div class="custom-slider relative w-screen mx-auto"
+style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+  <div class="slides-wrapper relative w-full">
     {% for block in section.blocks %}
       {% assign img = block.settings.image %}
-      <div class="slide absolute inset-0    {% if forloop.first %}active{% endif %}">
+      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
         <img src="{{ img | img_url: '2000x2000' }}" 
-          class="w-full h-full object-cover"
-          width="800" height="800" alt="{{ block.settings.alt | escape }}"
+          class="w-full h-auto object-contain"
+          width="{{ img.width }}" 
+          height="{{ img.height }}" 
+          alt="{{ block.settings.alt | escape }}"
         />
       </div>
     {% endfor %}
   </div>
-
-
 
   <!-- Flechas -->
   <div class="absolute grid grid-cols-2 md:bottom-5 md:right-5 bottom-3 right-2">
@@ -31,34 +31,51 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); ">
   
 </div>
 
-
 <style>
+.custom-slider {
+  position: relative;
+}
 
+.custom-slider .slides-wrapper {
+  position: relative;
+  width: 100%;
+}
 
 .custom-slider .slide {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .custom-slider .slide.active {
+  position: relative;
   opacity: 1;
 }
 
+.custom-slider .slide img {
+  display: block;
+}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelectorAll(".custom-slider .slide");
-  const nextBtn = document.querySelector(".custom-slider .next");
-  const prevBtn = document.querySelector(".custom-slider .prev");
+  const slider = document.querySelector(".custom-slider");
+  const slides = slider.querySelectorAll(".slide");
+  const nextBtn = slider.querySelector(".next");
+  const prevBtn = slider.querySelector(".prev");
 
   let index = 0;
 
   function showSlide(i) {
-    slides.forEach(s => s.classList.remove("active"));
+    slides.forEach(s => {
+      s.classList.remove("active");
+      s.style.position = "absolute";
+    });
     slides[i].classList.add("active");
+    slides[i].style.position = "relative";
   }
 
   nextBtn.addEventListener("click", () => {
@@ -72,8 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-
 
 {% schema %}
 {

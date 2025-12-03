@@ -27,12 +27,11 @@
       }
     },
     "about_us_pledgebanner_Y4TGTa": {
-      "type": "about-us-pledgebanner",
+      "type": "about-us-pledgebanner2",
       "name": "Pledge Banner About Us",
       "settings": {
         "eyebrow": "Our Zero B.S. Pledge",
         "title": "<p>Fourteen years of curation, decades </p><p>of tradition.</p>",
-        "text": "Not sediments sold as gold, no microplastics, no U.S. chemicals like in your usual cup; only the best make the cut.",
         "image": "shopify://shop_images/about-us-teabags.png"
       }
     },

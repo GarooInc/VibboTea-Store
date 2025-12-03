@@ -1,0 +1,323 @@
+<div class="custom-slider relative w-screen mx-auto"
+style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+  <div class="slides-wrapper relative w-full">
+    {% for block in section.blocks %}
+      {% assign map_img = block.settings.map_image %}
+      {% assign bg_color = block.settings.background_color | default: '#ffffff' %}
+      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}" style="background-color: {{ bg_color }};">
+        <div class="slide-content relative w-full h-full flex items-center justify-center">
+          <!-- Imagen del mapa -->
+          <img src="{{ map_img | img_url: '2000x2000' }}" 
+            class="max-w-[800px] h-auto object-contain mx-auto"
+            width="{{ map_img.width }}" 
+            height="{{ map_img.height }}" 
+            alt="{{ block.settings.map_alt | escape }}"
+          />
+
+            <div class="tracking-normal max-w-xs md:max-w-md text-left absolute md:top-20 md:left-20 md:text-6xl">
+              {{ block.settings.richtext }}
+            </div>
+
+          
+          <div class="md:absolute md:inset-0 flex items-center justify-between px-8 md:px-16">
+            <!-- Rich text izquierda -->
+            <div>
+            </div>
+            
+            <div class="place-content text-right">
+              <!-- Título del lugar -->
+              {% if block.settings.place_title != blank %}
+                <h3 class="text-2xl md:text-4xl font-bold md:mb-8">
+                  {{ block.settings.place_title }}
+                </h3>
+              {% endif %}
+              
+              <!-- Ingredientes -->
+              <div class="gap-4 flex flex-col  md:pt-4 md:pl-6 ">
+                {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
+                  <div class=" flex items-center justify-start gap-3">
+                    {% if block.settings.ingredient_1_image != blank %}
+                      <img src="{{ block.settings.ingredient_1_image | img_url: '100x100' }}" 
+                        alt="{{ block.settings.ingredient_1_name | escape }}"
+                        class="w-14 h-14 object-contain"
+                      />
+                    {% endif %}
+                    {% if block.settings.ingredient_1_name != blank %}
+                      <span class="text-sm md:text-base">{{ block.settings.ingredient_1_name }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.ingredient_2_name != blank or block.settings.ingredient_2_image != blank %}
+                  <div class="ingredient-item flex items-center justify-start gap-3">
+                    {% if block.settings.ingredient_2_image != blank %}
+                      <img src="{{ block.settings.ingredient_2_image | img_url: '100x100' }}" 
+                        alt="{{ block.settings.ingredient_2_name | escape }}"
+                        class="w-14 h-14 object-contain"
+                      />
+                    {% endif %}
+                    {% if block.settings.ingredient_2_name != blank %}
+                      <span class="text-sm md:text-base">{{ block.settings.ingredient_2_name }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.ingredient_3_name != blank or block.settings.ingredient_3_image != blank %}
+                  <div class="ingredient-item flex items-center justify-start gap-3">
+                    {% if block.settings.ingredient_3_image != blank %}
+                      <img src="{{ block.settings.ingredient_3_image | img_url: '100x100' }}" 
+                        alt="{{ block.settings.ingredient_3_name | escape }}"
+                        class="w-14 h-14 object-contain"
+                      />
+                    {% endif %}
+                    {% if block.settings.ingredient_3_name != blank %}
+                      <span class="text-sm md:text-base">{{ block.settings.ingredient_3_name }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.ingredient_4_name != blank or block.settings.ingredient_4_image != blank %}
+                  <div class="ingredient-item flex items-center justify-start gap-3">
+                    {% if block.settings.ingredient_4_image != blank %}
+                      <img src="{{ block.settings.ingredient_4_image | img_url: '100x100' }}" 
+                        alt="{{ block.settings.ingredient_4_name | escape }}"
+                        class="w-14 h-14 object-contain"
+                      />
+                    {% endif %}
+                    {% if block.settings.ingredient_4_name != blank %}
+                      <span class="text-sm md:text-base">{{ block.settings.ingredient_4_name }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if block.settings.ingredient_5_name != blank or block.settings.ingredient_5_image != blank %}
+                  <div class="ingredient-item flex items-center justify-start gap-3">
+                    {% if block.settings.ingredient_5_image != blank %}
+                      <img src="{{ block.settings.ingredient_5_image | img_url: '100x100' }}" 
+                        alt="{{ block.settings.ingredient_5_name | escape }}"
+                        class="w-14 h-14 object-contain"
+                      />
+                    {% endif %}
+                    {% if block.settings.ingredient_5_name != blank %}
+                      <span class="text-sm md:text-base">{{ block.settings.ingredient_5_name }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Flechas -->
+  <div class="absolute grid grid-cols-2 md:bottom-5 md:right-5 bottom-3 right-2">
+    <button class="prev text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-5 h-5 md:w-30 md:h-30 justify-center md:pl-15">
+        {%- render 'arrow-slidder2' -%}
+      </div>
+    </button>
+
+    <button class="next text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-5 h-5 md:w-30 md:h-30">
+        {%- render 'arrow-slidder' -%}
+      </div>
+    </button>
+  </div>
+  
+</div>
+
+<style>
+.custom-slider {
+  position: relative;
+}
+
+.custom-slider .slides-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.custom-slider .slide.active {
+  position: relative;
+  opacity: 1;
+}
+
+.custom-slider .slide img {
+  display: block;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".custom-slider");
+  const slides = slider.querySelectorAll(".slide");
+  const nextBtn = slider.querySelector(".next");
+  const prevBtn = slider.querySelector(".prev");
+
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(s => {
+      s.classList.remove("active");
+      s.style.position = "absolute";
+    });
+    slides[i].classList.add("active");
+    slides[i].style.position = "relative";
+  }
+
+  nextBtn.addEventListener("click", () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Slider Facts",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide con lugar",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Apariencia"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Color de fondo",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Mapa"
+        },
+        {
+          "type": "image_picker",
+          "id": "map_image",
+          "label": "Imagen del mapa"
+        },
+        {
+          "type": "text",
+          "id": "map_alt",
+          "label": "Texto alternativo del mapa",
+          "default": "Mapa"
+        },
+        {
+          "type": "header",
+          "content": "Contenido"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Texto descriptivo (izquierda)",
+          "default": "<p>From the first cut to the final mix,</p>"
+        },
+        {
+          "type": "text",
+          "id": "place_title",
+          "label": "Título del lugar",
+          "default": "Alta and Baja Verapaz"
+        },
+        {
+          "type": "header",
+          "content": "Ingrediente 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_1_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_1_name",
+          "label": "Nombre"
+        },
+        {
+          "type": "header",
+          "content": "Ingrediente 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_2_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_2_name",
+          "label": "Nombre"
+        },
+        {
+          "type": "header",
+          "content": "Ingrediente 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_3_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_3_name",
+          "label": "Nombre"
+        },
+        {
+          "type": "header",
+          "content": "Ingrediente 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_4_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_4_name",
+          "label": "Nombre"
+        },
+        {
+          "type": "header",
+          "content": "Ingrediente 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "ingredient_5_image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_5_name",
+          "label": "Nombre"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Slider Places" }]
+}
+{% endschema %}
