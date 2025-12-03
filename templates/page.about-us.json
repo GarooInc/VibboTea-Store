@@ -115,7 +115,7 @@
         "slide_c3xQcT": {
           "type": "slide",
           "settings": {
-            "background_color": "#ffffff",
+            "background_color": "#f57c3c",
             "map_image": "shopify://shop_images/escuintla.png",
             "map_alt": "Mapa",
             "richtext": "<p>and always </p><p>made in small batches. </p>",
