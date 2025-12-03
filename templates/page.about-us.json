@@ -36,6 +36,37 @@
         "text2": "<p>producers in Guatemala’s wildest corners</p>"
       }
     },
+    "places_slider_gLhrNi": {
+      "type": "places-slider",
+      "blocks": {
+        "slide_iPCW6Q": {
+          "type": "slide",
+          "settings": {
+            "background_color": "#fff4da",
+            "map_image": "shopify://shop_images/scatepequez.png",
+            "map_alt": "Mapa",
+            "richtext": "",
+            "place_title": "Sacatepéquez",
+            "ingredient_1_image": "shopify://shop_images/fennel.png",
+            "ingredient_1_name": "Fennel",
+            "ingredient_2_image": "shopify://shop_images/lavender.png",
+            "ingredient_2_name": "Lavander",
+            "ingredient_3_image": "shopify://shop_images/mint.png",
+            "ingredient_3_name": "Mint",
+            "ingredient_4_image": "shopify://shop_images/rosemary.png",
+            "ingredient_4_name": "Rosemary",
+            "ingredient_5_name": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_iPCW6Q"
+      ],
+      "name": "Slider Places",
+      "settings": {
+        "autoplay": false
+      }
+    },
     "about_us_pledgebanner2_KMTV7x": {
       "type": "about-us-pledgebanner2",
       "name": "Pledge Banner About Us 2",
@@ -72,6 +103,7 @@
     "main",
     "about_us_mainbanner_NRXVwk",
     "about_us_pledgebanner1_PbrVcX",
+    "places_slider_gLhrNi",
     "about_us_pledgebanner2_KMTV7x",
     "about_us_imagebanner_epTcFr",
     "about_us_tribebanner_c9LPif"
