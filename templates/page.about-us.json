@@ -81,7 +81,7 @@
         "slide_azLw3q": {
           "type": "slide",
           "settings": {
-            "background_color": "#ffffff",
+            "background_color": "#e9f7df",
             "map_image": "shopify://shop_images/izabal.png",
             "map_alt": "Mapa",
             "richtext": "<p>everything is traceable,</p>",
