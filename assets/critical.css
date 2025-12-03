@@ -119,3 +119,13 @@ body {
 .font-bricolage {
     font-family: 'Bricolage', serif;
 }
+
+.richnameplace strong{
+  font-size: 4rem;
+  font-weight: normal !important;
+
+}
+
+.richnameplace{
+  font-weight: normal !important;
+}

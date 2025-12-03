@@ -14,7 +14,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
             alt="{{ block.settings.map_alt | escape }}"
           />
 
-            <div class="tracking-normal max-w-xs md:max-w-md text-left absolute md:top-20 md:left-20 md:text-6xl">
+            <div class="tracking-normal max-w-xs md:max-w-md text-left absolute md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
               {{ block.settings.richtext }}
             </div>
 
@@ -27,13 +27,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
             <div class="place-content text-right">
               <!-- Título del lugar -->
               {% if block.settings.place_title != blank %}
-                <h3 class="text-2xl md:text-4xl font-bold md:mb-8">
+                <div class="text-2xl md:text-4xl font-bold md:mb-8">
                   {{ block.settings.place_title }}
-                </h3>
+                </div>
               {% endif %}
               
               <!-- Ingredientes -->
-              <div class="gap-4 flex flex-col  md:pt-4 md:pl-6 ">
+              <div class="gap-4 flex flex-col  md:pt-4 md:pl-6 h-80">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
                   <div class=" flex items-center justify-start gap-3">
                     {% if block.settings.ingredient_1_image != blank %}
