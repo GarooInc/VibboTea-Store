@@ -5,8 +5,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
       {% assign map_img = block.settings.map_image %}
       {% assign bg_color = block.settings.background_color | default: '#ffffff' %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}" style="background-color: {{ bg_color }};">
-        <div class="slide-content relative w-full h-full flex items-center justify-center">
-          <!-- Imagen del mapa -->
+        <div class="slide-content relative w-full h-full flex md:flex-row flex-col items-center justify-center">
+            <div class="block md:hidden  max-w-xs  text-left richnameplace font-bricolage py-4">
+              {{ block.settings.richtext }}
+            </div>
+
+        
+        <!-- Imagen del mapa -->
           <img src="{{ map_img | img_url: '2000x2000' }}" 
             class="max-w-[800px] h-auto object-contain mx-auto"
             width="{{ map_img.width }}" 
@@ -14,32 +19,32 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
             alt="{{ block.settings.map_alt | escape }}"
           />
 
-            <div class="tracking-normal max-w-xs md:max-w-md text-left absolute md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
+            <div class="md:block hidden tracking-normal max-w-xs md:max-w-md text-left md:absolute md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
               {{ block.settings.richtext }}
             </div>
 
           
-          <div class="md:absolute md:inset-0 flex items-center justify-between px-8 md:px-16">
+          <div class=" md:absolute md:inset-0 flex items-center justify-between px-8 md:px-16 md:w-auto w-full">
             <!-- Rich text izquierda -->
-            <div>
+            <div class="md:block hidden">
             </div>
             
-            <div class="place-content text-right">
+            <div class="text-right">
               <!-- Título del lugar -->
               {% if block.settings.place_title != blank %}
-                <div class="text-2xl md:text-4xl font-bold md:mb-8">
+                <div class="text-2xl md:text-4xl font-bold md:mb-8 md:text-right text-left">
                   {{ block.settings.place_title }}
                 </div>
               {% endif %}
               
               <!-- Ingredientes -->
-              <div class="gap-4 flex flex-col  md:pt-4 md:pl-6 h-80">
+              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3  md:pt-4 md:pl-6 h-80">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
                   <div class=" flex items-center justify-start gap-3">
                     {% if block.settings.ingredient_1_image != blank %}
                       <img src="{{ block.settings.ingredient_1_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_1_name | escape }}"
-                        class="w-14 h-14 object-contain"
+                        class="md:w-14 md:h-14 w-10 h-10 object-contain"
                       />
                     {% endif %}
                     {% if block.settings.ingredient_1_name != blank %}
@@ -53,7 +58,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                     {% if block.settings.ingredient_2_image != blank %}
                       <img src="{{ block.settings.ingredient_2_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_2_name | escape }}"
-                        class="w-14 h-14 object-contain"
+                        class="md:w-14 md:h-14 w-10 h-10 object-contain"
                       />
                     {% endif %}
                     {% if block.settings.ingredient_2_name != blank %}
@@ -67,7 +72,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                     {% if block.settings.ingredient_3_image != blank %}
                       <img src="{{ block.settings.ingredient_3_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_3_name | escape }}"
-                        class="w-14 h-14 object-contain"
+                        class="md:w-14 md:h-14 w-10 h-10 object-contain"
                       />
                     {% endif %}
                     {% if block.settings.ingredient_3_name != blank %}
@@ -81,7 +86,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                     {% if block.settings.ingredient_4_image != blank %}
                       <img src="{{ block.settings.ingredient_4_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_4_name | escape }}"
-                        class="w-14 h-14 object-contain"
+                        class="md:w-14 md:h-14 w-10 h-10 object-contain"
                       />
                     {% endif %}
                     {% if block.settings.ingredient_4_name != blank %}
@@ -95,7 +100,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                     {% if block.settings.ingredient_5_image != blank %}
                       <img src="{{ block.settings.ingredient_5_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_5_name | escape }}"
-                        class="w-14 h-14 object-contain"
+                        class="md:w-14 md:h-14 w-10 h-10 object-contain"
                       />
                     {% endif %}
                     {% if block.settings.ingredient_5_name != blank %}
@@ -114,13 +119,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   <!-- Flechas -->
   <div class="absolute grid grid-cols-2 md:bottom-5 md:right-5 bottom-3 right-2">
     <button class="prev text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
-      <div class="w-5 h-5 md:w-30 md:h-30 justify-center md:pl-15">
+      <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
         {%- render 'arrow-slidder2' -%}
       </div>
     </button>
 
     <button class="next text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
-      <div class="w-5 h-5 md:w-30 md:h-30">
+      <div class="w-10 h-10 md:w-30 md:h-30">
         {%- render 'arrow-slidder' -%}
       </div>
     </button>
