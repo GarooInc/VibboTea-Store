@@ -26,6 +26,16 @@
         "body_text": "<p>Everyone deserves real wellness, not just empty quick-fixes. Everything you need already comes from the earth, and our tea delivers just that: high-quality, purpose driven blends crafted to fuel your day and reset your rhythm. No gimmicks, just honest rituals for people who want to be present.</p>"
       }
     },
+    "about_us_pledgebanner1_PbrVcX": {
+      "type": "about-us-pledgebanner1",
+      "name": "Pledge Banner About Us 1",
+      "settings": {
+        "title": "<p>Roots</p>",
+        "eyebrow": "Where life still pulses through the soil, grown by hands that still believe in a humane future.",
+        "text1": "<p>Every ingredient in our blends is handpicked by the real ones: </p>",
+        "text2": "<p>producers in Guatemala’s wildest corners</p>"
+      }
+    },
     "about_us_imagebanner_epTcFr": {
       "type": "about-us-imagebanner",
       "name": "Image About Us",
@@ -51,6 +61,7 @@
   "order": [
     "main",
     "about_us_mainbanner_NRXVwk",
+    "about_us_pledgebanner1_PbrVcX",
     "about_us_imagebanner_epTcFr",
     "about_us_tribebanner_c9LPif"
   ]
