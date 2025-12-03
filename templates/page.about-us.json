@@ -77,11 +77,30 @@
             "ingredient_5_image": "shopify://shop_images/passionflower.png",
             "ingredient_5_name": "Passionflower"
           }
+        },
+        "slide_azLw3q": {
+          "type": "slide",
+          "settings": {
+            "background_color": "#ffffff",
+            "map_image": "shopify://shop_images/izabal.png",
+            "map_alt": "Mapa",
+            "richtext": "<p>everything is traceable,</p>",
+            "place_title": "Izabal",
+            "ingredient_1_image": "shopify://shop_images/cocoahusk.png",
+            "ingredient_1_name": "Cocoa Husk",
+            "ingredient_2_image": "shopify://shop_images/coconut.png",
+            "ingredient_2_name": "Coconut",
+            "ingredient_3_image": "shopify://shop_images/ginger.png",
+            "ingredient_3_name": "Ginger",
+            "ingredient_4_name": "",
+            "ingredient_5_name": ""
+          }
         }
       },
       "block_order": [
         "slide_iPCW6Q",
-        "slide_yNYwj4"
+        "slide_yNYwj4",
+        "slide_azLw3q"
       ],
       "name": "Slider Places",
       "settings": {
