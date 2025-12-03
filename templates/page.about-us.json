@@ -132,7 +132,7 @@
         "slide_XyUMq4": {
           "type": "slide",
           "settings": {
-            "background_color": "#ffffff",
+            "background_color": "#e8dff7",
             "map_image": "shopify://shop_images/zacapa.png",
             "map_alt": "Mapa",
             "richtext": "<p>Taste the difference;</p>",
