@@ -144,6 +144,22 @@
             "ingredient_4_name": "",
             "ingredient_5_name": ""
           }
+        },
+        "slide_CxiKDf": {
+          "type": "slide",
+          "settings": {
+            "background_color": "#dff5f7",
+            "map_image": "shopify://shop_images/progreso.png",
+            "map_alt": "Mapa",
+            "richtext": "<p><strong>This is what handcrafted</strong> really means.</p>",
+            "place_title": "El Progreso",
+            "ingredient_1_image": "shopify://shop_images/driedgrapes.png",
+            "ingredient_1_name": "Dired grapes",
+            "ingredient_2_name": "",
+            "ingredient_3_name": "",
+            "ingredient_4_name": "",
+            "ingredient_5_name": ""
+          }
         }
       },
       "block_order": [
@@ -152,7 +168,8 @@
         "slide_azLw3q",
         "slide_F9LBWe",
         "slide_c3xQcT",
-        "slide_XyUMq4"
+        "slide_XyUMq4",
+        "slide_CxiKDf"
       ],
       "name": "Slider Places",
       "settings": {
