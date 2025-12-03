@@ -36,6 +36,16 @@
         "text2": "<p>producers in Guatemala’s wildest corners</p>"
       }
     },
+    "about_us_pledgebanner2_KMTV7x": {
+      "type": "about-us-pledgebanner2",
+      "name": "Pledge Banner About Us 2",
+      "settings": {
+        "eyebrow": "Our Zero B.S. Pledge",
+        "title": "<p>Fourteen years ofcuration, decades of tradition.</p>",
+        "text": "<p>Not sediments sold as gold, no microplastics, and no B.S. chemicals like in your usual cup: <strong>only the best make the cut.</strong></p>",
+        "image": "shopify://shop_images/about-us-teabags.png"
+      }
+    },
     "about_us_imagebanner_epTcFr": {
       "type": "about-us-imagebanner",
       "name": "Image About Us",
@@ -62,6 +72,7 @@
     "main",
     "about_us_mainbanner_NRXVwk",
     "about_us_pledgebanner1_PbrVcX",
+    "about_us_pledgebanner2_KMTV7x",
     "about_us_imagebanner_epTcFr",
     "about_us_tribebanner_c9LPif"
   ]
