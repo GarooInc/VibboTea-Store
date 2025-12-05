@@ -18,6 +18,47 @@
         "page_descripction": "REAL TEA, REAL BENEFITS"
       }
     },
+    "main_carousel_NYTaep": {
+      "type": "main-carousel",
+      "blocks": {
+        "product_Y6PxQn": {
+          "type": "product",
+          "settings": {
+            "product": "hidra-boost-natural-energy"
+          }
+        },
+        "product_nAXNfc": {
+          "type": "product",
+          "settings": {
+            "product": "hidra-boost-natural-energy"
+          }
+        },
+        "product_agBygU": {
+          "type": "product",
+          "settings": {
+            "product": "hidra-boost-natural-energy"
+          }
+        },
+        "product_RrNHkk": {
+          "type": "product",
+          "settings": {
+            "product": "hidra-boost-natural-energy"
+          }
+        }
+      },
+      "block_order": [
+        "product_Y6PxQn",
+        "product_nAXNfc",
+        "product_agBygU",
+        "product_RrNHkk"
+      ],
+      "name": "Carrusel de productos",
+      "settings": {
+        "section_title": "Productos Destacados",
+        "autoplay": true,
+        "interval": 5000
+      }
+    },
     "main_section_slidder_rVJmxn": {
       "type": "main-section-facts",
       "blocks": {
@@ -206,6 +247,7 @@
   },
   "order": [
     "header_section_CjR7UB",
+    "main_carousel_NYTaep",
     "main_section_slidder_rVJmxn",
     "main_universe_section_yaVDzH",
     "main_section_slidder_qL94nG",
