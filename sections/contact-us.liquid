@@ -6,6 +6,24 @@
         <div class="text-black text-[8vw] md:text-[3.5vw] font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
+        <div class="absolute bottom-0 right-1/2">
+            {% if section.settings.image1 %}
+                <img 
+                    src="{{ section.settings.image1 | image_url: width: 600 }}"
+                    alt="Image 1"
+                    class="mt-10 ml-[-5vw] md:ml-0 w-52 md:w-96 object-cover rounded-2xl "
+                >
+            {% endif %}
+        </div>
+        <div class="absolute bottom-0 left-0 w-52 md:w-96 overflow-hidden">
+            {% if section.settings.image2 %}
+                <img 
+                    src="{{ section.settings.image2 | image_url: width: 600 }}"
+                    alt="Image 2"
+                    class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl -translate-x-1/4"
+                >
+            {% endif %}
+        </div>
 
     </div>
 
@@ -99,6 +117,16 @@
       "label": "Title",
       "default": "Title"
     },
+    {
+     "type": "image_picker", 
+     "id": "image1", 
+      "label": "Image1"
+    },
+    {
+     "type": "image_picker", 
+     "id": "image2", 
+      "label": "Image2"
+    }
     
     
     

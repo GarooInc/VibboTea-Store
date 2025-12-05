@@ -11,6 +11,16 @@
     <p class="text-sm mb-12 p-4">
       Read below for a good time.
     </p>
+    <div class="absolute top-0 right-0 ">
+            {% if section.settings.image1 %}
+                <img 
+                    src="{{ section.settings.image1 | image_url: width: 600 }}"
+                    alt="Image 2"
+                    class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl -translate-x-1/4"
+                >
+            {% endif %}
+        </div>
+
 
     <div class="w-full">
 
@@ -80,7 +90,12 @@
       "id": "title",
       "label": "Título principal",
       "default": "Preguntas frecuentes"
-    }
+    },
+    {
+     "type": "image_picker", 
+     "id": "image1", 
+      "label": "Image1"
+    },
   ],
   "blocks": [
     {
