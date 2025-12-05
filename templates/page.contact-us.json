@@ -18,7 +18,9 @@
       "type": "contact-us",
       "name": "Contact us",
       "settings": {
-        "title": "Speak up or shut \nup — Just kidding, \nspeak up."
+        "title": "Speak up or shut \nup — Just kidding, \nspeak up.",
+        "image1": "shopify://shop_images/Jaguar_1.png",
+        "image2": "shopify://shop_images/mono.png"
       }
     },
     "faq_B9ngBx": {
@@ -53,7 +55,8 @@
       ],
       "name": "FAQ",
       "settings": {
-        "title": "FAQ"
+        "title": "FAQ",
+        "image1": "shopify://shop_images/Guacamaya.png"
       }
     }
   },
