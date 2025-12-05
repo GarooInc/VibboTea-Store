@@ -1,0 +1,355 @@
+<!-- TÍTULO -->
+    <div class="text-center items-center align-center pt-10 ">
+        <h2 class="md:text-5xl text-4xl text-black font-semibold font-bricolage">
+            {{ section.settings.section_title | default: "Join the trive" }}
+        </h2>
+        <p class="text-black text-[4vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
+                Discover our flavors 
+            </p>
+        <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4">
+
+          <p class="text-black text-[4vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
+            I want to feel human again
+          </p>
+
+          <a href="{{ section.settings.imagen1-url }}" 
+             target="_blank" 
+             rel="noopener"
+             class="hover:opacity-70 transition-opacity scale-75 md:scale-95 pr-1" 
+             aria-label="Imagen 1 URL">
+            {%- render 'arrow' -%}
+          </a>
+        </div>
+    </div>
+
+
+<section
+  class="relative w-full  "
+  x-data="carousel({
+    autoplay: {{ section.settings.autoplay }},
+    interval: {{ section.settings.interval | default: 5000 }},
+    count: {{ section.blocks.size }}
+  })"
+  x-init="init()"
+  aria-roledescription="carousel"
+>
+  <!-- Desktop: 3 imágenes visibles -->
+  <div class="hidden md:block relative overflow-hidden py-15 ">
+    <div class="flex transition-transform duration-500 ease-out" :style="`transform: translateX(-${index * 33.33}%)`">
+      {% for block in section.blocks %}
+          
+          <div class="snap-start shrink-0 w-full md:w-[33%] px-6">
+          <a href="{{ all_products[block.settings.product].url }}" class="block px-4 w-full">
+            
+            <img
+              src="{{ all_products[block.settings.product].featured_media | image_url: width: 800 }}"
+              alt="{{ all_products[block.settings.product].featured_media.alt | escape }}"
+              width="{{ all_products[block.settings.product].featured_media.width }}"
+              height="{{ all_products[block.settings.product].featured_media.height }}"
+              loading="lazy"
+              class="w-full object-cover hover:scale-105 transition-transform duration-350"
+            >
+
+            <div class="mt-4">
+              <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium">
+                {{ all_products[block.settings.product].title }} 
+              </p>
+              <p class="font-bricolage text-2xl md:text-3xl  md:pt-1 text-left text-black font-medium">
+                {{ all_products[block.settings.product].price  | money }} 
+              </p>
+              
+            </div>
+            
+
+          </a>
+
+          <form method="post" action="/cart/add" class="md:w-4/5 md:pt-5 md:text-center mx-auto">
+                <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
+                <button type="submit" class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+                  <span class="font-bricolage md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">
+                    Add to cart
+                  </span>
+                  
+                </button>
+              </form>
+                
+        </div>
+
+            
+          
+      {% endfor %}
+
+
+    </div>
+
+    <!-- Flechas Desktop -->
+    <div class="flex items-center justify-between absolute inset-0 pointer-events-none px-6 ">
+      <button
+        @click="prev()"
+        class="pointer-events-auto h-12 w-12 pb-30"
+        aria-label="Slides anteriores"
+      >
+        {% render 'arrow-left'%}
+      </button>
+      <button
+        @click="next()"
+        class="pointer-events-auto h-12 w-12 pb-30"
+        aria-label="Siguientes slides"
+      >
+        {% render 'arrow-right'%}
+
+      </button>
+    </div>
+  </div>
+
+ <!-- Mobile: 1 imagen visible -->
+<div class="md:hidden relative pt-20">
+  <!-- Contenedor del carrusel -->
+  <div class="relative overflow-hidden h-[630px] ">
+      <div
+        class="flex transition-transform duration-1000 ease-out "
+        :style="`transform: translateX(-${index * 100}%)`" >
+          {% for block in section.blocks %}
+            
+             <div class="snap-start shrink-0 w-full">
+          <a href="{{ all_products[block.settings.product].url }}" class="block px-4 w-full">
+            
+            <img
+              src="{{ all_products[block.settings.product].featured_media | image_url: width: 800 }}"
+              alt="{{ all_products[block.settings.product].featured_media.alt | escape }}"
+              width="{{ all_products[block.settings.product].featured_media.width }}"
+              height="{{ all_products[block.settings.product].featured_media.height }}"
+              loading="lazy"
+              class="w-full rounded-2xl object-cover hover:scale-105 transition-transform duration-300"
+            >
+
+             <div class="mt-4 text-center">
+              <p class="font-chronicle uppercase text-2xl md:text-[1.1vw] text-black font-medium">
+                {{ all_products[block.settings.product].title }} | {{ all_products[block.settings.product].price | money }}
+              </p>
+              <div class="h-40 md:h-56 overflow-hidden text-ellipsis">
+                <p class="mt-2 text-gray-600">
+                  {{ all_products[block.settings.product].description }}
+                </p>
+              </div>
+
+            </div>
+
+          </a>
+          <form method="post" action="/cart/add" class="quick-add__submit w-3/5 mt-5 text-center mx-auto">
+                <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
+                <button type="submit" class="button md:bg-gray-900 flex items-center justify-center w-full ">
+                  <span class="font-sf-pro md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">
+                    Añadir al carrito
+                  </span>
+                  
+                </button>
+              </form>
+        </div>
+
+
+          {% endfor %}
+        </div>
+      </div>
+
+  <!-- Controles móviles (dots) -->
+  <div class="flex items-center justify-center gap-2 ">
+    {% for block in section.blocks %}
+      <button
+        class="size-3 rounded-full transition-colors"
+        :class="index === {{ forloop.index0 }} ? 'bg-gray-900' : 'bg-gray-300'"
+        @click="go({{ forloop.index0 }})"
+        aria-label="Ir al slide {{ forloop.index }}"
+      ></button>
+    {% endfor %}
+  </div>
+
+  <!-- Flechas Mobile -->
+  <div class="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
+    <button
+      @click="prev()"
+      class="pointer-events-auto  backdrop-blur p-2 rounded-full shadow"
+      aria-label="Anterior"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.5" stroke="currentColor" class="size-12">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+
+    <button
+      @click="next()"
+      class="pointer-events-auto backdrop-blur p-2 rounded-full shadow"
+      aria-label="Siguiente"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="1.5" stroke="currentColor" class="size-12">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+  
+</section>
+
+<script>
+  function carousel({ autoplay = false, interval = 5000, count = 0 }) {
+    return {
+      index: 0,
+      timer: null,
+
+      // Helpers reactivos
+      get isMobile() {
+        return window.innerWidth < 768;
+      },
+      get maxIndex() {
+        // Desktop muestra 3; Mobile muestra 1
+        return this.isMobile ? Math.max(0, count - 1) : Math.max(0, count - 3);
+      },
+      clamp() {
+        if (count <= 0) {
+          this.index = 0;
+          return;
+        }
+        if (this.index < 0) this.index = 0;
+        if (this.index > this.maxIndex) this.index = this.maxIndex;
+      },
+
+      init() {
+        // Asegura índice válido al cargar
+        this.clamp();
+
+        if (autoplay && count > 1) {
+          this.start();
+          // Pausar en hover (sólo desktop tiene hover real)
+          this.$el.addEventListener('mouseenter', () => { if (!this.isMobile) this.stop(); });
+          this.$el.addEventListener('mouseleave', () => { if (!this.isMobile) this.start(); });
+        }
+
+        // Re-clamp al cambiar tamaño (pasa de mobile a desktop y viceversa)
+        const onResize = () => this.clamp();
+        window.addEventListener('resize', onResize);
+
+        // Swipe para mobile
+        let startX = null;
+        this.$el.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+        }, { passive: true });
+        this.$el.addEventListener('touchend', (e) => {
+          if (startX === null) return;
+          const dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) > 50) {
+            dx < 0 ? this.next() : this.prev();
+          }
+          startX = null;
+        }, { passive: true });
+
+        // Teclado (izq/der)
+        this.$el.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') this.next();
+          if (e.key === 'ArrowLeft') this.prev();
+        });
+
+        // Pausar autoplay al cambiar de pestaña
+        const onVisibility = () => {
+          if (!autoplay) return;
+          if (document.hidden) this.stop();
+          else this.start();
+        };
+        document.addEventListener('visibilitychange', onVisibility);
+
+        // Limpieza opcional cuando el elemento salga del DOM (por si usas Alpine v3 con destroy)
+        this.$watch?.('index', () => this.clamp());
+      },
+
+      // Visibilidad de flechas
+      canGoPrev() {
+        return this.index > 0;
+      },
+      canGoNext() {
+        return this.index < this.maxIndex;
+      },
+
+      // Navegación SIN loop
+      go(i) {
+        this.index = Math.max(0, Math.min(i, this.maxIndex));
+      },
+      next() {
+        if (this.canGoNext()) this.index++;
+      },
+      prev() {
+        if (this.canGoPrev()) this.index--;
+      },
+
+      // Autoplay
+      start() {
+        this.stop();
+        if (count <= 1) return;
+        this.timer = setInterval(() => {
+          if (this.canGoNext()) {
+            this.index++;
+          } else {
+            this.go(0);
+          }
+        }, interval);
+      },
+      stop() {
+        if (this.timer) {
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Slider Productos",
+  "settings": [
+     {
+      "type": "textarea",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Productos Destacados"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Intervalo (ms)",
+      "min": 2000,
+      "max": 9500,
+      "step": 500,
+      "default": 5000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Selecciona el producto"
+        }
+      ]
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Carrusel de productos", 
+        "category": "Productos"
+
+    }
+  ]
+}
+{% endschema %}

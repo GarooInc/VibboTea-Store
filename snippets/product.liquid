@@ -1,0 +1,121 @@
+{% comment %}
+  Reusable product snippet
+  Usage: {% render 'product', product: product %}
+{% endcomment %}
+
+{% if product %}
+  <div class="product-card group">
+    <!-- PRODUCT IMAGE -->
+    <div class="relative w-full aspect-square overflow-hidden bg-gray-100 rounded-lg">
+      <a href="{{ product.url }}" class="block w-full h-full">
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 500 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          >
+        {% else %}
+          <div class="w-full h-full flex items-center justify-center bg-gray-200">
+            <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/>
+            </svg>
+          </div>
+        {% endif %}
+      </a>
+
+      <!-- SALE BADGE -->
+      {% if product.compare_at_price > product.price %}
+        <div class="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+          Sale
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="mt-4 space-y-2">
+      <!-- TITLE -->
+      <h3 class="font-serif text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h3>
+
+      <!-- VENDOR -->
+      {% if product.vendor %}
+        <p class="text-sm text-gray-500">{{ product.vendor }}</p>
+      {% endif %}
+
+      <!-- RATING (if reviews app is installed) -->
+      {% if product.metafields.reviews.rating %}
+        <div class="flex items-center gap-2">
+          <div class="flex gap-0.5">
+            {% for i in (1..5) %}
+              {% if i <= product.metafields.reviews.rating.value %}
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              {% else %}
+                <svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <span class="text-sm text-gray-500">({{ product.metafields.reviews.rating.value }})</span>
+        </div>
+      {% endif %}
+
+      <!-- PRICE -->
+      <div class="flex items-center gap-2 pt-2">
+        {% if product.compare_at_price > product.price %}
+          <span class="text-lg font-bold text-gray-900">{{ product.price | money }}</span>
+          <span class="text-sm text-gray-500 line-through">{{ product.compare_at_price | money }}</span>
+        {% else %}
+          <span class="text-lg font-bold text-gray-900">{{ product.price | money }}</span>
+        {% endif %}
+      </div>
+
+      <!-- ADD TO CART BUTTON -->
+      <form method="post" action="/cart/add" class="mt-4">
+        {% if product.available %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button 
+            type="submit" 
+            class="w-full bg-black text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+          >
+            Add to Cart
+          </button>
+        {% else %}
+          <button 
+            type="button" 
+            disabled 
+            class="w-full bg-gray-300 text-gray-600 py-2 px-4 rounded-lg font-semibold cursor-not-allowed"
+          >
+            Sold Out
+          </button>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+{% else %}
+  <div class="text-center py-8 text-gray-500">
+    <p>Product not available</p>
+  </div>
+{% endif %}
+
+<style>
+  .product-card {
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
