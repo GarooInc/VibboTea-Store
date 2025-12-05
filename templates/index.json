@@ -54,7 +54,7 @@
       ],
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Productos Destacados",
+        "section_title": "Join the trive",
         "autoplay": true,
         "interval": 5000
       }
