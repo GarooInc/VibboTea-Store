@@ -1,0 +1,77 @@
+<section class="full-width flex flex-col font-bricolage">
+  <div class="w-full  flex flex-col px-6 gap-4 md:gap-2 lg:px-28 bg-[#FFF4DA] md:py-20 py-10">
+
+    <div class="w-full flex justify-start">
+      {% if section.settings.title != blank %}
+        <h2 class="text-4xl md:text-6xl font-bold w-full text-left tracking-tight text-black max-w-2xl pt-4">{{ section.settings.title }}</h2>
+      {% endif %}
+    </div>
+
+    {% if section.settings.eyebrow != blank %}
+         <div class="w-full flex justify-end">
+          <p class="text-xs max-w-sm mx-auto md:text-sm font-bold text-black">{{ section.settings.eyebrow }}</p>
+        </div>
+    {% endif %}
+
+
+    <div class="flex flex-col gap-2">
+      {% if section.settings.text1 != blank %}
+        <div class="flex justify-start max-w-xl text-xl font-light text-neutral-800">
+          {{ section.settings.text1 }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.text2 != blank %}
+        <div class="flex justify-start max-w-xl md:text-4xl text-2xl font-medium text-neutral-800">
+          {{ section.settings.text2 }}
+        </div>
+      {% endif %}
+    </div>
+
+    </div>
+    {% if section.settings.image %}
+        <div class="w-full">
+        <img src="{{ section.settings.image | image_url }}" alt="" class="zero-bs-image">
+        </div>
+    {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Pledge Banner About Us 1",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Título",
+      "default": "<p>Fourteen years ofcuration, decades of tradition.</p>"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior (eyebrow)",
+      "default": "Our Zero B.S. Pledge"
+    },
+    {
+      "type": "richtext",
+      "id": "text1",
+      "label": "Texto 1"
+    },
+    {
+      "type": "richtext",
+      "id": "text2",
+      "label": "Texto 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pledge Banner About Us 1"
+    }
+  ]
+}
+{% endschema %}

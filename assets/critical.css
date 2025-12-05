@@ -119,3 +119,25 @@ body {
 .font-bricolage {
     font-family: 'Bricolage', serif;
 }
+
+@media screen and (min-width: 768px) {
+  .richnameplace strong{
+    font-size: 60px;
+    font-weight: normal !important;
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .richnameplace strong{
+    font-size: 32px;
+    font-weight: normal !important;
+    line-height: 1.2 !important;
+  }
+}
+
+
+.richnameplace{
+  font-weight: normal !important;
+}
