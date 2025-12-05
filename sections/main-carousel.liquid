@@ -103,7 +103,7 @@
   </div>
 
  <!-- Mobile: 1 imagen visible -->
-<div class="md:hidden relative pt-20">
+<div class="md:hidden relative ">
   <!-- Contenedor del carrusel -->
   <div class="relative overflow-hidden h-[630px] ">
       <div
@@ -123,28 +123,27 @@
               class="w-full rounded-2xl object-cover hover:scale-105 transition-transform duration-300"
             >
 
-             <div class="mt-4 text-center">
-              <p class="font-chronicle uppercase text-2xl md:text-[1.1vw] text-black font-medium">
-                {{ all_products[block.settings.product].title }} | {{ all_products[block.settings.product].price | money }}
+             <div class="mt-4">
+              <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium">
+                {{ all_products[block.settings.product].title }} 
               </p>
-              <div class="h-40 md:h-56 overflow-hidden text-ellipsis">
-                <p class="mt-2 text-gray-600">
-                  {{ all_products[block.settings.product].description }}
-                </p>
-              </div>
-
+              <p class="font-bricolage text-3xl  text-left text-black font-medium">
+                {{ all_products[block.settings.product].price  | money }} 
+              </p>
+              
             </div>
 
           </a>
-          <form method="post" action="/cart/add" class="quick-add__submit w-3/5 mt-5 text-center mx-auto">
+          <form method="post" action="/cart/add" class="w-4/5 pt-5 text-center mx-auto">
                 <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
-                <button type="submit" class="button md:bg-gray-900 flex items-center justify-center w-full ">
-                  <span class="font-sf-pro md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">
-                    Añadir al carrito
+                <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+                  <span class="font-bricolage  text-white  text-sm uppercase font-light text-center">
+                    Add to cart
                   </span>
                   
                 </button>
               </form>
+          
         </div>
 
 
@@ -152,40 +151,24 @@
         </div>
       </div>
 
-  <!-- Controles móviles (dots) -->
-  <div class="flex items-center justify-center gap-2 ">
-    {% for block in section.blocks %}
-      <button
-        class="size-3 rounded-full transition-colors"
-        :class="index === {{ forloop.index0 }} ? 'bg-gray-900' : 'bg-gray-300'"
-        @click="go({{ forloop.index0 }})"
-        aria-label="Ir al slide {{ forloop.index }}"
-      ></button>
-    {% endfor %}
-  </div>
+
 
   <!-- Flechas Mobile -->
   <div class="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
     <button
       @click="prev()"
-      class="pointer-events-auto  backdrop-blur p-2 rounded-full shadow"
+      class="pointer-events-auto  p-2 rounded-full shadow"
       aria-label="Anterior"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.5" stroke="currentColor" class="size-12">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-      </svg>
+      {% render 'arrow-left' %}
     </button>
 
     <button
       @click="next()"
-      class="pointer-events-auto backdrop-blur p-2 rounded-full shadow"
+      class="pointer-events-auto  p-2 rounded-full shadow"
       aria-label="Siguiente"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="1.5" stroke="currentColor" class="size-12">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-      </svg>
+      {% render 'arrow-right' %}
     </button>
   </div>
 </div>
