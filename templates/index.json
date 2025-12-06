@@ -65,42 +65,48 @@
         "slide_mBdE8G": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/homepage-slider1.png",
+            "image_desktop": "shopify://shop_images/Fun_fact_1.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         },
         "slide_fTwR9R": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Fun_fact_2_379a6eff-1f34-4662-bdf3-f69601c86ed9.png",
+            "image_desktop": "shopify://shop_images/Fun_fact_2.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         },
         "slide_4Jni8y": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Fun_fact_3.png",
+            "image_desktop": "shopify://shop_images/Fun_fact_3.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         },
         "slide_MRXFQA": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Fun_fact_4.png",
+            "image_desktop": "shopify://shop_images/Fun_fact_4.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         },
         "slide_UyjxKz": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Fun_fact_5.png",
+            "image_desktop": "shopify://shop_images/Fun_fact_5.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         },
         "slide_Hjb93p": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Cierre.png",
+            "image_desktop": "shopify://shop_images/Cierre.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
         }
