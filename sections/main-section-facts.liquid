@@ -1,8 +1,24 @@
-<div class="custom-slider relative w-screen mx-auto"
+<div class="custom-slider md:relative md:w-screen mx-auto"
 style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
-  <div class="slides-wrapper relative w-full">
+
+  {% comment %} version desktop {% endcomment %}
+  <div class="hidden md:block slides-wrapper md:relative w-full">
     {% for block in section.blocks %}
-      {% assign img = block.settings.image %}
+      {% assign img = block.settings.image_desktop %}
+      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
+        <img src="{{ img | img_url: '2000x2000' }}" 
+          class="w-full h-auto object-contain"
+          width="{{ img.width }}" 
+          height="{{ img.height }}" 
+          alt="{{ block.settings.alt | escape }}"
+        />
+      </div>
+    {% endfor %}
+  </div>
+  {% comment %} version mobile {% endcomment %}
+  <div class="md:hidden slides-wrapper-mobile relative w-full">
+    {% for block in section.blocks %}
+      {% assign img = block.settings.image_mobile %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
         <img src="{{ img | img_url: '2000x2000' }}" 
           class="w-full h-auto object-contain"
@@ -17,13 +33,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   <!-- Flechas -->
   <div class="absolute grid grid-cols-2 md:bottom-5 md:right-5 bottom-3 right-2">
     <button class="prev text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
-      <div class="w-5 h-5 md:w-30 md:h-30 justify-center md:pl-15">
+      <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
         {%- render 'arrow-slidder2' -%}
       </div>
     </button>
 
     <button class="next text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
-      <div class="w-5 h-5 md:w-30 md:h-30">
+      <div class="w-10 h-10 md:w-30 md:h-30">
         {%- render 'arrow-slidder' -%}
       </div>
     </button>
@@ -62,33 +78,46 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.querySelector(".custom-slider");
-  const slides = slider.querySelectorAll(".slide");
-  const nextBtn = slider.querySelector(".next");
-  const prevBtn = slider.querySelector(".prev");
+  function initSlider(wrapperSelector) {
+    const slider = document.querySelector(".custom-slider");
+    const wrapper = slider.querySelector(wrapperSelector);
+    if (!wrapper) return;
 
-  let index = 0;
+    const slides = wrapper.querySelectorAll(".slide");
+    const nextBtn = slider.querySelector(".next");
+    const prevBtn = slider.querySelector(".prev");
 
-  function showSlide(i) {
-    slides.forEach(s => {
-      s.classList.remove("active");
-      s.style.position = "absolute";
-    });
-    slides[i].classList.add("active");
-    slides[i].style.position = "relative";
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((s) => {
+        s.classList.remove("active");
+        s.style.position = "absolute";
+      });
+      slides[i].classList.add("active");
+      slides[i].style.position = "relative";
+    }
+
+    nextBtn.onclick = () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    };
+
+    prevBtn.onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    };
   }
 
-  nextBtn.addEventListener("click", () => {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-  });
-
-  prevBtn.addEventListener("click", () => {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-  });
+  // 💡 Detectamos cuál contenedor está visible
+  if (window.innerWidth < 768) {
+    initSlider(".slides-wrapper-mobile");
+  } else {
+    initSlider(".slides-wrapper");
+  }
 });
 </script>
+
 
 {% schema %}
 {
@@ -104,9 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
   "blocks": [
     {
       "type": "slide",
-      "name": "Imagen",
+      "name": "Imagen Desktop",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "image_picker", "id": "image_desktop", "label": "Imagen Desktop" },
+        { "type": "image_picker", "id": "image_mobile", "label": "Imagen Mobile" },
         { "type": "text", "id": "alt", "label": "Texto alternativo", "default": "Imagen del slider" }
       ]
     }

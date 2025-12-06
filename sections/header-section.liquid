@@ -1,16 +1,16 @@
-<div class="relative w-screen h-screen bg-cover bg-center flex items-center justify-center overflow-hidden "
+<div class="relative w-screen md:h-screen h-[350px] bg-cover bg-center flex items-center justify-center overflow-hidden "
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-image: url({{ section.settings.background_image | image_url }});">
 
   <div class="">
   {% comment %} {# Title centered #} {% endcomment %}
   <div class="mx-auto text-center">
-    <h1 class="text-[16vw] md:text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] ">
+    <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9] ">
       {{ section.settings.page_title | newline_to_br }}
     </h1>
   </div>
 
   <div class="mx-auto text-center">
-    <p class="text-[5vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+    <p class="text-[3.5vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
       {{ section.settings.page_descripction }}
     </p>
   </div></div>
