@@ -1,14 +1,14 @@
 <!-- TÍTULO -->
     <div class="text-center items-center align-center pt-10 ">
-        <h2 class="md:text-5xl text-4xl text-black font-semibold font-bricolage">
+        <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage">
             {{ section.settings.section_title | default: "Join the trive" }}
         </h2>
-        <p class="text-black text-[4vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
+        <p class="text-black text-[3.5vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
                 Discover our flavors 
             </p>
         <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4">
 
-          <p class="text-black text-[4vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
+          <p class="text-black text-[3.5vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
             I want to feel human again
           </p>
 
@@ -134,7 +134,7 @@
             </div>
 
           </a>
-          <form method="post" action="/cart/add" class="w-4/5 pt-5 text-center mx-auto">
+          <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto pr-10">
                 <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
                 <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
                   <span class="font-bricolage  text-white  text-sm uppercase font-light text-center">
@@ -157,7 +157,7 @@
   <div class="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
     <button
       @click="prev()"
-      class="pointer-events-auto  p-2 rounded-full shadow"
+      class="pointer-events-auto p-2 rounded-full "
       aria-label="Anterior"
     >
       {% render 'arrow-left' %}
@@ -165,7 +165,7 @@
 
     <button
       @click="next()"
-      class="pointer-events-auto  p-2 rounded-full shadow"
+      class="pointer-events-auto p-2 rounded-full "
       aria-label="Siguiente"
     >
       {% render 'arrow-right' %}
