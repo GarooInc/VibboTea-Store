@@ -126,13 +126,43 @@
     },
     "main_universe_section_yaVDzH": {
       "type": "main-universe-section",
+      "blocks": {
+        "video_block_FCqA8y": {
+          "type": "video_block",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "text": "Rise",
+            "button_text": "get started",
+            "button_url": ""
+          }
+        },
+        "video_block_rUkxAB": {
+          "type": "video_block",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "text": "Reset",
+            "button_text": "get started",
+            "button_url": ""
+          }
+        },
+        "video_block_HyHXA4": {
+          "type": "video_block",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "text": "Rest & \nRelax",
+            "button_text": "get started",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_block_FCqA8y",
+        "video_block_rUkxAB",
+        "video_block_HyHXA4"
+      ],
       "name": "Section Universe",
       "settings": {
-        "title": "The universe of VIBBO",
-        "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
-        "primary_video_url2": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
-        "text-imagen1": "Rise, \nRest, \nReset.",
-        "text-imagen2": "Detox"
+        "title": "The universe of VIBBO"
       }
     },
     "main_section_slidder_qL94nG": {
@@ -176,6 +206,8 @@
       "name": "Slider Imágenes",
       "settings": {
         "title": "Not your grandma’s cup of tea—your\neveryday ritual: hot, iced, or blended.",
+        "title_mobile": "Title Mobile",
+        "description_mobile": "Description Mobile",
         "autoplay": true,
         "interval": 5000
       }
