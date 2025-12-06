@@ -2,10 +2,9 @@
 class="w-screen md:min-h-[90vh] h-full bg-[#F5F3F3] flex flex-col justify-between"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
-  {% assign mp4_url = section.settings.primary_video_url %}
-    
+
   <!-- TÍTULO -->
-  <div class="w-full flex justify-start items-start px-5 md:px-20 py-10 pt-20">
+  <div class="hidden w-full md:flex justify-start items-start px-5 md:px-20 py-10 pt-20">
       <div class="text-black text-[8vw] md:text-[3.3vw] font-bricolage font-semibold leading-tight">
           {{ section.settings.title }}
       </div>
@@ -13,82 +12,48 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-10 md:gap-20 p-5 md:p-20 pt-5 pb-20 ">
+      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-10 p-5 md:p-20 pt-5 pb-20">
 
-          <!-- VIDEO 1 -->
-          <div class="relative w-full aspect-square overflow-hidden rounded-2xl">
+        {% for block in section.blocks %}
+          <div class="relative w-full aspect-square md:aspect-[9/16] overflow-hidden rounded-2xl">
 
             <video 
-              src="{{ mp4_url }}" 
+              src="{{ block.settings.video_url }}" 
               autoplay 
               loop 
               muted 
               playsinline
-              class="absolute inset-0 w-full h-full object-cover">
+              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center">
             </video>
 
-            <!-- TEXTO ENCIMA -->
+            <!-- TEXTO -->
             <div class="absolute inset-0 flex">
                 <h2 class="text-white text-[8vw] md:text-[4vw] pl-5 md:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight">
-                    {{ section.settings.text-imagen1 | newline_to_br }}
+                    {{ block.settings.text | newline_to_br }}
                 </h2>
             </div>
 
             <!-- BOTÓN -->
-            <div class="absolute bottom-10 left-5 md:bottom-20 md:left-10 bg-white h-10 md:h-12  flex items-center rounded-full">
+            {% if block.settings.button_text != blank %}
+            <div class="absolute bottom-10 left-5 md:bottom-20 md:left-10 bg-white h-10 md:h-12 flex items-center rounded-full">
               <p class="text-black text-sm md:text-base font-bricolage mr-2 pl-4">
-                  Get pumped
+                  {{ block.settings.button_text }}
               </p>
-              <a href="{{ section.settings.imagen1-url }}" target="_blank" rel="noopener" 
+              <a href="{{ block.settings.button_url }}" target="_blank" rel="noopener" 
                 class="hover:opacity-70 transition-opacity scale-75 md:scale-100 px-2"
-                aria-label="Imagen 1 URL">
+              >
                 {%- render 'arrow' -%}
               </a>
             </div>
+            {% endif %}
 
           </div>
-
-          <!-- VIDEO 2 -->
-          <div class="relative w-full aspect-square overflow-hidden rounded-2xl">
-
-            <video 
-              src="{{ mp4_url }}" 
-              autoplay 
-              loop 
-              muted 
-              playsinline
-              class="absolute inset-0 w-full h-full object-cover">
-            </video>
-
-            <!-- TEXTO ENCIMA -->
-            <div class="absolute inset-0 flex">
-                <h2 class="text-white text-[8vw] md:text-[4vw]  pl-5 md:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight">
-                    {{ section.settings.text-imagen2 | newline_to_br }}
-                </h2>
-            </div>
-
-            <!-- BOTÓN -->
-            <div class="absolute bottom-10 left-5 md:bottom-20 md:left-10 bg-white h-10 md:h-12  flex items-center rounded-full">
-              <p class="text-black text-sm md:text-base font-bricolage mr-2 pl-4">
-                  Get purified
-              </p>
-              <a href="{{ section.settings.imagen1-url }}" target="_blank" rel="noopener" 
-                class="hover:opacity-70 transition-opacity scale-75 md:scale-100 px-2"
-                aria-label="Imagen 2 URL">
-                {%- render 'arrow' -%}
-              </a>
-            </div>
-
-          </div>
+        {% endfor %}
 
       </div>
   </div>
 
 </div>
-
-
-
-
 {% schema %}
 {
   "name": "Section Universe",
@@ -98,36 +63,43 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "id": "title",
       "label": "Title",
       "default": "Title"
-    },
-    
-     {
-      "type": "url",
-      "id": "primary_video_url",
-      "label": "Video URL (MP4 o YouTube)"
-    },
-     {
-      "type": "url",
-      "id": "primary_video_url2",
-      "label": "Video URL (MP4 o YouTube)"
-    },
-    {
-      "type": "textarea",
-      "id": "text-imagen1",
-      "label": "Text Imagen 1",
-      "default": "texto 1"
-    },
-    {
-      "type": "textarea",
-      "id": "text-imagen2",
-      "label": "Text Imagen 2",
-      "default": "texto 2"
-    },
-    
-    
+    }
   ],
+
+  "blocks": [
+    {
+      "type": "video_block",
+      "name": "Video block",
+      "settings": [
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL (MP4)"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text over video"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "get started"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+
   "presets": [
     {
       "name": "Section Universe",
+      "category": "Custom"
     }
   ]
 }
