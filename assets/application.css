@@ -1057,6 +1057,9 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
+  .gap-5 {
+    gap: calc(var(--spacing) * 5);
+  }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
@@ -2625,6 +2628,11 @@
   .md\:py-0 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:py-10 {
+    @media (width >= 48rem) {
+      padding-block: calc(var(--spacing) * 10);
     }
   }
   .md\:py-20 {
