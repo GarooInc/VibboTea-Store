@@ -12,10 +12,10 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-10 p-5 md:p-20 pt-5 pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-12 p-5 md:p-20 pt-5 pb-20">
 
         {% for block in section.blocks %}
-          <div class="relative w-full aspect-square md:aspect-[9/16] overflow-hidden rounded-2xl">
+          <div class="relative w-full aspect-square md:aspect-[9/14] overflow-hidden rounded-2xl">
 
             <video 
               src="{{ block.settings.video_url }}" 
@@ -28,7 +28,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
             <!-- TEXTO -->
             <div class="absolute inset-0 flex">
-                <h2 class="text-white text-[8vw] md:text-[4vw] pl-5 md:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight">
+                <h2 class="text-white text-[8vw] md:text-[3.2vw] pl-5 md:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight">
                     {{ block.settings.text | newline_to_br }}
                 </h2>
             </div>

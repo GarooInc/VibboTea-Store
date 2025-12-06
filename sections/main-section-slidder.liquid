@@ -1,11 +1,5 @@
-<!-- TÍTULO -->
-    <div class="w-full flex justify-start items-start px-5 md:px-10 pb-10 pt-20">
-        <div class="text-black text-[8vw] md:text-[3.4vw] font-bricolage font-semibold leading-[1.1]">
-            {{ section.settings.title | newline_to_br }}
-        </div>
-    </div>
 <section
-  class="relative w-full md:mt-20 mt-1"
+  class="relative w-full md:mt-20 mt-1 md:py-25 pb-10"
   x-data="carousel({
     autoplay: {{ section.settings.autoplay }},
     interval: {{ section.settings.interval | default: 5000 }},
@@ -14,8 +8,45 @@
   x-init="init()"
   aria-roledescription="carousel"
 >
+  <!-- TÍTULO + flechas -->
+  <div class="w-full md:flex items-center justify-between md:px-5 py-5 md:py-0 pt-15 px-5">
+    <div class="hidden md:block text-black text-[6vw] md:text-[3.4vw] font-bricolage font-semibold leading-[1.1]">
+      {{ section.settings.title | newline_to_br }}
+    </div>
+
+    <div class="hidden md:flex md:pl-[24vw] pt-10">
+      <button @click="prev()" aria-label="Anterior" class="p-2 hover:opacity-70 transition-opacity">
+        {% render 'arrow-grandma' %}
+      </button>
+      <button @click="next()" aria-label="Siguiente" class="p-2 hover:opacity-70 transition-opacity">
+        {% render 'arrow-grandma2' %}
+      </button>
+    </div>
+
+    <!--- verion mobile --->
+    <div>
+      <h2 class="md:hidden text-black text-[7vw] font-bricolage font-semibold leading-[1.1] ">
+        {{ section.settings.title_mobile | newline_to_br }}
+        
+      </h2>
+      <p class="md:hidden pt-5 text-gray-700 text-[4vw] font-sf-pro font-light leading-[1.2] ">
+        {{ section.settings.description_mobile | newline_to_br }}
+
+        </p>
+    </div>
+
+    <div class="md:hidden  items-center pt-4">
+      <button @click="prev()" aria-label="Anterior" class="scale-75">
+        {% render 'arrow-grandma' %}
+      </button>
+      <button @click="next()" aria-label="Siguiente" class="scale-75">
+        {% render 'arrow-grandma2' %}
+      </button>
+    </div>
+  </div>
+
   <!-- Desktop: 3 imágenes visibles -->
-  <div class="hidden md:block relative overflow-hidden py-20 ">
+  <div class="hidden md:block relative overflow-hidden py-5 ">
     <div class="flex transition-transform duration-500 ease-out" :style="`transform: translateX(-${index * 33.333}%)`">
       {% for block in section.blocks %}
         {% assign img = block.settings.image %}
@@ -38,34 +69,11 @@
       {% endfor %}
     </div>
 
-    <!-- Flechas Desktop -->
-    <div class="flex items-center justify-between absolute inset-0 pointer-events-none px-10 ">
-      <button
-        @click="prev()"
-        class="pointer-events-auto h-12 w-12 "
-        aria-label="Slides anteriores"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24"
-           stroke-width="1.5" stroke="currentColor" class="md:size-20 size-12"
-          >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-        </svg>
-      </button>
-      <button
-        @click="next()"
-        class="pointer-events-auto h-12 w-12 "
-        aria-label="Siguientes slides"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:size-20 size-12">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-        </svg>
-
-      </button>
-    </div>
+   
   </div>
 
   <!-- Mobile: 1 imagen visible -->
-  <div class="md:hidden relative">
+  <div class="md:hidden relative px-5 overflow-hidden ">
     <div class="relative overflow-hidden h-[400px]">
       {% for block in section.blocks %}
         {% assign img = block.settings.image %}
@@ -87,8 +95,7 @@
               class="w-full md:h-[300px] h-[600px] object-cover select-none rounded-lg"
               loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
             >
-              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-            >
+             
           {% else %}
             <div class="w-full h-[300px] bg-gray-100 grid place-items-center rounded-lg">
               <span class="text-gray-500">Sube una imagen</span>
@@ -98,17 +105,7 @@
       {% endfor %}
     </div>
 
-    <!-- Dots Mobile -->
-    <div class="flex items-center justify-center gap-2 mt-4">
-      {% for block in section.blocks %}
-        <button
-          class="size-2.5 rounded-full transition-colors"
-          :class="index === {{ forloop.index0 }} ? 'bg-gray-900' : 'bg-gray-300'"
-          @click="go({{ forloop.index0 }})"
-          aria-label="Ir al slide {{ forloop.index }}"
-        ></button>
-      {% endfor %}
-    </div>
+    
   </div>
 </section>
 
@@ -232,6 +229,18 @@
       "id": "title",
       "label": "Title",
       "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "title_mobile",
+      "label": "Title Mobile",
+      "default": "Title Mobile" 
+    },
+     {
+      "type": "textarea",
+      "id": "description_mobile",
+      "label": "Description Mobile",
+      "default": "Description Mobile" 
     },
     {
       "type": "checkbox",
