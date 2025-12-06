@@ -2597,6 +2597,11 @@
       padding: calc(var(--spacing) * 20);
     }
   }
+  .md\:px-4 {
+    @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 4);
+    }
+  }
   .md\:px-5 {
     @media (width >= 48rem) {
       padding-inline: calc(var(--spacing) * 5);
@@ -2640,6 +2645,11 @@
   .md\:py-\[3\.5vh\] {
     @media (width >= 48rem) {
       padding-block: 3.5vh;
+    }
+  }
+  .md\:pt-0 {
+    @media (width >= 48rem) {
+      padding-top: calc(var(--spacing) * 0);
     }
   }
   .md\:pt-1 {
