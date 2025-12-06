@@ -1,13 +1,38 @@
 <div 
-class="w-screen min-h-[90vh] bg-[#F5F3F3] flex flex-col justify-between pb-20 relative"
+class="w-screen min-h-[90vh] bg-[#F5F3F3] flex flex-col justify-between md:pb-20 relative"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
     <!-- TÍTULO -->
-    <div class="w-full flex justify-start items-start px-5 md:px-20 pb-10 pt-20">
-        <div class="text-black text-[8vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
+    <div class="w-full flex md:justify-start md:items-start md:text-left text-center justify-center px-5 md:px-20 md:pt-20 pt-10">
+        <div class="text-black text-[11vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
+    </div>
+
+    {% comment %} version mobile {% endcomment %}
+    <div class="md:hidden flex flex-col justify-center items-center  py-2">
+
+      <div class="h-12 flex items-center justify-center">
+        <p class="text-black font-bricolage text-center text-[3.5vw] "> 
+          Follow our socials, never miss a brew.
+        </p>
+      </div>
+
+      <div class="bg-[#EBEBEB] h-12 w-1/2 pl-4 pr-0 flex items-center justify-between rounded-full border border-black mt-3 md:mt-0 mx-auto">
+
+        <p class="text-black text-[4vw] md:text-base font-bricolage flex-1 pl-2">
+          @drinkvvibbo
+        </p>
+
+        <a href="{{ section.settings.imagen1-url }}" 
+           target="_blank" 
+           rel="noopener"
+           class="hover:opacity-70 transition-opacity md:scale-100 ml-2 pr-2" 
+           aria-label="Imagen 1 URL">
+          {%- render 'arrow' -%}
+        </a>
+      </div>
     </div>
 
     <!-- GRID IMÁGENES -->
@@ -46,8 +71,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
         </div>
     </div>
-
-    <div class="flex flex-col md:flex-none items-center md:items-start mt-5 md:mt-0 py-5 ">
+    {% comment %} version desktop {% endcomment %}
+    <div class="hidden md:flex flex-col md:flex-none items-center md:items-start mt-5 md:mt-0 py-5 ">
 
         <div class="md:absolute md:bottom-35 md:right-20 h-12 flex items-center pl-3 text-center md:text-left">
             <p class="text-black font-bricolage text-[4vw] md:text-base pr-5"> 
@@ -55,21 +80,21 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
             </p>
         </div>
 
-        <div class="md:absolute md:bottom-22 md:right-48 bg-[#EBEBEB] h-12 w-auto pl-4
-                    flex justify-center items-center rounded-full 
-                    border border-black mt-3 md:mt-0">
+        <div class="md:absolute md:bottom-22 md:right-48 bg-[#EBEBEB] h-12 w-auto pl-4 pr-0
+              flex items-center justify-between rounded-full 
+              border border-black mt-3 md:mt-0">
 
-            <p class="text-black text-[4vw] md:text-base font-bricolage mr-2 px-2">
-                @drinkvvibbo
-            </p>
+          <p class="text-black text-[4vw] md:text-base font-bricolage flex-1 px-3">
+            @drinkvvibbo
+          </p>
 
-            <a href="{{ section.settings.imagen1-url }}" 
-               target="_blank" 
-               rel="noopener"
-               class="hover:opacity-70 transition-opacity scale-75 md:scale-100 px-2" 
-               aria-label="Imagen 1 URL">
-                {%- render 'arrow' -%}
-            </a>
+          <a href="{{ section.settings.imagen1-url }}" 
+             target="_blank" 
+             rel="noopener"
+             class="hover:opacity-70 transition-opacity md:scale-100 ml-2 pr-1" 
+             aria-label="Imagen 1 URL">
+            {%- render 'arrow' -%}
+          </a>
         </div>
     </div>
 
