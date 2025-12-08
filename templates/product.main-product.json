@@ -80,10 +80,46 @@
     },
     "main_section_slidder_jcDeBE": {
       "type": "main-section-slidder",
+      "blocks": {
+        "slide_FcaPYi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_Hmzia6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315911.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_ykHjLc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315915.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_bKBLqn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315913.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_FcaPYi",
+        "slide_Hmzia6",
+        "slide_ykHjLc",
+        "slide_bKBLqn"
+      ],
       "name": "Slider Imágenes",
       "settings": {
-        "title": "Title",
-        "title_mobile": "Title Mobile",
+        "title": "Real Stories, Real Style, Real Energy.",
+        "title_mobile": "Real Stories, Real Style, Real Energy.",
         "description_mobile": "Description Mobile",
         "autoplay": true,
         "interval": 5000
