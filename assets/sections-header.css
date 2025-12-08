@@ -1,0 +1,96 @@
+/* Header section styles moved here from inline <style> */
+.full-bleed-header{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.header-bg{
+  background-image: var(--header-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@keyframes floatFadeTilt {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) translateX(0px) rotate(var(--tilt-start));
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(-6px) translateX(4px) rotate(var(--tilt-mid));
+  }
+
+  40% {
+    opacity: 0.8;
+    transform: translateY(4px) translateX(-6px) rotate(var(--tilt-low));
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) translateX(6px) rotate(var(--tilt-mid2));
+  }
+
+  75% {
+    opacity: 0.5;
+    transform: translateY(0px) translateX(0px) rotate(var(--tilt-end));
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.animated-img-1 {
+  --tilt-start: -2deg;
+  --tilt-mid: 3deg;
+  --tilt-low: -1deg;
+  --tilt-mid2: 4deg;
+  --tilt-end: -1deg;
+  animation: floatFadeTilt 18s ease-in-out infinite;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+.animated-img-2 {
+  --tilt-start: -5deg;
+  --tilt-mid: 6deg;
+  --tilt-low: -2deg;
+  --tilt-mid2: 5deg;
+  --tilt-end: -3deg;
+  animation: floatFadeTilt 25s ease-in-out infinite;
+  animation-delay: 4s;
+  animation-fill-mode: both;
+}
+
+.animated-img-3 {
+  --tilt-start: -3deg;
+  --tilt-mid: 2deg;
+  --tilt-low: -1deg;
+  --tilt-mid2: 5deg;
+  --tilt-end: 0deg;
+  animation: floatFadeTilt 30s ease-in-out infinite;
+  animation-delay: 7s;
+  animation-fill-mode: both;
+}
+
+.animated-img-4 {
+  --tilt-start: -1deg;
+  --tilt-mid: 4deg;
+  --tilt-low: 0deg;
+  --tilt-mid2: -2deg;
+  --tilt-end: 1deg;
+  animation: floatFadeTilt 14s ease-in-out infinite;
+  animation-delay: 10s;
+  animation-fill-mode: both;
+}

@@ -1,5 +1,7 @@
-<div class="relative w-screen md:h-screen h-[350px] bg-cover bg-center flex items-center justify-center overflow-hidden "
-  style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-image: url({{ section.settings.background_image | image_url }});">
+<div class="relative w-screen md:h-screen h-[350px] bg-cover bg-center flex items-center justify-center overflow-hidden full-bleed-header header-bg"
+     style="--header-bg: url('{{ section.settings.background_image | image_url }}');">
+
+  <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
   <div class="">
 
@@ -10,28 +12,28 @@
       <img src="{{ section.settings.image_animation1 | image_url: width: 2000 }}" 
             width="{{ section.settings.image_animation1.featured_media.width }}"
             height="{{ section.settings.image_animation1.featured_media.height }}"
-            class="animated-img absolute top-[20%] left-[15%] w-[120px] md:w-[150px] object-cover">
+            class="animated-img-1 absolute top-[20%] left-[30%] w-[50px] md:w-[130px] object-cover">
     {% endif %}
 
     {% if section.settings.image_animation2 %}
       <img src="{{ section.settings.image_animation2 | image_url: width: 2000 }}" 
           width="{{ section.settings.image_animation2.featured_media.width }}"
           height="{{ section.settings.image_animation2.featured_media.height }}"
-          class="animated-img absolute top-[25%] left-[70%] w-[150px] md:w-[150px] object-cover">
+          class="animated-img-2 absolute top-[23%] left-[65%] w-[50px] md:w-[150px] object-cover">
     {% endif %}
 
     {% if section.settings.image_animation3 %}
       <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
           width="{{ section.settings.image_animation2.featured_media.width }}"
           height="{{ section.settings.image_animation2.featured_media.height }}"
-          class="animated-img absolute bottom-[15%] left-[20%] w-[140px] md:w-[110px] object-cover">
+          class="animated-img-3 absolute bottom-[25%] left-[20%] w-[45px] md:w-[90px] object-cover">
     {% endif %}
 
     {% if section.settings.image_animation4 %}
       <img src="{{ section.settings.image_animation4 | image_url: width: 2000 }}" 
           width="{{ section.settings.image_animation2.featured_media.width }}"
           height="{{ section.settings.image_animation2.featured_media.height }}"
-          class="animated-img absolute bottom-[25%] left-[75%] w-[110px] md:w-[110px] object-cover">
+          class="animated-img-4 absolute bottom-[20%] left-[75%] w-[50px] md:w-[90px] object-cover">
     {% endif %}
 
   </div>
@@ -51,28 +53,13 @@
 </div>
 
 
-</div>
+</div></div>
 
 
 
-</div>
-
-  <style>
-@keyframes floatAnim {
-  0%   { transform: translateY(0px) translateX(0px); }
-  50%  { transform: translateY(-10px) translateX(8px); }
-  100% { transform: translateY(0px) translateX(0px); }
-}
-
-.animated-img {
-  animation: floatAnim 6s ease-in-out infinite;
-  opacity: 0.95;
-}
-</style>
 
 
-
-  {% schema %}
+{% schema %}
 {
   "name": "Header main section",
   "settings": [
