@@ -14,10 +14,10 @@
       "name": "Header Main section",
       "settings": {
         "background_image": "shopify://shop_images/bg-home-vibbo.png",
-        "image_animation1": "shopify://shop_images/Frame_1321315052_1_ee580f76-0b33-4eef-b29f-6c6fd1c4bc96.png",
-        "image_animation2": "shopify://shop_images/Frame_1321315053_1_1e78f1e0-a17e-4a09-97ac-987a58613220.png",
-        "image_animation3": "shopify://shop_images/Frame_1321315054.png",
-        "image_animation4": "shopify://shop_images/Frame_1321316208.png",
+        "image_animation1": "shopify://shop_images/Frame_1321315052_2.png",
+        "image_animation2": "shopify://shop_images/Frame_1321315053_3.png",
+        "image_animation3": "shopify://shop_images/Frame_1321315054_2.png",
+        "image_animation4": "shopify://shop_images/Frame_1321316208_2.png",
         "page_title": "WELLNESS\nWITHOUT\nTHE B.S.",
         "page_descripction": "REAL TEA, REAL BENEFITS"
       }
