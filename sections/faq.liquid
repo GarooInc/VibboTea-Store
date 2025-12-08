@@ -1,5 +1,5 @@
 <div class="w-full bg-white py-10 md:py-20 flex flex-col items-center">
-  <div class="md:min-w-4xl min-w-sm mx-auto text-center md:px-4 px-10">
+  <div class="md:min-w-4xl min-w-sm mx-auto text-center md:px-4 px-5">
 
     {% if section.settings.title != blank %}
       <h2 class="text-3xl md:text-5xl font-semibold mb-12 font-bricolage">
@@ -17,7 +17,8 @@
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
                     alt="Image 2"
                     class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl -translate-x-1/4"
-
+                    width="{{ all_products[block.settings.product].featured_media.width }}"
+                    height="{{ all_products[block.settings.product].featured_media.height }}"
                 >
             {% endif %}
         </div>
@@ -29,11 +30,11 @@
       <div class="w-full pb-5" {{ block.shopify_attributes }}>
         
         <div 
-          class="faq-card border border-gray-300 rounded-xl px-4 py-5 cursor-pointer"
+          class="faq-card border border-gray-300 rounded-xl px-5 py-5 cursor-pointer"
           data-faq
         >
           <div class="flex items-center justify-between">
-            <h3 class="md:text-2xl font-semibold font-bricolage text-left">
+            <h3 class="md:text-2xl font-semibold font-bricolage text-gray-800 text-left">
               {{ block.settings.question }}
             </h3>
 
@@ -44,7 +45,7 @@
 
           <!-- Respuesta oculta -->
           <div class="faq-content max-h-0 overflow-hidden transition-all duration-500">
-            <p class="text-gray-700 mt-3 pr-10 text-left max-w-4/5 md:text-lg text-xs pt-3 md:pt-0">
+            <p class="text-gray-700 mt-3 pr-10 text-left max-w-8/9 md:text-lg text-xs pt-3 md:pt-0">
               {{ block.settings.answer }}
             </p>
           </div>
