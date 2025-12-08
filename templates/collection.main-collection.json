@@ -14,109 +14,18 @@
       "disabled": true,
       "settings": {}
     },
-    "faq_NnARtz": {
-      "type": "faq",
-      "blocks": {
-        "faq_V8G9Jc": {
-          "type": "faq",
-          "settings": {
-            "question": "Is VIBBO organic or ethically sourced?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
-          }
-        },
-        "faq_yhmUMC": {
-          "type": "faq",
-          "settings": {
-            "question": "Where do we sort our ingredients from?",
-            "answer": ""
-          }
-        },
-        "faq_9JUEVg": {
-          "type": "faq",
-          "settings": {
-            "question": "How should I drink it?",
-            "answer": ""
-          }
-        },
-        "faq_wd9PxW": {
-          "type": "faq",
-          "settings": {
-            "question": "How much, when, and how often should I drink VIBBO?",
-            "answer": ""
-          }
-        },
-        "faq_zXyHAx": {
-          "type": "faq",
-          "settings": {
-            "question": "Are there any artificial flavors, sweeteners, or additives in our blends?",
-            "answer": ""
-          }
-        },
-        "faq_yCJ6y4": {
-          "type": "faq",
-          "settings": {
-            "question": "What’s the shelf life and storage advice for our blends?",
-            "answer": ""
-          }
-        }
-      },
-      "block_order": [
-        "faq_V8G9Jc",
-        "faq_yhmUMC",
-        "faq_9JUEVg",
-        "faq_wd9PxW",
-        "faq_zXyHAx",
-        "faq_yCJ6y4"
-      ],
-      "name": "FAQ",
+    "main_carousel_cDE4Pg": {
+      "type": "main-carousel",
+      "name": "Carrusel de productos",
       "settings": {
-        "title": "FAQ",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png"
-      }
-    },
-    "main_section_slidder_Q7r4it": {
-      "type": "main-section-slidder",
-      "blocks": {
-        "slide_qMQjTH": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
-            "alt": "Imagen del slider"
-          }
-        },
-        "slide_B8arky": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1321315911.png",
-            "alt": "Imagen del slider"
-          }
-        },
-        "slide_BYnGge": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1321315915.png",
-            "alt": "Imagen del slider"
-          }
-        }
-      },
-      "block_order": [
-        "slide_qMQjTH",
-        "slide_B8arky",
-        "slide_BYnGge"
-      ],
-      "name": "Slider Imágenes",
-      "settings": {
-        "title": "Real Stories, Real Style, Real Energy.",
-        "title_mobile": "Title Mobile",
-        "description_mobile": "Description Mobile",
-        "autoplay": true,
-        "interval": 7500
+        "section_title": "Your daily dose of clarity",
+        "autoplay": false,
+        "interval": 7000
       }
     }
   },
   "order": [
     "main",
-    "faq_NnARtz",
-    "main_section_slidder_Q7r4it"
+    "main_carousel_cDE4Pg"
   ]
 }
