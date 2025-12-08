@@ -1,10 +1,64 @@
 <footer 
-  class="w-screen min-h-[55vh]  bg-[#1D1D1B] text-white flex items-start justify-between"
+  class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white flex items-start justify-between"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
+  <!-- VERSION MOBILE -->
+  <div class="md:hidden flex py-10 w-full flex-col items-center justify-between px-5">
+    <!-- LOGO -->
+    <div class="w-full flex flex-col items-center justify-start px-5 py-10">
+      {% if section.settings.logo %}
+        <img 
+          src="{{ section.settings.logo | image_url: width: 300 }}" 
+          alt="Logo"
+          class="w-30 object-contain mx-auto"
+          width="{{ section.settings.background_image.width }}"
+          height="{{ section.settings.background_image.height }}"
+        >
+      {% endif %}
+      <p class="py-3 text-xs">Welcome to your daily dose of clarity</p>
+    </div>
+     <!-- SOCIALS -->
+    <div class="flex pl-2 gap-4 md:pb-20 ">
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
+              aria-label="Facebook">
+              {%- render 'fb' -%}
+            </a>
+        </div>
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
+              aria-label="Instagram">
+              {%- render 'ig' -%}
+            </a>
+        </div>
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              aria-label="Tiktok">
+              {%- render 'tiktok' -%}
+            </a>
+        </div>
+       
+      </div>
+     <!-- OTROS -->
+    <div class="flex flex-row space-y-1 py-10 pt-12">
+        {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
+          {% for link in linklists[section.settings.menu2_footer].links %}
+            <a href="{{ link.url }}" class="hover:opacity-70 whitespace-nowrap text-sm    transition-opacity pr-5">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a class="hover:opacity-70 whitespace-nowrap  text-sm transition-opacity pr-5">Privacy Policy</a>
+          <a class="hover:opacity-70 whitespace-nowrap  text-sm pr-5">Terms of Service</a>
+          <a class="hover:opacity-70 whitespace-nowrap  text-sm">Cookies Policy</a>
+        {% endif %}
+      </div>
+  </div>
 
+  <!-- VERSIONO DESKTOP -->
   <!-- COLUMNA IZQUIERDA -->
-  <div class="w-1/2 flex flex-col justify-between items-start p-8 md:pl-20 md:pt-20 h-full">
+  <div class="hidden w-1/2 md:flex flex-col justify-between items-start p-8 md:pl-20 md:pt-20 h-full">
     <div>
     {% if section.settings.logo %}
       <img 
@@ -49,15 +103,21 @@
       </div>
 
       <div class="flex flex-row space-y-1 md:pb-8">
-        <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">Privacy Policy</a>
-        <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg pr-5">Terms of Service</a>
-        <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg">Cookies Policy</a>
+        {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
+          {% for link in linklists[section.settings.menu2_footer].links %}
+            <a href="{{ link.url }}" class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">{{ link.title }}</a>
+          {% endfor %}
+        {% else %}
+          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">Privacy Policy</a>
+          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg pr-5">Terms of Service</a>
+          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg">Cookies Policy</a>
+        {% endif %}
       </div>
 
       </div>
 
   <!-- COLUMNA DERECHA -->
-  <div class="w-1/2 h-full flex flex-col items-start justify-start  md:pt-15 md:pr-20 pl-[10vw]">
+  <div class="hidden w-1/2 h-full md:flex flex-col items-start justify-start  md:pt-15 md:pr-20 pl-[10vw]">
       <nav class="flex flex-col md:flex-row justify-between w-full">
 
         
@@ -85,6 +145,11 @@
     {
       "type": "link_list",
       "id": "menu",
+      "label": "t:labels.menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu2_footer",
       "label": "t:labels.menu"
     },
    
