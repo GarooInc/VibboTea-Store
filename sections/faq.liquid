@@ -29,7 +29,7 @@
         {% assign target_h = target_h_default %}
       {% endif %}
 
-      <div class="absolute top-0 {% if img_align == 'right' %}right-0{% else %}left-0{% endif %}">
+      <div class="hidden md:block absolute top-0 {% if img_align == 'right' %}right-0{% else %}left-0{% endif %}">
         <img 
           src="{{ section.settings.image1 | image_url: width: target_w }}"
           alt="{{ section.settings.title }}"
