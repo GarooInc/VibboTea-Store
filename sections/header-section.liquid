@@ -2,24 +2,74 @@
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-image: url({{ section.settings.background_image | image_url }});">
 
   <div class="">
+
+    <div class="absolute inset-0 z-10 pointer-events-none">
+  <div class="w-full h-full relative">
+
+    {% if section.settings.image_animation1 %}
+      <img src="{{ section.settings.image_animation1 | image_url: width: 2000 }}" 
+            width="{{ section.settings.image_animation1.featured_media.width }}"
+            height="{{ section.settings.image_animation1.featured_media.height }}"
+            class="animated-img absolute top-[20%] left-[15%] w-[120px] md:w-[150px] object-cover">
+    {% endif %}
+
+    {% if section.settings.image_animation2 %}
+      <img src="{{ section.settings.image_animation2 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation2.featured_media.width }}"
+          height="{{ section.settings.image_animation2.featured_media.height }}"
+          class="animated-img absolute top-[25%] left-[70%] w-[150px] md:w-[150px] object-cover">
+    {% endif %}
+
+    {% if section.settings.image_animation3 %}
+      <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation2.featured_media.width }}"
+          height="{{ section.settings.image_animation2.featured_media.height }}"
+          class="animated-img absolute bottom-[15%] left-[20%] w-[140px] md:w-[110px] object-cover">
+    {% endif %}
+
+    {% if section.settings.image_animation4 %}
+      <img src="{{ section.settings.image_animation4 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation2.featured_media.width }}"
+          height="{{ section.settings.image_animation2.featured_media.height }}"
+          class="animated-img absolute bottom-[25%] left-[75%] w-[110px] md:w-[110px] object-cover">
+    {% endif %}
+
+  </div>
+</div>
+
   {% comment %} {# Title centered #} {% endcomment %}
-  <div class="mx-auto text-center">
-    <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9] ">
+  <div class="mx-auto text-center z-20 relative">
+    <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
       {{ section.settings.page_title | newline_to_br }}
     </h1>
-  </div>
+</div>
 
-  <div class="mx-auto text-center">
+<div class="mx-auto text-center z-20 relative">
     <p class="text-[3.5vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
       {{ section.settings.page_descripction }}
     </p>
-  </div></div>
+</div>
+
+
+</div>
 
 
 
 </div>
 
-  
+  <style>
+@keyframes floatAnim {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(-10px) translateX(8px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+.animated-img {
+  animation: floatAnim 6s ease-in-out infinite;
+  opacity: 0.95;
+}
+</style>
+
 
 
   {% schema %}
@@ -31,6 +81,26 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation1",
+      "label": "Image Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation2",
+      "label": "Image Animation 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation3",
+      "label": "Image Animation 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation4",
+      "label": "Image Animation 4"
     },
     {
       "type": "textarea",

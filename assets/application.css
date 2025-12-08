@@ -284,6 +284,21 @@
   .top-6 {
     top: calc(var(--spacing) * 6);
   }
+  .top-\[\%\] {
+    top: %;
+  }
+  .top-\[10\%\] {
+    top: 10%;
+  }
+  .top-\[20\%\] {
+    top: 20%;
+  }
+  .top-\[25\%\] {
+    top: 25%;
+  }
+  .top-\[30\%\] {
+    top: 30%;
+  }
   .-right-4 {
     right: calc(var(--spacing) * -4);
   }
@@ -365,6 +380,12 @@
   .bottom-35 {
     bottom: calc(var(--spacing) * 35);
   }
+  .bottom-\[15\%\] {
+    bottom: 15%;
+  }
+  .bottom-\[25\%\] {
+    bottom: 25%;
+  }
   .-left-4 {
     left: calc(var(--spacing) * -4);
   }
@@ -389,6 +410,24 @@
   .left-20 {
     left: calc(var(--spacing) * 20);
   }
+  .left-\[15\%\] {
+    left: 15%;
+  }
+  .left-\[20\%\] {
+    left: 20%;
+  }
+  .left-\[60\%\] {
+    left: 60%;
+  }
+  .left-\[70\%\] {
+    left: 70%;
+  }
+  .left-\[75\%\] {
+    left: 75%;
+  }
+  .left-\[80\%\] {
+    left: 80%;
+  }
   .z-0 {
     z-index: 0;
   }
@@ -406,6 +445,9 @@
   }
   .z-15 {
     z-index: 15;
+  }
+  .z-20 {
+    z-index: 20;
   }
   .z-30 {
     z-index: 30;
@@ -770,6 +812,18 @@
   }
   .w-\[90\%\] {
     width: 90%;
+  }
+  .w-\[110px\] {
+    width: 110px;
+  }
+  .w-\[120px\] {
+    width: 120px;
+  }
+  .w-\[140px\] {
+    width: 140px;
+  }
+  .w-\[150px\] {
+    width: 150px;
   }
   .w-\[200\%\] {
     width: 200%;
@@ -2210,6 +2264,11 @@
       width: calc(var(--spacing) * 96);
     }
   }
+  .md\:w-\[10px\] {
+    @media (width >= 48rem) {
+      width: 10px;
+    }
+  }
   .md\:w-\[33\%\] {
     @media (width >= 48rem) {
       width: 33%;
@@ -2220,9 +2279,44 @@
       width: 35vw;
     }
   }
+  .md\:w-\[110px\] {
+    @media (width >= 48rem) {
+      width: 110px;
+    }
+  }
+  .md\:w-\[130px\] {
+    @media (width >= 48rem) {
+      width: 130px;
+    }
+  }
+  .md\:w-\[150px\] {
+    @media (width >= 48rem) {
+      width: 150px;
+    }
+  }
+  .md\:w-\[170px\] {
+    @media (width >= 48rem) {
+      width: 170px;
+    }
+  }
+  .md\:w-\[180px\] {
+    @media (width >= 48rem) {
+      width: 180px;
+    }
+  }
   .md\:w-\[200\%\] {
     @media (width >= 48rem) {
       width: 200%;
+    }
+  }
+  .md\:w-\[200px\] {
+    @media (width >= 48rem) {
+      width: 200px;
+    }
+  }
+  .md\:w-\[220px\] {
+    @media (width >= 48rem) {
+      width: 220px;
     }
   }
   .md\:w-\[300px\] {
