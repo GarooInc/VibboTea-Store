@@ -15,6 +15,7 @@
       "type": "footer",
       "settings": {
         "menu": "footer-1",
+        "menu2_footer": "secundary-footer",
         "logo": "shopify://shop_images/logo_vibbo.png",
         "descripcion": "Welcome to the tea tribe – where each sip is a ritual that connects you to your true essence and inspires calm confidence.",
         "show_payment_icons": true,
