@@ -72,7 +72,7 @@
         "title": "FAQ",
         "image1": "shopify://shop_images/JaguarLaptop_1.png",
         "image_alignment": "left",
-        "image_auto_size": true,
+        "image_auto_size": false,
         "image_target_width": 300,
         "image_target_height": 533,
         "margin_top_image": 70
