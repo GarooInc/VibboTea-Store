@@ -302,6 +302,12 @@
   .top-\[25\%\] {
     top: 25%;
   }
+  .top-\[27\%\] {
+    top: 27%;
+  }
+  .top-\[28\%\] {
+    top: 28%;
+  }
   .top-\[30\%\] {
     top: 30%;
   }
@@ -2112,6 +2118,16 @@
   .md\:top-20 {
     @media (width >= 48rem) {
       top: calc(var(--spacing) * 20);
+    }
+  }
+  .md\:top-\[20\%\] {
+    @media (width >= 48rem) {
+      top: 20%;
+    }
+  }
+  .md\:top-\[23\%\] {
+    @media (width >= 48rem) {
+      top: 23%;
     }
   }
   .md\:right-5 {
