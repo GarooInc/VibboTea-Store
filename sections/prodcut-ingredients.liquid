@@ -1,0 +1,42 @@
+<div>
+
+
+</div>
+
+{% schema %}
+{
+  "name": "Product Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Product Ingredients"
+    }],
+    "blocks": [
+    {
+      "type": "ingredient_block",
+      "name": "Ingredient Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ingredient Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Ingredient description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
