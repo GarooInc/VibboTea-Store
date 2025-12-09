@@ -6,21 +6,28 @@
         <p class="text-black text-[3.5vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
                 Discover our flavors 
             </p>
-        <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4">
 
-          <p class="text-black text-[3.5vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
-            I want to feel human again
-          </p>
+         {% if section.settings.redireccionamiento %}   
+          <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4">
 
-          <a href="{{ section.settings.imagen1-url }}" 
-             target="_blank" 
-             rel="noopener"
-             class="hover:opacity-70 transition-opacity scale-75 md:scale-95 pr-1" 
-             aria-label="Imagen 1 URL">
-            {%- render 'arrow' -%}
-          </a>
-        </div>
+            <p class="text-black text-[3.5vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
+              I want to feel human again
+            </p>
+
+            <a href="{{ section.settings.imagen1-url }}" 
+              target="_blank" 
+              rel="noopener"
+              class="hover:opacity-70 transition-opacity scale-75 md:scale-95 pr-1" 
+              aria-label="Imagen 1 URL">
+              {%- render 'arrow' -%}
+            </a>
+          </div>
+        {% endif %}
     </div>
+
+    {% comment %} collection setup for carousel (replace blocks) {% endcomment %}
+    {% assign coll = collections[section.settings.collection] %}
+    {% assign products_count = coll.products_count | default: 0 %}
 
 
 <section
@@ -28,7 +35,7 @@
   x-data="carousel({
     autoplay: {{ section.settings.autoplay }},
     interval: {{ section.settings.interval | default: 5000 }},
-    count: {{ section.blocks.size }}
+    count: {{ products_count }}
   })"
   x-init="init()"
   aria-roledescription="carousel"
@@ -36,49 +43,42 @@
   <!-- Desktop: 3 imágenes visibles -->
   <div class="hidden md:block relative overflow-hidden py-15 ">
     <div class="flex transition-transform duration-500 ease-out" :style="`transform: translateX(-${index * 33.33}%)`">
-      {% for block in section.blocks %}
-          
+      {% if coll %}
+        {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full md:w-[33%] px-6">
-          <a href="{{ all_products[block.settings.product].url }}" class="block px-4 w-full ">
-            
-            <img
-              src="{{ all_products[block.settings.product].featured_media | image_url: width: 800 }}"
-              alt="{{ all_products[block.settings.product].featured_media.alt | escape }}"
-              width="{{ all_products[block.settings.product].featured_media.width }}"
-              height="{{ all_products[block.settings.product].featured_media.height }}"
-              loading="lazy"
-              class="w-full object-cover hover:scale-105 transition-transform duration-350"
-            >
+            <a href="{{ product.url }}" class="block px-4 w-full ">
+              {% if product.featured_media %}
+                <img
+                  src="{{ product.featured_media | image_url: width: 800 }}"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  width="{{ product.featured_media.width }}"
+                  height="{{ product.featured_media.height }}"
+                  loading="lazy"
+                  class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-350"
+                >
+              {% else %}
+                <div class="w-full md:h-[35vw]  rounded-2xl overflow-hidden bg-gray-200" ></div>
+              {% endif %}
 
-            <div class="mt-4">
-              <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium">
-                {{ all_products[block.settings.product].title }} 
-              </p>
-              <p class="font-bricolage text-2xl md:text-3xl  md:pt-1 text-left text-black font-medium">
-                {{ all_products[block.settings.product].price  | money }} 
-              </p>
-              
-            </div>
-            
+              <div class="mt-4">
+                <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium">
+                  {{ product.title }}
+                </p>
+                <p class="font-bricolage text-2xl md:text-3xl  md:pt-1 text-left text-black font-medium">
+                  {{ product.price | money }}
+                </p>
+              </div>
+            </a>
 
-          </a>
-
-          <form method="post" action="/cart/add" class="md:w-4/5 md:pt-5 md:text-center mx-auto">
-                <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
-                <button type="submit" class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
-                  <span class="font-bricolage md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">
-                    Add to cart
-                  </span>
-                  
-                </button>
-              </form>
-                
-        </div>
-
-            
-          
-      {% endfor %}
-
+            <form method="post" action="/cart/add" class="md:w-4/5 md:pt-5 md:text-center mx-auto">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+                <span class="font-bricolage md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">Add to cart</span>
+              </button>
+            </form>
+          </div>
+        {% endfor %}
+      {% endif %}
 
     </div>
 
@@ -109,45 +109,38 @@
       <div
         class="flex transition-transform duration-1000 ease-out "
         :style="`transform: translateX(-${index * 100}%)`" >
-          {% for block in section.blocks %}
-            
-             <div class="snap-start shrink-0 w-full">
-          <a href="{{ all_products[block.settings.product].url }}" class="block px-4 w-full">
-            
-            <img
-              src="{{ all_products[block.settings.product].featured_media | image_url: width: 800 }}"
-              alt="{{ all_products[block.settings.product].featured_media.alt | escape }}"
-              width="{{ all_products[block.settings.product].featured_media.width }}"
-              height="{{ all_products[block.settings.product].featured_media.height }}"
-              loading="lazy"
-              class="w-full rounded-2xl object-cover hover:scale-105 transition-transform duration-300"
-            >
+      {% if coll %}
+        {% for product in coll.products limit: section.settings.limit %}
+          <div class="snap-start shrink-0 w-full">
+            <a href="{{ product.url }}" class="block px-4 w-full">
+              {% if product.featured_media %}
+                <img
+                  src="{{ product.featured_media | image_url: width: 800 }}"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  width="{{ product.featured_media.width }}"
+                  height="{{ product.featured_media.height }}"
+                  loading="lazy"
+                  class="w-full rounded-2xl object-cover hover:scale-105 transition-transform duration-300"
+                >
+              {% else %}
+                <div class="w-full rounded-2xl overflow-hidden bg-gray-200" style="padding-top:115vw"></div>
+              {% endif %}
 
-             <div class="mt-4">
-              <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium">
-                {{ all_products[block.settings.product].title }} 
-              </p>
-              <p class="font-bricolage text-3xl  text-left text-black font-medium">
-                {{ all_products[block.settings.product].price  | money }} 
-              </p>
-              
-            </div>
+              <div class="mt-4">
+                <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium">{{ product.title }}</p>
+                <p class="font-bricolage text-3xl text-left text-black font-medium">{{ product.price | money }}</p>
+              </div>
 
-          </a>
-          <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto pr-10">
-                <input type="hidden" name="id" value="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">
-                <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
-                  <span class="font-bricolage  text-white  text-sm uppercase font-light text-center">
-                    Add to cart
-                  </span>
-                  
-                </button>
-              </form>
-          
-        </div>
-
-
-          {% endfor %}
+            </a>
+            <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto pr-10">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+                <span class="font-bricolage text-white text-sm uppercase font-light text-center">Add to cart</span>
+              </button>
+            </form>
+          </div>
+        {% endfor %}
+      {% endif %}
         </div>
       </div>
 
@@ -299,6 +292,23 @@
     },
     {
       "type": "checkbox",
+      "id": "redireccionamiento",
+      "label": "Redireccionamiento",
+      "default": false
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colección",
+    },
+    {
+      "type": "number",
+      "id": "limit",
+      "label": "Número máximo de productos",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
       "id": "autoplay",
       "label": "Autoplay",
       "default": true
@@ -311,19 +321,6 @@
       "max": 9500,
       "step": 500,
       "default": 5000
-    }
-  ],
-  "blocks": [
-    {
-      "type": "product",
-      "name": "Producto",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Selecciona el producto"
-        }
-      ]
     }
   ],
   
