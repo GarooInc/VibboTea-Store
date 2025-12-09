@@ -14,6 +14,56 @@
       "disabled": true,
       "settings": {}
     },
+    "product_page_rNtVMj": {
+      "type": "product-page",
+      "name": "Description product",
+      "settings": {}
+    },
+    "product_characteristics_dFhXL9": {
+      "type": "product-characteristics",
+      "blocks": {
+        "characteristic_block_tkkpwM": {
+          "type": "characteristic_block",
+          "settings": {
+            "image": "shopify://shop_images/iconos_naughty.png",
+            "title": "Enyjoy",
+            "text": "In the morning or during the day"
+          }
+        },
+        "characteristic_block_4aD7A6": {
+          "type": "characteristic_block",
+          "settings": {
+            "image": "shopify://shop_images/iconos_hotCold.png",
+            "title": "Ideal",
+            "text": "Hot or cold with ice"
+          }
+        },
+        "characteristic_block_zd3xQL": {
+          "type": "characteristic_block",
+          "settings": {
+            "image": "shopify://shop_images/iconos_Ingredients.png",
+            "title": "Add",
+            "text": "More than 2 grams for higher flavor"
+          }
+        },
+        "characteristic_block_EtMHhz": {
+          "type": "characteristic_block",
+          "settings": {
+            "image": "shopify://shop_images/Group_1.png",
+            "title": "Consistency",
+            "text": "Drink every day for an improvement routine"
+          }
+        }
+      },
+      "block_order": [
+        "characteristic_block_tkkpwM",
+        "characteristic_block_4aD7A6",
+        "characteristic_block_zd3xQL",
+        "characteristic_block_EtMHhz"
+      ],
+      "name": "Product Characteristics",
+      "settings": {}
+    },
     "faq_7VfkjP": {
       "type": "faq",
       "blocks": {
@@ -125,18 +175,12 @@
         "autoplay": true,
         "interval": 5000
       }
-    },
-    "product_page_rNtVMj": {
-      "type": "product-page",
-      "name": "Description product",
-      "settings": {
-        "product": ""
-      }
     }
   },
   "order": [
     "main",
     "product_page_rNtVMj",
+    "product_characteristics_dFhXL9",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
