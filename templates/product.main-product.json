@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "product",
+      "disabled": true,
       "settings": {}
     },
     "faq_7VfkjP": {
@@ -124,10 +125,18 @@
         "autoplay": true,
         "interval": 5000
       }
+    },
+    "product_page_rNtVMj": {
+      "type": "product-page",
+      "name": "Description product",
+      "settings": {
+        "product": ""
+      }
     }
   },
   "order": [
     "main",
+    "product_page_rNtVMj",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
