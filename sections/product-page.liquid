@@ -1,25 +1,62 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-30 ">
-  {% assign product = all_products[section.settings.product] %}
-
   {% if product %}
-    <div class="product-media w-full justify-center ">
-      {% if product.featured_media %}
-        <img 
-          src="{{ product.featured_media | image_url: width: 1200 }}"
-          alt="{{ product.featured_media.alt | escape }}"
-          class="w-full h-auto object-cover rounded-xl"
-          width="{{ product.featured_media.width }}"
-          height="{{ product.featured_media.height }}"
-        />
-      {% endif %}
+    {% if product.media.size > 1 %}
+
+    <!-- SLIDER -->
+    <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
+      
+      <div class="flex transition-transform duration-500" id="sliderTrack">
+        {% for media in product.media %}
+          {% if media.media_type == "image" %}
+            <img
+              src="{{ media | image_url: width: 1200 }}"
+              alt="{{ media.alt | escape }}"
+              class="w-full shrink-0 object-cover rounded-xl"
+              width="{{ media.width }}"
+              height="{{ media.height }}"
+            />
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- BOTONES -->
+      <button 
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black px-3 py-2 rounded-full shadow"
+        onclick="slidePrev()">
+        ‹
+      </button>
+
+      <button 
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black px-3 py-2 rounded-full shadow"
+        onclick="slideNext()">
+        ›
+      </button>
+
     </div>
 
-    <div class="product-info w-full pt-50">
-      <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">{{ product.title }}</h1>
-      <p class="prose text-gray-700 font-bricolage pt-4">
-        {{ product.description }}
-    </p>
+        
+    {% else %}
+        <div class="product-media w-full justify-center ">
+        {% if product.featured_media %}
+            <img 
+            src="{{ product.featured_media | image_url: width: 1200 }}"
+            alt="{{ product.featured_media.alt | escape }}"
+            class="w-full h-auto object-cover rounded-xl"
+            width="{{ product.featured_media.width }}"
+            height="{{ product.featured_media.height }}"
+            />
+        {% endif %}
+        </div>
+
+       
+    {% endif %}
+     <div class="product-info w-full pt-50">
+        <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">{{ product.title }}</h1>
+        <p class="prose text-gray-700 font-bricolage pt-4">
+            {{ product.description }}
+        </p>
     </div>
+        
 
   {% else %}
     <div class="col-span-2 text-center text-sm text-gray-500">No product selected in section settings.</div>
@@ -28,17 +65,32 @@
 </div>
 
 
+<script>
+    let currentSlide = 0;
+
+    function slideNext() {
+    const track = document.getElementById("sliderTrack");
+    const slides = track.children.length;
+
+    currentSlide = (currentSlide + 1) % slides;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function slidePrev() {
+    const track = document.getElementById("sliderTrack");
+    const slides = track.children.length;
+
+    currentSlide = (currentSlide - 1 + slides) % slides;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+</script>
+
+
 {% schema %}
 {
-  "name": "Main product",
-  "settings": [
-    {
-        "type": "product",
-        "id": "product",
-        "label": "Selecciona el producto"
-    }
-  ],
+  "name": "Description product",
+  "settings": [],
   
-  "presets": [{ "name": "Main product" }]
+  "presets": [{ "name": "Description product" }]
 }
 {% endschema %}

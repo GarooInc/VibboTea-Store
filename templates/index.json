@@ -24,43 +24,14 @@
     },
     "main_carousel_NYTaep": {
       "type": "main-carousel",
-      "blocks": {
-        "product_Y6PxQn": {
-          "type": "product",
-          "settings": {
-            "product": "hidra-boost-natural-energy"
-          }
-        },
-        "product_nAXNfc": {
-          "type": "product",
-          "settings": {
-            "product": "hidra-boost-natural-energy"
-          }
-        },
-        "product_agBygU": {
-          "type": "product",
-          "settings": {
-            "product": "hidra-boost-natural-energy"
-          }
-        },
-        "product_RrNHkk": {
-          "type": "product",
-          "settings": {
-            "product": "hidra-boost-natural-energy"
-          }
-        }
-      },
-      "block_order": [
-        "product_Y6PxQn",
-        "product_nAXNfc",
-        "product_agBygU",
-        "product_RrNHkk"
-      ],
       "name": "Carrusel de productos",
       "settings": {
         "section_title": "Join the trive",
+        "redireccionamiento": true,
+        "collection": "frontpage",
+        "limit": 12,
         "autoplay": true,
-        "interval": 5000
+        "interval": 6000
       }
     },
     "main_section_slidder_rVJmxn": {
@@ -276,7 +247,12 @@
       ],
       "name": "FAQ",
       "settings": {
-        "title": "FAQ"
+        "title": "FAQ",
+        "image_alignment": "right",
+        "image_auto_size": true,
+        "image_target_width": 800,
+        "image_target_height": 533,
+        "margin_top_image": 50
       }
     },
     "newsletter_ri4VmU": {
