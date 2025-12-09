@@ -1,0 +1,71 @@
+<div class="w-screen py-10 md:py-16 bg-[#FAB801]" style="width: 100vw; margin-left: calc(50% - 50vw);">
+  <div class="mx-auto w-full px-6 md:px-35">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 justify-center w-full">
+
+      {% for block in section.blocks %}
+        <div class="flex flex-col items-center text-center gap-4 md:gap-6 py-5">
+          <div class="w-16 h-16 md:w-24 md:h-24 shrink-0">
+            {% if block.settings.image %}
+              <img 
+                src="{{ block.settings.image | img_url: '200x200' }}" 
+                alt="{{ block.settings.title }}"
+                class="w-full h-full object-cover rounded-full"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+              >
+            {% endif %}
+          </div>
+
+          <h3 class="text-lg md:text-2xl font-semibold text-black">
+            {{ block.settings.title }}
+          </h3>
+
+          <p class="text-black font-light text-[1.1rem] md:text-[1.2rem]">
+            {{ block.settings.text }}
+          </p>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Product Characteristics",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "characteristic_block",
+      "name": "Characteristic Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title Characteristic"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Characteristic"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Characteristics",
+        "category": "Productos"
+    }
+  ]
+}
+{% endschema %}

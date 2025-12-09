@@ -18,6 +18,27 @@
 {% schema %}
 {
   "name": "t:general.404",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "t:404.title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "t:404.not_found"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "t:labels.link_text",
+      "default": "t:404.back_to_shopping"
+    }
+
+
+  ]
 }
 {% endschema %}
