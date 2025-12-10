@@ -1,7 +1,78 @@
-<div>
+<div class="w-full py-16 overflow-hidden bg-[#F5F5F5]"
+style="width: 100vw; margin-left: calc(50% - 50vw);"
+>
+  
+  {% if section.settings.title %}
+  <h2 class="text-center md:text-4xl text-2xl text-black font-bold font-bricolage pb-10">
+    {{ section.settings.title }}
+  </h2>
+  {% endif %}
 
+  <!-- WRAPPER DEL CARRUSEL -->
+  <div class="relative w-full overflow-hidden">
+    
+    <!-- TRACK QUE SE MUEVE -->
+    <div class="flex gap-10 animate-infinite-scroll">
+
+      {% for block in section.blocks %}
+        <div class="min-w-[280px] w-full bg-white rounded-xl p-5 flex flex-col items-center py-10 ">
+          <div class="h-50 items-center justify-center flex">
+            <img 
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt=""
+                class="w-50 h-60 object-cover rounded-full mb-4"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+            >
+          </div>
+           
+          <h3 class="font-medium font-bricolage text-xl">{{ block.settings.title }}</h3>
+          <p class="text-gray-600  font-bricolage text-center text-xs py-5">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+
+      {% comment %} DUPLICAR BLOQUES PARA EFECTO INFINITO {% endcomment %}
+      {% for block in section.blocks %}
+        <div class="min-w-[280px] w-full bg-white rounded-xl p-5 flex flex-col items-center py-10 ">
+          <div class="h-50 items-center justify-center flex">
+            <img 
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt=""
+                class="w-50 h-60 object-cover rounded-full mb-4"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+            >
+          </div>
+           
+          <h3 class="font-medium font-bricolage text-xl">{{ block.settings.title }}</h3>
+          <p class="text-gray-600  font-bricolage text-center text-xs py-5">{{ block.settings.text }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
 
 </div>
+
+<style>
+    @keyframes infinite-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+    }
+
+    .animate-infinite-scroll {
+    display: flex;
+    animation: infinite-scroll 40s linear infinite;
+    }
+
+</style>
+
+
 
 {% schema %}
 {
@@ -37,6 +108,12 @@
         }
       ]
     }
-  ]
+  ],
+    "presets": [
+        {
+        "name": "Product Ingredients",
+        "category": "Productos"
+        }
+    ]
 }
 {% endschema %}
