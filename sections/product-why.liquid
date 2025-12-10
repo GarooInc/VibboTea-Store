@@ -1,0 +1,97 @@
+<div class="w-full overflow-x-auto py-10 pt-30">
+    <div class="hidden md:block py-10 text-black text-[6vw] md:text-[3.4vw] font-bricolage font-semibold leading-[1.1]">
+      {{ section.settings.title | newline_to_br }}
+    </div>
+    {% comment %} desktop {% endcomment %}
+    <div class ="hidden md:flex justify-center items-start relative px-20 gap-10">
+        <table class="absolute left-[30vw] w-[18vw] rounded-2xl overflow-hidden mt-10" style="border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 2rem;">
+        <thead>
+            <th class="bg-[#FBBB00] text-white text-3xl font-bold  
+                px-6 py-6 text-center w-1/4
+                rounded-tl-2xl rounded-tr-2xl">
+            VIBBO<br>
+            <span class="text-lg font-semibold font-bricolage text-black">Energy</span>
+            </th>
+        </thead>  
+        <tbody>
+        {% assign rows = "Avoids crashes and jitters,Natural premium ingredients,Sustainable and traceable,Avoids irritation,Long term real results" | split: "," %}
+        {% for row in rows %}
+            <tr>
+                <td class="bg-[#FBBB00] text-white text-2xl text-center px-6 py-5">
+                ✓
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <table class="w-full border-separate border-spacing-0 text-left font-bricolage pt-10 rounded-2xl overflow-hidden" style="border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 1rem;">
+        <thead>
+        <tr>
+        <!-- Columna VIBBO -->
+        <th class="px-6 py-6 bg-[#F7F7F7] text-black font-medium rounded-tl-2xl"></th>
+        {% comment %} columna de vibbo vacia {% endcomment %}
+        <th class="px-20 py-6 bg-[#F7F7F7] text-black font-medium "></th>
+        <th class="px-6 py-6 bg-[#F7F7F7] text-black text-center font-semibold font-bricolage">Energy drinks</th>
+        <th class="px-6 py-6 bg-[#F7F7F7] text-black text-center font-semibold font-bricolage">Coffee</th>
+        <th class="px-6 py-6 bg-[#F7F7F7] text-black text-center font-semibold rounded-tr-2xl font-bricolage">Other (cheap) brands</th>
+      </tr>
+        </thead>
+
+        <tbody>
+
+
+        {% for row in rows %}
+            <tr class="border-b last:border-b-0">
+            <!-- Texto de fila -->
+            <td class="bg-[#F7F7F7] px-6 py-5 font-bricolage text-xl text-black border-b border-[#EFEFEF]">
+                {{ row }}
+            </td>
+
+            <!-- VIBBO check -->
+            <td class="bg-[#FBBB00] text-center border-b border-[#E7A800]">
+                <span class="text-white text-2xl">✓</span>
+            </td>
+
+            <!-- Energy drinks (X) -->
+            <td class="bg-[#F7F7F7] text-center border-b border-[#EFEFEF]">
+                <span class="text-black text-xl">✕</span>
+            </td>
+
+            <!-- Coffee (X) -->
+            <td class="bg-[#F7F7F7] text-center border-b border-[#EFEFEF]">
+                <span class="text-black text-xl">✕</span>
+            </td>
+
+            <!-- Other brands (X) -->
+            <td class="bg-[#F7F7F7] text-center border-b border-[#EFEFEF]">
+                <span class="text-black text-xl">✕</span>
+            </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Product Why Vibbo",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Vibbo?"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Product Why Vibbo"
+    }
+  ]
+}
+{% endschema %}
