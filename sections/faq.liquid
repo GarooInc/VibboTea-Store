@@ -29,11 +29,11 @@
         {% assign target_h = target_h_default %}
       {% endif %}
 
-      <div class="hidden md:block absolute top-0 {% if img_align == 'right' %}right-0{% else %}left-0{% endif %}">
+      <div class="hidden md:block absolute -top-20 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}">
         <img 
           src="{{ section.settings.image1 | image_url: width: target_w }}"
           alt="{{ section.settings.title }}"
-          class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl {% if img_align == 'right' %}-translate-x-1/4{% else %}translate-x-1/15{% endif %}"
+          class="mt-10 w-72 object-cover rounded-2xl {% if img_align == 'right' %}-translate-x-1/4{% else %}translate-x-1/15{% endif %}"
           width="{{ target_w }}"
           height="{{ target_h }}"
         >
