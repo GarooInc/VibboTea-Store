@@ -7,14 +7,36 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "404",
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "title": "missing translation: \"t:404.title\" is not present in any of the [\"en\"] schema locale files",
+        "description": "missing translation: \"t:404.not_found\" is not present in any of the [\"en\"] schema locale files",
+        "link_text": "missing translation: \"t:404.back_to_shopping\" is not present in any of the [\"en\"] schema locale files"
+      }
+    },
+    "not_found_page_UxgkW9": {
+      "type": "not-found-page",
+      "name": "Not Found Page Section",
+      "settings": {
+        "title": "<p><strong>404</strong> Page Not Found</p>",
+        "subtitle": "It seems like the page you're looking for doesn't exist or has been moved.",
+        "button_label": "Back to Home",
+        "button_link": "/",
+        "image_left": "shopify://shop_images/bird-404.png",
+        "image_top": "shopify://shop_images/monkey-404.png",
+        "image_right": "shopify://shop_images/leopard-404.png",
+        "image_animation1": "shopify://shop_images/animation-notfound1.png",
+        "image_animation2": "shopify://shop_images/animation-notfound2.png",
+        "image_animation3": "shopify://shop_images/animation-notfound3.png"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "not_found_page_UxgkW9"
   ]
 }
