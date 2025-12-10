@@ -28,7 +28,10 @@
         "button_link": "/",
         "image_left": "shopify://shop_images/bird-404.png",
         "image_top": "shopify://shop_images/monkey-404.png",
-        "image_right": "shopify://shop_images/leopard-404.png"
+        "image_right": "shopify://shop_images/leopard-404.png",
+        "image_animation1": "shopify://shop_images/animation-notfound1.png",
+        "image_animation2": "shopify://shop_images/animation-notfound2.png",
+        "image_animation3": "shopify://shop_images/animation-notfound3.png"
       }
     }
   },
