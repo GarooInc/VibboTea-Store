@@ -36,14 +36,14 @@
         "faq_DCVrBE": {
           "type": "faq",
           "settings": {
-            "question": "What payment methods do you accept?",
+            "question": "How do I place an order?",
             "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
           }
         },
         "faq_Niak4e": {
           "type": "faq",
           "settings": {
-            "question": "What payment methods do you accept?",
+            "question": "How do I apply a discount code?",
             "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
           }
         }
@@ -56,7 +56,12 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ",
-        "image1": "shopify://shop_images/Guacamaya.png"
+        "image1": "shopify://shop_images/Guacamaya.png",
+        "image_alignment": "right",
+        "image_auto_size": true,
+        "image_target_width": 800,
+        "image_target_height": 533,
+        "margin_top_image": 50
       }
     }
   },
