@@ -1,7 +1,30 @@
+<link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
+
 <section class=" w-full bg-white overflow-hidden h-screen full-width">
   <div class="w-full px-6 text-center flex items-center justify-center h-full relative">
     
     <div class="relative max-w-5xl mx-auto">
+    {% if section.settings.image_animation1 %}
+      <img src="{{ section.settings.image_animation1 | image_url: width: 2000 }}" 
+            width="{{ section.settings.image_animation1.featured_media.width }}"
+            height="{{ section.settings.image_animation1.featured_media.height }}"
+            class="animated-img-1 absolute md:top-80 top-[28%] md:-left-20 md:w-28 w-16 object-cover z-20">
+    {% endif %}
+
+    {% if section.settings.image_animation2 %}
+      <img src="{{ section.settings.image_animation2 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation2.featured_media.width }}"
+          height="{{ section.settings.image_animation2.featured_media.height }}"
+          class="animated-img-2 absolute md:top-8 -top-10 left-40 md:left-60 md:w-20 w-16 object-cover z-20">
+    {% endif %}
+
+    {% if section.settings.image_animation3 %}
+      <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation2.featured_media.width }}"
+          height="{{ section.settings.image_animation2.featured_media.height }}"
+          class="animated-img-3 absolute md:bottom-[25%] bottom-0 right-0 md:w-20 w-16 object-cover z-20">
+    {% endif %}
+
 
       {% if section.settings.image_left != blank %}
         <img 
@@ -106,6 +129,21 @@
       "type": "image_picker",
       "id": "image_right",
       "label": "Imagen derecha (leopardo)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation1",
+      "label": "Imagen animación 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation2",
+      "label": "Imagen animación 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation3",
+      "label": "Imagen animación 3"
     }
   ],
   "presets": [
