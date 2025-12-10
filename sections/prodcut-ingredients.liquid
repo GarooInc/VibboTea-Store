@@ -1,59 +1,84 @@
-<div class="w-full py-16 overflow-hidden bg-[#F5F5F5]"
+<div class="w-full md:h-[60vw] h-[60vh] md:pb-30 overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
+
+  
+<div class="w-full h-full mx-auto flex flex-col items-center justify-center">
+
   
   {% if section.settings.title %}
-  <h2 class="text-center md:text-4xl text-2xl text-black font-bold font-bricolage pb-10">
+  <h2 class="text-center md:text-5xl text-2xl text-black font-semibold font-bricolage pb-20 ">
     {{ section.settings.title }}
   </h2>
   {% endif %}
 
   <!-- WRAPPER DEL CARRUSEL -->
-  <div class="relative w-full overflow-hidden">
+  <div class="relative w-full overflow-hidden flex items-center ">
     
     <!-- TRACK QUE SE MUEVE -->
-    <div class="flex gap-10 animate-infinite-scroll">
-
-      {% for block in section.blocks %}
-        <div class="min-w-[280px] w-full bg-white rounded-xl p-5 flex flex-col items-center py-10 ">
-          <div class="h-50 items-center justify-center flex">
-            <img 
-                src="{{ block.settings.image | image_url: width: 400 }}"
-                alt=""
-                class="w-50 h-60 object-cover rounded-full mb-4"
-                width="{{ block.settings.image.width }}"
-                height="{{ block.settings.image.height }}"
-            >
-          </div>
-           
-          <h3 class="font-medium font-bricolage text-xl">{{ block.settings.title }}</h3>
-          <p class="text-gray-600  font-bricolage text-center text-xs py-5">{{ block.settings.text }}</p>
-        </div>
-      {% endfor %}
-
+    <div class="flex gap-10 animate-infinite-scroll items-center">
       {% comment %} DUPLICAR BLOQUES PARA EFECTO INFINITO {% endcomment %}
-      {% for block in section.blocks %}
-        <div class="min-w-[280px] w-full bg-white rounded-xl p-5 flex flex-col items-center py-10 ">
-          <div class="h-50 items-center justify-center flex">
-            <img 
-                src="{{ block.settings.image | image_url: width: 400 }}"
-                alt=""
-                class="w-50 h-60 object-cover rounded-full mb-4"
-                width="{{ block.settings.image.width }}"
-                height="{{ block.settings.image.height }}"
-            >
+      {% for i in (1..2) %} 
+          {% for block in section.blocks %}
+          <div class="md:min-w-[20vw]  w-full bg-white rounded-xl flex flex-col items-center justify-center ">
+            <div class="h-[18vw] items-center justify-center flex">
+              <img 
+                  src="{{ block.settings.image | image_url: width: 400 }}"
+                  alt=""
+                  class="w-50 h-60 object-cover rounded-full mb-2"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+              >
+            </div>
+            
+            <h3 class="font-medium text-black  font-bricolage text-2xl">{{ block.settings.title }}</h3>
+            <p class="text-black min-h-[8vw] font-bricolage text-center text-sm py-5 px-5">{{ block.settings.text }}</p>
           </div>
-           
-          <h3 class="font-medium font-bricolage text-xl">{{ block.settings.title }}</h3>
-          <p class="text-gray-600  font-bricolage text-center text-xs py-5">{{ block.settings.text }}</p>
-        </div>
-      {% endfor %}
+          {% endfor %}
+      {%  endfor %}
+      
+
+     
 
     </div>
 
   </div>
-
+  
+  </div>
 </div>
+{% if section.settings.imagen1 %}
+    <div class="hidden md:block absolute top-5 md:-translate-y-30 right-0 transform ">
+      <img
+        src="{{ section.settings.imagen1 | image_url: width: 400 }}"
+        alt="Imagen 1"
+        class="w-[15vw] object-cover "
+        width="{{ section.settings.imagen1.width }}"
+        height="{{ section.settings.imagen1.height }}"
+      />
+    </div>
+  {% endif %}
+  {% if section.settings.imagen2 %}
+    <div class="hidden md:block absolute left-0 bottom-0 md:translate-y-[25vw] md:-translate-x-15 transform">
+      <img
+        src="{{ section.settings.imagen2 | image_url: width: 400 }}"
+        alt="Imagen 2"
+        class="w-[35vw] object-cover block"
+        width="{{ section.settings.imagen2.width }}"
+        height="{{ section.settings.imagen2.height }}"
+      />
+    </div>
+  {% endif %}
+  {% if section.settings.imagen3 %}
+    <div class="hidden md:block absolute right-20 translate-y-20 bottom-0 transform">
+      <img
+        src="{{ section.settings.imagen3 | image_url: width: 400 }}"
+        alt="Imagen 3"
+        class="w-[35vw] object-cover block"
+        width="{{ section.settings.imagen3.width }}"
+        height="{{ section.settings.imagen3.height }}"
+      />
+    </div>
+  {% endif %}
 
 <style>
     @keyframes infinite-scroll {
@@ -83,7 +108,24 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "id": "title",
       "label": "Title",
       "default": "Product Ingredients"
-    }],
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen1",
+      "label": "Imagen 1",
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen2",
+      "label": "Imagen 2",
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen3",
+      "label": "Imagen 3",
+    }
+  
+  ],
     "blocks": [
     {
       "type": "ingredient_block",

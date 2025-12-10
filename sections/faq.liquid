@@ -1,7 +1,7 @@
 
     {% assign padding_top = section.settings.margin_top_image | default: 50 %}
 
-<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center {% if section.settings.image1 %}pt-24 md:pt-{{ padding_top }}{% endif %} relative">
+<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center relative">
   <div class="md:min-w-4xl min-w-sm mx-auto text-center md:px-4 px-5">
 
     {% if section.settings.title != blank %}
@@ -29,7 +29,8 @@
         {% assign target_h = target_h_default %}
       {% endif %}
 
-      <div class="hidden md:block absolute -top-20 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}">
+      <div class="hidden md:block absolute -top-20 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}
+          ">
         <img 
           src="{{ section.settings.image1 | image_url: width: target_w }}"
           alt="{{ section.settings.title }}"
@@ -41,7 +42,15 @@
     {% endif %}
 
 
-    <div class="w-full">
+    <style>
+      /* Aplicar padding-top dinámico solo en pantallas md+ usando una variable CSS */
+      @media (min-width: 768px) {
+        .faq-image-padding { padding-top: var(--faq-image-pt); }
+      }
+    </style>
+
+    <div class="w-full {% if section.settings.image1 %}faq-image-padding{% endif %}" 
+      {% if section.settings.image1 %}style="--faq-image-pt: {{ padding_top }}px;"{% endif %}>
 
       {% for block in section.blocks %}
       <div class="w-full pb-5" {{ block.shopify_attributes }}>
@@ -125,24 +134,8 @@
       ],
       "default": "right"
     },
-    {
-      "type": "checkbox",
-      "id": "image_auto_size",
-      "label": "Calcular dimensiones automáticamente",
-      "default": true
-    },
-    {
-      "type": "number",
-      "id": "image_target_width",
-      "label": "Ancho objetivo (px)",
-      "default": 800
-    },
-    {
-      "type": "number",
-      "id": "image_target_height",
-      "label": "Alto por defecto (px)",
-      "default": 533
-    }, 
+  
+   
     {
       "type": "number",
       "id": "margin_top_image",

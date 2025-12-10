@@ -1,8 +1,8 @@
 <div class="w-full overflow-x-auto py-10 pt-30">
-    <div class="hidden md:block py-10 text-black text-[6vw] md:text-[3.4vw] font-bricolage font-semibold leading-[1.1]">
+    <div class=" py-10 text-black text-[6vw] md:text-[3.4vw] font-bricolage font-semibold leading-[1.1]">
       {{ section.settings.title | newline_to_br }}
     </div>
-    <div class="flex justify-center items-center px-5 md:px-20">
+    <div class="hidden md:flex justify-center items-center px-5 md:px-20">
         <img src="{{ section.settings.image | img_url: 'master' }}" 
             alt="Why Vibbo Image" 
             class="w-full h-auto max-w-lg md:max-w-none"
@@ -22,7 +22,8 @@
       "id": "title",
       "label": "Title",
       "default": "Why Vibbo?"
-    }, {
+    }, 
+    {
     "type": "image_picker",
       "id": "image",
       "label": "Image",
