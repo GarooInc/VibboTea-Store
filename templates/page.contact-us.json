@@ -46,12 +46,28 @@
             "question": "How do I apply a discount code?",
             "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
           }
+        },
+        "faq_mfHnpP": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
+        },
+        "faq_thDV8x": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+          }
         }
       },
       "block_order": [
         "faq_8LfbFc",
         "faq_DCVrBE",
-        "faq_Niak4e"
+        "faq_Niak4e",
+        "faq_mfHnpP",
+        "faq_thDV8x"
       ],
       "name": "FAQ",
       "settings": {
