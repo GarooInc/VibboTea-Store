@@ -7,11 +7,16 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "404",
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "title": "missing translation: \"t:404.title\" is not present in any of the [\"en\"] schema locale files",
+        "description": "missing translation: \"t:404.not_found\" is not present in any of the [\"en\"] schema locale files",
+        "link_text": "missing translation: \"t:404.back_to_shopping\" is not present in any of the [\"en\"] schema locale files"
+      }
     }
   },
   "order": [
