@@ -72,28 +72,39 @@
           "settings": {
             "image": "shopify://shop_images/pinatrozos_4.png",
             "title": "Pineapple pieces",
-            "text": "Ingredient description"
+            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
           }
         },
         "ingredient_block_JwPmcy": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/black-tea.png",
+            "title": "Black tea",
+            "text": "Caffeine energy boost, helps improve concentration and alertness."
           }
         },
         "ingredient_block_MMwqRy": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/hibisco.png",
+            "title": "Hibiscus",
+            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
           }
         },
         "ingredient_block_eyNiWw": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/cascara_de_cacao_2.png",
+            "title": "Cocoa husk",
+            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
+          }
+        },
+        "ingredient_block_izL4A4": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/coco__2.png",
+            "title": "Coconut",
+            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
           }
         }
       },
@@ -101,7 +112,8 @@
         "ingredient_block_hr7kfD",
         "ingredient_block_JwPmcy",
         "ingredient_block_MMwqRy",
-        "ingredient_block_eyNiWw"
+        "ingredient_block_eyNiWw",
+        "ingredient_block_izL4A4"
       ],
       "name": "Product Ingredients",
       "settings": {
