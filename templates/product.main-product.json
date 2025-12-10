@@ -64,6 +64,57 @@
       "name": "Product Characteristics",
       "settings": {}
     },
+    "prodcut_ingredients_FXkDBr": {
+      "type": "prodcut-ingredients",
+      "blocks": {
+        "ingredient_block_hr7kfD": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/pinatrozos_4.png",
+            "title": "Pineapple pieces",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_JwPmcy": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_MMwqRy": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_eyNiWw": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_block_hr7kfD",
+        "ingredient_block_JwPmcy",
+        "ingredient_block_MMwqRy",
+        "ingredient_block_eyNiWw"
+      ],
+      "name": "Product Ingredients",
+      "settings": {
+        "title": "Product Ingredients"
+      }
+    },
+    "product_why_DMQf7z": {
+      "type": "product-why",
+      "name": "Product Why Vibbo",
+      "settings": {
+        "title": "Why Vibbo?"
+      }
+    },
     "faq_7VfkjP": {
       "type": "faq",
       "blocks": {
@@ -181,6 +232,8 @@
     "main",
     "product_page_rNtVMj",
     "product_characteristics_dFhXL9",
+    "prodcut_ingredients_FXkDBr",
+    "product_why_DMQf7z",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
