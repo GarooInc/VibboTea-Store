@@ -120,8 +120,17 @@
         "title": "Product Ingredients"
       }
     },
+    "product_why_image_bRJRVp": {
+      "type": "product-why-image",
+      "name": "Product Why Vibbo Image",
+      "settings": {
+        "title": "Why Choose Vibbo?",
+        "image": "shopify://shop_images/Group_13.png"
+      }
+    },
     "product_why_DMQf7z": {
       "type": "product-why",
+      "disabled": true,
       "name": "Product Why Vibbo",
       "settings": {
         "title": "Why Vibbo?"
@@ -245,6 +254,7 @@
     "product_page_rNtVMj",
     "product_characteristics_dFhXL9",
     "prodcut_ingredients_FXkDBr",
+    "product_why_image_bRJRVp",
     "product_why_DMQf7z",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
