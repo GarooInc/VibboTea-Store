@@ -11,6 +11,7 @@
   "sections": {
     "header_section_CjR7UB": {
       "type": "header-section",
+      "disabled": true,
       "name": "Header Main section",
       "settings": {
         "background_image": "shopify://shop_images/bg-home-vibbo.png",
@@ -20,6 +21,40 @@
         "image_animation4": "shopify://shop_images/Frame_1321316208_2.png",
         "page_title": "WELLNESS\nWITHOUT\nTHE B.S.",
         "page_descripction": "REAL TEA, REAL BENEFITS"
+      }
+    },
+    "header_section_slide_TW68Gf": {
+      "type": "header-section-slide",
+      "blocks": {
+        "slide_APGaHq": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/bg-home-vibbo.png",
+            "page_title": "WELLNESS\nWITHOUT \nTHE B.S.",
+            "page_descripction": "REAL TEA, REAL BENEFITS"
+          }
+        },
+        "slide_A84cL4": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Shopify_10.jpg",
+            "page_title": "",
+            "page_descripction": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_APGaHq",
+        "slide_A84cL4"
+      ],
+      "name": "Header Slide",
+      "settings": {
+        "autoplay": true,
+        "Time": 1000,
+        "image_animation1": "shopify://shop_images/Frame_1321315052_2.png",
+        "image_animation2": "shopify://shop_images/Frame_1321315053_3.png",
+        "image_animation3": "shopify://shop_images/Frame_1321315054_2.png",
+        "image_animation4": "shopify://shop_images/Frame_1321316208_2.png"
       }
     },
     "main_carousel_NYTaep": {
@@ -249,9 +284,6 @@
       "settings": {
         "title": "FAQ",
         "image_alignment": "right",
-        "image_auto_size": true,
-        "image_target_width": 800,
-        "image_target_height": 533,
         "margin_top_image": 50
       }
     },
@@ -265,6 +297,7 @@
   },
   "order": [
     "header_section_CjR7UB",
+    "header_section_slide_TW68Gf",
     "main_carousel_NYTaep",
     "main_section_slidder_rVJmxn",
     "main_universe_section_yaVDzH",
