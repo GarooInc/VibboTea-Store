@@ -18,12 +18,12 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
     <!-- TRACK QUE SE MUEVE -->
     <div class="flex gap-10 animate-infinite-scroll items-center">
       {% comment %} DUPLICAR BLOQUES PARA EFECTO INFINITO {% endcomment %}
-      {% for i in (1..2) %} 
+      {% for i in (1..4) %} 
           {% for block in section.blocks %}
           <div class="md:min-w-[20vw]  w-full bg-white rounded-xl flex flex-col items-center justify-center ">
             <div class="h-[18vw] items-center justify-center flex">
               <img 
-                  src="{{ block.settings.image | image_url: width: 400 }}"
+                  src="{{ block.settings.image | image_url: width: 1000 }}"
                   alt=""
                   class="w-50 h-60 object-cover rounded-full mb-2"
                   width="{{ block.settings.image.width }}"
@@ -49,7 +49,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 {% if section.settings.imagen1 %}
     <div class="hidden md:block absolute top-5 md:-translate-y-30 right-0 transform ">
       <img
-        src="{{ section.settings.imagen1 | image_url: width: 400 }}"
+        src="{{ section.settings.imagen1 | image_url: width: 1000 }}"
         alt="Imagen 1"
         class="w-[15vw] object-cover "
         width="{{ section.settings.imagen1.width }}"
@@ -60,7 +60,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   {% if section.settings.imagen2 %}
     <div class="hidden md:block absolute left-0 bottom-0 md:translate-y-[25vw] md:-translate-x-15 transform">
       <img
-        src="{{ section.settings.imagen2 | image_url: width: 400 }}"
+        src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
         alt="Imagen 2"
         class="w-[35vw] object-cover block"
         width="{{ section.settings.imagen2.width }}"
@@ -71,7 +71,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   {% if section.settings.imagen3 %}
     <div class="hidden md:block absolute right-20 translate-y-20 bottom-0 transform">
       <img
-        src="{{ section.settings.imagen3 | image_url: width: 400 }}"
+        src="{{ section.settings.imagen3 | image_url: width: 1000 }}"
         alt="Imagen 3"
         class="w-[35vw] object-cover block"
         width="{{ section.settings.imagen3.width }}"
@@ -92,7 +92,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
     .animate-infinite-scroll {
     display: flex;
-    animation: infinite-scroll 40s linear infinite;
+    animation: infinite-scroll 100s linear infinite;
     }
 
 </style>

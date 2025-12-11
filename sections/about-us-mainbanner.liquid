@@ -1,6 +1,46 @@
 <section 
   class="relative  min-h-screen flex items-center justify-center text-white w-full full-width "
 >
+
+    {% assign mp4_url = section.settings.primary_video_url %}
+    {% assign youtube = false %}
+    {% assign mp4 = false %}
+
+    {% if mp4_url contains "youtube.com" or mp4_url contains "youtu.be" %}
+      {% assign youtube = true %}
+    {% elsif mp4_url contains ".mp4" %}
+      {% assign mp4 = true %}
+    {% endif %}
+
+<!-- CONTENEDOR DEL VIDEO -->
+<div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+
+  {% if mp4 %}
+    <video 
+      class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover 
+             -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      autoplay 
+      loop 
+      muted 
+      playsinline
+    >
+      <source src="{{ mp4_url }}" type="video/mp4">
+    </video>
+  {% endif %}
+
+  {% if youtube %}
+    <iframe 
+      class="absolute top-1/2 left-1/2 w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      src="https://www.youtube.com/embed/{{ mp4_url | split: 'v=' | last }}?controls=0&mute=1&autoplay=1&loop=1&playlist={{ mp4_url | split: 'v=' | last }}"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+    ></iframe>
+  {% endif %}
+
+</div>
+
+
+      
   {% if section.settings.background_image %}
     <img 
       src="{{ section.settings.background_image | image_url: width: 2500 }}"
@@ -16,12 +56,12 @@
   <div class="relative z-10 text-center flex justify-center items-center gap-20 pt-20  md:my-0 flex-col w-full mx-auto font-bricolage ">
     <div class="flex flex-col gap-2 justify-center items-center">
         {% if section.settings.eyebrow %}
-        <p class="uppercase md:text-3xl text-2xl font-bold mb-4 text-black">
+        <p class="uppercase md:text-3xl text-2xl font-bold mb-4 text-white">
             {{ section.settings.eyebrow }}
         </p>
         {% endif %}
 
-        <h1 class="font-bold leading-tight text-4xl md:text-6xl mb-6 text-black md:p-0 px-4">
+        <h1 class="font-bold leading-tight text-4xl md:text-6xl mb-6 text-white md:p-0 px-4">
         {{ section.settings.heading_line_1 }}<br>
         {{ section.settings.heading_line_2 }}<br>
         {{ section.settings.heading_line_3 }}
@@ -43,6 +83,11 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Imagen de fondo"
+    },
+     {
+      "type": "url",
+      "id": "primary_video_url",
+      "label": "Video URL (MP4 o YouTube)"
     },
     {
       "type": "text",

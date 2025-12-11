@@ -605,6 +605,12 @@
   .h-\[115vw\] {
     height: 115vw;
   }
+  .h-\[180\%\] {
+    height: 180%;
+  }
+  .h-\[200\%\] {
+    height: 200%;
+  }
   .h-\[300px\] {
     height: 300px;
   }
@@ -790,6 +796,9 @@
   }
   .w-\[90\%\] {
     width: 90%;
+  }
+  .w-\[180\%\] {
+    width: 180%;
   }
   .w-\[200\%\] {
     width: 200%;
@@ -1219,6 +1228,10 @@
     @supports (color: color-mix(in lab, red, red)) {
       --tw-gradient-from: color-mix(in oklab, var(--color-black) 40%, transparent);
     }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .from-white {
+    --tw-gradient-from: var(--color-white);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-transparent {
