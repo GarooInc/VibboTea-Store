@@ -26,22 +26,21 @@
         "page_descripction": ""
       }
     },
-    "main_carousel_cDE4Pg": {
-      "type": "main-carousel",
-      "name": "Carrusel de productos",
+    "product_carousel_h7e7Br": {
+      "type": "product-carousel",
+      "name": "Slider Collections",
       "settings": {
         "section_title": "Your daily dose of clarity",
         "redireccionamiento": false,
-        "collection": "frontpage",
         "limit": 12,
-        "autoplay": false,
-        "interval": 7000
+        "autoplay": true,
+        "interval": 5000
       }
     }
   },
   "order": [
     "main",
     "header_section_hzrmjx",
-    "main_carousel_cDE4Pg"
+    "product_carousel_h7e7Br"
   ]
 }
