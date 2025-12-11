@@ -1,4 +1,4 @@
-<div class="custom-slider md:relative md:w-screen mx-auto"
+<div class="slider-facts-{{ section.id }} custom-slider md:relative md:w-screen mx-auto"
 style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
   {% comment %} version desktop {% endcomment %}
@@ -75,11 +75,12 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   display: block;
 }
 </style>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".slider-facts-{{ section.id }}");
+  if (!slider) return;
+
   function initSlider(wrapperSelector) {
-    const slider = document.querySelector(".custom-slider");
     const wrapper = slider.querySelector(wrapperSelector);
     if (!wrapper) return;
 
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let index = 0;
 
     function showSlide(i) {
-      slides.forEach((s) => {
+      slides.forEach(s => {
         s.classList.remove("active");
         s.style.position = "absolute";
       });
@@ -109,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // 💡 Detectamos cuál contenedor está visible
   if (window.innerWidth < 768) {
     initSlider(".slides-wrapper-mobile");
   } else {
@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
 
 
 {% schema %}

@@ -1,0 +1,161 @@
+<div class="slider-facts-{{ section.id }} custom-slider md:relative md:h-screen mx-auto overflow-hidden"
+  style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+  <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
+
+  <div class="slides-wrapper md:relative w-full h-full">
+    {% for block in section.blocks %}
+      {% assign img = block.settings.image_desktop %}
+      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
+  
+        <img 
+          src="{{ img | img_url: '2000x2000' }}"
+          class="w-full h-full object-cover"
+          width="{{ img.width }}"
+          height="{{ img.height }}"
+          alt="{{ block.settings.alt | escape }}"
+        />
+
+        <!-- TEXTO SUPERPUESTO -->
+        <div class="slide-content absolute inset-0 flex flex-col items-center justify-center text-center z-30 px-5">
+          
+          <h1 class="text-[12vw] md:text-[6vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9]">
+            {{ block.settings.page_title | newline_to_br }}
+          </h1>
+
+          <p class="text-[4vw] md:text-[1.8vw] mt-4 text-white font-bricolage drop-shadow-lg">
+            {{ block.settings.page_descripction }}
+          </p>
+
+        </div>
+
+      </div>
+
+    {% endfor %}
+    
+  </div>
+
+</div>
+
+<div class="absolute inset-0 z-10 pointer-events-none">
+  <div class="w-full h-full relative">
+
+      {% if section.settings.image_animation1 %}
+        <img src="{{ section.settings.image_animation1 | image_url: width: 2000 }}" 
+              width="{{ section.settings.image_animation1.featured_media.width }}"
+              height="{{ section.settings.image_animation1.featured_media.height }}"
+              class="animated-img-1 absolute md:top-[20%] top-[28%] left-[30%] w-[50px] md:w-[130px] object-cover">
+      {% endif %}
+
+      {% if section.settings.image_animation2 %}
+        <img src="{{ section.settings.image_animation2 | image_url: width: 2000 }}" 
+            width="{{ section.settings.image_animation2.featured_media.width }}"
+            height="{{ section.settings.image_animation2.featured_media.height }}"
+            class="animated-img-2 absolute md:top-[23%] top-[30%] left-[70%] w-[50px] md:w-[150px] object-cover">
+      {% endif %}
+
+      {% if section.settings.image_animation3 %}
+        <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
+            width="{{ section.settings.image_animation2.featured_media.width }}"
+            height="{{ section.settings.image_animation2.featured_media.height }}"
+            class="animated-img-3 absolute bottom-[25%] left-[20%] w-[45px] md:w-[90px] object-cover">
+      {% endif %}
+
+      {% if section.settings.image_animation4 %}
+        <img src="{{ section.settings.image_animation4 | image_url: width: 2000 }}" 
+            width="{{ section.settings.image_animation2.featured_media.width }}"
+            height="{{ section.settings.image_animation2.featured_media.height }}"
+            class="animated-img-4 absolute bottom-[20%] left-[75%] w-[50px] md:w-[90px] object-cover">
+      {% endif %}
+
+  </div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".slider-facts-{{ section.id }}");
+  if (!slider) return;
+
+  const wrapper = slider.querySelector(".slides-wrapper");
+  const slides = wrapper.querySelectorAll(".slide");
+
+  let index = 0;
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, {{ section.settings.Time }});
+});
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Header Slide",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "Time",
+      "label": "Time per slide (ms)",
+      "default": 10000
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation1",
+      "label": "Image Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation2",
+      "label": "Image Animation 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation3",
+      "label": "Image Animation 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation4",
+      "label": "Image Animation 4"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Imagen Desktop",
+      "settings": [
+        { "type": "image_picker", "id": "image_desktop", "label": "Imagen Desktop" },
+        { "type": "image_picker", "id": "image_mobile", "label": "Imagen Mobile" },
+        {
+          "type": "textarea",
+          "id": "page_title",
+          "label": "Page Title",
+          "default": "Bienvenido a Nuestra Tienda"
+        },
+        {
+          "type": "text",
+          "id": "page_descripction",
+          "label": "Page Descripction",
+          "default": "text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Header Slide" }]
+}
+{% endschema %}
