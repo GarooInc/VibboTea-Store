@@ -1,15 +1,15 @@
-<div class="slider-facts-{{ section.id }} custom-slider md:relative md:h-screen mx-auto overflow-hidden"
+<div class="slider-facts-{{ section.id }} custom-slider md:relative md:h-screen h-40vh mx-auto overflow-hidden"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
   <div class="slides-wrapper md:relative w-full h-full">
     {% for block in section.blocks %}
       {% assign img = block.settings.image_desktop %}
-      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
+      <div class="slide absolute inset-0  {% if forloop.first %}active{% endif %}">
   
         <img 
           src="{{ img | img_url: '2000x2000' }}"
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover "
           width="{{ img.width }}"
           height="{{ img.height }}"
           alt="{{ block.settings.alt | escape }}"
@@ -95,18 +95,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <style>
 .slider-facts-{{ section.id }} .slides-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  height: 40vh;
 }
 
-.slider-facts-{{ section.id }} .slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
+.slider-facts-{{ section.id }} .slide,
+.slider-facts-{{ section.id }} img {
   height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* 🔹 Desktop (md en adelante ≈ min-width 768px) */
+@media (min-width: 768px) {
+  .slider-facts-{{ section.id }} .slides-wrapper {
+    height: 100vh; /* Pantalla completa */
+  }
 }
 
 .slider-facts-{{ section.id }} .slide.active {

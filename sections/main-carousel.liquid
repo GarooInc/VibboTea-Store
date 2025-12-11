@@ -25,13 +25,16 @@
         {% endif %}
     </div>
 
-    {% comment %} collection setup for carousel (replace blocks) {% endcomment %}
-    {% assign coll = collections[section.settings.collection] %}
+    {% if section.settings.collection != blank %}
+      {% assign coll = collections[section.settings.collection] %}
+    {% else %}
+      {% assign coll = collection %}
+    {% endif %}
+
     {% assign products_count = coll.products_count | default: 0 %}
 
-
 <section
-  class="relative w-full  pb-7"
+  class="relative w-full  pt-4"
   x-data="carousel({
     autoplay: {{ section.settings.autoplay }},
     interval: {{ section.settings.interval | default: 5000 }},
@@ -45,10 +48,10 @@
     <div class="flex transition-transform duration-500 ease-out" :style="`transform: translateX(-${index * 33.33}%)`">
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
-          <div class="snap-start shrink-0 w-full md:w-[33%] px-6">
-            <a href="{{ product.url }}" class="block px-4 w-full ">
+          <div class="snap-start shrink-0 w-full md:w-[33%] px-10">
+            <a href="{{ product.url }}" class="block  w-full ">
               {% if product.featured_media %}
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50">
+                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center ">
                   <img
                     src="{{ product.featured_media | image_url: width: 800 }}"
                     alt="{{ product.featured_media.alt | escape }}"
@@ -64,7 +67,7 @@
               {% endif %}
 
               <div class="mt-4">
-                <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium">
+                <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">
                   {{ product.title }}
                 </p>
                 <p class="font-bricolage text-2xl md:text-3xl  md:pt-1 text-left text-black font-medium">
@@ -73,10 +76,10 @@
               </div>
             </a>
 
-            <form method="post" action="{{ routes.cart_add_url }}" class="md:w-4/5 md:pt-5 md:text-center mx-auto">
+            <form method="post" action="{{ routes.cart_add_url }}" class=" md:pt-5 md:text-center mx-auto">
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
               <button type="submit" class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
-                <span class="font-bricolage md:text-[0.9vw] text-white  text-xl uppercase font-light md:text-center">Add to cart</span>
+                <span class="font-bricolage md:text-[0.9vw] text-white text-xl uppercase font-light md:text-center">Add to cart</span>
               </button>
             </form>
           </div>
@@ -132,12 +135,12 @@
               {% endif %}
 
               <div class="mt-4">
-                <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium">{{ product.title }}</p>
+                <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">{{ product.title }}</p>
                 <p class="font-bricolage text-3xl text-left text-black font-medium">{{ product.price | money }}</p>
               </div>
 
             </a>
-            <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto pr-10">
+            <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto ">
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
               <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
                 <span class="font-bricolage text-white text-sm uppercase font-light text-center">Add to cart</span>
@@ -155,7 +158,7 @@
   <div class="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
     <button
       @click="prev()"
-      class="pointer-events-auto p-2 rounded-full "
+      class="pointer-events-auto -translate-y-20 rounded-full "
       aria-label="Anterior"
     >
       {% render 'arrow-left' %}
@@ -163,7 +166,7 @@
 
     <button
       @click="next()"
-      class="pointer-events-auto p-2 rounded-full "
+      class="pointer-events-auto -translate-y-20 rounded-full "
       aria-label="Siguiente"
     >
       {% render 'arrow-right' %}
@@ -257,11 +260,18 @@
         this.index = Math.max(0, Math.min(i, this.maxIndex));
       },
       next() {
-        if (this.canGoNext()) this.index++;
+        if (this.index < this.maxIndex) {
+          this.index++;
+        } else {
+          this.index = 0; // ← Vuelve al inicio
+        }
       },
-      prev() {
-        if (this.canGoPrev()) this.index--;
-      },
+      prev()   if (this.index > 0) {
+            this.index--;
+          } else {
+            this.index = this.maxIndex; // ← Va al final
+          }
+        },
 
       // Autoplay
       start() {
