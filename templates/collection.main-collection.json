@@ -26,12 +26,13 @@
         "page_descripction": ""
       }
     },
-    "product_carousel_h7e7Br": {
-      "type": "product-carousel",
-      "name": "Slider Collections",
+    "main_carousel_hzpgzQ": {
+      "type": "main-carousel",
+      "name": "Carousel de productos",
       "settings": {
-        "section_title": "Your daily dose of clarity",
+        "section_title": "Productos Destacados",
         "redireccionamiento": false,
+        "collection": "",
         "limit": 12,
         "autoplay": true,
         "interval": 5000
@@ -41,6 +42,6 @@
   "order": [
     "main",
     "header_section_hzrmjx",
-    "product_carousel_h7e7Br"
+    "main_carousel_hzpgzQ"
   ]
 }
