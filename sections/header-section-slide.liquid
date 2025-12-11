@@ -15,14 +15,13 @@
           alt="{{ block.settings.alt | escape }}"
         />
 
-        <!-- TEXTO SUPERPUESTO -->
         <div class="slide-content absolute inset-0 flex flex-col items-center justify-center text-center z-30 px-5">
           
-          <h1 class="text-[12vw] md:text-[6vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9]">
+          <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
             {{ block.settings.page_title | newline_to_br }}
           </h1>
 
-          <p class="text-[4vw] md:text-[1.8vw] mt-4 text-white font-bricolage drop-shadow-lg">
+          <p class="text-[3.5vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
             {{ block.settings.page_descripction }}
           </p>
 
@@ -94,6 +93,37 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<style>
+.slider-facts-{{ section.id }} .slides-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-facts-{{ section.id }} .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slider-facts-{{ section.id }} .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slider-facts-{{ section.id }} .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+</style>
+
 
 
 {% schema %}
@@ -139,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "name": "Imagen Desktop",
       "settings": [
         { "type": "image_picker", "id": "image_desktop", "label": "Imagen Desktop" },
-        { "type": "image_picker", "id": "image_mobile", "label": "Imagen Mobile" },
         {
           "type": "textarea",
           "id": "page_title",
