@@ -25,13 +25,12 @@
         {% endif %}
     </div>
 
-    {% comment %} collection setup for carousel (replace blocks) {% endcomment %}
-    {% assign coll = collections[section.settings.collection] %}
+    {% assign coll = collection %}
     {% assign products_count = coll.products_count | default: 0 %}
 
 
 <section
-  class="relative w-full  pb-7"
+  class="relative w-full pb-7"
   x-data="carousel({
     autoplay: {{ section.settings.autoplay }},
     interval: {{ section.settings.interval | default: 5000 }},
@@ -287,7 +286,7 @@
 
 {% schema %}
 {
-  "name": "Slider Productos",
+  "name": "Slider Collections",
   "settings": [
      {
       "type": "textarea",
@@ -301,11 +300,7 @@
       "label": "Redireccionamiento",
       "default": false
     },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Colección",
-    },
+    
     {
       "type": "number",
       "id": "limit",
@@ -331,7 +326,7 @@
   
   "presets": [
     {
-      "name": "Carousel de productos", 
+      "name": "Slider Collections", 
         "category": "Productos"
 
     }
