@@ -18,7 +18,7 @@
       "type": "about-us-mainbanner",
       "name": "Main Banner About Us",
       "settings": {
-        "background_image": "shopify://shop_images/about-usvibbo.png",
+        "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/3ef39dda99ca495c946b51176f8294da.mp4",
         "eyebrow": "MEET VIBBO",
         "heading_line_1": "Wellness without",
         "heading_line_2": "the B.S., real tea made",
