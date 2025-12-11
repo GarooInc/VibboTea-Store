@@ -17,11 +17,11 @@
 
         <div class="slide-content absolute inset-0 flex flex-col items-center justify-center text-center z-30 px-5">
           
-          <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
+          <h1 class="text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
             {{ block.settings.page_title | newline_to_br }}
           </h1>
 
-          <p class="text-[3.5vw] md:text-[2.5vw] pt-4 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+          <p class="text-[2.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
             {{ block.settings.page_descripction }}
           </p>
 
@@ -35,14 +35,14 @@
 
 </div>
 
-<div class="absolute inset-0 z-10 pointer-events-none">
+<div class="absolute inset-0 z-10 pointer-events-none top-2">
   <div class="w-full h-full relative">
 
       {% if section.settings.image_animation1 %}
         <img src="{{ section.settings.image_animation1 | image_url: width: 2000 }}" 
               width="{{ section.settings.image_animation1.featured_media.width }}"
               height="{{ section.settings.image_animation1.featured_media.height }}"
-              class="animated-img-1 absolute md:top-[20%] top-[28%] left-[30%] w-[50px] md:w-[130px] object-cover">
+              class="animated-img-1 absolute md:top-[20%] top-[29%] md:left-[30%] left-[20%] w-[50px] md:w-[130px] object-cover">
       {% endif %}
 
       {% if section.settings.image_animation2 %}
@@ -56,7 +56,7 @@
         <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
             width="{{ section.settings.image_animation2.featured_media.width }}"
             height="{{ section.settings.image_animation2.featured_media.height }}"
-            class="animated-img-3 absolute bottom-[25%] left-[20%] w-[45px] md:w-[90px] object-cover">
+            class="animated-img-3 absolute bottom-[25%] md:left-[20%] left-[15%] w-[41px] md:w-[90px] object-cover">
       {% endif %}
 
       {% if section.settings.image_animation4 %}
