@@ -1,13 +1,13 @@
 <div
-  class="w-full md:h-[60vw] h-[90vh] overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
+  class="w-full md:py-20 md:pb-40 py-15 pb-25 overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
   
-<div class="w-full h-full mx-auto flex flex-col items-center justify-center py-10">
+<div class="w-full h-full mx-auto flex flex-col items-center justify-center ">
 
   
   {% if section.settings.title %}
-  <h2 class="text-center md:text-5xl text-3xl text-black font-semibold font-bricolage md:pb-20 pb-15">
+  <h2 class="text-center md:text-5xl text-[8vw] text-black font-semibold font-bricolage md:pb-20 pb-15">
 
     {{ section.settings.title }}
   </h2>
@@ -17,7 +17,7 @@
   <div class="relative w-full overflow-visible flex items-center">
     
     <!-- TRACK QUE SE MUEVE -->
-    <div class="flex gap-10  animate-infinite-scroll items-center">
+    <div class="flex md:gap-10 gap-8 animate-infinite-scroll items-center">
       {% for i in (1..4) %} 
           {% for block in section.blocks %}
           <div class="md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white rounded-xl flex flex-col items-center justify-center  card-focus">
@@ -25,7 +25,7 @@
               <img 
                   src="{{ block.settings.image | image_url: width: 1000 }}"
                   alt=""
-                  class="md:w-50 md:h-60 w-40 object-cover mb-2"
+                  class="md:w-50 md:h-60 w-40 object-cover md:mb-2"
                   width="{{ block.settings.image.width }}"
                   height="{{ block.settings.image.height }}"
               >
@@ -33,7 +33,8 @@
             
             <h3 class="font-medium text-black font-bricolage md:text-2xl text-xl">
               {{ block.settings.title }}</h3>
-            <p class="text-black md:min-h-[8vw] min-h-[15vw] font-bricolage text-center md:text-sm text-xs py-5 md:px-4 px-6">
+            <p class="text-black md:min-h-[8vw] min-h-[15vw] 
+              font-bricolage text-center md:text-[0.9vw] text-[3vw] py-5 md:px-4 px-6">
               {{ block.settings.text }}</p>
           </div>
           {% endfor %}
@@ -60,18 +61,18 @@
     </div>
   {% endif %}
   {% if section.settings.imagen2 %}
-    <div class="hidden md:block absolute left-0 bottom-0 md:translate-y-[25vw] md:-translate-x-15 transform">
+    <div class="absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
       <img
         src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
         alt="Imagen 2"
-        class="w-[35vw] object-cover block"
+        class="md:w-[35vw] w-[65vw] object-cover block"
         width="{{ section.settings.imagen2.width }}"
         height="{{ section.settings.imagen2.height }}"
       />
     </div>
   {% endif %}
   {% if section.settings.imagen3 %}
-    <div class="hidden md:block absolute right-20 translate-y-20 bottom-0 transform">
+    <div class="hidden md:block absolute right-20 translate-y-35 bottom-0 transform">
       <img
         src="{{ section.settings.imagen3 | image_url: width: 1000 }}"
         alt="Imagen 3"
@@ -105,7 +106,7 @@
 
 
   .card-focus.is-center {
-    transform: scale(1.25);
+    transform: scale(1.2);
     opacity: 1;
     z-index: 10;
   }
@@ -115,7 +116,7 @@
 }
 
 .card-focus.is-center img {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 
