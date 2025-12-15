@@ -183,7 +183,6 @@
       index: 0,
       timer: null,
 
-      // Helpers reactivos
       get isMobile() {
         return window.innerWidth < 768;
       },
@@ -201,17 +200,14 @@
       },
 
       init() {
-        // Asegura índice válido al cargar
         this.clamp();
 
         if (autoplay && count > 1) {
           this.start();
-          // Pausar en hover (sólo desktop tiene hover real)
           this.$el.addEventListener('mouseenter', () => { if (!this.isMobile) this.stop(); });
           this.$el.addEventListener('mouseleave', () => { if (!this.isMobile) this.start(); });
         }
 
-        // Re-clamp al cambiar tamaño (pasa de mobile a desktop y viceversa)
         const onResize = () => this.clamp();
         window.addEventListener('resize', onResize);
 
@@ -243,7 +239,6 @@
         };
         document.addEventListener('visibilitychange', onVisibility);
 
-        // Limpieza opcional cuando el elemento salga del DOM (por si usas Alpine v3 con destroy)
         this.$watch?.('index', () => this.clamp());
       },
 
@@ -263,13 +258,13 @@
         if (this.index < this.maxIndex) {
           this.index++;
         } else {
-          this.index = 0; // ← Vuelve al inicio
+          this.index = 0; 
         }
       },
       prev()   if (this.index > 0) {
             this.index--;
           } else {
-            this.index = this.maxIndex; // ← Va al final
+            this.index = this.maxIndex; 
           }
         },
 

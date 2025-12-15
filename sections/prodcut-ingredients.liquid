@@ -1,9 +1,7 @@
 <div class="w-full md:h-[60vw] h-[60vh] md:pb-30 overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
-style="width: 100vw; margin-left: calc(50% - 50vw);"
->
-
+style="width: 100vw; margin-left: calc(50% - 50vw);">
   
-<div class="w-full h-full mx-auto flex flex-col items-center justify-center">
+<div class="w-full h-full mx-auto flex flex-col items-center justify-center py-10">
 
   
   {% if section.settings.title %}
@@ -13,14 +11,14 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   {% endif %}
 
   <!-- WRAPPER DEL CARRUSEL -->
-  <div class="relative w-full overflow-hidden flex items-center ">
+  <div class="relative w-full overflow-visible flex items-center">
     
     <!-- TRACK QUE SE MUEVE -->
     <div class="flex gap-10 animate-infinite-scroll items-center">
       {% comment %} DUPLICAR BLOQUES PARA EFECTO INFINITO {% endcomment %}
       {% for i in (1..4) %} 
           {% for block in section.blocks %}
-          <div class="md:min-w-[20vw]  w-full bg-white rounded-xl flex flex-col items-center justify-center ">
+          <div class="md:min-w-[20vw]  w-full bg-white rounded-xl flex flex-col items-center justify-center  card-focus">
             <div class="h-[18vw] items-center justify-center flex">
               <img 
                   src="{{ block.settings.image | image_url: width: 1000 }}"
@@ -31,8 +29,10 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
               >
             </div>
             
-            <h3 class="font-medium text-black  font-bricolage text-2xl">{{ block.settings.title }}</h3>
-            <p class="text-black min-h-[8vw] font-bricolage text-center text-sm py-5 px-5">{{ block.settings.text }}</p>
+            <h3 class="font-medium text-black font-bricolage text-2xl">
+              {{ block.settings.title }}</h3>
+            <p class="text-black min-h-[8vw] font-bricolage text-center text-sm py-5 px-5">
+              {{ block.settings.text }}</p>
           </div>
           {% endfor %}
       {%  endfor %}
@@ -47,11 +47,11 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   </div>
 </div>
 {% if section.settings.imagen1 %}
-    <div class="hidden md:block absolute top-5 md:-translate-y-30 right-0 transform ">
+    <div class="absolute md:top-5 md:-translate-y-30 -translate-y-25 right-0 transform ">
       <img
         src="{{ section.settings.imagen1 | image_url: width: 1000 }}"
         alt="Imagen 1"
-        class="w-[15vw] object-cover "
+        class="md:w-[15vw] w-[25vw] object-cover "
         width="{{ section.settings.imagen1.width }}"
         height="{{ section.settings.imagen1.height }}"
       />
@@ -95,7 +95,61 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
     animation: infinite-scroll 100s linear infinite;
     }
 
+    
+    .card-focus {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      transform: scale(0.95);
+      opacity: 0.7;
+    }
+
+
+  .card-focus.is-center {
+    transform: scale(1.25);
+    opacity: 1;
+    z-index: 10;
+  }
+
+ .card-focus img {
+  transition: transform 0.4s ease;
+}
+
+.card-focus.is-center img {
+  transform: scale(1.15);
+}
+
+
 </style>
+
+<script>
+  function detectCenterCard() {
+    const cards = document.querySelectorAll('.card-focus');
+
+    // Centro REAL del viewport
+    const viewportCenter = window.innerWidth / 2;
+
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+
+      // Distancia entre centros
+      const distance = Math.abs(viewportCenter - cardCenter);
+
+      // Rango exacto para considerar "en el centro"
+      const activationRange = rect.width * 0.25;
+
+      if (distance < activationRange) {
+        card.classList.add('is-center');
+      } else {
+        card.classList.remove('is-center');
+      }
+    });
+
+    requestAnimationFrame(detectCenterCard);
+  }
+
+  requestAnimationFrame(detectCenterCard);
+</script>
+
 
 
 

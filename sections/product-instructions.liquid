@@ -1,0 +1,241 @@
+<div class="relative min-h-[300px] w-full">
+  <div class="flex md:flex-row flex-col gap-6 py-5">
+    
+    <div class="relative md:w-1/2 w-full text-center">
+      <h2 class="font-bricolage font-semibold md:text-[3vw] text-[8vw]">
+        We won´t show you how, but these are some of the many
+      </h2>
+    </div>
+
+    <div class="md:w-1/2 w-full grid grid-cols-3 md:gap-8 gap-3 pt-5 h-full">
+       <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option is-selected cursor-pointer" data-index="0">
+            <div class="w-full flex items-center justify-center md:scale-115 scale-80">
+                {% render 'icono_hot' %}
+            </div>
+            <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
+            </div>
+
+            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option cursor-pointer" data-index="1">
+            <div class="w-full flex items-center justify-center md:scale-115 scale-80">
+                {% render 'icono_cold' %}
+            </div>
+            <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Cold</p>
+            </div>
+
+            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option cursor-pointer" data-index="2">
+            <div class="w-full flex items-center justify-center md:scale-115 scale-80">
+                {% render 'icono_mocktail' %}
+            </div>
+            <p class="font-bricolage text-left md:text-[1.3vw] text-[2.8vw] ">Mocktail</p>
+            </div>
+
+    </div>
+    
+
+
+  </div>
+  <div class="hidden md:block relative w-full">
+        {% for block in section.blocks %}
+            <div class="how-block {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            
+            <div class="grid grid-cols-4 gap-5 py-10 justify-center items-center">
+                {% for i in (1..4) %}
+                {% assign gif_key = 'gif_' | append: i %}
+                {% assign text_key = 'text_' | append: i %}
+
+                {% assign gif = block.settings[gif_key] %}
+                {% assign text = block.settings[text_key] %}
+
+                {% if gif %}
+                    <div class="flex flex-col items-center">
+                        <div class="relative h-auto w-full overflow-hidden rounded-2xl pb-5">
+                            <img
+                            src="{{ gif | image_url: width: 1200 }}"
+                            alt=""
+                            class="w-full h-auto object-cover rounded-2xl"
+                            width="{{ block.settings.gif.width }}"
+                            height="{{ block.settings.gif.height }}"
+                            >
+                        </div>
+
+                       <p class="font-bricolage mt-3 text-lg text-center h-[3.5em] leading-snug overflow-hidden">
+                            {{ text }}
+                        </p>
+                    </div>
+
+
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            </div>
+        {% endfor %}
+    </div>
+    <div class="md:hidden w-full overflow-x-auto">
+        {% for block in section.blocks %}
+            <div class="how-block {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            
+            <div class="flex gap-4 px-4 py-6 snap-x snap-mandatory overflow-x-auto">
+                {% for i in (1..4) %}
+                {% assign gif_key = 'gif_' | append: i %}
+                {% assign text_key = 'text_' | append: i %}
+                {% assign gif = block.settings[gif_key] %}
+                {% assign text = block.settings[text_key] %}
+
+                {% if gif %}
+                    <div class="min-w-[80%] max-w-[80%] snap-center shrink-0 flex flex-col items-center">
+                        <div class="flex flex-col items-center w-full">
+                            <div class="relative w-full h-[250px] overflow-hidden rounded-2xl pb-5">
+                            <img
+                                src="{{ gif | image_url: width: 1200 }}"
+                                alt=""
+                                class="w-full h-auto object-cover rounded-2xl block"
+                                width="{{ block.settings.gif.width }}"
+                            height="{{ block.settings.gif.height }}"
+                            >
+                            </div>
+
+                            <p class="font-bricolage mt-3 text-lg text-center h-[3.5em] leading-snug overflow-hidden ">
+                                {{ text }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            </div>
+        {% endfor %}
+        </div>
+
+</div>
+
+<style>
+  .drink-option.is-selected {
+    background-color: #FAB801; 
+  }
+  .drink-option {
+  transition: background-color 0.3s ease;
+}
+.drink-option.is-selected {
+  transform: scale(1.05);
+}
+.how-block {
+    display: none;
+  }
+
+  .how-block.is-active {
+    display: block;
+  }
+
+</style>
+
+<script>
+  document.querySelectorAll('.drink-option').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.drink-option')
+        .forEach(c => c.classList.remove('is-selected'));
+
+      card.classList.add('is-selected');
+    });
+  });
+const options = document.querySelectorAll('.drink-option');
+  const blocks = document.querySelectorAll('.how-block');
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      const index = option.dataset.index;
+
+      // seleccionar botón
+      options.forEach(o => o.classList.remove('is-selected'));
+      option.classList.add('is-selected');
+
+      // mostrar bloque correspondiente
+      blocks.forEach(block => block.classList.remove('is-active'));
+      const activeBlock = document.querySelector(`.how-block[data-index="${index}"]`);
+      if (activeBlock) activeBlock.classList.add('is-active');
+    });
+  });
+</script>
+
+
+
+{% schema %}
+
+{
+  "name": "Product how",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Product Ingredients"
+    },
+    
+  
+  ],
+   "blocks": [
+    {
+        "type": "how_block",
+        "name": "How block",
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "gif_1",
+            "label": "GIF 1"
+        },
+        {
+            "type": "text",
+            "id": "text_1",
+            "label": "Text 1",
+            "default": "Description 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "gif_2",
+            "label": "GIF 2"
+        },
+        {
+            "type": "text",
+            "id": "text_2",
+            "label": "Text 2",
+            "default": "Description 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "gif_3",
+            "label": "GIF 3"
+        },
+        {
+            "type": "text",
+            "id": "text_3",
+            "label": "Text 3",
+            "default": "Description 3"
+        },
+        {
+            "type": "image_picker",
+            "id": "gif_4",
+            "label": "GIF 4"
+        },
+        {
+            "type": "text",
+            "id": "text_4",
+            "label": "Text 4",
+            "default": "Description 4"
+        }
+        ]
+    }
+    ],
+    "presets": [
+        {
+        "name": "Product how",
+        "category": "Productos"
+        }
+    ]
+}
+
+{% endschema %}
+
+
+    
