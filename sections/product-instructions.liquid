@@ -3,7 +3,7 @@
     
     <div class="relative md:w-1/2 w-full text-center">
       <h2 class="font-bricolage font-semibold md:text-[3vw] text-[8vw]">
-        We won´t show you how, but these are some of the many
+        {{  section.settings.title}}
       </h2>
     </div>
 
@@ -34,7 +34,7 @@
 
 
   </div>
-  <div class="hidden md:block relative w-full">
+  <div class="hidden md:block relative w-full how-container-desktop">
         {% for block in section.blocks %}
             <div class="how-block {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             
@@ -71,7 +71,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="md:hidden w-full overflow-x-auto">
+    <div class="md:hidden w-full overflow-x-auto how-container-mobile">
         {% for block in section.blocks %}
             <div class="how-block {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             
@@ -132,32 +132,38 @@
 </style>
 
 <script>
-  document.querySelectorAll('.drink-option').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.drink-option')
-        .forEach(c => c.classList.remove('is-selected'));
-
-      card.classList.add('is-selected');
-    });
-  });
-const options = document.querySelectorAll('.drink-option');
-  const blocks = document.querySelectorAll('.how-block');
+  const options = document.querySelectorAll('.drink-option');
 
   options.forEach(option => {
     option.addEventListener('click', () => {
       const index = option.dataset.index;
 
-      // seleccionar botón
+      // Botones
       options.forEach(o => o.classList.remove('is-selected'));
       option.classList.add('is-selected');
 
-      // mostrar bloque correspondiente
+      // Detectar versión visible
+      const isMobile = window.innerWidth < 768;
+
+      const container = isMobile
+        ? document.querySelector('.how-container-mobile')
+        : document.querySelector('.how-container-desktop');
+
+      if (!container) return;
+
+      const blocks = container.querySelectorAll('.how-block');
+
       blocks.forEach(block => block.classList.remove('is-active'));
-      const activeBlock = document.querySelector(`.how-block[data-index="${index}"]`);
+
+      const activeBlock = container.querySelector(
+        `.how-block[data-index="${index}"]`
+      );
+
       if (activeBlock) activeBlock.classList.add('is-active');
     });
   });
 </script>
+
 
 
 
