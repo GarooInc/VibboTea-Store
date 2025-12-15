@@ -19,6 +19,51 @@
       "name": "Description product",
       "settings": {}
     },
+    "product_instructions_KU7cmG": {
+      "type": "product-instructions",
+      "blocks": {
+        "how_block_KaMDUb": {
+          "type": "how_block",
+          "settings": {
+            "gif_1": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2_1.png",
+            "text_1": "Heat 6–8 oz. of water to 175°F.",
+            "gif_2": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_2.png",
+            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
+            "gif_3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_4.png",
+            "text_3": "Add the tea to the hot water.",
+            "gif_4": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_5.png",
+            "text_4": "Steep for 3 minutes, energize."
+          }
+        },
+        "how_block_NNNFD4": {
+          "type": "how_block",
+          "settings": {
+            "text_1": "Description 1",
+            "text_2": "Description 2",
+            "text_3": "Description 3",
+            "text_4": "Description 4"
+          }
+        },
+        "how_block_rB8WTr": {
+          "type": "how_block",
+          "settings": {
+            "text_1": "Description 1",
+            "text_2": "Description 2",
+            "text_3": "Description 3",
+            "text_4": "Description 4"
+          }
+        }
+      },
+      "block_order": [
+        "how_block_KaMDUb",
+        "how_block_NNNFD4",
+        "how_block_rB8WTr"
+      ],
+      "name": "Product how",
+      "settings": {
+        "title": "Product Ingredients"
+      }
+    },
     "product_characteristics_dFhXL9": {
       "type": "product-characteristics",
       "blocks": {
@@ -252,6 +297,7 @@
   "order": [
     "main",
     "product_page_rNtVMj",
+    "product_instructions_KU7cmG",
     "product_characteristics_dFhXL9",
     "prodcut_ingredients_FXkDBr",
     "product_why_image_bRJRVp",
