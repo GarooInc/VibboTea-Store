@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-30 ">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start md:pt-30 pt-20 md:px-15">
   {% if product %}
     {% if product.media.size > 1 %}
 
@@ -11,7 +11,7 @@
             <img
               src="{{ media | image_url: width: 1200 }}"
               alt="{{ media.alt | escape }}"
-              class="w-full shrink-0 object-cover rounded-xl"
+              class="w-full  shrink-0 object-cover rounded-xl "
               width="{{ media.width }}"
               height="{{ media.height }}"
             />
@@ -21,17 +21,17 @@
 
       <!-- BOTONES -->
       <button 
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
-        text-black px-3 py-2 rounded-full shadow"
+        class="absolute left-2 top-1/2 -translate-y-1/2   
+        text-black px-3 py-2  "
         onclick="slidePrev()">
-        ‹
+        {% render 'arrow-slidder2' %}
       </button>
 
       <button 
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
-        text-black px-3 py-2 rounded-full shadow"
+        class="absolute right-2 top-1/2 -translate-y-1/2  
+        text-black px-3 py-2 "
         onclick="slideNext()">
-        ›
+        {% render 'arrow-slidder' %}
       </button>
 
     </div>
@@ -52,116 +52,81 @@
 
        
     {% endif %}
-     <div class="product-info w-full pt-50">
+     <div class="product-info w-full md:pt-50">
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">{{ product.title }}</h1>
-        <p class="prose text-gray-700 font-bricolage pt-4">
+        <p class="prose text-black font-bricolage pt-4">
             {{ product.description }}
         </p>
-        <div class="w-full grid grid-cols-3 md:gap-8 gap-3 pt-5 h-full">
-            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
-              items-center justify-center cursor-pointer border border-gray-500" >
-            
-              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
-              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
-            </div>
+        {% comment %} variantes {% endcomment %}
+        {% if product.variants.size > 0 %}
+          {% assign first_variant = product.selected_or_first_available_variant %}
 
-            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
-              items-center justify-center  cursor-pointer border border-gray-500" >
-            
-              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
-              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
-            </div>
+          <div class="w-full grid grid-cols-3 md:gap-8 gap-4 pt-5 h-full">
+            {% for variant in product.variants %}
+              {% assign parts = variant.title | split: '/' %}
+              {% assign servings = parts[0] | strip %}
+              {% assign grams = parts[1] | strip | remove: 'gr' | strip %}
 
-            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
-              items-center justify-center  cursor-pointer border border-gray-500" >
-            
-              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
-              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
-            </div>
+              <div
+                class="variant-option rounded-xl min-h-[6vw] w-full flex flex-col 
+                      items-center justify-center cursor-pointer border border-gray-400
+                      transition-all duration-300
+                      {% if variant.id == first_variant.id %}ring-2 ring-black scale-105{% endif %}"
+                data-variant-id="{{ variant.id }}"
+                data-price="{{ variant.price | money }}"
+                data-price-raw="{{ variant.price }}"
+                data-compare="{{ variant.compare_at_price | money }}"
+                data-compare-raw="{{ variant.compare_at_price }}"
+              >
+                <p class="font-bricolage md:text-[1.3vw] text-[4.5vw] pt-3">
+                  {{ servings }} servings
+                </p>
 
-      </div>
-      
-      <div class="flex flex-col gap-5">
+                <p class="font-bricolage md:text-[1vw] text-[3.5vw] py-2">
+                  {{ grams }} grams
+                </p>
+              </div>
+            {% endfor %}
+          </div>
 
-  <!-- Subscribe -->
-  <label
-    class="purchase-option flex flex-col cursor-pointer border-b border-gray-200 pb-5 is-selected"
-  >
-    <input
-      type="radio"
-      name="purchase_type"
-      value="subscribe"
-      checked
-      class="hidden"
-    >
-
-    <div class="flex gap-4 items-start  pt-15">
-      <!-- Radio -->
-      <span
-        class="w-[18px] h-[18px] border-2 border-black rounded-full flex items-center justify-center mt-1"
-      >
-        <span
-          class="w-[10px] h-[10px] bg-black rounded-full inner-dot"
-        ></span>
-      </span>
-
-      <div>
-        <h4 class="font-semibold text-xl font-bricolage text-black  pb-5">
-          Subscribe & Save
-        </h4>
-        <p class="text-sm font-bricolage text-gray-600 leading-snug max-w-[500px]">
-          Starter kit: Tea spoon, 15 sachets, Kinto glass teapot,
-          Glass tea cup and Secret flavor box.
-        </p>
-      </div>
-    </div>
-  </label>
-
-  <!-- One time -->
-  <label
-    class="purchase-option flex flex-col cursor-pointer border-b border-gray-200 pb-5"
-  >
-    <input
-      type="radio"
-      name="purchase_type"
-      value="one_time"
-      class="hidden"
-    >
-
-    <div class="flex gap-4 items-start">
-      <!-- Radio -->
-      <span
-        class="w-[18px] h-[18px] border-2 border-black rounded-full flex items-center justify-center mt-1"
-      >
-        <span
-          class="w-[10px] h-[10px] bg-black rounded-full inner-dot hidden "
-        ></span>
-      </span>
-
-      <div>
-        <h4 class="font-semibold text-xl font-bricolage text-black  pb-5">
-          One-time purchase
-        </h4>
-      </div>
-    </div>
-  </label>
-
-</div>
-
+        {% endif %} 
 
       
-        <div class="text-5xl py-5 text-gray-700">
-           {{ product.price | money }}
-        </div>
-       <form method="post" action="/cart/add" class="w-full py-10 text-center mx-auto ">
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
-              <span class="font-bricolage text-white text-sm uppercase font-light text-center">Add to cart</span>
-            </button>
-        </form>
+
+      {% comment %} precio {% endcomment %}
+      <div id="priceWrapper" class="py-10 flex items-center gap-4 transition-all duration-300 min-h-[10vw]">
+        {% if first_variant.compare_at_price > first_variant.price %}
+          <span id="comparePrice" class="text-3xl md:text-4xl text-gray-400 line-through">
+            {{ first_variant.compare_at_price | money }}
+          </span>
+
+          <span id="mainPrice" class="text-4xl md:text-5xl text-red-700 font-light">
+            {{ first_variant.price | money }}
+          </span>
+        {% else %}
+          <span id="mainPrice" class="text-4xl md:text-5xl text-gray-700">
+            {{ first_variant.price | money }}
+          </span>
+        {% endif %}
+      </div>
+
+
+      <form method="post" action="/cart/add" class="w-full md:py-10 pb-10 text-center mx-auto">
+        <input type="hidden" name="id" id="variantInput"
+              value="{{ first_variant.id }}">
+
+        <button type="submit"
+          class="bg-black flex items-center justify-center w-full rounded-3xl py-3
+                hover:bg-gray-800 transition-colors">
+          <span class="font-bricolage text-white text-sm uppercase font-light">
+            Add to cart
+          </span>
+        </button>
+      </form>
+
         
 
-      </div>
+    </div>
         
 
   {% else %}
@@ -171,19 +136,50 @@
 </div>
 
 <script>
-  document.querySelectorAll('.purchase-option').forEach(option => {
+  const variants = document.querySelectorAll('.variant-option');
+  const variantInput = document.getElementById('variantInput');
+  const priceWrapper = document.getElementById('priceWrapper');
+  const mainPrice = document.getElementById('mainPrice');
+
+  variants.forEach(option => {
     option.addEventListener('click', () => {
-      document.querySelectorAll('.purchase-option').forEach(o => {
-        o.classList.remove('is-selected');
-        o.querySelector('.inner-dot')?.classList.add('hidden');
+      variants.forEach(v => {
+        v.classList.remove('ring-2', 'ring-black', 'scale-105');
       });
 
-      option.classList.add('is-selected');
-      option.querySelector('input').checked = true;
-      option.querySelector('.inner-dot')?.classList.remove('hidden');
+      option.classList.add('ring-2', 'ring-black', 'scale-105');
+
+      variantInput.value = option.dataset.variantId;
+
+      priceWrapper.classList.add('opacity-0', 'translate-y-2');
+
+      setTimeout(() => {
+        const price = option.dataset.price;
+        const compare = option.dataset.compare;
+
+        if (compare && compare !== '') {
+          priceWrapper.innerHTML = `
+            <span class="text-3xl md:text-4xl text-gray-400 line-through">
+              ${compare}
+            </span>
+            <span class="text-4xl md:text-5xl text-red-700 font-light">
+              ${price}
+            </span>
+          `;
+        } else {
+          priceWrapper.innerHTML = `
+            <span class="text-5xl md:text-6xl text-gray-700">
+              ${price}
+            </span>
+          `;
+        }
+
+        priceWrapper.classList.remove('opacity-0', 'translate-y-2');
+      }, 200);
     });
   });
 </script>
+
 
 <script>
     let currentSlide = 0;
