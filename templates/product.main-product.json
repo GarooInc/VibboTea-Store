@@ -64,51 +64,6 @@
         "title": "We won't show you how, but these are some of the many."
       }
     },
-    "product_characteristics_dFhXL9": {
-      "type": "product-characteristics",
-      "blocks": {
-        "characteristic_block_tkkpwM": {
-          "type": "characteristic_block",
-          "settings": {
-            "image": "shopify://shop_images/iconos_naughty.png",
-            "title": "Enyjoy",
-            "text": "In the morning or during the day"
-          }
-        },
-        "characteristic_block_4aD7A6": {
-          "type": "characteristic_block",
-          "settings": {
-            "image": "shopify://shop_images/iconos_hotCold.png",
-            "title": "Ideal",
-            "text": "Hot or cold with ice"
-          }
-        },
-        "characteristic_block_zd3xQL": {
-          "type": "characteristic_block",
-          "settings": {
-            "image": "shopify://shop_images/iconos_Ingredients.png",
-            "title": "Add",
-            "text": "More than 2 grams for higher flavor"
-          }
-        },
-        "characteristic_block_EtMHhz": {
-          "type": "characteristic_block",
-          "settings": {
-            "image": "shopify://shop_images/Group_1.png",
-            "title": "Consistency",
-            "text": "Drink every day for an improvement routine"
-          }
-        }
-      },
-      "block_order": [
-        "characteristic_block_tkkpwM",
-        "characteristic_block_4aD7A6",
-        "characteristic_block_zd3xQL",
-        "characteristic_block_EtMHhz"
-      ],
-      "name": "Product Characteristics",
-      "settings": {}
-    },
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
@@ -298,7 +253,6 @@
     "main",
     "product_page_rNtVMj",
     "product_instructions_KU7cmG",
-    "product_characteristics_dFhXL9",
     "prodcut_ingredients_FXkDBr",
     "product_why_image_bRJRVp",
     "product_why_DMQf7z",
