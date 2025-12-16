@@ -21,13 +21,15 @@
 
       <!-- BOTONES -->
       <button 
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black px-3 py-2 rounded-full shadow"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
+        text-black px-3 py-2 rounded-full shadow"
         onclick="slidePrev()">
         ‹
       </button>
 
       <button 
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black px-3 py-2 rounded-full shadow"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
+        text-black px-3 py-2 rounded-full shadow"
         onclick="slideNext()">
         ›
       </button>
@@ -55,7 +57,111 @@
         <p class="prose text-gray-700 font-bricolage pt-4">
             {{ product.description }}
         </p>
+        <div class="w-full grid grid-cols-3 md:gap-8 gap-3 pt-5 h-full">
+            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
+              items-center justify-center cursor-pointer border border-gray-500" >
+            
+              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
+              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
+            </div>
+
+            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
+              items-center justify-center  cursor-pointer border border-gray-500" >
+            
+              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
+              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
+            </div>
+
+            <div class=" rounded-2xl min-h-[6vw] w-full flex flex-col 
+              items-center justify-center  cursor-pointer border border-gray-500" >
+            
+              <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
+              <p class="font-bricolage text-left md:text-[1vw] text-[3.5vw]">Hot</p>
+            </div>
+
+      </div>
+      
+      <div class="flex flex-col gap-5">
+
+  <!-- Subscribe -->
+  <label
+    class="purchase-option flex flex-col cursor-pointer border-b border-gray-200 pb-5 is-selected"
+  >
+    <input
+      type="radio"
+      name="purchase_type"
+      value="subscribe"
+      checked
+      class="hidden"
+    >
+
+    <div class="flex gap-4 items-start  pt-15">
+      <!-- Radio -->
+      <span
+        class="w-[18px] h-[18px] border-2 border-black rounded-full flex items-center justify-center mt-1"
+      >
+        <span
+          class="w-[10px] h-[10px] bg-black rounded-full inner-dot"
+        ></span>
+      </span>
+
+      <div>
+        <h4 class="font-semibold text-xl font-bricolage text-black  pb-5">
+          Subscribe & Save
+        </h4>
+        <p class="text-sm font-bricolage text-gray-600 leading-snug max-w-[500px]">
+          Starter kit: Tea spoon, 15 sachets, Kinto glass teapot,
+          Glass tea cup and Secret flavor box.
+        </p>
+      </div>
     </div>
+  </label>
+
+  <!-- One time -->
+  <label
+    class="purchase-option flex flex-col cursor-pointer border-b border-gray-200 pb-5"
+  >
+    <input
+      type="radio"
+      name="purchase_type"
+      value="one_time"
+      class="hidden"
+    >
+
+    <div class="flex gap-4 items-start">
+      <!-- Radio -->
+      <span
+        class="w-[18px] h-[18px] border-2 border-black rounded-full flex items-center justify-center mt-1"
+      >
+        <span
+          class="w-[10px] h-[10px] bg-black rounded-full inner-dot hidden "
+        ></span>
+      </span>
+
+      <div>
+        <h4 class="font-semibold text-xl font-bricolage text-black  pb-5">
+          One-time purchase
+        </h4>
+      </div>
+    </div>
+  </label>
+
+</div>
+
+
+      
+        <div class="text-5xl py-5 text-gray-700">
+           {{ product.price | money }}
+        </div>
+       <form method="post" action="/cart/add" class="w-full py-10 text-center mx-auto ">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+              <span class="font-bricolage text-white text-sm uppercase font-light text-center">Add to cart</span>
+            </button>
+        </form>
+        
+
+      </div>
         
 
   {% else %}
@@ -64,6 +170,20 @@
 
 </div>
 
+<script>
+  document.querySelectorAll('.purchase-option').forEach(option => {
+    option.addEventListener('click', () => {
+      document.querySelectorAll('.purchase-option').forEach(o => {
+        o.classList.remove('is-selected');
+        o.querySelector('.inner-dot')?.classList.add('hidden');
+      });
+
+      option.classList.add('is-selected');
+      option.querySelector('input').checked = true;
+      option.querySelector('.inner-dot')?.classList.remove('hidden');
+    });
+  });
+</script>
 
 <script>
     let currentSlide = 0;

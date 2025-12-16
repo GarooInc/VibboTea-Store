@@ -8,21 +8,24 @@
     </div>
 
     <div class="md:w-1/2 w-full grid grid-cols-3 md:gap-8 gap-3 pt-5 h-full">
-       <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option is-selected cursor-pointer" data-index="0">
+            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+              items-center justify-center drink-option is-hot is-selected cursor-pointer" data-index="0">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_hot' %}
             </div>
             <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
             </div>
 
-            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option cursor-pointer" data-index="1">
+            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+              items-center justify-center drink-option is-cold cursor-pointer" data-index="1">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_cold' %}
             </div>
             <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Cold</p>
             </div>
 
-            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 items-center justify-center drink-option cursor-pointer" data-index="2">
+            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+              items-center justify-center drink-option is-mocktail cursor-pointer" data-index="2">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_mocktail' %}
             </div>
@@ -58,7 +61,8 @@
                             >
                         </div>
 
-                       <p class="font-bricolage mt-3 text-[1.5vw] text-center min-h-[3.5em] leading-snug overflow-hidden px-10">
+                       <p class="font-bricolage mt-3 text-[1.5vw] text-center min-h-[3.5em] 
+                        leading-snug overflow-hidden px-10">
                             {{ text }}
                         </p>
                     </div>
@@ -112,15 +116,26 @@
 </div>
 
 <style>
-  .drink-option.is-selected {
-    background-color: #FAB801; 
-  }
-  .drink-option {
-  transition: background-color 0.3s ease;
+.drink-option {
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .drink-option.is-selected {
   transform: scale(1.05);
 }
+
+.drink-option.is-hot.is-selected {
+  background-color: #FAB801; 
+}
+
+.drink-option.is-cold.is-selected {
+  background-color: #49B9FF; 
+}
+
+.drink-option.is-mocktail.is-selected {
+  background-color: #6CAC48; 
+}
+
 .how-block {
     display: none;
   }
