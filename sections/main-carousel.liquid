@@ -37,7 +37,7 @@
 <section
   class="relative w-full  pt-4"
   x-data="carousel({
-    autoplay: {{ section.settings.autoplay }},
+    autoplay: {{ false }},
     interval: {{ section.settings.interval | default: 5000 }},
     count: {{ products_count }}
   })"
@@ -92,15 +92,16 @@
     </div>
 
     <!-- Flechas Desktop -->
-    <div class="flex items-center justify-between absolute inset-0 px-6 ">
-      <button onclick="slidePrev()" class="-translate-x-5 scale-120">
+    <div class="flex items-center justify-between absolute inset-0 px-6 pointer-events-none">
+      <button onclick="slidePrev()" class="-translate-x-5 scale-120 pointer-events-auto">
         {% render 'arrow-slidder2' %}
       </button>
 
-      <button onclick="slideNext()" class="translate-x-5 scale-120">
+      <button onclick="slideNext()" class="translate-x-5 scale-120 pointer-events-auto">
         {% render 'arrow-slidder' %}
       </button>
     </div>
+
   </div>
 
  <!-- Mobile: 1 imagen visible -->
