@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start md:pt-30 pt-20 md:px-15">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 items-center  md:px-15 ">
   {% if product %}
     {% if product.media.size > 1 %}
 
@@ -52,9 +52,10 @@
 
        
     {% endif %}
-     <div class="product-info w-full md:pt-50">
-        <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">{{ product.title }}</h1>
-        <p class="prose text-black font-bricolage pt-4">
+     <div class="product-info w-full md:pt-50 px-4">
+        <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
+          {{ product.title }}</h1>
+        <p class="prose text-xs text-black font-bricolage pt-4">
             {{ product.description }}
         </p>
         {% comment %} variantes {% endcomment %}
@@ -78,11 +79,11 @@
                 data-compare="{{ variant.compare_at_price | money }}"
                 data-compare-raw="{{ variant.compare_at_price }}"
               >
-                <p class="font-bricolage md:text-[1.3vw] text-[4.5vw] pt-3">
+                <p class="font-bricolage md:text-2xl text-md pt-3">
                   {{ servings }} servings
                 </p>
 
-                <p class="font-bricolage md:text-[1vw] text-[3.5vw] py-2">
+                <p class="font-bricolage md:text-xl text-sm py-2">
                   {{ grams }} grams
                 </p>
               </div>
@@ -94,7 +95,7 @@
       
 
       {% comment %} precio {% endcomment %}
-      <div id="priceWrapper" class="py-10 flex items-center gap-4 transition-all duration-300 min-h-[10vw]">
+      <div id="priceWrapper" class="py-10 flex items-center gap-4 transition-all duration-300 md:min-h-[10vw] ">
         {% if first_variant.compare_at_price > first_variant.price %}
           <span id="comparePrice" class="text-3xl md:text-4xl text-gray-400 line-through">
             {{ first_variant.compare_at_price | money }}
