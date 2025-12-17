@@ -31,7 +31,8 @@
       {% assign coll = collection %}
     {% endif %}
 
-    {% assign products_count = coll.products_count | default: 0 %}
+    {% assign products_count = section.settings.limit | default: coll.products_count %}
+    
 
 <section
   class="relative w-full  pt-4"
@@ -45,7 +46,9 @@
 >
   <!-- Desktop: 3 imágenes visibles -->
   <div class="hidden md:block relative overflow-hidden py-15 ">
-    <div class="flex transition-transform duration-500 ease-out" :style="`transform: translateX(-${index * 33.33}%)`">
+    <div id="sliderTrack"
+      class="flex transition-transform duration-500 ease-out" 
+      :style="`transform: translateX(-${index * 33.33}%)`">
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full md:w-[33%] px-10">
@@ -58,7 +61,7 @@
                     width="{{ product.featured_media.width }}"
                     height="{{ product.featured_media.height }}"
                     loading="lazy"
-                    class="w-full h-auto object-cover hover:scale-105 transition-transform duration-350"
+                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
                   >
                 </div>
                
@@ -89,21 +92,13 @@
     </div>
 
     <!-- Flechas Desktop -->
-    <div class="flex items-center justify-between absolute inset-0 pointer-events-none px-6 ">
-      <button
-        @click="prev()"
-        class="pointer-events-auto h-12 w-12 pb-30"
-        aria-label="Slides anteriores"
-      >
-        {% render 'arrow-left'%}
+    <div class="flex items-center justify-between absolute inset-0 px-6 ">
+      <button onclick="slidePrev()" class="-translate-x-5 scale-120">
+        {% render 'arrow-slidder2' %}
       </button>
-      <button
-        @click="next()"
-        class="pointer-events-auto h-12 w-12 pb-30"
-        aria-label="Siguientes slides"
-      >
-        {% render 'arrow-right'%}
 
+      <button onclick="slideNext()" class="translate-x-5 scale-120">
+        {% render 'arrow-slidder' %}
       </button>
     </div>
   </div>
@@ -112,7 +107,7 @@
 <div class="md:hidden relative ">
   <!-- Contenedor del carrusel -->
   <div class="relative overflow-hidden h-[630px] ">
-      <div
+      <div id="sliderTrackMobile"
         class="flex transition-transform duration-1000 ease-out "
         :style="`transform: translateX(-${index * 100}%)`" >
       {% if coll %}
@@ -155,140 +150,68 @@
 
 
   <!-- Flechas Mobile -->
-  <div class="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
-    <button
-      @click="prev()"
-      class="pointer-events-auto -translate-y-20 rounded-full "
-      aria-label="Anterior"
-    >
-      {% render 'arrow-left' %}
+  <div class="absolute inset-0 flex items-center justify-between px-">
+    <button onclick="slidePrevMobile()" class="-translate-y-20">
+      {% render 'arrow-slidder2' %}
     </button>
 
-    <button
-      @click="next()"
-      class="pointer-events-auto -translate-y-20 rounded-full "
-      aria-label="Siguiente"
-    >
-      {% render 'arrow-right' %}
+    <button onclick="slideNextMobile()" class="-translate-y-20">
+      {% render 'arrow-slidder' %}
     </button>
+
   </div>
 </div>
 
   
 </section>
 
+
 <script>
-  function carousel({ autoplay = false, interval = 5000, count = 0 }) {
-    return {
-      index: 0,
-      timer: null,
+  let currentSlide = 0;
+  let currentSlideMobile = 0;
 
-      get isMobile() {
-        return window.innerWidth < 768;
-      },
-      get maxIndex() {
-        // Desktop muestra 3; Mobile muestra 1
-        return this.isMobile ? Math.max(0, count - 1) : Math.max(0, count - 3);
-      },
-      clamp() {
-        if (count <= 0) {
-          this.index = 0;
-          return;
-        }
-        if (this.index < 0) this.index = 0;
-        if (this.index > this.maxIndex) this.index = this.maxIndex;
-      },
+  function slideNext() {
+    const track = document.getElementById("sliderTrack");
+    if (!track) return;
 
-      init() {
-        this.clamp();
+    const slides = track.children.length;
+    currentSlide = (currentSlide + 1 ) % (slides-2);
 
-        if (autoplay && count > 1) {
-          this.start();
-          this.$el.addEventListener('mouseenter', () => { if (!this.isMobile) this.stop(); });
-          this.$el.addEventListener('mouseleave', () => { if (!this.isMobile) this.start(); });
-        }
+    track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+  }
 
-        const onResize = () => this.clamp();
-        window.addEventListener('resize', onResize);
+  function slidePrev() {
+    const track = document.getElementById("sliderTrack");
+    if (!track) return;
 
-        // Swipe para mobile
-        let startX = null;
-        this.$el.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-        }, { passive: true });
-        this.$el.addEventListener('touchend', (e) => {
-          if (startX === null) return;
-          const dx = e.changedTouches[0].clientX - startX;
-          if (Math.abs(dx) > 50) {
-            dx < 0 ? this.next() : this.prev();
-          }
-          startX = null;
-        }, { passive: true });
+    const slides = track.children.length;
+    currentSlide = (currentSlide - 1 ) % (slides-2);
 
-        // Teclado (izq/der)
-        this.$el.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight') this.next();
-          if (e.key === 'ArrowLeft') this.prev();
-        });
+    track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+  }
 
-        // Pausar autoplay al cambiar de pestaña
-        const onVisibility = () => {
-          if (!autoplay) return;
-          if (document.hidden) this.stop();
-          else this.start();
-        };
-        document.addEventListener('visibilitychange', onVisibility);
+  function slideNextMobile() {
+    const track = document.getElementById("sliderTrackMobile");
+    if (!track) return;
 
-        this.$watch?.('index', () => this.clamp());
-      },
+    const slides = track.children.length;
+    currentSlideMobile = (currentSlideMobile + 1) % slides;
 
-      // Visibilidad de flechas
-      canGoPrev() {
-        return this.index > 0;
-      },
-      canGoNext() {
-        return this.index < this.maxIndex;
-      },
+    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
+  }
 
-      // Navegación SIN loop
-      go(i) {
-        this.index = Math.max(0, Math.min(i, this.maxIndex));
-      },
-      next() {
-        if (this.index < this.maxIndex) {
-          this.index++;
-        } else {
-          this.index = 0; 
-        }
-      },
-      prev()   if (this.index > 0) {
-            this.index--;
-          } else {
-            this.index = this.maxIndex; 
-          }
-        },
+  function slidePrevMobile() {
+    const track = document.getElementById("sliderTrackMobile");
+    if (!track) return;
 
-      // Autoplay
-      start() {
-        this.stop();
-        if (count <= 1) return;
-        this.timer = setInterval(() => {
-          if (this.canGoNext()) {
-            this.index++;
-          } else {
-            this.go(0);
-          }
-        }, interval);
-      },
-      stop() {
-        if (this.timer) {
-          clearInterval(this.timer);
-          this.timer = null;
-        }
-      }
-    }
+    const slides = track.children.length;
+    currentSlideMobile = (currentSlideMobile - 1 + slides) % slides;
+
+    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
   }
 </script>
+
+
 
 {% schema %}
 {

@@ -73,16 +73,16 @@
   </div>
 
   <!-- Mobile: 1 imagen visible -->
-  <div class="md:hidden relative px-5 overflow-hidden ">
-    <div class="relative overflow-hidden h-[400px]">
+  <div class="md:hidden relative px-5 overflow-hidden  ">
+    <div class="relative overflow-hidden md:h-[500px] min-h-full">
       {% for block in section.blocks %}
         {% assign img = block.settings.image %}
         <figure
           x-show="index === {{ forloop.index0 }}"
-          x-transition:enter="transition ease-out duration-500"
+          x-transition:enter="transition ease-out duration-10"
           x-transition:enter-start="opacity-0"
           x-transition:enter-end="opacity-100"
-          x-transition:leave="transition ease-in duration-500"
+          x-transition:leave="transition ease-in duration-10"
           x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0"
         >
@@ -92,7 +92,7 @@
               alt="{{ block.settings.alt | escape }}"
               width="{{ img.width }}"
               height="{{ img.height }}"
-              class="w-full md:h-[300px] h-[600px] object-cover select-none rounded-lg"
+              class="w-full md:h-[300px] min-h-full object-cover select-none rounded-lg"
               loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
             >
              
