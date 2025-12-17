@@ -606,8 +606,20 @@
   .min-h-\[90vh\] {
     min-height: 90vh;
   }
+  .min-h-\[100vw\] {
+    min-height: 100vw;
+  }
+  .min-h-\[110vw\] {
+    min-height: 110vw;
+  }
+  .min-h-\[120vw\] {
+    min-height: 120vw;
+  }
   .min-h-\[300px\] {
     min-height: 300px;
+  }
+  .min-h-\[400px\] {
+    min-height: 400px;
   }
   .min-h-\[600px\] {
     min-height: 600px;
@@ -1856,6 +1868,11 @@
     &:focus {
       --tw-outline-style: none;
       outline-style: none;
+    }
+  }
+  .sm\:min-h-\[110vw\] {
+    @media (width >= 40rem) {
+      min-height: 110vw;
     }
   }
   .sm\:grid-cols-2 {

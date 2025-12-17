@@ -73,40 +73,38 @@
   </div>
 
   <!-- Mobile: 1 imagen visible -->
-  <div class="md:hidden relative px-5 overflow-hidden  ">
-    <div class="relative overflow-hidden md:h-[500px] min-h-full">
-      {% for block in section.blocks %}
-        {% assign img = block.settings.image %}
-        <figure
-          x-show="index === {{ forloop.index0 }}"
-          x-transition:enter="transition ease-out duration-10"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition ease-in duration-10"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-        >
-          {% if img %}
-            <img
-              src="{{ img | img_url: '2000x2000' }}"
-              alt="{{ block.settings.alt | escape }}"
-              width="{{ img.width }}"
-              height="{{ img.height }}"
-              class="w-full md:h-[300px] min-h-full object-cover select-none rounded-lg"
-              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-            >
-             
-          {% else %}
-            <div class="w-full h-[300px] bg-gray-100 grid place-items-center rounded-lg">
-              <span class="text-gray-500">Sube una imagen</span>
-            </div>
-          {% endif %}
-        </figure>
-      {% endfor %}
-    </div>
-
-    
+  <div class="md:hidden relative px-5 overflow-hidden">
+    <div class="relative overflow-hidden md:h-[500px] sm:min-h-[110vw] min-h-[100vw] ">
+    {% for block in section.blocks %}
+      {% assign img = block.settings.image %}
+      <figure
+        x-show="index === {{ forloop.index0 }}"
+        x-transition.opacity.duration.200ms
+        class="absolute inset-0"
+        x-cloak
+      >
+        {% if img %}
+          <img
+            src="{{ img | img_url: '2000x2000' }}"
+            alt="{{ block.settings.alt | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            class="w-full h-full object-cover select-none rounded-lg"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            draggable="false"
+          >
+        {% else %}
+          <div class="w-full h-full bg-gray-100 grid place-items-center rounded-lg">
+            <span class="text-gray-500">Sube una imagen</span>
+          </div>
+        {% endif %}
+      </figure>
+    {% endfor %}
   </div>
+
+</div>
+
+
 </section>
 
 <script>
