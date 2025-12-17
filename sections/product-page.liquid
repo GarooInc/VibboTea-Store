@@ -1,4 +1,5 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 items-center  md:px-15 ">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-40 pt-25">
+
   {% if product %}
     {% if product.media.size > 1 %}
 
@@ -8,27 +9,33 @@
       <div class="flex transition-transform duration-500" id="sliderTrack">
         {% for media in product.media %}
           {% if media.media_type == "image" %}
-            <img
-              src="{{ media | image_url: width: 1200 }}"
-              alt="{{ media.alt | escape }}"
-              class="w-full  shrink-0 object-cover rounded-xl "
-              width="{{ media.width }}"
-              height="{{ media.height }}"
-            />
+            
+            <div class="w-full shrink-0 aspect-square overflow-hidden rounded-xl">
+              <img
+                src="{{ media | image_url: width: 1200 }}"
+                alt="{{ media.alt | escape }}"
+                class="w-full h-full object-cover object-[center_55%]"
+                width="{{ media.width }}"
+                  height="{{ media.height }}"
+              />
+            </div>
+
+
           {% endif %}
         {% endfor %}
       </div>
 
+
       <!-- BOTONES -->
       <button 
-        class="absolute left-2 top-1/2 -translate-y-1/2   
+        class="absolute left-0 top-1/2 -translate-y-1/2   
         text-black px-3 py-2  "
         onclick="slidePrev()">
         {% render 'arrow-slidder2' %}
       </button>
 
       <button 
-        class="absolute right-2 top-1/2 -translate-y-1/2  
+        class="absolute right-0 top-1/2 -translate-y-1/2  
         text-black px-3 py-2 "
         onclick="slideNext()">
         {% render 'arrow-slidder' %}
@@ -52,7 +59,7 @@
 
        
     {% endif %}
-     <div class="product-info w-full md:pt-50 px-4">
+     <div class="product-info w-full  px-4">
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
           {{ product.title }}</h1>
         <p class="prose text-xs text-black font-bricolage pt-4">
@@ -112,14 +119,14 @@
       </div>
 
 
-      <form method="post" action="/cart/add" class="w-full md:py-10 pb-10 text-center mx-auto">
+      <form method="post" action="/cart/add" class="w-full md:py-10 items-end text-center mx-auto">
         <input type="hidden" name="id" id="variantInput"
               value="{{ first_variant.id }}">
 
         <button type="submit"
-          class="bg-black flex items-center justify-center w-full rounded-3xl py-3
+          class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
                 hover:bg-gray-800 transition-colors">
-          <span class="font-bricolage text-white text-sm uppercase font-light">
+          <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
             Add to cart
           </span>
         </button>

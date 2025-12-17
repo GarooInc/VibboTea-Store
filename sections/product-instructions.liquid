@@ -7,29 +7,29 @@
       </h2>
     </div>
 
-    <div class="md:w-1/2 w-full grid grid-cols-3 md:gap-8 gap-3 pt-5 h-full">
-            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+    <div class="md:w-1/2 w-full grid grid-cols-3 xl:gap-8 gap-3 pt-5 h-full">
+            <div class="bg-[#F5F5F5] rounded-xl min-h-[6vw] w-full grid grid-cols-2 
               items-center justify-center drink-option is-hot is-selected cursor-pointer" data-index="0">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_hot' %}
             </div>
-            <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Hot</p>
+            <p class="font-bricolage text-left xl:text-xl text-sm">Hot</p>
             </div>
 
-            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+            <div class="bg-[#F5F5F5] rounded-xl min-h-[6vw] w-full grid grid-cols-2 
               items-center justify-center drink-option is-cold cursor-pointer" data-index="1">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_cold' %}
             </div>
-            <p class="font-bricolage text-left md:text-[1.3vw] text-[3.5vw]">Cold</p>
+            <p class="font-bricolage text-left xl:text-xl text-sm">Cold</p>
             </div>
 
-            <div class="bg-[#F5F5F5] rounded-2xl min-h-[6vw] w-full grid grid-cols-2 
+            <div class="bg-[#F5F5F5] rounded-xl min-h-[6vw] w-full grid grid-cols-2 
               items-center justify-center drink-option is-mocktail cursor-pointer" data-index="2">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
                 {% render 'icono_mocktail' %}
             </div>
-            <p class="font-bricolage text-left md:text-[1.3vw] text-[2.8vw] ">Mocktail</p>
+            <p class="font-bricolage text-left xl:text-xl text-xs">Mocktail</p>
             </div>
 
     </div>
@@ -51,18 +51,18 @@
 
                 {% if gif %}
                     <div class="flex flex-col items-center">
-                        <div class="relative h-auto w-full overflow-hidden rounded-2xl pb-5">
+                        <div class="relative h-auto w-full overflow-hidden rounded-xl pb-5">
                             <img
                             src="{{ gif | image_url: width: 1200 }}"
                             alt=""
-                            class="w-full h-auto object-cover rounded-2xl"
+                            class="w-full h-auto object-cover rounded-xl"
                             width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"
                             >
                         </div>
 
-                       <p class="font-bricolage mt-3 text-[1.5vw] text-center min-h-[3.5em] 
-                        leading-snug overflow-hidden px-10">
+                       <p class="font-bricolage mt-3 xl:text-xl text-sm text-center min-h-[3.5em] 
+                        leading-snug overflow-hidden xl:px-10">
                             {{ text }}
                         </p>
                     </div>
@@ -99,7 +99,8 @@
                             >
                             </div>
 
-                            <p class="font-bricolage pt-2 text-lg text-center h-[3.5em] leading-snug overflow-hidden px-5">
+                            <p class="font-bricolage pt-2 text-lg text-center h-[3.5em]
+                               leading-snug overflow-hidden px-5">
                                 {{ text }}
                             </p>
                         </div>
@@ -122,7 +123,7 @@
   style="width: 100vw; margin-left: calc(50% - 50vw); background-color:#FAB801;"
 >
 
-  <div class="mx-auto w-full px-6 md:px-35">
+  <div class="mx-auto w-full px-6 xl:px-35">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 justify-center w-full">
 
         <div class="flex flex-col items-center text-center md:gap-4 py-2">
@@ -134,7 +135,7 @@
             Enjoy
           </h3>
 
-          <p class="text-black font-medium text-[0.9rem] font-bricolage md:text-[1rem] lg:px-15">
+          <p class="text-black font-medium  md:text-md text-[0.9rem] font-bricolage lg:px-15">
             In the morning or during the day.
           </p>
         </div>
@@ -149,7 +150,7 @@
             Ideal
           </h3>
 
-          <p class="text-black font-medium text-[0.9rem] font-bricolage md:text-[1rem] lg:px-15">
+          <p class="text-black font-medium  md:text-md text-[0.9rem] font-bricolage  lg:px-15">
             Hot or cold with ice.
           </p>
         </div>
@@ -165,7 +166,7 @@
             Add
           </h3>
 
-          <p class="text-black font-medium text-[0.9rem] font-bricolage md:text-[1rem] lg:px-15">
+          <p class="text-black font-medium md:text-md text-[0.9rem] font-bricolage lg:px-15">
             More than 2 grams for higher flavor.
           </p>
         </div>
@@ -180,7 +181,7 @@
             Consistency
           </h3>
 
-          <p class="text-black font-medium text-[0.9rem] font-bricolage md:text-[1rem] lg:px-15">
+          <p class="text-black font-medium md:text-md text-[0.9rem] font-bricolage lg:px-15">
             Drink every day for an improved routine.
           </p>
         </div>
