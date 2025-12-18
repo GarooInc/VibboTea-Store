@@ -1,5 +1,5 @@
 <section
-  class="w-screen h-full bg-[#F5F5F5] flex pt-30 py-20"
+  class="w-screen h-full bg-[#F5F5F5] flex md:pt-30 pt-20 py-20"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);"
 >
   <div class="w-full px-6 md:px-30 font-bricolage flex flex-col flex-1 ">
@@ -15,20 +15,21 @@
 
       <div class="grid grid-cols-1 gap-10 flex-1 w-full">
 
-        <div class="md:col-span-2 space-y-6 bg-white rounded-xl px-10">
+        <div class="md:col-span-2 md:space-y-6 bg-white rounded-xl md:px-10 px-4">
 
-          <div class="grid grid-cols-[2fr_1fr_1fr_1fr] py-10"> 
-            <h3 class="text-2xl font-bold text=left pl-10 ">Product</h3>
-            <h3 class="text-2xl font-bold text-center">Quantity</h3>
-            <h3 class="text-2xl font-bold text-center">Total</h3>
-            <h3 class="text-2xl font-bold text-center"></h3>
+          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr] md:py-10 pt-5"> 
+            <h3 class="md:text-2xl text-md font-bold text=left md:pl-10 ">Product</h3>
+            <h3 class="md:text-2xl font-bold text-center">Quantity</h3>
+            <h3 class="md:text-2xl font-bold text-center">Total</h3>
+            <h3 class="md:text-2xl font-bold text-center"></h3>
           </div>
           {% for item in cart.items %}
-          <div class="grid grid-cols-[2fr_1fr_1fr_1fr] py-10 px-5 items-center ">
+          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr]
+             md:py-10 py-3 md:px-5 items-center ">
 
             
-            <div class="flex flex-row items-center py-5">
-                <div class="w-44 h-44 overflow-hidden shrink-0 rounded-lg">
+            <div class="flex md:flex-row flex-col md:items-center py-5">
+                <div class="md:w-44 md:h-44 w-24 h-24 overflow-hidden shrink-0 rounded-lg">
                   <img
                     src="{{ item.image | image_url: width: 300 }}"
                     alt=""
@@ -40,8 +41,8 @@
                 </div>
                 
 
-                <div class="flex-1 px-10">
-                  <h3 class="text-xl font-medium">{{ item.product.title }}</h3>
+                <div class="flex-1 md:px-10">
+                  <h3 class="md:text-xl text-sm font-medium">{{ item.product.title }}</h3>
                 </div>
 
 
@@ -49,7 +50,7 @@
             
             {% comment %} cantidad  {% endcomment %}
             <div class="justify-self-center self-center">
-              <div class="flex items-center justify-between w-28 h-10 border border-black rounded-full px-2">
+              <div class="flex items-center justify-between md:w-28 md:h-10 w-20 h-10 border border-black rounded-full px-2">
                 
                 <button
                   type="button"
@@ -99,7 +100,7 @@
             </div>
             
             {% comment %} remove {% endcomment %}
-            <div class="justify-self-center self-center">
+            <div class="hidden md:block justify-self-center self-center">
               <button
                 type="submit"
                 name="updates[{{ item.key }}]"
@@ -118,7 +119,7 @@
 
 
         {% comment %} total del carrito y checkout {% endcomment %}
-        <div class="md:col-span-2 space-y-6 bg-white rounded-xl px-10 py-10 min-h-50">
+        <div class="md:col-span-2 space-y-6 bg-white rounded-xl md:px-10 px-5 py-10 min-h-50">
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
@@ -161,7 +162,7 @@
               {% comment %} Envío {% endcomment %}
               <div class="flex justify-between mb-4">
                 <span class="text-lg text-gray-600">Shipping</span>
-                <span class="text-lg">Calculated at checkout</span>
+                <span class="md:text-lg text-xs items-center">Calculated at checkout</span>
               </div>
 
             </div>
@@ -171,7 +172,7 @@
 
               {% comment %} Total {% endcomment %}
               <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl md:text-2xl font-semibold">
+                <h2 class="text-3xl md:text-2xl font-semibold py-2">
                   Total
                 </h2>
                 <span class="text-3xl md:text-2xl font-bold">
@@ -183,7 +184,7 @@
               <button
                 type="submit"
                 name="checkout"
-                class="w-full bg-black text-white py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition"
+                class="w-full bg-black text-white md:py-4 py-2  rounded-full text-lg font-medium hover:bg-gray-800 transition"
               >
                 Checkout
               </button>
@@ -208,7 +209,7 @@
     {% else %}
 
     <!-- EMPTY CART -->
-    <div class="flex-1 flex flex-col items-center justify-center text-center w-full">
+    <div class="flex-1 flex flex-col items-center justify-center text-center w-full min-h-100">
       <p class="text-xl mb-6">Your cart is empty</p>
       <a
         href="{{ routes.all_products_collection_url }}"
