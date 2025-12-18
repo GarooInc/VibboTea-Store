@@ -11,10 +11,17 @@
   "sections": {
     "main": {
       "type": "cart",
+      "disabled": true,
+      "settings": {}
+    },
+    "shopping_cart_defWJm": {
+      "type": "shopping-cart",
+      "name": "Shopping cart",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "shopping_cart_defWJm"
   ]
 }
