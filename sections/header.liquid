@@ -55,19 +55,44 @@
       
     </div>
       <!-- MOBILE MENU -->
-      <div id="mobile-menu" class="lg:hidden hidden fixed top-0 left-0 w-full h-screen bg-black px-8 z-50">
+    <div 
+        id="mobile-menu" 
+        class="lg:hidden hidden fixed inset-0 w-full h-screen bg-black px-8 z-50 pointer-events-auto"
+      >
+        <div class="flex justify-start gap-2 pt-10 relative z-50 pointer-events-auto">
+
+            
+            
+            <a href="{{ routes.account_url }}"
+              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
+              aria-label="User">
+              {%- render 'user' -%}
+            </a>
+            <a href="{{ routes.cart_url }}"
+              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
+              aria-label="Cart">
+              {%- render 'iconCart' -%}
+            </a>
+            <a href="{{ routes.all_products_collection_url }}" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
+              aria-label="Instagram">
+              {%- render 'search' -%}
+            </a>
+        </div>
+
 
         <!-- BOTÓN CERRAR -->
         <button 
           type="button"
           aria-label="Close menu"
           onclick="toggleMobileMenu()"
-          class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-white"
+          class="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center text-white text-3xl"
         >
           ✕
         </button>
 
-        <nav class="flex flex-col space-y-4 justify-center items-center h-full">
+
+        <nav class="flex flex-col justify-center items-center h-full -translate-y-15">
           {% for link in section.settings.menu.links %}
             <a 
               href="{{ link.url }}" 
@@ -142,13 +167,14 @@
 </div>
 
  
-
-
 </header>
+
+
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
+    document.body.classList.toggle('overflow-hidden');
   }
 </script>
 

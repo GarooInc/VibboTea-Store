@@ -850,12 +850,24 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .-translate-y-10 {
+    --tw-translate-y: calc(var(--spacing) * -10);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-15 {
+    --tw-translate-y: calc(var(--spacing) * -15);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .-translate-y-20 {
     --tw-translate-y: calc(var(--spacing) * -20);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-25 {
     --tw-translate-y: calc(var(--spacing) * -25);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-30 {
+    --tw-translate-y: calc(var(--spacing) * -30);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-y-2 {
