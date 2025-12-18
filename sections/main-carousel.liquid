@@ -151,16 +151,16 @@
 
 
   <!-- Flechas Mobile -->
-  <div class="absolute inset-0 flex items-center justify-between px-">
-    <button onclick="slidePrevMobile()" class="-translate-y-20">
+  <div class="absolute inset-0 flex items-center justify-between pointer-events-none">
+    <button onclick="slidePrevMobile()" class="-translate-y-20 pointer-events-auto">
       {% render 'arrow-slidder2' %}
     </button>
 
-    <button onclick="slideNextMobile()" class="-translate-y-20">
+    <button onclick="slideNextMobile()" class="-translate-y-20 pointer-events-auto">
       {% render 'arrow-slidder' %}
     </button>
-
   </div>
+
 </div>
 
   

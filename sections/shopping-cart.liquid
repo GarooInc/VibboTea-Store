@@ -1,8 +1,8 @@
 <section
-  class="w-screen h-screen bg-[#F5F5F5] flex pt-30"
+  class="w-screen h-full bg-[#F5F5F5] flex pt-30 py-20"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);"
 >
-  <div class="w-full px-6 md:px-16 font-bricolage flex flex-col flex-1">
+  <div class="w-full px-6 md:px-30 font-bricolage flex flex-col flex-1 ">
 
     <!-- TITLE -->
     <h1 class="text-3xl md:text-4xl font-semibold text-black mb-12 py-10">
@@ -11,42 +11,191 @@
 
     {% if cart.item_count > 0 %}
 
-    <form action="{{ routes.cart_url }}" method="post" class="flex-1 flex flex-col">
+    <form action="{{ routes.cart_update_url }}" method="post" class="flex-1 flex flex-col">
 
       <div class="grid grid-cols-1 gap-10 flex-1 w-full">
 
-        <div class="md:col-span-2 space-y-6">
+        <div class="md:col-span-2 space-y-6 bg-white rounded-xl px-10">
 
+          <div class="grid grid-cols-[2fr_1fr_1fr_1fr] py-10"> 
+            <h3 class="text-2xl font-bold text=left pl-10 ">Product</h3>
+            <h3 class="text-2xl font-bold text-center">Quantity</h3>
+            <h3 class="text-2xl font-bold text-center">Total</h3>
+            <h3 class="text-2xl font-bold text-center"></h3>
+          </div>
           {% for item in cart.items %}
-          <div class="flex gap-6 bg-white rounded-xl p-6 items-center w-full">
+          <div class="grid grid-cols-[2fr_1fr_1fr_1fr] py-10 px-5 items-center ">
 
-            <div class="w-35 h-40 shrink-0">
-              <img
-                src="{{ item.image | image_url: width: 300 }}"
-                class="w-full h-full object-cover rounded-lg "
-                width="{{ item.image.featured_media.width }}"
-                height="{{ item.image.featured_media.height }}"
+            
+            <div class="flex flex-row items-center py-5">
+                <div class="w-44 h-44 overflow-hidden shrink-0 rounded-lg">
+                  <img
+                    src="{{ item.image | image_url: width: 300 }}"
+                    alt=""
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    width="{{ item.image.featured_media.width }}"
+                    height="{{ item.image.featured_media.height }}"
+                  >
+                </div>
+                
+
+                <div class="flex-1 px-10">
+                  <h3 class="text-xl font-medium">{{ item.product.title }}</h3>
+                </div>
+
+
+            </div>
+            
+            {% comment %} cantidad  {% endcomment %}
+            <div class="justify-self-center self-center">
+              <div class="flex items-center justify-between w-28 h-10 border border-black rounded-full px-2">
+                
+                <button
+                  type="button"
+                  onclick="
+                    this.nextElementSibling.stepDown();
+                    this.nextElementSibling.dispatchEvent(new Event('change'));
+                  "
+                  class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
+                >
+                  −
+                </button>
+
+                <input
+                  type="number"
+                  name="updates[{{ item.key }}]"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  onchange="this.form.submit()"
+                  class=" w-8 h-full text-center outline-none border-0 bg-transparent 
+                      font-medium leading-none appearance-none
+                        [&::-webkit-inner-spin-button]:appearance-none
+                        [&::-webkit-outer-spin-button]:appearance-none"
+                >
+
+
+                <button
+                  type="button"
+                  onclick="
+                    this.previousElementSibling.stepUp();
+                    this.previousElementSibling.dispatchEvent(new Event('change'));
+                  "
+                  class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
+                >
+                  +
+                </button>
+
+
+              </div>
+            </div>
+
+
+            {% comment %} total {% endcomment %}
+            <div class="justify-self-center self-center">
+              <p class="text-2xl font-semibold">
+                {{ item.final_line_price | money }}
+              </p>
+            </div>
+            
+            {% comment %} remove {% endcomment %}
+            <div class="justify-self-center self-center">
+              <button
+                type="submit"
+                name="updates[{{ item.key }}]"
+                value="0"
+                class="cursor-pointer"
               >
+                {% render 'trash' %}
+              </button>
             </div>
-
-            <div class="flex-1">
-              <h3 class="text-lg font-medium">{{ item.product.title }}</h3>
-            </div>
-
-            <input
-              type="number"
-              name="updates[]"
-              value="{{ item.quantity }}"
-              min="0"
-              class="w-16 border rounded-md text-center"
-            >
-
-            <a href="{{ item.url_to_remove }}" class=" text-sm">
-              Remove
-            </a>
+            
 
           </div>
           {% endfor %}
+
+        </div>
+
+
+        {% comment %} total del carrito y checkout {% endcomment %}
+        <div class="md:col-span-2 space-y-6 bg-white rounded-xl px-10 py-10 min-h-50">
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- izq -->
+            <div>
+
+              <h2 class="text-3xl md:text-2xl font-semibold text-black mb-8">
+                Order Summary
+              </h2>
+
+              {% comment %} Código de descuento {% endcomment %}
+              <div class="mb-6">
+                <label class="block text-sm mb-2">Discount code</label>
+                <input
+                  type="text"
+                  placeholder="Enter code at checkout"
+                  
+                  class="w-full rounded-2xl px-4 py-3 bg-gray-100 text-gray-500 "
+                >
+              </div>
+
+              {% comment %} Subtotal {% endcomment %}
+              <div class="flex justify-between mb-4">
+                <span class="text-lg text-gray-600">Subtotal</span>
+                <span class="text-lg font-medium">
+                  {{ cart.items_subtotal_price | money }}
+                </span>
+              </div>
+
+              {% comment %} Descuentos {% endcomment %}
+              {% if cart.total_discount > 0 %}
+              <div class="flex justify-between mb-4 text-green-600">
+                <span class="text-lg">Discount</span>
+                <span class="text-lg font-medium">
+                  -{{ cart.total_discount | money }}
+                </span>
+              </div>
+              {% endif %}
+
+              {% comment %} Envío {% endcomment %}
+              <div class="flex justify-between mb-4">
+                <span class="text-lg text-gray-600">Shipping</span>
+                <span class="text-lg">Calculated at checkout</span>
+              </div>
+
+            </div>
+
+            <!-- derecha -->
+            <div class="flex flex-col justify-between">
+
+              {% comment %} Total {% endcomment %}
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl md:text-2xl font-semibold">
+                  Total
+                </h2>
+                <span class="text-3xl md:text-2xl font-bold">
+                  {{ cart.total_price | money }}
+                </span>
+              </div>
+
+              {% comment %} Checkout {% endcomment %}
+              <button
+                type="submit"
+                name="checkout"
+                class="w-full bg-black text-white py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition"
+              >
+                Checkout
+              </button>
+
+              {% comment %} Métodos de pago (opcional) {% endcomment %}
+              <div class="mt-4 text-center text-sm text-gray-500">
+                Secure checkout
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
