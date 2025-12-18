@@ -281,6 +281,9 @@
   .top-3 {
     top: calc(var(--spacing) * 3);
   }
+  .top-6 {
+    top: calc(var(--spacing) * 6);
+  }
   .top-\[1vw\] {
     top: 1vw;
   }
@@ -307,6 +310,9 @@
   }
   .right-3 {
     right: calc(var(--spacing) * 3);
+  }
+  .right-6 {
+    right: calc(var(--spacing) * 6);
   }
   .right-20 {
     right: calc(var(--spacing) * 20);
