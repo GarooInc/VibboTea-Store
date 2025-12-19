@@ -11,10 +11,25 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
+    },
+    "not_found_page_CgqrCe": {
+      "type": "not-found-page",
+      "name": "Not Found Page Section",
+      "settings": {
+        "title": "<p><strong>Coming</strong> soon</p>",
+        "subtitle": "",
+        "button_label": "Volver al inicio",
+        "button_link": "/",
+        "image_left": "shopify://shop_images/bird-404.png",
+        "image_top": "shopify://shop_images/monkey-404.png",
+        "image_right": "shopify://shop_images/leopard-404.png"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "not_found_page_CgqrCe"
   ]
 }
