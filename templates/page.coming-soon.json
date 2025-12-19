@@ -1,0 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "not_found_page_CgqrCe": {
+      "type": "not-found-page",
+      "name": "Not Found Page Section",
+      "settings": {
+        "title": "<p><strong>Coming</strong> soon</p>",
+        "subtitle": "",
+        "button_label": "Volver al inicio",
+        "button_link": "/",
+        "image_left": "shopify://shop_images/bird-404.png",
+        "image_top": "shopify://shop_images/monkey-404.png",
+        "image_right": "shopify://shop_images/leopard-404.png",
+        "image_animation1": "shopify://shop_images/animation-notfound1.png",
+        "image_animation2": "shopify://shop_images/animation-notfound3.png",
+        "image_animation3": "shopify://shop_images/Frame_1321315053_4.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "not_found_page_CgqrCe"
+  ]
+}
