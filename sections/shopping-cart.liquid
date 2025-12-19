@@ -119,27 +119,27 @@
 
 
         {% comment %} total del carrito y checkout {% endcomment %}
-        <div class="md:col-span-2 space-y-6 bg-white rounded-xl md:px-10 px-5 py-10 min-h-50">
+        <div class="md:col-span-2 space-y-6 bg-white rounded-xl md:px-20 px-5 py-10 min-h-50">
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-40">
 
             <!-- izq -->
             <div>
 
-              <h2 class="text-3xl md:text-2xl font-semibold text-black mb-8">
+              <h2 class="text-3xl md:text-2xl font-semibold text-black pb-5">
                 Order Summary
               </h2>
 
               {% comment %} Código de descuento {% endcomment %}
-              <div class="mb-6">
-                <label class="block text-sm mb-2">Discount code</label>
+              {% comment %} <div class="mb-6 roundedfull py-3">
+                <label class="block text-sm mb-2"></label>
                 <input
                   type="text"
-                  placeholder="Enter code at checkout"
+                  placeholder="Discount code"
                   
                   class="w-full rounded-2xl px-4 py-3 bg-gray-100 text-gray-500 "
                 >
-              </div>
+              </div> {% endcomment %}
 
               {% comment %} Subtotal {% endcomment %}
               <div class="flex justify-between mb-4">
@@ -184,15 +184,15 @@
               <button
                 type="submit"
                 name="checkout"
-                class="w-full bg-black text-white md:py-4 py-2  rounded-full text-lg font-medium hover:bg-gray-800 transition"
+                class="w-full bg-black text-white md:py-4 py-2 rounded-full text-lg font-medium
+                      hover:bg-gray-800 transition cursor-pointer"
               >
                 Checkout
               </button>
 
-              {% comment %} Métodos de pago (opcional) {% endcomment %}
-              <div class="mt-4 text-center text-sm text-gray-500">
-                Secure checkout
-              </div>
+
+
+             
 
             </div>
 

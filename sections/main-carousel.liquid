@@ -52,7 +52,7 @@
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full md:w-[33%] px-10">
-            <a href="{{ product.url }}" class="block  w-full ">
+            <a href="{{ product.url }}" class="block w-full">
               {% if product.featured_media %}
                 <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center ">
                   <img
@@ -79,12 +79,21 @@
               </div>
             </a>
 
-            <form method="post" action="{{ routes.cart_add_url }}" class=" md:pt-5 md:text-center mx-auto">
+            <form method="post" action="{{ routes.cart_add_url }}" class="md:pt-5 md:text-center mx-auto">
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              <button type="submit" class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
-                <span class="font-bricolage md:text-[0.9vw] text-white text-xl uppercase font-light md:text-center">Add to cart</span>
+
+              <button 
+                type="submit" 
+                class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 
+                      hover:opacity-70 transition-opacity cursor-pointer"
+              >
+                <span class="font-bricolage md:text-[0.9vw]
+                   text-white text-xl uppercase font-light md:text-center">
+                  Add to cart
+                </span>
               </button>
             </form>
+
           </div>
         {% endfor %}
       {% endif %}
@@ -93,11 +102,14 @@
 
     <!-- Flechas Desktop -->
     <div class="flex items-center justify-between absolute inset-0 px-6 pointer-events-none">
-      <button onclick="slidePrev()" class="-translate-x-5 scale-120 pointer-events-auto">
+      <button onclick="slidePrev()" class="-translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
         {% render 'arrow-slidder2' %}
       </button>
 
-      <button onclick="slideNext()" class="translate-x-5 scale-120 pointer-events-auto">
+      
+      
+
+      <button onclick="slideNext()" class="translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
         {% render 'arrow-slidder' %}
       </button>
     </div>
@@ -109,8 +121,8 @@
   <!-- Contenedor del carrusel -->
   <div class="relative overflow-hidden h-[630px] ">
       <div id="sliderTrackMobile"
-        class="flex transition-transform duration-1000 ease-out "
-        :style="`transform: translateX(-${index * 100}%)`" >
+       class="flex transition-transform duration-1000 ease-out "
+       :style="`transform: translateX(-${index * 100}%)`" >
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full">
@@ -138,7 +150,8 @@
             </a>
             <form method="post" action="/cart/add" class="w-full pt-5 px-4 text-center mx-auto ">
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-              <button type="submit" class="bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 hover:bg-gray-800 transition-colors">
+              <button type="submit" class="bg-black flex items-center justify-center w-full
+                 rounded-3xl py-3 md:mt-4 ">
                 <span class="font-bricolage text-white text-sm uppercase font-light text-center">Add to cart</span>
               </button>
             </form>
