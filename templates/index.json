@@ -137,28 +137,28 @@
     "main_universe_section_yaVDzH": {
       "type": "main-universe-section",
       "blocks": {
-        "video_block_FCqA8y": {
-          "type": "video_block",
+        "image_block_N97jME": {
+          "type": "image_block",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "image": "shopify://shop_images/Frame_1321316181_1.png",
             "text": "Rise",
             "button_text": "get started",
             "button_url": ""
           }
         },
-        "video_block_rUkxAB": {
-          "type": "video_block",
+        "image_block_wYcWCn": {
+          "type": "image_block",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "image": "shopify://shop_images/Frame_1321316180_1.png",
             "text": "Reset",
             "button_text": "get started",
             "button_url": ""
           }
         },
-        "video_block_HyHXA4": {
-          "type": "video_block",
+        "image_block_zUCrYL": {
+          "type": "image_block",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/bda62db4eac34038b7fbf59754a8beff.mp4",
+            "image": "shopify://shop_images/Frame_1321316182.png",
             "text": "Rest & \nRelax",
             "button_text": "get started",
             "button_url": ""
@@ -166,9 +166,9 @@
         }
       },
       "block_order": [
-        "video_block_FCqA8y",
-        "video_block_rUkxAB",
-        "video_block_HyHXA4"
+        "image_block_N97jME",
+        "image_block_wYcWCn",
+        "image_block_zUCrYL"
       ],
       "name": "Section Universe",
       "settings": {
