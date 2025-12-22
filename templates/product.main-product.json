@@ -242,7 +242,7 @@
       "name": "Slider Imágenes",
       "settings": {
         "title": "Real Stories, Real Style, Real Energy.",
-        "title_mobile": "Real Stories, Real Style, Real Energy.",
+        "title_mobile": "Real Stories, Real\nStyle, Real Energy.",
         "description_mobile": "Description Mobile",
         "autoplay": true,
         "interval": 5000
