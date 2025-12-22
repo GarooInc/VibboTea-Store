@@ -17,7 +17,7 @@
 
         <div class="md:col-span-2 md:space-y-6 bg-white rounded-xl md:px-10 px-4">
 
-          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr] md:py-10 pt-5"> 
+          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr] md:py-10 pt-5 pb-10"> 
             <h3 class="md:text-2xl text-md font-bold text=left md:pl-10 ">Product</h3>
             <h3 class="md:text-2xl font-bold text-center">Quantity</h3>
             <h3 class="md:text-2xl font-bold text-center">Total</h3>
@@ -28,7 +28,7 @@
              md:py-10 py-3 md:px-5 items-center ">
 
             
-            <div class="flex md:flex-row flex-col md:items-center py-5">
+            <div class="flex md:flex-row flex-col md:items-center ">
                 <div class="md:w-44 md:h-44 w-24 h-24 overflow-hidden shrink-0 rounded-lg">
                   <img
                     src="{{ item.image | image_url: width: 300 }}"
@@ -42,7 +42,22 @@
                 
 
                 <div class="flex-1 md:px-10">
-                  <h3 class="md:text-xl text-sm font-medium">{{ item.product.title }}</h3>
+                  <h3 class="md:text-xl text-sm font-medium">
+                    {{ item.product.title }}
+                  </h3>
+
+                  {% if item.variant.title != 'Default Title' %}
+
+                      {% assign parts = item.variant.title | split: '/' %}
+                      {% assign servings = parts[0] | strip %}
+                      {% assign grams = parts[1] | strip | remove: 'gr' | strip %}
+                    
+                    <p class="text-sm text-gray-500 mt-1">
+                       {{ servings }} servings, {{ grams }} grams
+                    </p>
+                  {% endif %}
+
+                  
                 </div>
 
 
@@ -93,7 +108,6 @@
             </div>
 
 
-            {% comment %} total {% endcomment %}
             <div class="justify-self-center self-center">
               <p class="text-2xl font-semibold">
                 {{ item.final_line_price | money }}
