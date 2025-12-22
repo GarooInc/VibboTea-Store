@@ -29,6 +29,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
                 alt="{{ block.settings.text | escape }}"
                 class="absolute inset-0 w-full h-full object-cover object-center"
                 loading="lazy"
+                width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
               >
             {% endif %}
 

@@ -8,7 +8,7 @@
 <h1>{{ 'cart.title' | t }}</h1>
 
 <form action="{{ routes.cart_url }}" method="post">
-  <table>
+  <table class="pt-40">
     {% for item in cart.items %}
       <tr>
         <td>
@@ -31,7 +31,7 @@
 
 {% schema %}
 {
-  "name": "t:general.cart",
+  "name": "cart prueba",
   "settings": []
 }
 {% endschema %}

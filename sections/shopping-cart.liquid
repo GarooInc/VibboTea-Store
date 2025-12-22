@@ -11,7 +11,7 @@
 
     {% if cart.item_count > 0 %}
 
-    <form action="{{ routes.cart_update_url }}" method="post" class="flex-1 flex flex-col">
+    <form action="{{ routes.cart_url }}" method="post" class="flex-1 flex flex-col">
 
       <div class="grid grid-cols-1 gap-10 flex-1 w-full">
 
@@ -56,7 +56,7 @@
                   type="button"
                   onclick="
                     this.nextElementSibling.stepDown();
-                    this.nextElementSibling.dispatchEvent(new Event('change'));
+                    submitCartForm(this);
                   "
                   class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
                 >
@@ -68,24 +68,25 @@
                   name="updates[{{ item.key }}]"
                   value="{{ item.quantity }}"
                   min="0"
-                  onchange="this.form.submit()"
-                  class=" w-8 h-full text-center outline-none border-0 bg-transparent 
-                      font-medium leading-none appearance-none
+                  class="w-8 h-full text-center outline-none border-0 bg-transparent 
+                        font-medium leading-none appearance-none
                         [&::-webkit-inner-spin-button]:appearance-none
                         [&::-webkit-outer-spin-button]:appearance-none"
-                >
+                />
+
 
 
                 <button
                   type="button"
                   onclick="
                     this.previousElementSibling.stepUp();
-                    this.previousElementSibling.dispatchEvent(new Event('change'));
+                    submitCartForm(this);
                   "
                   class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
                 >
                   +
                 </button>
+
 
 
               </div>
@@ -109,6 +110,7 @@
               >
                 {% render 'trash' %}
               </button>
+
             </div>
             
 
@@ -116,6 +118,9 @@
           {% endfor %}
 
         </div>
+        <button type="submit" class="hidden" name="update">
+          Update cart
+        </button>
 
 
         {% comment %} total del carrito y checkout {% endcomment %}
@@ -224,6 +229,14 @@
   </div>
 </section>
 
+<script>
+  function submitCartForm(el) {
+    const form = el.closest('form');
+    if (form) {
+      form.submit();
+    }
+  }
+</script>
 
 {% schema %}
 {
