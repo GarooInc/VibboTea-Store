@@ -142,7 +142,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1321316181_1.png",
             "text": "Rise",
-            "button_text": "get started",
+            "button_text": "get energized",
             "button_url": ""
           }
         },
@@ -151,7 +151,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1321316180_1.png",
             "text": "Reset",
-            "button_text": "get started",
+            "button_text": "get detoxed",
             "button_url": ""
           }
         },
@@ -160,7 +160,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1321316182.png",
             "text": "Rest & \nRelax",
-            "button_text": "get started",
+            "button_text": "get relaxed",
             "button_url": ""
           }
         }
