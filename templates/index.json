@@ -61,7 +61,7 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Join the trive",
+        "section_title": "Join the tribe",
         "redireccionamiento": true,
         "collection": "frontpage",
         "limit": 12,
