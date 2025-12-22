@@ -404,9 +404,6 @@
   .z-999 {
     z-index: 999;
   }
-  .z-\[999\] {
-    z-index: 999;
-  }
   .order-1 {
     order: 1;
   }
@@ -1579,6 +1576,9 @@
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
+  }
+  .text-wrap {
+    text-wrap: wrap;
   }
   .whitespace-nowrap {
     white-space: nowrap;

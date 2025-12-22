@@ -141,3 +141,16 @@ body {
 .richnameplace{
   font-weight: normal !important;
 }
+
+.shopify_subscriptions_app_block_container .shopify_subscriptions_app_block_purchase_options {
+    text-align: left;
+    border: #000;
+    color: black !important;
+    border-radius: 12px !important;
+    margin-top: 10px;
+    font-family: 'Bricolage';
+}
+
+.shopify_subscriptions_app_policy{
+  margin-top: 12px !important;
+}
