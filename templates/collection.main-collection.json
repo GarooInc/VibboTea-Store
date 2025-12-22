@@ -32,7 +32,7 @@
       "settings": {
         "section_title": "Your daily dose of clarity",
         "redireccionamiento": false,
-        "collection": "",
+        "collection": "frontpage",
         "limit": 12,
         "autoplay": true,
         "interval": 5000
