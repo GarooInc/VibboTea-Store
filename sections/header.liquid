@@ -145,11 +145,15 @@
   <!-- Col 3  -->
   <div>
       <div class="hidden md:flex justify-end md:pr-7 md:gap-2">
-            <a href="{{ routes.all_products_collection_url }}" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="Instagram">
+            <button
+              type="button"
+              id="openSearch"
+              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current"
+              aria-label="Search"
+            >
               {%- render 'search' -%}
-            </a>
+            </button>
+
             <a href="{{ routes.cart_url }}"
               class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
               aria-label="Cart">
@@ -170,6 +174,37 @@
 </header>
 
 
+
+<div
+  id="searchOverlay"
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[999] hidden"
+>
+  <div class="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
+    
+    <predictive-search class="relative block">
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search products"
+          autocomplete="off"
+          autofocus
+          class="w-full h-14 px-6 rounded-full text-lg outline-none"
+        >
+      </form>
+
+      <div
+        data-predictive-search-results
+        class="absolute mt-3 w-full bg-white rounded-xl shadow-lg hidden"
+      ></div>
+    </predictive-search>
+
+  </div>
+</div>
+
+
+
+
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -177,6 +212,77 @@
     document.body.classList.toggle('overflow-hidden');
   }
 </script>
+
+<script>
+  const openBtn = document.getElementById('openSearch');
+  const overlay = document.getElementById('searchOverlay');
+
+  openBtn?.addEventListener('click', () => {
+    overlay.classList.remove('hidden');
+    overlay.querySelector('input')?.focus();
+  });
+
+  overlay?.addEventListener('click', e => {
+    if (e.target === overlay) {
+      overlay.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      overlay.classList.add('hidden');
+    }
+  });
+  openBtn?.addEventListener('click', () => {
+  overlay.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
+  overlay.querySelector('input')?.focus();
+});
+
+overlay?.addEventListener('click', e => {
+  if (e.target === overlay) {
+    overlay.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+});
+</script>
+
+<script>
+class PredictiveSearch extends HTMLElement {
+  constructor() {
+    super();
+    this.input = this.querySelector('input');
+    this.results = this.querySelector('[data-predictive-search-results]');
+    this.input.addEventListener('input', this.onChange.bind(this));
+  }
+
+  async onChange() {
+    const q = this.input.value.trim();
+    if (q.length < 2) {
+      this.results.classList.add('hidden');
+      return;
+    }
+
+    const res = await fetch(
+      `/search/suggest.json?q=${encodeURIComponent(q)}&resources[type]=product`
+    );
+    const data = await res.json();
+
+    this.results.innerHTML = data.resources.results.products
+      .map(p => `
+        <a href="${p.url}" class="block px-5 py-3 hover:bg-gray-100">
+          ${p.title}
+        </a>
+      `)
+      .join('');
+
+    this.results.classList.remove('hidden');
+  }
+}
+
+customElements.define('predictive-search', PredictiveSearch);
+</script>
+
 
 {% stylesheet %}
   body {

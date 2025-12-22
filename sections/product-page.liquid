@@ -1,6 +1,8 @@
 <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-40 pt-25">
 
   {% if product %}
+    {% assign current_variant = product.selected_or_first_available_variant %}
+
     {% if product.media.size > 1 %}
 
     <!-- SLIDER -->
@@ -66,8 +68,7 @@
             {{ product.description }}
         </p>
         {% comment %} variantes {% endcomment %}
-        {% if product.variants.size > 1 %}
-          {{ product.variants.size }}
+        {% unless product.has_only_default_variant %}
           {% assign first_variant = product.selected_or_first_available_variant %}
 
           <div class="w-full grid grid-cols-3 md:gap-8 gap-4 pt-5 h-full">
@@ -97,41 +98,57 @@
               </div>
             {% endfor %}
           </div>
+          
+        
 
-        {% endif %} 
+        {% endunless %}
+
+        <div id="priceWrapper" class="py-10 flex items-center gap-4 transition-all duration-300 md:min-h-[10vw]">
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="text-3xl md:text-4xl text-gray-400 line-through">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+
+            <span class="text-4xl md:text-5xl text-red-700 font-light">
+              {{ current_variant.price | money }}
+            </span>
+          {% else %}
+            <span class="text-4xl md:text-5xl text-gray-700">
+              {{ current_variant.price | money }}
+            </span>
+          {% endif %}
+        </div>
+
 
       
 
-      {% comment %} precio {% endcomment %}
-      <div id="priceWrapper" class="py-10 flex items-center gap-4 transition-all duration-300 md:min-h-[10vw] ">
-        {% if first_variant.compare_at_price > first_variant.price %}
-          <span id="comparePrice" class="text-3xl md:text-4xl text-gray-400 line-through">
-            {{ first_variant.compare_at_price | money }}
-          </span>
-
-          <span id="mainPrice" class="text-4xl md:text-5xl text-red-700 font-light">
-            {{ first_variant.price | money }}
-          </span>
-        {% else %}
-          <span id="mainPrice" class="text-4xl md:text-5xl text-gray-700">
-            {{ first_variant.price | money }}
-          </span>
-        {% endif %}
-      </div>
+      
 
 
       <form method="post" action="/cart/add" class="w-full md:py-10 items-end text-center mx-auto">
-        <input type="hidden" name="id" id="variantInput"
-              value="{{ first_variant.id }}">
+        <input
+          type="hidden"
+          name="id"
+          id="variantInput"
+          value="{{ current_variant.id }}"
+        >
 
-        <button type="submit"
+        <button
+          type="submit"
+          {% comment %} {% unless current_variant.available %}disabled{% endunless %} {% endcomment %}
           class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
-                hover:opacity-70 transition-opacity">
+                hover:opacity-70 transition-opacity disabled:opacity-50"
+        >
           <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
-            Add to cart
+            {% comment %} {% if current_variant.available %} {% endcomment %}
+              Add to cart
+            {% comment %} {% else %}
+              Sold out
+            {% endif %} {% endcomment %}
           </span>
         </button>
       </form>
+
 
         
 
