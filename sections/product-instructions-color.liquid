@@ -3,7 +3,7 @@
     
     <div class="relative md:w-1/2 w-full text-center">
       <h2 class="font-bricolage font-semibold md:text-[3vw] text-[8vw]">
-        {{  section.settings.title}}
+        {{  section.settings.title }}
       </h2>
     </div>
 
@@ -116,11 +116,10 @@
 
 </div>
 
-
 <div
   id="benefitsSection"
   class="w-screen py-15 md:py-16 transition-colors"
-  style="width: 100vw; margin-left: calc(50% - 50vw); background-color:#FAB801;"
+  style="width: 100vw; margin-left: calc(50% - 50vw); background-color:{{ section.settings.color }};"
 >
 
   <div class="mx-auto w-full px-6 xl:px-35">
@@ -202,16 +201,9 @@
   transform: scale(1.05);
 }
 
-.drink-option.is-hot.is-selected {
+
+.drink-option.is-selected {
   background-color: #FAB801; 
-}
-
-.drink-option.is-cold.is-selected {
-  background-color: #49B9FF; 
-}
-
-.drink-option.is-mocktail.is-selected {
-  background-color: #6CAC48; 
 }
 
 .how-block {
@@ -227,12 +219,7 @@
   const options = document.querySelectorAll('.drink-option');
   const benefitsSection = document.getElementById('benefitsSection');
 
-  const colors = {
-    hot: '#FAB801',
-    cold: '#49B9FF',
-    mocktail: '#6CAC48'
-  };
-
+ 
   options.forEach(option => {
     option.addEventListener('click', () => {
       const index = option.dataset.index;
@@ -241,16 +228,7 @@
       options.forEach(o => o.classList.remove('is-selected'));
       option.classList.add('is-selected');
 
-      // Cambiar color fondo última sección
-      if (option.classList.contains('is-hot')) {
-        benefitsSection.style.backgroundColor = colors.hot;
-      }
-      if (option.classList.contains('is-cold')) {
-        benefitsSection.style.backgroundColor = colors.cold;
-      }
-      if (option.classList.contains('is-mocktail')) {
-        benefitsSection.style.backgroundColor = colors.mocktail;
-      }
+     
 
       // Detectar versión visible
       const isMobile = window.innerWidth < 768;
@@ -291,7 +269,6 @@
       "type": "text",
       "id": "color",
       "label": "Color",
-      "default": "FAB801"
     },
     
   
