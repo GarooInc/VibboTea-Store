@@ -1318,8 +1318,14 @@
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
+  }
   .p-8 {
     padding: calc(var(--spacing) * 8);
+  }
+  .p-10 {
+    padding: calc(var(--spacing) * 10);
   }
   .px-0 {
     padding-inline: calc(var(--spacing) * 0);
@@ -1486,8 +1492,14 @@
   .pb-5 {
     padding-bottom: calc(var(--spacing) * 5);
   }
+  .pb-6 {
+    padding-bottom: calc(var(--spacing) * 6);
+  }
   .pb-7 {
     padding-bottom: calc(var(--spacing) * 7);
+  }
+  .pb-8 {
+    padding-bottom: calc(var(--spacing) * 8);
   }
   .pb-10 {
     padding-bottom: calc(var(--spacing) * 10);
@@ -2261,9 +2273,44 @@
       display: none;
     }
   }
+  .md\:aspect-2\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 2/14;
+    }
+  }
+  .md\:aspect-5\/7 {
+    @media (width >= 48rem) {
+      aspect-ratio: 5/7;
+    }
+  }
+  .md\:aspect-5\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 5/14;
+    }
+  }
   .md\:aspect-9\/14 {
     @media (width >= 48rem) {
       aspect-ratio: 9/14;
+    }
+  }
+  .md\:aspect-10\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 10/14;
+    }
+  }
+  .md\:aspect-11\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 11/14;
+    }
+  }
+  .md\:aspect-12\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 12/14;
+    }
+  }
+  .md\:aspect-13\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 13/14;
     }
   }
   .md\:aspect-\[9\/14\] {
@@ -2683,6 +2730,11 @@
   .md\:gap-4 {
     @media (width >= 48rem) {
       gap: calc(var(--spacing) * 4);
+    }
+  }
+  .md\:gap-5 {
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 5);
     }
   }
   .md\:gap-8 {

@@ -12,10 +12,10 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 md:pt-15 pt-5 md:pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 pt-5 md:pb-20">
 
         {% for block in section.blocks %}
-          <div class="relative w-full aspect-square md:aspect-9/14 overflow-hidden rounded-2xl">
+          <div class="relative w-full aspect-square md:aspect-5/7 overflow-hidden rounded-2xl">
 
             <video 
               src="{{ block.settings.video_url }}" 
