@@ -17,22 +17,14 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
         {% for block in section.blocks %}
           <div class="relative w-full aspect-square md:aspect-[9/14] overflow-hidden rounded-2xl">
 
-            {% if block.settings.image != blank %}
-              <img
-                src="{{ block.settings.image | image_url: width: 1200 }}"
-                srcset="
-                  {{ block.settings.image | image_url: width: 600 }} 600w,
-                  {{ block.settings.image | image_url: width: 900 }} 900w,
-                  {{ block.settings.image | image_url: width: 1200 }} 1200w
-                "
-                sizes="(min-width: 768px) 33vw, 100vw"
-                alt="{{ block.settings.text | escape }}"
-                class="absolute inset-0 w-full h-full object-cover object-center"
-                loading="lazy"
-                width="{{ block.settings.image.width }}"
-              height="{{ block.settings.image.height }}"
-              >
-            {% endif %}
+            <video 
+              src="{{ block.settings.video_url }}" 
+              autoplay 
+              loop 
+              muted 
+              playsinline
+              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center">
+            </video>
 
             <!-- TEXTO -->
             <div class="absolute inset-0 flex">
@@ -62,8 +54,6 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   </div>
 
 </div>
-
-
 {% schema %}
 {
   "name": "Section Universe",
@@ -78,18 +68,18 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   "blocks": [
     {
-      "type": "image_block",
-      "name": "Image block",
+      "type": "video_block",
+      "name": "Video block",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL (MP4)"
         },
         {
           "type": "textarea",
           "id": "text",
-          "label": "Text over image"
+          "label": "Text over video"
         },
         {
           "type": "text",
@@ -108,7 +98,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   "presets": [
     {
-      "name": "Section Universe"
+      "name": "Section Universe",
+      
     }
   ]
 }
