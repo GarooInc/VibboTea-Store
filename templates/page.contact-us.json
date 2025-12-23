@@ -33,38 +33,30 @@
             "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
           }
         },
-        "faq_DCVrBE": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I place an order?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
-          }
-        },
         "faq_Niak4e": {
           "type": "faq",
           "settings": {
             "question": "How do I apply a discount code?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+            "answer": "To apply a discount, just drop your code into the “Discount code”box on the checkout page, hit Apply, and watch your total chill out a bit."
           }
         },
         "faq_mfHnpP": {
           "type": "faq",
           "settings": {
             "question": "How can I track my order?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+            "answer": "We'll hook you up with a confirmation email right after purchase, once your package ships, you’ll get a follow-up with the tracking number so you can stalk your package like you stalked your ex before you drank VIBBO. If you did not receive an email from us, head over to the Contact Us page."
           }
         },
         "faq_thDV8x": {
           "type": "faq",
           "settings": {
             "question": "Do you offer international shipping?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+            "answer": "Nope, VIBBO's not globe-trotting just yet, we're keeping it cozy in the US for now. But stock up on our blends, and we'll hustle to ship your way sooner than you can say \"Other brands are B.S.”"
           }
         }
       },
       "block_order": [
         "faq_8LfbFc",
-        "faq_DCVrBE",
         "faq_Niak4e",
         "faq_mfHnpP",
         "faq_thDV8x"
@@ -74,9 +66,6 @@
         "title": "FAQ",
         "image1": "shopify://shop_images/Guacamaya.png",
         "image_alignment": "right",
-        "image_auto_size": true,
-        "image_target_width": 800,
-        "image_target_height": 533,
         "margin_top_image": 50
       }
     }
