@@ -37,7 +37,7 @@
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Shopify_10.jpg",
+            "image_desktop": "shopify://shop_images/Copy_of_VIBBO_-17_1.jpg",
             "page_title": "",
             "page_descripction": ""
           }
@@ -274,7 +274,7 @@
       ],
       "name": "FAQ",
       "settings": {
-        "title": "FAQ",
+        "title": "FAQ's",
         "image_alignment": "right",
         "margin_top_image": 50
       }

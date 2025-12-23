@@ -154,3 +154,43 @@ body {
 .shopify_subscriptions_app_policy{
   margin-top: 12px !important;
 }
+
+.shopify-policy__container {
+  max-width: var(--page-width) !important;
+  font-family: 'Bricolage' !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .shopify-policy__container {
+      padding-top: 200px;
+      padding-bottom: 100px;
+  }
+
+  .shopify-policy__title {
+    font-size: 48px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .shopify-policy__container {
+      padding-top: 100px;
+      padding-bottom: 50px;
+  }
+  .shopify-policy__title {
+    font-size: 32px !important;
+  }
+}
+
+.shopify-policy__container h2 {
+  font-size: 24px !important;
+  font-weight: normal !important;
+  margin: 16px 0 !important;
+}
+
+.shopify-policy__title {
+  font-weight: bold !important;
+  margin-bottom: 24px !important;
+  text-transform: uppercase !important;
+}
