@@ -2207,6 +2207,11 @@
       display: none;
     }
   }
+  .md\:aspect-9\/14 {
+    @media (width >= 48rem) {
+      aspect-ratio: 9/14;
+    }
+  }
   .md\:aspect-\[9\/14\] {
     @media (width >= 48rem) {
       aspect-ratio: 9/14;

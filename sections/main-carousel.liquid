@@ -1,24 +1,22 @@
 <!-- TÍTULO -->
     <div class="text-center items-center align-center pt-10 ">
-        <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage">
-            {{ section.settings.section_title | default: "Join the trive" }}
+        <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-10">
+            {{ section.settings.section_title | default: "Join the trive" | newline_to_br}}
         </h2>
-        <p class="text-black text-[3.5vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
-                Discover our flavors 
-            </p>
+            {% comment %} <p class="text-black text-[3.5vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
+                    Discover our flavors 
+                </p> {% endcomment %}
 
          {% if section.settings.redireccionamiento %}   
-          <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4">
+          <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4 ">
 
             <p class="text-black text-[3.5vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
               I want to feel human again
             </p>
 
-            <a href="{{ section.settings.imagen1-url }}" 
-              target="_blank" 
-              rel="noopener"
-              class="hover:opacity-70 transition-opacity scale-75 md:scale-95 pr-1" 
-              aria-label="Imagen 1 URL">
+            <a href="/collections/frontpage"
+              class="hover:opacity-70 transition-opacity scale-75 md:scale-95 pr-1"
+              aria-label="Ir a la colección principal">
               {%- render 'arrow' -%}
             </a>
           </div>
