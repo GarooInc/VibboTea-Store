@@ -678,6 +678,12 @@
   .w-1\/4 {
     width: calc(1/4 * 100%);
   }
+  .w-3 {
+    width: calc(var(--spacing) * 3);
+  }
+  .w-3\/4 {
+    width: calc(3/4 * 100%);
+  }
   .w-4 {
     width: calc(var(--spacing) * 4);
   }
@@ -1977,6 +1983,12 @@
       min-height: 110vw;
     }
   }
+  .sm\:text-3xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
   .md\:absolute {
     @media (width >= 48rem) {
       position: absolute;
@@ -2963,6 +2975,26 @@
       font-size: 3.4vw;
     }
   }
+  .md\:text-\[3\.5vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.5vw;
+    }
+  }
+  .md\:text-\[3\.6vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.6vw;
+    }
+  }
+  .md\:text-\[3\.7vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.7vw;
+    }
+  }
+  .md\:text-\[3\.8vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.8vw;
+    }
+  }
   .md\:text-\[3vw\] {
     @media (width >= 48rem) {
       font-size: 3vw;
@@ -3011,6 +3043,18 @@
   .lg\:pt-10 {
     @media (width >= 64rem) {
       padding-top: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:text-3xl {
+    @media (width >= 64rem) {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
+  .lg\:text-5xl {
+    @media (width >= 64rem) {
+      font-size: var(--text-5xl);
+      line-height: var(--tw-leading, var(--text-5xl--line-height));
     }
   }
   .lg\:text-\[0\.9vw\] {
