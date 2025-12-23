@@ -1,18 +1,18 @@
 <div 
-class="w-screen md:min-h-[90vh] h-full bg-[#F5F3F3] flex flex-col justify-between"
+class="w-screen md:min-h-[90vh] h-full bg-[#F5F3F3] flex flex-col justify-between px-[2vw]"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
   <!-- TÍTULO -->
-  <div class="hidden w-full md:flex justify-start items-start px-5 md:px-20 py-10 pt-20">
-      <div class="text-black text-[8vw] md:text-[3.8vw] font-bricolage font-semibold leading-tight">
+  <div class="hidden w-full md:flex justify-start items-start px-5 md:px-20 pt-15">
+      <div class="text-black text-[8vw] md:text-[3.7vw] font-bricolage font-semibold leading-tight">
           {{ section.settings.title }}
       </div>
   </div>
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:p-20 pt-5 md:pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 md:pt-15 pt-5 md:pb-20">
 
         {% for block in section.blocks %}
           <div class="relative w-full aspect-square md:aspect-9/14 overflow-hidden rounded-2xl">

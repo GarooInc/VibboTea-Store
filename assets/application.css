@@ -678,6 +678,12 @@
   .w-1\/4 {
     width: calc(1/4 * 100%);
   }
+  .w-2 {
+    width: calc(var(--spacing) * 2);
+  }
+  .w-2\/3 {
+    width: calc(2/3 * 100%);
+  }
   .w-3 {
     width: calc(var(--spacing) * 3);
   }
@@ -1351,6 +1357,21 @@
   .px-230 {
     padding-inline: calc(var(--spacing) * 230);
   }
+  .px-\[2vw\] {
+    padding-inline: 2vw;
+  }
+  .px-\[5vw\] {
+    padding-inline: 5vw;
+  }
+  .px-\[6vw\] {
+    padding-inline: 6vw;
+  }
+  .px-\[7vw\] {
+    padding-inline: 7vw;
+  }
+  .px-\[10vw\] {
+    padding-inline: 10vw;
+  }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
@@ -1452,6 +1473,9 @@
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
+  }
+  .pb-3 {
+    padding-bottom: calc(var(--spacing) * 3);
   }
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
@@ -1576,6 +1600,9 @@
   }
   .text-\[4vw\] {
     font-size: 4vw;
+  }
+  .text-\[5vw\] {
+    font-size: 5vw;
   }
   .text-\[6vw\] {
     font-size: 6vw;
@@ -2300,6 +2327,11 @@
       height: 100vh;
     }
   }
+  .md\:max-h-\[50vh\] {
+    @media (width >= 48rem) {
+      max-height: 50vh;
+    }
+  }
   .md\:min-h-\[8vw\] {
     @media (width >= 48rem) {
       min-height: 8vw;
@@ -2310,9 +2342,29 @@
       min-height: 10vw;
     }
   }
+  .md\:min-h-\[30vh\] {
+    @media (width >= 48rem) {
+      min-height: 30vh;
+    }
+  }
+  .md\:min-h-\[40vh\] {
+    @media (width >= 48rem) {
+      min-height: 40vh;
+    }
+  }
+  .md\:min-h-\[50vh\] {
+    @media (width >= 48rem) {
+      min-height: 50vh;
+    }
+  }
   .md\:min-h-\[55vh\] {
     @media (width >= 48rem) {
       min-height: 55vh;
+    }
+  }
+  .md\:min-h-\[60vh\] {
+    @media (width >= 48rem) {
+      min-height: 60vh;
     }
   }
   .md\:min-h-\[90vh\] {
@@ -2654,6 +2706,11 @@
   .md\:p-0 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:p-10 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 10);
     }
   }
   .md\:p-20 {
@@ -3015,9 +3072,19 @@
       font-size: 140px;
     }
   }
+  .md\:text-\[3\.vw\] {
+    @media (width >= 48rem) {
+      color: 3.vw;
+    }
+  }
   .lg\:hidden {
     @media (width >= 64rem) {
       display: none;
+    }
+  }
+  .lg\:min-h-\[90vh\] {
+    @media (width >= 64rem) {
+      min-height: 90vh;
     }
   }
   .lg\:px-15 {
