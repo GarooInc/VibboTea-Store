@@ -1,0 +1,299 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "disabled": true,
+      "settings": {}
+    },
+    "product_page_rNtVMj": {
+      "type": "product-page",
+      "name": "Description product",
+      "settings": {}
+    },
+    "1766421284c922609f": {
+      "type": "apps",
+      "blocks": {
+        "subscriptions_app_block_tWeTdA": {
+          "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
+          "settings": {
+            "color_text_body": "#6d7175",
+            "dividers_color": "#8f8d8d",
+            "bacgkround_color": "#ffffff",
+            "border_thickness": 1,
+            "border_radius": 0,
+            "subscription_policy_url": "",
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "subscriptions_app_block_tWeTdA"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "product_instructions_color_arUrcX": {
+      "type": "product-instructions-color",
+      "blocks": {
+        "how_block_yQkjpg": {
+          "type": "how_block",
+          "settings": {
+            "gifs_count": 3,
+            "gif_1": "shopify://shop_images/TECALIENTE1.1-ezgif.com-video-to-gif-converter.gif",
+            "text_1": "Heat 6–8 oz. of water to 175°F.",
+            "gif_2": "shopify://shop_images/TECALIENTE1.2-ezgif.com-video-to-gif-converter.gif",
+            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
+            "gif_3": "shopify://shop_images/TECALIENTE1.3-ezgif.com-video-to-gif-converter.gif",
+            "text_3": "Add the tea to the hot water.",
+            "text_4": "Description 4",
+            "text_5": "Description 5"
+          }
+        },
+        "how_block_jc9qbi": {
+          "type": "how_block",
+          "settings": {
+            "gifs_count": 3,
+            "gif_1": "shopify://shop_images/ICETEA3.1-ezgif.com-video-to-gif-converter.gif",
+            "text_1": "Description 1",
+            "gif_2": "shopify://shop_images/3.2ice1-ezgif.com-video-to-gif-converter.gif",
+            "text_2": "Description 2",
+            "gif_3": "shopify://shop_images/ICETEA3.3-ezgif.com-video-to-gif-converter.gif",
+            "text_3": "Description 3",
+            "text_4": "Description 4",
+            "text_5": "Description 5"
+          }
+        },
+        "how_block_XTMXa6": {
+          "type": "how_block",
+          "settings": {
+            "gifs_count": 5,
+            "gif_1": "shopify://shop_images/DRINK3.1-ezgif.com-video-to-gif-converter_b249f94b-31f6-4ab5-b278-dad9d97354d3.gif",
+            "text_1": "Description 1",
+            "gif_2": "shopify://shop_images/3.2drink1-ezgif.com-video-to-gif-converter_1.gif",
+            "text_2": "Description 2",
+            "gif_3": "shopify://shop_images/DRINK3.4-ezgif.com-video-to-gif-converter.gif",
+            "text_3": "Description 3",
+            "gif_4": "shopify://shop_images/DRINK3.5-ezgif.com-video-to-gif-converter.gif",
+            "text_4": "Description 4",
+            "gif_5": "shopify://shop_images/DRINK3.6-ezgif.com-video-to-gif-converter_1.gif",
+            "text_5": "Description 5"
+          }
+        }
+      },
+      "block_order": [
+        "how_block_yQkjpg",
+        "how_block_jc9qbi",
+        "how_block_XTMXa6"
+      ],
+      "name": "Product how color",
+      "settings": {
+        "title": "We won't show you how, but these are some of the many.",
+        "color": "#FAB801"
+      }
+    },
+    "prodcut_ingredients_FXkDBr": {
+      "type": "prodcut-ingredients",
+      "blocks": {
+        "ingredient_block_hr7kfD": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/pinatrozos_1.png",
+            "title": "Pineapple pieces",
+            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
+          }
+        },
+        "ingredient_block_JwPmcy": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/black-tea.png",
+            "title": "Black tea",
+            "text": "Caffeine energy boost, helps improve concentration and alertness."
+          }
+        },
+        "ingredient_block_MMwqRy": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/hibisco.png",
+            "title": "Hibiscus",
+            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
+          }
+        },
+        "ingredient_block_eyNiWw": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cascara_de_cacao_2.png",
+            "title": "Cocoa husk",
+            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
+          }
+        },
+        "ingredient_block_izL4A4": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/coco__2.png",
+            "title": "Coconut",
+            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_block_hr7kfD",
+        "ingredient_block_JwPmcy",
+        "ingredient_block_MMwqRy",
+        "ingredient_block_eyNiWw",
+        "ingredient_block_izL4A4"
+      ],
+      "name": "Product Ingredients",
+      "settings": {
+        "title": "About our Ingredients",
+        "imagen1": "shopify://shop_images/leaf2_1.png",
+        "imagen2": "shopify://shop_images/Frame_1321316210.png",
+        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+      }
+    },
+    "product_why_image_bRJRVp": {
+      "type": "product-why-image",
+      "name": "Product Why Vibbo Image",
+      "settings": {
+        "title": "Why Choose Vibbo?",
+        "image": "shopify://shop_images/Group_13.png"
+      }
+    },
+    "product_why_DMQf7z": {
+      "type": "product-why",
+      "disabled": true,
+      "name": "Product Why Vibbo",
+      "settings": {
+        "title": "Why Vibbo?"
+      }
+    },
+    "faq_7VfkjP": {
+      "type": "faq",
+      "blocks": {
+        "faq_4RH48d": {
+          "type": "faq",
+          "settings": {
+            "question": "Is VIBBO ethically sourced?",
+            "answer": "VIBBO is ethically sourced: we're actively working toward B Corp certification in the coming quarters, with all ingredients sustainably produced, fully traceable from the dirt to the cup— no B.S."
+          }
+        },
+        "faq_xUfMyA": {
+          "type": "faq",
+          "settings": {
+            "question": "Where do we sort our ingredients from?",
+            "answer": "VIBBO sources all ingredients 100% from Guatemala across various regions, directly from local farmers and supporting surrounding communities—embracing our roots from soil to steep. No jokes, come and find out, we dare you ;)."
+          }
+        },
+        "faq_YVfbax": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I drink it?",
+            "answer": "Follow the GIF steps above: hot, cold, or as a mocktail. We're not just boring tea, we're an ingredient meant to be had fun with. Or drink it however you want; quite honestly, we don't care."
+          }
+        },
+        "faq_TyxJfY": {
+          "type": "faq",
+          "settings": {
+            "question": "How much, when, and how often should I drink VIBBO?",
+            "answer": "Sip your chosen VIBBO blend daily, Hydra Boost mornings or mid-afternoon for energy, Gut Bliss anytime for cleanse vibes, Chill Vibes evenings for wind-down or during stress—steeped hot, iced, or as a mocktail, max 3-4 per day based on your flow, or inner chaos."
+          }
+        },
+        "faq_t9PGRg": {
+          "type": "faq",
+          "settings": {
+            "question": "Are there any artificial flavors, sweeteners, or additives in our blends?",
+            "answer": "All natural baby."
+          }
+        },
+        "faq_Nbb6HX": {
+          "type": "faq",
+          "settings": {
+            "question": "What’s the shelf life and storage advice for our blends?",
+            "answer": "VIBBO goes vibbin' for 24 months post-packaging, stash at room temp in a fresh, dry spot, no humidity please."
+          }
+        }
+      },
+      "block_order": [
+        "faq_4RH48d",
+        "faq_xUfMyA",
+        "faq_YVfbax",
+        "faq_TyxJfY",
+        "faq_t9PGRg",
+        "faq_Nbb6HX"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "title": "FAQ",
+        "image1": "shopify://shop_images/JaguarLaptop_1.png",
+        "image_alignment": "left",
+        "margin_top_image": 50
+      }
+    },
+    "main_section_slidder_jcDeBE": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_FcaPYi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_Hmzia6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315911.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_ykHjLc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315915.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_bKBLqn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315913.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_FcaPYi",
+        "slide_Hmzia6",
+        "slide_ykHjLc",
+        "slide_bKBLqn"
+      ],
+      "name": "Slider Imágenes",
+      "settings": {
+        "title": "Real Stories, Real Style, Real Energy.",
+        "title_mobile": "Real Stories, Real\nStyle, Real Energy.",
+        "description_mobile": "Description Mobile",
+        "autoplay": true,
+        "interval": 5000
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_page_rNtVMj",
+    "1766421284c922609f",
+    "product_instructions_color_arUrcX",
+    "prodcut_ingredients_FXkDBr",
+    "product_why_image_bRJRVp",
+    "product_why_DMQf7z",
+    "faq_7VfkjP",
+    "main_section_slidder_jcDeBE"
+  ]
+}
