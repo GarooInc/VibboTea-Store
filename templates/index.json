@@ -140,8 +140,8 @@
         "video_block_yrUmjt": {
           "type": "video_block",
           "settings": {
-            "video_url": "",
-            "text": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
+            "text": "Rise",
             "button_text": "get energized",
             "button_url": ""
           }
