@@ -816,6 +816,9 @@
   .max-w-md {
     max-width: var(--container-md);
   }
+  .max-w-none {
+    max-width: none;
+  }
   .max-w-sm {
     max-width: var(--container-sm);
   }
@@ -1729,6 +1732,9 @@
   .text-green-600 {
     color: var(--color-green-600);
   }
+  .text-inherit {
+    color: inherit;
+  }
   .text-neutral-800 {
     color: var(--color-neutral-800);
   }
@@ -1759,6 +1765,9 @@
   .line-through {
     text-decoration-line: line-through;
   }
+  .no-underline {
+    text-decoration-line: none;
+  }
   .underline {
     text-decoration-line: underline;
   }
@@ -1769,6 +1778,9 @@
   }
   .opacity-0 {
     opacity: 0%;
+  }
+  .opacity-60 {
+    opacity: 60%;
   }
   .opacity-100 {
     opacity: 100%;
@@ -1861,6 +1873,9 @@
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
+  }
+  .will-change-transform {
+    will-change: transform;
   }
   .outline-none {
     --tw-outline-style: none;

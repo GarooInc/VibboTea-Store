@@ -143,25 +143,25 @@
             "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
             "text": "Rise",
             "button_text": "get energized",
-            "button_url": ""
+            "button_url": "shopify://products/hidra-boost-natural-energy"
           }
         },
         "video_block_mVJf9U": {
           "type": "video_block",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/fcc7eb468c244609a93068c66441f623.mp4",
             "text": "Reset",
             "button_text": "get detoxed",
-            "button_url": ""
+            "button_url": "shopify://products/gut-bliss-detox"
           }
         },
         "video_block_4YGmdY": {
           "type": "video_block",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f063cd0361e1435cb1447501a4e8cdc6.mp4",
             "text": "Rest & \nRelax",
             "button_text": "get relaxed",
-            "button_url": ""
+            "button_url": "shopify://products/chill-vibes-natural-relax"
           }
         }
       },

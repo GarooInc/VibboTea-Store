@@ -14,6 +14,11 @@
     "header": {
       "type": "header",
       "settings": {
+        "show_topbar": true,
+        "topbar_announcement_text": "<p>KICKSTARTER NOW LIVE - CLICK HERE TO PRE-ORDER</p>",
+        "topbar_link": "",
+        "topbar_background_color": "#000000",
+        "topbar_text_color": "#ffffff",
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/logo_vibbo.png",
         "header_background": "semi-transparent"
