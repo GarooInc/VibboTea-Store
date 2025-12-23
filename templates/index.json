@@ -244,38 +244,30 @@
             "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
           }
         },
-        "faq_in4TRB": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I place an order?",
-            "answer": "a"
-          }
-        },
         "faq_GefwmB": {
           "type": "faq",
           "settings": {
             "question": "How do I apply a discount code?",
-            "answer": ""
+            "answer": "To apply a discount, just drop your code into the “Discount code” box on the checkout page, hit Apply, and watch your total chill out a bit."
           }
         },
         "faq_r8XVV9": {
           "type": "faq",
           "settings": {
             "question": "How can I track my order?",
-            "answer": ""
+            "answer": "We'll hook you up with a confirmation email right after purchase, once your package ships, you’ll get a follow-up with the tracking number so you can stalk your package like you stalked your ex before you drank VIBBO. If you did not receive an email from us, head over to the Contact Us page."
           }
         },
         "faq_iAy7pW": {
           "type": "faq",
           "settings": {
             "question": "Do you offer international shipping?",
-            "answer": ""
+            "answer": "Nope, VIBBO's not globe-trotting just yet, we're keeping it cozy in the US for now. But stock up on our blends, and we'll hustle to ship your way sooner than you can say \"Other brands are B.S."
           }
         }
       },
       "block_order": [
         "faq_tHqFtF",
-        "faq_in4TRB",
         "faq_GefwmB",
         "faq_r8XVV9",
         "faq_iAy7pW"
