@@ -11,8 +11,8 @@
     {% endif %}
     <div></div>
 
-    <p class="text-sm mb-12 p-4">
-      Read below for a good time.
+    <p class="text-xl mb-12 p-5 pb-8">
+      {{section.settings.text_faq}}
     </p>
     {% assign img_align = section.settings.image_alignment | default: 'right' %}
     {% assign target_w = section.settings.image_target_width | default: 800 %}
@@ -117,6 +117,12 @@
       "id": "title",
       "label": "Título principal",
       "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "textarea",
+      "id": "text_faq",
+      "label": "Texto secundiario",
+      "default": "Read below for a good time."
     },
     {
      "type": "image_picker", 
