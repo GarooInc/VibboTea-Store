@@ -1,5 +1,28 @@
+{%- liquid
+  assign topbar_height = 0
+  if section.settings.show_topbar
+    assign topbar_height = 40
+  endif
+-%}
+
+{% if section.settings.show_topbar %}
+<div class="topbar-wrapper bg-black full-width text-white py-2 cursor-pointer fixed top-0 w-full z-50 font-bricolage"
+     style="background-color: {{ section.settings.topbar_background_color }}; color: {{ section.settings.topbar_text_color }};">
+  <a href="{{ section.settings.topbar_link }}" class="block w-full">
+    <div class="topbar-content">
+      {% for  i in (1..6) %}
+        <div class="topbar-text text-sm md:text-base font-medium">
+          {{ section.settings.topbar_announcement_text }}
+        </div>
+      {% endfor %}
+    </div>
+  </a>
+</div>
+{% endif %}
+
 <header 
-  class="fixed top-0 left-0 w-full h-30 bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
+  class="fixed left-0 w-full h-30 bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
+  style="top: {{ topbar_height }}px;"
 >
 {%- capture background_class -%}
   {%- if section.settings.header_background == 'transparent' -%}
@@ -269,7 +292,6 @@
       const data = await res.json();
       const products = data.resources.results.products;
 
-      // 👉 SI NO HAY RESULTADOS → 404
       if (!products || products.length === 0) {
         window.location.href = '/404';
         return;
@@ -288,6 +310,17 @@
   }
 
   customElements.define('predictive-search', PredictiveSearch);
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const topbarContent = document.querySelector('.topbar-content');
+    if (topbarContent) {
+      const textWidth = topbarContent.querySelector('.topbar-text').offsetWidth;
+      const duration = textWidth / 40;
+      topbarContent.style.animationDuration = duration + 's';
+    }
+  });
 </script>
 
 {% stylesheet %}
@@ -309,12 +342,72 @@
     display: flex;
     gap: 1rem;
   }
+
+  .topbar-content {
+    display: flex;
+    animation: scroll 10s linear infinite;
+    white-space: nowrap;
+  }
+  
+  .topbar-text {
+    padding: 0 2rem;
+    flex-shrink: 0;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .topbar-wrapper:hover .topbar-content {
+    animation-play-state: paused;
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "Custom Header",
   "settings": [
+    {
+      "type": "header",
+      "content": "Topbar Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_topbar",
+      "label": "Show Topbar",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "topbar_announcement_text",
+      "label": "Announcement Text"
+    },
+    {
+      "type": "url",
+      "id": "topbar_link",
+      "label": "Topbar Link"
+    },
+    {
+      "type": "color",
+      "id": "topbar_background_color",
+      "label": "Topbar Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "topbar_text_color",
+      "label": "Topbar Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Header Settings"
+    },
     {
       "type": "link_list",
       "id": "menu",
