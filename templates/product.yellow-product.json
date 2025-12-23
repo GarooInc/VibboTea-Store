@@ -41,49 +41,12 @@
       "disabled": true,
       "settings": {}
     },
-    "product_instructions_KU7cmG": {
-      "type": "product-instructions",
-      "blocks": {
-        "how_block_KaMDUb": {
-          "type": "how_block",
-          "settings": {
-            "gif_1": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2_1.png",
-            "text_1": "Heat 6–8 oz. of water to 175°F.",
-            "gif_2": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_2.png",
-            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
-            "gif_3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_4.png",
-            "text_3": "Add the tea to the hot water.",
-            "gif_4": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_5.png",
-            "text_4": "Steep for 3 minutes, energize."
-          }
-        },
-        "how_block_NNNFD4": {
-          "type": "how_block",
-          "settings": {
-            "text_1": "Description 1",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4"
-          }
-        },
-        "how_block_rB8WTr": {
-          "type": "how_block",
-          "settings": {
-            "text_1": "Description 1",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4"
-          }
-        }
-      },
-      "block_order": [
-        "how_block_KaMDUb",
-        "how_block_NNNFD4",
-        "how_block_rB8WTr"
-      ],
-      "name": "Product how",
+    "product_instructions_color_arUrcX": {
+      "type": "product-instructions-color",
+      "name": "Product how color",
       "settings": {
-        "title": "We won't show you how, but these are some of the many."
+        "title": "Product Ingredients",
+        "color": "FAB801"
       }
     },
     "prodcut_ingredients_FXkDBr": {
@@ -275,7 +238,7 @@
     "main",
     "product_page_rNtVMj",
     "1766421284c922609f",
-    "product_instructions_KU7cmG",
+    "product_instructions_color_arUrcX",
     "prodcut_ingredients_FXkDBr",
     "product_why_image_bRJRVp",
     "product_why_DMQf7z",
