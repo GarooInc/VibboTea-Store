@@ -47,31 +47,43 @@
         "how_block_yQkjpg": {
           "type": "how_block",
           "settings": {
+            "gifs_count": 3,
             "gif_1": "shopify://shop_images/TECALIENTE1.1-ezgif.com-video-to-gif-converter.gif",
             "text_1": "Heat 6–8 oz. of water to 175°F.",
             "gif_2": "shopify://shop_images/TECALIENTE1.2-ezgif.com-video-to-gif-converter.gif",
             "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
             "gif_3": "shopify://shop_images/TECALIENTE1.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Add the tea to the hot water."
+            "text_3": "Add the tea to the hot water.",
+            "text_4": "Description 4",
+            "text_5": "Description 5"
           }
         },
         "how_block_jc9qbi": {
           "type": "how_block",
           "settings": {
+            "gifs_count": 3,
             "gif_1": "shopify://shop_images/ICETEA3.1-ezgif.com-video-to-gif-converter.gif",
             "text_1": "Description 1",
             "gif_2": "shopify://shop_images/3.2ice1-ezgif.com-video-to-gif-converter.gif",
             "text_2": "Description 2",
             "gif_3": "shopify://shop_images/ICETEA3.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3"
+            "text_3": "Description 3",
+            "text_4": "Description 4",
+            "text_5": "Description 5"
           }
         },
         "how_block_XTMXa6": {
           "type": "how_block",
           "settings": {
+            "gifs_count": 5,
+            "gif_1": "shopify://shop_images/DRINK3.1-ezgif.com-video-to-gif-converter_b249f94b-31f6-4ab5-b278-dad9d97354d3.gif",
             "text_1": "Description 1",
             "text_2": "Description 2",
-            "text_3": "Description 3"
+            "gif_3": "shopify://shop_images/DRINK3.4-ezgif.com-video-to-gif-converter.gif",
+            "text_3": "Description 3",
+            "gif_4": "shopify://shop_images/DRINK3.5-ezgif.com-video-to-gif-converter.gif",
+            "text_4": "Description 4",
+            "text_5": "Description 5"
           }
         }
       },
