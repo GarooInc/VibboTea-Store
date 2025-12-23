@@ -47,9 +47,11 @@
         "how_block_yQkjpg": {
           "type": "how_block",
           "settings": {
-            "gif_1": "shopify://shop_images/TE_CALIENTE_1.2.gif",
+            "gif_1": "shopify://shop_images/TE_CALIENTE_1.1.gif",
             "text_1": "Heat 6–8 oz. of water to 175°F.",
+            "gif_2": "shopify://shop_images/TE_CALIENTE_1.2.gif",
             "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
+            "gif_3": "shopify://shop_images/TE_CALIENTE_1.3.gif",
             "text_3": "Add the tea to the hot water.",
             "text_4": "Steep for 3 minutes, energize."
           }
