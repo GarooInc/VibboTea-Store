@@ -43,6 +43,41 @@
     },
     "product_instructions_color_arUrcX": {
       "type": "product-instructions-color",
+      "blocks": {
+        "how_block_yQkjpg": {
+          "type": "how_block",
+          "settings": {
+            "gif_1": "shopify://shop_images/TE_CALIENTE_1.2.gif",
+            "text_1": "Heat 6–8 oz. of water to 175°F.",
+            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
+            "text_3": "Add the tea to the hot water.",
+            "text_4": "Steep for 3 minutes, energize."
+          }
+        },
+        "how_block_jc9qbi": {
+          "type": "how_block",
+          "settings": {
+            "text_1": "Description 1",
+            "text_2": "Description 2",
+            "text_3": "Description 3",
+            "text_4": "Description 4"
+          }
+        },
+        "how_block_XTMXa6": {
+          "type": "how_block",
+          "settings": {
+            "text_1": "Description 1",
+            "text_2": "Description 2",
+            "text_3": "Description 3",
+            "text_4": "Description 4"
+          }
+        }
+      },
+      "block_order": [
+        "how_block_yQkjpg",
+        "how_block_jc9qbi",
+        "how_block_XTMXa6"
+      ],
       "name": "Product how color",
       "settings": {
         "title": "Product Ingredients",
