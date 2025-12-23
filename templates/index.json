@@ -61,7 +61,7 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Join the tribe",
+        "section_title": "Join the tribe, \ndiscover our flavors",
         "redireccionamiento": true,
         "collection": "frontpage",
         "limit": 12,
@@ -137,38 +137,38 @@
     "main_universe_section_yaVDzH": {
       "type": "main-universe-section",
       "blocks": {
-        "image_block_N97jME": {
-          "type": "image_block",
+        "video_block_yrUmjt": {
+          "type": "video_block",
           "settings": {
-            "image": "shopify://shop_images/Frame_1321316181_1.png",
-            "text": "Rise",
-            "button_text": "get energized",
+            "video_url": "",
+            "text": "",
+            "button_text": "get started",
             "button_url": ""
           }
         },
-        "image_block_wYcWCn": {
-          "type": "image_block",
+        "video_block_mVJf9U": {
+          "type": "video_block",
           "settings": {
-            "image": "shopify://shop_images/Frame_1321316180_1.png",
-            "text": "Reset",
-            "button_text": "get detoxed",
+            "video_url": "",
+            "text": "",
+            "button_text": "get started",
             "button_url": ""
           }
         },
-        "image_block_zUCrYL": {
-          "type": "image_block",
+        "video_block_4YGmdY": {
+          "type": "video_block",
           "settings": {
-            "image": "shopify://shop_images/Frame_1321316182.png",
-            "text": "Rest & \nRelax",
-            "button_text": "get relaxed",
+            "video_url": "",
+            "text": "",
+            "button_text": "get started",
             "button_url": ""
           }
         }
       },
       "block_order": [
-        "image_block_N97jME",
-        "image_block_wYcWCn",
-        "image_block_zUCrYL"
+        "video_block_yrUmjt",
+        "video_block_mVJf9U",
+        "video_block_4YGmdY"
       ],
       "name": "Section Universe",
       "settings": {
