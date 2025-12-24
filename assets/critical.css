@@ -121,7 +121,7 @@ body {
 }
 
 .font-grafika {
-    font-family: 'Grafika', serif;
+    font-family: 'Grafika', sans-serif;
 }
 
 @media screen and (min-width: 768px) {

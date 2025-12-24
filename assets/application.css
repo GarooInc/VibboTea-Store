@@ -1303,6 +1303,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-\[center_30\%\] {
+    object-position: center 30%;
+  }
   .object-\[center_55\%\] {
     object-position: center 55%;
   }
