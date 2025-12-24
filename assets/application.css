@@ -570,6 +570,12 @@
   .h-40 {
     height: calc(var(--spacing) * 40);
   }
+  .h-50 {
+    height: calc(var(--spacing) * 50);
+  }
+  .h-60 {
+    height: calc(var(--spacing) * 60);
+  }
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
@@ -1429,9 +1435,6 @@
   .py-40 {
     padding-block: calc(var(--spacing) * 40);
   }
-  .py-\[3\.5vh\] {
-    padding-block: 3.5vh;
-  }
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
@@ -1624,6 +1627,9 @@
   }
   .text-\[3\.5vw\] {
     font-size: 3.5vw;
+  }
+  .text-\[3\.7vw\] {
+    font-size: 3.7vw;
   }
   .text-\[3vw\] {
     font-size: 3vw;
@@ -2251,11 +2257,6 @@
   .md\:mt-20 {
     @media (width >= 48rem) {
       margin-top: calc(var(--spacing) * 20);
-    }
-  }
-  .md\:mb-0 {
-    @media (width >= 48rem) {
-      margin-bottom: calc(var(--spacing) * 0);
     }
   }
   .md\:mb-2 {
