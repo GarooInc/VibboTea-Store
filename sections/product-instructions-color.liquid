@@ -50,15 +50,16 @@
 
                 {% if gif %}
                     <div class="flex flex-col items-center">
-                        <div class="relative h-auto w-full overflow-hidden rounded-xl pb-5">
-                            <img
+                        <div class="relative h-[400px] w-full overflow-hidden rounded-xl pb-5">
+                          <img
                             src="{{ gif | image_url: width: 1200 }}"
                             alt=""
-                            class="w-full h-auto object-cover rounded-xl"
+                            class="w-full h-full object-cover object-center rounded-xl"
                             width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"
-                            >
+                          >
                         </div>
+
 
                        <p class="font-bricolage mt-3 xl:text-xl text-sm text-center min-h-[3.5em] 
                         leading-snug overflow-hidden xl:px-10">

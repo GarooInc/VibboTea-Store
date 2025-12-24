@@ -57,7 +57,7 @@
   --tilt-low: -1deg;
   --tilt-mid2: 4deg;
   --tilt-end: -1deg;
-  animation: floatFadeTilt 18s ease-in-out infinite;
+  animation: floatFadeTilt 8s ease-in-out infinite;
   animation-delay: 0.5s;
   animation-fill-mode: both;
 }
@@ -68,7 +68,7 @@
   --tilt-low: -2deg;
   --tilt-mid2: 5deg;
   --tilt-end: -3deg;
-  animation: floatFadeTilt 25s ease-in-out infinite;
+  animation: floatFadeTilt 10s ease-in-out infinite;
   animation-delay: 4s;
   animation-fill-mode: both;
 }
@@ -79,7 +79,7 @@
   --tilt-low: -1deg;
   --tilt-mid2: 5deg;
   --tilt-end: 0deg;
-  animation: floatFadeTilt 30s ease-in-out infinite;
+  animation: floatFadeTilt 12s ease-in-out infinite;
   animation-delay: 7s;
   animation-fill-mode: both;
 }

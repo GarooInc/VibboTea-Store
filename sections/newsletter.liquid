@@ -16,11 +16,10 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <div class="w-full md:w-1/2 flex justify-center items-center px-10 pt-15">
   <div class="text-left w-[90%] max-w-[350px] md:max-w-[500px]">
-    <h2 class="md:text-6xl text-4xl font-semibold font-bricolage mb-4">Join the tribe.</h2>
+    <h2 class="md:text-6xl text-4xl font-semibold font-bricolage mb-4">{{section.settings.title}}</h2>
 
-    <p class="text-xs leading-relaxed">
-      Sign Up to our newsletter and be the first to know about our launch and 
-      exclusive offers
+    <p class="text-md leading-relaxed">
+      {{ section.settings.texto1 }}
     </p>
 
     <div class="w-full pt-5">
@@ -30,7 +29,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
         <input 
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder= "{{section.settings.placeholder}}"
             class="md:hidden md:flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
           />
 
@@ -38,7 +37,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
           <input 
             type="email"
             name="email"
-            placeholder="Enter your Email Address"
+            placeholder= "{{section.settings.placeholder}}"
             class="hidden md:flex flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
           />
         
@@ -68,6 +67,24 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "type": "image_picker",
       "id": "imagen",
       "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join the tribe"
+    },
+    {
+      "type": "textarea",
+      "id": "texto1",
+      "label": "Texto 1",
+      "default": "Sign Up to our newsletter and be the first to know about our launch and exclusive offers"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "email address"
     }
   ],
   "presets": [
