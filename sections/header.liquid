@@ -11,8 +11,17 @@
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
     <div class="topbar-content">
       {% for  i in (1..6) %}
-        <div class="topbar-text text-sm md:text-base font-medium">
+        <div class="topbar-text text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-0 py-1">
           {{ section.settings.topbar_announcement_text }}
+          {% if section.settings.isotipe %}
+            <img 
+              src="{{ section.settings.isotipe | img_url: '200x200' }}" 
+              alt="Isotipe"
+              class="inline-block h-5 w-5 object-contain"
+              width="{{ section.settings.isotipe.width }}"
+              height="{{ section.settings.isotipe.height }}"
+            >
+          {% endif %}
         </div>
       {% endfor %}
     </div>
@@ -42,11 +51,11 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<div class="justify-between fixed md:absolute top-0 left-0 w-full md:grid md:grid-cols-3 items-center md:py-[3.5vh] px-0 ml-0 pl-0 z-30 {{ background_class | strip_newlines }}">
+<div class="justify-between absolute top-0 left-0 w-full md:grid md:grid-cols-3 items-center md:py-[3.5vh] px-0 ml-0 pl-0 z-30 {{ background_class | strip_newlines }}">
 
   <!-- movil (col 1) -->
 
-    <div class="lg:hidden md:hidden xl:hidden  flex items-center justify-between py-4  top-0 left-0 w-full px-4 ">
+    <div class="lg:hidden md:hidden xl:hidden  flex items-center justify-between py-4 w-full px-4 ">
       <div class="flex items-center pl-3">
         {% if section.settings.logo %}
           <a href="{{ routes.root_url }}">
@@ -350,7 +359,6 @@
   }
   
   .topbar-text {
-    padding: 0 2rem;
     flex-shrink: 0;
   }
   
@@ -381,6 +389,11 @@
       "id": "show_topbar",
       "label": "Show Topbar",
       "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "isotipe",
+      "label": "Isotipe Image"
     },
     {
       "type": "richtext",
