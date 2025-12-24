@@ -92,7 +92,6 @@
         "ingredient_block_hr7kfD": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/pinatrozos_4.png",
             "title": "Pineapple pieces",
             "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
           }
@@ -217,7 +216,8 @@
       ],
       "name": "FAQ",
       "settings": {
-        "title": "FAQ",
+        "title": "FAQ's",
+        "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/JaguarLaptop_1.png",
         "image_alignment": "left",
         "margin_top_image": 50
