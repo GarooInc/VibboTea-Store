@@ -42,7 +42,9 @@
   {% comment %} {# Title centered #} {% endcomment %}
   <div class="mx-auto text-center z-20 relative">
     <h1 class="text-[12vw] md:text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
-      {{ section.settings.page_title | newline_to_br }}
+      {{ section.settings.page_title 
+        | newline_to_br
+        | replace: 'VIBBO', '<span class="font-grafika font-normal text-[12vw] md:text-[9.5vw] text-white leading-[0.9]">VIBBO</span>' }}
     </h1>
 </div>
 

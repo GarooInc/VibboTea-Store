@@ -23,7 +23,7 @@
   <div class="relative mx-auto px-6 lg:px-40 space-y-16 md:space-y-24 lg:py-0 py-40 flex flex-col gap-10">
 
     {%- comment -%} FILA 1 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 gap-10 items-center">
+    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-20 md:pl-10">
       <div class="space-y-4 md:space-y-6 lg:pt-10">
         {%- if section.settings.title_1 != blank -%}
           <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-black md:text-left text-right">
@@ -32,7 +32,7 @@
         {%- endif -%}
 
         {%- if section.settings.body_1 != blank -%}
-          <div class="text-xl md:text-4xl text-neutral-800  md:text-left text-right">
+          <div class="text-xl md:text-4xl text-neutral-800  md:text-left text-right py-5">
             {{ section.settings.body_1 }}
           </div>
         {%- endif -%}
