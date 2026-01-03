@@ -26,22 +26,20 @@
         "page_descripction": ""
       }
     },
-    "main_carousel_hzpgzQ": {
-      "type": "main-carousel",
-      "name": "Carousel de productos",
+    "shop_page_9JapkN": {
+      "type": "shop-page",
+      "name": "Main Shop",
       "settings": {
-        "section_title": "Your daily dose of clarity",
-        "redireccionamiento": false,
-        "collection": "frontpage",
-        "limit": 12,
-        "autoplay": true,
-        "interval": 5000
+        "section_title": "Your daily dose of clarity, \nDiscover our flavors",
+        "desc": "",
+        "collection": "",
+        "limit": 12
       }
     }
   },
   "order": [
     "main",
     "header_section_hzrmjx",
-    "main_carousel_hzpgzQ"
+    "shop_page_9JapkN"
   ]
 }
