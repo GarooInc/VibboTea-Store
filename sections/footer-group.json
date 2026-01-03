@@ -15,6 +15,9 @@
       "type": "footer",
       "settings": {
         "menu": "footer-1",
+        "submenu1_footer": "submenu1",
+        "submenu2_footer": "submenu2",
+        "submenu3_footer": "submenu3",
         "menu2_footer": "secundary-footer",
         "logo": "shopify://shop_images/logo_vibbo.png",
         "descripcion": "Why are you not following us yet? Click either of the below or go away.",
