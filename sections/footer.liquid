@@ -15,7 +15,11 @@
           height="{{ section.settings.background_image.height }}"
         >
       {% endif %}
-      <p class="py-3 text-xs">Welcome to your daily dose of clarity</p>
+      {% if section.settings.descripcion %}
+      <p class="md:text-[1.2vw] text-xs text-white mt-2 pt-5 md:pr-[15vw] font-bricolage leading-tight">
+        {{ section.settings.descripcion }}
+      </p>
+    {% endif %}
     </div>
      <!-- SOCIALS -->
     <div class="flex pl-2 gap-4 md:pb-20 ">
@@ -121,14 +125,55 @@
       <nav class="flex flex-col md:flex-row justify-between w-full">
 
         
-        {% for link in section.settings.menu.links %}
-          <div class="flex flex-col items-start pt-8">
-          <a href="{{ link.url }}" class=" md:text-[1.8vw] text-lg hover:text-gray-300 transition font-bricolage whitespace-nowrap ">
-            {{ link.title }}
-          </a>   
-          <p class="md:text-[1vw] text-[10px] font-bricolage whitespace-nowrap">Vision & mission</p> 
-        </div> 
-        {% endfor %}
+        
+        <div class="flex flex-col items-start pt-8 w-20">
+          {% for link in section.settings.submenu1_footer.links %}
+
+            {% if forloop.first %}
+              <h1 class="md:text-[1.8vw] text-lg font-bricolage  mb-4 whitespace-nowrap">
+                {{ link.title }}
+              </h1>
+            {% else %}
+              <a href="{{ link.url }}" class="md:text-[1vw] text-[10px] font-bricolage opacity-80 mb-2 whitespace-nowrap hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+
+          {% endfor %}
+        </div>
+        <div class="flex flex-col items-start pt-8 w-20">
+          {% for link in section.settings.submenu2_footer.links %}
+
+            {% if forloop.first %}
+              <a href="{{ link.url }}"
+                class="md:text-[1.8vw] text-lg font-bricolage  mb-4 whitespace-nowrap">
+                {{ link.title }}
+              </a>
+            {% else %}
+              <a href="{{ link.url }}" class="md:text-[1vw] text-[10px] font-bricolage opacity-80 mb-2 whitespace-nowrap hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+
+          {% endfor %}
+        </div>
+         <div class="flex flex-col items-start pt-8 w-20">
+          {% for link in section.settings.submenu3_footer.links %}
+
+            {% if forloop.first %}
+              <h1 class="md:text-[1.8vw] text-lg font-bricolage  mb-4 whitespace-nowrap">
+                {{ link.title }}
+              </h1>
+            {% else %}
+              <a href="{{ link.url }}" class="md:text-[1vw] text-[10px] font-bricolage opacity-80 mb-2 whitespace-nowrap hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+
+          {% endfor %}
+        </div>
+
+
       </nav>
       
   </div>
@@ -149,8 +194,26 @@
     },
     {
       "type": "link_list",
-      "id": "menu2_footer",
+      "id": "submenu1_footer",
       "label": "t:labels.menu"
+    },
+
+    {
+      "type": "link_list",
+      "id": "submenu2_footer",
+      "label": "t:labels.menu"
+    },
+
+    {
+      "type": "link_list",
+      "id": "submenu3_footer",
+      "label": "t:labels.menu"
+    },
+
+    {
+      "type": "link_list",
+      "id": "menu2_footer",
+      "label": "Terms menu"
     },
    
     {

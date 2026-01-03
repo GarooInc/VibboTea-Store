@@ -1,12 +1,12 @@
-<div class="slider-facts-{{ section.id }} custom-slider md:relative md:h-screen h-60vh mx-auto overflow-hidden"
+<div class="slider-facts-{{ section.id }} custom-slider relative md:h-screen h-60vh mx-auto overflow-hidden"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
-  <div class="slides-wrapper md:relative w-full h-full">
+  {% comment %} version desktop {% endcomment %}
+  <div class="md:block slides-wrapper md:relative w-full">
     {% for block in section.blocks %}
       {% assign img = block.settings.image_desktop %}
-      <div class="slide absolute inset-0  {% if forloop.first %}active{% endif %}">
-  
+      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
         <img 
           src="{{ img | image_url: width: img.width, height: img.height }}"
           class="w-full h-full object-cover mt-10! md:mt-0"
@@ -15,9 +15,9 @@
           alt="{{ block.settings.alt | escape }}"
         />
 
-        <div class="slide-content absolute inset-0 flex flex-col items-center justify-center text-center z-30 px-5">
+        <div class="slide-content md:h-screen md:pt-0 pt-10 overflow-hidden absolute inset-0 flex flex-col items-center justify-center text-center ">
           
-          <h1 class="text-[10vw] font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
+          <h1 class="text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9]">
             {{ block.settings.page_title | newline_to_br }}
           </h1>
 
@@ -26,14 +26,27 @@
           </p>
 
         </div>
-
       </div>
-
     {% endfor %}
-    
   </div>
+ 
 
+  <!-- Flechas -->
+    <button class="prev absolute top-1/2 text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
+        {%- render 'arrow-slidder2' -%}
+      </div>
+    </button>
+
+    <button class="next absolute top-1/2 right-0 text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+      <div class="w-10 h-10 md:w-30 md:h-30">
+        {%- render 'arrow-slidder' -%}
+      </div>
+    </button>
+
+  
 </div>
+
 
 <div class="absolute inset-0 z-10 pointer-events-none top-2">
   <div class="w-full h-full relative">
@@ -70,6 +83,26 @@
 </div>
 
 
+<style>
+.custom-slider .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.custom-slider .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.custom-slider .prev,
+.custom-slider .next {
+  z-index: 50;
+}
+
+</style>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -78,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const wrapper = slider.querySelector(".slides-wrapper");
   const slides = wrapper.querySelectorAll(".slide");
+  const nextBtn = slider.querySelector(".next");
+  const prevBtn = slider.querySelector(".prev");
 
   let index = 0;
 
@@ -86,45 +121,17 @@ document.addEventListener("DOMContentLoaded", function () {
     slides[i].classList.add("active");
   }
 
-  setInterval(() => {
+  nextBtn.addEventListener("click", () => {
     index = (index + 1) % slides.length;
     showSlide(index);
-  }, {{ section.settings.Time }});
+  });
+
+  prevBtn.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  });
 });
 </script>
-
-<style>
-.slider-facts-{{ section.id }} .slides-wrapper {
-  height: 40vh;
-}
-
-.slider-facts-{{ section.id }} .slide,
-.slider-facts-{{ section.id }} img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-@media (min-width: 768px) {
-  .slider-facts-{{ section.id }} .slides-wrapper {
-    height: 100vh; 
-  }
-}
-
-.slider-facts-{{ section.id }} .slide.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-.slider-facts-{{ section.id }} .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-
-</style>
 
 
 
