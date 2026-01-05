@@ -130,6 +130,7 @@
         },
         "slide_XyUMq4": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "background_color": "#e8dff7",
             "map_image": "shopify://shop_images/zacapa.png",
@@ -147,11 +148,11 @@
         "slide_CxiKDf": {
           "type": "slide",
           "settings": {
-            "background_color": "#dff5f7",
-            "map_image": "shopify://shop_images/progreso.png",
+            "background_color": "#e8dff7",
+            "map_image": "shopify://shop_images/zacapa_progreso.png",
             "map_alt": "Mapa",
             "richtext": "<p><strong>This is what handcrafted</strong> really means.</p>",
-            "place_title": "El Progreso",
+            "place_title": "Zacapa & El Progreso",
             "ingredient_1_image": "shopify://shop_images/driedgrapes.png",
             "ingredient_1_name": "Dried grapes",
             "ingredient_2_name": "",
