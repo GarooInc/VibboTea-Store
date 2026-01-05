@@ -32,13 +32,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
             <div class="text-right">
               <!-- Título del lugar -->
               {% if block.settings.place_title != blank %}
-                <div class="text-2xl md:text-4xl font-bold md:mb-8 md:text-right text-left">
+                <div class="text-2xl md:text-4xl font-bold md:mb-8 text-left w-xs">
                   {{ block.settings.place_title }}
                 </div>
               {% endif %}
               
               <!-- Ingredientes -->
-              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3  md:pt-4 md:pl-6 h-80">
+              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3  md:pt-4 md:pl-6 md:h-80 h-60">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
                   <div class=" flex items-center justify-start gap-3">
                     {% if block.settings.ingredient_1_image != blank %}

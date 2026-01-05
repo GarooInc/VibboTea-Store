@@ -6,7 +6,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
     {% for block in section.blocks %}
       {% assign img = block.settings.image_desktop %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
-        <img src="{{ img | img_url: '2000x2000' }}" 
+        <img src="{{ img | image_url: width: 2000 }}" 
           class="w-full h-auto object-contain"
           width="{{ img.width }}" 
           height="{{ img.height }}" 

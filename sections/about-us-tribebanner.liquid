@@ -14,7 +14,7 @@
     <img
       src="{{ section.settings.plant_bottom_right | image_url: width: 400 }}"
       alt="Decoración planta"
-      class="pointer-events-none select-none absolute -bottom-10 -right-4 xl:w-[400px] md:w-[300px] w-[280px]"
+      class="pointer-events-none select-none absolute -bottom-10 -right-4 xl:w-[400px] md:w-[300px] w-[280px] z-10"
       width="{{ section.settings.plant_bottom_right.width }}"
       height="{{ section.settings.plant_bottom_right.height }}"
     >
@@ -38,12 +38,12 @@
         {%- endif -%}
       </div>
 
-      <div class="flex justify-center md:justify-end w-full">
+      <div class="flex justify-center md:justify-end w-full h-[400px]">
         {%- if section.settings.image_1 != blank -%}
           <img
             src="{{ section.settings.image_1 | image_url: width: 900 }}"
             alt="imagen persona"
-            class=" rounded-3xl object-cover md:w-full"
+            class=" rounded-3xl object-cover md:w-full "
             width="{{ section.settings.image_1.width }}"
             height="{{ section.settings.image_1.height }}"
           >
@@ -73,14 +73,32 @@
             {{ section.settings.body_2_small }}
           </div>
         {%- endif -%}
+      </div>
+    </div>
+    {%- comment -%} FILA 3 {%- endcomment -%}
+    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-10 md:pl-10">
+      <div class="space-y-4 md:space-y-6 lg:pt-10">
 
         {%- if section.settings.heading_2 != blank -%}
-          <h3 class="text-4xl md:text-6xl font-normal leading-12 tracking-tight text-black pt-4">
-            {{ section.settings.heading_2 }}
-          </h3>
+        <h3 class="text-4xl md:text-6xl font-normal leading-12 tracking-tight text-black pt-4">
+          {{ section.settings.heading_2 }}
+        </h3>            
+        {%- endif -%}
+      </div>
+
+      <div class="flex justify-center md:justify-end w-full">
+        {%- if section.settings.image_3 != blank -%}
+          <img
+            src="{{ section.settings.image_3 | image_url: width: 900 }}"
+            alt="imagen persona"
+            class=" rounded-3xl object-cover md:w-full"
+            width="{{ section.settings.image_3.width }}"
+            height="{{ section.settings.image_3.height }}"
+          >
         {%- endif -%}
       </div>
     </div>
+
   </div>
 </section>
 
@@ -108,7 +126,7 @@
     {
       "type": "richtext",
       "id": "body_1",
-      "label": "Texto principal",
+      "label": "Texto principal"
     },
     {
       "type": "image_picker",
@@ -120,6 +138,11 @@
       "type": "image_picker",
       "id": "image_2",
       "label": "Imagen inferior izquierda"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Imagen inferior derecha"
     },
     {
       "type": "richtext",

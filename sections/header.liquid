@@ -166,8 +166,8 @@
     {% for link in section.settings.menu.links %}
       <a 
         href="{{ link.url }}" 
-        class="font-sf-pro font-light font-bricolage text-[2vw] md:text-[1.2vw] lg:text-[0.9vw] xl:text-[1.05vw] p-4 md:text-sm tracking-wider
-         uppercase {{ text_color | strip_newlines }} hover:text-gray-500 transition-colors duration-200 whitespace-nowrap"
+        class="font-light font-bricolage text-lg md:text-xl lg:text-lg xl:text-xl p-4 tracking-wider
+         uppercase {{ text_color | strip_newlines }} hover:font-bold transition-colors duration-200 whitespace-nowrap"
       >
         {{ link.title }}
       </a>
