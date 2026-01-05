@@ -5,7 +5,7 @@
         <div class="text-black text-2xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
-        <div class="absolute bottom-0 md:right-2/5">
+        <div class="absolute bottom-0 md:left-40">
             {% if section.settings.image1 %}
                 <img 
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
@@ -44,7 +44,7 @@
                     type="text"
                     name="contact[first_name]"
                     id="ContactFormFirstName"
-                    placeholder="Tell us who you are"
+                    placeholder="John"
                     class="w-full border border-gray-300 bg-white px-4 py-3
                         focus:outline-none focus:ring-2 focus:ring-black 
                         rounded-2xl "
@@ -59,7 +59,7 @@
                 type="text"
                 name="contact[last_name]"
                 id="ContactFormLastName"
-                placeholder="Tell us who you are"
+                placeholder="Doe"
                 class="w-full border border-gray-300 bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
             >
             </div>
@@ -90,19 +90,33 @@
             ></textarea>
         </div>
 
+        <!-- Checkbox Terms -->
+        <div class="py-6 flex items-start gap-3">
+            <input
+                type="checkbox"
+                name="contact[terms_accepted]"
+                id="ContactFormTerms"
+                required
+                class="mt-1 w-5 h-5 border-2 border-gray-300 rounded cursor-pointer accent-black"
+            >
+            <label for="ContactFormTerms" class="text-sm text-gray-700 cursor-pointer">
+                I agree to the 
+                <a href="{{ section.settings.terms_link }}" class="underline hover:text-black" target="_blank">Terms of Service</a> 
+                and 
+                <a href="{{ section.settings.privacy_link }}" class="underline hover:text-black" target="_blank">Privacy Policy</a>
+            </label>
+        </div>
+
         <!-- Button -->
-        <div class="mt-8">
+        <div class="mt-10">
             <button
             type="submit"
-            class="w-full bg-black text-white py-3 rounded-full text-center hover:opacity-80 transition"
+            class="w-full bg-black text-white py-3 rounded-full text-center hover:opacity-80 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-            Send to Us
+            Send
             </button>
         </div>
         </form>
-        <div class="text-center pt-4">
-            <p class="text-xs">By Contacting us, you agree to our Terms of service and privacy Policy</p>
-        </div>
     </div>
 
 </div>
@@ -128,14 +142,21 @@
      "type": "image_picker", 
      "id": "image2", 
       "label": "Image2"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms of Service Link"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy Link"
     }
-    
-    
-    
   ],
   "presets": [
     {
-      "name": "Contact us",
+      "name": "Contact us"
     }
   ]
 }
