@@ -32,13 +32,13 @@
  
 
   <!-- Flechas -->
-    <button class="prev absolute top-1/2 text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+    <button class="prev absolute top-1/2 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
       <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
         {%- render 'arrow-slidder2' -%}
       </div>
     </button>
 
-    <button class="next absolute top-1/2 right-0 text-white py-2 opacity-100 hover:opacity-60 transition duration-300">
+    <button class="next absolute top-1/2 right-0 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
       <div class="w-10 h-10 md:w-30 md:h-30">
         {%- render 'arrow-slidder' -%}
       </div>
@@ -99,7 +99,7 @@
 
 .custom-slider .prev,
 .custom-slider .next {
-  z-index: 50;
+  z-index: 10;
 }
 
 </style>
