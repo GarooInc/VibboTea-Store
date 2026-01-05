@@ -20,9 +20,16 @@
 
     {% if section.settings.image_animation3 %}
       <img src="{{ section.settings.image_animation3 | image_url: width: 2000 }}" 
-          width="{{ section.settings.image_animation2.featured_media.width }}"
-          height="{{ section.settings.image_animation2.featured_media.height }}"
+          width="{{ section.settings.image_animation3.featured_media.width }}"
+          height="{{ section.settings.image_animation3.featured_media.height }}"
           class="animated-img-3 absolute md:bottom-[25%] bottom-0 right-0 md:w-20 w-16 object-cover z-20">
+    {% endif %}
+
+    {% if section.settings.image_animation3 %}
+      <img src="{{ section.settings.image_animation4 | image_url: width: 2000 }}" 
+          width="{{ section.settings.image_animation4.featured_media.width }}"
+          height="{{ section.settings.image_animation4.featured_media.height }}"
+          class="animated-img-4 absolute -bottom-20 right-80 md:w-20 w-16 object-cover z-20">
     {% endif %}
 
 
@@ -50,7 +57,7 @@
         <img 
           src="{{ section.settings.image_right | img_url: 'x800' }}" 
           alt="" 
-          class="block absolute md:-right-56 md:-bottom-60 md:w-80 z-10 -right-10 -bottom-80 w-40"
+          class="block absolute md:-right-56 md:-bottom-60 md:w-80 z-10 -right-8 -bottom-80 w-40"
             width="200"
             height="200"
         >
@@ -144,6 +151,11 @@
       "type": "image_picker",
       "id": "image_animation3",
       "label": "Imagen animación 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_animation4",
+      "label": "Imagen animación 4"
     }
   ],
   "presets": [
