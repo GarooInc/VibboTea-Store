@@ -285,7 +285,7 @@
       "type": "newsletter",
       "name": "Newsletter",
       "settings": {
-        "imagen": "shopify://shop_images/Group_35_1.png",
+        "imagen": "shopify://shop_images/latas.png",
         "title": "Join the tribe",
         "texto1": "Sign Up to our newsletter and be the first to know about our launch and exclusive offers",
         "placeholder": "email address"
