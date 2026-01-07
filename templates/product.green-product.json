@@ -52,6 +52,7 @@
             "text_1": "Add 2 grams (1 teaspoon) of Gut Bliss blend to your sachet, heat 6–8 oz. of water to 175°F.",
             "gif_2": "shopify://shop_images/Diseno_sin_titulo_0b13b58f-e00b-463d-90fe-cda30b55dc56.gif",
             "text_2": "Steep for 2-3 minutes, watch the magic happen",
+            "gif_3": "shopify://shop_images/Diseno_sin_titulo_2.gif",
             "text_3": "You’re welcome",
             "text_4": "Description 4",
             "text_5": "Description 5",
@@ -62,6 +63,7 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
+            "gif_1": "shopify://shop_images/icedteaverde.gif",
             "text_1": "Steep and let your Gut Bliss blend cool down.",
             "text_2": " Pour over a glass of ice.",
             "text_3": "Add mint leaves for more flavor and enjoy.",
