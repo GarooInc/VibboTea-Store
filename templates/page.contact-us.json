@@ -20,7 +20,9 @@
       "settings": {
         "title": "Speak up or shut \nup — Just kidding, \nspeak up.",
         "image1": "shopify://shop_images/Jaguar_1.png",
-        "image2": "shopify://shop_images/mono.png"
+        "image2": "shopify://shop_images/mono.png",
+        "terms_link": "shopify://policies/terms-of-service",
+        "privacy_link": "shopify://policies/privacy-policy"
       }
     },
     "faq_B9ngBx": {
