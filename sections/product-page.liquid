@@ -1,4 +1,5 @@
-<div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-40 pt-25">
+<!-- Start of Judge.me code -->{% assign has_legacy = false %}{% if product.metafields.judgeme.widget.size > 20 %}{% assign has_legacy = true %}{% endif %}<div style='clear:both'></div><div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}' data-product-id='{{ product.id }}' data-widget='review' data-auto-install='false' data-shop-reviews-count='{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}' data-entry-point='review_widget.js' data-entry-key='review-widget/main.js'>{% if has_legacy %}<div class='jdgm-legacy-widget-content' style='display: none;'>{{ product.metafields.judgeme.widget }}</div>{% endif %}</div>{% if product.metafields.judgeme.review_widget_data %}<script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>{% endif %}<!-- End of Judge.me code -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-40 pt-25">
 
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
@@ -63,12 +64,34 @@
     {% endif %}
      <div class="product-info w-full  px-4">
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
-          {{ product.title }}</h1>
+          {{ product.title }}
+        </h1>
+        <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="text-2xl md:text-3xl text-gray-400 line-through">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+
+            <span class="text-2xl md:text-3xl text-red-700 font-light">
+              {{ current_variant.price | money }}
+            </span>
+          {% else %}
+            <span class="text-2xl md:text-3xl text-gray-700">
+              {{ current_variant.price | money }}
+            </span>
+          {% endif %}
+        </div>
+
+        <div class='subscriptions_app_embed_block'></div>
+
+
         <p class="prose text-xs text-black font-bricolage pt-4">
             {{ product.description }}
         </p>
 
         <div class="subscriptions_app_embed_block"></div>
+
+        
 
 
         {% comment %} variantes {% endcomment %}
@@ -106,27 +129,6 @@
         
 
         {% endunless %}
-
-        <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300 md:min-h-[10vw]">
-          {% if current_variant.compare_at_price > current_variant.price %}
-            <span class="text-3xl md:text-4xl text-gray-400 line-through">
-              {{ current_variant.compare_at_price | money }}
-            </span>
-
-            <span class="text-4xl md:text-5xl text-red-700 font-light">
-              {{ current_variant.price | money }}
-            </span>
-          {% else %}
-            <span class="text-4xl md:text-5xl text-gray-700">
-              {{ current_variant.price | money }}
-            </span>
-          {% endif %}
-        </div>
-
-
-      
-
-      
 
 
       <form method="post" action="{{ routes.cart_add_url }}" class="w-full md:py-4 items-end text-center mx-auto cursor-pointer">
