@@ -104,53 +104,69 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
-        "ingredient_block_hr7kfD": {
+        "ingredient_block_JrDzV7": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/pinatrozos_1.png",
-            "title": "Pineapple pieces",
-            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
+            "image": "shopify://shop_images/rosemary_cec86ebf-4d5c-4672-a88f-16e9d62720e2.png",
+            "title": "Rosemary",
+            "text": "sharpens mental clarity while easing tension for a focused calm."
           }
         },
-        "ingredient_block_JwPmcy": {
+        "ingredient_block_c8tjjG": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/black-tea.png",
-            "title": "Black tea",
-            "text": "Caffeine energy boost, helps improve concentration and alertness."
+            "image": "shopify://shop_images/lavender_c25dce41-d533-4a09-ac00-486241444ff4.png",
+            "title": "Lavender",
+            "text": "Melts stress and promotes deep, restorative sleep with its soothing aroma."
           }
         },
-        "ingredient_block_MMwqRy": {
+        "ingredient_block_X98x6m": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/hibisco.png",
-            "title": "Hibiscus",
-            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
+            "image": "shopify://shop_images/passionflower_9983e2b4-d4b9-40c8-8f74-83296ec872f1.png",
+            "title": "Passionflower",
+            "text": "Quiets racing thoughts and anxiety, fostering serene relaxation."
           }
         },
-        "ingredient_block_eyNiWw": {
+        "ingredient_block_QhxY3i": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/cascara_de_cacao_2.png",
-            "title": "Cocoa husk",
-            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
+            "title": "Lemon verbena",
+            "text": "Unwinds nerves, supports digestion, and invites gentle drowsiness."
           }
         },
-        "ingredient_block_izL4A4": {
+        "ingredient_block_Lh9WYE": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/coco__2.png",
-            "title": "Coconut",
-            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
+            "title": "Orange peel",
+            "text": "Brightens mood with uplifting citrus notes and vitamin C glow."
+          }
+        },
+        "ingredient_block_DGWGYK": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger.png",
+            "title": "Ginger",
+            "text": "Settles the stomach and ignites a warm, comforting anti-inflammatory flow."
+          }
+        },
+        "ingredient_block_ekQykY": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cinnamon_2e274ecf-df1c-41e5-8f35-c5f9be2d49b4.png",
+            "title": "Cinnamon",
+            "text": "Warms the body, stabilizes blood sugar, and adds spicy tranquility."
           }
         }
       },
       "block_order": [
-        "ingredient_block_hr7kfD",
-        "ingredient_block_JwPmcy",
-        "ingredient_block_MMwqRy",
-        "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_JrDzV7",
+        "ingredient_block_c8tjjG",
+        "ingredient_block_X98x6m",
+        "ingredient_block_QhxY3i",
+        "ingredient_block_Lh9WYE",
+        "ingredient_block_DGWGYK",
+        "ingredient_block_ekQykY"
       ],
       "name": "Product Ingredients",
       "settings": {
