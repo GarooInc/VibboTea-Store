@@ -71,6 +71,7 @@
         "how_block_rB8WTr": {
           "type": "how_block",
           "settings": {
+            "gif_1": "shopify://shop_images/drink_3.gif",
             "text_1": "Description 1",
             "gif_2": "shopify://shop_images/drink.gif",
             "text_2": "Description 2",
