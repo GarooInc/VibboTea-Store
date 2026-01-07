@@ -22,12 +22,13 @@
         "subtitle": "",
         "button_label": "Volver al inicio",
         "button_link": "/",
-        "image_left": "shopify://shop_images/bird-404.png",
-        "image_top": "shopify://shop_images/monkey-404.png",
+        "image_left": "shopify://shop_images/Guacamaya_depie.png",
+        "image_top": "shopify://shop_images/Mono_deCabeza_1.png",
         "image_right": "shopify://shop_images/leopard-404.png",
-        "image_animation1": "shopify://shop_images/animation-notfound1.png",
-        "image_animation2": "shopify://shop_images/animation-notfound3.png",
-        "image_animation3": "shopify://shop_images/Frame_1321315053_4.png"
+        "image_animation1": "shopify://shop_images/gracias.png",
+        "image_animation2": "shopify://shop_images/bepatient.png",
+        "image_animation3": "shopify://shop_images/summer26.png",
+        "image_animation4": "shopify://shop_images/drinkvibbo.png"
       }
     }
   },
