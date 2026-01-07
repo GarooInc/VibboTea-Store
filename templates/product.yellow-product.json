@@ -77,14 +77,13 @@
         "how_block_XTMXa6": {
           "type": "how_block",
           "settings": {
-            "gifs_count": 5,
-            "gif_1": "shopify://shop_images/DRINK3.1-ezgif.com-video-to-gif-converter_b249f94b-31f6-4ab5-b278-dad9d97354d3.gif",
-            "text_1": "Description 1",
-            "gif_2": "shopify://shop_images/3.2drink1-ezgif.com-video-to-gif-converter_1.gif",
-            "text_2": "Description 2",
-            "gif_3": "shopify://shop_images/DRINK3.4-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3",
-            "gif_4": "shopify://shop_images/DRINK3.5-ezgif.com-video-to-gif-converter.gif",
+            "gifs_count": 3,
+            "gif_1": "shopify://shop_images/drinkrojo.gif",
+            "text_1": "Add 4 oz of Hydra Boost blend, lemon squeeze, and sweetener to a shaker with ice.",
+            "gif_2": "shopify://shop_images/drinkrojo_1.gif",
+            "text_2": "Shake hard for 20 seconds.",
+            "gif_3": "shopify://shop_images/drinkrojo_2.gif",
+            "text_3": "Serve over ice, garnish with lime wedge.",
             "text_4": "",
             "text_5": "",
             "text_6": "Description 6"
