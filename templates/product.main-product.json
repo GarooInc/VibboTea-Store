@@ -59,11 +59,11 @@
         "how_block_NNNFD4": {
           "type": "how_block",
           "settings": {
-            "text_1": "Description 1",
+            "text_1": "",
             "gif_2": "shopify://shop_images/teablue_ed72cd9d-0cd7-4df0-9ac5-c5db15e92aba.gif",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4"
+            "text_2": "",
+            "text_3": "",
+            "text_4": ""
           }
         },
         "how_block_rB8WTr": {
