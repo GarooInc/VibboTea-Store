@@ -144,6 +144,22 @@
             "title": "Coconut",
             "text": "Offers potassium, magnesium, and medium-chain fats for optimal hydration and quick energy fuel.​"
           }
+        },
+        "ingredient_block_cyNJi3": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/elderberry.png",
+            "title": "Elderberry",
+            "text": "Packs antioxidants and vitamin C for immune defense, fatigue fighting, and endurance.​"
+          }
+        },
+        "ingredient_block_rtJXtk": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/diedblacklemos.png",
+            "title": "Dried black lemon",
+            "text": "Delivers citric acid, vitamin C, and detox support for digestion, alkalizing, and absorption."
+          }
         }
       },
       "block_order": [
@@ -151,7 +167,9 @@
         "ingredient_block_JwPmcy",
         "ingredient_block_MMwqRy",
         "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_izL4A4",
+        "ingredient_block_cyNJi3",
+        "ingredient_block_rtJXtk"
       ],
       "name": "Product Ingredients",
       "settings": {
