@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-42 pt-25">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:px-5 md:py-10 md:pt-42 pt-32">
 
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
@@ -116,9 +116,9 @@
         <div class="subscriptions_app_embed_block"></div>
 
 
-        <p class="text-xs text-black font-bricolage pt-4">
+        <div class="text-sm text-black font-bricolage pt-4 product-description">
             {{ product.description }}
-        </p>
+        </div>
         
 
 

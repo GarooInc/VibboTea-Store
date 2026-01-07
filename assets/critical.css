@@ -210,3 +210,8 @@ body {
 .shopify_subscriptions_app_policy{
   color: gray !important;
 }
+
+.product-description li {
+  list-style-type: disc;
+  margin-left: 20px;
+}

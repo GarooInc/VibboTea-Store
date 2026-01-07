@@ -530,6 +530,12 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+  .line-clamp-5 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
   .block {
     display: block;
   }
@@ -1472,6 +1478,9 @@
   }
   .pt-30 {
     padding-top: calc(var(--spacing) * 30);
+  }
+  .pt-32 {
+    padding-top: calc(var(--spacing) * 32);
   }
   .pt-40 {
     padding-top: calc(var(--spacing) * 40);
