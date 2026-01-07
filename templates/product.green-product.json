@@ -104,6 +104,14 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
+        "ingredient_block_FJrDid": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
+            "title": "Boldo",
+            "text": "Promote liver health, bile flow, and digestion while acting as a natural detoxifier."
+          }
+        },
         "ingredient_block_cLx7iQ": {
           "type": "ingredient_block",
           "settings": {
@@ -138,6 +146,7 @@
         }
       },
       "block_order": [
+        "ingredient_block_FJrDid",
         "ingredient_block_cLx7iQ",
         "ingredient_block_ptkgRE",
         "ingredient_block_Pcd4Kg",
