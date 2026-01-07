@@ -75,7 +75,7 @@
         "slide_mBdE8G": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_1.png",
+            "image_desktop": "shopify://shop_images/1_675df199-b061-434a-8921-436e4ed59acf.png",
             "image_mobile": "shopify://shop_images/mobile1.png",
             "alt": "Imagen del slider"
           }
@@ -83,7 +83,7 @@
         "slide_fTwR9R": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_2.png",
+            "image_desktop": "shopify://shop_images/2_4da68b3f-1d9f-49d2-801c-196dc718ad44.png",
             "image_mobile": "shopify://shop_images/Fun_fact_2_1.png",
             "alt": "Imagen del slider"
           }
@@ -91,7 +91,7 @@
         "slide_4Jni8y": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_3.png",
+            "image_desktop": "shopify://shop_images/fact3.png",
             "image_mobile": "shopify://shop_images/Fun_fact_4_2.png",
             "alt": "Imagen del slider"
           }
@@ -99,7 +99,7 @@
         "slide_MRXFQA": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_4.png",
+            "image_desktop": "shopify://shop_images/fact4.png",
             "image_mobile": "shopify://shop_images/Fun_fact_3_1.png",
             "alt": "Imagen del slider"
           }
@@ -107,7 +107,7 @@
         "slide_UyjxKz": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_5.png",
+            "image_desktop": "shopify://shop_images/fact5.png",
             "image_mobile": "shopify://shop_images/Fun_fact_5_1.png",
             "alt": "Imagen del slider"
           }
@@ -115,7 +115,7 @@
         "slide_Hjb93p": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Cierre.png",
+            "image_desktop": "shopify://shop_images/fact6.png",
             "image_mobile": "shopify://shop_images/Cierre_3.png",
             "alt": "Imagen del slider"
           }
