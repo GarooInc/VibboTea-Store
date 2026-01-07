@@ -104,6 +104,14 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
+        "ingredient_block_cLx7iQ": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
+            "title": "Ginger",
+            "text": " ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
+          }
+        },
         "ingredient_block_ptkgRE": {
           "type": "ingredient_block",
           "settings": {
@@ -130,6 +138,7 @@
         }
       },
       "block_order": [
+        "ingredient_block_cLx7iQ",
         "ingredient_block_ptkgRE",
         "ingredient_block_Pcd4Kg",
         "ingredient_block_hr7kfD"
