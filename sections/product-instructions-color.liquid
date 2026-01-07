@@ -54,17 +54,17 @@
                           <img
                             src="{{ gif | image_url: width: 1200 }}"
                             alt=""
-                            class="w-full h-full object-cover object-center rounded-xl"
+                            class="w-full md:h-[400px]! h-80 object-cover object-center rounded-xl "
                             width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"
                           >
                         </div>
 
 
-                       <p class="font-bricolage mt-3 xl:text-xl text-sm text-center min-h-[3.5em] 
+                       <div class="font-bricolage mt-4! xl:text-xl text-sm text-center min-h-[3.5em] 
                         leading-snug overflow-hidden xl:px-10">
                             {{ text }}
-                        </p>
+                        </div>
                     </div>
 
 
@@ -93,7 +93,7 @@
                             <img
                                 src="{{ gif | image_url: width: 1200 }}"
                                 alt=""
-                                class="w-full h-auto object-cover rounded-2xl block"
+                                class="w-full  object-cover rounded-2xl block h-80! object-center"
                                 width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"
                             >

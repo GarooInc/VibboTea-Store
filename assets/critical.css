@@ -198,3 +198,15 @@ body {
   margin-bottom: 24px !important;
   text-transform: uppercase !important;
 }
+
+.subscriptions_app_embed_block label {
+    font-size: 14px !important;
+}
+
+.shopify_subscriptions_app_block_label{
+  padding: 0.5rem !important;
+}
+
+.shopify_subscriptions_app_policy{
+  color: gray !important;
+}
