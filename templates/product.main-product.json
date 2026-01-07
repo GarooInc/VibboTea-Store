@@ -137,7 +137,7 @@
         "title": "About our Ingredients",
         "imagen1": "shopify://shop_images/leaf2_1.png",
         "imagen2": "shopify://shop_images/Frame_1321316210.png",
-        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+        "imagen3": "shopify://shop_images/Guacamaya_meditando_1ab8e845-6c2d-442b-8d3b-e6b8a10c4c82.png"
       }
     },
     "product_why_image_bRJRVp": {
@@ -214,8 +214,8 @@
       "settings": {
         "title": "FAQ's",
         "text_faq": "Read below for a good time.",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png",
-        "image_alignment": "left",
+        "image1": "shopify://shop_images/Mono_Colgado.png",
+        "image_alignment": "right",
         "margin_top_image": 50
       }
     },
