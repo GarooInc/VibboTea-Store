@@ -99,7 +99,7 @@
         "slide_MRXFQA": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_4.png",
+            "image_desktop": "shopify://shop_images/fact4.png",
             "image_mobile": "shopify://shop_images/Fun_fact_3_1.png",
             "alt": "Imagen del slider"
           }
@@ -107,7 +107,7 @@
         "slide_UyjxKz": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Fun_fact_5.png",
+            "image_desktop": "shopify://shop_images/fact5.png",
             "image_mobile": "shopify://shop_images/Fun_fact_5_1.png",
             "alt": "Imagen del slider"
           }
@@ -115,7 +115,7 @@
         "slide_Hjb93p": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Cierre.png",
+            "image_desktop": "shopify://shop_images/fact6.png",
             "image_mobile": "shopify://shop_images/Cierre_3.png",
             "alt": "Imagen del slider"
           }
