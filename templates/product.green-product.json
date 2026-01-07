@@ -104,6 +104,14 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
+        "ingredient_block_ptkgRE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/mint_89c7f7ec-525a-4228-a154-9e8ce2462e64.png",
+            "title": "Mint",
+            "text": "Refreshes with cooling menthol for better digestion, nausea relief, and breath freshening."
+          }
+        },
         "ingredient_block_Pcd4Kg": {
           "type": "ingredient_block",
           "settings": {
@@ -122,6 +130,7 @@
         }
       },
       "block_order": [
+        "ingredient_block_ptkgRE",
         "ingredient_block_Pcd4Kg",
         "ingredient_block_hr7kfD"
       ],
