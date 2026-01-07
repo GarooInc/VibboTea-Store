@@ -47,14 +47,11 @@
         "how_block_KaMDUb": {
           "type": "how_block",
           "settings": {
-            "gif_1": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2_1.png",
-            "text_1": "Heat 6–8 oz. of water to 175°F.",
-            "gif_2": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_2.png",
-            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
-            "gif_3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_4.png",
-            "text_3": "Add the tea to the hot water.",
-            "gif_4": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_5.png",
-            "text_4": "Steep for 3 minutes, energize."
+            "gif_1": "shopify://shop_images/teablue_1_2e066eac-453e-4382-9d16-6fca645e3087.gif",
+            "text_1": "",
+            "text_2": "",
+            "text_3": "",
+            "text_4": ""
           }
         },
         "how_block_NNNFD4": {
@@ -141,7 +138,7 @@
         "title": "About our Ingredients",
         "imagen1": "shopify://shop_images/leaf2_1.png",
         "imagen2": "shopify://shop_images/Frame_1321316210.png",
-        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+        "imagen3": "shopify://shop_images/Guacamaya_meditando_1ab8e845-6c2d-442b-8d3b-e6b8a10c4c82.png"
       }
     },
     "product_why_image_bRJRVp": {
@@ -218,8 +215,8 @@
       "settings": {
         "title": "FAQ's",
         "text_faq": "Read below for a good time.",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png",
-        "image_alignment": "left",
+        "image1": "shopify://shop_images/Mono_Colgado.png",
+        "image_alignment": "right",
         "margin_top_image": 50
       }
     },
