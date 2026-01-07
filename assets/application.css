@@ -2391,6 +2391,11 @@
       height: 30vw;
     }
   }
+  .md\:h-\[400px\] {
+    @media (width >= 48rem) {
+      height: 400px;
+    }
+  }
   .md\:h-\[400px\]\! {
     @media (width >= 48rem) {
       height: 400px !important;

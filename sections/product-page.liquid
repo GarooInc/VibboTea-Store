@@ -10,20 +10,45 @@
       
       <div class="flex transition-transform duration-500" id="sliderTrack">
         {% for media in product.media %}
-          {% if media.media_type == "image" %}
-            
-            <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
+          <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
+            {% if media.media_type == "image" %}
               <img
                 src="{{ media | image_url: width: 1200 }}"
                 alt="{{ media.alt | escape }}"
                 class="w-full h-full object-cover"
                 width="{{ media.width }}"
-                  height="{{ media.height }}"
+                height="{{ media.height }}"
               />
-            </div>
-
-
-          {% endif %}
+            {% elsif media.media_type == "video" %}
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="w-full h-full object-cover"
+              >
+                <source src="{{ media.sources[1].url }}" type="video/mp4">
+              </video>
+            {% elsif media.media_type == "external_video" %}
+              {% if media.host == "youtube" %}
+                <iframe
+                  src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
+                  class="w-full h-full"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                ></iframe>
+              {% elsif media.host == "vimeo" %}
+                <iframe
+                  src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+                  class="w-full h-full"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  allowfullscreen
+                ></iframe>
+              {% endif %}
+            {% endif %}
+          </div>
         {% endfor %}
       </div>
 
@@ -31,14 +56,14 @@
       <!-- BOTONES -->
       <button 
         class="absolute left-0 top-1/2 -translate-y-1/2   
-        text-black px-3 py-2  "
+        text-black px-3 py-2  cursor-pointer"
         onclick="slidePrev()">
         {% render 'arrow-slidder2' %}
       </button>
 
       <button 
         class="absolute right-0 top-1/2 -translate-y-1/2  
-        text-black px-3 py-2 "
+        text-black px-3 py-2  cursor-pointer"
         onclick="slideNext()">
         {% render 'arrow-slidder' %}
       </button>
@@ -61,7 +86,8 @@
 
        
     {% endif %}
-     <div class="product-info w-full  px-4">
+     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-full">
+      <div>
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
           {{ product.title }}
         </h1>
@@ -100,7 +126,7 @@
         {% unless product.has_only_default_variant %}
           {% assign first_variant = product.selected_or_first_available_variant %}
 
-          <div class="w-full grid grid-cols-3 md:gap-8 gap-4 pt-5 h-full">
+          <div class="w-full grid grid-cols-3 md:gap-8 gap-4 pt-5 ">
             {% for variant in product.variants %}
               {% assign parts = variant.title | split: '/' %}
               {% assign servings = parts[0] | strip %}
@@ -131,7 +157,7 @@
         
 
         {% endunless %}
-
+      </div>
 
       <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
         <input
