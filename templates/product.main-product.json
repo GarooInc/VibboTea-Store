@@ -97,6 +97,7 @@
         "ingredient_block_hr7kfD": {
           "type": "ingredient_block",
           "settings": {
+            "image": "shopify://shop_images/pinatrozos_1.png",
             "title": "Pineapple pieces",
             "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
           }
@@ -132,6 +133,92 @@
             "title": "Coconut",
             "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
           }
+        },
+        "ingredient_block_FJrDid": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
+            "title": "Boldo",
+            "text": "Promote liver health, bile flow, and digestion while acting as a natural detoxifier."
+          }
+        },
+        "ingredient_block_cLx7iQ": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
+            "title": "Ginger",
+            "text": "Ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
+          }
+        },
+        "ingredient_block_ptkgRE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/mint_89c7f7ec-525a-4228-a154-9e8ce2462e64.png",
+            "title": "Mint",
+            "text": "Refreshes with cooling menthol for better digestion, nausea relief, and breath freshening."
+          }
+        },
+        "ingredient_block_Pcd4Kg": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/fennel_289cab45-014e-4b92-9498-eddfd13a5ed3.png",
+            "title": "Fennel seeds",
+            "text": "Soothe digestion, reduce bloating, and support gut detox with anti-inflammatory compounds."
+          }
+        },
+        "ingredient_block_JrDzV7": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/rosemary_cec86ebf-4d5c-4672-a88f-16e9d62720e2.png",
+            "title": "Rosemary",
+            "text": "Sharpens mental clarity while easing tension for a focused calm."
+          }
+        },
+        "ingredient_block_c8tjjG": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/lavender_c25dce41-d533-4a09-ac00-486241444ff4.png",
+            "title": "Lavender",
+            "text": "Melts stress and promotes deep, restorative sleep with its soothing aroma."
+          }
+        },
+        "ingredient_block_X98x6m": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/passionflower_9983e2b4-d4b9-40c8-8f74-83296ec872f1.png",
+            "title": "Passionflower",
+            "text": "Quiets racing thoughts and anxiety, fostering serene relaxation."
+          }
+        },
+        "ingredient_block_QhxY3i": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Lemon verbena",
+            "text": "Unwinds nerves, supports digestion, and invites gentle drowsiness."
+          }
+        },
+        "ingredient_block_Lh9WYE": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Orange peel",
+            "text": "Brightens mood with uplifting citrus notes and vitamin C glow."
+          }
+        },
+        "ingredient_block_DGWGYK": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger.png",
+            "title": "Ginger",
+            "text": "Settles the stomach and ignites a warm, comforting anti-inflammatory flow."
+          }
+        },
+        "ingredient_block_ekQykY": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cinnamon_2e274ecf-df1c-41e5-8f35-c5f9be2d49b4.png",
+            "title": "Cinnamon",
+            "text": "Warms the body, stabilizes blood sugar, and adds spicy tranquility."
+          }
         }
       },
       "block_order": [
@@ -139,7 +226,18 @@
         "ingredient_block_JwPmcy",
         "ingredient_block_MMwqRy",
         "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_izL4A4",
+        "ingredient_block_FJrDid",
+        "ingredient_block_cLx7iQ",
+        "ingredient_block_ptkgRE",
+        "ingredient_block_Pcd4Kg",
+        "ingredient_block_JrDzV7",
+        "ingredient_block_c8tjjG",
+        "ingredient_block_X98x6m",
+        "ingredient_block_QhxY3i",
+        "ingredient_block_Lh9WYE",
+        "ingredient_block_DGWGYK",
+        "ingredient_block_ekQykY"
       ],
       "name": "Product Ingredients",
       "settings": {
