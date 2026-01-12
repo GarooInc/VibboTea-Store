@@ -48,12 +48,12 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
-            "gif_1": "shopify://shop_images/TECALIENTE1.1-ezgif.com-video-to-gif-converter.gif",
-            "text_1": "Heat 6–8 oz. of water to 175°F.",
-            "gif_2": "shopify://shop_images/TECALIENTE1.2-ezgif.com-video-to-gif-converter.gif",
-            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
-            "gif_3": "shopify://shop_images/TECALIENTE1.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Add the tea to the hot water.",
+            "gif_1": "shopify://shop_images/teablue.gif",
+            "text_1": "Add 2 grams (1 teaspoon) of Chill Vibes blend to your sachet, heat 6–8 oz. of water to 175°F.",
+            "gif_2": "shopify://shop_images/teablue_1.gif",
+            "text_2": "Steep for 2-3 minutes, watch the magic happen.",
+            "gif_3": "shopify://shop_images/teablue_553adf58-481e-4423-bb6b-7e82202e1766.gif",
+            "text_3": "You’re welcome.",
             "text_4": "Description 4",
             "text_5": "Description 5",
             "text_6": "Description 6"
@@ -63,12 +63,12 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
-            "gif_1": "shopify://shop_images/ICETEA3.1-ezgif.com-video-to-gif-converter.gif",
-            "text_1": "Description 1",
-            "gif_2": "shopify://shop_images/3.2ice1-ezgif.com-video-to-gif-converter.gif",
-            "text_2": "Description 2",
-            "gif_3": "shopify://shop_images/ICETEA3.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3",
+            "gif_1": "shopify://shop_images/teablue_1_f6838d7b-6107-49d8-832e-dfa46a6d261f.gif",
+            "text_1": "Steep and let your Chill Vibes blend cool down. ",
+            "gif_2": "shopify://shop_images/teablue_3.gif",
+            "text_2": "Pour over a glass of ice.",
+            "gif_3": "shopify://shop_images/teablue_4.gif",
+            "text_3": "Add an orange for more flavor and enjoy.",
             "text_4": "Description 4",
             "text_5": "Description 5",
             "text_6": "Description 6"
@@ -78,15 +78,13 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 5,
-            "gif_1": "shopify://shop_images/DRINK3.1-ezgif.com-video-to-gif-converter_b249f94b-31f6-4ab5-b278-dad9d97354d3.gif",
-            "text_1": "Description 1",
-            "gif_2": "shopify://shop_images/3.2drink1-ezgif.com-video-to-gif-converter_1.gif",
-            "text_2": "Description 2",
-            "gif_3": "shopify://shop_images/DRINK3.4-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3",
-            "gif_4": "shopify://shop_images/DRINK3.5-ezgif.com-video-to-gif-converter.gif",
+            "gif_1": "shopify://shop_images/teablue_5.gif",
+            "text_1": "Add ice, 4 oz Chill Vibes blend, 1 oz lemon juice, and 1 oz sweetener to a mixing glass.",
+            "gif_2": "shopify://shop_images/teablue_6.gif",
+            "text_2": "Shake for 20 seconds and strain into glass.",
+            "gif_3": "shopify://shop_images/teablue_7.gif",
+            "text_3": "Garnish with an orange wedge.",
             "text_4": "Description 4",
-            "gif_5": "shopify://shop_images/DRINK3.6-ezgif.com-video-to-gif-converter_1.gif",
             "text_5": "Description 5",
             "text_6": "Description 6"
           }
@@ -106,60 +104,76 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
-        "ingredient_block_hr7kfD": {
+        "ingredient_block_JrDzV7": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/pinatrozos_1.png",
-            "title": "Pineapple pieces",
-            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
+            "image": "shopify://shop_images/rosemary_cec86ebf-4d5c-4672-a88f-16e9d62720e2.png",
+            "title": "Rosemary",
+            "text": "sharpens mental clarity while easing tension for a focused calm."
           }
         },
-        "ingredient_block_JwPmcy": {
+        "ingredient_block_c8tjjG": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/black-tea.png",
-            "title": "Black tea",
-            "text": "Caffeine energy boost, helps improve concentration and alertness."
+            "image": "shopify://shop_images/lavender_c25dce41-d533-4a09-ac00-486241444ff4.png",
+            "title": "Lavender",
+            "text": "Melts stress and promotes deep, restorative sleep with its soothing aroma."
           }
         },
-        "ingredient_block_MMwqRy": {
+        "ingredient_block_X98x6m": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/hibisco.png",
-            "title": "Hibiscus",
-            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
+            "image": "shopify://shop_images/passionflower_9983e2b4-d4b9-40c8-8f74-83296ec872f1.png",
+            "title": "Passionflower",
+            "text": "Quiets racing thoughts and anxiety, fostering serene relaxation."
           }
         },
-        "ingredient_block_eyNiWw": {
+        "ingredient_block_QhxY3i": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/cascara_de_cacao_2.png",
-            "title": "Cocoa husk",
-            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
+            "title": "Lemon verbena",
+            "text": "Unwinds nerves, supports digestion, and invites gentle drowsiness."
           }
         },
-        "ingredient_block_izL4A4": {
+        "ingredient_block_Lh9WYE": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/coco__2.png",
-            "title": "Coconut",
-            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
+            "title": "Orange peel",
+            "text": "Brightens mood with uplifting citrus notes and vitamin C glow."
+          }
+        },
+        "ingredient_block_DGWGYK": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger.png",
+            "title": "Ginger",
+            "text": "Settles the stomach and ignites a warm, comforting anti-inflammatory flow."
+          }
+        },
+        "ingredient_block_ekQykY": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cinnamon_2e274ecf-df1c-41e5-8f35-c5f9be2d49b4.png",
+            "title": "Cinnamon",
+            "text": "Warms the body, stabilizes blood sugar, and adds spicy tranquility."
           }
         }
       },
       "block_order": [
-        "ingredient_block_hr7kfD",
-        "ingredient_block_JwPmcy",
-        "ingredient_block_MMwqRy",
-        "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_JrDzV7",
+        "ingredient_block_c8tjjG",
+        "ingredient_block_X98x6m",
+        "ingredient_block_QhxY3i",
+        "ingredient_block_Lh9WYE",
+        "ingredient_block_DGWGYK",
+        "ingredient_block_ekQykY"
       ],
       "name": "Product Ingredients",
       "settings": {
         "title": "About our Ingredients",
         "imagen1": "shopify://shop_images/leaf2_1.png",
         "imagen2": "shopify://shop_images/Frame_1321316210.png",
-        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+        "imagen3": "shopify://shop_images/Guacamaya_Guitarra.png"
       }
     },
     "product_why_image_bRJRVp": {
@@ -236,7 +250,7 @@
       "settings": {
         "title": "FAQ's",
         "text_faq": "Read below for a good time.",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png",
+        "image1": "shopify://shop_images/Guacamaya_meditando.png",
         "image_alignment": "left",
         "margin_top_image": 50
       }

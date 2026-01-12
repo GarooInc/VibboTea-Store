@@ -47,32 +47,37 @@
         "how_block_KaMDUb": {
           "type": "how_block",
           "settings": {
-            "gif_1": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2_1.png",
-            "text_1": "Heat 6–8 oz. of water to 175°F.",
-            "gif_2": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_2.png",
-            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
-            "gif_3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_4.png",
-            "text_3": "Add the tea to the hot water.",
-            "gif_4": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_5.png",
-            "text_4": "Steep for 3 minutes, energize."
+            "gif_1": "shopify://shop_images/teablue_1_2e066eac-453e-4382-9d16-6fca645e3087.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/teablue_2.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/teablue_3_49818eed-cf9e-41df-be81-46ecd836dffc.gif",
+            "text_3": "",
+            "text_4": ""
           }
         },
         "how_block_NNNFD4": {
           "type": "how_block",
           "settings": {
-            "text_1": "Description 1",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4"
+            "gif_1": "shopify://shop_images/cold_cdef2cb3-4e77-44a3-820a-a1a5aa85d0c4.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/teablue_ed72cd9d-0cd7-4df0-9ac5-c5db15e92aba.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/cold.gif",
+            "text_3": "",
+            "text_4": ""
           }
         },
         "how_block_rB8WTr": {
           "type": "how_block",
           "settings": {
-            "text_1": "Description 1",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4"
+            "gif_1": "shopify://shop_images/drink_3.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/drink.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/drink_2.gif",
+            "text_3": "",
+            "text_4": ""
           }
         }
       },
@@ -92,6 +97,7 @@
         "ingredient_block_hr7kfD": {
           "type": "ingredient_block",
           "settings": {
+            "image": "shopify://shop_images/pinatrozos_1.png",
             "title": "Pineapple pieces",
             "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
           }
@@ -127,6 +133,92 @@
             "title": "Coconut",
             "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
           }
+        },
+        "ingredient_block_FJrDid": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
+            "title": "Boldo",
+            "text": "Promote liver health, bile flow, and digestion while acting as a natural detoxifier."
+          }
+        },
+        "ingredient_block_cLx7iQ": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
+            "title": "Ginger",
+            "text": "Ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
+          }
+        },
+        "ingredient_block_ptkgRE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/mint_89c7f7ec-525a-4228-a154-9e8ce2462e64.png",
+            "title": "Mint",
+            "text": "Refreshes with cooling menthol for better digestion, nausea relief, and breath freshening."
+          }
+        },
+        "ingredient_block_Pcd4Kg": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/fennel_289cab45-014e-4b92-9498-eddfd13a5ed3.png",
+            "title": "Fennel seeds",
+            "text": "Soothe digestion, reduce bloating, and support gut detox with anti-inflammatory compounds."
+          }
+        },
+        "ingredient_block_JrDzV7": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/rosemary_cec86ebf-4d5c-4672-a88f-16e9d62720e2.png",
+            "title": "Rosemary",
+            "text": "Sharpens mental clarity while easing tension for a focused calm."
+          }
+        },
+        "ingredient_block_c8tjjG": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/lavender_c25dce41-d533-4a09-ac00-486241444ff4.png",
+            "title": "Lavender",
+            "text": "Melts stress and promotes deep, restorative sleep with its soothing aroma."
+          }
+        },
+        "ingredient_block_X98x6m": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/passionflower_9983e2b4-d4b9-40c8-8f74-83296ec872f1.png",
+            "title": "Passionflower",
+            "text": "Quiets racing thoughts and anxiety, fostering serene relaxation."
+          }
+        },
+        "ingredient_block_QhxY3i": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Lemon verbena",
+            "text": "Unwinds nerves, supports digestion, and invites gentle drowsiness."
+          }
+        },
+        "ingredient_block_Lh9WYE": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Orange peel",
+            "text": "Brightens mood with uplifting citrus notes and vitamin C glow."
+          }
+        },
+        "ingredient_block_DGWGYK": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger.png",
+            "title": "Ginger",
+            "text": "Settles the stomach and ignites a warm, comforting anti-inflammatory flow."
+          }
+        },
+        "ingredient_block_ekQykY": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cinnamon_2e274ecf-df1c-41e5-8f35-c5f9be2d49b4.png",
+            "title": "Cinnamon",
+            "text": "Warms the body, stabilizes blood sugar, and adds spicy tranquility."
+          }
         }
       },
       "block_order": [
@@ -134,14 +226,25 @@
         "ingredient_block_JwPmcy",
         "ingredient_block_MMwqRy",
         "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_izL4A4",
+        "ingredient_block_FJrDid",
+        "ingredient_block_cLx7iQ",
+        "ingredient_block_ptkgRE",
+        "ingredient_block_Pcd4Kg",
+        "ingredient_block_JrDzV7",
+        "ingredient_block_c8tjjG",
+        "ingredient_block_X98x6m",
+        "ingredient_block_QhxY3i",
+        "ingredient_block_Lh9WYE",
+        "ingredient_block_DGWGYK",
+        "ingredient_block_ekQykY"
       ],
       "name": "Product Ingredients",
       "settings": {
         "title": "About our Ingredients",
         "imagen1": "shopify://shop_images/leaf2_1.png",
         "imagen2": "shopify://shop_images/Frame_1321316210.png",
-        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+        "imagen3": "shopify://shop_images/Guacamaya_meditando_1ab8e845-6c2d-442b-8d3b-e6b8a10c4c82.png"
       }
     },
     "product_why_image_bRJRVp": {
@@ -218,8 +321,8 @@
       "settings": {
         "title": "FAQ's",
         "text_faq": "Read below for a good time.",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png",
-        "image_alignment": "left",
+        "image1": "shopify://shop_images/Mono_Colgado.png",
+        "image_alignment": "right",
         "margin_top_image": 50
       }
     },

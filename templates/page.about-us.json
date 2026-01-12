@@ -128,31 +128,15 @@
             "ingredient_5_name": ""
           }
         },
-        "slide_XyUMq4": {
-          "type": "slide",
-          "settings": {
-            "background_color": "#e8dff7",
-            "map_image": "shopify://shop_images/zacapa.png",
-            "map_alt": "Mapa",
-            "richtext": "<p><strong>Taste the difference;</strong></p>",
-            "place_title": "Zacapa",
-            "ingredient_1_image": "shopify://shop_images/grapesdried.png",
-            "ingredient_1_name": "Dried grapes",
-            "ingredient_2_name": "",
-            "ingredient_3_name": "",
-            "ingredient_4_name": "",
-            "ingredient_5_name": ""
-          }
-        },
         "slide_CxiKDf": {
           "type": "slide",
           "settings": {
-            "background_color": "#dff5f7",
-            "map_image": "shopify://shop_images/progreso.png",
+            "background_color": "#e8dff7",
+            "map_image": "shopify://shop_images/zacapa_progreso.png",
             "map_alt": "Mapa",
             "richtext": "<p><strong>This is what handcrafted</strong> really means.</p>",
-            "place_title": "El Progreso",
-            "ingredient_1_image": "shopify://shop_images/driedgrapes.png",
+            "place_title": "Zacapa & El Progreso",
+            "ingredient_1_image": "shopify://shop_images/grapesdried.png",
             "ingredient_1_name": "Dried grapes",
             "ingredient_2_name": "",
             "ingredient_3_name": "",
@@ -167,7 +151,6 @@
         "slide_azLw3q",
         "slide_F9LBWe",
         "slide_c3xQcT",
-        "slide_XyUMq4",
         "slide_CxiKDf"
       ],
       "name": "Slider Places",
@@ -204,7 +187,8 @@
         "title_1": "The tribe",
         "body_1": "<p>We could brag about how pretty our plants and faces are, but that's not the point.</p>",
         "image_1": "shopify://shop_images/ABOUT_US_1.jpg",
-        "image_2": "shopify://shop_images/about-us-tea.png",
+        "image_2": "shopify://shop_images/INTECAP-11.jpg",
+        "image_3": "shopify://shop_images/Intecap_39.jpg",
         "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle, we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
         "heading_2": "<p>it starts </p><p>with a cup </p><p>of tea.</p>"
       }

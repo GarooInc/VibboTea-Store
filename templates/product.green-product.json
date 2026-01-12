@@ -48,12 +48,12 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
-            "gif_1": "shopify://shop_images/TECALIENTE1.1-ezgif.com-video-to-gif-converter.gif",
-            "text_1": "Heat 6–8 oz. of water to 175°F.",
-            "gif_2": "shopify://shop_images/TECALIENTE1.2-ezgif.com-video-to-gif-converter.gif",
-            "text_2": "Measure 2 grams (about 1 teaspoon) of tea.",
-            "gif_3": "shopify://shop_images/TECALIENTE1.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Add the tea to the hot water.",
+            "gif_1": "shopify://shop_images/icedteaverde_3.gif",
+            "text_1": "Add 2 grams (1 teaspoon) of Gut Bliss blend to your sachet, heat 6–8 oz. of water to 175°F.",
+            "gif_2": "shopify://shop_images/Diseno_sin_titulo_0b13b58f-e00b-463d-90fe-cda30b55dc56.gif",
+            "text_2": "Steep for 2-3 minutes, watch the magic happen",
+            "gif_3": "shopify://shop_images/Diseno_sin_titulo_2.gif",
+            "text_3": "You’re welcome",
             "text_4": "Description 4",
             "text_5": "Description 5",
             "text_6": "Description 6"
@@ -63,12 +63,12 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
-            "gif_1": "shopify://shop_images/ICETEA3.1-ezgif.com-video-to-gif-converter.gif",
-            "text_1": "Description 1",
-            "gif_2": "shopify://shop_images/3.2ice1-ezgif.com-video-to-gif-converter.gif",
-            "text_2": "Description 2",
-            "gif_3": "shopify://shop_images/ICETEA3.3-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3",
+            "gif_1": "shopify://shop_images/icedteaverde.gif",
+            "text_1": "Steep and let your Gut Bliss blend cool down.",
+            "gif_2": "shopify://shop_images/icedteaverde_1.gif",
+            "text_2": " Pour over a glass of ice.",
+            "gif_3": "shopify://shop_images/icedteaverde_2.gif",
+            "text_3": "Add mint leaves for more flavor and enjoy.",
             "text_4": "Description 4",
             "text_5": "Description 5",
             "text_6": "Description 6"
@@ -77,16 +77,14 @@
         "how_block_XTMXa6": {
           "type": "how_block",
           "settings": {
-            "gifs_count": 5,
+            "gifs_count": 3,
             "gif_1": "shopify://shop_images/DRINK3.1-ezgif.com-video-to-gif-converter_b249f94b-31f6-4ab5-b278-dad9d97354d3.gif",
-            "text_1": "Description 1",
+            "text_1": "Add ice, 4 oz Gut Bliss blend, ½ oz orange juice, ½ oz lime juice, and 1 oz sweetener to a mixing glass.",
             "gif_2": "shopify://shop_images/3.2drink1-ezgif.com-video-to-gif-converter_1.gif",
-            "text_2": "Description 2",
-            "gif_3": "shopify://shop_images/DRINK3.4-ezgif.com-video-to-gif-converter.gif",
-            "text_3": "Description 3",
-            "gif_4": "shopify://shop_images/DRINK3.5-ezgif.com-video-to-gif-converter.gif",
+            "text_2": "Stir to combine.",
+            "gif_3": "shopify://shop_images/drinkverde.gif",
+            "text_3": "Strain, serve, and garnish with mint.",
             "text_4": "Description 4",
-            "gif_5": "shopify://shop_images/DRINK3.6-ezgif.com-video-to-gif-converter_1.gif",
             "text_5": "Description 5",
             "text_6": "Description 6"
           }
@@ -106,6 +104,38 @@
     "prodcut_ingredients_FXkDBr": {
       "type": "prodcut-ingredients",
       "blocks": {
+        "ingredient_block_FJrDid": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
+            "title": "Boldo",
+            "text": "Promote liver health, bile flow, and digestion while acting as a natural detoxifier."
+          }
+        },
+        "ingredient_block_cLx7iQ": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
+            "title": "Ginger",
+            "text": " ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
+          }
+        },
+        "ingredient_block_ptkgRE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/mint_89c7f7ec-525a-4228-a154-9e8ce2462e64.png",
+            "title": "Mint",
+            "text": "Refreshes with cooling menthol for better digestion, nausea relief, and breath freshening."
+          }
+        },
+        "ingredient_block_Pcd4Kg": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/fennel_289cab45-014e-4b92-9498-eddfd13a5ed3.png",
+            "title": "Fennel seeds",
+            "text": "Soothe digestion, reduce bloating, and support gut detox with anti-inflammatory compounds."
+          }
+        },
         "ingredient_block_hr7kfD": {
           "type": "ingredient_block",
           "settings": {
@@ -113,53 +143,21 @@
             "title": "Pineapple pieces",
             "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
           }
-        },
-        "ingredient_block_JwPmcy": {
-          "type": "ingredient_block",
-          "settings": {
-            "image": "shopify://shop_images/black-tea.png",
-            "title": "Black tea",
-            "text": "Caffeine energy boost, helps improve concentration and alertness."
-          }
-        },
-        "ingredient_block_MMwqRy": {
-          "type": "ingredient_block",
-          "settings": {
-            "image": "shopify://shop_images/hibisco.png",
-            "title": "Hibiscus",
-            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
-          }
-        },
-        "ingredient_block_eyNiWw": {
-          "type": "ingredient_block",
-          "settings": {
-            "image": "shopify://shop_images/cascara_de_cacao_2.png",
-            "title": "Cocoa husk",
-            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
-          }
-        },
-        "ingredient_block_izL4A4": {
-          "type": "ingredient_block",
-          "settings": {
-            "image": "shopify://shop_images/coco__2.png",
-            "title": "Coconut",
-            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
-          }
         }
       },
       "block_order": [
-        "ingredient_block_hr7kfD",
-        "ingredient_block_JwPmcy",
-        "ingredient_block_MMwqRy",
-        "ingredient_block_eyNiWw",
-        "ingredient_block_izL4A4"
+        "ingredient_block_FJrDid",
+        "ingredient_block_cLx7iQ",
+        "ingredient_block_ptkgRE",
+        "ingredient_block_Pcd4Kg",
+        "ingredient_block_hr7kfD"
       ],
       "name": "Product Ingredients",
       "settings": {
         "title": "About our Ingredients",
         "imagen1": "shopify://shop_images/leaf2_1.png",
         "imagen2": "shopify://shop_images/Frame_1321316210.png",
-        "imagen3": "shopify://shop_images/Jaguar_1_1.png"
+        "imagen3": "shopify://shop_images/Mono_Semaforo.png"
       }
     },
     "product_why_image_bRJRVp": {
@@ -236,7 +234,7 @@
       "settings": {
         "title": "FAQ's",
         "text_faq": "Read below for a good time.",
-        "image1": "shopify://shop_images/JaguarLaptop_1.png",
+        "image1": "shopify://shop_images/Mono_deCabeza_1.png",
         "image_alignment": "left",
         "margin_top_image": 50
       }
