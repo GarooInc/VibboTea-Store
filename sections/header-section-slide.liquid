@@ -116,21 +116,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const prevBtn = slider.querySelector(".prev");
 
   let index = 0;
+  let autoplayInterval;
 
   function showSlide(i) {
     slides.forEach(s => s.classList.remove("active"));
     slides[i].classList.add("active");
   }
 
-  nextBtn.addEventListener("click", () => {
+  function nextSlide() {
     index = (index + 1) % slides.length;
     showSlide(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayInterval = setInterval(() => {
+      nextSlide();
+    }, 5000); 
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) clearInterval(autoplayInterval);
+  }
+
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    startAutoplay(); // reinicia autoplay
   });
 
   prevBtn.addEventListener("click", () => {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
+    prevSlide();
+    startAutoplay(); // reinicia autoplay
   });
+
+  // Inicia autoplay al cargar
+  startAutoplay();
 });
 </script>
 
