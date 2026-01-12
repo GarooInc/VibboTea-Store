@@ -26,14 +26,6 @@
     "header_section_slide_TW68Gf": {
       "type": "header-section-slide",
       "blocks": {
-        "slide_APGaHq": {
-          "type": "slide",
-          "settings": {
-            "image_desktop": "shopify://shop_images/bg-home-vibbo.png",
-            "page_title": "WELLNESS\nWITHOUT \nTHE B.S.",
-            "page_descripction": "REAL TEA, REAL BENEFITS"
-          }
-        },
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
@@ -41,11 +33,19 @@
             "page_title": "",
             "page_descripction": ""
           }
+        },
+        "slide_APGaHq": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/bg-home-vibbo.png",
+            "page_title": "WELLNESS\nWITHOUT \nTHE B.S.",
+            "page_descripction": "REAL TEA, REAL BENEFITS"
+          }
         }
       },
       "block_order": [
-        "slide_APGaHq",
-        "slide_A84cL4"
+        "slide_A84cL4",
+        "slide_APGaHq"
       ],
       "name": "Header Slide",
       "settings": {
