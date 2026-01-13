@@ -30,16 +30,21 @@
           "type": "slide",
           "settings": {
             "image_desktop": "shopify://shop_images/Copy_of_VIBBO_-17_1.jpg",
+            "video_mp4": "",
             "page_title": "",
-            "page_descripction": ""
+            "page_descripction": "",
+            "button_text": "Shop now",
+            "button_position": "bottom-center"
           }
         },
         "slide_APGaHq": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/bg-home-vibbo.png",
+            "video_mp4": "https://cdn.shopify.com/videos/c/o/v/41d0ad5a89a840a4b6b374fa52debdc9.mp4",
             "page_title": "WELLNESS\nWITHOUT \nTHE B.S.",
-            "page_descripction": "REAL TEA, REAL BENEFITS"
+            "page_descripction": "REAL TEA, REAL BENEFITS",
+            "button_text": "Shop now",
+            "button_position": "bottom-center"
           }
         }
       },
