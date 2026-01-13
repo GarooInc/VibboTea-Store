@@ -61,7 +61,7 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Join the tribe, \ndiscover our flavors",
+        "section_title": "Discover our flavors",
         "redireccionamiento": true,
         "collection": "frontpage",
         "limit": 12,
