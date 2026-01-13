@@ -221,7 +221,7 @@
       "name": "Newsletter",
       "settings": {
         "imagen": "shopify://shop_images/latas.png",
-        "title": "Join the tribe",
+        "title": "You know you want to",
         "texto1": "Sign Up to our newsletter and be the first to know about our launch and exclusive offers",
         "placeholder": "email address"
       }
