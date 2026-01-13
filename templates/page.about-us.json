@@ -178,6 +178,62 @@
         "image": "shopify://shop_images/about-us-banner.png"
       }
     },
+    "main_section_facts_tKgJPx": {
+      "type": "main-section-facts",
+      "blocks": {
+        "slide_eieGxK": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/homepage-slider1.png",
+            "image_mobile": "shopify://shop_images/mobile1.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_XgLPx7": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/2_4da68b3f-1d9f-49d2-801c-196dc718ad44.png",
+            "image_mobile": "shopify://shop_images/Fun_fact_2_1.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_GMfQVG": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/fact3.png",
+            "image_mobile": "shopify://shop_images/Fun_fact_4_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_KCaUma": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/fact4.png",
+            "image_mobile": "shopify://shop_images/Fun_fact_3_1.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_fLzYL9": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/fact5_1fe83ad3-6e8f-46bb-b528-d1076389d8d0.png",
+            "image_mobile": "shopify://shop_images/Fun_fact_5_1.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_eieGxK",
+        "slide_XgLPx7",
+        "slide_GMfQVG",
+        "slide_KCaUma",
+        "slide_fLzYL9"
+      ],
+      "name": "Slider Facts",
+      "settings": {
+        "autoplay": false
+      }
+    },
     "about_us_tribebanner_c9LPif": {
       "type": "about-us-tribebanner",
       "name": "Tribe Banner About Us",
@@ -201,6 +257,7 @@
     "places_slider_gLhrNi",
     "about_us_pledgebanner2_KMTV7x",
     "about_us_imagebanner_epTcFr",
+    "main_section_facts_tKgJPx",
     "about_us_tribebanner_c9LPif"
   ]
 }
