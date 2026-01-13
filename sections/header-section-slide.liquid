@@ -1,23 +1,45 @@
-<div class="slider-facts-{{ section.id }} custom-slider relative md:h-screen h-60vh mx-auto overflow-hidden"
+<div class="slider-facts-{{ section.id }} custom-slider relative 
+            h-[40vh] md:h-screen 
+            mx-auto overflow-hidden"
   style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
+
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
-  {% comment %} version desktop {% endcomment %}
-  <div class="md:block slides-wrapper md:relative w-full">
+  <div class="slides-wrapper relative w-full md:h-screen h-[38vh] overflow-hidden">
     {% for block in section.blocks %}
-      {% assign img = block.settings.image_desktop %}
-      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
-        <img 
-          src="{{ img | image_url: width: img.width, height: img.height }}"
-          class="w-full h-full object-cover mt-10! md:mt-0"
-          width="{{ img.width }}"
-          height="{{ img.height }}"
-          alt="{{ block.settings.alt | escape }}"
-        />
+      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
 
-        <div class="slide-content md:h-screen md:pt-0 pt-10 overflow-hidden absolute inset-0 flex flex-col items-center justify-center text-center ">
+        
+          {% if block.settings.video_mp4 != blank %}
+            <video
+             class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
+              autoplay
+              muted
+              loop
+              playsinline
+            >
+              <source src="{{ block.settings.video_mp4 }}" type="video/mp4">
+            </video>
+
+          {% elsif block.settings.image_desktop %}
+            <img
+              src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
+              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
+              alt="{{ block.settings.alt | escape }}"
+              width="{{ section.settings.image_desktop.width }}"
+              height="{{ section.settings.image_desktop.height }}"
+            />
+          {% endif %}
+
+
+        <div class="slide-content 
+              absolute top-0 left-0 w-full
+              h-[40vh] md:h-screen
+              flex flex-col items-center justify-center
+              text-center overflow-hidden">
+
           
-          <h1 class="text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9]">
+          <h1 class="text-[10vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] md:pt-0 pt-10">
             {{ block.settings.page_title | newline_to_br  }}
           </h1>
 
@@ -26,13 +48,50 @@
           </p>
 
         </div>
+        {% comment %} boton {% endcomment %}
+      {% assign position = block.settings.button_position %}
+
+      {% case position %}
+        {% when 'top-left' %}
+          {% assign position_classes = 'items-start justify-start pt-10 pl-10' %}
+        {% when 'top-center' %}
+          {% assign position_classes = 'items-start justify-center pt-48' %}
+        {% when 'top-right' %}
+          {% assign position_classes = 'items-start justify-end pt-10 pr-10' %}
+        {% when 'center' %}
+          {% assign position_classes = 'items-center justify-center' %}
+        {% when 'bottom-left' %}
+          {% assign position_classes = 'items-end justify-start pb-20 pl-10' %}
+        {% when 'bottom-right' %}
+          {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
+        {% else %}
+          {% assign position_classes = 'items-end justify-center pb-20' %}
+      {% endcase %}
+
+
+
+      <div class="hidden md:absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
+        <a
+          href="/collections/frontpage"
+          class="pointer-events-auto bg-black flex items-center justify-center 
+                rounded-3xl px-8 py-3 hover:opacity-70 transition-opacity"
+        >
+          <span class="font-bricolage text-white text-xl uppercase font-normal">
+            Shop now
+          </span>
+        </a>
       </div>
+      </div>
+      
     {% endfor %}
   </div>
+  
+
+    
  
 
   <!-- Flechas -->
-    <button class="prev absolute top-1/2 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
+    <button class="prev absolute top-1/2  text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
       <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
         {%- render 'arrow-slidder2' -%}
       </div>
@@ -87,9 +146,6 @@
 .custom-slider .slide {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-  will-change: opacity;
 }
 
 .custom-slider .slide.active {
@@ -146,15 +202,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   nextBtn.addEventListener("click", () => {
     nextSlide();
-    startAutoplay(); // reinicia autoplay
+    startAutoplay(); 
   });
 
   prevBtn.addEventListener("click", () => {
     prevSlide();
-    startAutoplay(); // reinicia autoplay
+    startAutoplay(); 
   });
 
-  // Inicia autoplay al cargar
   startAutoplay();
 });
 </script>
@@ -202,21 +257,53 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "slide",
       "name": "Imagen Desktop",
-      "settings": [
-        { "type": "image_picker", "id": "image_desktop", "label": "Imagen Desktop" },
-        {
-          "type": "textarea",
-          "id": "page_title",
-          "label": "Page Title",
-          "default": "Bienvenido a Nuestra Tienda"
-        },
-        {
-          "type": "text",
-          "id": "page_descripction",
-          "label": "Page Descripction",
-          "default": "text"
-        }
-      ]
+       "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_desktop",
+        "label": "Imagen Desktop"
+      },
+      {
+        "type": "url",
+        "id": "video_mp4",
+        "label": "Video MP4 (URL)",
+        "info": "Pega una URL directa a un archivo .mp4"
+      },
+      {
+        "type": "textarea",
+        "id": "page_title",
+        "label": "Page Title",
+        "default": "Bienvenido a Nuestra Tienda"
+      },
+      {
+        "type": "text",
+        "id": "page_descripction",
+        "label": "Page Description",
+        "default": "text"
+      }, 
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Boton texto ",
+        "default": "Shop now"
+      },
+      {
+        "type": "select",
+        "id": "button_position",
+        "label": "Button position",
+        "default": "bottom-center",
+        "options": [
+          { "value": "top-left", "label": "Top Left" },
+          { "value": "top-center", "label": "Top Center" },
+          { "value": "top-right", "label": "Top Right" },
+          { "value": "center", "label": "Center" },
+          { "value": "bottom-left", "label": "Bottom Left" },
+          { "value": "bottom-center", "label": "Bottom Center" },
+          { "value": "bottom-right", "label": "Bottom Right" }
+        ]
+      }
+
+    ]
     }
   ],
   "max_blocks": 12,

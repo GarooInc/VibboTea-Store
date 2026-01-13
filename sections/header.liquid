@@ -1,3 +1,4 @@
+
 {%- liquid
   assign topbar_height = 0
   if section.settings.show_topbar
@@ -6,12 +7,13 @@
 -%}
 
 {% if section.settings.show_topbar %}
-<div class="topbar-wrapper bg-black full-width text-white py-2 cursor-pointer fixed top-0 w-full z-50 font-bricolage"
-     style="background-color: {{ section.settings.topbar_background_color }}; color: {{ section.settings.topbar_text_color }};">
+<div class="topbar-wrapper blinkBW full-width py-2 cursor-pointer fixed top-0 w-full z-50 font-bricolage">
+
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
     <div class="topbar-content">
       {% for  i in (1..6) %}
-        <div class="topbar-text text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-0 py-1">
+        <div class="topbar-text  text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-0 py-1">
+
           {{ section.settings.topbar_announcement_text }}
           {% if section.settings.isotipe %}
             <img 
@@ -377,6 +379,27 @@
   .topbar-wrapper:hover .topbar-content {
     animation-play-state: paused;
   }
+
+  
+  @keyframes blinkBW {
+  0% {
+    background-color: #000;
+    color: #fff;
+  }
+  50% {
+    background-color: #fff;
+    color: #000;
+  }
+  100% {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+.blinkBW {
+  animation: blinkBW 4.0s infinite;
+}
+
 {% endstylesheet %}
 
 {% schema %}
@@ -408,18 +431,7 @@
       "id": "topbar_link",
       "label": "Topbar Link"
     },
-    {
-      "type": "color",
-      "id": "topbar_background_color",
-      "label": "Topbar Background Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "topbar_text_color",
-      "label": "Topbar Text Color",
-      "default": "#ffffff"
-    },
+   
     {
       "type": "header",
       "content": "Header Settings"
