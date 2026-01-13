@@ -1,6 +1,6 @@
 <!-- TÍTULO -->
 <div class="text-center items-center align-center pt-15">
-  <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-10">
+  <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-5">
     {{ section.settings.section_title | default: "Shop" | newline_to_br }}
   </h2>
 </div>
@@ -31,7 +31,7 @@
       <div class="flex flex-col">
 
         <a href="{{ product.url }}" class="block">
-          <div class="w-full aspect-[4/5] md:aspect-[5/5] rounded-2xl overflow-hidden bg-white">
+          <div class="w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
             <img
               src="{{ product.featured_media | image_url: width: 800 }}"
               alt="{{ product.featured_media.alt | escape }}"
