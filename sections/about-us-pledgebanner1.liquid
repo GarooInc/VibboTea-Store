@@ -1,31 +1,31 @@
 <section class="full-width flex flex-col font-bricolage">
-  <div class="w-full  flex flex-col px-6 gap-4 md:gap-2 lg:px-28 bg-white md:pt-20 py-10">
+  <div class="w-full  flex flex-col px-6 gap-4 md:gap-2 lg:px-28 bg-white md:pt-15 md:py-25 py-15">
 
     <div class="w-full flex justify-start">
       {% if section.settings.title != blank %}
         <h2 class="text-4xl md:text-7xl font-bold w-full text-left tracking-tight text-black max-w-2xl pt-4">{{ section.settings.title }}</h2>
       {% endif %}
     </div>
-    <div class="grid md:grid-cols-2 grid-rows-2 pt-10">
+    <div class="grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 pt-10">
      
         <div class="flex flex-col gap-2">
           {% if section.settings.text1 != blank %}
-            <div class="flex justify-start max-w-xl text-2xl font-light text-neutral-800">
+            <div class="max-w-xl flex justify-start  lg:text-4xl text-2xl py-2 font-light text-neutral-800">
               {{ section.settings.text1 }}
             </div>
           {% endif %}
 
           {% if section.settings.text2 != blank %}
-            <div class="flex justify-start max-w-xl md:text-4xl text-2xl font-medium text-neutral-800">
+            <div class=" max-w-md flex justify-start  lg:text-4xl text-2xl font-medium text-neutral-800">
               {{ section.settings.text2 }}
             </div>
           {% endif %}
         </div>
 
-        <div class="flex flex-col gap-6 md:gap-10 pt-10 md:pt-0">
+        <div class="flex flex-col gap-6 md:gap-10 pt-10 md:pt-15">
         {% if section.settings.eyebrow != blank %}
-            <div class="w-full flex justify-end">
-              <p class="text-md max-w-sm mx-auto md:text-lg font-bold text-black">{{ section.settings.eyebrow }}</p>
+            <div class="w-full flex justify-start">
+              <p class="mx-auto lg:text-4xl text-2xl font-bold text-black">{{ section.settings.eyebrow }}</p>
             </div>
         {% endif %}
         </div>
