@@ -1,6 +1,5 @@
-
-    {% assign padding_top = section.settings.margin_top_image | default: 50 %}
-
+{% assign padding_top = section.settings.margin_top_image | default: 50 %}
+<section id="{{ section.settings.id_section }}">
 <div class="w-full bg-white py-10 md:py-20 flex flex-col items-center relative">
   <div class="md:min-w-[90vw] min-w-sm mx-auto text-center md:px-4 px-5">
 
@@ -83,6 +82,8 @@
 
   </div>
 </div>
+</section>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -117,6 +118,12 @@
       "id": "title",
       "label": "Título principal",
       "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "text",
+      "id": "id_section",
+      "label": "Nombre de la seccion",
+      "default": "#faqContact"
     },
     {
       "type": "textarea",

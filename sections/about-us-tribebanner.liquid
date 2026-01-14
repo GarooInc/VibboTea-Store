@@ -38,17 +38,22 @@
         {%- endif -%}
       </div>
 
-      <div class="flex justify-center md:justify-end w-full h-[400px]">
+      <div class="relative flex justify-center md:justify-end w-full h-[400px]">
         {%- if section.settings.image_1 != blank -%}
           <img
             src="{{ section.settings.image_1 | image_url: width: 900 }}"
             alt="imagen persona"
-            class=" rounded-3xl object-cover md:w-full h-full!"
+            class="rounded-3xl object-cover md:w-full h-full!"
             width="{{ section.settings.image_1.width }}"
             height="{{ section.settings.image_1.height }}"
           >
         {%- endif -%}
+
+        <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
+          INGUAT
+        </span>
       </div>
+
     </div>
 
     {%- comment -%} FILA 2 {%- endcomment -%}
@@ -63,7 +68,11 @@
               width="{{ section.settings.image_2.width }}"
               height="{{ section.settings.image_2.height }}"
             >
+              <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
+                INGUAT
+              </span>
           </div>
+          
         {%- endif -%}
       </div>
 
@@ -86,7 +95,7 @@
         {%- endif -%}
       </div>
 
-      <div class="flex justify-center md:justify-end w-full">
+      <div class="relative justify-center md:justify-end w-full">
         {%- if section.settings.image_3 != blank -%}
           <img
             src="{{ section.settings.image_3 | image_url: width: 900 }}"
@@ -96,6 +105,9 @@
             height="{{ section.settings.image_3.height }}"
           >
         {%- endif -%}
+        <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
+          INGUAT
+        </span>
       </div>
     </div>
 

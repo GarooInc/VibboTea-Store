@@ -17,7 +17,7 @@
       {% endif %}
       {% if section.settings.descripcion %}
       <p class="md:text-[1.2vw] text-xs text-white mt-2 pt-5 md:pr-[15vw] font-bricolage leading-tight">
-        {{ section.settings.descripcion }}
+        {{ section.settings.descripcion | newline_to_br}}
       </p>
     {% endif %}
     </div>
@@ -233,7 +233,7 @@
       "label": "Logo Image"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "descripcion",
       "label": "Description",
       "default": "Bienvenido a Nuestra Tienda"

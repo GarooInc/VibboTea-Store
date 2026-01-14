@@ -343,6 +343,9 @@
   .right-3 {
     right: calc(var(--spacing) * 3);
   }
+  .right-4 {
+    right: calc(var(--spacing) * 4);
+  }
   .right-6 {
     right: calc(var(--spacing) * 6);
   }
@@ -369,6 +372,9 @@
   }
   .bottom-3 {
     bottom: calc(var(--spacing) * 3);
+  }
+  .bottom-4 {
+    bottom: calc(var(--spacing) * 4);
   }
   .bottom-5 {
     bottom: calc(var(--spacing) * 5);
@@ -405,6 +411,9 @@
   }
   .left-1\/2 {
     left: calc(1/2 * 100%);
+  }
+  .left-4 {
+    left: calc(var(--spacing) * 4);
   }
   .left-5 {
     left: calc(var(--spacing) * 5);
@@ -1926,6 +1935,9 @@
   }
   .opacity-30 {
     opacity: 30%;
+  }
+  .opacity-60 {
+    opacity: 60%;
   }
   .opacity-80 {
     opacity: 80%;
