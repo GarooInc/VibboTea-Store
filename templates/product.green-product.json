@@ -128,6 +128,14 @@
             "text": "Refreshes with cooling menthol for better digestion, nausea relief, and breath freshening."
           }
         },
+        "ingredient_block_UMMMcC": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/Pngtree_coriander_seed_5631401_1.png",
+            "title": "Coriander seeds",
+            "text": "Aid detoxification, balance blood sugar, and provide antioxidants for gentle gut support."
+          }
+        },
         "ingredient_block_Pcd4Kg": {
           "type": "ingredient_block",
           "settings": {
@@ -149,6 +157,7 @@
         "ingredient_block_FJrDid",
         "ingredient_block_cLx7iQ",
         "ingredient_block_ptkgRE",
+        "ingredient_block_UMMMcC",
         "ingredient_block_Pcd4Kg",
         "ingredient_block_hr7kfD"
       ],
@@ -233,6 +242,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Mono_deCabeza_1.png",
         "image_alignment": "left",
