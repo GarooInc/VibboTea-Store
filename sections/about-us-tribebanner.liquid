@@ -24,9 +24,9 @@
 
     {%- comment -%} FILA 1 {%- endcomment -%}
     <div class="grid md:grid-cols-2 gap-10 items-center md:pt-20 md:pl-10">
-      <div class="space-y-4 md:space-y-6 lg:pt-10">
+      <div class="space-y-4 md:space-y-6 ">
         {%- if section.settings.title_1 != blank -%}
-          <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-black md:text-left text-right">
+          <h2 class="text-4xl md:text-7xl font-bold tracking-tight text-black md:text-center text-right">
             {{ section.settings.title_1 }}
           </h2>
         {%- endif -%}
@@ -69,18 +69,18 @@
 
       <div class="order-2 md:order-2 space-y-4 md:space-y-6">
         {%- if section.settings.body_2_small != blank -%}
-          <div class="text-xl text-neutral-800">
+          <div class="text-xl md:text-3xl text-neutral-800">
             {{ section.settings.body_2_small }}
           </div>
         {%- endif -%}
       </div>
     </div>
     {%- comment -%} FILA 3 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-10 md:pl-10">
-      <div class="space-y-4 md:space-y-6 lg:pt-10">
+    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-10 ">
+      <div class="space-y-4 md:space-y-6 lg:pt-2">
 
         {%- if section.settings.heading_2 != blank -%}
-        <h3 class="text-4xl md:text-6xl font-normal leading-12 tracking-tight text-black pt-4">
+        <h3 class="text-4xl md:text-7xl font-normal leading-15 tracking-tight text-black pt-4">
           {{ section.settings.heading_2 }}
         </h3>            
         {%- endif -%}

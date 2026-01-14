@@ -118,7 +118,15 @@
         {% endif %}
       </div>
 
-      </div>
+  <div>
+    {% if section.settings.descripcion2 %}
+      <p class="text-sm text-white  md:pr-[15vw] font-bricolage leading-tight">
+        {{ section.settings.descripcion2 }}
+      </p>
+    {% endif %}
+  </div>
+
+    </div>
 
   <!-- COLUMNA DERECHA -->
   <div class="hidden w-1/2 h-full md:flex flex-col items-start justify-start  md:pt-15 md:pr-20 pl-[10vw]">
@@ -177,8 +185,11 @@
       </nav>
       
   </div>
+  
 
 </footer>
+
+
 
 
 
@@ -232,6 +243,12 @@
       "id": "show_payment_icons",
       "label": "t:labels.show_payment_icons",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "descripcion2",
+      "label": "Description 2",
+      "default": "Bienvenido a Nuestra Tienda"
     },
     {
       "type": "url",
