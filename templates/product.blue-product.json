@@ -131,6 +131,7 @@
         "ingredient_block_QhxY3i": {
           "type": "ingredient_block",
           "settings": {
+            "image": "shopify://shop_images/d25f5cef85437fa32cabcb6142df6846_1.png",
             "title": "Lemon verbena",
             "text": "Unwinds nerves, supports digestion, and invites gentle drowsiness."
           }
@@ -138,6 +139,7 @@
         "ingredient_block_Lh9WYE": {
           "type": "ingredient_block",
           "settings": {
+            "image": "shopify://shop_images/Adobe_Express_-_file_2_1.png",
             "title": "Orange peel",
             "text": "Brightens mood with uplifting citrus notes and vitamin C glow."
           }
@@ -249,6 +251,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Guacamaya_meditando.png",
         "image_alignment": "left",
