@@ -183,15 +183,8 @@
       "name": "Product Why Vibbo Image",
       "settings": {
         "title": "Why Choose Vibbo?",
-        "image": "shopify://shop_images/Group_56.png"
-      }
-    },
-    "product_why_DMQf7z": {
-      "type": "product-why",
-      "disabled": true,
-      "name": "Product Why Vibbo",
-      "settings": {
-        "title": "Why Vibbo?"
+        "image": "shopify://shop_images/Group_56.png",
+        "image_mobile": "shopify://shop_images/Group_54_1.png"
       }
     },
     "faq_7VfkjP": {
@@ -313,7 +306,6 @@
     "product_instructions_color_arUrcX",
     "prodcut_ingredients_FXkDBr",
     "product_why_image_bRJRVp",
-    "product_why_DMQf7z",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
