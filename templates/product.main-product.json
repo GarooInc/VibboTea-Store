@@ -247,20 +247,17 @@
         "imagen3": "shopify://shop_images/Guacamaya_meditando_1ab8e845-6c2d-442b-8d3b-e6b8a10c4c82.png"
       }
     },
-    "product_why_image_bRJRVp": {
-      "type": "product-why-image",
-      "name": "Product Why Vibbo Image",
+    "product_why_varios_DGAVp8": {
+      "type": "product-why-varios",
+      "name": "Why Vibbo Slidder",
       "settings": {
-        "title": "Why Choose Vibbo?",
-        "image": "shopify://shop_images/Group_13.png"
-      }
-    },
-    "product_why_DMQf7z": {
-      "type": "product-why",
-      "disabled": true,
-      "name": "Product Why Vibbo",
-      "settings": {
-        "title": "Why Vibbo?"
+        "title": "Why Vibbo?",
+        "image": "shopify://shop_images/Group_13.png",
+        "image2": "shopify://shop_images/Group_56.png",
+        "image3": "shopify://shop_images/Group_57.png",
+        "image_mobile": "shopify://shop_images/Group_53.png",
+        "image_mobile2": "shopify://shop_images/Group_54_1.png",
+        "image_mobile3": "shopify://shop_images/Group_55_1.png"
       }
     },
     "faq_7VfkjP": {
@@ -320,6 +317,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Mono_Colgado.png",
         "image_alignment": "right",
@@ -380,8 +378,7 @@
     "1766421284c922609f",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
-    "product_why_image_bRJRVp",
-    "product_why_DMQf7z",
+    "product_why_varios_DGAVp8",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
