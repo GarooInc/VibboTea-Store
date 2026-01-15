@@ -1,0 +1,233 @@
+<div class="w-full md:py-10 py-5 font-bricolage overflow-hidden">
+
+  <!-- TITLE -->
+  <div class="md:pl-20 text-center md:text-left">
+    <h2 class="py-10 text-black text-[7vw] md:text-[3.4vw] font-semibold leading-[1.1]">
+      {{ section.settings.title | newline_to_br }}
+    </h2>
+  </div>
+
+  <!-- SLIDER MOBILE -->
+  <div class="md:hidden carousel-wrapper-{{ section.id }} overflow-hidden px-4 md:px-20">
+    <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+
+      {% if section.settings.image %}
+        <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
+          <img src="{{ section.settings.image_mobile | img_url: '2000x2000' }}"
+            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image_mobile.width }}"
+            height="{{ section.settings.image_mobile.height }}">
+        </div>
+      {% endif %}
+
+      {% if section.settings.image2 %}
+        <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
+          <img src="{{ section.settings.image_mobile2 | img_url: '2000x2000' }}"
+            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image_mobile2.width }}"
+            height="{{ section.settings.image_mobile2.height }}">
+        </div>
+      {% endif %}
+
+      {% if section.settings.image3 %}
+        <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
+          <img src="{{ section.settings.image_mobile3 | img_url: '2000x2000' }}"
+            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image_mobile3.width }}"
+            height="{{ section.settings.image_mobile3.height }}">
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- DOTS -->
+  <div class="md:hidden flex justify-center gap-2 pt-8">
+    <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="0"></button>
+    <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="1"></button>
+    <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="2"></button>
+  </div>
+
+  <!-- SLIDER DESKTOP -->
+  <div class="hidden md:block carousel-wrapper-desktop-{{ section.id }} overflow-hidden px-20">
+    <div class="carousel-track-desktop flex transition-transform duration-500 ease-in-out">
+
+      {% if section.settings.image %}
+        <div class="carousel-slide w-full shrink-0 px-2">
+          <img src="{{ section.settings.image | img_url: '2000x2000' }}"
+            class="w-full h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}">
+        </div>
+      {% endif %}
+
+      {% if section.settings.image2 %}
+        <div class="carousel-slide w-full shrink-0 px-2">
+          <img src="{{ section.settings.image2 | img_url: '2000x2000' }}"
+            class="w-full h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image2.width }}"
+            height="{{ section.settings.image2.height }}">
+        </div>
+      {% endif %}
+
+      {% if section.settings.image3 %}
+        <div class="carousel-slide w-full shrink-0 px-2">
+          <img src="{{ section.settings.image3 | img_url: '2000x2000' }}"
+            class="w-full h-[420px] object-cover rounded-xl"
+            width="{{ section.settings.image3.width }}"
+            height="{{ section.settings.image3.height }}">
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- DOTS DESKTOP -->
+  <div class="hidden md:flex justify-center gap-2 pt-8">
+    <button class="carousel-dot-desktop-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="0"></button>
+    <button class="carousel-dot-desktop-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="1"></button>
+    <button class="carousel-dot-desktop-{{ section.id }} w-2 h-2 rounded-full bg-gray-400" data-index="2"></button>
+  </div>
+
+
+
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  function initCarousel(wrapperSelector, trackSelector, dotSelector) {
+    const wrapper = document.querySelector(wrapperSelector);
+    const track = wrapper?.querySelector(trackSelector);
+    const dots = document.querySelectorAll(dotSelector);
+
+    if (!track || !dots.length) return;
+
+    let index = 0;
+    let autoplay;
+
+    function updateCarousel(i) {
+      index = Math.max(0, Math.min(i, dots.length - 1));
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      dots.forEach((dot, d) => {
+        dot.classList.toggle('bg-black', d === index);
+        dot.classList.toggle('bg-gray-400', d !== index);
+        dot.classList.toggle('w-6', d === index);
+      });
+    }
+
+    function startAutoplay() {
+      autoplay = setInterval(() => {
+        updateCarousel(index + 1 >= dots.length ? 0 : index + 1);
+      }, 3000);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplay);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        stopAutoplay();
+        updateCarousel(Number(dot.dataset.index));
+        startAutoplay();
+      });
+    });
+
+    // Swipe
+    let startX = 0;
+    let dragging = false;
+
+    track.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      dragging = true;
+      stopAutoplay();
+    });
+
+    track.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      const diff = startX - e.touches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        updateCarousel(diff > 0 ? index + 1 : index - 1);
+        dragging = false;
+      }
+    });
+
+    track.addEventListener('touchend', () => {
+      dragging = false;
+      startAutoplay();
+    });
+
+    updateCarousel(0);
+    startAutoplay();
+  }
+
+  // MOBILE
+  initCarousel(
+    '.carousel-wrapper-{{ section.id }}',
+    '.carousel-track',
+    '.carousel-dot-{{ section.id }}'
+  );
+
+  // DESKTOP
+  initCarousel(
+    '.carousel-wrapper-desktop-{{ section.id }}',
+    '.carousel-track-desktop',
+    '.carousel-dot-desktop-{{ section.id }}'
+  );
+
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Why Vibbo Slidder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why Vibbo?"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image 2",
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Image 3",
+    }, 
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile",
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile2",
+      "label": "Image Mobile 2",
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile3",
+      "label": "Image Mobile 3",
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Why Vibbo Slidder"
+    }
+  ]
+}
+{% endschema %}
