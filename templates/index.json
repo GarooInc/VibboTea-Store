@@ -33,7 +33,7 @@
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
-            "button_text": "Shop now",
+            "button_text": "SHOP ALL PRODUCTS",
             "button_position": "top-center"
           }
         },
@@ -43,7 +43,7 @@
             "video_mp4": "https://cdn.shopify.com/videos/c/o/v/41d0ad5a89a840a4b6b374fa52debdc9.mp4",
             "page_title": "WELLNESS\nWITHOUT \nTHE B.S.",
             "page_descripction": "REAL TEA, REAL BENEFITS",
-            "button_text": "Shop now",
+            "button_text": "SHOP ALL PRODUCTS",
             "button_position": "bottom-center"
           }
         }
@@ -216,6 +216,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image_alignment": "right",
         "margin_top_image": 50
