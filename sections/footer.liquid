@@ -105,6 +105,13 @@
         </div>
        
       </div>
+      <div>
+        {% if section.settings.descripcion2 %}
+          <p class="text-md w-screen justify-center text-white font-bricolage leading-tight pb-10 uppercase">
+            {{ section.settings.descripcion2 }}
+          </p>
+        {% endif %}
+      </div>
 
       <div class="flex flex-row space-y-1 md:pb-8">
         {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
@@ -118,13 +125,7 @@
         {% endif %}
       </div>
 
-  <div>
-    {% if section.settings.descripcion2 %}
-      <p class="text-sm text-white absolute bottom-10 left-18 md:pr-[15vw] font-bricolage leading-tight">
-        {{ section.settings.descripcion2 }}
-      </p>
-    {% endif %}
-  </div>
+  
 
     </div>
 
