@@ -46,8 +46,16 @@
         </div>
        
       </div>
+      <div>
+        {% if section.settings.descripcion2 %}
+          <p class=" text-sm w-screen 
+            justify-center text-white font-bricolage leading-tight py-5 uppercase px-5">
+            {{ section.settings.descripcion2 }}
+          </p>
+        {% endif %}
+      </div>
      <!-- OTROS -->
-    <div class="flex flex-row space-y-1 py-10 pt-12">
+    <div class="flex flex-row space-y-1 pl-5 py-10 pt-12">
         {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
           {% for link in linklists[section.settings.menu2_footer].links %}
             <a href="{{ link.url }}" class="hover:opacity-70 whitespace-nowrap text-sm    transition-opacity pr-5">{{ link.title }}</a>
@@ -107,7 +115,8 @@
       </div>
       <div>
         {% if section.settings.descripcion2 %}
-          <p class="text-md w-screen justify-center text-white font-bricolage leading-tight pb-10 uppercase">
+          <p class=" text-md w-screen 
+            justify-start text-white font-bricolage leading-tight pb-10 uppercase pr-20">
             {{ section.settings.descripcion2 }}
           </p>
         {% endif %}
