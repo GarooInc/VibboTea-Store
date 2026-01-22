@@ -1,6 +1,6 @@
 <div
   class="slider-facts-{{ section.id }} custom-slider relative 
-         h-[40vh] md:h-screen 
+         h-[55vh] md:h-screen 
          mx-auto overflow-hidden"
   data-autoplay="{{ section.settings.autoplay }}"
   data-interval="{{ section.settings.Time }}"
@@ -8,6 +8,9 @@
 
 
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
+  <div class="md:hidden relative h-[120px] w-full  bg-white">
+    
+  </div>
 
   <div class="slides-wrapper relative w-full md:h-screen h-[38vh] overflow-hidden">
     {% for block in section.blocks %}
