@@ -1613,6 +1613,9 @@
   .text-\[4vw\] {
     font-size: 4vw;
   }
+  .text-\[6\.5vw\] {
+    font-size: 6.5vw;
+  }
   .text-\[6vw\] {
     font-size: 6vw;
   }
@@ -3008,6 +3011,11 @@
   .md\:text-\[3\.4vw\] {
     @media (width >= 48rem) {
       font-size: 3.4vw;
+    }
+  }
+  .md\:text-\[3\.5vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.5vw;
     }
   }
   .md\:text-\[3\.6vw\] {

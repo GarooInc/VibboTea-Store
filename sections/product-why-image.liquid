@@ -2,7 +2,9 @@
     <div class="md:block flex w-full md:justify-left justify-center md:pl-20">
       <h2 class="py-10 text-black text-[7vw] md:text-[3.4vw] 
         font-bricolage font-semibold leading-[1.1] md:text-left text-center">
-        {{ section.settings.title | newline_to_br }}
+        {{ section.settings.title | newline_to_br
+         | replace: 'Vibbo', '<span class=" uppercase font-grafika font-normal  text-[6.5vw] md:text-[3.4vw]">VIBBO</span>' }}
+        
       </h2>
       
        
