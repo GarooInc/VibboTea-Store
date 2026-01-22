@@ -932,6 +932,14 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .-translate-y-5 {
+    --tw-translate-y: calc(var(--spacing) * -5);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-10 {
+    --tw-translate-y: calc(var(--spacing) * -10);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .-translate-y-15 {
     --tw-translate-y: calc(var(--spacing) * -15);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -942,6 +950,14 @@
   }
   .-translate-y-25 {
     --tw-translate-y: calc(var(--spacing) * -25);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-30 {
+    --tw-translate-y: calc(var(--spacing) * -30);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-35 {
+    --tw-translate-y: calc(var(--spacing) * -35);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-y-2 {
@@ -2727,6 +2743,11 @@
   .md\:py-4 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 4);
+    }
+  }
+  .md\:py-5 {
+    @media (width >= 48rem) {
+      padding-block: calc(var(--spacing) * 5);
     }
   }
   .md\:py-10 {
