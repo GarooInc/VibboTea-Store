@@ -30,7 +30,7 @@
     </div>
 
     <div class="md:w-7/9 pt-10 px-5 md:px-0 flex flex-col justify-center pb-60 md:pb-0">
-        <form method="post" action="/contact#ContactForm" id="ContactForm" class="max-w-2xl mx-auto p-4">
+        {% form 'contact', id:"ContactForm", data-n8n-webhook:"https://agentsprod.redtec.ai/webhook-test/contactus-form" %}
         {{ form.errors | default_errors }}
 
         <div class="md:grid flex md:grid-cols-2 gap-4 pb-4 ">
@@ -116,10 +116,79 @@
             Send
             </button>
         </div>
-        </form>
+        {% endform %}
     </div>
 
 </div>
+
+<script>
+(function(){
+    const form = document.getElementById("ContactForm");
+    if (!form) return;
+
+    const webhook = form.getAttribute("data-n8n-webhook");
+
+    function showMessage(type, text) {
+        let el = form.querySelector('.escuela-form-msg');
+        if (!el) {
+            el = document.createElement('p');
+            el.className = 'escuela-form-msg mt-4';
+            form.appendChild(el);
+        }
+        el.textContent = text;
+        el.style.color = (type === 'ok') ? '#16a34a' : '#dc2626';
+    }
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const nombre = form.querySelector('[name="contact[first_name]"]')?.value?.trim() || '';
+        const apellido = form.querySelector('[name="contact[last_name]"]')?.value?.trim() || '';
+        const email = form.querySelector('[name="contact[email]"]')?.value?.trim() || '';
+        const comments = form.querySelector('[name="contact[body]"]')?.value?.trim() || '';
+
+        if (!nombre || !apellido || !email || !comments){
+            showMessage('err', 'Por favor completa todos los campos.');
+            return;
+        }
+
+        const payload = {
+            nombre,
+            apellido,
+            email,
+            comments,
+            submittedAt: new Date().toISOString()
+        };
+
+        try {
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) btn.disabled = true;
+
+            const res = await fetch(webhook, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+                const txt = await res.text().catch(() => '');
+                throw new Error('Webhook error ' + res.status + ' ' + txt);
+            }
+
+            showMessage('ok', '¡Formulario enviado con éxito!');
+            form.reset();
+
+            if (btn) btn.disabled = false;
+
+        } catch (error) {
+            console.error(error);
+            showMessage('err', 'No se pudo enviar. Intenta de nuevo en unos minutos.');
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) btn.disabled = false;
+        }
+    });
+})();
+</script>
 
 
 
