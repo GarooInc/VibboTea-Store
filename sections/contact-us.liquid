@@ -28,7 +28,7 @@
     </div>
 
     <div class="md:w-7/9 pt-10 px-5 md:px-0 flex flex-col justify-center pb-60 md:pb-0">
-        {% form 'contact', id:"ContactForm", data-n8n-webhook:"https://agentsprod.redtec.ai/webhook-test/contactus-form" %}
+        {% form 'contact', id:"ContactForm", data-n8n-webhook:"https://agentsprod.redtec.ai/webhook/contactus-form" %}
         {{ form.errors | default_errors }}
 
         <div class="md:grid flex md:grid-cols-2 gap-4 pb-4 ">
