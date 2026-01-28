@@ -33,7 +33,7 @@
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
-            "button_text": "SHOP ALL PRODUCTS",
+            "button_text": "SHOP NOW",
             "button_position": "bottom-center"
           }
         },
@@ -43,18 +43,18 @@
             "video_mp4": "https://cdn.shopify.com/videos/c/o/v/42f79bab075f493eb08a05b81deb0e47.mp4",
             "page_title": "KICKSTARTER NOW LIVE!",
             "page_descripction": "",
-            "button_text": "SHOP ALL PRODUCTS",
+            "button_text": "SHOP NOW",
             "button_position": "bottom-center"
           }
         },
         "slide_pUe9jJ": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/2_4.png",
+            "image_desktop": "shopify://shop_images/Desktop_-_44.png",
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
-            "button_text": "Shop now",
+            "button_text": "SHOP NOW",
             "button_position": "bottom-center"
           }
         },
@@ -65,7 +65,7 @@
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
-            "button_text": "Shop now",
+            "button_text": "SHOP NOW",
             "button_position": "bottom-center"
           }
         },
@@ -76,7 +76,7 @@
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
-            "button_text": "Shop now",
+            "button_text": "SHOP NOW",
             "button_position": "bottom-center"
           }
         }
