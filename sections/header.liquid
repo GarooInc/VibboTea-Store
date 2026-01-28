@@ -8,10 +8,10 @@
 
 {% if section.settings.show_topbar %}
 <div class="topbar-wrapper blinkBW full-width py-2 cursor-pointer 
-      fixed top-0 w-full z-50 font-bricolage">
+      fixed top-0 w-full z-50 font-bricolage bg-white">
 
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
-    <div class="topbar-content">
+    <div class="topbar-content ">
       {% for  i in (1..6) %}
         <div class="topbar-text  text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-0 py-1">
 
@@ -382,24 +382,9 @@
   }
 
   
-  @keyframes blinkBW {
-  0% {
-    background-color: #000;
-    color: #fff;
-  }
-  50% {
-    background-color: #fff;
-    color: #000;
-  }
-  100% {
-    background-color: #000;
-    color: #fff;
-  }
-}
+ 
 
-.blinkBW {
-  animation: blinkBW 4.0s infinite;
-}
+
 
 {% endstylesheet %}
 

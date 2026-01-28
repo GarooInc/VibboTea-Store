@@ -1,0 +1,57 @@
+<div class="topbar-wrapper blinkBW full-width py-2 cursor-pointer 
+      fixed top-0 w-full z-50 font-bricolage bg-white">
+
+  <a href="{{ section.settings.topbar_link }}" class="block w-full">
+    <div class="topbar-content ">
+      {% for  i in (1..6) %}
+        <div class="topbar-text  text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-0 py-1">
+
+          {{ section.settings.topbar_announcement_text }}
+          {% if section.settings.isotipe %}
+            <img 
+              src="{{ section.settings.isotipe | img_url: '200x200' }}" 
+              alt="Isotipe"
+              class="inline-block h-5 w-5 object-contain"
+              width="{{ section.settings.isotipe.width }}"
+              height="{{ section.settings.isotipe.height }}"
+            >
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Custom cinta",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Topbar Settings"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "isotipe",
+      "label": "Isotipe Image"
+    },
+    {
+      "type": "richtext",
+      "id": "topbar_announcement_text",
+      "label": "Announcement Text"
+    },
+    {
+      "type": "url",
+      "id": "topbar_link",
+      "label": "Topbar Link"
+    },
+   
+    
+    
+   
+    
+  ]
+}
+
+{% endschema %}
