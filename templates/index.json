@@ -91,11 +91,7 @@
       "name": "Header Slide",
       "settings": {
         "autoplay": true,
-        "Time": 6000,
-        "image_animation1": "shopify://shop_images/Frame_1321315052_2.png",
-        "image_animation2": "shopify://shop_images/sustainable.png",
-        "image_animation3": "shopify://shop_images/Frame_1321315054_2.png",
-        "image_animation4": "shopify://shop_images/Frame_1321316208_2.png"
+        "Time": 6000
       }
     },
     "main_carousel_NYTaep": {
