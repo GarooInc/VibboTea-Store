@@ -29,7 +29,7 @@
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Copy_of_VIBBO_-17_1.jpg",
+            "image_desktop": "shopify://shop_images/1_1.png",
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
@@ -46,11 +46,45 @@
             "button_text": "SHOP ALL PRODUCTS",
             "button_position": "bottom-center"
           }
+        },
+        "slide_pUe9jJ": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Isotipo_Black_b5250ad0-791a-48df-aeb4-066c9954e98f.jpg",
+            "video_mp4": "",
+            "page_title": "Bienvenido a Nuestra Tienda",
+            "page_descripction": "text",
+            "button_text": "Shop now",
+            "button_position": "bottom-center"
+          }
+        },
+        "slide_3qAYpk": {
+          "type": "slide",
+          "settings": {
+            "video_mp4": "",
+            "page_title": "Bienvenido a Nuestra Tienda",
+            "page_descripction": "text",
+            "button_text": "Shop now",
+            "button_position": "bottom-center"
+          }
+        },
+        "slide_qmBDkN": {
+          "type": "slide",
+          "settings": {
+            "video_mp4": "",
+            "page_title": "Bienvenido a Nuestra Tienda",
+            "page_descripction": "text",
+            "button_text": "Shop now",
+            "button_position": "bottom-center"
+          }
         }
       },
       "block_order": [
         "slide_A84cL4",
-        "slide_APGaHq"
+        "slide_APGaHq",
+        "slide_pUe9jJ",
+        "slide_3qAYpk",
+        "slide_qmBDkN"
       ],
       "name": "Header Slide",
       "settings": {
