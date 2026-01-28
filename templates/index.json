@@ -72,9 +72,10 @@
         "slide_qmBDkN": {
           "type": "slide",
           "settings": {
+            "image_desktop": "shopify://shop_images/Group_59.png",
             "video_mp4": "",
-            "page_title": "Bienvenido a Nuestra Tienda",
-            "page_descripction": "text",
+            "page_title": "",
+            "page_descripction": "",
             "button_text": "Shop now",
             "button_position": "bottom-center"
           }
