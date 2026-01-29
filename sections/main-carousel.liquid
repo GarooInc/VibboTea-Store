@@ -51,21 +51,36 @@
         {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full md:w-[33%] px-10">
             <a href="{{ product.url }}" class="block w-full">
-              {% if product.featured_media %}
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center ">
+              {% if product.media.size > 1 %}
+                {% assign second_image = product.media[1] %}
+                
+                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src="{{ second_image | image_url: width: 800 }}"
+                    alt="{{ second_image.alt | escape }}"
+                    width="{{ second_image.width }}"
+                    height="{{ second_image.height }}"
+                    loading="lazy"
+                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
+                  >
+                </div>
+
+              {% elsif product.featured_media %}
+                <!-- fallback -->
+                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
                   <img
                     src="{{ product.featured_media | image_url: width: 800 }}"
                     alt="{{ product.featured_media.alt | escape }}"
                     width="{{ product.featured_media.width }}"
                     height="{{ product.featured_media.height }}"
-                    loading="lazy"
-                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
+                    class="w-full h-auto object-cover"
                   >
                 </div>
-               
               {% else %}
                 <div class="w-full md:h-[30vw]  rounded-2xl overflow-hidden bg-gray-200" ></div>
               {% endif %}
+
+              
 
               <div class="mt-4">
                 <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">

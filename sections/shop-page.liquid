@@ -32,12 +32,34 @@
 
         <a href="{{ product.url }}" class="block">
           <div class="w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
-            <img
-              src="{{ product.featured_media | image_url: width: 800 }}"
-              alt="{{ product.featured_media.alt | escape }}"
-              class="w-full h-full object-cover hover:scale-105 transition-transform"
-              loading="lazy"
-            >
+            {% if product.media.size > 1 %}
+                {% assign second_image = product.media[1] %}
+                
+                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src="{{ second_image | image_url: width: 800 }}"
+                    alt="{{ second_image.alt | escape }}"
+                    width="{{ second_image.width }}"
+                    height="{{ second_image.height }}"
+                    loading="lazy"
+                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
+                  >
+                </div>
+
+              {% elsif product.featured_media %}
+                <!-- fallback -->
+                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src="{{ product.featured_media | image_url: width: 800 }}"
+                    alt="{{ product.featured_media.alt | escape }}"
+                    width="{{ product.featured_media.width }}"
+                    height="{{ product.featured_media.height }}"
+                    class="w-full h-auto object-cover"
+                  >
+                </div>
+              {% else %}
+                <div class="w-full md:h-[30vw]  rounded-2xl overflow-hidden bg-gray-200" ></div>
+              {% endif %}
           </div>
 
           <p class="font-bricolage text-base md:text-lg text-[#575757] mt-3">

@@ -1386,6 +1386,9 @@
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
   }
+  .pt-35 {
+    padding-top: calc(var(--spacing) * 35);
+  }
   .pt-40 {
     padding-top: calc(var(--spacing) * 40);
   }
@@ -1442,6 +1445,12 @@
   }
   .pb-25 {
     padding-bottom: calc(var(--spacing) * 25);
+  }
+  .pb-30 {
+    padding-bottom: calc(var(--spacing) * 30);
+  }
+  .pb-40 {
+    padding-bottom: calc(var(--spacing) * 40);
   }
   .pb-60 {
     padding-bottom: calc(var(--spacing) * 60);
@@ -1543,6 +1552,9 @@
   .text-\[4vw\] {
     font-size: 4vw;
   }
+  .text-\[5vw\] {
+    font-size: 5vw;
+  }
   .text-\[6\.5vw\] {
     font-size: 6.5vw;
   }
@@ -1554,6 +1566,9 @@
   }
   .text-\[8vw\] {
     font-size: 8vw;
+  }
+  .text-\[9vw\] {
+    font-size: 9vw;
   }
   .text-\[10px\] {
     font-size: 10px;

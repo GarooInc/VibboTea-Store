@@ -47,7 +47,7 @@
               text-center overflow-hidden">
 
           
-          <h1 class="text-[10vw] font-bold font-bricolage text-white
+          <h1 class="text-[7vw] font-bold font-bricolage text-white
              drop-shadow-lg leading-[0.9] ">
             {{ block.settings.page_title | newline_to_br  }}
           </h1>
@@ -68,9 +68,11 @@
         {% when 'top-right' %}
           {% assign position_classes = 'items-start justify-end pt-10 pr-10' %}
         {% when 'center' %}
-          {% assign position_classes = 'items-center justify-center' %}
+          {% assign position_classes = 'items-center justify-center pt-50' %}
         {% when 'bottom-left' %}
           {% assign position_classes = 'items-end justify-start pb-20 pl-10' %}
+        {% when 'bottom-left-up' %}
+          {% assign position_classes = 'items-end justify-start pb-40 pl-10' %}
         {% when 'bottom-right' %}
           {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
         {% else %}
@@ -269,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "label": "Autoplay",
       "default": true
     },
+    
     {
       "type": "number",
       "id": "Time",
@@ -331,6 +334,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "default": "Shop now"
       },
       {
+        "type": "checkbox",
+        "id": "link_popup",
+        "label": "Pop Up",
+        "default": false
+      },
+      {
         "type": "select",
         "id": "button_position",
         "label": "Button position",
@@ -341,6 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
           { "value": "top-right", "label": "Top Right" },
           { "value": "center", "label": "Center" },
           { "value": "bottom-left", "label": "Bottom Left" },
+          { "value": "bottom-left-up", "label": "Bottom Left Up" },
           { "value": "bottom-center", "label": "Bottom Center" },
           { "value": "bottom-right", "label": "Bottom Right" }
         ]
