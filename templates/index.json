@@ -98,7 +98,7 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Discover our flavors",
+        "section_title": "Powered by nature, harnessed by you.",
         "redireccionamiento": true,
         "collection": "frontpage",
         "limit": 12,
