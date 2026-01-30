@@ -31,7 +31,6 @@
     --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
-    --container-3xl: 48rem;
     --container-4xl: 56rem;
     --container-5xl: 64rem;
     --container-6xl: 72rem;
@@ -1386,9 +1385,6 @@
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
   }
-  .pt-35 {
-    padding-top: calc(var(--spacing) * 35);
-  }
   .pt-40 {
     padding-top: calc(var(--spacing) * 40);
   }
@@ -1445,9 +1441,6 @@
   }
   .pb-25 {
     padding-bottom: calc(var(--spacing) * 25);
-  }
-  .pb-30 {
-    padding-bottom: calc(var(--spacing) * 30);
   }
   .pb-40 {
     padding-bottom: calc(var(--spacing) * 40);
@@ -1552,9 +1545,6 @@
   .text-\[4vw\] {
     font-size: 4vw;
   }
-  .text-\[5vw\] {
-    font-size: 5vw;
-  }
   .text-\[6\.5vw\] {
     font-size: 6.5vw;
   }
@@ -1567,14 +1557,8 @@
   .text-\[8vw\] {
     font-size: 8vw;
   }
-  .text-\[9vw\] {
-    font-size: 9vw;
-  }
   .text-\[10px\] {
     font-size: 10px;
-  }
-  .text-\[10vw\] {
-    font-size: 10vw;
   }
   .text-\[11vw\] {
     font-size: 11vw;
