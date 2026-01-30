@@ -160,6 +160,50 @@
         "title": "Hot, iced, or mocktail, you pick"
       }
     },
+    "prodcut_ingredients_NLmqhN": {
+      "type": "prodcut-ingredients",
+      "blocks": {
+        "ingredient_block_Cq8RLq": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/black-tea.png",
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_r7hQXa": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_FFfHTV": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        },
+        "ingredient_block_p9aUGY": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_block_Cq8RLq",
+        "ingredient_block_r7hQXa",
+        "ingredient_block_FFfHTV",
+        "ingredient_block_p9aUGY"
+      ],
+      "name": "Product Ingredients",
+      "settings": {
+        "title": "Product Ingredients"
+      }
+    },
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
       "name": "Section socials",
@@ -236,6 +280,7 @@
     "header_section_slide_TW68Gf",
     "main_carousel_NYTaep",
     "main_universe_section_yaVDzH",
+    "prodcut_ingredients_NLmqhN",
     "main_socials_section_7yLtAb",
     "faq_UxEWVW",
     "newsletter_ri4VmU"
