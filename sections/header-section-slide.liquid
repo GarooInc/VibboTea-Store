@@ -17,7 +17,9 @@
     {% for block in section.blocks %}
       <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
 
-        
+          
+
+
           {% if block.settings.video_mp4 != blank %}
             <video
              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
@@ -38,6 +40,8 @@
               height="{{ section.settings.image_desktop.height }}"
             />
           {% endif %}
+
+          
 
 
         <div class="slide-content 
@@ -92,7 +96,29 @@
           </span>
         </a>
       </div>
-      </div>
+
+        {% if block.settings.link_popup %}
+            <div class="relative group pt-90">
+  
+              <div class="w-32 h-32 ">
+                
+              </div>
+
+              <!-- Pop up -->
+              <div class="absolute inset-0 md:flex items-start justify-center
+                          pt-83 pl-220 z-50 pointer-events-none px-50
+                          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          
+                <span class="bg-black text-white text-sm px-3 py-2 rounded-lg shadow-lg">
+                  {{ block.settings.hover_text }}
+                </span>
+
+              </div>
+            </div>
+
+          {% endif %}
+
+    </div>
       
     {% endfor %}
   </div>
@@ -338,6 +364,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "link_popup",
         "label": "Pop Up",
         "default": false
+      },
+      {
+        "type": "text",
+        "id": "hover_text",
+        "label": "Texto del hover",
+        "default": "Texto"
       },
       {
         "type": "select",
