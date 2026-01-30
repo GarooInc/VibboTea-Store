@@ -155,53 +155,6 @@
         "title": "Hot, iced, or mocktail, you pick"
       }
     },
-    "main_section_slidder_qL94nG": {
-      "type": "main-section-slidder",
-      "blocks": {
-        "slide_rALcFw": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
-            "alt": "Imagen del slider"
-          }
-        },
-        "slide_t7XFKR": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1321315913.png",
-            "alt": "Imagen del slider"
-          }
-        },
-        "slide_aWLfj4": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1321315915.png",
-            "alt": "Imagen del slider"
-          }
-        },
-        "slide_Axt4KG": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
-            "alt": "Imagen del slider"
-          }
-        }
-      },
-      "block_order": [
-        "slide_rALcFw",
-        "slide_t7XFKR",
-        "slide_aWLfj4",
-        "slide_Axt4KG"
-      ],
-      "name": "Slider Imágenes",
-      "settings": {
-        "title": "Not your grandma’s cup of tea—your\neveryday ritual: hot, iced, or blended.",
-        "title_mobile": "Real Stories, Real \nStyle, Real Tribe.",
-        "description_mobile": "Description Mobile",
-        "autoplay": true,
-        "interval": 5000
-      }
-    },
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
       "name": "Section socials",
@@ -229,7 +182,7 @@
           "type": "faq",
           "settings": {
             "question": "How do I apply a discount code?",
-            "answer": "To apply a discount, just drop your code into the “Discount code” box on the checkout page, hit Apply, and watch your total chill out a bit."
+            "answer": "To apply a discount, just drop your code into the “Discount code” box on the checkout page, hit apply, and watch your total chill out a bit."
           }
         },
         "faq_r8XVV9": {
@@ -278,7 +231,6 @@
     "header_section_slide_TW68Gf",
     "main_carousel_NYTaep",
     "main_universe_section_yaVDzH",
-    "main_section_slidder_qL94nG",
     "main_socials_section_7yLtAb",
     "faq_UxEWVW",
     "newsletter_ri4VmU"
