@@ -190,8 +190,17 @@
         "ingredient_block_p9aUGY": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/pinatrozos_1.png",
+            "title": "Pineapple pieces",
+            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
+          }
+        },
+        "ingredient_block_tGiAJf": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/coco__2.png",
+            "title": "Coconut",
+            "text": "Source of fiber, contains healthy fats, is an antioxidant, and regulates blood sugar and cholesterol."
           }
         }
       },
@@ -199,7 +208,8 @@
         "ingredient_block_Cq8RLq",
         "ingredient_block_r7hQXa",
         "ingredient_block_FFfHTV",
-        "ingredient_block_p9aUGY"
+        "ingredient_block_p9aUGY",
+        "ingredient_block_tGiAJf"
       ],
       "name": "Product Ingredients",
       "settings": {
