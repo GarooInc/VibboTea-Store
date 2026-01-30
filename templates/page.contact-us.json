@@ -39,7 +39,7 @@
           "type": "faq",
           "settings": {
             "question": "How do I apply a discount code?",
-            "answer": "To apply a discount, just drop your code into the “Discount code”box on the checkout page, hit Apply, and watch your total chill out a bit."
+            "answer": "To apply a discount, just drop your code into the “Discount code” box on the checkout page, hit apply, and watch your total chill out a bit."
           }
         },
         "faq_mfHnpP": {
@@ -66,6 +66,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Guacamaya.png",
         "image_alignment": "right",
