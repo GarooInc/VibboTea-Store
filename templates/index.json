@@ -238,8 +238,9 @@
         "ingredient_block_TRra37": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/Adobe_Express_-_file_2_1_1.png",
+            "title": "Orange peel",
+            "text": "Boosts antioxidants for immunity and aids digestion while reducing bloating."
           }
         }
       },
