@@ -120,10 +120,10 @@
         "video_block_yrUmjt": {
           "type": "video_block",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f063cd0361e1435cb1447501a4e8cdc6.mp4",
             "text": "Rise",
             "button_text": "get energized",
-            "button_url": "shopify://products/hidra-boost-natural-energy"
+            "button_url": "shopify://products/chill-vibes-natural-relax"
           }
         },
         "video_block_mVJf9U": {
@@ -138,10 +138,10 @@
         "video_block_4YGmdY": {
           "type": "video_block",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/f063cd0361e1435cb1447501a4e8cdc6.mp4",
-            "text": "Rest & \nRelax",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
+            "text": "Rest & Relax",
             "button_text": "get relaxed",
-            "button_url": "shopify://products/chill-vibes-natural-relax"
+            "button_url": "shopify://products/hidra-boost-natural-energy"
           }
         }
       },
