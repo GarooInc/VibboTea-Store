@@ -167,15 +167,16 @@
           "type": "ingredient_block",
           "settings": {
             "image": "shopify://shop_images/black-tea.png",
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "title": "Black Tea",
+            "text": "Caffeine energy boost, helps improve concentration and alertness."
           }
         },
         "ingredient_block_r7hQXa": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/hibisco.png",
+            "title": "Hibiscus",
+            "text": "It helps reduce blood pressure and cholesterol levels, in addition to its diuretic and antioxidant effects."
           }
         },
         "ingredient_block_FFfHTV": {
