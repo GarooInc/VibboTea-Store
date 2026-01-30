@@ -34,6 +34,7 @@
             "page_title": "",
             "page_descripction": "",
             "button_text": "SHOP NOW",
+            "link_popup": false,
             "button_position": "bottom-center"
           }
         },
@@ -44,6 +45,7 @@
             "page_title": "KICKSTARTER NOW LIVE!",
             "page_descripction": "",
             "button_text": "SHOP NOW",
+            "link_popup": false,
             "button_position": "center"
           }
         },
@@ -55,6 +57,7 @@
             "page_title": "",
             "page_descripction": "",
             "button_text": "SHOP NOW",
+            "link_popup": false,
             "button_position": "bottom-left"
           }
         },
@@ -66,7 +69,8 @@
             "page_title": "",
             "page_descripction": "",
             "button_text": "SHOP NOW",
-            "button_position": "bottom-left"
+            "link_popup": false,
+            "button_position": "bottom-left-up"
           }
         },
         "slide_qmBDkN": {
@@ -77,6 +81,7 @@
             "page_title": "",
             "page_descripction": "",
             "button_text": "SHOP NOW",
+            "link_popup": false,
             "button_position": "bottom-left"
           }
         }
