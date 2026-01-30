@@ -1,17 +1,17 @@
 <!-- TÍTULO -->
     <div class="text-center items-center align-center pt-10 ">
-        <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-10">
+        <h2 class="md:text-5xl text-3xl text-black font-normal font-bricolage ">
             {{ section.settings.section_title | default: "Join the trive" | newline_to_br}}
         </h2>
-            {% comment %} <p class="text-black text-[3.5vw] md:text-[1vw] font-bricolage mr-2 px-2 py-3">
-                    Discover our flavors 
-                </p> {% endcomment %}
+            <p class="text-black text-[3.5vw] md:text-xl font-bricolage mr-2 md:px-30 py-5 pb-10">
+                    {{ section.settings.section_desc }}
+                </p>
 
          {% if section.settings.redireccionamiento %}   
-          <div class="bg-white h-12 inline-flex items-center justify-between rounded-full border border-black pl-4 ">
+          <div class="bg-[#FFCD51] h-12 inline-flex items-center justify-between rounded-full border border-black pl-4 ">
 
-            <p class="text-black text-[3.5vw] md:text-[1.2vw] font-bricolage flex-1 text-left px-2">
-              I want to feel human again
+            <p class="text-black text-[3.5vw] md:text-xl font-bricolage flex-1 text-left px-2">
+              {{ section.settings.text_button }}
             </p>
 
             <a href="/collections/frontpage"
@@ -35,7 +35,7 @@
 <section
   class="relative w-full  pt-4"
   x-data="carousel({
-    autoplay: {{ false }},
+    autoplay: {{ section.settings.autoplay }},
     interval: {{ section.settings.interval | default: 5000 }},
     count: {{ products_count }}
   })"
@@ -140,7 +140,20 @@
         {% for product in coll.products limit: section.settings.limit %}
           <div class="snap-start shrink-0 w-full">
             <a href="{{ product.url }}" class="block px-4 w-full">
-              {% if product.featured_media %}
+              {% if product.media.size > 1 %}
+                {% assign second_image = product.media[1] %}
+                
+                <div class="w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                  <img
+                    src="{{ second_image | image_url: width: 800 }}"
+                    alt="{{ second_image.alt | escape }}"
+                    width="{{ second_image.width }}"
+                    height="{{ second_image.height }}"
+                    loading="lazy"
+                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
+                  >
+                </div>
+              {% elsif product.featured_media %}
                 <div class="w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
                   <img
                     src="{{ product.featured_media | image_url: width: 800 }}"
@@ -195,49 +208,96 @@
 
 <script>
   let currentSlide = 0;
-  let currentSlideMobile = 0;
+  let autoplayTimer = null;
 
-  function slideNext() {
+  function getMaxIndex() {
+    const track = document.getElementById("sliderTrack");
+    if (!track) return 0;
+    const slides = track.children.length;
+    return Math.max(slides - 3, 0); // 3 visibles
+  }
+
+  function updateSlide() {
     const track = document.getElementById("sliderTrack");
     if (!track) return;
-
-    const slides = track.children.length;
-    currentSlide = (currentSlide + 1 ) % (slides-2);
-
     track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+  }
+
+  function slideNext() {
+    const maxIndex = getMaxIndex();
+    currentSlide = currentSlide >= maxIndex ? 0 : currentSlide + 1;
+    updateSlide();
   }
 
   function slidePrev() {
-    const track = document.getElementById("sliderTrack");
+    const maxIndex = getMaxIndex();
+    currentSlide = currentSlide <= 0 ? maxIndex : currentSlide - 1;
+    updateSlide();
+  }
+
+  function startAutoplay(interval) {
+    stopAutoplay();
+    autoplayTimer = setInterval(slideNext, interval);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    {% if section.settings.autoplay %}
+      startAutoplay({{ section.settings.interval | default: 5000 }});
+    {% endif %}
+  });
+
+
+</script>
+
+<script>
+  let currentSlideMobile = 0;
+  let autoplayTimerMobile = null;
+
+  function getMaxIndexMobile() {
+    const track = document.getElementById("sliderTrackMobile");
+    if (!track) return 0;
+    return Math.max(track.children.length - 1, 0);
+  }
+
+  function updateSlideMobile() {
+    const track = document.getElementById("sliderTrackMobile");
     if (!track) return;
-
-    const slides = track.children.length;
-    currentSlide = (currentSlide - 1 ) % (slides-2);
-
-    track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
   }
 
   function slideNextMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return;
-
-    const slides = track.children.length;
-    currentSlideMobile = (currentSlideMobile + 1) % slides;
-
-    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
+    const maxIndex = getMaxIndexMobile();
+    currentSlideMobile =
+      currentSlideMobile >= maxIndex ? 0 : currentSlideMobile + 1;
+    updateSlideMobile();
   }
 
   function slidePrevMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return;
-
-    const slides = track.children.length;
-    currentSlideMobile = (currentSlideMobile - 1 + slides) % slides;
-
-    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
+    const maxIndex = getMaxIndexMobile();
+    currentSlideMobile =
+      currentSlideMobile <= 0 ? maxIndex : currentSlideMobile - 1;
+    updateSlideMobile();
   }
-</script>
 
+  function startAutoplayMobile(interval) {
+    stopAutoplayMobile();
+    autoplayTimerMobile = setInterval(slideNextMobile, interval);
+  }
+
+  function stopAutoplayMobile() {
+    if (autoplayTimerMobile) clearInterval(autoplayTimerMobile);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    {% if section.settings.autoplay %}
+      startAutoplayMobile({{ section.settings.interval | default: 5000 }});
+    {% endif %}
+  });
+</script>
 
 
 {% schema %}
@@ -249,6 +309,25 @@
       "id": "section_title",
       "label": "Title",
       "default": "Productos Destacados"
+    },
+    {
+      "type": "textarea",
+      "id": "section_desc",
+      "label": "Descripcion",
+      "default": "Productos Destacados"
+    },
+    {
+      "type": "textarea",
+      "id": "text_button",
+      "label": "Texto de redireccionamiento",
+      "default": "I want to feel human again"
+    },
+
+    {
+      "type": "textarea",
+      "id": "text_button_add",
+      "label": "Texto de boton",
+      "default": "Add to cart"
     },
     {
       "type": "checkbox",
