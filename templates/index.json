@@ -222,8 +222,9 @@
         "ingredient_block_pLmmg7": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/Pngtree_coriander_seed_5631401_1_1.png",
+            "title": "Coriander seeds",
+            "text": "Enhances digestion by easing bloating and gas, supports gentle detoxification, and helps regulate blood sugar levels.  "
           }
         },
         "ingredient_block_cNRjp8": {
