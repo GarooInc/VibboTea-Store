@@ -230,8 +230,9 @@
         "ingredient_block_cNRjp8": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/d25f5cef85437fa32cabcb6142df6846_1_1.png",
+            "title": "Lemon verbana",
+            "text": "Calming antioxidants that soothe stress, ease digestive cramps, and promote restful sleep. "
           }
         },
         "ingredient_block_TRra37": {
