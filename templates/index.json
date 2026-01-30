@@ -104,6 +104,9 @@
       "name": "Carrusel de productos",
       "settings": {
         "section_title": "Powered by nature, harnessed by you.",
+        "section_desc": "Real plants, real soil, real wellness.  Guided by nature's wisdom alone, our tea blends harness ancestral agriculture, blending native botanicals for vibrant energy, steady balance, and deep calm. Untouched integrity.",
+        "text_button": "I want to feel human again",
+        "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
         "collection": "frontpage",
         "limit": 12,
