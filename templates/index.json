@@ -182,8 +182,9 @@
         "ingredient_block_FFfHTV": {
           "type": "ingredient_block",
           "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
+            "image": "shopify://shop_images/cascara_de_cacao_2.png",
+            "title": "Cocoa Husk",
+            "text": "Anti-inflammatory properties and benefits for gastrointestinal health."
           }
         },
         "ingredient_block_p9aUGY": {
