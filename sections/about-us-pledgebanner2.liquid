@@ -11,12 +11,14 @@
     </div>
 
       {% if section.settings.eyebrow != blank %}
-        <p class="text-2xl mx-auto md:text-5xl font-bold text-white z-10 relative">{{ section.settings.eyebrow }}</p>
+        <p class="text-2xl mx-auto md:text-7xl font-bold text-white z-10 relative">
+          {{ section.settings.eyebrow }}</p>
       {% endif %}
 
       <div class="w-full flex justify-end">
         {% if section.settings.title != blank %}
-          <h2 class="text-4xl md:text-5xl font-bold w-full text-right tracking-tight text-white max-w-2xl pt-4 relative z-10">{{ section.settings.title }}</h2>
+          <h2 class="text-4xl md:text-3xl font-bold w-full text-right tracking-tight text-white max-w-2xl pt-2 relative z-10">
+            {{ section.settings.title }}</h2>
         {% endif %}
       </div>
     </div>

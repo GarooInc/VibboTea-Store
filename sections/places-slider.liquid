@@ -5,21 +5,27 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
       {% assign map_img = block.settings.map_image %}
       {% assign bg_color = block.settings.background_color | default: '#ffffff' %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}" style="background-color: {{ bg_color }};">
-        <div class="slide-content relative w-full h-full flex md:flex-row flex-col items-center justify-center">
-            <div class="block md:hidden  max-w-xs  text-left richnameplace font-bricolage py-4">
+        
+        
+        
+        <div class="slide-content relative w-full h-full flex md:flex-row 
+          flex-col  justify-center top-10">
+            <div class="block md:hidden md:max-w-xs sm:max-w-lg text-left 
+              richnameplace font-bricolage text-xl pl-10">
               {{ block.settings.richtext }}
             </div>
 
         
         <!-- Imagen del mapa -->
           <img src="{{ map_img | img_url: '2000x2000' }}" 
-            class="max-w-[800px] h-auto object-contain mx-auto"
+            class="max-w-[800px] h-auto sm:max-h-120 md:h-auto object-contain mx-auto"
             width="{{ map_img.width }}" 
             height="{{ map_img.height }}" 
             alt="{{ block.settings.map_alt | escape }}"
           />
 
-            <div class="md:block hidden tracking-normal max-w-xs md:max-w-md text-left md:absolute md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
+            <div class="md:block hidden tracking-normal max-w-xs md:max-w-3xl 
+              text-left md:absolute  md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
               {{ block.settings.richtext }}
             </div>
 
@@ -37,10 +43,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                 </div>
               {% endif %}
               
-              <!-- Ingredientes -->
-              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3  md:pt-4 md:pl-6 md:h-80 h-60">
+              <!-- Ingredientes desktop -->
+              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3
+                  sm:grid-cols-4 sm:grid-rows-2 sm:gap-y-0
+                  sm:gap-3 md:pt-4 md:pl-6 md:h-80 h-60
+                ">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
-                  <div class=" flex items-center justify-start gap-3">
+                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_1_image != blank %}
                       <img src="{{ block.settings.ingredient_1_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_1_name | escape }}"
@@ -50,13 +59,14 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                       />
                     {% endif %}
                     {% if block.settings.ingredient_1_name != blank %}
-                      <span class="text-sm md:text-base">{{ block.settings.ingredient_1_name }}</span>
+                      <span class="text-sm md:text-base ">{{ block.settings.ingredient_1_name }}</span>
                     {% endif %}
                   </div>
                 {% endif %}
 
                 {% if block.settings.ingredient_2_name != blank or block.settings.ingredient_2_image != blank %}
-                  <div class="ingredient-item flex items-center justify-start gap-3">
+                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+  
                     {% if block.settings.ingredient_2_image != blank %}
                       <img src="{{ block.settings.ingredient_2_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_2_name | escape }}"
@@ -66,13 +76,14 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                       />
                     {% endif %}
                     {% if block.settings.ingredient_2_name != blank %}
-                      <span class="text-sm md:text-base">{{ block.settings.ingredient_2_name }}</span>
+                      <span class="text-sm md:text-base sm:text-md">{{ block.settings.ingredient_2_name }}</span>
                     {% endif %}
                   </div>
                 {% endif %}
 
                 {% if block.settings.ingredient_3_name != blank or block.settings.ingredient_3_image != blank %}
-                  <div class="ingredient-item flex items-center justify-start gap-3">
+                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+
                     {% if block.settings.ingredient_3_image != blank %}
                       <img src="{{ block.settings.ingredient_3_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_3_name | escape }}"
@@ -82,13 +93,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                       />
                     {% endif %}
                     {% if block.settings.ingredient_3_name != blank %}
-                      <span class="text-sm md:text-base">{{ block.settings.ingredient_3_name }}</span>
+                      <span class="text-sm md:text-base sm:text-md">{{ block.settings.ingredient_3_name }}</span>
                     {% endif %}
                   </div>
                 {% endif %}
 
                 {% if block.settings.ingredient_4_name != blank or block.settings.ingredient_4_image != blank %}
-                  <div class="ingredient-item flex items-center justify-start gap-3">
+                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_4_image != blank %}
                       <img src="{{ block.settings.ingredient_4_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_4_name | escape }}"
@@ -98,13 +109,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                       />
                     {% endif %}
                     {% if block.settings.ingredient_4_name != blank %}
-                      <span class="text-sm md:text-base">{{ block.settings.ingredient_4_name }}</span>
+                      <span class="text-sm md:text-base sm:text-md">{{ block.settings.ingredient_4_name }}</span>
                     {% endif %}
                   </div>
                 {% endif %}
 
                 {% if block.settings.ingredient_5_name != blank or block.settings.ingredient_5_image != blank %}
-                  <div class="ingredient-item flex items-center justify-start gap-3">
+                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_5_image != blank %}
                       <img src="{{ block.settings.ingredient_5_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_5_name | escape }}"
@@ -114,7 +125,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                       />
                     {% endif %}
                     {% if block.settings.ingredient_5_name != blank %}
-                      <span class="text-sm md:text-base">{{ block.settings.ingredient_5_name }}</span>
+                      <span class="text-sm md:text-base sm:text-md">{{ block.settings.ingredient_5_name }}</span>
                     {% endif %}
                   </div>
                 {% endif %}
@@ -144,28 +155,52 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 </div>
 
 <style>
+
+
 .custom-slider {
   position: relative;
+  height: 95vh;          
+  min-height: 600px;   
 }
+
+/* SM: dejar crecer */
+@media (min-width: 640px) and (max-width: 767px) {
+  .custom-slider {
+    height: auto;
+    min-height: unset;
+  }
+}
+
+/* MD+ */
+@media (min-width: 768px) {
+  .custom-slider {
+    height: 90vh;
+    min-height: 600px;
+  }
+}
+
+
 
 .custom-slider .slides-wrapper {
   position: relative;
   width: 100%;
+  height: 100%;
 }
 
 .custom-slider .slide {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
+  height: 100%;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .custom-slider .slide.active {
-  position: relative;
+  position: absolute;
   opacity: 1;
 }
+
 
 .custom-slider .slide img {
   display: block;
