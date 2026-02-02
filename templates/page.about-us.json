@@ -45,7 +45,7 @@
             "background_color": "#b8cfa3",
             "map_image": "shopify://shop_images/MapaGT_1_1.png",
             "map_alt": "Mapa",
-            "richtext": "<p>Every ingredient in our blends is handpicked by the real ones:<strong> producers in Guatemala's wildest corners</strong></p>",
+            "richtext": "<p>Every ingredient in our blends is <br/>handpicked by the real ones:<strong> <br/>producers in Guatemala's wildest corners</strong></p>",
             "place_title": "",
             "ingredient_1_name": "",
             "ingredient_2_name": "",
