@@ -15,7 +15,7 @@
       "type": "header",
       "settings": {
         "show_topbar": true,
-        "isotipe": "shopify://shop_images/Isotipo_Black.jpg",
+        "isotipe": "shopify://shop_images/isotipo_black.png",
         "topbar_announcement_text": "<p>SAVE AN ADDITIONAL 10% OFF WHEN YOU SUBSCRIBE TO OUR NEWSLETTER</p>",
         "topbar_link": "shopify://pages/comming-soon",
         "menu": "main-menu-1",
