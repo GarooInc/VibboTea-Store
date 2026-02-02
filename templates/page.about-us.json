@@ -99,7 +99,7 @@
             "background_color": "#e9f7df",
             "map_image": "shopify://shop_images/izabal.png",
             "map_alt": "Mapa",
-            "richtext": "<p><strong>and always </strong></p><p>made in small batches. </p>",
+            "richtext": "<p>with </p><p><strong>zero shortcuts,</strong> </p>",
             "place_title": "Izabal",
             "ingredient_1_image": "shopify://shop_images/cocoahusk.png",
             "ingredient_1_name": "Cocoa Husk",
