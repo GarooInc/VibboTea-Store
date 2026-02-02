@@ -1,56 +1,68 @@
 
 <div 
-class="w-screen min-h-[55vh] bg-[#EBEBEB] flex flex-col-reverse md:flex-row justify-between"
+class="w-screen min-h-[50vh] bg-[#EBEBEB]  flex flex-col-reverse md:grid
+ md:grid-cols-[3fr_4fr] justify-between"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
-  <div class="w-full md:w-1/2 flex justify-center items-end pt-10">
+  <div class="w-full flex justify-center items-end pt-10">
     <img 
       src="{{ section.settings.imagen | image_url: width: 600 }}" 
       alt="Imagen"
-      class="md:w-[35vw] w-[65vw] max-w-md object-contain"
+      class="md:w-[30vw] w-[65vw] max-w-md object-contain"
       width="{{ section.settings.background_image.width }}"
       height="{{ section.settings.background_image.height }}"
     >
   </div>
 
-  <div class="w-full md:w-1/2 flex justify-center items-center px-10 pt-15">
-  <div class="text-left w-[90%] max-w-[350px] md:max-w-[500px]">
-    <h2 class="md:text-5xl text-2xl font-semibold font-bricolage mb-4">
-      {{section.settings.title}}</h2>
+  <div class="w-full flex items-center-safe justify-center  px-10 pt-15">
+    <div class="text-left">
+      <div class="text-left md:max-w-180 mx-auto">
+        <h2 class="md:text-6xl text-2xl text-center font-semibold font-bricolage mb-4">
+          {{section.settings.title}}</h2>
 
-    <p class="md:text-lg text-sm leading-relaxed pt-3">
-      {{ section.settings.texto1 }}
-    </p>
+        <p class="md:text-xl md:px-5 text-sm text-center leading-relaxed pt-3">
+          {{ section.settings.texto1 }}
+        </p>
+      </div>
 
-    <div class="w-full pt-5">
-      <form class="md:flex grid  grid-cols-2 w-full bg-white rounded-full overflow-hidden shadow">
+      <div class="pt-5 flex justify-center mx-auto w-full">
+
+        <form
+          class="grid grid-cols-5 md:flex bg-white rounded-full overflow-hidden shadow
+                w-[95%] max-w-[420px] md:max-w-[500px]"
+        >
           
-        <!-- MOBILE -->
-        <input 
-            type="email"
-            name="email"
-            placeholder= "{{section.settings.placeholder}}"
-            class="md:hidden md:flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
-          />
-
-          <!-- DESKTOP -->
+          <!--  MOBILE  -->
           <input 
             type="email"
             name="email"
-            placeholder= "{{section.settings.placeholder}}"
-            class="hidden md:flex flex-1 px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+            placeholder="{{ section.settings.placeholder }}"
+            class="md:hidden col-span-3 px-4 py-2 text-gray-700
+                  placeholder-gray-400 focus:outline-none "
           />
-        
-        <button 
-          type="submit"
-          class="bg-black text-white  px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition"
-        >
-          Subscribe
-        </button>
 
-      </form>
-    </div>
+          <!-- INPUT DESKTOP -->
+          <input 
+            type="email"
+            name="email"
+            placeholder="{{ section.settings.placeholder }}"
+            class="hidden md:flex flex-1 px-4 py-2 text-sm text-gray-700
+                  placeholder-gray-400 focus:outline-none"
+          />
+          
+          <button 
+            type="submit"
+            class="col-span-2 bg-black text-white px-5 md:px-5 py-2
+                  rounded-full md:text-sm text-xs hover:bg-gray-800 transition"
+          >
+            Subscribe
+          </button>
+
+        </form>
+
+      </div>
+
   </div>
 </div>
 

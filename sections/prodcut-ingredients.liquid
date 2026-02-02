@@ -94,10 +94,16 @@
     }
     }
 
+    .animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
     .animate-infinite-scroll {
-    display: flex;
-    animation: infinite-scroll 80s linear infinite;
+      display: flex;
+      --scroll-duration: 60s; 
+      animation: infinite-scroll var(--scroll-duration) linear infinite;
     }
+
 
     
     .card-focus {
@@ -118,6 +124,8 @@
 
 .card-focus.is-center img {
   transform: scale(1.1);
+
+  
 }
 
 
@@ -127,17 +135,14 @@
   function detectCenterCard() {
     const cards = document.querySelectorAll('.card-focus');
 
-    // Centro REAL del viewport
     const viewportCenter = window.innerWidth / 2;
 
     cards.forEach(card => {
       const rect = card.getBoundingClientRect();
       const cardCenter = rect.left + rect.width / 2;
 
-      // Distancia entre centros
       const distance = Math.abs(viewportCenter - cardCenter);
 
-      // Rango exacto para considerar "en el centro"
       const activationRange = rect.width * 0.25;
 
       if (distance < activationRange) {
@@ -152,6 +157,34 @@
 
   requestAnimationFrame(detectCenterCard);
 </script>
+
+<script>
+  function setInfiniteScrollSpeed() {
+    const track = document.querySelector('.animate-infinite-scroll');
+    if (!track) return;
+
+    // Esperar a que el layout sea real
+    requestAnimationFrame(() => {
+      const totalWidth = track.scrollWidth;
+
+      // SOLO movemos la mitad (loop)
+      const scrollDistance = totalWidth / 2;
+
+      const speed = 80; // px por segundo
+      const duration = scrollDistance / speed;
+
+      // Reset animación (CLAVE)
+      track.style.animation = 'none';
+      track.offsetHeight; // force reflow
+      track.style.setProperty('--scroll-duration', `${duration}s`);
+      track.style.animation = '';
+    });
+  }
+
+  window.addEventListener('load', setInfiniteScrollSpeed);
+  window.addEventListener('resize', setInfiniteScrollSpeed);
+</script>
+
 
 
 
