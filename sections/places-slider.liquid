@@ -10,30 +10,25 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
         
         <div class="slide-content relative w-full h-full flex md:flex-row 
           flex-col  justify-center top-10">
-            <div class="block md:hidden md:max-w-xs sm:max-w-lg text-left 
-              richnameplace font-bricolage text-xl pl-10">
-              {{ block.settings.richtext }}
-            </div>
+            
 
         
         <!-- Imagen del mapa -->
           <img src="{{ map_img | img_url: '2000x2000' }}" 
-            class="max-w-[800px] h-auto sm:max-h-120 md:max-h-200 object-contain mx-auto"
+            class="max-w-[800px] h-auto sm:max-h-120 max-[375px]:max-h-50 md:max-h-200 object-contain mx-auto"
             width="{{ map_img.width }}" 
             height="{{ map_img.height }}" 
             alt="{{ block.settings.map_alt | escape }}"
           />
 
-            <div class="md:block hidden tracking-normal max-w-xs md:max-w-3xl 
-              text-left md:absolute  md:top-20 md:left-20 md:text-2xl richnameplace font-bricolage">
+            <div class="block tracking-normal max-w-xs md:max-w-3xl 
+              text-left absolute md:top-20 top-10 md:left-20 left-5 md:text-2xl richnameplace font-bricolage">
               {{ block.settings.richtext }}
             </div>
 
           
           <div class=" md:absolute md:inset-0 flex items-center justify-between px-8 md:px-16 md:w-auto w-full">
-            <!-- Rich text izquierda -->
-            <div class="md:block hidden">
-            </div>
+            
             
             <div class="text-right">
               <!-- Título del lugar -->
@@ -46,7 +41,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
               <!-- Ingredientes desktop -->
               <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3
                   sm:grid-cols-4 sm:grid-rows-2 sm:gap-y-0
-                  sm:gap-3 md:pt-4 md:pl-6 md:h-80 h-60
+                  sm:gap-3 md:pt-4 md:pl-6 md:h-80 h-70
                 ">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
                   <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
