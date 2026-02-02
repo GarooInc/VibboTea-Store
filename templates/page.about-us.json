@@ -60,7 +60,7 @@
             "background_color": "#fff4da",
             "map_image": "shopify://shop_images/scatepequez.png",
             "map_alt": "Mapa",
-            "richtext": "",
+            "richtext": "<p>From the first<br/>cut to the<br/>final mix, </p>",
             "place_title": "Sacatepéquez",
             "ingredient_1_image": "shopify://shop_images/fennel.png",
             "ingredient_1_name": "Fennel",
