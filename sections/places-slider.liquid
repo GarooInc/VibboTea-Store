@@ -18,7 +18,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
         
         <!-- Imagen del mapa -->
           <img src="{{ map_img | img_url: '2000x2000' }}" 
-            class="max-w-[800px] h-auto sm:max-h-120 md:h-auto object-contain mx-auto"
+            class="max-w-[800px] h-auto sm:max-h-120 md:max-h-200 object-contain mx-auto"
             width="{{ map_img.width }}" 
             height="{{ map_img.height }}" 
             alt="{{ block.settings.map_alt | escape }}"

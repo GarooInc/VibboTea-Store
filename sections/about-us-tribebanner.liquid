@@ -4,7 +4,7 @@
     <img
       src="{{ section.settings.plant_top_left | image_url: width: 400 }}"
       alt="Decoración planta"
-      class="pointer-events-none select-none absolute -top-6 -left-4 xl:w-[400px] md:w-[300px] w-[280px]"
+      class="pointer-events-none select-none absolute z-2 -top-6 -left-4 xl:w-[400px] md:w-[300px] w-[280px]"
         width="{{ section.settings.plant_top_left.width }}"
         height="{{ section.settings.plant_top_left.height }}"
     >
@@ -14,51 +14,84 @@
     <img
       src="{{ section.settings.plant_bottom_right | image_url: width: 400 }}"
       alt="Decoración planta"
-      class="pointer-events-none select-none absolute -bottom-10 -right-4 xl:w-[400px] md:w-[300px] w-[280px] z-10"
+      class="pointer-events-none select-none absolute -bottom-30 sm:-bottom-10 -right-4 xl:w-[400px] md:w-[300px] w-[280px] z-999"
       width="{{ section.settings.plant_bottom_right.width }}"
       height="{{ section.settings.plant_bottom_right.height }}"
     >
   {%- endif -%}
 
-  <div class="relative mx-auto px-6 lg:px-40  gap-4 md:space-y-24 lg:py-0 py-40 flex flex-col md:gap-10">
+  {% comment %} titulo mobile {% endcomment %}
+  {%- if section.settings.title_1 != blank -%}
+      <h2 class="md:hidden sm:text-8xl text-6xl font-semibold pl-30
+        sm:pt-0 pt-20
+         tracking-tight text-black text-center">
+        {{ section.settings.title_1 }}
+      </h2>
+  {%- endif -%}
+
+  <div class="relative mx-auto px-6 lg:px-40 gap-4 md:space-y-24 
+    lg:py-0 py-20 flex flex-col md:gap-10">
 
     {%- comment -%} FILA 1 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-20 md:pl-10">
-      <div class="space-y-4 md:space-y-6 ">
+    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pl-0 sm:pl-20 pl-15">
+      
+      <div class="relative flex md:order-1 order-2 justify-center 
+        md:justify-end w-full ">
+        {%- if section.settings.image_1 != blank -%}
+          <img
+            src="{{ section.settings.image_1 | image_url: width: 900 }}"
+            alt="imagen persona"
+            class="rounded-3xl object-cover md:w-full"
+            width="{{ section.settings.image_1.width }}"
+            height="{{ section.settings.image_1.height }}"
+          >
+        {%- endif -%}
+        {%- if section.settings.marca_agua_1 -%}
+          <span class="absolute bottom-4 left-4 text-white 
+            text-xs md:text-sm opacity-60 pointer-events-none">
+            {{section.settings.texto_agua1}}
+          </span>
+        {%- endif -%}
+        
+      </div>
+      <div class="space-y-4 md:space-y-6 md:order-2 order-1">
         {%- if section.settings.title_1 != blank -%}
-          <h2 class="text-4xl md:text-7xl font-bold tracking-tight text-black md:text-center text-right">
+          <h2 class="hidden md:flex text-4xl lg:text-7xl md:text-6xl 
+            font-bold tracking-tight text-black md:text-center text-right">
             {{ section.settings.title_1 }}
           </h2>
         {%- endif -%}
 
         {%- if section.settings.body_1 != blank -%}
-          <div class="text-xl md:text-4xl text-neutral-800  md:text-left text-right py-5">
+          <div class="text-xl sm:text-2xl lg:text-4xl md:text-3xl text-neutral-800 text-left md:py-5">
             {{ section.settings.body_1 }}
           </div>
         {%- endif -%}
       </div>
 
-      <div class="relative flex justify-center md:justify-end w-full h-[400px]">
-        {%- if section.settings.image_1 != blank -%}
-          <img
-            src="{{ section.settings.image_1 | image_url: width: 900 }}"
-            alt="imagen persona"
-            class="rounded-3xl object-cover md:w-full h-full!"
-            width="{{ section.settings.image_1.width }}"
-            height="{{ section.settings.image_1.height }}"
-          >
-        {%- endif -%}
-
-        <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
-          INGUAT
-        </span>
-      </div>
-
     </div>
 
     {%- comment -%} FILA 2 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="order-1 md:order-1 flex justify-start">
+    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pr-0 
+      sm:pr-20 pr-15 sm:pt-8 md:pt-0">
+      
+
+      <div class="order-1 space-y-4 md:space-y-6">
+        {%- if section.settings.body_2_small != blank -%}
+          <div class="hidden md:flex md:flex-col text-xl
+            sm:text-2xl lg:text-3xl text-neutral-800">
+            {{ section.settings.body_2_small }} 
+            {{ section.settings.body_2_small2 }}
+          </div>
+
+          <div class="md:hidden text-xl
+            sm:text-2xl  text-neutral-800">
+            {{ section.settings.body_2_small }} 
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="order-2 flex justify-start">
         {%- if section.settings.image_2 != blank -%}
           <div class="relative w-full ">
             <img
@@ -68,34 +101,39 @@
               width="{{ section.settings.image_2.width }}"
               height="{{ section.settings.image_2.height }}"
             >
-              <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
-                INGUAT
-              </span>
+              {%- if section.settings.marca_agua_2 -%}
+                <span class="absolute bottom-4 left-4 text-white 
+                  text-xs md:text-sm opacity-60 pointer-events-none">
+                  {{section.settings.texto_agua2}}
+                </span>
+              {%- endif -%}
           </div>
           
         {%- endif -%}
       </div>
 
-      <div class="order-2 md:order-2 space-y-4 md:space-y-6">
+
+    </div>
+    {%- comment -%} FILA 3 {%- endcomment -%}
+    <div class="grid md:grid-cols-2 md:gap-10 gap-5
+       items-center md:pt-10 sm:pt-5 md:pl-0 pl-20 ">
+      
+      <div class="order-1 space-y-4 md:hidden">
         {%- if section.settings.body_2_small != blank -%}
-          <div class="text-xl md:text-3xl text-neutral-800">
-            {{ section.settings.body_2_small }}
+          <div class="hidden md:flex md:flex-col text-xl
+            sm:text-2xl lg:text-3xl text-neutral-800">
+            {{ section.settings.body_2_small }} 
+            {{ section.settings.body_2_small2 }}
+          </div>
+
+          <div class="md:hidden text-xl
+            sm:text-2xl  text-neutral-800">
+            {{ section.settings.body_2_small }} 
           </div>
         {%- endif -%}
       </div>
-    </div>
-    {%- comment -%} FILA 3 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 gap-10 items-center md:pt-10 ">
-      <div class="space-y-4 md:space-y-6 lg:pt-2">
 
-        {%- if section.settings.heading_2 != blank -%}
-        <h3 class="text-4xl md:text-5xl font-normal leading-15 tracking-tight text-black pt-4">
-          {{ section.settings.heading_2 }}
-        </h3>            
-        {%- endif -%}
-      </div>
-
-      <div class="relative justify-center md:justify-end w-full">
+      <div class="relative order-2 justify-center md:justify-end w-full">
         {%- if section.settings.image_3 != blank -%}
           <img
             src="{{ section.settings.image_3 | image_url: width: 900 }}"
@@ -105,10 +143,36 @@
             height="{{ section.settings.image_3.height }}"
           >
         {%- endif -%}
-        <span class="absolute bottom-4 left-4 text-white text-xs md:text-sm opacity-60 pointer-events-none">
-          INGUAT
-        </span>
+
+        {%- if section.settings.marca_agua_3 -%}
+          <span class="absolute bottom-4  left-4 text-white 
+            text-xs md:text-sm opacity-60 pointer-events-none">
+            {{section.settings.texto_agua3}}
+          </span>
+        {%- endif -%}
+
       </div>
+
+      <div class="space-y-4 md:space-y-6 lg:pt-2 hidden md:flex">
+
+        {%- if section.settings.heading_2 != blank -%}
+        <h3 class="text-4xl md:text-6xl lg:text-8xl font-normal leading-20 
+          tracking-tight text-black pt-4 md:max-w-100">
+          {{ section.settings.heading_2 }}
+        </h3>            
+        {%- endif -%}
+      </div>
+
+    </div>
+
+    <div class="space-y-4 md:hidden w-full text-center">
+
+      {%- if section.settings.heading_2 != blank -%}
+      <h3 class="sm:text-5xl xs:text-3xl text-2xl text-center font-normal leading-20 
+        tracking-tight text-black">
+        {{ section.settings.heading_2 }}
+      </h3>            
+      {%- endif -%}
     </div>
 
   </div>
@@ -145,6 +209,17 @@
       "id": "image_1",
       "label": "Imagen superior derecha (persona)"
     },
+    {
+      "type": "checkbox",
+      "id": "marca_agua_1",
+      "label": "Mostrar marca de agua 1",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "texto_agua1",
+      "label": "Texto de marca de agua",
+    },
 
     {
       "type": "image_picker",
@@ -152,14 +227,45 @@
       "label": "Imagen inferior izquierda"
     },
     {
+      "type": "checkbox",
+      "id": "marca_agua_2",
+      "label": "Mostrar marca de agua 2",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "texto_agua2",
+      "label": "Texto de marca de agua 2",
+    },
+
+    {
       "type": "image_picker",
       "id": "image_3",
       "label": "Imagen inferior derecha"
     },
+
+    {
+      "type": "checkbox",
+      "id": "marca_agua_3",
+      "label": "Mostrar marca de agua 3",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "texto_agua3",
+      "label": "Texto de marca de agua 3",
+    },
+
+
     {
       "type": "richtext",
       "id": "body_2_small",
-      "label": "Texto pequeño de párrafo (derecha abajo)"
+      "label": "Texto pequeño de párrafo (derecha abajo) pt1"
+    },
+    {
+      "type": "richtext",
+      "id": "body_2_small2",
+      "label": "Texto pequeño de párrafo (derecha abajo) pt2"
     },
     {
       "type": "richtext",

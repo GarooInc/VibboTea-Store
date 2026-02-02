@@ -38,7 +38,11 @@
     </div>
     {% if section.settings.image %}
         <div class="w-full">
-        <img src="{{ section.settings.image | image_url }}" alt="" class="zero-bs-image">
+        <img 
+          src="{{ section.settings.image | image_url }}" 
+          alt="" class="zero-bs-image"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}">
         </div>
     {% endif %}
 </section>
