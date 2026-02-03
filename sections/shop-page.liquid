@@ -1,9 +1,11 @@
 <!-- TÍTULO -->
-<div class="text-center items-center align-center pt-15">
-  <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-5">
-    {{ section.settings.section_title | default: "Shop" | newline_to_br }}
-  </h2>
-</div>
+{% if section.settings.section_title != blank %}
+  <div class="text-center items-center align-center pt-15">
+    <h2 class="md:text-5xl text-3xl text-black font-semibold font-bricolage pb-5">
+      {{ section.settings.section_title  | newline_to_br }}
+    </h2>
+  </div>
+{% endif %}
 
 {% if section.settings.collection != blank %}
   {% assign coll = collections[section.settings.collection] %}
@@ -15,18 +17,8 @@
 
 <section class="relative w-full pt-4">
 
-  <!-- GRID RESPONSIVE -->
-  <div class="
-    grid
-    grid-cols-1
-    md:grid-cols-3
-    gap-6
-    md:gap-10
-    px-4
-    md:px-10
-    py-10
-    md:py-16
-  ">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10
+    px-4 md:px-10 py-10 md:py-16">
     {% for product in coll.products %}
       <div class="flex flex-col">
 
