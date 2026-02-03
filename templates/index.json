@@ -51,18 +51,6 @@
             "button_position": "center"
           }
         },
-        "slide_7dwYDt": {
-          "type": "slide",
-          "settings": {
-            "video_mp4": "",
-            "page_title": "Bienvenido a Nuestra Tienda",
-            "page_descripction": "text",
-            "button_text": "Shop now",
-            "link_popup": false,
-            "hover_text": "Texto",
-            "button_position": "bottom-center"
-          }
-        },
         "slide_pUe9jJ": {
           "type": "slide",
           "settings": {
@@ -79,7 +67,7 @@
         "slide_3qAYpk": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Group_60.png",
+            "image_desktop": "shopify://shop_images/Group_60_1.png",
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
@@ -92,7 +80,7 @@
         "slide_qmBDkN": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Group_59_2.png",
+            "image_desktop": "shopify://shop_images/Desktop_-_44_1.png",
             "video_mp4": "",
             "page_title": "",
             "page_descripction": "",
@@ -106,7 +94,6 @@
       "block_order": [
         "slide_A84cL4",
         "slide_APGaHq",
-        "slide_7dwYDt",
         "slide_pUe9jJ",
         "slide_3qAYpk",
         "slide_qmBDkN"
