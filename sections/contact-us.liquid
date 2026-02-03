@@ -2,7 +2,7 @@
     class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
     style="width: 100vw; margin-left: calc(50% - 50vw);">
     <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
-        <div class="text-black text-2xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
+        <div class="text-black text-4xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
         <div class="absolute bottom-0 md:left-0 xl:left-40">
@@ -11,6 +11,8 @@
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
                     alt="Image 1"
                     class="mt-10 md:ml-0 xl:w-[600px] md:w-[520px] object-cover rounded-2xl "
+                    width="600"
+                    height="600"
                 >
             {% endif %}
         </div>
@@ -27,7 +29,7 @@
         </div>
     </div>
 
-    <div class="md:w-7/9 pt-10 px-5 md:px-0 flex flex-col justify-center pb-60 md:pb-0">
+    <div class="md:w-7/9 pt-20 px-5 md:px-0 flex flex-col justify-center pb-60 md:pb-0">
         {% form 'contact', id:"ContactForm", data-n8n-webhook:"https://agentsprod.redtec.ai/webhook/contactus-form" %}
         {{ form.errors | default_errors }}
 
