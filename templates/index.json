@@ -350,11 +350,20 @@
         "texto1": "Sign up to our newsletter and be the first to know about our launch and exclusive offers.",
         "placeholder": "email address"
       }
+    },
+    "cinta_newsletter_CmHQnG": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "topbar_announcement_text": "",
+        "topbar_link": ""
+      }
     }
   },
   "order": [
     "header_section_CjR7UB",
     "header_section_slide_TW68Gf",
+    "cinta_newsletter_CmHQnG",
     "main_carousel_NYTaep",
     "main_universe_section_yaVDzH",
     "prodcut_ingredients_NLmqhN",
