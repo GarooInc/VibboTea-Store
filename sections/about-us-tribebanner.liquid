@@ -78,13 +78,13 @@
 
       <div class="order-1 space-y-4 md:space-y-6">
         {%- if section.settings.body_2_small != blank -%}
-          <div class="hidden md:flex md:flex-col text-xl
+          <div class="hidden md:flex md:flex-col text-lg
             sm:text-2xl lg:text-3xl text-neutral-800">
             {{ section.settings.body_2_small }} 
             {{ section.settings.body_2_small2 }}
           </div>
 
-          <div class="md:hidden text-xl
+          <div class="md:hidden text-lg
             sm:text-2xl  text-neutral-800">
             {{ section.settings.body_2_small }} 
           </div>
@@ -120,15 +120,15 @@
       
       <div class="order-1 space-y-4 md:hidden">
         {%- if section.settings.body_2_small != blank -%}
-          <div class="hidden md:flex md:flex-col text-xl
+          <div class="hidden md:flex md:flex-col text-lg
             sm:text-2xl lg:text-3xl text-neutral-800">
             {{ section.settings.body_2_small }} 
             {{ section.settings.body_2_small2 }}
           </div>
 
-          <div class="md:hidden text-xl
+          <div class="md:hidden text-lg
             sm:text-2xl  text-neutral-800">
-            {{ section.settings.body_2_small }} 
+            {{ section.settings.body_2_small2 }} 
           </div>
         {%- endif -%}
       </div>

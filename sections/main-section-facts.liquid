@@ -1,4 +1,4 @@
-<div class="slider-facts-{{ section.id }} custom-slider md:relative md:w-screen mx-auto"
+<div class="slider-facts-{{ section.id }} custom-slider-facts md:relative md:w-screen mx-auto "
 style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
   {% comment %} version desktop {% endcomment %}
@@ -16,12 +16,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
     {% endfor %}
   </div>
   {% comment %} version mobile {% endcomment %}
-  <div class="md:hidden slides-wrapper-mobile relative w-full">
+  <div class="md:hidden slides-wrapper-mobile relative w-full overflow-hidden">
+
     {% for block in section.blocks %}
       {% assign img = block.settings.image_mobile %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
         <img src="{{ img | img_url: '2000x2000' }}" 
-          class="w-full h-auto object-contain"
+          class="w-full h-auto max-h-full object-contain mx-auto"
           width="{{ img.width }}" 
           height="{{ img.height }}" 
           alt="{{ block.settings.alt | escape }}"
@@ -48,16 +49,16 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 </div>
 
 <style>
-.custom-slider {
+.custom-slider-facts {
   position: relative;
 }
 
-.custom-slider .slides-wrapper {
+.custom-slider-facts .slides-wrapper {
   position: relative;
   width: 100%;
 }
 
-.custom-slider .slide {
+.custom-slider-facts .slide {
   position: absolute;
   top: 0;
   left: 0;
@@ -66,15 +67,19 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   transition: opacity 0.5s ease;
 }
 
-.custom-slider .slide.active {
+.custom-slider-facts .slide.active {
   position: relative;
   opacity: 1;
 }
 
-.custom-slider .slide img {
+.custom-slider-facts .slide img {
   display: block;
 }
+
+
 </style>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.querySelector(".slider-facts-{{ section.id }}");
