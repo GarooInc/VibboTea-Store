@@ -20,7 +20,7 @@
       "settings": {
         "title": "<p><strong>Coming</strong> soon</p>",
         "subtitle": "",
-        "button_label": "Volver al inicio",
+        "button_label": "Home",
         "button_link": "/",
         "image_left": "shopify://shop_images/Guacamaya_depie.png",
         "image_top": "shopify://shop_images/Mono_deCabeza_1.png",
