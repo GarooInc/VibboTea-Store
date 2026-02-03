@@ -59,6 +59,8 @@
     --text-7xl--line-height: 1;
     --text-8xl: 6rem;
     --text-8xl--line-height: 1;
+    --text-9xl: 8rem;
+    --text-9xl--line-height: 1;
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -377,6 +379,9 @@
   }
   .bottom-15 {
     bottom: calc(var(--spacing) * 15);
+  }
+  .bottom-20 {
+    bottom: calc(var(--spacing) * 20);
   }
   .bottom-\[20\%\] {
     bottom: 20%;
@@ -2049,6 +2054,11 @@
   .select-none {
     -webkit-user-select: none;
     user-select: none;
+  }
+  .\*\:left-1\/2 {
+    :is(& > *) {
+      left: calc(1/2 * 100%);
+    }
   }
   .group-hover\:scale-110 {
     &:is(:where(.group):hover *) {
@@ -3731,6 +3741,12 @@
     @media (width >= 48rem) {
       font-size: var(--text-8xl);
       line-height: var(--tw-leading, var(--text-8xl--line-height));
+    }
+  }
+  .md\:text-9xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-9xl);
+      line-height: var(--tw-leading, var(--text-9xl--line-height));
     }
   }
   .md\:text-base {

@@ -1,4 +1,4 @@
-<div class="custom-slider relative w-screen mx-auto"
+<div class="custom-slider-places relative w-screen mx-auto"
 style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   <div class="slides-wrapper relative w-full">
     {% for block in section.blocks %}
@@ -153,7 +153,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 <style>
 
 
-.custom-slider {
+.custom-slider-places {
   position: relative;
   height: 95vh;          
   min-height: 600px;   
@@ -161,7 +161,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 /* SM: dejar crecer */
 @media (min-width: 640px) and (max-width: 767px) {
-  .custom-slider {
+  .custom-slider-places {
     height: auto;
     min-height: unset;
   }
@@ -169,7 +169,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 /* MD+ */
 @media (min-width: 768px) {
-  .custom-slider {
+  .custom-slider-places {
     height: 90vh;
     min-height: 600px;
   }
@@ -177,13 +177,13 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 
 
-.custom-slider .slides-wrapper {
+.custom-slider-places .slides-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.custom-slider .slide {
+.custom-slider-places .slide {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -192,20 +192,20 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   transition: opacity 0.5s ease;
 }
 
-.custom-slider .slide.active {
+.custom-slider-places .slide.active {
   position: absolute;
   opacity: 1;
 }
 
 
-.custom-slider .slide img {
+.custom-slider-places .slide img {
   display: block;
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.querySelector(".custom-slider");
+  const slider = document.querySelector(".custom-slider-places");
   const slides = slider.querySelectorAll(".slide");
   const nextBtn = slider.querySelector(".next");
   const prevBtn = slider.querySelector(".prev");

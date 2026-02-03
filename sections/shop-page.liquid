@@ -33,7 +33,7 @@
         <a href="{{ product.url }}" class="block">
           <div class="w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
             {% if product.media.size > 1 %}
-                {% assign second_image = product.media[1] %}
+                {% assign second_image = product.media[0] %}
                 
                 <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
                   <img
@@ -62,7 +62,7 @@
               {% endif %}
           </div>
 
-          <p class="font-bricolage text-base md:text-lg text-[#575757] mt-3">
+          <p class="font-bricolage text-lg md:text-xl text-[#575757] pt-3">
             {{ product.title }}
           </p>
 
@@ -82,19 +82,11 @@
           <button
             type="submit"
             class="
-              bg-black
-              w-full
-              rounded-3xl
-              md:py-3 py-2
-              flex
-              items-center
-              justify-center
-              hover:opacity-70
-              transition-opacity
-            "
+              bg-black w-full rounded-3xl md:py-3 py-2 flex items-center
+              justify-center hover:opacity-70 transition-opacity"
           >
             <span class="font-bricolage text-white md:text-sm text-xs uppercase font-light">
-              Add to cart
+              {{ section.settings.text_add }}
             </span>
           </button>
         </form>
@@ -116,13 +108,11 @@
       "type": "textarea",
       "id": "section_title",
       "label": "Title",
-      "default": "Shop"
     },
     {
       "type": "textarea",
       "id": "desc",
-      "label": "Descricion",
-      "default": "Shop"
+      "label": "Descripcion",
     },
     {
       "type": "collection",
@@ -134,6 +124,12 @@
       "id": "limit",
       "label": "Número máximo de productos",
       "default": 12
+    },
+    {
+      "type": "text",
+      "id": "text_add",
+      "label": "Texto del boton de añadir",
+      "default": "ADD TO CART"
     },
    
   ],
