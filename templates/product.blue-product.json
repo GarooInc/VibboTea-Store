@@ -147,7 +147,7 @@
         "ingredient_block_DGWGYK": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/ginger.png",
+            "image": "shopify://shop_images/image_25.png",
             "title": "Ginger",
             "text": "Settles the stomach and ignites a warm, comforting anti-inflammatory flow."
           }
@@ -289,6 +289,7 @@
         "slide_ykHjLc",
         "slide_bKBLqn"
       ],
+      "disabled": true,
       "name": "Slider Imágenes",
       "settings": {
         "title": "Real Stories, Real Style, Real Energy.",
