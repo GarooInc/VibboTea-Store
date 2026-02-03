@@ -1,6 +1,6 @@
 <div
   class="slider-facts-{{ section.id }} custom-slider relative 
-         h-[55vh] md:h-screen w-screen
+         h-[55vh] lg:h-screen w-screen
          mx-auto overflow-hidden"
   data-autoplay="{{ section.settings.autoplay }}"
   data-interval="{{ section.settings.Time }}"
@@ -18,8 +18,6 @@
       <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
 
           
-
-
           {% if block.settings.video_mp4 != blank %}
             <video
              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
@@ -44,21 +42,56 @@
           
 
 
-        <div class="slide-content 
-              absolute top-0 left-0 w-full
-              h-[40vh] md:h-screen
-              flex flex-col items-center justify-center
-              text-center overflow-hidden">
-
+        <div class="slide-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
+              flex flex-col items-center justify-center text-center overflow-hidden">
           
-          <h1 class="text-[7vw] font-bold font-bricolage text-white
-             drop-shadow-lg leading-[0.9] ">
-            {{ block.settings.page_title | newline_to_br  }}
-          </h1>
+          {% if block.settings.page_title != blank %}    
+            <h1 class="text-[7vw] font-bold font-bricolage text-white
+              drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.page_title | newline_to_br  }}
+            </h1>
+          {% endif %}
 
-          <p class="text-[2.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
-            {{ block.settings.page_descripction }}
-          </p>
+          {% if block.settings.page_descripction != blank %}    
+            <p class="text-[2.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.page_descripction }}
+            </p>
+          {% endif %}
+
+        </div>
+
+        <div class="slide-content md:hidden absolute inset-0 flex flex-col justify-center
+            items-start px-5 md:px-10 z-40 -top-7">
+          
+          {% if block.settings.title_sec != blank %}
+            <h1 class="text-2xl md:text-5xl lg:text-7xl font-bricolage font-bold text-white leading-tight">
+              {{ block.settings.title_sec | newline_to_br }}
+            </h1>
+          {% endif %}
+
+          {% if block.settings.desc_sec != blank %}
+            <p class="mt-2 md:mt-4 text-sm md:text-lg font-bricolage text-white">
+              {{ block.settings.desc_sec }}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="slide-content md:absolute hidden md:top-45 top-5 md:pl-10 pl-5 left-0 w-full h-[40vh] md:h-screen
+              md:flex flex-col items-left justify-center text-left overflow-hidden ">
+          
+          {% if block.settings.title_sec != blank %}    
+            <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold font-bricolage text-white
+              drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.title_sec | newline_to_br  }}
+            </h1>
+          {% endif %}
+
+          {% if block.settings.desc_sec != blank %}    
+            <p class="lg:text-xl md:text-lg md:pt-4 pt-2 pl-2 text-white
+               font-bricolage drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.desc_sec }}
+            </p>
+          {% endif %}
 
         </div>
         {% comment %} boton {% endcomment %}
@@ -74,7 +107,7 @@
         {% when 'center' %}
           {% assign position_classes = 'items-center justify-center pt-50' %}
         {% when 'bottom-left' %}
-          {% assign position_classes = 'items-end justify-start pb-20 pl-10' %}
+          {% assign position_classes = 'items-end justify-start md:pb-20 md:pl-10 md:pt-0 pt-52 pl-5' %}
         {% when 'bottom-left-up' %}
           {% assign position_classes = 'items-end justify-start pb-40 pl-10' %}
         {% when 'bottom-right' %}
@@ -85,13 +118,13 @@
 
 
 
-      <div class="hidden md:absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
+      <div class="absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
         <a
           href="/collections/frontpage"
           class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center 
-                rounded-3xl px-8 py-3 hover:opacity-70 transition-opacity"
+                rounded-3xl md:px-8 md:py-3 py-2 w-25 md:w-55 hover:opacity-70 transition-opacity"
         >
-          <span class="font-bricolage text-black text-xl uppercase font-normal">
+          <span class="font-bricolage text-black md:text-xl text-xs uppercase font-normal">
             {{block.settings.button_text}}
           </span>
         </a>
@@ -106,13 +139,8 @@
 
               <!-- Pop up -->
               <div class="absolute inset-0 md:flex items-start justify-center
-                          xl:pt-83 xl:pl-220 xl:px-50
-                          lg:pt-70 lg:pl-220 lg:px-20
-                          md:pt-65 md:pl-180 md:px-10
-                          xs:pt-65 xs:pl-10 sm:px-10
-                          hidden
-                          z-50 pointer-events-none 
-                          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          xl:pt-83 xl:pl-220 xl:px-50 lg:pt-70 lg:pl-220 lg:px-20 md:pt-65 md:pl-180 md:px-10
+                          xs:pt-65 xs:pl-10 sm:px-10 hidden z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           
                 <span class="bg-black text-white text-sm px-3 py-2 rounded-lg shadow-lg">
                   {{ block.settings.hover_text }}
@@ -133,13 +161,13 @@
  
 
   <!-- Flechas -->
-    <button class="prev absolute top-1/2  text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
+    <button class="prev absolute md:top-1/2 top-2/5 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
       <div class="w-10 h-10 md:w-30 md:h-30 justify-center md:pl-15">
         {%- render 'arrow-slidder2' -%}
       </div>
     </button>
 
-    <button class="next absolute top-1/2 right-0 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
+    <button class="next absolute md:top-1/2 top-2/5 right-0 text-white py-2 opacity-100 hover:opacity-60 transition duration-300 z-10">
       <div class="w-10 h-10 md:w-30 md:h-30">
         {%- render 'arrow-slidder' -%}
       </div>
@@ -341,6 +369,17 @@ document.addEventListener("DOMContentLoaded", function () {
         "label": "Imagen Desktop"
       },
       {
+        "type": "checkbox",
+        "id": "marca_agua",
+        "label": "Mostrar marca de agua ?",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "texto_agua",
+        "label": "Texto de marca de agua",
+      },
+      {
         "type": "url",
         "id": "video_mp4",
         "label": "Video MP4 (URL)",
@@ -349,13 +388,25 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         "type": "textarea",
         "id": "page_title",
-        "label": "Page Title",
+        "label": "Titulo principal (centrado)",
         "default": "Bienvenido a Nuestra Tienda"
       },
       {
         "type": "text",
         "id": "page_descripction",
-        "label": "Page Description",
+        "label": "Descripcion (centrado)",
+        "default": "text"
+      }, 
+      {
+        "type": "textarea",
+        "id": "title_sec",
+        "label": "Titulo secundario (izquierda)",
+        "default": "Bienvenido a Nuestra Tienda"
+      },
+      {
+        "type": "text",
+        "id": "desc_sec",
+        "label": "Descripcion (izquierda)",
         "default": "text"
       }, 
       {

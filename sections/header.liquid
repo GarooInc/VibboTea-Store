@@ -146,13 +146,13 @@
 
       
   <!-- LOGO (col 1) -->
-  <div class="hidden md:flex items-center pl-10">
+  <div class="hidden md:flex items-center lg:pl-10 pl-4">
     {% if section.settings.logo %}
       <a href="{{ routes.root_url }}">
         <img 
           src="{{ section.settings.logo | img_url: '2000x2000' }}" 
           alt="Logo"
-          class=" w-40 object-contain"
+          class=" lg:w-40 w-30 object-contain"
           width="{{ section.settings.background_image.width }}"
           height="{{ section.settings.background_image.height }}"
         >
@@ -170,7 +170,7 @@
     {% for link in section.settings.menu.links %}
       <a 
         href="{{ link.url }}" 
-        class="font-light font-bricolage text-lg md:text-xl lg:text-lg xl:text-xl p-4 tracking-wider
+        class="font-light font-bricolage text-sm lg:text-lg xl:text-xl p-4 tracking-wider
          uppercase {{ text_color | strip_newlines }} hover:font-bold transition-colors duration-200 whitespace-nowrap"
       >
         {{ link.title }}
