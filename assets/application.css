@@ -1422,6 +1422,10 @@
   .rounded-tr-2xl {
     border-top-right-radius: var(--radius-2xl);
   }
+  .rounded-b-full {
+    border-bottom-right-radius: calc(infinity * 1px);
+    border-bottom-left-radius: calc(infinity * 1px);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
