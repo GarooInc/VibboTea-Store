@@ -30,7 +30,7 @@
       "type": "shop-page",
       "name": "Main Shop",
       "settings": {
-        "section_title": "Your daily dose of clarity, \nDiscover our flavors",
+        "section_title": "",
         "desc": "",
         "collection": "",
         "limit": 12
