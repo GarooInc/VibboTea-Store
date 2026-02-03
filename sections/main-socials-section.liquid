@@ -19,19 +19,29 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
         </p>
       </div>
 
-      <div class="bg-[#EBEBEB] h-12 w-1/2 pl-4 pr-0 flex items-center justify-between rounded-full border border-black mt-3 md:mt-0 mx-auto">
-
-        <p class="text-black text-[4vw] md:text-base font-bricolage flex-1 pl-2">
-          {{section.settings.social}}
-        </p>
-
-        <a href="{{ section.settings.instagram-url }}" 
-           target="_blank" 
-           rel="noopener"
-           class="hover:opacity-70 transition-opacity md:scale-100 ml-2 pr-2" 
-           aria-label="Imagen 1 URL">
-          {%- render 'arrow' -%}
-        </a>
+      <div class="flex pl-2 gap-4  ">
+        <div class="flex justify-end md:justify-between bg-black rounded-full">
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
+              aria-label="Facebook">
+              {%- render 'fb' -%}
+            </a>
+        </div>
+        <div class="flex justify-end md:justify-between bg-black rounded-full text-white">
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
+              aria-label="Instagram">
+              {%- render 'ig' -%}
+            </a>
+        </div>
+        <div class="flex justify-end md:justify-between bg-black rounded-full ">
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
+              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
+              aria-label="Tiktok">
+              {%- render 'tiktok' -%}
+            </a>
+        </div>
+      
       </div>
     </div>
 
@@ -49,7 +59,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
               >
             </div>
 
-            <div class="relative w-full pt-15">
+            <div class="relative w-full md:pt-15">
               <img 
                   src="{{ section.settings.imagen2 | img_url: '2000x2000' }}" 
                   alt="Imagen 2"

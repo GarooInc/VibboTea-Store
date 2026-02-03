@@ -284,6 +284,9 @@
   .-top-32 {
     top: calc(var(--spacing) * -32);
   }
+  .-top-50 {
+    top: calc(var(--spacing) * -50);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -2855,6 +2858,16 @@
       bottom: 25%;
     }
   }
+  .md\:-left-10 {
+    @media (width >= 48rem) {
+      left: calc(var(--spacing) * -10);
+    }
+  }
+  .md\:-left-15 {
+    @media (width >= 48rem) {
+      left: calc(var(--spacing) * -15);
+    }
+  }
   .md\:-left-20 {
     @media (width >= 48rem) {
       left: calc(var(--spacing) * -20);
@@ -2868,6 +2881,11 @@
   .md\:left-0 {
     @media (width >= 48rem) {
       left: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:left-5 {
+    @media (width >= 48rem) {
+      left: calc(var(--spacing) * 5);
     }
   }
   .md\:left-10 {
@@ -3261,14 +3279,39 @@
       width: calc(var(--spacing) * 64);
     }
   }
+  .md\:w-65 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 65);
+    }
+  }
+  .md\:w-70 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 70);
+    }
+  }
   .md\:w-80 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 80);
     }
   }
+  .md\:w-90 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 90);
+    }
+  }
+  .md\:w-95 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 95);
+    }
+  }
   .md\:w-96 {
     @media (width >= 48rem) {
       width: calc(var(--spacing) * 96);
+    }
+  }
+  .md\:w-100 {
+    @media (width >= 48rem) {
+      width: calc(var(--spacing) * 100);
     }
   }
   .md\:w-\[15vw\] {
