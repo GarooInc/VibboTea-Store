@@ -124,6 +124,15 @@
         "Time": 6000
       }
     },
+    "cinta_newsletter_CmHQnG": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "isotipe": "shopify://shop_images/isotipo_black.png",
+        "topbar_announcement_text": "<p>KICKSTARTER NOW LIVE - CLICK HERE TO PRE-ORDER</p>",
+        "topbar_link": ""
+      }
+    },
     "main_carousel_NYTaep": {
       "type": "main-carousel",
       "name": "Carrusel de productos",
@@ -349,14 +358,6 @@
         "title": "What are you waiting for?",
         "texto1": "Sign up to our newsletter and be the first to know about our launch and exclusive offers.",
         "placeholder": "email address"
-      }
-    },
-    "cinta_newsletter_CmHQnG": {
-      "type": "cinta-newsletter",
-      "name": "Liston",
-      "settings": {
-        "topbar_announcement_text": "",
-        "topbar_link": ""
       }
     }
   },
