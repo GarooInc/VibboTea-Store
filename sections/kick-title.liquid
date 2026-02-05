@@ -1,0 +1,55 @@
+<div class="h-screen flex flex-col items-center justify-center">
+
+  {% if section.settings.logo %}
+    <img
+      src="{{ section.settings.logo | image_url: width: 2000 }}"
+      width="{{ section.settings.logo.width }}"
+      height="{{ section.settings.logo.height }}"
+      class="mb-6 max-w-xs md:max-w-md md:w-250 w-100 pt-10"
+      alt="Logo"
+    >
+  {% endif %}
+
+  <div class="mx-auto text-center relative">
+    <h1 class="text-xl px-6 md:text-3xl font-bold font-bricolage text-black max-w-xl pt-10">
+      {{ section.settings.page_descripction | newline_to_br}}
+    </h1>
+  </div>
+
+</div>
+
+
+
+
+{% schema %}
+{
+  "name": "Kickstarter title",
+  "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Imagen de logo"
+    },
+   
+    
+    {
+      "type": "text",
+      "id": "page_descripction",
+      "label": "Page Descripction",
+      "default": "text"
+    }
+    
+  ],
+  "presets": [
+    {
+        "name": "Kickstarter title",
+        "category": "Kickstarter"
+    }
+  ]
+}
+
+
+
+{% endschema %}
+

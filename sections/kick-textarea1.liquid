@@ -1,0 +1,146 @@
+<div
+  class="flex flex-col items-center justify-center pt-55 py-10 px-15 kickstarter-text">
+
+    <h1 class="font-bricolage text-black text-4xl pl-70 py-2 pb-15">
+        {{ section.settings.text1 }}</h1>
+
+    {% if section.settings.text2 != blank %}
+        <h1
+        class="kickstarter-text font-bricolage text-4xl py-5 text-left"
+        style="--marker-color: {{ section.settings.text_color2 }};"
+        >
+        {{ section.settings.text2 | replace: 'Vibbo',
+             '<span class="font-grafika font-normal text-4xl ">VIBBO</span>' }}
+        </h1>
+    {% endif %}
+    {% if section.settings.text3 != blank %}
+        <h1
+        class="kickstarter-text font-bricolage text-4xl py-5 text-left"
+        style="--marker-color: {{ section.settings.text_color3 }};"
+        >
+        {{ section.settings.text3 | replace: 'Vibbo',
+             '<span class="font-grafika font-normal text-4xl ">VIBBO</span>' }}
+        </h1>
+    {% endif %}
+    {% if section.settings.text4 != blank %}
+        <h1
+        class="kickstarter-text font-bricolage text-4xl py-5 text-left"
+        style="--marker-color: {{ section.settings.text_color4 }};"
+        >
+        {{ section.settings.text4 | replace: 'Vibbo',
+             '<span class="font-grafika font-normal text-4xl ">VIBBO</span>' }}
+        </h1>
+    {% endif %}
+    {% if section.settings.text5 != blank %}
+        <h1
+        class="kickstarter-text font-bricolage text-4xl py-5 text-left"
+        style="--marker-color: {{ section.settings.text_color5 }};"
+        >
+        {{ section.settings.text5 | replace: 'Vibbo',
+             '<span class="font-grafika font-normal text-4xl ">VIBBO</span>' }}
+        </h1>
+    {% endif %}
+    
+  
+
+</div>
+
+
+<style>
+
+.kickstarter-text strong {
+  position: relative;
+  font-weight: 700;
+  padding: 0 0.15em;
+  z-index: 1;
+}
+
+.kickstarter-text strong::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.15em;
+  width: 100%;
+  height: 0.65em;
+  background: var(--marker-color);
+  opacity: 0.85;
+  z-index: -1;
+}
+
+
+</style>
+
+{% schema %}
+{
+  "name": "Kickstarter textarea 1",
+  "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "planta1",
+      "label": "Planta (lado izquierdo)"
+    },
+   
+    {
+      "type": "richtext",
+      "id": "text1",
+      "label": "Texto 1",
+    },
+    {
+      "type": "richtext",
+      "id": "text2",
+      "label": "Texto 2",
+    },
+    {
+        "type": "color",
+        "id": "text_color2",
+        "label": "Color del texto",
+        "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "text3",
+      "label": "Texto 3",
+    },
+    {
+        "type": "color",
+        "id": "text_color3",
+        "label": "Color del texto",
+        "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "text4",
+      "label": "Texto 4",
+    },
+    {
+        "type": "color",
+        "id": "text_color4",
+        "label": "Color del texto",
+        "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "text5",
+      "label": "Texto 5",
+    },
+    {
+        "type": "color",
+        "id": "text_color5",
+        "label": "Color del texto",
+        "default": "#000000"
+    },
+    
+  ],
+  "presets": [
+    {
+        "name": "Kickstarter  textarea 1",
+        "category": "Kickstarter"
+    }
+  ]
+}
+
+
+
+{% endschema %}
+
