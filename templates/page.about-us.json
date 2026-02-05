@@ -260,9 +260,16 @@
         "title_1": "The team",
         "body_1": "<p>We could brag about how pretty our plants and faces are, but that's not the point.</p>",
         "image_1": "shopify://shop_images/WhatsApp_Image_2026-01-07_at_13.42.31.jpg",
+        "marca_agua_1": false,
+        "texto_agua1": "",
         "image_2": "shopify://shop_images/INTECAP-11.jpg",
+        "marca_agua_2": false,
+        "texto_agua2": "",
         "image_3": "shopify://shop_images/Intecap_39.jpg",
-        "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle, we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
+        "marca_agua_3": false,
+        "texto_agua3": "",
+        "body_2_small": "<p>As past burnt-out villains who lived hard and survived the concrete jungle,</p>",
+        "body_2_small2": "<p>we have an unwavering belief that change doesn't have short cuts or starts with a major revolution,</p>",
         "heading_2": "<p>it starts with a cup of tea.</p>"
       }
     }
