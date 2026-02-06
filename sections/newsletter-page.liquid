@@ -65,14 +65,14 @@
         {% endif %}
 
         <div class="mx-auto text-center relative">
-            <h1 class=" px-6 lg:text-6xl md:text-5xl text-4xl font-semibold font-bricolage
+            <h1 class="highlight-pill px-6 lg:text-6xl md:text-5xl text-4xl font-semibold font-bricolage
                  text-white max-w-5xl pt-10">
             {{ section.settings.page_descripction | newline_to_br}}
             </h1>
         </div>
 
          <div class="mx-auto text-center relative">
-            <h1 class=" px-6 lg:text-3xl md:text-2xl text-xl  font-semibold font-bricolage
+            <h1 class=" px-6 lg:text-3xl md:text-2xl text-xl  font-semibold font-bricolage page-descripction
                  text-white lg:max-w-4xl max-w-3xl pt-10">
             {{ section.settings.page_suscribtion | newline_to_br}}
             </h1>
@@ -163,7 +163,7 @@
     alt="Latas"
     width="{{ section.settings.latas_image.width }}"
     height="{{ section.settings.latas_image.height }}"
-    class="w-60 md:w-95 lg:w-120 h-auto"
+    class="w-60 md:w-95 lg:w-140 h-auto"
   >
 </div>
 
@@ -171,6 +171,29 @@
 </section>
 
 
+
+<style>
+
+
+h1.page-descripction strong,
+h1.page-descripction b {
+  background-color: #d9f66d;
+  padding: 0.15em 0.55em;
+  border-radius: 9999px;
+  display: inline-block;
+  line-height: 1;
+  font-weight: 800;
+
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+
+  -webkit-text-stroke: 1px #000;
+
+}
+
+
+</style>
 
 
 {% schema %}
