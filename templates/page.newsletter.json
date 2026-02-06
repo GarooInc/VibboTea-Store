@@ -24,7 +24,10 @@
         "page_suscribtion": "<p>Subscribe to our newsletter for launch updates, exclusive offers, <strong>10% </strong>off your first order<br/><br/></p>",
         "placeholder_input": "Enter your Email Addres",
         "placeholder_button": "Suscribe",
-        "socials": "@drinkvibbo"
+        "socials": "@drinkvibbo",
+        "facebook_url": "",
+        "instagram_url": "https://www.instagram.com/drinkvibbo/",
+        "tiktok_url": ""
       }
     }
   },
