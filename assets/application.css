@@ -686,6 +686,12 @@
   .max-h-full {
     max-height: 100%;
   }
+  .min-h-10 {
+    min-height: calc(var(--spacing) * 10);
+  }
+  .min-h-40 {
+    min-height: calc(var(--spacing) * 40);
+  }
   .min-h-50 {
     min-height: calc(var(--spacing) * 50);
   }
@@ -3399,6 +3405,16 @@
   .lg\:w-40 {
     @media (width >= 64rem) {
       width: calc(var(--spacing) * 40);
+    }
+  }
+  .lg\:w-150 {
+    @media (width >= 64rem) {
+      width: calc(var(--spacing) * 150);
+    }
+  }
+  .lg\:w-155 {
+    @media (width >= 64rem) {
+      width: calc(var(--spacing) * 155);
     }
   }
   .lg\:w-160 {

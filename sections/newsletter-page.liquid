@@ -4,7 +4,7 @@
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
  
-    <div class="h-screen flex flex-col items-center justify-center pt-40 ">
+    <div class="h-screen flex flex-col items-center justify-center pt-10 ">
 
         {% if section.settings.logo %}
             <img
@@ -30,34 +30,39 @@
             </h1>
         </div>
         
-        <form
-          class="grid grid-cols-5 md:flex bg-white rounded-full 
-          overflow-hidden shadow w-[95%] max-w-xs md:max-w-md "
-        >
+        <form class="grid grid-cols-5 md:flex items-center bg-white rounded-full overflow-hidden shadow
+                    w-[95%] max-w-xs md:max-w-md h-10 md:h-12">
           
           <!--  MOBILE  -->
-          <input 
+          <input
             type="email"
             name="email"
             placeholder="{{ section.settings.placeholder_input }}"
-            class="md:hidden col-span-3 px-4 py-2 text-gray-700
-                  placeholder-gray-400 focus:outline-none "
-          />
+
+            class="md:hidden col-span-3 px-4 h-full
+                    text-gray-700 placeholder-gray-400 focus:outline-none"
+            />
+
 
           <!-- INPUT DESKTOP -->
-          <input 
+          <input
             type="email"
             name="email"
             placeholder="{{ section.settings.placeholder_input }}"
-            class="hidden md:flex flex-1 px-4 py-2 text-sm text-gray-700
-                  placeholder-gray-400 focus:outline-none"
-          />
+
+            class="hidden md:flex flex-1 px-4 h-full
+                    text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+            />
+
+        
           
-          <button 
+          <button
             type="submit"
-            class="col-span-2 bg-black text-white px-5 md:px-5 py-2
-                  rounded-full md:text-sm text-xs hover:bg-gray-800 transition"
-          >
+            class="col-span-2 h-full bg-black text-white px-5
+                    rounded-full md:text-sm text-xs
+                    hover:bg-gray-800 transition"
+            >
+
             {{ section.settings.placeholder_button }}
           </button>
 
