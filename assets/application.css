@@ -722,6 +722,12 @@
   .min-h-\[300px\] {
     min-height: 300px;
   }
+  .min-h-\[800px\] {
+    min-height: 800px;
+  }
+  .min-h-\[900px\] {
+    min-height: 900px;
+  }
   .min-h-full {
     min-height: 100%;
   }
@@ -2593,6 +2599,11 @@
   .md\:min-h-\[90vh\] {
     @media (width >= 48rem) {
       min-height: 90vh;
+    }
+  }
+  .md\:min-h-\[800px\] {
+    @media (width >= 48rem) {
+      min-height: 800px;
     }
   }
   .md\:min-h-screen {

@@ -1,5 +1,5 @@
 
-<div class="relative w-screen h-screen bg-cover bg-center flex items-center justify-center overflow-hidden full-bleed-header header-bg"
+<div class="relative w-screen h-screen md:min-h-[800px] bg-cover bg-center flex items-center justify-center overflow-hidden full-bleed-header header-bg"
      style="--header-bg: url('{{ section.settings.background_image | image_url }}');">
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
@@ -164,6 +164,21 @@
       "id": "socials",
       "label": "Social text",
       "default": "@drinkvibbo"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Tiktok URL"
     },
   ],
   "presets": [
