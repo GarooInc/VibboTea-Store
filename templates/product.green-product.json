@@ -109,7 +109,7 @@
           "settings": {
             "image": "shopify://shop_images/fennel_289cab45-014e-4b92-9498-eddfd13a5ed3.png",
             "title": "Fennel seeds",
-            "text": "Soothe digestion, reduce bloating, and support gut detox with anti-inflammatory compounds."
+            "text": "Soothes digestion, reduces bloating, and supports gut detox with anti-inflammatory compounds."
           }
         },
         "ingredient_block_ptkgRE": {
@@ -125,7 +125,7 @@
           "settings": {
             "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
             "title": "Ginger",
-            "text": " ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
+            "text": "Ignites metabolism, eases nausea, and fights inflammation for a clean, fiery cleanse."
           }
         },
         "ingredient_block_UMMMcC": {
@@ -133,7 +133,7 @@
           "settings": {
             "image": "shopify://shop_images/Pngtree_coriander_seed_5631401_1.png",
             "title": "Coriander seeds",
-            "text": "Aid detoxification, balance blood sugar, and provide antioxidants for gentle gut support."
+            "text": "Aids detoxification, balances blood sugar, and provides antioxidants for gentle gut support."
           }
         },
         "ingredient_block_FJrDid": {
@@ -141,7 +141,7 @@
           "settings": {
             "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
             "title": "Boldo",
-            "text": "Promote liver health, bile flow, and digestion while acting as a natural detoxifier."
+            "text": "Promotes liver health, bile flow, and digestion while acting as a natural detoxifier."
           }
         },
         "ingredient_block_hr7kfD": {
@@ -149,7 +149,7 @@
           "settings": {
             "image": "shopify://shop_images/pinatrozos_1.png",
             "title": "Pineapple pieces",
-            "text": "It helps digestion, reduces inflammation, strengthens the immune system and improves skin health."
+            "text": "Supplies bromelain, vitamin C, and electrolytes for digestion, inflammation reduction, and recovery.​"
           }
         }
       },
@@ -280,6 +280,7 @@
         "slide_ykHjLc",
         "slide_bKBLqn"
       ],
+      "disabled": true,
       "name": "Slider Imágenes",
       "settings": {
         "title": "Real Stories, Real Style, Real Energy.",
