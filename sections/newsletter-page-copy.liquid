@@ -1,58 +1,10 @@
-<section 
-  class="relative  h-screen  md:min-h-[800px] flex items-center justify-center w-full full-width "
->
 
-    {% assign mp4_url = section.settings.primary_video_url %}
-    {% assign youtube = false %}
-    {% assign mp4 = false %}
+<div class="relative w-screen h-screen md:min-h-[800px] bg-cover bg-center flex items-center justify-center overflow-hidden full-bleed-header header-bg"
+     style="--header-bg: url('{{ section.settings.background_image | image_url }}');">
+  <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
-    {% if mp4_url contains "youtube.com" or mp4_url contains "youtu.be" %}
-      {% assign youtube = true %}
-    {% elsif mp4_url contains ".mp4" %}
-      {% assign mp4 = true %}
-    {% endif %}
-
-<!-- CONTENEDOR DEL VIDEO -->
-<div class="absolute inset-0 w-full h-full overflow-hidden z-0">
-
-  {% if mp4 %}
-    <video 
-      class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover 
-             -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-      autoplay 
-      loop 
-      muted 
-      playsinline
-    >
-      <source src="{{ mp4_url }}" type="video/mp4">
-    </video>
-  {% endif %}
-
-  {% if youtube %}
-    <iframe 
-      class="absolute top-1/2 left-1/2 w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-      src="https://www.youtube.com/embed/{{ mp4_url | split: 'v=' | last }}?controls=0&mute=1&autoplay=1&loop=1&playlist={{ mp4_url | split: 'v=' | last }}"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-    ></iframe>
-  {% endif %}
-
-</div>
-
-
-      
-  {% if section.settings.background_image %}
-    <img 
-      src="{{ section.settings.background_image | image_url: width: 2500 }}"
-      alt="Background image"
-      width="{{ section.settings.background_image.width }}"
-      height="{{ section.settings.background_image.height }}"
-      class="absolute inset-0 w-full h-full object-cover min-h-screen z-0"
-    >
-  {% endif %}
-
-
-      <div class="h-screen flex flex-col items-center justify-center pt-10 z-2 ">
+ 
+    <div class="h-screen flex flex-col items-center justify-center pt-10 ">
 
         {% if section.settings.logo %}
             <img
@@ -157,11 +109,16 @@
 
     </div>
 
-</section>
 
-<div class="absolute">
 
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -174,11 +131,6 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Imagen de fondo"
-    },  
-    {
-      "type": "image_picker",
-      "id": "latas_image",
-      "label": "Imagen izquierda latas"
     },   
     {
       "type": "url",
