@@ -374,8 +374,8 @@
       "settings": {
         "title": "",
         "subtitle": "Parece que la página que buscas no existe o ha sido movida.",
-        "button_label": "Volver al inicio",
-        "button_link": "/"
+        "button_label": "Home",
+        "button_link": "shopify://pages/newsletter"
       }
     }
   },
