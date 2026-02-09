@@ -306,7 +306,10 @@
         "instagram-url": "https://instagram.com/drinkvibbo",
         "imagen": "shopify://shop_images/designer-choosing-colour-for-interior-2025-03-05-06-34-07-utc_2.png",
         "imagen2": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2.png",
-        "imagen3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png"
+        "imagen3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png",
+        "facebook_url": "",
+        "instagram_url": "",
+        "tiktok_url": ""
       }
     },
     "faq_UxEWVW": {
@@ -373,7 +376,7 @@
       "name": "Not Found Page Section",
       "settings": {
         "title": "",
-        "subtitle": "Parece que la página que buscas no existe o ha sido movida.",
+        "subtitle": "It seems like the page you're looking for doesn't exist or has been moved.",
         "button_label": "Home",
         "button_link": "shopify://pages/newsletter"
       }
