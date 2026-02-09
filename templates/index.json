@@ -377,7 +377,7 @@
       "settings": {
         "title": "",
         "subtitle": "It seems like the page you're looking for doesn't exist or has been moved.",
-        "button_label": "Home",
+        "button_label": "Newsletter",
         "button_link": "shopify://pages/newsletter"
       }
     }
