@@ -77,43 +77,75 @@
             {{ section.settings.page_suscribtion | newline_to_br}}
             </h1>
         </div>
-        
-        <form class="grid grid-cols-5 md:flex items-center bg-white rounded-full overflow-hidden shadow
-                    w-[95%] max-w-xs md:max-w-md min-h-10 md:min-h-12">
-          
-          <!--  MOBILE  -->
-          <input
-            type="email"
-            name="email"
-            placeholder="{{ section.settings.placeholder_input }}"
-
-            class="md:hidden col-span-3 px-4 h-full
-                    text-gray-700 placeholder-gray-400 focus:outline-none"
-            />
-
-
-          <!-- INPUT DESKTOP -->
-          <input
-            type="email"
-            name="email"
-            placeholder="{{ section.settings.placeholder_input }}"
-
-            class="hidden md:flex flex-1 px-4 h-full
-                    text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
-            />
 
         
-          
-          <button
-            type="submit"
-            class="col-span-2 h-full bg-black text-white px-5
-                    rounded-full md:text-sm text-xs
-                    hover:bg-gray-800 transition"
+        
+        
+        <form 
+            id="NewsletterForm"
+            data-n8n-webhook="https://agentsprod.redtec.ai/webhook/vibbo_newsletter"
+            class="w-full flex flex-col items-center"
             >
 
-            {{ section.settings.placeholder_button }}
-          </button>
+
+            <div class="grid grid-cols-5 md:flex items-center bg-white rounded-full overflow-hidden shadow
+                w-[95%] max-w-xs md:max-w-md h-10 md:h-12">
+
+            <!--  MOBILE  -->
+            <input
+                type="email"
+                name="email"
+                placeholder="{{ section.settings.placeholder_input }}"
+
+                class="md:hidden col-span-3 px-4 h-full
+                        text-gray-700 placeholder-gray-400 focus:outline-none"
+                />
+
+
+            <!-- INPUT DESKTOP -->
+            <input
+                type="email"
+                name="email"
+                placeholder="{{ section.settings.placeholder_input }}"
+
+                class="hidden md:flex flex-1 px-4 h-full
+                        text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+                />
+
+            
+            
+            <button
+                type="submit"
+                class="col-span-2 h-full bg-black text-white px-5 flex items-center 
+                justify-center rounded-full md:text-sm text-xs hover:bg-gray-900 transition"
+                >
+                {{ section.settings.placeholder_button }}
+                </button>
+
+            </div>
+
+            <!-- Terms -->
+            <div class="py-6 flex items-start gap-3">
+                <input
+                type="checkbox"
+                name="terms"
+                id="ContactFormTerms"
+                required
+                class="mt-1 w-5 h-5 accent-black cursor-pointer"
+                >
+                    <label for="ContactFormTerms" class="md:text-sm text-xs text-white cursor-pointer">
+                    I agree to the 
+                    <a href="{{ section.settings.terms_link }}" class="underline" target="_blank">Terms</a> 
+                    and 
+                    <a href="{{ section.settings.privacy_link }}" class="underline" target="_blank">Privacy Policy</a>
+                    </label>
+            </div>
         </form>
+
+       
+
+
+
         <div class="flex flex-col md:flex-row w-full justify-center items-center 
             mt-5 md:mt-0 py-5  ">
 
@@ -166,6 +198,33 @@
   >
 </div>
 
+<div
+  id="subscribeModal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70"
+>
+  <div
+    class="bg-white rounded-2xl px-6 py-5 max-w-sm w-[90%] text-center
+           animate-fade-in relative"
+  >
+    <button
+      id="closeModal"
+      class="absolute top-3 right-3 text-black text-xl font-bold"
+      aria-label="Cerrar"
+    >
+      ✕
+    </button>
+
+    <h3 class="text-2xl font-bricolage font-semibold text-black mb-2">
+      Ya estás suscrito 🎉
+    </h3>
+
+    <p class="text-gray-600 text-sm">
+      Gracias por formar parte de la comunidad Vibbo
+    </p>
+  </div>
+</div>
+
+
 
 </section>
 
@@ -191,8 +250,101 @@ h1.page-descripction b {
 
 }
 
+@media (min-width: 768px) {
+  h1.page-descripction strong,
+  h1.page-descripction b {
+    -webkit-text-stroke: 2px #000; 
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+
 
 </style>
+
+
+<script>
+(function () {
+  const form = document.getElementById("NewsletterForm");
+  if (!form) return;
+
+  const webhook = form.dataset.n8nWebhook;
+  const modal = document.getElementById("subscribeModal");
+  const closeModal = document.getElementById("closeModal");
+
+  function showError(msg) {
+    let el = form.querySelector(".form-msg");
+    if (!el) {
+      el = document.createElement("p");
+      el.className = "form-msg mt-3 text-red-500 text-sm";
+      form.appendChild(el);
+    }
+    el.textContent = msg;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = form.querySelector('[name="email"]').value.trim();
+    const termsAccepted = form.querySelector('[name="terms"]').checked;
+
+    if (!email) {
+      showError("Ingresa un email válido");
+      return;
+    }
+
+    if (!termsAccepted) {
+      showError("Debes aceptar los términos y condiciones");
+      return;
+    }
+
+    try {
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email
+        }),
+        mode: "no-cors"
+      });
+
+      form.reset();
+
+      // Mostrar modal de éxito
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      btn.disabled = false;
+
+    } catch (err) {
+      showError("Error al enviar. Intenta más tarde.");
+    }
+  });
+
+  closeModal?.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  });
+})();
+</script>
+
 
 
 {% schema %}
