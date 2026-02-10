@@ -299,7 +299,11 @@ h1.page-descripction b {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = form.querySelector('[name="email"]').value.trim();
+    const emailInput = [...form.querySelectorAll('[name="email"]')]
+    .find(input => input.offsetParent !== null);
+
+    const email = emailInput ? emailInput.value.trim() : '';
+
     const termsAccepted = form.querySelector('[name="terms"]').checked;
 
     if (!email) {
