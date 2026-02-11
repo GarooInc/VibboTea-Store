@@ -81,11 +81,9 @@
         
         
         
-        <form 
-            id="NewsletterForm"
-            data-n8n-webhook="https://agentsprod.redtec.ai/webhook/vibbo_newsletter"
-            class="w-full flex flex-col items-center"
-            >
+       
+
+              <form id="NewsletterForm" class="w-full flex flex-col items-center" >
 
 
             <div class="grid grid-cols-5 md:flex items-center bg-white rounded-full overflow-hidden shadow
@@ -97,19 +95,8 @@
                 name="email"
                 placeholder="{{ section.settings.placeholder_input }}"
 
-                class="md:hidden col-span-3 px-4 h-full
+                class="col-span-3  md:flex md:flex-1 px-4 h-full
                         text-gray-700 placeholder-gray-400 focus:outline-none"
-                />
-
-
-            <!-- INPUT DESKTOP -->
-            <input
-                type="email"
-                name="email"
-                placeholder="{{ section.settings.placeholder_input }}"
-
-                class="hidden md:flex flex-1 px-4 h-full
-                        text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
                 />
 
             
@@ -226,8 +213,6 @@
 
 </section>
 
-
-
 <style>
 
 
@@ -276,75 +261,44 @@ h1.page-descripction b {
 
 
 <script>
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("NewsletterForm");
-  if (!form) return;
-
-  const webhook = form.dataset.n8nWebhook;
   const modal = document.getElementById("subscribeModal");
-  const closeModal = document.getElementById("closeModal");
+  const closeBtn = document.getElementById("closeModal");
 
-  function showError(msg) {
-    let el = form.querySelector(".form-msg");
-    if (!el) {
-      el = document.createElement("p");
-      el.className = "form-msg mt-3 text-red-500 text-sm";
-      form.appendChild(el);
-    }
-    el.textContent = msg;
-  }
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); 
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const email = form.querySelector('input[name="email"]').value.trim();
 
-    const emailInput = [...form.querySelectorAll('[name="email"]')]
-    .find(input => input.offsetParent !== null);
-
-    const email = emailInput ? emailInput.value.trim() : '';
-
-    const termsAccepted = form.querySelector('[name="terms"]').checked;
-
-    if (!email) {
-      showError("Ingresa un email válido");
-      return;
-    }
-
-    if (!termsAccepted) {
-      showError("Debes aceptar los términos y condiciones");
-      return;
-    }
+    if (!email) return;
 
     try {
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-
-      await fetch(webhook, {
+      await fetch("https://agentsprod.redtec.ai/webhook/vibbo_newsletter", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email
-        }),
-        mode: "no-cors"
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
       });
-
-      form.reset();
-
-      // Mostrar modal de éxito
       modal.classList.remove("hidden");
       modal.classList.add("flex");
 
-      btn.disabled = false;
+      form.reset(); 
 
-    } catch (err) {
-      showError("Error al enviar. Intenta más tarde.");
+
+    } catch (error) {
+      console.error(error);
     }
   });
-
-  closeModal?.addEventListener("click", () => {
+  // Cerrar modal con botón
+  closeBtn.addEventListener("click", function () {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
   });
-})();
+
+
+});
 </script>
 
 
