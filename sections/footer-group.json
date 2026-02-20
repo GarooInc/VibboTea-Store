@@ -13,7 +13,6 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "disabled": true,
       "settings": {
         "menu": "footer-1",
         "submenu1_footer": "submenu1",

@@ -118,7 +118,6 @@
         "slide_3qAYpk",
         "slide_qmBDkN"
       ],
-      "disabled": true,
       "name": "Header Slide",
       "settings": {
         "autoplay": true,
@@ -127,7 +126,6 @@
     },
     "cinta_newsletter_CmHQnG": {
       "type": "cinta-newsletter",
-      "disabled": true,
       "name": "Liston",
       "settings": {
         "isotipe": "shopify://shop_images/isotipo_black.png",
@@ -137,7 +135,6 @@
     },
     "main_carousel_NYTaep": {
       "type": "main-carousel",
-      "disabled": true,
       "name": "Carrusel de productos",
       "settings": {
         "section_title": "Powered by nature, harnessed by you.",
@@ -187,7 +184,6 @@
         "video_block_mVJf9U",
         "video_block_4YGmdY"
       ],
-      "disabled": true,
       "name": "Section Universe",
       "settings": {
         "title": "Hot, iced, or mocktail, you pick"
@@ -289,7 +285,6 @@
         "ingredient_block_cNRjp8",
         "ingredient_block_TRra37"
       ],
-      "disabled": true,
       "name": "Product Ingredients",
       "settings": {
         "title": "Product Ingredients"
@@ -297,7 +292,6 @@
     },
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
-      "disabled": true,
       "name": "Section socials",
       "settings": {
         "title": "Follow our socials, never miss a brew.",
@@ -350,7 +344,6 @@
         "faq_r8XVV9",
         "faq_iAy7pW"
       ],
-      "disabled": true,
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
@@ -362,7 +355,6 @@
     },
     "newsletter_ri4VmU": {
       "type": "newsletter",
-      "disabled": true,
       "name": "Newsletter",
       "settings": {
         "imagen": "shopify://shop_images/latas.png",
@@ -373,6 +365,7 @@
     },
     "not_found_page_YxE7c9": {
       "type": "not-found-page",
+      "disabled": true,
       "name": "Not Found Page Section",
       "settings": {
         "title": "",

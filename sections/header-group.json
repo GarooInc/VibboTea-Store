@@ -13,7 +13,6 @@
   "sections": {
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "show_topbar": true,
         "isotipe": "shopify://shop_images/isotipo_black.png",
