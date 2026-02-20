@@ -17,7 +17,14 @@
     "product_page_rNtVMj": {
       "type": "product-page",
       "name": "Description product",
-      "settings": {}
+      "settings": {
+        "text_button": "ADD TO CART",
+        "sold_out_text": "SOLD OUT",
+        "kickstarter_price": true,
+        "text_kickstarter": "A DISCOUNTED KICKSTARTER PRICE NOW LIVE!",
+        "text_kickstarter_button": "ADD DISCOUNT",
+        "kickstarter_link": "https://drinkvibbo.com/cart/48147144343779:1"
+      }
     },
     "1766421284c922609f": {
       "type": "apps",
