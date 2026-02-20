@@ -87,7 +87,7 @@
 
        
     {% endif %}
-     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-full">
+     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-auto">
       <div>
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
           {{ product.title }}
@@ -109,9 +109,9 @@
           {% endif %}
         </div>
 
-        <!-- Start of Judge.me code --> 
-          <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
-        {{ product.metafields.judgeme.badge }} 
+        <!-- Start of Judge.me code / suscribe  --> 
+        <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+          {{ product.metafields.judgeme.badge }} 
         </div> 
         <!-- End of Judge.me code -->
 
@@ -169,29 +169,47 @@
         {% endunless %}
       </div>
 
-      <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
-        <input
-          type="hidden"
-          name="id"
-          id="variantInput"
-          value="{{ current_variant.id }}"
-        >
+      {% if section.settings.kickstarter_price %}
+        <div class="py-5 w-full">
+          <a 
+            href="{{ section.settings.kickstarter_link }}" target="_blank"
+            class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
+                  hover:opacity-70 transition-opacity "
+          >
+            <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
+              {{ section.settings.text_kickstarter }}
+            </span>
+          </a>
+        </div>
+       
 
-        <button
-          type="submit"
-          {% comment %} {% unless current_variant.available %}disabled{% endunless %} {% endcomment %}
-          class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
-                hover:opacity-70 transition-opacity disabled:opacity-50"
-        >
-          <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
-            {% comment %} {% if current_variant.available %} {% endcomment %}
-              Add to cart
-            {% comment %} {% else %}
-              Sold out
-            {% endif %} {% endcomment %}
-          </span>
-        </button>
-      </form>
+      {% else %}
+
+        <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
+          <input
+            type="hidden"
+            name="id"
+            id="variantInput"
+            value="{{ current_variant.id }}"
+          >
+
+          <button
+            type="submit"
+            {% unless current_variant.available %}disabled{% endunless %}
+            class="bg-gray-800 flex items-center justify-center w-full rounded-3xl py-3 
+                  hover:opacity-70 transition-opacity disabled:opacity-50"
+          >
+            <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
+              {% if current_variant.available %} 
+                {{ section.settings.text_button }}
+              {% else %}
+                {{ section.settings.sold_out_text }}
+              {% endif %}
+            </span>
+          </button>
+        </form>
+
+      {% endif %}
 
 
         
@@ -276,7 +294,37 @@
 {% schema %}
 {
   "name": "Description product",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "text_button",
+      "label": "Text button",
+      "default": "ADD TO CART"
+    }, 
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Sold out text",
+      "default": "SOLD OUT"
+    }, 
+    {
+      "type": "checkbox",
+      "id": "kickstarter_price",
+      "label": "Kickstarter price",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text_kickstarter",
+      "label": "Kickstarter text",
+      "default": "A DISCOUNTED KICKSTARTER PRICE NOW LIVE!"
+    }, 
+    {
+      "type": "url",
+      "id": "kickstarter_link",
+      "label": "Kickstarter link",
+    }, 
+  ],
   
   "presets": [{ "name": "Description product" }]
 }
