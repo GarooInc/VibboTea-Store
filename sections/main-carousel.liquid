@@ -92,20 +92,40 @@
               </div>
             </a>
 
-            <form method="post" action="{{ routes.cart_add_url }}" class="md:pt-5 md:text-center mx-auto">
-              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-              <button 
-                type="submit" 
-                class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 
-                      hover:opacity-70 transition-opacity cursor-pointer"
-              >
-                <span class="font-bricolage md:text-[0.9vw]
-                   text-white text-xl uppercase font-light md:text-center">
-                   {{section.settings.text_button_add}}
-                </span>
-              </button>
-            </form>
+            {% if section.settings.url_button %}
+
+              <div class="md:pt-5 md:text-center mx-auto">
+                <a 
+                  href="{{ section.settings.url_button }}" 
+                  class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 
+                        hover:opacity-70 transition-opacity cursor-pointer"
+                >
+                  <span class="font-bricolage md:text-[0.9vw]
+                    text-white text-xl uppercase font-light md:text-center">
+                    {{ section.settings.text_button_add }}
+                  </span>
+                </a>
+              </div>
+
+            {% else %}
+
+              <form method="post" action="{{ routes.cart_add_url }}" class="md:pt-5 md:text-center mx-auto">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+                <button 
+                  type="submit" 
+                  class="md:bg-black flex items-center justify-center w-full rounded-3xl py-3 md:mt-4 
+                        hover:opacity-70 transition-opacity cursor-pointer"
+                >
+                  <span class="font-bricolage md:text-[0.9vw]
+                    text-white text-xl uppercase font-light md:text-center">
+                    {{ section.settings.text_button_add }}
+                  </span>
+                </button>
+              </form>
+
+            {% endif %}
 
           </div>
         {% endfor %}
@@ -317,23 +337,27 @@
       "default": "Productos Destacados"
     },
     {
-      "type": "textarea",
-      "id": "text_button",
-      "label": "Texto de redireccionamiento",
-      "default": "I want to feel human again"
-    },
-
-    {
-      "type": "textarea",
-      "id": "text_button_add",
-      "label": "Texto de boton",
-      "default": "SHOP ALL PRODUCTS"
-    },
-    {
       "type": "checkbox",
       "id": "redireccionamiento",
       "label": "Redireccionamiento",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "text_button",
+      "label": "Texto de redireccionamiento",
+      "default": "I want to feel human again"
+    },
+    {
+      "type": "url",
+      "id": "url_button",
+      "label": "Link de boton de producto (opcional)",
+    },
+    {
+      "type": "text",
+      "id": "text_button_add",
+      "label": "Texto de boton",
+      "default": "SHOP ALL PRODUCTS"
     },
     {
       "type": "collection",
