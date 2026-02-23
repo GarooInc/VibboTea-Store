@@ -13,9 +13,57 @@
       "type": "page",
       "disabled": true,
       "settings": {}
+    },
+    "faq_tKqnJ8": {
+      "type": "faq",
+      "blocks": {
+        "faq_VQKpTg": {
+          "type": "faq",
+          "settings": {
+            "question": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_VQKpTg"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "title": "Preguntas frecuentes",
+        "id_section": "#faqContact",
+        "text_faq": "Read below for a good time.",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    },
+    "main_section_slidder_pYMYRb": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_i78k3Y": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/0020_VIBBO_21_jpg.jpg",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_i78k3Y"
+      ],
+      "name": "Slider Imágenes",
+      "settings": {
+        "title": "Title",
+        "title_mobile": "Title Mobile",
+        "description_mobile": "Description Mobile",
+        "autoplay": true,
+        "interval": 5000
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "faq_tKqnJ8",
+    "main_section_slidder_pYMYRb"
   ]
 }
