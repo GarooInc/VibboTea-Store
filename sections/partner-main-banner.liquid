@@ -1,0 +1,76 @@
+<div class="relative w-screen md:h-screen h-[350px] bg-cover bg-center flex items-center justify-center overflow-hidden full-bleed-header header-bg"
+     style="--header-bg: url('{{ section.settings.background_image | image_url }}');">
+
+  <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
+
+  <div class="">
+
+    <div class="absolute inset-0 z-10 pointer-events-none">
+  
+</div>
+
+  {% comment %} {# Title centered #} {% endcomment %}
+  <div class="mx-auto text-center z-20 relative">
+    <h1 class="text-5xl px-10 md:text-9xl font-bold pt-15 font-bricolage text-white drop-shadow-lg leading-[0.9]">
+      {{ section.settings.page_title 
+        | newline_to_br
+        | replace: 'VIBBO', '<span class="font-grafika font-normal text-[12vw] md:text-[9.5vw] text-white leading-[0.9]">VIBBO</span>' }}
+    </h1>
+</div>
+
+<div class="mx-auto text-center z-20 relative">
+    <p class="text-sm px-10 md:text-2xl md:pt-10 pt-5 uppercase
+       text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+      {{ section.settings.page_descripction }}
+    </p>
+</div>
+
+
+</div></div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Main banner partner",
+  "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    
+    {
+      "type": "textarea",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "Bienvenido a Nuestra Tienda"
+    },
+    {
+      "type": "text",
+      "id": "page_descripction",
+      "label": "Page Descripction",
+      "default": "text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "APPLY TODAY"
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Main banner partner",
+    }
+  ]
+}
+
+
+
+{% endschema %}
+
