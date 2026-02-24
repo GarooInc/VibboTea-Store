@@ -21,8 +21,8 @@
         "text_button": "ADD TO CART",
         "sold_out_text": "SOLD OUT",
         "kickstarter_price": true,
-        "text_kickstarter": "A DISCOUNTED KICKSTARTER PRICE NOW LIVE!",
-        "text_kickstarter_button": "ADD DISCOUNT",
+        "text_kickstarter": "$1 RESERVE DISCOUNTED KICKSTARTER PRICE NOW LIVE BELOW",
+        "text_kickstarter_button": "CLICK HERE FOR $1 RESERVE DISCOUNT",
         "kickstarter_link": "https://drinkvibbo.com/cart/48147144343779:1"
       }
     },
@@ -55,7 +55,7 @@
           "type": "how_block",
           "settings": {
             "gifs_count": 3,
-            "gif_1": "shopify://shop_images/icedteaverde_3.gif",
+            "gif_1": "shopify://shop_images/Diseno_sin_titulo_21.gif",
             "text_1": "Add 2 grams (1 teaspoon) of Gut Bliss blend to your sachet, heat 6–8 oz. of water to 175°F.",
             "gif_2": "shopify://shop_images/Diseno_sin_titulo_0b13b58f-e00b-463d-90fe-cda30b55dc56.gif",
             "text_2": "Steep for 2-3 minutes, watch the magic happen",
