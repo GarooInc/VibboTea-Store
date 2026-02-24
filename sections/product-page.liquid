@@ -219,6 +219,11 @@
         </form>
 
       {% endif %}
+      <div class="">
+        <p class="text-sm text-gray-500 font-bricolage italic">
+          {{ section.settings.disclaimer_kickstarter }}
+        </p>
+      </div>
 
 
         
@@ -339,6 +344,11 @@
       "id": "kickstarter_link",
       "label": "Kickstarter link",
     }, 
+    {
+      "type": "textarea",
+      "id": "disclaimer_kickstarter",
+      "label": "Disclaimer Kickstarter text",
+    },
   ],
   
   "presets": [{ "name": "Description product" }]
