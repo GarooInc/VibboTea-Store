@@ -119,12 +119,12 @@
         </div>
 
         <!-- Start of Judge.me code / suscribe  --> 
-        <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+        {% comment %} <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
           {{ product.metafields.judgeme.badge }} 
-        </div> 
+        </div>  {% endcomment %}
         <!-- End of Judge.me code -->
 
-        <div class="subscriptions_app_embed_block"></div>
+        {% comment %} <div class="subscriptions_app_embed_block"></div> {% endcomment %}
 
 
         <div class="text-sm text-black font-bricolage pt-4 product-description">
