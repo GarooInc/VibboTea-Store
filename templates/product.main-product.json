@@ -94,6 +94,7 @@
         "how_block_NNNFD4",
         "how_block_rB8WTr"
       ],
+      "disabled": true,
       "name": "Product how",
       "settings": {
         "title": "We won't show you how, but these are some of the many."
@@ -247,6 +248,7 @@
         "ingredient_block_DGWGYK",
         "ingredient_block_ekQykY"
       ],
+      "disabled": true,
       "name": "Product Ingredients",
       "settings": {
         "title": "About our Ingredients",
