@@ -270,19 +270,6 @@
         "image_mobile3": "shopify://shop_images/Group_55_1.png"
       }
     },
-    "product_why_varios_a3T7Wi": {
-      "type": "product-why-varios",
-      "name": "Why Vibbo Slidder",
-      "settings": {
-        "title": "",
-        "image": "shopify://shop_images/energy.png",
-        "image2": "shopify://shop_images/relax.png",
-        "image3": "shopify://shop_images/detox.png",
-        "image_mobile": "shopify://shop_images/energy.png",
-        "image_mobile2": "shopify://shop_images/relax.png",
-        "image_mobile3": "shopify://shop_images/detox.png"
-      }
-    },
     "faq_7VfkjP": {
       "type": "faq",
       "blocks": {
@@ -399,7 +386,6 @@
   "order": [
     "main",
     "product_page_rNtVMj",
-    "product_why_varios_a3T7Wi",
     "1766421284c922609f",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
