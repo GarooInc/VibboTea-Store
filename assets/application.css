@@ -3217,6 +3217,11 @@
       padding-right: calc(var(--spacing) * 20);
     }
   }
+  .md\:pr-30 {
+    @media (width >= 48rem) {
+      padding-right: calc(var(--spacing) * 30);
+    }
+  }
   .md\:pr-\[15vw\] {
     @media (width >= 48rem) {
       padding-right: 15vw;
@@ -3629,6 +3634,11 @@
   .xl\:pt-83 {
     @media (width >= 80rem) {
       padding-top: calc(var(--spacing) * 83);
+    }
+  }
+  .xl\:pr-0 {
+    @media (width >= 80rem) {
+      padding-right: calc(var(--spacing) * 0);
     }
   }
   .xl\:pb-40 {

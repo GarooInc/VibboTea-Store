@@ -17,7 +17,7 @@
       {% endif %}
       {% if section.settings.descripcion %}
       <div class="w-screen text-center">
-        <p class="md:text-lg text-xs text-white  mt-2 pt-5 px-5 font-bricolage leading-tight">
+        <p class="md:text-lg text-sm text-white  mt-2 pt-5 px-5 font-bricolage leading-tight">
           {{ section.settings.descripcion | newline_to_br}}
         </p>
       </div>
@@ -50,9 +50,9 @@
       </div>
       <div class="w-screen text-center">
         {% if section.settings.descripcion2 %}
-          <p class=" md:text-sm text-xs w-screen 
+          <p class=" md:text-sm text-xs  
             justify-center text-white font-bricolage 
-            leading-tight py-5 md:pt-0 pt-10 uppercase px-5">
+            leading-tight py-5 md:pt-0 pt-10 uppercase px-15 md:pr-30 xl:pr-0">
             {{ section.settings.descripcion2 }}
           </p>
         {% endif %}
@@ -73,7 +73,8 @@
 
   <!-- VERSIONO DESKTOP -->
   <!-- COLUMNA IZQUIERDA -->
-  <div class="hidden w-1/2 lg:flex flex-col justify-between items-start p-8 md:pl-20 md:pt-20 h-full">
+  
+  <div class="hidden w-1/2 md:flex flex-col justify-between items-start p-8 md:pl-20 md:pt-20 h-full">
     <div>
     {% if section.settings.logo %}
       <img 
@@ -116,10 +117,10 @@
         </div>
        
       </div>
-      <div class="w-screen">
+      <div class="w-screen text-left max-w-3xl">
         {% if section.settings.descripcion2 %}
-          <p class=" text-md w-screen 
-            justify-start text-white font-bricolage leading-tight pb-10 uppercase pr-25">
+          <p class=" text-md 
+            justify-center text-white font-bricolage leading-tight pb-10 uppercase">
             {{ section.settings.descripcion2 }}
           </p>
         {% endif %}
@@ -142,7 +143,7 @@
     </div>
 
   <!-- COLUMNA DERECHA -->
-  <div class="hidden w-1/2 h-full lg:flex flex-col items-start justify-start  md:pt-15 lg:pr-20 pr-10 xl:pl-[10vw]">
+  <div class="hidden w-1/2 h-full md:flex flex-col items-start justify-start  md:pt-15 md:pr-20 pr-10 xl:pl-[10vw]">
       <nav class="flex flex-col md:flex-row justify-between w-full">
 
         
