@@ -1577,6 +1577,9 @@
   .pr-30 {
     padding-right: calc(var(--spacing) * 30);
   }
+  .pb-1 {
+    padding-bottom: calc(var(--spacing) * 1);
+  }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
   }
@@ -1600,6 +1603,9 @@
   }
   .pb-25 {
     padding-bottom: calc(var(--spacing) * 25);
+  }
+  .pb-30 {
+    padding-bottom: calc(var(--spacing) * 30);
   }
   .pb-40 {
     padding-bottom: calc(var(--spacing) * 40);
