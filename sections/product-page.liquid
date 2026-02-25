@@ -107,7 +107,7 @@
                  {{ current_variant.price | money }}
               </span>
 
-              <span class="text-md md:text-xl text-red-700 font-light">
+              <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pr-10">
                 {{section.settings.text_kickstarter }}
               </span>
             {% else %}
@@ -328,10 +328,10 @@
       "default": true
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "text_kickstarter",
       "label": "Kickstarter text",
-      "default": "A DISCOUNTED KICKSTARTER PRICE NOW LIVE!"
+      "default": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>"
     }, 
     {
       "type": "text",
