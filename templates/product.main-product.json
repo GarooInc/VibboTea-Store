@@ -27,6 +27,45 @@
         "disclaimer_kickstarter": "NOTICE: Hey there! The $1 reserve Kickstarter discounted price applies to any VIBBO product: Natural Energy, Detox, Relax, or the Reset Bundle. Prior to the official Kickstarter launch on March 18th, participants will receive a special link to apply their 15-25% discount to the product of their choice."
       }
     },
+    "main_section_slidder_YFLXRf": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_jPcVGQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/energy.png",
+            "alt": "Energy"
+          }
+        },
+        "slide_9zFdxz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/relax.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_aExiAL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/detox.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_jPcVGQ",
+        "slide_9zFdxz",
+        "slide_aExiAL"
+      ],
+      "name": "Slider Imágenes",
+      "settings": {
+        "title": "",
+        "title_mobile": "",
+        "description_mobile": "",
+        "autoplay": true,
+        "interval": 5000
+      }
+    },
     "1766421284c922609f": {
       "type": "apps",
       "blocks": {
@@ -386,6 +425,7 @@
   "order": [
     "main",
     "product_page_rNtVMj",
+    "main_section_slidder_YFLXRf",
     "1766421284c922609f",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
