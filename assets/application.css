@@ -685,11 +685,23 @@
   .max-h-full {
     max-height: 100%;
   }
+  .min-h-10 {
+    min-height: calc(var(--spacing) * 10);
+  }
   .min-h-50 {
     min-height: calc(var(--spacing) * 50);
   }
+  .min-h-60 {
+    min-height: calc(var(--spacing) * 60);
+  }
   .min-h-100 {
     min-height: calc(var(--spacing) * 100);
+  }
+  .min-h-130 {
+    min-height: calc(var(--spacing) * 130);
+  }
+  .min-h-400 {
+    min-height: calc(var(--spacing) * 400);
   }
   .min-h-\[3\.5em\] {
     min-height: 3.5em;
@@ -709,11 +721,20 @@
   .min-h-\[80vh\] {
     min-height: 80vh;
   }
+  .min-h-\[100px\] {
+    min-height: 100px;
+  }
   .min-h-\[100vw\] {
     min-height: 100vw;
   }
   .min-h-\[300px\] {
     min-height: 300px;
+  }
+  .min-h-\[400px\] {
+    min-height: 400px;
+  }
+  .min-h-\[500px\] {
+    min-height: 500px;
   }
   .min-h-\[900px\] {
     min-height: 900px;
@@ -1490,6 +1511,9 @@
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
+  .pt-0 {
+    padding-top: calc(var(--spacing) * 0);
+  }
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
@@ -2185,6 +2209,16 @@
       min-height: 110vw;
     }
   }
+  .sm\:min-h-\[400px\] {
+    @media (width >= 40rem) {
+      min-height: 400px;
+    }
+  }
+  .sm\:min-h-\[600px\] {
+    @media (width >= 40rem) {
+      min-height: 600px;
+    }
+  }
   .sm\:w-100 {
     @media (width >= 40rem) {
       width: calc(var(--spacing) * 100);
@@ -2611,6 +2645,11 @@
       max-height: calc(var(--spacing) * 200);
     }
   }
+  .md\:min-h-130 {
+    @media (width >= 48rem) {
+      min-height: calc(var(--spacing) * 130);
+    }
+  }
   .md\:min-h-\[8vw\] {
     @media (width >= 48rem) {
       min-height: 8vw;
@@ -2629,6 +2668,16 @@
   .md\:min-h-\[90vh\] {
     @media (width >= 48rem) {
       min-height: 90vh;
+    }
+  }
+  .md\:min-h-\[400px\] {
+    @media (width >= 48rem) {
+      min-height: 400px;
+    }
+  }
+  .md\:min-h-\[500px\] {
+    @media (width >= 48rem) {
+      min-height: 500px;
     }
   }
   .md\:min-h-\[1000px\] {
@@ -3589,6 +3638,16 @@
   .xl\:hidden {
     @media (width >= 80rem) {
       display: none;
+    }
+  }
+  .xl\:h-\[420px\] {
+    @media (width >= 80rem) {
+      height: 420px;
+    }
+  }
+  .xl\:min-h-\[500px\] {
+    @media (width >= 80rem) {
+      min-height: 500px;
     }
   }
   .xl\:w-50 {
