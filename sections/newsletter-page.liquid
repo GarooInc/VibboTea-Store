@@ -1,5 +1,5 @@
 <section 
-  class="relative  h-screen  md:min-h-[800px] min-h-[900px] flex items-center justify-center w-full full-width "
+  class="relative  h-screen  md:min-h-[1000px] min-h-[900px] flex items-center justify-center w-full full-width pt-30"
 >
 
     {% assign mp4_url = section.settings.primary_video_url %}
@@ -13,7 +13,7 @@
     {% endif %}
 
 <!-- CONTENEDOR DEL VIDEO -->
-<div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+<div class="absolute inset-0 w-full h-full overflow-hidden z-0 ">
 
   {% if mp4 %}
     <video 
@@ -150,7 +150,7 @@
                         <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
                         class="footer-icon hover:opacity-70 transition-opacity scale-70" 
                         aria-label="Facebook">
-                        {%- render 'fb' -%}
+                        {%- render 'fb-black' -%}
                         </a>
                     </div>
                     <div class="flex justify-end md:justify-center items-center bg-white text-black  rounded-full">
@@ -164,7 +164,7 @@
                         <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
                         class="footer-icon hover:opacity-70 transition-opacity scale-80" 
                         aria-label="Tiktok">
-                        {%- render 'tiktok' -%}
+                        {%- render 'tiktok-black' -%}
                         </a>
                     </div>
                 
