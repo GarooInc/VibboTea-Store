@@ -23,8 +23,23 @@
         "kickstarter_price": true,
         "text_kickstarter": "<p>$1 RESERVE DISCOUNTED KICKSTARTER PRICE NOW LIVE BELOW</p>",
         "text_kickstarter_button": "CLICK HERE FOR $1 RESERVE DISCOUNT",
+        "discount_text_kickstarter": "20% OFF",
+        "discount_per_serving_kickstarter": "$0.57 per serving",
+        "per_serving_bg_color": "#f3f4f6",
+        "per_serving_text_color": "#000000",
+        "timer_kickstarter": "SALES ENDS IN:",
+        "time_discount_kickstarter": "2026-02-27 23:59:59",
         "kickstarter_link": "https://drinkvibbo.com/cart/48147144343779:1",
         "disclaimer_kickstarter": "NOTICE: Hey there! The $1 reserve Kickstarter discounted price applies to any VIBBO product: Natural Energy, Detox, Relax, or the Reset Bundle. Prior to the official Kickstarter launch on March 18th, participants will receive a special link to apply their 15-25% discount to the product of their choice."
+      }
+    },
+    "product_slide_itxqAQ": {
+      "type": "product-slide",
+      "name": "Product Slide",
+      "settings": {
+        "image": "shopify://shop_images/energy_1.png",
+        "image2": "shopify://shop_images/detox.png",
+        "image3": "shopify://shop_images/relax.png"
       }
     },
     "1766421284c922609f": {
@@ -386,6 +401,7 @@
   "order": [
     "main",
     "product_page_rNtVMj",
+    "product_slide_itxqAQ",
     "1766421284c922609f",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
