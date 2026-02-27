@@ -59,7 +59,7 @@
           </p>
 
           {% if product.compare_at_price > product.price %}
-            <p class="font-bricolage text-xl md:text-2xl text-red-600 font-medium">
+            <p class="font-bricolage text-xl md:text-2xl " style="color: #F4320B;">
               {{ product.price | money }}
             </p>
             <p class="text-lg text-gray-500 line-through">
@@ -72,25 +72,41 @@
           {% endif %}
         </a>
 
-        <!-- ADD TO CART -->
-        <form method="post" action="{{ routes.cart_add_url }}" class="pt-3">
-          <input
-            type="hidden"
-            name="id"
-            value="{{ product.selected_or_first_available_variant.id }}"
-          >
 
-          <button
-            type="submit"
-            class="
-              bg-black w-full rounded-3xl md:py-3 py-2 flex items-center
-              justify-center hover:opacity-70 transition-opacity"
+        <!-- ADD TO CART -->
+        {% if section.settings.kickstarter_price %}
+
+          <!-- Botón que redirecciona -->
+          <a
+            href="{{ section.settings.kickstarter_url }}" 
+            class="bg-black w-full rounded-3xl md:py-3 py-2 flex items-center justify-center hover:opacity-70 transition-opacity"
           >
             <span class="font-bricolage text-white md:text-sm text-xs uppercase font-light">
               {{ section.settings.text_add }}
             </span>
-          </button>
-        </form>
+          </a>
+
+        {% else %}
+
+          <!-- ADD TO CART normal -->
+          <form method="post" action="{{ routes.cart_add_url }}" class="pt-3">
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+            >
+
+            <button
+              type="submit"
+              class="bg-black w-full rounded-3xl md:py-3 py-2 flex items-center justify-center hover:opacity-70 transition-opacity"
+            >
+              <span class="font-bricolage text-white md:text-sm text-xs uppercase font-light">
+                {{ section.settings.text_add }}
+              </span>
+            </button>
+          </form>
+
+        {% endif %}
 
       </div>
     {% endfor %}
@@ -132,6 +148,17 @@
       "label": "Texto del boton de añadir",
       "default": "ADD TO CART"
     },
+    {
+      "type": "checkbox",
+      "id": "kickstarter_price",
+      "label": "Kickstarter",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "kickstarter_url",
+      "label": "URL de Kickstarter",
+    }
    
   ],
   "presets": [
