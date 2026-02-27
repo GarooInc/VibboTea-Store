@@ -34,7 +34,7 @@
                     width="{{ second_image.width }}"
                     height="{{ second_image.height }}"
                     loading="lazy"
-                    class="w-full h-auto object-cover scale-125 hover:scale-135 transition-transform duration-350"
+                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
                   >
                 </div>
 
@@ -58,9 +58,18 @@
             {{ product.title }}
           </p>
 
-          <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
-            {{ product.price | money }}
-          </p>
+          {% if product.compare_at_price > product.price %}
+            <p class="font-bricolage text-xl md:text-2xl text-red-600 font-medium">
+              {{ product.price | money }}
+            </p>
+            <p class="text-lg text-gray-500 line-through">
+              {{ product.compare_at_price | money }}
+            </p>
+          {% else %}
+            <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
+              {{ product.price | money }}
+            </p>
+          {% endif %}
         </a>
 
         <!-- ADD TO CART -->

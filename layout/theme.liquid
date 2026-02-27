@@ -1,5 +1,4 @@
 <!doctype html>
-<link rel="icon" type="image/jpg" href="{{ 'isotopo.jpg' | asset_url }}">
 
 <html lang="{{ request.locale.iso_code }}">
   <head>
@@ -29,6 +28,11 @@
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+
+    {% if settings.favicon != blank %}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
+    {% endif %}
 
     {{ content_for_header }}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

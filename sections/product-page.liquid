@@ -87,30 +87,64 @@
 
        
     {% endif %}
-     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-auto">
+     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-auto ">
       <div>
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
           {{ product.title }}
         </h1>
         <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
-          {% if current_variant.compare_at_price > current_variant.price %}
-            <span class="text-2xl md:text-3xl text-gray-400 line-through">
-              {{ current_variant.compare_at_price | money }}
-            </span>
-
-            <span class="text-2xl md:text-2xl text-red-700 font-light">
-              {{ current_variant.price | money }}
-            </span>
-          {% else %}
+          {% comment %} esto solo se usa temporalmente para los descuentos de kickstarter {% endcomment %}
             {% if section.settings.kickstarter_price %}
-              <span class="text-2xl md:text-3xl text-gray-400 line-through">
-                 {{ current_variant.price | money }}
-              </span>
+              <div class="flex flex-col">
+                <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pb-5">
+                  {{section.settings.text_kickstarter }}
+                </span>
 
-              <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pr-10">
-                {{section.settings.text_kickstarter }}
-              </span>
+                <div class="flex items-start gap-3 ">
+                  <div>
+                    <span class="text-3xl md:text-4xl text-black">
+                      {{ current_variant.price | money }}
+
+                    </span>
+
+                    <span class="text-2xl md:text-3xl text-gray-400 line-through">
+                      {{ current_variant.compare_at_price | money }}
+
+                    </span>
+                  </div>
+                  
+
+                  <span 
+                    class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
+                    style="
+                      background-color: {{ section.settings.per_serving_bg_color }};
+                      color: {{ section.settings.per_serving_text_color }};
+                    "
+                  >
+                    {{ section.settings.discount_text_kickstarter }}
+                  </span>
+                </div>
+                <p class="pt-2">
+                    {{ section.settings.discount_per_serving_kickstarter }}
+
+                </p>
+                <div id="countdown" class="text-red-700  text-md md:text-lg pt-1">
+                  {{ section.settings.timer_kickstarter }} <span id="timer"></span>
+                </div>
+                
+
+              </div>
+              
             {% else %}
+              {% if current_variant.compare_at_price > current_variant.price %}
+                <span class="text-2xl md:text-3xl text-gray-400 line-through">
+                  {{ current_variant.compare_at_price | money }}
+                </span>
+
+                <span class="text-2xl md:text-2xl text-red-700 font-light">
+                  {{ current_variant.price | money }}
+                </span>
+              {% else %}
               <span class="text-2xl md:text-3xl text-gray-700">
                 {{ current_variant.price | money }}
               </span>
@@ -220,7 +254,7 @@
 
       {% endif %}
       <div class="">
-        <p class="text-sm text-gray-500 font-bricolage italic md:pb-20">
+        <p class="text-sm text-gray-500 font-bricolage italic pb-20">
           {{ section.settings.disclaimer_kickstarter }}
         </p>
       </div>
@@ -304,6 +338,38 @@
     }
 </script>
 
+<script>
+  function getEndOfDay() {
+    const now = new Date();
+    const end = new Date();
+    end.setHours(23, 59, 59, 999);
+    return end.getTime();
+  }
+
+  const endTime = getEndOfDay();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endTime - now;
+
+    if (distance <= 0) {
+      location.reload(); // Se reinicia automáticamente al nuevo día
+      return;
+    }
+
+    const hours = Math.floor((distance / (1000 * 60 * 60)));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML =
+      String(hours).padStart(2, '0') + ":" +
+      String(minutes).padStart(2, '0') + ":" +
+      String(seconds).padStart(2, '0');
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 
 {% schema %}
 {
@@ -339,6 +405,45 @@
       "label": "Kickstarter text",
       "default": "ADD DISCOUNT"
     }, 
+    
+    {
+      "type": "text",
+      "id": "discount_text_kickstarter",
+      "label": "Discount text",
+      "default": "20% OFF"
+    },
+    {
+      "type": "text",
+      "id": "discount_per_serving_kickstarter",
+      "label": "Discount per serving text",
+      "default": "$0.57 per serving"
+    },
+    {
+      "type": "color",
+      "id": "per_serving_bg_color",
+      "label": "Per Serving Background Color",
+      "default": "#f3f4f6"
+    },
+    {
+      "type": "color",
+      "id": "per_serving_text_color",
+      "label": "Per Serving Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "timer_kickstarter",
+      "label": "Timer text",
+      "default": "SALES ENDS IN: "
+    }, 
+    {
+      "type": "text",
+      "id": "time_discount_kickstarter",
+      "label": "Discount End Date (YYYY-MM-DD HH:MM:SS)",
+      "default": "2026-02-27 23:59:59"
+    },
+    
+
     {
       "type": "url",
       "id": "kickstarter_link",
