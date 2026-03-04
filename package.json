@@ -10,7 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.17",
-    "tailwindcss": "^4.1.17"
-  }
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GarooInc/VibboTea-Store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GarooInc/VibboTea-Store/issues"
+  },
+  "homepage": "https://github.com/GarooInc/VibboTea-Store#readme"
 }
