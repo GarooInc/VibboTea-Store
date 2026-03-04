@@ -1,0 +1,219 @@
+<section class="full-width flex flex-col font-bricolage xl:min-h-[500px] md:min-h-[400px] min-h-[400px] sm:min-h-[600px] relative md:pt-10">
+    
+    
+    <div class="w-full  justify-center items-center ">
+        <div class="hidden md:grid md:grid-cols-3 w-full gap-6 md:gap-5 
+          md:px-5 lg:px-20 ">
+
+            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+              <img 
+                src="{{ section.settings.image | img_url: '2000x2000' }}" 
+                alt="Imagen 1"
+                class="w-full h-full object-cover object-center"
+                width="{{ section.settings.image.width }}"
+                height="{{ section.settings.image.height }}"
+              >
+            </div>
+
+            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+              <img 
+                src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
+                alt="Imagen 2"
+                class="w-full h-full object-cover object-center"
+                width="{{ section.settings.image2.width }}"
+                height="{{ section.settings.image2.height }}"
+              >
+            </div>
+
+            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+              <img 
+                src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
+                alt="Imagen 3"
+                class="w-full h-full object-cover object-center"
+                width="{{ section.settings.image3.width }}"
+                height="{{ section.settings.image3.height }}"
+              >
+            </div>
+        </div>
+
+        <div class="md:hidden relative w-full px-4 pt-10 pb-10">
+          <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
+            <div class="carousel-track flex transition-transform duration-300 ease-in-out">
+              {% if section.settings.image %}
+                <div class="carousel-slide min-w-full">
+                  <img 
+                    src="{{ section.settings.image | img_url: '2000x2000' }}" 
+                    alt="Imagen 1"
+                    class="w-full h-[300px] object-cover object-center"
+                    width="{{ section.settings.image.width }}"
+                    height="{{ section.settings.image.height }}"
+                  >
+                </div>
+              {% endif %}
+
+              {% if section.settings.image2 %}
+                <div class="carousel-slide min-w-full">
+                  <img 
+                    src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
+                    alt="Imagen 2"
+                    class="w-full h-[300px] object-cover object-center"
+                    width="{{ section.settings.image2.width }}"
+                    height="{{ section.settings.image2.height }}"
+                  >
+                </div>
+              {% endif %}
+
+              {% if section.settings.image3 %}
+                <div class="carousel-slide min-w-full">
+                  <img 
+                    src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
+                    alt="Imagen 3"
+                    class="w-full h-[300px] object-cover object-center"
+                    width="{{ section.settings.image3.width }}"
+                    height="{{ section.settings.image3.height }}"
+                  >
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-4">
+            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="0"></button>
+            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="1"></button>
+            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="2"></button>
+          </div>
+        </div>
+    </div>
+
+
+    
+
+
+    
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.carousel-wrapper-{{ section.id }} .carousel-track');
+  const dots = document.querySelectorAll('.carousel-dot-{{ section.id }}');
+  let currentIndex = 0;
+  let autoplayInterval;
+
+  function updateCarousel(index) {
+    if (!track) return;
+    
+    currentIndex = index;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.classList.remove('bg-gray-400');
+        dot.classList.add('bg-black', 'w-6');
+      } else {
+        dot.classList.remove('bg-black', 'w-6');
+        dot.classList.add('bg-gray-400');
+      }
+    });
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % dots.length;
+      updateCarousel(currentIndex);
+    }, 3000);
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  // Click en los puntos
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAutoplay();
+      updateCarousel(parseInt(dot.dataset.index));
+      startAutoplay();
+    });
+  });
+
+  // Swipe touch
+  let startX = 0;
+  let isDragging = false;
+
+  if (track) {
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      stopAutoplay();
+    });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const diff = startX - currentX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentIndex < dots.length - 1) {
+          currentIndex++;
+        } else if (diff < 0 && currentIndex > 0) {
+          currentIndex--;
+        }
+        updateCarousel(currentIndex);
+        isDragging = false;
+      }
+    });
+
+    track.addEventListener('touchend', () => {
+      isDragging = false;
+      startAutoplay();
+    });
+  }
+
+  // Iniciar
+  updateCarousel(0);
+  startAutoplay();
+});
+</script>
+
+<style>
+@media (min-width: 370px) and (max-width: 639px) {
+  .range-height-section {
+    height: 800px;        
+    min-height: screen;    
+    overflow: hidden;
+  }
+}
+
+
+</style>
+
+{% schema %}
+{
+  "name": "Product Slide",
+  "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen 1" 
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Imagen 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Imagen 3"
+    },
+    
+
+  ],
+  "presets": [
+    {
+      "name": "Product Slide",
+    }
+  ]
+}
+{% endschema %}

@@ -38,6 +38,7 @@
             "title_sec": "",
             "desc_sec": "",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": true,
             "hover_text": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.",
             "button_position": "bottom-center"
@@ -54,6 +55,7 @@
             "title_sec": "",
             "desc_sec": "",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "center"
@@ -71,6 +73,7 @@
             "title_sec": "FUEL YOUR CHAOS,\nWITH VITALITY",
             "desc_sec": "NATURAL ENERGY",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
@@ -88,6 +91,7 @@
             "title_sec": "SHED THE NOISE INSIDE OUT",
             "desc_sec": "NATURAL DETOX",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
@@ -105,6 +109,7 @@
             "title_sec": "UNWIND YOURSELF\nWITHOUT KNOCKOUT",
             "desc_sec": "NATURAL RELAX",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
@@ -139,9 +144,10 @@
       "settings": {
         "section_title": "Powered by nature, harnessed by you.",
         "section_desc": "Real plants, real soil, real wellness.  Guided by nature's wisdom alone, our tea blends harness ancestral agriculture, blending native botanicals for vibrant energy, steady balance, and deep calm. Untouched integrity.",
-        "text_button": "I want to feel human again",
-        "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
+        "text_button": "I want to feel human again",
+        "url_button": "",
+        "text_button_add": "SHOP ALL PRODUCTS",
         "collection": "frontpage",
         "limit": 12,
         "autoplay": true,
@@ -166,7 +172,7 @@
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fcc7eb468c244609a93068c66441f623.mp4",
             "text": "Reset",
             "button_text": "get detoxed",
-            "button_url": "shopify://products/gut-bliss-detox"
+            "button_url": "shopify://products/gut-bliss-natural-detox"
           }
         },
         "video_block_4YGmdY": {
@@ -175,7 +181,7 @@
             "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
             "text": "Rest & Relax",
             "button_text": "get relaxed",
-            "button_url": "shopify://products/hidra-boost-natural-energy"
+            "button_url": "shopify://products/hydra-boost-natural-energy"
           }
         }
       },
@@ -373,6 +379,24 @@
         "button_label": "Newsletter",
         "button_link": "shopify://pages/newsletter"
       }
+    },
+    "newsletter_page_V4pzpk": {
+      "type": "newsletter-page",
+      "disabled": true,
+      "name": "Newsletter",
+      "settings": {
+        "latas_image": "shopify://shop_images/Group_90.png",
+        "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/41d0ad5a89a840a4b6b374fa52debdc9.mp4",
+        "logo": "shopify://shop_images/image_33.png",
+        "page_descripction": "<p>Stop settling for fake wellness.Real tea. Real people. Real purpose.</p>",
+        "page_suscribtion": "<p>Subscribe to our newsletter for launch updates, exclusive offers, <strong>10%</strong> off your first order<br/><br/></p>",
+        "placeholder_input": "Enter email",
+        "placeholder_button": "Suscribe",
+        "socials": "@drinkvibbo",
+        "facebook_url": "",
+        "instagram_url": "",
+        "tiktok_url": ""
+      }
     }
   },
   "order": [
@@ -385,6 +409,7 @@
     "main_socials_section_7yLtAb",
     "faq_UxEWVW",
     "newsletter_ri4VmU",
-    "not_found_page_YxE7c9"
+    "not_found_page_YxE7c9",
+    "newsletter_page_V4pzpk"
   ]
 }
