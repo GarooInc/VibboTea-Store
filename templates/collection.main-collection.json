@@ -26,6 +26,15 @@
         "page_descripction": "start now, save on our curated bundle & subscriptions"
       }
     },
+    "cinta_newsletter_7wtc9L": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "isotipe": "shopify://shop_images/Icon_transparent_1.png",
+        "topbar_announcement_text": "<p>KICKSTARTER NOW LIVE - CLICK HERE TO PRE-ORDER</p>",
+        "topbar_link": ""
+      }
+    },
     "shop_page_9JapkN": {
       "type": "shop-page",
       "name": "Main Shop",
@@ -33,13 +42,17 @@
         "section_title": "",
         "desc": "",
         "collection": "",
-        "limit": 12
+        "limit": 12,
+        "text_add": "ADD TO CART",
+        "kickstarter_price": true,
+        "kickstarter_url": ""
       }
     }
   },
   "order": [
     "main",
     "header_section_hzrmjx",
+    "cinta_newsletter_7wtc9L",
     "shop_page_9JapkN"
   ]
 }
