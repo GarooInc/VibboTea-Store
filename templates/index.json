@@ -299,12 +299,6 @@
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
       "blocks": {
-        "image_xVq9ED": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Frame_1321316181.png"
-          }
-        },
         "image_8eatpi": {
           "type": "image",
           "settings": {
@@ -322,13 +316,19 @@
           "settings": {
             "image": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2.png"
           }
+        },
+        "image_xVq9ED": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321316181.png"
+          }
         }
       },
       "block_order": [
-        "image_xVq9ED",
         "image_8eatpi",
         "image_t7bcap",
-        "image_RDbGi7"
+        "image_RDbGi7",
+        "image_xVq9ED"
       ],
       "name": "Section socials",
       "settings": {
