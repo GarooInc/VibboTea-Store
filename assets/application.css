@@ -1717,8 +1717,20 @@
   .pb-40 {
     padding-bottom: calc(var(--spacing) * 40);
   }
+  .pb-50 {
+    padding-bottom: calc(var(--spacing) * 50);
+  }
+  .pb-55 {
+    padding-bottom: calc(var(--spacing) * 55);
+  }
   .pb-60 {
     padding-bottom: calc(var(--spacing) * 60);
+  }
+  .pb-65 {
+    padding-bottom: calc(var(--spacing) * 65);
+  }
+  .pb-80 {
+    padding-bottom: calc(var(--spacing) * 80);
   }
   .pl-0 {
     padding-left: calc(var(--spacing) * 0);
@@ -2401,6 +2413,11 @@
   .sm\:pr-20 {
     @media (width >= 40rem) {
       padding-right: calc(var(--spacing) * 20);
+    }
+  }
+  .sm\:pl-10 {
+    @media (width >= 40rem) {
+      padding-left: calc(var(--spacing) * 10);
     }
   }
   .sm\:pl-20 {

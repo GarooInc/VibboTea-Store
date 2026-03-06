@@ -101,27 +101,27 @@
         {% when 'top-left' %}
           {% assign position_classes = 'items-start justify-start pt-10 pl-10' %}
         {% when 'top-center' %}
-          {% assign position_classes = 'items-start justify-center pt-48' %}
+          {% assign position_classes = 'items-start justify-center md:pt-48' %}
         {% when 'top-right' %}
           {% assign position_classes = 'items-start justify-end pt-10 pr-10' %}
         {% when 'center' %}
-          {% assign position_classes = 'items-center justify-center md:pt-50 pt-120 ' %}
+          {% assign position_classes = 'items-center justify-center md:pt-50  ' %}
         {% when 'bottom-left' %}
-          {% assign position_classes = 'items-end justify-start md:pb-20 md:pl-10 md:pt-0 pt-150 pl-5' %}
+          {% assign position_classes = 'items-end justify-start md:pb-20 pb-65 sm:pl-10 pl-5' %}
         {% when 'bottom-left-up' %}
           {% assign position_classes = 'items-end justify-start pb-40 pl-10' %}
         {% when 'bottom-right' %}
           {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
         {% else %}
         {% when 'bottom-center' %}
-          {% assign position_classes = 'items-end justify-center md:pb-20 pt-170 md:pl-0 pl-5 md:pt-0 ' %}
+          {% assign position_classes = 'items-end justify-center md:pb-20 pb-60  ' %}
         {% else %}
           {% assign position_classes = 'items-end justify-center pb-20' %}
       {% endcase %}
 
 
 
-      <div class="inset-0 absolute md:flex {{ position_classes }} z-50 pointer-events-none w-full">
+      <div class="inset-0 absolute flex {{ position_classes }} z-50 pointer-events-none w-full">
         <a
           href="{{ block.settings.button_link }}"
           class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center 
