@@ -7,7 +7,7 @@
 
   
   {% if section.settings.title %}
-  <h2 class="text-center md:text-5xl text-[8vw] text-black font-semibold font-bricolage md:pb-20 pb-15">
+  <h2 class="text-center md:text-5xl text-3xl text-black font-semibold font-bricolage md:pb-20 pb-15">
 
     {{ section.settings.title }}
   </h2>
@@ -85,38 +85,19 @@
   {% endif %}
 
 <style>
-    @keyframes infinite-scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-    }
 
-    .animate-infinite-scroll:hover {
-  animation-play-state: paused;
+
+.card-focus {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: scale(0.95);
 }
 
-    .animate-infinite-scroll {
-      display: flex;
-      --scroll-duration: 60s; 
-      animation: infinite-scroll var(--scroll-duration) linear infinite;
-    }
 
-
-    
-    .card-focus {
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      transform: scale(0.95);
-    }
-
-
-  .card-focus.is-center {
-    transform: scale(1.2);
-    opacity: 1;
-    z-index: 10;
-  }
+.card-focus.is-center {
+  transform: scale(1.2);
+  opacity: 1;
+  z-index: 10;
+}
 
  .card-focus img {
   transition: transform 0.4s ease;
@@ -131,63 +112,84 @@
 
 </style>
 
+
 <script>
-  function detectCenterCard() {
-    const cards = document.querySelectorAll('.card-focus');
+document.addEventListener("DOMContentLoaded", () => {
 
-    const viewportCenter = window.innerWidth / 2;
+  const track = document.querySelector(".animate-infinite-scroll");
+  if (!track) return;
 
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
+  let position = 0;
+  let speed = 1; 
+  let isDragging = false;
+  let startX = 0;
+  let startPosition = 0;
+  let animationFrame;
 
-      const distance = Math.abs(viewportCenter - cardCenter);
+  const totalWidth = track.scrollWidth / 2;
 
-      const activationRange = rect.width * 0.25;
+  function animate() {
+    if (!isDragging) {
+      position -= speed;
 
-      if (distance < activationRange) {
-        card.classList.add('is-center');
-      } else {
-        card.classList.remove('is-center');
+      if (Math.abs(position) >= totalWidth) {
+        position = 0;
       }
-    });
 
-    requestAnimationFrame(detectCenterCard);
+      track.style.transform = `translateX(${position}px)`;
+    }
+
+    animationFrame = requestAnimationFrame(animate);
   }
 
-  requestAnimationFrame(detectCenterCard);
-</script>
+  animate();
 
-<script>
-  function setInfiniteScrollSpeed() {
-    const track = document.querySelector('.animate-infinite-scroll');
-    if (!track) return;
 
-    // Esperar a que el layout sea real
-    requestAnimationFrame(() => {
-      const totalWidth = track.scrollWidth;
-
-      // SOLO movemos la mitad (loop)
-      const scrollDistance = totalWidth / 2;
-
-      const speed = 80; // px por segundo
-      const duration = scrollDistance / speed;
-
-      // Reset animación (CLAVE)
-      track.style.animation = 'none';
-      track.offsetHeight; // force reflow
-      track.style.setProperty('--scroll-duration', `${duration}s`);
-      track.style.animation = '';
-    });
+  function getX(e) {
+    return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
   }
 
-  window.addEventListener('load', setInfiniteScrollSpeed);
-  window.addEventListener('resize', setInfiniteScrollSpeed);
+  function startDrag(e) {
+    isDragging = true;
+    startX = getX(e);
+    startPosition = position;
+    cancelAnimationFrame(animationFrame);
+  }
+
+  function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const currentX = getX(e);
+    const delta = currentX - startX;
+
+    position = startPosition + delta;
+    track.style.transform = `translateX(${position}px)`;
+  }
+
+  function endDrag() {
+    if (!isDragging) return;
+
+    isDragging = false;
+
+    if (Math.abs(position) >= totalWidth) {
+      position = position % totalWidth;
+    }
+
+    animate();
+  }
+
+  track.addEventListener("mousedown", startDrag);
+  track.addEventListener("touchstart", startDrag, { passive: true });
+
+  window.addEventListener("mousemove", drag);
+  window.addEventListener("touchmove", drag, { passive: false });
+
+  window.addEventListener("mouseup", endDrag);
+  window.addEventListener("touchend", endDrag);
+
+});
 </script>
-
-
-
-
 
 {% schema %}
 {

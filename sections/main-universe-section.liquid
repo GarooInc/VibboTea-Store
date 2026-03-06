@@ -1,11 +1,11 @@
 <div 
-class="w-screen md:min-h-[90vh] h-full bg-[#F5F3F3] flex flex-col justify-between px-[2vw]"
+class="w-screen lg:min-h-[90vh] h-full bg-[#F5F3F3] flex flex-col justify-between px-5"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
   <!-- TÍTULO -->
   <div class="hidden w-full md:flex justify-start items-start px-5 md:px-20 pt-15">
-    <div class="text-black text-[8vw] md:text-[3.7vw] font-bricolage font-semibold leading-tight">
+    <div class="text-black text-4xl xl:text-6xl font-bricolage font-semibold leading-tight">
       {{ section.settings.title
         | replace: 'VIBBO', '<span class="font-grafika font-normal text-[8vw] md:text-[3.6vw]">VIBBO</span>' }}
     </div>
@@ -13,7 +13,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 pt-5 md:pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 xl:px-20 pt-10 lg:pb-20">
 
         {% for block in section.blocks %}
           <div class="relative w-full aspect-square md:aspect-5/7 overflow-hidden rounded-2xl">
@@ -29,14 +29,14 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
             <!-- TEXTO -->
             <div class="absolute inset-0 flex">
-                <h2 class="text-white text-[8vw] md:text-[3.2vw] pl-5 md:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight uppercase">
+                <h2 class="text-white text-2xl lg:text-4xl xl:text-5xl pl-5 lg:pl-10 pt-10 md:pt-25 font-bricolage font-semibold leading-tight uppercase">
                     {{ block.settings.text | newline_to_br }}
                 </h2>
             </div>
 
             <!-- BOTÓN -->
             {% if block.settings.button_text != blank %}
-            <div class="absolute bottom-10 left-5 md:bottom-20 md:left-10 bg-white h-10 md:h-12 flex items-center rounded-full">
+            <div class="absolute bottom-10 left-5 lg:bottom-20 lg:left-10 bg-white h-10 md:h-12 flex items-center rounded-full">
               <p class="text-black text-sm md:text-base font-bricolage mr-2 pl-4">
                   {{ block.settings.button_text }}
               </p>
