@@ -756,8 +756,17 @@
   .min-h-100 {
     min-height: calc(var(--spacing) * 100);
   }
+  .min-h-180 {
+    min-height: calc(var(--spacing) * 180);
+  }
+  .min-h-200 {
+    min-height: calc(var(--spacing) * 200);
+  }
   .min-h-220 {
     min-height: calc(var(--spacing) * 220);
+  }
+  .min-h-225 {
+    min-height: calc(var(--spacing) * 225);
   }
   .min-h-800 {
     min-height: calc(var(--spacing) * 800);
