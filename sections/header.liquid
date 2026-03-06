@@ -8,22 +8,40 @@
 
 {% if section.settings.show_topbar %}
 <div class="topbar-wrapper blinkBW full-width py-1 cursor-pointer 
-      fixed top-0 w-full z-50 font-bricolage bg-white">
+      fixed top-0 w-full z-50 font-bricolage">
 
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
     <div class="topbar-content ">
       {% for  i in (1..6) %}
         <div class="topbar-text  text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-1 py-1.5">
-
+          {% comment %} <div class="inline-block h-6 w-5 object-contain">
+            {% render 'isotopo' %}
+          </div> {% endcomment %}
           {{ section.settings.topbar_announcement_text }}
-          {% if section.settings.isotipe %}
-            <img 
-              src="{{ section.settings.isotipe | img_url: '200x200' }}" 
-              alt="Isotipe"
-              class="inline-block h-6 w-5 object-contain"
-              width="{{ section.settings.isotipe.width }}"
-              height="{{ section.settings.isotipe.height }}"
-            >
+          {% if section.settings.isotipe or section.settings.isotipe2 %}
+            <span class="relative inline-block h-6 w-5">
+              
+              {% if section.settings.isotipe %}
+                <img 
+                  src="{{ section.settings.isotipe | img_url: '200x200' }}" 
+                  alt="Isotipe"
+                  class="isotipe1 absolute inset-0 h-6 w-5 object-contain"
+                  width="{{ section.settings.isotipe.width }}"
+                  height="{{ section.settings.isotipe.height }}"
+                >
+              {% endif %}
+
+              {% if section.settings.isotipe2 %}
+                <img 
+                  src="{{ section.settings.isotipe2 | img_url: '200x200' }}" 
+                  alt="Isotipe 2"
+                  class="isotipe2 absolute inset-0 h-6 w-5 object-contain"
+                  width="{{ section.settings.isotipe2.width }}"
+                  height="{{ section.settings.isotipe2.height }}"
+                >
+              {% endif %}
+
+            </span>
           {% endif %}
         </div>
       {% endfor %}
@@ -383,7 +401,32 @@
   }
 
   
- 
+
+.blinkBW {
+  animation: smoothBlinkBW 4s ease-in-out infinite;
+}
+
+@keyframes smoothBlinkBW {
+  0% {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  50% {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  100% {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+
+/* SVG heredan color */
+.blinkBW svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
 
 
 
@@ -407,6 +450,11 @@
       "type": "image_picker",
       "id": "isotipe",
       "label": "Isotipe Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "isotipe2",
+      "label": "Isotipe Image 2"
     },
     {
       "type": "richtext",
@@ -433,6 +481,7 @@
       "id": "logo",
       "label": "Logo Image"
     },
+    
     {
       "type": "select",
       "id": "header_background",

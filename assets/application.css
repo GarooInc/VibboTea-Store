@@ -639,6 +639,12 @@
   .h-80\! {
     height: calc(var(--spacing) * 80) !important;
   }
+  .h-90 {
+    height: calc(var(--spacing) * 90);
+  }
+  .h-150 {
+    height: calc(var(--spacing) * 150);
+  }
   .h-\[3\.5em\] {
     height: 3.5em;
   }
@@ -647,6 +653,9 @@
   }
   .h-\[40vh\] {
     height: 40vh;
+  }
+  .h-\[42vh\] {
+    height: 42vh;
   }
   .h-\[50vw\] {
     height: 50vw;
@@ -675,11 +684,29 @@
   .h-\[420px\] {
     height: 420px;
   }
+  .h-\[500px\] {
+    height: 500px;
+  }
+  .h-\[530px\] {
+    height: 530px;
+  }
   .h-\[600px\] {
     height: 600px;
   }
   .h-\[630px\] {
     height: 630px;
+  }
+  .h-\[730px\] {
+    height: 730px;
+  }
+  .h-\[800px\] {
+    height: 800px;
+  }
+  .h-\[930px\] {
+    height: 930px;
+  }
+  .h-\[1030px\] {
+    height: 1030px;
   }
   .h-auto {
     height: auto;
@@ -2248,9 +2275,24 @@
       padding-inline: calc(var(--spacing) * 10);
     }
   }
+  .sm\:px-20 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 20);
+    }
+  }
+  .sm\:px-30 {
+    @media (width >= 40rem) {
+      padding-inline: calc(var(--spacing) * 30);
+    }
+  }
   .sm\:pt-0 {
     @media (width >= 40rem) {
       padding-top: calc(var(--spacing) * 0);
+    }
+  }
+  .sm\:pt-2 {
+    @media (width >= 40rem) {
+      padding-top: calc(var(--spacing) * 2);
     }
   }
   .sm\:pt-5 {
@@ -3127,6 +3169,11 @@
       padding-inline: calc(var(--spacing) * 35);
     }
   }
+  .md\:px-40 {
+    @media (width >= 48rem) {
+      padding-inline: calc(var(--spacing) * 40);
+    }
+  }
   .md\:py-0 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 0);
@@ -3473,9 +3520,19 @@
       font-size: 140px;
     }
   }
+  .lg\:flex {
+    @media (width >= 64rem) {
+      display: flex;
+    }
+  }
   .lg\:hidden {
     @media (width >= 64rem) {
       display: none;
+    }
+  }
+  .lg\:aspect-5\/7 {
+    @media (width >= 64rem) {
+      aspect-ratio: 5/7;
     }
   }
   .lg\:h-screen {
@@ -3506,6 +3563,16 @@
   .lg\:max-w-4xl {
     @media (width >= 64rem) {
       max-width: var(--container-4xl);
+    }
+  }
+  .lg\:grid-cols-3 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .lg\:px-10 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 10);
     }
   }
   .lg\:px-15 {
