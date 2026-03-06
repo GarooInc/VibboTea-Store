@@ -16,6 +16,7 @@
       "settings": {
         "show_topbar": true,
         "isotipe": "shopify://shop_images/isotipo_black.png",
+        "isotipe2": "shopify://shop_images/Diseno_sin_titulo_23.png",
         "topbar_announcement_text": "<p>CLICK HERE TO GET YOUR $1 RESERVE DISCOUNTED OFFER</p>",
         "topbar_link": "https://drinkvibbo.com/cart/48147144343779:1",
         "menu": "main-menu-1",
