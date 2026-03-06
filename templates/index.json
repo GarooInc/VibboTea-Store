@@ -298,15 +298,44 @@
     },
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
+      "blocks": {
+        "image_xVq9ED": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321316181.png"
+          }
+        },
+        "image_8eatpi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/designer-choosing-colour-for-interior-2025-03-05-06-34-07-utc_2.png"
+          }
+        },
+        "image_t7bcap": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png"
+          }
+        },
+        "image_RDbGi7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_xVq9ED",
+        "image_8eatpi",
+        "image_t7bcap",
+        "image_RDbGi7"
+      ],
       "name": "Section socials",
       "settings": {
         "title": "Follow our socials, never miss a brew.",
         "text_socials": "",
         "social": "@drinkvibbo",
         "instagram-url": "https://instagram.com/drinkvibbo",
-        "imagen": "shopify://shop_images/designer-choosing-colour-for-interior-2025-03-05-06-34-07-utc_2.png",
-        "imagen2": "shopify://shop_images/high-heel-shoes-with-disco-balls-on-pink-backgroun-2025-03-09-23-47-55-utc_2.png",
-        "imagen3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png",
         "facebook_url": "",
         "instagram_url": "",
         "tiktok_url": ""
