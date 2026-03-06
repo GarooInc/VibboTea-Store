@@ -1,5 +1,5 @@
 <div 
-class="w-full md:min-h-400px bg-[#F5F3F3] flex flex-col justify-between md:pb-10 lg:pb-20 relative px-[2vw] pb-10"
+class="w-full md:min-h-400px bg-[#F5F3F3] flex flex-col justify-between md:pb-10 lg:pb-20 relative md:px-[2vw] pb-10"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
@@ -47,12 +47,12 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
           {%  render 'arrow-slidder2'  %}
         </button>
 
-        <div class="socialsSlider overflow-hidden w-full pt-10 md:px-10 px-5">
+        <div class="socialsSlider overflow-hidden w-full pt-10 md:px-10 px-8">
             <div class="sliderTrack flex transition-transform duration-300 ease-out">
 
                 {% for block in section.blocks %}
                   <div 
-                    class="slide-item min-w-full md:min-w-[33.3333%] p-5"
+                    class="slide-item min-w-full md:min-w-[33.3333%] md:p-5 p-2 "
                     {{ block.shopify_attributes }}
                   >
                     {% assign remainder = forloop.index0 | modulo: 2 %}
