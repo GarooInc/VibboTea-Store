@@ -1,11 +1,11 @@
-<section class="full-width flex flex-col font-bricolage xl:min-h-[500px] md:min-h-[400px] min-h-[400px] sm:min-h-[600px] relative md:pt-10">
+<section class="full-width flex flex-col font-bricolage  2xl:min-h-[600px] xl:min-h-[500px] md:min-h-[400px] min-h-[400px] sm:min-h-[600px] relative md:pt-10">
     
     
     <div class="w-full  justify-center items-center ">
         <div class="hidden md:grid md:grid-cols-3 w-full gap-6 md:gap-5 
           md:px-5 lg:px-20 ">
 
-            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+            <div class="relative w-full 2xl:h-[550px] xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
               <img 
                 src="{{ section.settings.image | img_url: '2000x2000' }}" 
                 alt="Imagen 1"
@@ -15,7 +15,7 @@
               >
             </div>
 
-            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+            <div class="relative w-full 2xl:h-[550px] xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
               <img 
                 src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
                 alt="Imagen 2"
@@ -25,7 +25,7 @@
               >
             </div>
 
-            <div class="relative w-full xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
+            <div class="relative w-full 2xl:h-[550px] xl:h-[420px] h-[350px] overflow-hidden rounded-xl">
               <img 
                 src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
                 alt="Imagen 3"
@@ -36,6 +36,7 @@
             </div>
         </div>
 
+        {% comment %} version mobile {% endcomment %}
         <div class="md:hidden relative w-full px-4 pt-10 pb-10">
           <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
             <div class="carousel-track flex transition-transform duration-300 ease-in-out">

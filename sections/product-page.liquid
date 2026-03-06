@@ -99,6 +99,23 @@
                 <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pb-5">
                   {{section.settings.text_kickstarter }}
                 </span>
+                {% comment %} boton {% endcomment %}
+                 <div class="pb-5 w-full">
+                  <a 
+                    href="{{ section.settings.kickstarter_link }}" target="_blank"
+                    class=" flex items-center justify-center w-full rounded-3xl py-3 
+                          hover:opacity-70 transition-opacity "
+                        style="
+                      background-color: {{ section.settings.per_serving_bg_color }};
+                      color: {{ section.settings.per_serving_text_color }};
+                    "
+                  >
+                    <span class="font-bricolage text-black xl:text-xl text-sm text-center uppercase font-light px-10">
+                      {{ section.settings.text_kickstarter_button }}
+                    </span>
+                  </a>
+                </div>
+                {% comment %} termina boton {% endcomment %}
 
                 <div class="flex items-start gap-3 ">
                   <div>
@@ -161,7 +178,7 @@
         <div class="subscriptions_app_embed_block"></div> {% endcomment %}
 
 
-        <div class="text-sm text-black font-bricolage pt-4 product-description">
+        <div class="text-sm text-black font-bricolage pt-4 product-description md:pr-10">
             {{ product.description }}
         </div>
         
@@ -213,7 +230,7 @@
       </div>
 
       {% if section.settings.kickstarter_price %}
-        <div class="py-5 w-full">
+        {% comment %} <div class="py-5 w-full">
           <a 
             href="{{ section.settings.kickstarter_link }}" target="_blank"
             class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
@@ -223,7 +240,7 @@
               {{ section.settings.text_kickstarter_button }}
             </span>
           </a>
-        </div>
+        </div> {% endcomment %}
        
 
       {% else %}

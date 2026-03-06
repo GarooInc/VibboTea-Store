@@ -10,121 +10,194 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
         </div>
     </div>
 
-    {% comment %} version mobile {% endcomment %}
-    <div class="md:hidden flex flex-col justify-center items-center  py-2">
+    <!-- VERSION MOBILE SOCIALS -->
+    <div class="md:hidden flex flex-col justify-center items-center py-2">
 
       <div class="h-12 flex items-center justify-center">
-        <p class="text-black font-bricolage text-center text-[3.5vw] "> 
-          {{  section.settings.text_socials}}
+        <p class="text-black font-bricolage text-center text-[3.5vw]"> 
+          {{ section.settings.text_socials }}
         </p>
       </div>
 
-      <div class="flex pl-2 gap-4  ">
-        <div class="flex justify-end md:justify-between bg-black rounded-full">
-            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-              aria-label="Facebook">
+      <div class="flex pl-2 gap-4">
+        <div class="flex justify-end bg-black rounded-full">
+            <a href="{{ section.settings.facebook_url }}" target="_blank" class="scale-70">
               {%- render 'fb' -%}
             </a>
         </div>
-        <div class="flex justify-end md:justify-between bg-black rounded-full text-white">
-            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-              aria-label="Instagram">
+        <div class="flex justify-end bg-black rounded-full text-white">
+            <a href="{{ section.settings.instagram_url }}" target="_blank" class="scale-70">
               {%- render 'ig' -%}
             </a>
         </div>
-        <div class="flex justify-end md:justify-between bg-black rounded-full ">
-            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
-              aria-label="Tiktok">
+        <div class="flex justify-end bg-black rounded-full">
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" class="scale-80">
               {%- render 'tiktok' -%}
             </a>
         </div>
-      
       </div>
     </div>
 
-    <!-- GRID IMÁGENES -->
-    <div class="w-full flex justify-center items-center">
-        <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-6 md:gap-5 p-10 md:pt-10 lg:pt-20 md:px-5 lg:px-20 pt-5  ">
 
-            <div class="relative w-full">
-              <img 
-                  src="{{ section.settings.imagen | img_url: '2000x2000' }}" 
-                  alt="Imagen 1"
-                  class="w-full h-full object-cover rounded-xl"
-                  width="{{ section.settings.background_image.width }}"
-                  height="{{ section.settings.background_image.height }}"
-              >
+    <!-- SLIDER -->
+    <div class="w-full flex justify-center items-center relative">
+
+        <!-- Flecha izquierda -->
+        <button class="prevBtn absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-10  w-15 h-15 rounded-full flex items-center justify-center">
+          {%  render 'arrow-slidder2'  %}
+        </button>
+
+        <div class="socialsSlider overflow-hidden w-full">
+            <div class="sliderTrack flex transition-transform duration-300 ease-out">
+
+                {% for block in section.blocks %}
+                  <div 
+                    class="slide-item min-w-full md:min-w-[33.3333%] p-5"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% assign remainder = forloop.index0 | modulo: 2 %}
+                    
+                    <div class="
+                      relative w-full
+                      {% if remainder == 0 %}
+                        md:-pt-16
+                      {% else %}
+                        md:pt-16
+                      {% endif %}
+                    ">
+                      <img 
+                        src="{{ block.settings.image | img_url: '2000x2000' }}" 
+                        alt="Imagen {{ forloop.index }}"
+                        class="w-full h-full object-cover rounded-xl"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                      >
+                    </div>
+                  </div>
+                {% endfor %}
+
             </div>
-
-            <div class="relative w-full md:pt-15">
-              <img 
-                  src="{{ section.settings.imagen2 | img_url: '2000x2000' }}" 
-                  alt="Imagen 2"
-                  class="w-full h-full object-cover rounded-xl"
-                  width="{{ section.settings.background_image.width }}"
-                  height="{{ section.settings.background_image.height }}"
-              >
-            </div>
-
-            <div class="relative w-full">
-              <img 
-                  src="{{ section.settings.imagen3 | img_url: '2000x2000' }}" 
-                  alt="Imagen 3"
-                  class="w-full h-full object-cover rounded-xl"
-                  width="{{ section.settings.background_image.width }}"
-                  height="{{ section.settings.background_image.height }}"
-              >
-            </div>
-
         </div>
-    </div>
-    {% comment %} version desktop {% endcomment %}
-    <div class="hidden md:flex flex-col md:flex-row w-full justify-center items-center 
-      mt-5 md:mt-0 py-5 ">
 
-  
-        <div class="flex pl-2 gap-4  ">
-            <div class="flex justify-end md:justify-between bg-black rounded-full text-white">
-                <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
-                  class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-                  aria-label="Facebook">
+        <!-- Flecha derecha -->
+        <button class="nextBtn absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-10 w-15 h-15 rounded-full flex items-center justify-center">
+          {%  render 'arrow-slidder'  %}
+        </button>
+
+    </div>
+
+
+    <!-- VERSION DESKTOP SOCIALS -->
+    <div class="hidden md:flex flex-col md:flex-row w-full justify-center items-center mt-5 md:mt-0 py-5">
+
+        <div class="flex pl-2 gap-4">
+            <div class="flex justify-end bg-black rounded-full">
+                <a href="{{ section.settings.facebook_url }}" target="_blank" class="scale-70">
                   {%- render 'fb' -%}
                 </a>
             </div>
-            <div class="flex justify-end md:justify-between bg-black rounded-full text-white">
-                <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
-                  class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-                  aria-label="Instagram">
+            <div class="flex justify-end bg-black rounded-full text-white">
+                <a href="{{ section.settings.instagram_url }}" target="_blank" class="scale-70">
                   {%- render 'ig' -%}
                 </a>
             </div>
-            <div class="flex justify-end md:justify-between bg-black rounded-full  text-white">
-                <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
-                  class="footer-icon hover:opacity-70 transition-opacity scale-80" 
-                  aria-label="Tiktok">
+            <div class="flex justify-end bg-black rounded-full">
+                <a href="{{ section.settings.tiktok_url }}" target="_blank" class="scale-80">
                   {%- render 'tiktok' -%}
                 </a>
             </div>
-          
-          </div>
+        </div>
 
-        <div class=" h-12 w-auto pl-4 pr-0
-              flex items-center justify-between  ">
-
+        <div class="h-12 w-auto pl-4 pr-0 flex items-center justify-between">
           <p class="text-black text-[4vw] md:text-xl font-bricolage flex-1 px-3">
             {{ section.settings.social }}
           </p>
-
-          
         </div>
+
     </div>
 
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+  const slider = document.querySelector(".socialsSlider");
+  if (!slider) return;
+
+  const track = slider.querySelector(".sliderTrack");
+  const slides = slider.querySelectorAll(".slide-item");
+  const prevBtn = slider.parentElement.querySelector(".prevBtn");
+  const nextBtn = slider.parentElement.querySelector(".nextBtn");
+
+  let currentIndex = 0;
+
+  function getVisibleSlides() {
+    return window.innerWidth >= 768 ? 3 : 1;
+  }
+
+  function getSlideWidth() {
+    return slides[0].offsetWidth;
+  }
+
+  function getMaxIndex() {
+    return slides.length - getVisibleSlides();
+  }
+
+  function updateSlider() {
+    const slideWidth = getSlideWidth();
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function goNext() {
+    if (currentIndex >= getMaxIndex()) {
+      currentIndex = 0;
+    } else {
+      currentIndex++;
+    }
+    updateSlider();
+  }
+
+  function goPrev() {
+    if (currentIndex <= 0) {
+      currentIndex = getMaxIndex();
+    } else {
+      currentIndex--;
+    }
+    updateSlider();
+  }
+
+  nextBtn.addEventListener("click", goNext);
+  prevBtn.addEventListener("click", goPrev);
+
+  // Swipe mobile
+  let startX = 0;
+  let endX = 0;
+
+  slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", e => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    if (startX - endX > 50) {
+      goNext();
+    }
+    if (endX - startX > 50) {
+      goPrev();
+    }
+  }
+
+  window.addEventListener("resize", () => {
+    currentIndex = 0;
+    updateSlider();
+  });
+
+});
+</script>
 
 
 {% schema %}
@@ -154,21 +227,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "id": "instagram-url",
       "label": "URL"
     },
-    {
-      "type": "image_picker",
-      "id": "imagen",
-      "label": "Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "imagen2",
-      "label": "Image2"
-    },
-    {
-      "type": "image_picker",
-      "id": "imagen3",
-      "label": "Image3"
-    },
+    
     
     {
       "type": "url",
@@ -189,6 +248,20 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
     
     
   ],
+  "blocks": [
+  {
+    "type": "image",
+    "name": "Imagen",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Imagen"
+      }
+    ]
+  }
+],
+"max_blocks": 12,
   "presets": [
     {
       "name": "Section socials"
