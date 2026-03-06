@@ -21,10 +21,27 @@
         "logo": "shopify://shop_images/image_21.png",
         "page_descripction": "Real ingredients are our foundation Real tea is our promise"
       }
+    },
+    "kick_textarea1_xzBLWH": {
+      "type": "kick-textarea1",
+      "name": "Kickstarter  textarea 1",
+      "settings": {
+        "planta1": "shopify://shop_images/about-us-hojas1.png",
+        "text1": "<p>We believe true wellness starts with <strong>rebellion</strong>, by reconnecting with the raw force of nature and the ancestral agricultural practices that have fueled civilizations for centuries. </p>",
+        "text2": "<p>Vibbo was born from the urge to craft more than a beverage; it’s an unapologetic experience of <strong>authenticity</strong>, powered by real, living ingredients and vibrant flavors. <br/><br/></p>",
+        "text_color2": "#dffa7a",
+        "text3": "<p>Each cup is a sensory ritual, designed to uplift wellness and nourish the body while celebrating tea blends in its purest, most honest, and unfiltered form.</p>",
+        "text_color3": "#f57c3c",
+        "text4": "<p>Rooted in our Mayan heritage, we explore <strong>100%natural</strong>, traceable alternatives, sourcing bold fruits and botanicals native to the Maya Biosphere. </p>",
+        "text_color4": "#f57c3c",
+        "text5": "<p>Every ingredient is <strong>handpicked</strong> with deep respect for traditional Mayan agriculture, fusing ancestral know-how with a modern, mindful approach.<br/><br/></p>",
+        "text_color5": "#61a3fd"
+      }
     }
   },
   "order": [
     "main",
-    "kick_title_77rYEU"
+    "kick_title_77rYEU",
+    "kick_textarea1_xzBLWH"
   ]
 }
