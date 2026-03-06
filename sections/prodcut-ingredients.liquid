@@ -20,9 +20,9 @@
     <div class="flex md:gap-10 gap-8 animate-infinite-scroll items-center">
       {% for i in (1..4) %} 
           {% for block in section.blocks %}
-          <div class="md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white 
+          <div class="lg:min-w-80 min-w-70 w-full bg-white 
             rounded-xl flex flex-col items-center justify-center  card-focus">
-            <div class="md:h-[18vw] h-[50vw] items-center justify-center flex">
+            <div class="md:h-65 h-70 items-center justify-center flex">
               <img 
                   src="{{ block.settings.image | image_url: width: 1000 }}"
                   alt=""
@@ -32,10 +32,10 @@
               >
             </div>
             
-            <h3 class="font-medium text-black font-bricolage xl:text-2xl text-xl">
+            <h3 class="font-medium text-black font-bricolage text-2xl ">
               {{ block.settings.title }}</h3>
-            <p class="text-black md:min-h-[8vw] min-h-[15vw] 
-              font-bricolage text-center md:text-[0.9vw] text-[3vw] py-5 md:px-4 px-6">
+            <p class="text-black md:min-h-35 min-h-25 
+              font-bricolage text-center md:text-sm text-xs py-5 md:px-4 px-6">
               {{ block.settings.text }}</p>
           </div>
           {% endfor %}
