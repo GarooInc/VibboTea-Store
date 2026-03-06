@@ -225,99 +225,154 @@
   
 </section>
 
-
 <script>
-  let currentSlide = 0;
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================
+     DESKTOP SLIDER
+  ==========================*/
+
+  const track = document.getElementById("sliderTrack");
+  let currentIndex = 0;
   let autoplayTimer = null;
 
-  function getMaxIndex() {
-    const track = document.getElementById("sliderTrack");
+  function getVisibleDesktop() {
+    return 3;
+  }
+
+  function getMaxIndexDesktop() {
     if (!track) return 0;
-    const slides = track.children.length;
-    return Math.max(slides - 3, 0); // 3 visibles
+    return Math.max(track.children.length - getVisibleDesktop(), 0);
   }
 
-  function updateSlide() {
-    const track = document.getElementById("sliderTrack");
-    if (!track) return;
-    track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+  function updateDesktop() {
+    track.style.transform = `translateX(-${currentIndex * (100 / 3)}%)`;
   }
 
-  function slideNext() {
-    const maxIndex = getMaxIndex();
-    currentSlide = currentSlide >= maxIndex ? 0 : currentSlide + 1;
-    updateSlide();
+  function nextDesktop() {
+    const max = getMaxIndexDesktop();
+    currentIndex = currentIndex >= max ? 0 : currentIndex + 1;
+    updateDesktop();
   }
 
-  function slidePrev() {
-    const maxIndex = getMaxIndex();
-    currentSlide = currentSlide <= 0 ? maxIndex : currentSlide - 1;
-    updateSlide();
+  function prevDesktop() {
+    const max = getMaxIndexDesktop();
+    currentIndex = currentIndex <= 0 ? max : currentIndex - 1;
+    updateDesktop();
   }
 
-  function startAutoplay(interval) {
-    stopAutoplay();
-    autoplayTimer = setInterval(slideNext, interval);
+  window.slideNext = nextDesktop;
+  window.slidePrev = prevDesktop;
+
+  function startAutoplayDesktop(interval) {
+    stopAutoplayDesktop();
+    autoplayTimer = setInterval(nextDesktop, interval);
   }
 
-  function stopAutoplay() {
+  function stopAutoplayDesktop() {
     if (autoplayTimer) clearInterval(autoplayTimer);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    {% if section.settings.autoplay %}
-      startAutoplay({{ section.settings.interval | default: 5000 }});
-    {% endif %}
-  });
+  /* =========================
+     MOBILE SLIDER
+  ==========================*/
 
-
-</script>
-
-<script>
-  let currentSlideMobile = 0;
+  const trackMobile = document.getElementById("sliderTrackMobile");
+  let currentIndexMobile = 0;
   let autoplayTimerMobile = null;
 
   function getMaxIndexMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return 0;
-    return Math.max(track.children.length - 1, 0);
+    if (!trackMobile) return 0;
+    return Math.max(trackMobile.children.length - 1, 0);
   }
 
-  function updateSlideMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return;
-    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
+  function updateMobile() {
+    trackMobile.style.transform = `translateX(-${currentIndexMobile * 100}%)`;
   }
 
-  function slideNextMobile() {
-    const maxIndex = getMaxIndexMobile();
-    currentSlideMobile =
-      currentSlideMobile >= maxIndex ? 0 : currentSlideMobile + 1;
-    updateSlideMobile();
+  function nextMobile() {
+    const max = getMaxIndexMobile();
+    currentIndexMobile = currentIndexMobile >= max ? 0 : currentIndexMobile + 1;
+    updateMobile();
   }
 
-  function slidePrevMobile() {
-    const maxIndex = getMaxIndexMobile();
-    currentSlideMobile =
-      currentSlideMobile <= 0 ? maxIndex : currentSlideMobile - 1;
-    updateSlideMobile();
+  function prevMobile() {
+    const max = getMaxIndexMobile();
+    currentIndexMobile = currentIndexMobile <= 0 ? max : currentIndexMobile - 1;
+    updateMobile();
   }
+
+  window.slideNextMobile = nextMobile;
+  window.slidePrevMobile = prevMobile;
 
   function startAutoplayMobile(interval) {
     stopAutoplayMobile();
-    autoplayTimerMobile = setInterval(slideNextMobile, interval);
+    autoplayTimerMobile = setInterval(nextMobile, interval);
   }
 
   function stopAutoplayMobile() {
     if (autoplayTimerMobile) clearInterval(autoplayTimerMobile);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     SWIPE (MOBILE)
+  ==========================*/
+
+  let startX = 0;
+
+  trackMobile?.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    stopAutoplayMobile();
+  });
+
+  trackMobile?.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (diff > 50) nextMobile();
+    if (diff < -50) prevMobile();
+
     {% if section.settings.autoplay %}
       startAutoplayMobile({{ section.settings.interval | default: 5000 }});
     {% endif %}
   });
+
+  /* =========================
+     DRAG (DESKTOP)
+  ==========================*/
+
+  let isDragging = false;
+  let dragStartX = 0;
+
+  track?.addEventListener("mousedown", e => {
+    isDragging = true;
+    dragStartX = e.pageX;
+    stopAutoplayDesktop();
+  });
+
+  window.addEventListener("mouseup", e => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const diff = dragStartX - e.pageX;
+
+    if (diff > 50) nextDesktop();
+    if (diff < -50) prevDesktop();
+
+    {% if section.settings.autoplay %}
+      startAutoplayDesktop({{ section.settings.interval | default: 5000 }});
+    {% endif %}
+  });
+
+
+  {% if section.settings.autoplay %}
+    startAutoplayDesktop({{ section.settings.interval | default: 5000 }});
+    startAutoplayMobile({{ section.settings.interval | default: 5000 }});
+  {% endif %}
+
+});
 </script>
+
 
 
 {% schema %}
