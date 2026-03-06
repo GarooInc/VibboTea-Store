@@ -13,9 +13,18 @@
       "type": "page",
       "disabled": true,
       "settings": {}
+    },
+    "kick_title_77rYEU": {
+      "type": "kick-title",
+      "name": "Kickstarter title",
+      "settings": {
+        "logo": "shopify://shop_images/image_21.png",
+        "page_descripction": "Real ingredients are our foundation Real tea is our promise"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "kick_title_77rYEU"
   ]
 }
