@@ -401,26 +401,47 @@
   }
 
   
-
 .blinkBW {
-  animation: smoothBlinkBW 4s ease-in-out infinite;
+  animation: smoothBlinkBW 3s linear infinite;
 }
-
 @keyframes smoothBlinkBW {
-  0% {
+  0%, 49.999% {
     background-color: #ffffff;
     color: #000000;
   }
-  50% {
+  50%, 100% {
     background-color: #000000;
     color: #ffffff;
   }
-  100% {
-    background-color: #ffffff;
-    color: #000000;
+}
+
+/* Alternancia de logos */
+
+.isotipe1 {
+  animation: logoSwitch1 3s linear infinite;
+}
+
+.isotipe2 {
+  animation: logoSwitch2 3s linear infinite;
+}
+
+@keyframes logoSwitch1 {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
   }
 }
 
+@keyframes logoSwitch2 {
+  0%, 49% {
+    opacity: 0;
+  }
+  50%, 100% {
+    opacity: 1;
+  }
+}
 
 /* SVG heredan color */
 .blinkBW svg {
