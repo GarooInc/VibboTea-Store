@@ -47,13 +47,14 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       </div>
     </div>
 
-    <!-- GRID IMÁGENES -->
+    {% comment %} GRID IMÁGENES oculto {% endcomment %}
+    {% comment %}
     <div class="w-full flex justify-center items-center">
         <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-6 md:gap-5 p-10 md:pt-10 lg:pt-20 md:px-5 lg:px-20 pt-5  ">
 
             <div class="relative w-full">
-              <img 
-                  src="{{ section.settings.imagen | img_url: '2000x2000' }}" 
+              <img
+                  src="{{ section.settings.imagen | img_url: '2000x2000' }}"
                   alt="Imagen 1"
                   class="w-full h-full object-cover rounded-xl"
                   width="{{ section.settings.background_image.width }}"
@@ -62,8 +63,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
             </div>
 
             <div class="relative w-full md:pt-15">
-              <img 
-                  src="{{ section.settings.imagen2 | img_url: '2000x2000' }}" 
+              <img
+                  src="{{ section.settings.imagen2 | img_url: '2000x2000' }}"
                   alt="Imagen 2"
                   class="w-full h-full object-cover rounded-xl"
                   width="{{ section.settings.background_image.width }}"
@@ -72,8 +73,8 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
             </div>
 
             <div class="relative w-full">
-              <img 
-                  src="{{ section.settings.imagen3 | img_url: '2000x2000' }}" 
+              <img
+                  src="{{ section.settings.imagen3 | img_url: '2000x2000' }}"
                   alt="Imagen 3"
                   class="w-full h-full object-cover rounded-xl"
                   width="{{ section.settings.background_image.width }}"
@@ -83,6 +84,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
         </div>
     </div>
+    {% endcomment %}
     {% comment %} version desktop {% endcomment %}
     <div class="hidden md:flex flex-col md:flex-row w-full justify-center items-center 
       mt-5 md:mt-0 py-5 ">
