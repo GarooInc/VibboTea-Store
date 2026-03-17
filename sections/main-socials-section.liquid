@@ -3,18 +3,20 @@ class="w-full lg:min-h-[90vh] md:min-h-[50vh] bg-[#F5F3F3] flex flex-col justify
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
-    <!-- TÍTULO -->
+    {% comment %} TÍTULO oculto {% endcomment %}
+    {% comment %}
     <div class="w-full flex md:justify-start md:items-start md:text-left text-center justify-center px-5 lg:px-20 md:px-10 lg:pt-20 md:pt-15 pt-10">
         <div class="text-black text-[11vw] md:text-[4.5vw] font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
     </div>
+    {% endcomment %}
 
     {% comment %} version mobile {% endcomment %}
     <div class="md:hidden flex flex-col justify-center items-center  py-2">
 
       <div class="h-12 flex items-center justify-center">
-        <p class="text-black font-bricolage text-center text-[3.5vw] "> 
+        <p class="text-black font-bricolage text-center text-[3.5vw] ">
           {{  section.settings.text_socials}}
         </p>
       </div>
