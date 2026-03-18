@@ -93,21 +93,16 @@
           {{ product.title }}
         </h1>
         <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
-
           {% if current_variant.compare_at_price > current_variant.price %}
             <span class="text-2xl md:text-3xl text-gray-400 line-through">
               {{ current_variant.compare_at_price | money }}
             </span>
 
             <span class="text-2xl md:text-2xl text-red-700 font-light">
-              {% if product.metafields.custom.message != blank %}
-                {{ product.metafields.custom.message }}
-              {% else %}
-                Secure yours now with 15% off, arriving in May
-              {% endif %}
+              {% comment %} {{ current_variant.price | money }} {% endcomment %}
+               Secure yours now with 20% off, arriving in May
             </span>
           {% else %}
-
             <span class="text-2xl md:text-3xl text-gray-700">
               {{ current_variant.price | money }}
             </span>
