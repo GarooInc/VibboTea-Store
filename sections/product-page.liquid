@@ -115,8 +115,6 @@
         </div> 
         <!-- End of Judge.me code -->
 
-        <div class="subscriptions_app_embed_block"></div>
-
 
         <div class="text-sm text-black font-bricolage pt-4 product-description">
             {{ product.description }}
@@ -176,7 +174,9 @@
           id="variantInput"
           value="{{ current_variant.id }}"
         >
-
+        
+        <div class="subscriptions_app_embed_block"></div>
+        
         <button
           type="submit"
           {% comment %} {% unless current_variant.available %}disabled{% endunless %} {% endcomment %}
