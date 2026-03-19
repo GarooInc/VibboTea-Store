@@ -144,8 +144,6 @@
           {{ product.description }}
         </div>
 
-        <div class="subscriptions_app_embed_block"></div>
-
         <!-- VARIANTES -->
         {% unless product.has_only_default_variant %}
           {% assign first_variant = product.selected_or_first_available_variant %}
@@ -179,6 +177,8 @@
           </div>
         {% endunless %}
       </div>
+
+      <div class="subscriptions_app_embed_block w-full"></div>
 
       <!-- BOTÓN ADD TO CART (solo si kickstarter está desactivado) -->
       {% if section.settings.kickstarter_price %}
