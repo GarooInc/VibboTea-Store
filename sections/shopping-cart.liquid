@@ -112,7 +112,7 @@
               {% if item.selling_plan_allocation %}
                           {% assign plan_multiplier = item.selling_plan_allocation.selling_plan.delivery_policy.interval_count | default: 1 %}
                                   {% assign adjusted_compare_price = item.selling_plan_allocation.compare_at_price | times: plan_multiplier %}
-                                          {% assign adjusted_final_price = item.final_line_price | times: plan_multiplier %} %} %} %}
+                                          {% assign adjusted_final_price = item.final_line_price | times: plan_multiplier %} 
                 <p class="text-xs text-green-600 font-medium mb-1">
                   {{ item.selling_plan_allocation.selling_plan.name }}
                 </p>
