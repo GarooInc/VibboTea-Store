@@ -8,7 +8,6 @@
 
     <!-- SLIDER -->
     <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
-      
       <div class="flex transition-transform duration-500" id="sliderTrack">
         {% for media in product.media %}
           <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
@@ -44,12 +43,12 @@
       </div>
 
       <!-- BOTONES -->
-      <button 
+      <button
         class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer"
         onclick="slidePrev()">
         {% render 'arrow-slidder2' %}
       </button>
-      <button 
+      <button
         class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer"
         onclick="slideNext()">
         {% render 'arrow-slidder' %}
@@ -59,7 +58,7 @@
     {% else %}
       <div class="product-media w-full justify-center">
         {% if product.featured_media %}
-          <img 
+          <img
             src="{{ product.featured_media | image_url: width: 1200 }}"
             alt="{{ product.featured_media.alt | escape }}"
             class="w-full h-auto object-cover rounded-xl"
@@ -79,15 +78,16 @@
         <!-- PRECIO -->
         <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
           {% if section.settings.kickstarter_price %}
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
 
+              <!-- 1. Texto rojo -->
               <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pb-5">
                 {{ section.settings.text_kickstarter }}
               </span>
 
-              <!-- Botón Kickstarter -->
+              <!-- 2. Botón -->
               <div class="pb-5 w-full">
-                <a 
+                <a
                   href="{{ section.settings.kickstarter_link }}" target="_blank"
                   class="flex items-center justify-center w-full rounded-3xl py-3 hover:opacity-70 transition-opacity"
                   style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
@@ -98,7 +98,7 @@
                 </a>
               </div>
 
-              <!-- Precio con descuento -->
+              <!-- 3. Precio + tachado + badge -->
               <div class="flex items-start gap-3">
                 <div>
                   <span class="text-3xl md:text-4xl text-black">
@@ -108,7 +108,7 @@
                     {{ current_variant.compare_at_price | money }}
                   </span>
                 </div>
-                <span 
+                <span
                   class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
                   style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
                 >
@@ -116,8 +116,10 @@
                 </span>
               </div>
 
+              <!-- 4. Per serving -->
               <p class="pt-2">{{ section.settings.discount_per_serving_kickstarter }}</p>
 
+              <!-- 5. Countdown -->
               <div id="countdown" class="text-red-700 text-md md:text-lg pt-1">
                 {{ section.settings.timer_kickstarter }} <span id="timer"></span>
               </div>
@@ -140,6 +142,7 @@
           {% endif %}
         </div>
 
+        <!-- DESCRIPCIÓN / INGREDIENTS -->
         <div class="text-sm text-black font-bricolage pt-4 product-description md:pr-10">
           {{ product.description }}
         </div>
@@ -176,20 +179,20 @@
             {% endfor %}
           </div>
         {% endunless %}
+
       </div>
 
+      <!-- SUSCRIPCIÓN (siempre presente) -->
       <div class="subscriptions_app_embed_block w-full"></div>
 
       <!-- BOTÓN ADD TO CART (solo si kickstarter está desactivado) -->
-      {% if section.settings.kickstarter_price %}
-        <!-- Kickstarter activo: no muestra Add to Cart -->
-      {% else %}
+      {% unless section.settings.kickstarter_price %}
         <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
           <button
             type="submit"
             {% unless current_variant.available %}disabled{% endunless %}
-            class="bg-gray-800 flex items-center justify-center w-full rounded-3xl py-3 
+            class="bg-gray-800 flex items-center justify-center w-full rounded-3xl py-3
                   hover:opacity-70 transition-opacity disabled:opacity-50"
           >
             <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
@@ -201,7 +204,7 @@
             </span>
           </button>
         </form>
-      {% endif %}
+      {% endunless %}
 
       <!-- DISCLAIMER -->
       <div>
@@ -358,13 +361,13 @@
     {
       "type": "color",
       "id": "per_serving_bg_color",
-      "label": "Per Serving Background Color",
+      "label": "Button / Badge Background Color",
       "default": "#f3f4f6"
     },
     {
       "type": "color",
       "id": "per_serving_text_color",
-      "label": "Per Serving Text Color",
+      "label": "Button / Badge Text Color",
       "default": "#000000"
     },
     {
