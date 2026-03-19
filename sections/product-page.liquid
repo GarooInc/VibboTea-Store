@@ -53,6 +53,7 @@
         {% endfor %}
       </div>
 
+
       <!-- BOTONES -->
       <button 
         class="absolute left-0 top-1/2 -translate-y-1/2   
@@ -70,33 +71,36 @@
 
     </div>
 
+        
     {% else %}
-      <div class="product-media w-full justify-center ">
+        <div class="product-media w-full justify-center ">
         {% if product.featured_media %}
-          <img 
+            <img 
             src="{{ product.featured_media | image_url: width: 1200 }}"
             alt="{{ product.featured_media.alt | escape }}"
             class="w-full h-auto object-cover rounded-xl"
             width="{{ product.featured_media.width }}"
             height="{{ product.featured_media.height }}"
-          />
+            />
         {% endif %}
-      </div>
-    {% endif %}
+        </div>
 
-    <div class="product-info w-full px-4 flex flex-col justify-between items-start h-full">
+       
+    {% endif %}
+     <div class="product-info w-full  px-4 flex flex-col justify-between items-start h-full">
       <div>
         <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
           {{ product.title }}
         </h1>
-
         <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
           {% if current_variant.compare_at_price > current_variant.price %}
             <span class="text-2xl md:text-3xl text-gray-400 line-through">
               {{ current_variant.compare_at_price | money }}
             </span>
+
             <span class="text-2xl md:text-2xl text-red-700 font-light">
-              Secure yours now with 20% off, arriving in May
+              {% comment %} {{ current_variant.price | money }} {% endcomment %}
+               Secure yours now with 20% off, arriving in May
             </span>
           {% else %}
             <span class="text-2xl md:text-3xl text-gray-700">
@@ -106,14 +110,17 @@
         </div>
 
         <!-- Start of Judge.me code --> 
-        <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
-          {{ product.metafields.judgeme.badge }} 
+          <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+        {{ product.metafields.judgeme.badge }} 
         </div> 
         <!-- End of Judge.me code -->
 
+
         <div class="text-sm text-black font-bricolage pt-4 product-description">
-          {{ product.description }}
+            {{ product.description }}
         </div>
+        
+
 
         {% comment %} variantes {% endcomment %}
         {% unless product.has_only_default_variant %}
@@ -139,85 +146,64 @@
                 data-compare-raw="{{ variant.compare_at_price }}"
               >
                 <div class="w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
-                  <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
+                  <p class="font-bricolage md:text-md text-xs  text-center text-white px-2 leading-tight">
                     {{ descount }}
                   </p>
                 </div>
+
                 <div class="flex-1 w-full flex items-center justify-center py-2">
                   <p class="font-bricolage md:text-lg text-sm">
                     {{ cant }}
                   </p>
                 </div>
               </div>
+
             {% endfor %}
+         
           </div>
+          
+        
+
         {% endunless %}
-
-        <!-- ===== KICKSTARTER PRICE BLOCK ===== -->
-        {% if section.settings.kickstarter_price %}
-          <div class="kickstarter-block mt-6">
-
-            <div class="kickstarter-block__text">
-              {{ section.settings.text_kickstarter }}
-            </div>
-
-            <div class="kickstarter-block__discount flex items-center gap-3 mt-2">
-              <span class="font-bricolage font-bold text-lg">
-                {{ section.settings.discount_text_kickstarter }}
-              </span>
-              <span
-                class="font-bricolage text-sm px-3 py-1 rounded-full"
-                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-              >
-                {{ section.settings.discount_per_serving_kickstarter }}
-              </span>
-            </div>
-
-            {% if section.settings.timer_kickstarter != blank and section.settings.time_discount_kickstarter != blank %}
-              <div class="kickstarter-block__timer flex items-center gap-2 mt-3 text-sm font-bricolage">
-                <span>{{ section.settings.timer_kickstarter }}</span>
-                <span class="font-bold" id="kickstarter-countdown" data-end="{{ section.settings.time_discount_kickstarter }}"></span>
-              </div>
-            {% endif %}
-
-            {% if section.settings.kickstarter_link != blank %}
-              <a
-                href="{{ section.settings.kickstarter_link }}"
-                class="kickstarter-block__btn inline-block mt-4 bg-black text-white font-bricolage uppercase text-sm px-6 py-3 rounded-3xl hover:opacity-70 transition-opacity"
-              >
-                {{ section.settings.text_kickstarter_button }}
-              </a>
-            {% endif %}
-
-            {% if section.settings.disclaimer_kickstarter != blank %}
-              <p class="kickstarter-block__disclaimer text-xs text-gray-500 mt-3">
-                {{ section.settings.disclaimer_kickstarter }}
-              </p>
-            {% endif %}
-
-          </div>
-        {% endif %}
-        <!-- ===== END KICKSTARTER PRICE BLOCK ===== -->
-
       </div>
 
       <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
-        <input type="hidden" name="selling_plan" id="selling_plan" value="">
-        <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
+        <input
+          type="hidden"
+          name="selling_plan"
+          id="selling_plan"
+          value=""
+        >
+        <input
+          type="hidden"
+          name="id"
+          id="variantInput"
+          value="{{ current_variant.id }}"
+        >
+       
         <div class="subscriptions_app_embed_block"></div>
         <input type="hidden" name="quantity" id="subscription-quantity" value="1">
         <button
           type="submit"
+          {% comment %} {% unless current_variant.available %}disabled{% endunless %} {% endcomment %}
           class="bg-black flex items-center justify-center w-full rounded-3xl py-3 
                 hover:opacity-70 transition-opacity disabled:opacity-50"
         >
           <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
-            Add to cart
+            {% comment %} {% if current_variant.available %} {% endcomment %}
+              Add to cart
+            {% comment %} {% else %}
+              Sold out
+            {% endif %} {% endcomment %}
           </span>
         </button>
       </form>
 
+
+        
+
     </div>
+        
 
   {% else %}
     <div class="col-span-2 text-center text-sm text-gray-500">No product selected in section settings.</div>
@@ -229,11 +215,16 @@
   const variants = document.querySelectorAll('.variant-option');
   const variantInput = document.getElementById('variantInput');
   const priceWrapper = document.getElementById('priceWrapper');
+  const mainPrice = document.getElementById('mainPrice');
 
   variants.forEach(option => {
     option.addEventListener('click', () => {
-      variants.forEach(v => v.classList.remove('ring-2', 'ring-black', 'scale-105'));
+      variants.forEach(v => {
+        v.classList.remove('ring-2', 'ring-black', 'scale-105');
+      });
+
       option.classList.add('ring-2', 'ring-black', 'scale-105');
+
       variantInput.value = option.dataset.variantId;
 
       priceWrapper.classList.add('opacity-0', 'translate-y-2');
@@ -244,14 +235,21 @@
 
         if (compare && compare !== '') {
           priceWrapper.innerHTML = `
-            <span class="text-3xl md:text-4xl text-gray-400 line-through">${compare}</span>
-            <span class="text-sm md:text-xl text-red-700 font-light">Secure yours now with 15% off, arriving in May</span>
+            <span class="text-3xl md:text-4xl text-gray-400 line-through">
+              ${compare}
+            </span>
+            <span class="text-sm md:text-xl text-red-700 font-light">
+              Secure yours now with 15% off, arriving in May
+            </span>
           `;
         } else {
           priceWrapper.innerHTML = `
-            <span class="text-5xl md:text-6xl text-gray-700">${price}</span>
+            <span class="text-5xl md:text-6xl text-gray-700">
+              ${price}
+            </span>
           `;
         }
+
 
         priceWrapper.classList.remove('opacity-0', 'translate-y-2');
       }, 200);
@@ -259,125 +257,33 @@
   });
 </script>
 
-<script>
-  let currentSlide = 0;
 
-  function slideNext() {
+<script>
+    let currentSlide = 0;
+
+    function slideNext() {
     const track = document.getElementById("sliderTrack");
     const slides = track.children.length;
+
     currentSlide = (currentSlide + 1) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
-
-  function slidePrev() {
-    const track = document.getElementById("sliderTrack");
-    const slides = track.children.length;
-    currentSlide = (currentSlide - 1 + slides) % slides;
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
-</script>
-
-<script>
-  (function() {
-    const el = document.getElementById('kickstarter-countdown');
-    if (!el) return;
-
-    const endDate = new Date(el.dataset.end).getTime();
-
-    function updateTimer() {
-      const diff = endDate - Date.now();
-      if (diff <= 0) { el.textContent = '00d 00h 00m 00s'; return; }
-
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-
-      el.textContent =
-        String(d).padStart(2,'0') + 'd ' +
-        String(h).padStart(2,'0') + 'h ' +
-        String(m).padStart(2,'0') + 'm ' +
-        String(s).padStart(2,'0') + 's';
     }
 
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  })();
+    function slidePrev() {
+    const track = document.getElementById("sliderTrack");
+    const slides = track.children.length;
+
+    currentSlide = (currentSlide - 1 + slides) % slides;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
 </script>
+
 
 {% schema %}
 {
   "name": "Description product",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Kickstarter Price"
-    },
-    {
-      "type": "checkbox",
-      "id": "kickstarter_price",
-      "label": "Enable Kickstarter price",
-      "default": true
-    },
-    {
-      "type": "richtext",
-      "id": "text_kickstarter",
-      "label": "Kickstarter text",
-      "default": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>"
-    },
-    {
-      "type": "text",
-      "id": "text_kickstarter_button",
-      "label": "Button text",
-      "default": "ADD DISCOUNT"
-    },
-    {
-      "type": "text",
-      "id": "discount_text_kickstarter",
-      "label": "Discount text",
-      "default": "20% OFF"
-    },
-    {
-      "type": "text",
-      "id": "discount_per_serving_kickstarter",
-      "label": "Discount per serving text",
-      "default": "$0.57 per serving"
-    },
-    {
-      "type": "color",
-      "id": "per_serving_bg_color",
-      "label": "Per Serving Background Color",
-      "default": "#f3f4f6"
-    },
-    {
-      "type": "color",
-      "id": "per_serving_text_color",
-      "label": "Per Serving Text Color",
-      "default": "#000000"
-    },
-    {
-      "type": "text",
-      "id": "timer_kickstarter",
-      "label": "Timer label",
-      "default": "SALES ENDS IN: "
-    },
-    {
-      "type": "text",
-      "id": "time_discount_kickstarter",
-      "label": "Discount End Date (YYYY-MM-DD HH:MM:SS)",
-      "default": "2026-02-27 23:59:59"
-    },
-    {
-      "type": "url",
-      "id": "kickstarter_link",
-      "label": "Kickstarter link"
-    },
-    {
-      "type": "textarea",
-      "id": "disclaimer_kickstarter",
-      "label": "Disclaimer text"
-    }
-  ],
+  "settings": [],
+  
   "presets": [{ "name": "Description product" }]
 }
 {% endschema %}
