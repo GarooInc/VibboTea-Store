@@ -110,36 +110,19 @@
             {% comment %} bloque del precio {% endcomment %}
             <div class="justify-self-center self-center">
               {% if item.selling_plan_allocation %}
-
-              {% comment %} Extraer el número del nombre del plan (ej: "Deliver every 2 months" → 2) {% endcomment %}
-              {% assign plan_name = item.selling_plan_allocation.selling_plan.name %}
-              {% assign plan_parts = plan_name | split: ' ' %}
-              {% assign plan_multiplier = 1 %}
-
-              {% for word in plan_parts %}
-                {% assign word_as_num = word | plus: 0 %}
-                {% if word_as_num > 1 %}
-                  {% assign plan_multiplier = word_as_num %}
-                {% endif %}
-              {% endfor %}
-
-              {% comment %} Precio por entrega × número de meses {% endcomment %}
-              {% assign unit_price = item.selling_plan_allocation.per_delivery_price %}
-              {% assign adjusted_final_price = unit_price | times: plan_multiplier %}
-
-              {% comment %} Compare price original × número de meses {% endcomment %}
-              {% assign unit_compare = item.selling_plan_allocation.compare_at_price %}
-              {% assign adjusted_compare_price = unit_compare | times: plan_multiplier %}
+              {% assign plan_multiplier = item.selling_plan_allocation.selling_plan.delivery_policy.interval_count | default: 1 %}
+              {% assign adjusted_compare_price = item.selling_plan_allocation.compare_at_price | times: plan_multiplier %}
+              {% assign adjusted_final_price = item.final_line_price | times: plan_multiplier %} 
 
               <p class="text-xs text-green-600 font-medium mb-1">
-                {{ plan_name }}
+                {{ item.selling_plan_allocation.selling_plan.name }}
               </p>
               <div class="flex items-center gap-2">
                 <span class="text-sm text-gray-400 line-through">
                   {{ adjusted_compare_price | money }}
                 </span>
                 <span class="text-2xl font-semibold text-green-700">
-                  {{ adjusted_final_price | money }}
+                  {{ adjusted_final_price | money }} 
                 </span>
               </div>
               <p class="text-xs text-green-500 mt-1">
