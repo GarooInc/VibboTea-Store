@@ -38,6 +38,7 @@
             "title_sec": "",
             "desc_sec": "",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": true,
             "hover_text": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.",
             "button_position": "bottom-center"
@@ -54,6 +55,7 @@
             "title_sec": "",
             "desc_sec": "",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "center"
@@ -71,6 +73,7 @@
             "title_sec": "FUEL YOUR CHAOS,\nWITH VITALITY",
             "desc_sec": "NATURAL ENERGY",
             "button_text": "SHOP NOW",
+            "button_link": "shopify://products/hydra-boost-natural-energy",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
@@ -88,6 +91,7 @@
             "title_sec": "SHED THE NOISE INSIDE OUT",
             "desc_sec": "NATURAL DETOX",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
@@ -105,6 +109,7 @@
             "title_sec": "UNWIND YOURSELF\nWITHOUT KNOCKOUT",
             "desc_sec": "NATURAL RELAX",
             "button_text": "SHOP NOW",
+            "button_link": "",
             "link_popup": false,
             "hover_text": "Texto",
             "button_position": "bottom-left"
