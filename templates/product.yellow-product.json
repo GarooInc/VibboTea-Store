@@ -17,7 +17,21 @@
     "product_page_rNtVMj": {
       "type": "product-page",
       "name": "Description product",
-      "settings": {}
+      "settings": {
+        "text_button": "ADD TO CART",
+        "sold_out_text": "SOLD OUT",
+        "kickstarter_price": true,
+        "text_kickstarter": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>",
+        "text_kickstarter_button": "ADD DISCOUNT",
+        "discount_text_kickstarter": "20% OFF",
+        "discount_per_serving_kickstarter": "$0.57 per serving",
+        "per_serving_bg_color": "#ffd704",
+        "per_serving_text_color": "#000000",
+        "timer_kickstarter": "SALES ENDS IN:",
+        "time_discount_kickstarter": "2026-02-27 23:59:59",
+        "kickstarter_link": "",
+        "disclaimer_kickstarter": ""
+      }
     },
     "1766421284c922609f": {
       "type": "apps",
