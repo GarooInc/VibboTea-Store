@@ -274,15 +274,9 @@
 
         if (res.ok) {
           btnText.textContent = 'Added!';
-          // Refrescar el mini-cart del tema si existe
-          document.dispatchEvent(new CustomEvent('cart:refresh'));
-          fetch('/cart.js').then(r => r.json()).then(() => {
-            document.dispatchEvent(new CustomEvent('cart:updated'));
-          });
           setTimeout(() => {
-            btnText.textContent = originalText;
-            ksBtn.disabled = false;
-          }, 1500);
+            window.location.href = '/cart';
+          }, 800);
         } else {
           const err = await res.json();
           btnText.textContent = err.description || 'Error';
