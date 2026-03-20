@@ -257,6 +257,12 @@
     // Guardar variant id inicial
     ksBtn.dataset.variantId = '{{ current_variant.id }}';
 
+    // Re-habilitar si el navegador restaura la página desde caché
+    window.addEventListener('pageshow', () => {
+      ksBtn.disabled = false;
+      btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
+    });
+
     ksBtn.addEventListener('click', async () => {
       const variantId = ksBtn.dataset.variantId;
       const btnText = ksBtn.querySelector('span');
