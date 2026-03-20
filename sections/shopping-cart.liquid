@@ -1,102 +1,191 @@
-<div class="max-w-3xl mx-auto px-4 py-20 pt-40 font-bricolage">
+<section
+  class="w-screen h-full bg-[#F5F5F5] flex md:pt-30 pt-20 py-20"
+  style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);"
+>
+  <div class="w-full px-6 md:px-30 font-bricolage flex flex-col flex-1 ">
 
-  <h1 class="text-3xl md:text-4xl font-medium text-black mb-10">
-    {{ 'cart.title' | t }}
-  </h1>
+    <!-- TITLE -->
+    <h1 class="text-3xl md:text-4xl font-semibold text-black mb-12 py-10">
+      Shopping Cart
+    </h1>
 
-  {% if cart.item_count == 0 %}
-    <p class="text-gray-500 text-sm">Your cart is empty.</p>
-    <a href="/collections/all" class="inline-block mt-6 text-sm underline text-black">Continue shopping</a>
+    {% if cart.item_count > 0 %}
 
-  {% else %}
-    <form action="{{ routes.cart_url }}" method="post">
+    <form action="{{ routes.cart_url }}" method="post" class="flex-1 flex flex-col">
 
-      <div class="flex flex-col gap-6">
-        {% for item in cart.items %}
-          <div class="flex gap-4 items-center border-b border-gray-200 pb-6">
+      <div class="grid grid-cols-1 gap-10 flex-1 w-full">
 
-            <!-- Imagen -->
-            <a href="{{ item.url }}" class="shrink-0">
-              <img
-                src="{{ item.image | image_url: width: 150 }}"
-                alt="{{ item.image.alt | escape }}"
-                class="w-24 h-24 object-cover rounded-lg"
-                width="96" height="96"
-              />
-            </a>
+        <div class="md:col-span-2 md:space-y-6 bg-white rounded-xl md:px-10 px-4">
 
-            <!-- Info -->
-            <div class="flex-1">
-              <a href="{{ item.url }}" class="text-black font-medium text-sm md:text-base hover:underline">
-                {{ item.product.title }}
-              </a>
-              {% unless item.variant.title == 'Default Title' %}
-                <p class="text-xs text-gray-500 mt-1">{{ item.variant.title }}</p>
-              {% endunless %}
-              <p class="text-sm text-gray-700 mt-1">{{ item.price | money }}</p>
+          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr] md:py-10 pt-5 pb-10"> 
+            <h3 class="md:text-2xl text-md font-bold text=left md:pl-10 ">Product</h3>
+            <h3 class="md:text-2xl font-bold text-center">Quantity</h3>
+            <h3 class="md:text-2xl font-bold text-center">Total</h3>
+            <h3 class="md:text-2xl font-bold text-center"></h3>
+          </div>
 
-              <!-- Cantidad -->
-              <div class="flex items-center gap-2 mt-3">
-                <label for="qty_{{ item.key }}" class="text-xs text-gray-500">Qty:</label>
-                <input
-                  type="number"
-                  name="updates[]"
-                  id="qty_{{ item.key }}"
-                  value="{{ item.quantity }}"
-                  min="1"
-                  class="w-14 border border-gray-300 rounded-lg text-center text-sm py-1"
+          {% for item in cart.items %}
+          <div class="grid md:grid-cols-[2fr_1fr_1fr_1fr] grid-cols-[1fr_1fr_1fr]
+             md:py-10 py-3 md:px-5 items-center ">
+
+            <div class="flex md:flex-row flex-col md:items-center ">
+              <div class="md:w-44 md:h-44 w-24 h-24 overflow-hidden shrink-0 rounded-lg">
+                <img
+                  src="{{ item.image | image_url: width: 300 }}"
+                  alt=""
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  width="{{ item.image.featured_media.width }}"
+                  height="{{ item.image.featured_media.height }}"
                 >
+              </div>
+
+              <div class="flex-1 md:px-10">
+                <h3 class="md:text-xl text-sm font-medium">
+                  {{ item.product.title }}
+                </h3>
+
+                {% if item.variant.title != 'Default Title' %}
+                  {% assign parts = item.variant.title | split: '/' %}
+                  {% assign servings = parts[0] | strip %}
+                  {% assign grams = parts[1] | strip | remove: 'gr' | strip %}
+                  <p class="text-sm text-gray-500 mt-1">
+                    {{ servings }} servings, {{ grams }} grams
+                  </p>
+                {% endif %}
               </div>
             </div>
 
-            <!-- Subtotal + eliminar -->
-            <div class="flex flex-col items-end gap-3 shrink-0">
-              <p class="text-sm font-medium text-black">{{ item.line_price | money }}</p>
-              <a
-                href="{{ item.url_to_remove }}"
-                class="text-xs text-gray-400 hover:text-red-500 transition-colors underline"
-              >
-                Remove
-              </a>
+            <!-- Cantidad -->
+            <div class="justify-self-center self-center">
+              <div class="flex items-center justify-between md:w-28 md:h-10 w-20 h-10 border border-black rounded-full px-2">
+                <button
+                  type="button"
+                  onclick="this.nextElementSibling.stepDown(); submitCartForm(this);"
+                  class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
+                >−</button>
+
+                <input
+                  type="number"
+                  name="updates[{{ item.key }}]"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  class="w-8 h-full text-center outline-none border-0 bg-transparent 
+                        font-medium leading-none appearance-none
+                        [&::-webkit-inner-spin-button]:appearance-none
+                        [&::-webkit-outer-spin-button]:appearance-none"
+                />
+
+                <button
+                  type="button"
+                  onclick="this.previousElementSibling.stepUp(); submitCartForm(this);"
+                  class="w-6 h-6 flex items-center justify-center rounded-full border border-black text-sm hover:bg-black hover:text-white transition"
+                >+</button>
+              </div>
             </div>
+
+            <!-- Precio -->
+            <div class="justify-self-center self-center">
+              <p class="text-2xl font-semibold">
+                {{ item.final_line_price | money }}
+              </p>
+            </div>
+
+            <!-- Eliminar -->
+            <div class="hidden md:block justify-self-center self-center">
+              <button
+                type="submit"
+                name="updates[{{ item.key }}]"
+                value="0"
+                class="cursor-pointer"
+              >
+                {% render 'trash' %}
+              </button>
+            </div>
+
           </div>
-        {% endfor %}
-      </div>
+          {% endfor %}
 
-      <!-- Totales -->
-      <div class="mt-8 flex flex-col items-end gap-4">
-        <div class="flex justify-between w-full md:w-1/2">
-          <span class="text-sm text-gray-500">Subtotal</span>
-          <span class="text-sm font-medium text-black">{{ cart.total_price | money }}</span>
         </div>
-        <p class="text-xs text-gray-400 text-right">Shipping and taxes calculated at checkout.</p>
 
-        <div class="flex gap-3 w-full md:w-auto">
-          <button
-            type="submit"
-            name="update"
-            class="border border-gray-300 text-sm text-black rounded-3xl px-6 py-3 hover:opacity-70 transition-opacity"
-          >
-            Update cart
-          </button>
-          <button
-            type="submit"
-            name="checkout"
-            class="bg-gray-800 text-white text-sm rounded-3xl px-8 py-3 hover:opacity-70 transition-opacity"
-          >
-            Checkout
-          </button>
+        <button type="submit" class="hidden" name="update">Update cart</button>
+
+        <!-- Order Summary -->
+        <div class="md:col-span-2 space-y-6 bg-white rounded-xl md:px-20 px-5 py-10 min-h-50">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-40">
+
+            <!-- Izquierda -->
+            <div>
+              <h2 class="text-3xl md:text-2xl font-semibold text-black pb-5">Order Summary</h2>
+
+              <div class="flex justify-between mb-4">
+                <span class="text-lg text-gray-600">Subtotal</span>
+                <span class="text-lg font-medium">{{ cart.items_subtotal_price | money }}</span>
+              </div>
+
+              {% if cart.total_discount > 0 %}
+              <div class="flex justify-between mb-4 text-green-600">
+                <span class="text-lg">Discount</span>
+                <span class="text-lg font-medium">-{{ cart.total_discount | money }}</span>
+              </div>
+              {% endif %}
+
+              <div class="flex justify-between mb-4">
+                <span class="text-lg text-gray-600">Shipping</span>
+                <span class="md:text-lg text-xs items-center">Calculated at checkout</span>
+              </div>
+            </div>
+
+            <!-- Derecha -->
+            <div class="flex flex-col justify-between">
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl md:text-2xl font-semibold py-2">Total</h2>
+                <span class="text-3xl md:text-2xl font-bold">{{ cart.total_price | money }}</span>
+              </div>
+
+              <button
+                type="submit"
+                name="checkout"
+                class="w-full bg-black text-white md:py-4 py-2 rounded-full text-lg font-medium
+                      hover:bg-gray-800 transition cursor-pointer"
+              >
+                Checkout
+              </button>
+            </div>
+
+          </div>
         </div>
+
       </div>
 
     </form>
-  {% endif %}
 
-</div>
+    {% else %}
+
+    <!-- EMPTY CART -->
+    <div class="flex-1 flex flex-col items-center justify-center text-center w-full min-h-100">
+      <p class="text-xl mb-6">Your cart is empty</p>
+      <a href="/collections/frontpage" class="bg-black text-white px-8 py-3 rounded-lg">
+        Continue Shopping
+      </a>
+    </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+<script>
+  function submitCartForm(el) {
+    const form = el.closest('form');
+    if (form) form.submit();
+  }
+</script>
 
 {% schema %}
 {
   "name": "Shopping cart",
-  "settings": []
+  "settings": [],
+  "presets": [{ "name": "Shopping cart" }]
 }
 {% endschema %}
