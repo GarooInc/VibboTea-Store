@@ -21,7 +21,7 @@
         "text_button": "ADD TO CART",
         "sold_out_text": "SOLD OUT",
         "kickstarter_price": true,
-        "text_kickstarter": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>",
+        "text_kickstarter": "<p>Secure yours now with 15% off, arriving in May</p>",
         "text_kickstarter_button": "ADD DISCOUNT",
         "discount_text_kickstarter": "15% OFF",
         "discount_per_serving_kickstarter": "$0.57 per serving",
