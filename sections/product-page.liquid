@@ -263,7 +263,6 @@
       const originalText = btnText.textContent.trim();
 
       ksBtn.disabled = true;
-      btnText.textContent = 'Adding...';
 
       try {
         const res = await fetch('/cart/add.js', {
@@ -273,10 +272,7 @@
         });
 
         if (res.ok) {
-          btnText.textContent = 'Added!';
-          setTimeout(() => {
-            window.location.href = '/cart';
-          }, 800);
+          window.location.href = '/cart';
         } else {
           const err = await res.json();
           btnText.textContent = err.description || 'Error';
