@@ -123,7 +123,7 @@
 
       <div class="absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
         <a
-          href="/collections/frontpage"
+          href="{{ block.settings.button_link | default: '/collections/frontpage' }}"
           class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center 
                 rounded-3xl md:px-8 md:py-3 py-2 w-25 md:w-55 hover:opacity-70 transition-opacity"
         >
