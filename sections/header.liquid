@@ -256,11 +256,9 @@
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     const header = document.getElementById('main-header');
-    const topbar = document.querySelector('.topbar-wrapper');
     menu.classList.toggle('hidden');
     header.classList.toggle('h-screen');
     document.body.classList.toggle('overflow-hidden');
-    if (topbar) topbar.classList.toggle('hidden');
   }
 </script>
 <script>
