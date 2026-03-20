@@ -209,20 +209,15 @@
       {% if section.settings.kickstarter_price %}
         {% comment %} Botón Kickstarter desactivado intencionalmente {% endcomment %}
       {% else %}
-        <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
-          <input
-            type="hidden"
-            name="id"
-            id="variantInput"
-            value="{{ current_variant.id }}"
-          >
+        <div class="w-full py-4">
           <button
-            type="submit"
+            id="addToCartBtn"
             {% unless current_variant.available %}disabled{% endunless %}
+            data-variant-id="{{ current_variant.id }}"
             class="bg-gray-800 flex items-center justify-center w-full rounded-3xl py-3 
-                  hover:opacity-70 transition-opacity disabled:opacity-50"
+                  hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
           >
-            <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
+            <span id="addToCartText" class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
               {% if current_variant.available %} 
                 {{ section.settings.text_button }}
               {% else %}
@@ -230,7 +225,7 @@
               {% endif %}
             </span>
           </button>
-        </form>
+        </div>
       {% endif %}
 
       <div class="">
@@ -258,7 +253,10 @@
       });
 
       option.classList.add('ring-2', 'ring-black', 'scale-105');
-      variantInput.value = option.dataset.variantId;
+
+      // Actualizar variant en el botón de carrito
+      const btn = document.getElementById('addToCartBtn');
+      if (btn) btn.dataset.variantId = option.dataset.variantId;
 
       priceWrapper.classList.add('opacity-0', 'translate-y-2');
 
@@ -287,6 +285,50 @@
       }, 200);
     });
   });
+</script>
+
+<script>
+  // Add to Cart via Shopify Cart API
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  const addToCartText = document.getElementById('addToCartText');
+
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', async () => {
+      const variantId = addToCartBtn.dataset.variantId;
+      if (!variantId) return;
+
+      addToCartBtn.disabled = true;
+      addToCartText.textContent = 'Adding...';
+
+      try {
+        const res = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: 1 })
+        });
+
+        if (res.ok) {
+          addToCartText.textContent = 'Added!';
+          setTimeout(() => {
+            addToCartText.textContent = addToCartBtn.dataset.originalText || 'ADD TO CART';
+            addToCartBtn.disabled = false;
+          }, 1500);
+          // Actualizar el contador del carrito si el tema lo soporta
+          document.dispatchEvent(new CustomEvent('cart:refresh'));
+        } else {
+          const err = await res.json();
+          addToCartText.textContent = err.description || 'Error';
+          addToCartBtn.disabled = false;
+        }
+      } catch (e) {
+        addToCartText.textContent = 'Error';
+        addToCartBtn.disabled = false;
+      }
+    });
+
+    // Guardar texto original
+    addToCartBtn.dataset.originalText = addToCartText.textContent.trim();
+  }
 </script>
 
 <script>
