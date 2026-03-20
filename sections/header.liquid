@@ -103,7 +103,7 @@
       <div 
           id="mobile-menu" 
           class="lg:hidden hidden fixed inset-0 w-full min-h-screen h-screen px-8 z-[9999] pointer-events-auto top-0"
-          style="background-color: rgba(0, 0, 0, 0.85);"
+          style="background-color: rgba(0, 0, 0, 0.6);"
         >
         {% comment %} <div class="flex justify-start gap-2 pt-20 relative z-50 pointer-events-auto">
 
@@ -254,12 +254,14 @@
 
 <script>
   function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const header = document.getElementById('main-header');
-    menu.classList.toggle('hidden');
-    header.classList.toggle('h-screen');
-    document.body.classList.toggle('overflow-hidden');
-  }
+  const menu = document.getElementById('mobile-menu');
+  const header = document.getElementById('main-header');
+  const liston = document.getElementById('topbar-liston');
+  menu.classList.toggle('hidden');
+  header.classList.toggle('h-screen');
+  document.body.classList.toggle('overflow-hidden');
+  if (liston) liston.classList.toggle('hidden');
+}
 </script>
 <script>
   const openBtn = document.getElementById('openSearch');
