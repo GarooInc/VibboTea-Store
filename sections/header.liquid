@@ -138,14 +138,11 @@
 
         {% comment %} descomentar y comentar el otro nav para version original  {% endcomment %}
         {% comment %} <nav class="flex flex-col justify-center items-center h-full -translate-y-30">  {% endcomment %}
-        <nav class="flex flex-col justify-center items-center h-full gap-2">
+        <nav class="flex flex-col justify-center items-center h-full">
           {% for link in section.settings.menu.links %}
             <a 
               href="{{ link.url }}" 
-              class="text-2xl tracking-wider text-white transition-colors duration-200 text-center 
-                    py-3 px-8 font-bricolage w-full max-w-xs
-                    bg-white/10 rounded-lg backdrop-blur-sm
-                    hover:bg-white/20 active:bg-white/30"
+              class="text-2xl tracking-wider text-white transition-colors duration-200 text-center py-2 font-bricolage"
               onclick="toggleMobileMenu()"
             >
               {{ link.title }}
