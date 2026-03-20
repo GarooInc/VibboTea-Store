@@ -21,31 +21,21 @@
                 height="{{ media.height }}"
               />
             {% elsif media.media_type == "video" %}
-              <video
-                autoplay
-                loop
-                muted
-                playsinline
-                class="w-full h-full object-cover"
-              >
+              <video autoplay loop muted playsinline class="w-full h-full object-cover">
                 <source src="{{ media.sources[1].url }}" type="video/mp4">
               </video>
             {% elsif media.media_type == "external_video" %}
               {% if media.host == "youtube" %}
                 <iframe
                   src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
-                  class="w-full h-full"
-                  frameborder="0"
-                  allow="autoplay; encrypted-media"
-                  allowfullscreen
+                  class="w-full h-full" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen
                 ></iframe>
               {% elsif media.host == "vimeo" %}
                 <iframe
                   src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
-                  class="w-full h-full"
-                  frameborder="0"
-                  allow="autoplay; fullscreen"
-                  allowfullscreen
+                  class="w-full h-full" frameborder="0"
+                  allow="autoplay; fullscreen" allowfullscreen
                 ></iframe>
               {% endif %}
             {% endif %}
@@ -54,20 +44,12 @@
       </div>
 
       <!-- BOTONES -->
-      <button 
-        class="absolute left-0 top-1/2 -translate-y-1/2   
-        text-black px-3 py-2  cursor-pointer"
-        onclick="slidePrev()">
+      <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slidePrev()">
         {% render 'arrow-slidder2' %}
       </button>
-
-      <button 
-        class="absolute right-0 top-1/2 -translate-y-1/2  
-        text-black px-3 py-2  cursor-pointer"
-        onclick="slideNext()">
+      <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slideNext()">
         {% render 'arrow-slidder' %}
       </button>
-
     </div>
 
     {% else %}
@@ -97,20 +79,24 @@
                 {{ section.settings.text_kickstarter }}
               </span>
 
+              <!-- BUY NOW → Add to Cart -->
               <div class="pb-5 w-full">
-                <a 
-                  href="{{ section.settings.kickstarter_link }}" target="_blank"
+                <button
+                  type="button"
+                  id="addToCartKickstarter"
+                  {% unless current_variant.available %}disabled{% endunless %}
                   class="flex items-center justify-center w-full rounded-3xl py-3 
-                        hover:opacity-70 transition-opacity"
-                  style="
-                    background-color: {{ section.settings.per_serving_bg_color }};
-                    color: {{ section.settings.per_serving_text_color }};
-                  "
+                        hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
+                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
                 >
-                  <span class="font-bricolage text-black xl:text-xl text-sm text-center uppercase font-light px-10">
-                    {{ section.settings.text_kickstarter_button }}
+                  <span class="font-bricolage xl:text-xl text-sm text-center uppercase font-light px-10">
+                    {% if current_variant.available %}
+                      {{ section.settings.text_kickstarter_button }}
+                    {% else %}
+                      {{ section.settings.sold_out_text }}
+                    {% endif %}
                   </span>
-                </a>
+                </button>
               </div>
 
               <div class="flex items-start gap-3">
@@ -124,18 +110,13 @@
                 </div>
                 <span 
                   class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
-                  style="
-                    background-color: {{ section.settings.per_serving_bg_color }};
-                    color: {{ section.settings.per_serving_text_color }};
-                  "
+                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
                 >
                   {{ section.settings.discount_text_kickstarter }}
                 </span>
               </div>
 
-              <p class="pt-2">
-                {{ section.settings.discount_per_serving_kickstarter }}
-              </p>
+              <p class="pt-2">{{ section.settings.discount_per_serving_kickstarter }}</p>
 
               <div id="countdown" class="text-red-700 text-md md:text-lg pt-1">
                 {{ section.settings.timer_kickstarter }} <span id="timer"></span>
@@ -158,18 +139,17 @@
           {% endif %}
         </div>
 
-        <!-- Descripción del producto -->
+        <!-- Descripción -->
         <div class="text-sm text-black font-bricolage pt-4 product-description md:pr-10">
           {{ product.description }}
         </div>
 
-        <!-- Suscripción (debajo de la descripción) -->
+        <!-- Suscripción -->
         <div class="subscriptions_app_embed_block pt-4"></div>
 
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
           {% assign first_variant = product.selected_or_first_available_variant %}
-          
           <p class="font-bricolage md:text-lg text-sm pt-3">Quantity:</p>
           <div class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5">
             {% for variant in product.variants %}
@@ -180,8 +160,7 @@
               <div
                 class="variant-option rounded-xl w-full h-full flex flex-col
                       cursor-pointer border border-gray-400
-                      transition-all duration-300
-                      overflow-hidden
+                      transition-all duration-300 overflow-hidden
                       {% if variant.id == first_variant.id %}ring-2 ring-black scale-105{% endif %}"
                 data-variant-id="{{ variant.id }}"
                 data-price="{{ variant.price | money }}"
@@ -194,11 +173,8 @@
                     {{ descount }}
                   </p>
                 </div>
-
                 <div class="flex-1 w-full flex items-center justify-center py-2">
-                  <p class="font-bricolage md:text-lg text-sm">
-                    {{ cant }}
-                  </p>
+                  <p class="font-bricolage md:text-lg text-sm">{{ cant }}</p>
                 </div>
               </div>
             {% endfor %}
@@ -207,19 +183,18 @@
       </div>
 
       {% if section.settings.kickstarter_price %}
-        {% comment %} Botón Kickstarter desactivado intencionalmente {% endcomment %}
+        {% comment %} El Add to Cart ya está dentro del bloque de precio kickstarter {% endcomment %}
       {% else %}
-        <form id="product-form" method="post" action="/cart/add" class="w-full py-4">
+        <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
-          <input type="hidden" name="quantity" value="1">
           <button
             type="submit"
             {% unless current_variant.available %}disabled{% endunless %}
             class="bg-gray-800 flex items-center justify-center w-full rounded-3xl py-3 
-                  hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
+                  hover:opacity-70 transition-opacity disabled:opacity-50"
           >
             <span class="font-bricolage text-white xl:text-sm text-md uppercase font-light">
-              {% if current_variant.available %} 
+              {% if current_variant.available %}
                 {{ section.settings.text_button }}
               {% else %}
                 {{ section.settings.sold_out_text }}
@@ -229,7 +204,7 @@
         </form>
       {% endif %}
 
-      <div class="">
+      <div>
         <p class="text-sm text-gray-500 font-bricolage italic pb-20">
           {{ section.settings.disclaimer_kickstarter }}
         </p>
@@ -244,48 +219,87 @@
 
 <script>
   const variants = document.querySelectorAll('.variant-option');
-  const variantInput = document.getElementById('variantInput');
   const priceWrapper = document.getElementById('priceWrapper');
+  const variantInput = document.getElementById('variantInput');
 
   variants.forEach(option => {
     option.addEventListener('click', () => {
-      variants.forEach(v => {
-        v.classList.remove('ring-2', 'ring-black', 'scale-105');
-      });
-
+      variants.forEach(v => v.classList.remove('ring-2', 'ring-black', 'scale-105'));
       option.classList.add('ring-2', 'ring-black', 'scale-105');
 
-      // Actualizar variant en el input del form
-      const variantInput = document.getElementById('variantInput');
+      // Actualizar form normal (modo no-kickstarter)
       if (variantInput) variantInput.value = option.dataset.variantId;
 
-      priceWrapper.classList.add('opacity-0', 'translate-y-2');
+      // Actualizar botón kickstarter
+      const ksBtn = document.getElementById('addToCartKickstarter');
+      if (ksBtn) ksBtn.dataset.variantId = option.dataset.variantId;
 
+      priceWrapper.classList.add('opacity-0', 'translate-y-2');
       setTimeout(() => {
         const price = option.dataset.price;
         const compare = option.dataset.compare;
-
         if (compare && compare !== '') {
           priceWrapper.innerHTML = `
-            <span class="text-3xl md:text-4xl text-gray-400 line-through">
-              ${compare}
-            </span>
-            <span class="text-sm md:text-xl text-red-700 font-light">
-              DISCOUNTED KICKSTARTER PRICE NOW LIVE!
-            </span>
+            <span class="text-3xl md:text-4xl text-gray-400 line-through">${compare}</span>
+            <span class="text-sm md:text-xl text-red-700 font-light">DISCOUNTED KICKSTARTER PRICE NOW LIVE!</span>
           `;
         } else {
-          priceWrapper.innerHTML = `
-            <span class="text-5xl md:text-6xl text-gray-700">
-              ${price}
-            </span>
-          `;
+          priceWrapper.innerHTML = `<span class="text-5xl md:text-6xl text-gray-700">${price}</span>`;
         }
-
         priceWrapper.classList.remove('opacity-0', 'translate-y-2');
       }, 200);
     });
   });
+
+  // Add to Cart via Cart API para el botón kickstarter
+  const ksBtn = document.getElementById('addToCartKickstarter');
+  if (ksBtn) {
+    // Guardar variant id inicial
+    ksBtn.dataset.variantId = '{{ current_variant.id }}';
+
+    ksBtn.addEventListener('click', async () => {
+      const variantId = ksBtn.dataset.variantId;
+      const btnText = ksBtn.querySelector('span');
+      const originalText = btnText.textContent.trim();
+
+      ksBtn.disabled = true;
+      btnText.textContent = 'Adding...';
+
+      try {
+        const res = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: parseInt(variantId), quantity: 1 })
+        });
+
+        if (res.ok) {
+          btnText.textContent = 'Added!';
+          // Refrescar el mini-cart del tema si existe
+          document.dispatchEvent(new CustomEvent('cart:refresh'));
+          fetch('/cart.js').then(r => r.json()).then(() => {
+            document.dispatchEvent(new CustomEvent('cart:updated'));
+          });
+          setTimeout(() => {
+            btnText.textContent = originalText;
+            ksBtn.disabled = false;
+          }, 1500);
+        } else {
+          const err = await res.json();
+          btnText.textContent = err.description || 'Error';
+          setTimeout(() => {
+            btnText.textContent = originalText;
+            ksBtn.disabled = false;
+          }, 2000);
+        }
+      } catch (e) {
+        btnText.textContent = 'Error';
+        setTimeout(() => {
+          btnText.textContent = originalText;
+          ksBtn.disabled = false;
+        }, 2000);
+      }
+    });
+  }
 </script>
 
 <script>
@@ -308,7 +322,6 @@
 
 <script>
   function getEndOfDay() {
-    const now = new Date();
     const end = new Date();
     end.setHours(23, 59, 59, 999);
     return end.getTime();
@@ -317,22 +330,17 @@
   const endTime = getEndOfDay();
 
   function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = endTime - now;
+    const distance = endTime - new Date().getTime();
+    if (distance <= 0) { location.reload(); return; }
 
-    if (distance <= 0) {
-      location.reload();
-      return;
-    }
-
-    const hours = Math.floor((distance / (1000 * 60 * 60)));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const h = Math.floor(distance / (1000 * 60 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((distance % (1000 * 60)) / 1000);
 
     document.getElementById("timer").innerHTML =
-      String(hours).padStart(2, '0') + ":" +
-      String(minutes).padStart(2, '0') + ":" +
-      String(seconds).padStart(2, '0');
+      String(h).padStart(2,'0') + ":" +
+      String(m).padStart(2,'0') + ":" +
+      String(s).padStart(2,'0');
   }
 
   setInterval(updateCountdown, 1000);
@@ -348,13 +356,13 @@
       "id": "text_button",
       "label": "Text button",
       "default": "ADD TO CART"
-    }, 
+    },
     {
       "type": "text",
       "id": "sold_out_text",
       "label": "Sold out text",
       "default": "SOLD OUT"
-    }, 
+    },
     {
       "type": "checkbox",
       "id": "kickstarter_price",
@@ -366,13 +374,13 @@
       "id": "text_kickstarter",
       "label": "Kickstarter text",
       "default": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>"
-    }, 
+    },
     {
       "type": "text",
       "id": "text_kickstarter_button",
-      "label": "Kickstarter text",
+      "label": "Kickstarter button text",
       "default": "ADD DISCOUNT"
-    }, 
+    },
     {
       "type": "text",
       "id": "discount_text_kickstarter",
@@ -402,7 +410,7 @@
       "id": "timer_kickstarter",
       "label": "Timer text",
       "default": "SALES ENDS IN: "
-    }, 
+    },
     {
       "type": "text",
       "id": "time_discount_kickstarter",
@@ -413,14 +421,13 @@
       "type": "url",
       "id": "kickstarter_link",
       "label": "Kickstarter link"
-    }, 
+    },
     {
       "type": "textarea",
       "id": "disclaimer_kickstarter",
       "label": "Disclaimer Kickstarter text"
     }
   ],
-  
   "presets": [{ "name": "Description product" }]
 }
 {% endschema %}
