@@ -22,7 +22,7 @@
         "sold_out_text": "SOLD OUT",
         "kickstarter_price": true,
         "text_kickstarter": "<p>Secure yours now with 20% off, arriving in May</p>",
-        "text_kickstarter_button": "ADD DISCOUNT",
+        "text_kickstarter_button": "BUY NOW",
         "discount_text_kickstarter": "20% OFF",
         "discount_per_serving_kickstarter": "$0.57 per serving",
         "per_serving_bg_color": "#90c8ee",
