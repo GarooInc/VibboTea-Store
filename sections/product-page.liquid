@@ -324,6 +324,9 @@
   const endTime = getEndOfDay();
 
   function updateCountdown() {
+    const timerEl = document.getElementById("timer");
+    if (!timerEl) return;
+
     const distance = endTime - new Date().getTime();
     if (distance <= 0) { location.reload(); return; }
 
@@ -331,7 +334,7 @@
     const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("timer").innerHTML =
+    timerEl.innerHTML =
       String(h).padStart(2,'0') + ":" +
       String(m).padStart(2,'0') + ":" +
       String(s).padStart(2,'0');
