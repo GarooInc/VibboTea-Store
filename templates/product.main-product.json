@@ -23,7 +23,7 @@
         "kickstarter_price": true,
         "text_kickstarter": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>",
         "text_kickstarter_button": "ADD DISCOUNT",
-        "discount_text_kickstarter": "20% OFF",
+        "discount_text_kickstarter": "15% OFF",
         "discount_per_serving_kickstarter": "$0.57 per serving",
         "per_serving_bg_color": "#fab801",
         "per_serving_text_color": "#000000",
