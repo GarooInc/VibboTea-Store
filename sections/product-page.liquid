@@ -146,7 +146,8 @@
 
         <!-- Suscripción -->
         <div class="pt-4">
-          {% render 'appstle-subscription-product' %}
+          {% assign product_form_id = 'product-form-' | append: section.id %}
+          {{ product | appstle_subscription_widget }}
         </div>
 
         <!-- Variantes -->
