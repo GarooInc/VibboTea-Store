@@ -145,10 +145,7 @@
         </div>
 
         <!-- Suscripción -->
-        <div class="pt-4">
-          {% assign product_form_id = 'product-form-' | append: section.id %}
-          {{ product | appstle_subscription_widget }}
-        </div>
+        <div class='subscriptions_app_embed_block'></div>
 
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
