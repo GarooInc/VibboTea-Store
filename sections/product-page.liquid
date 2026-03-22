@@ -139,13 +139,18 @@
           {% endif %}
         </div>
 
-        <!-- Descripción -->
+        <!-- Descripción con widget embebido donde dice ProductDrop -->
+        {% assign desc_parts = product.description | split: 'ProductDrop' %}
         <div class="text-sm text-black font-bricolage pt-4 product-description md:pr-10">
-          {{ product.description }}
+          {{ desc_parts[0] }}
         </div>
 
         <!-- Suscripción -->
         <div class='subscriptions_app_embed_block'></div>
+
+        <div class="text-sm text-black font-bricolage product-description md:pr-10">
+          {{ desc_parts[1] }}
+        </div>
 
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
