@@ -36,8 +36,13 @@
     "1766421284c922609f": {
       "type": "apps",
       "blocks": {
+        "appstle_subscription_appstle_subscription_product_page_widget_U6Bz9F": {
+          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
+          "settings": {}
+        },
         "subscriptions_app_block_tWeTdA": {
           "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
+          "disabled": true,
           "settings": {
             "widget_style": "card",
             "widget_style_card_selector": "radio_button",
@@ -52,9 +57,9 @@
         }
       },
       "block_order": [
+        "appstle_subscription_appstle_subscription_product_page_widget_U6Bz9F",
         "subscriptions_app_block_tWeTdA"
       ],
-      "disabled": true,
       "settings": {}
     },
     "product_instructions_KU7cmG": {
