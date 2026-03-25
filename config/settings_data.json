@@ -33,6 +33,11 @@
           "border_radius": 0,
           "subscription_policy_url": ""
         }
+      },
+      "1232542678405107163": {
+        "type": "shopify://apps/instafeed/blocks/head-block/c447db20-095d-4a10-9725-b5977662c9d5",
+        "disabled": false,
+        "settings": {}
       }
     }
   }

@@ -309,6 +309,33 @@
         "imagen3": "shopify://shop_images/dsc05255-2025-03-10-00-02-59-utc_2_73631b2c-2449-4380-94c3-4c73952a7956.png"
       }
     },
+    "1774481532f295fddf": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_jiyqTn": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "Instafeed",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_jiyqTn"
+      ],
+      "settings": {}
+    },
     "faq_UxEWVW": {
       "type": "faq",
       "blocks": {
@@ -375,6 +402,7 @@
     "main_universe_section_yaVDzH",
     "prodcut_ingredients_NLmqhN",
     "main_socials_section_7yLtAb",
+    "1774481532f295fddf",
     "faq_UxEWVW",
     "newsletter_ri4VmU"
   ]
