@@ -21,8 +21,14 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
         <h2 class="md:text-6xl text-3xl text-center md:font-bold font-bold font-bricolage mb-4 md:whitespace-normal whitespace-nowrap">
           {{section.settings.title}}</h2>
 
-        <p class="md:text-xl md:px-5 text-sm text-center leading-snug pt-3">
-          {{ section.settings.texto1 }}
+        {% comment %} Mobile {% endcomment %}
+        <p class="md:hidden text-sm text-center leading-snug pt-3 font-bricolage">
+          Texto para mobile
+        </p>
+
+        {% comment %} Desktop {% endcomment %}
+        <p class="hidden md:block md:text-xl md:px-5 text-center leading-snug pt-3 font-bricolage">
+          Texto para desktop
         </p>
       </div>
 
