@@ -3877,5 +3877,22 @@
       --tw-duration: initial;
       --tw-ease: initial;
     }
+    /* Appstle: reorder purchase options */
+    .appstle_subscription_wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .appstle_subscription_wrapper .appstle_subscription_wrapper_option:has(.appstle_one_time_details_wrapper) {
+      order: 3 !important;
+    }
+
+    .appstle_subscription_wrapper .appstle_subscription_wrapper_option:has(.appstle_include_dropdown) {
+      order: 1 !important;
+    }
+
+    .appstle_subscription_wrapper .appstle_subscription_wrapper_option:has(.payAsYouGoPlansDropdownWrapper) {
+      order: 2 !important;
+    }
   }
 }
