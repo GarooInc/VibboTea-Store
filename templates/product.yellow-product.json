@@ -152,9 +152,9 @@
         "ingredient_block_cyNJi3": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/elderberry.png",
-            "title": "Elderberry",
-            "text": "Packs antioxidants and vitamin C for immune defense, fatigue fighting, and endurance.​"
+            "image": "shopify://shop_images/driedgrapes.png",
+            "title": "Dried grapes",
+            "text": "Boosts flavonoids for antioxidants."
           }
         },
         "ingredient_block_rtJXtk": {
