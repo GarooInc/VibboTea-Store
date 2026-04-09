@@ -2,15 +2,15 @@
     class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
     style="width: 100vw; margin-left: calc(50% - 50vw);">
     <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
-        <div class="text-black text-4xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
+        <div class="text-black text-5xl md:text-7xl font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
-        <div class="absolute bottom-0 md:left-0 xl:left-40">
+        <div class="absolute bottom-0 md:right-[calc(50%-55px)]">
             {% if section.settings.image1 %}
-                <img 
+                <img
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
                     alt="Image 1"
-                    class="mt-10 md:ml-0 xl:w-[600px] md:w-[520px] object-cover rounded-2xl "
+                    class="mt-10 md:ml-0 xl:w-[500px] md:w-[420px] object-cover rounded-2xl "
                     width="600"
                     height="600"
                 >
