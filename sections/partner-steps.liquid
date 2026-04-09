@@ -1,0 +1,187 @@
+<div class="w-full bg-white py-16 px-6 md:px-20 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
+
+  {% if section.settings.deco_top_left %}
+    <div class="absolute top-0 left-0 w-24 md:w-40 pointer-events-none">
+      <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
+    </div>
+  {% endif %}
+
+  {% if section.settings.deco_bottom_right %}
+    <div class="absolute bottom-0 right-0 w-24 md:w-44 pointer-events-none">
+      <img src="{{ section.settings.deco_bottom_right | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
+    </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    {% if block.type == 'step' %}
+      {% assign is_reversed = block.settings.image_left %}
+      <div class="mb-16">
+
+        <!-- Title (mobile: centered, desktop: left or right aligned) -->
+        {% if block.settings.title != blank %}
+          <h2 class="font-bricolage font-bold text-3xl md:text-5xl text-black mb-4 md:hidden text-center">
+            {{ block.settings.title }}
+          </h2>
+        {% endif %}
+
+        <!-- 2 col grid always -->
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-10 items-center">
+
+          <!-- Text side -->
+          <div class="flex flex-col justify-center {% if is_reversed %}md:order-last md:pl-10{% else %}md:pr-10{% endif %}">
+            {% if block.settings.title != blank %}
+              <h2 class="font-bricolage font-bold text-4xl md:text-5xl text-black mb-6 hidden md:block {% if is_reversed %}text-right{% endif %}">
+                {{ block.settings.title }}
+              </h2>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <p class="text-black text-xs md:text-lg leading-relaxed {% if is_reversed %}md:text-right{% endif %}">
+                {{ block.settings.text }}
+              </p>
+            {% endif %}
+          </div>
+
+          <!-- Image side -->
+          {% if block.settings.image != blank %}
+            <div class="{% if is_reversed %}md:order-first{% endif %} overflow-hidden rounded-xl">
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.title }}"
+                class="w-full h-48 md:h-80 object-cover"
+                width="800"
+                height="600"
+              >
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <!-- CTA final -->
+  {% if section.settings.cta_title != blank %}
+    <div class="text-center py-10">
+      <h2 class="font-bricolage font-bold text-4xl md:text-6xl text-black mb-6">
+        {{ section.settings.cta_title }}
+      </h2>
+      {% if section.settings.cta_text != blank %}
+        <p class="text-black text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+          {{ section.settings.cta_text }}
+        </p>
+      {% endif %}
+      {% if section.settings.cta_button_text != blank %}
+        <a
+          href="{{ section.settings.cta_button_link }}"
+          class="inline-block bg-[#FFCD51] text-black font-bricolage font-medium uppercase px-10 py-3 rounded-full hover:opacity-80 transition"
+        >
+          {{ section.settings.cta_button_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Partner Steps",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "deco_top_left",
+      "label": "Decorative image (top left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_bottom_right",
+      "label": "Decorative image (bottom right)"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Earn & grow with us"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "APPLY TODAY"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Step description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_left",
+          "label": "Image on the left",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partner Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "Tell us who you are and why real ingredients, traceability, and nature-led wellness matters to you. We're looking for authentic storytellers, not follower counts.",
+            "image_left": false
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Get rooted",
+            "text": "Once accepted, you'll receive your unique referral link or code, access to brand resources, and select products to experience and share.",
+            "image_left": true
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Spill the tea",
+            "text": "Create content that highlights origin, ingredients, rituals, and the people behind each cup. Educate, inspire, and spill the real tea your way: unapologetically authentic.",
+            "image_left": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
