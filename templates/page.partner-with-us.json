@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "partner_hero_slide": {
@@ -22,7 +31,9 @@
           }
         }
       },
-      "block_order": ["slide_partner_hero"],
+      "block_order": [
+        "slide_partner_hero"
+      ],
       "name": "Partner Hero",
       "settings": {
         "autoplay": false,
@@ -31,6 +42,7 @@
     },
     "cinta_partner": {
       "type": "cinta-newsletter",
+      "disabled": true,
       "name": "Liston",
       "settings": {
         "isotipe": "shopify://shop_images/isotipo_black.png",
@@ -46,6 +58,7 @@
           "settings": {
             "title": "Apply",
             "text": "Tell us who you are and why real ingredients, traceability, and nature-led wellness matters to you. We're looking for authentic storytellers, not follower counts.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_6.png",
             "image_left": false
           }
         },
@@ -54,6 +67,7 @@
           "settings": {
             "title": "Get rooted",
             "text": "Once accepted, you'll receive your unique referral link or code, access to brand resources, and select products to experience and share.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_4.png",
             "image_left": true
           }
         },
@@ -62,11 +76,16 @@
           "settings": {
             "title": "Spill the tea",
             "text": "Create content that highlights origin, ingredients, rituals, and the people behind each cup. Educate, inspire, and spill the real tea your way: unapologetically authentic.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_4_1.png",
             "image_left": false
           }
         }
       },
-      "block_order": ["step_apply", "step_rooted", "step_tea"],
+      "block_order": [
+        "step_apply",
+        "step_rooted",
+        "step_tea"
+      ],
       "name": "Partner Steps",
       "settings": {
         "deco_top_left": "shopify://shop_images/Hojas4.png",
@@ -78,5 +97,9 @@
       }
     }
   },
-  "order": ["partner_hero_slide", "cinta_partner", "partner_steps"]
+  "order": [
+    "partner_hero_slide",
+    "cinta_partner",
+    "partner_steps"
+  ]
 }
