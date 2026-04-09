@@ -2,7 +2,10 @@
     class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
     style="width: 100vw; margin-left: calc(50% - 50vw);">
     <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
-        <div class="text-black text-5xl md:text-7xl font-bricolage font-semibold leading-[1.1]">
+        <div class="text-black text-3xl font-bricolage font-semibold leading-[1.1] md:hidden">
+            {{ section.settings.mobile_title | newline_to_br }}
+        </div>
+        <div class="text-black text-7xl font-bricolage font-semibold leading-[1.1] hidden md:block">
             {{ section.settings.title | newline_to_br }}
         </div>
         <div class="absolute bottom-0 md:right-[calc(50%-55px)]">
@@ -199,7 +202,13 @@
     {
       "type": "textarea",
       "id": "title",
-      "label": "Title",
+      "label": "Title (Desktop)",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_title",
+      "label": "Title (Mobile)",
       "default": "Title"
     },
     {

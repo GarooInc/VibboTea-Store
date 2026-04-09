@@ -28,7 +28,7 @@
         {% assign target_h = target_h_default %}
       {% endif %}
 
-      <div class="hidden md:block absolute -top-20 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}
+      <div class="hidden md:block absolute top-10 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}
           ">
         <img 
           src="{{ section.settings.image1 | image_url: width: target_w }}"
