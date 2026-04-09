@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "partner_hero_slide": {
@@ -6,7 +15,7 @@
         "slide_partner_hero": {
           "type": "slide",
           "settings": {
-            "image_desktop": "",
+            "image_desktop": "shopify://shop_images/image_18.png",
             "marca_agua": false,
             "texto_agua": "",
             "video_mp4": "",
@@ -22,7 +31,9 @@
           }
         }
       },
-      "block_order": ["slide_partner_hero"],
+      "block_order": [
+        "slide_partner_hero"
+      ],
       "name": "Partner Hero",
       "settings": {
         "autoplay": false,
@@ -30,5 +41,7 @@
       }
     }
   },
-  "order": ["partner_hero_slide"]
+  "order": [
+    "partner_hero_slide"
+  ]
 }
