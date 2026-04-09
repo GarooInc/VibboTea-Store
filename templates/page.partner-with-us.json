@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "partner_hero_slide": {
@@ -31,13 +22,20 @@
           }
         }
       },
-      "block_order": [
-        "slide_partner_hero"
-      ],
+      "block_order": ["slide_partner_hero"],
       "name": "Partner Hero",
       "settings": {
         "autoplay": false,
         "Time": 6000
+      }
+    },
+    "cinta_partner": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "isotipe": "shopify://shop_images/isotipo_black.png",
+        "topbar_announcement_text": "<p>KICKSTARTER NOW LIVE - CLICK HERE TO PRE-ORDER</p>",
+        "topbar_link": "https://www.kickstarter.com/projects/drinkvibbo/vibbo-handcrafted-tea-blends/description"
       }
     },
     "partner_steps": {
@@ -68,11 +66,7 @@
           }
         }
       },
-      "block_order": [
-        "step_apply",
-        "step_rooted",
-        "step_tea"
-      ],
+      "block_order": ["step_apply", "step_rooted", "step_tea"],
       "name": "Partner Steps",
       "settings": {
         "deco_top_left": "shopify://shop_images/Hojas4.png",
@@ -84,8 +78,5 @@
       }
     }
   },
-  "order": [
-    "partner_hero_slide",
-    "partner_steps"
-  ]
+  "order": ["partner_hero_slide", "cinta_partner", "partner_steps"]
 }
