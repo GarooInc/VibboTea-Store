@@ -200,7 +200,7 @@
         "ingredient_block_rTnt3Q": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/bayas-sauco_df16af95-c85e-4f5f-ab78-b69706f80de7.png",
+            "image": "shopify://shop_images/bayas-sauco__1_-removebg-preview.png",
             "title": "Raisins",
             "text": "Boosts flavonoids for antioxidants while cutting tannins, aiding digestion, heart health, and inflammation."
           }
@@ -247,6 +247,7 @@
         },
         "ingredient_block_jxKxef": {
           "type": "ingredient_block",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/elderberry.png",
             "title": "Elderberry",
