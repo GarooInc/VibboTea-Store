@@ -1,20 +1,34 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "page",
-      "settings": {}
+    "partner_hero_slide": {
+      "type": "header-section-slide",
+      "blocks": {
+        "slide_partner_hero": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "",
+            "marca_agua": false,
+            "texto_agua": "",
+            "video_mp4": "",
+            "page_title": "Join VIBBO",
+            "page_descripction": "Be a real influencer. Promote real wellness.",
+            "title_sec": "",
+            "desc_sec": "",
+            "button_text": "APPLY TODAY",
+            "button_link": "",
+            "link_popup": false,
+            "hover_text": "",
+            "button_position": "center"
+          }
+        }
+      },
+      "block_order": ["slide_partner_hero"],
+      "name": "Partner Hero",
+      "settings": {
+        "autoplay": false,
+        "Time": 6000
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["partner_hero_slide"]
 }
