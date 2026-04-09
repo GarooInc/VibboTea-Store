@@ -17,25 +17,18 @@
       {% assign is_reversed = block.settings.image_left %}
       <div class="mb-16">
 
-        <!-- Title (mobile: centered, desktop: left or right aligned) -->
-        {% if block.settings.title != blank %}
-          <h2 class="font-bricolage font-bold text-3xl md:text-5xl text-black mb-4 md:hidden text-center">
-            {{ block.settings.title }}
-          </h2>
-        {% endif %}
-
         <!-- 2 col grid always -->
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-10 items-center">
+        <div class="grid grid-cols-2 gap-4 md:gap-10 items-center">
 
           <!-- Text side -->
-          <div class="flex flex-col justify-center {% if is_reversed %}md:order-last md:pl-10{% else %}md:pr-10{% endif %}">
+          <div class="flex flex-col justify-center {% if is_reversed %}order-last md:pl-10{% else %}md:pr-10{% endif %}">
             {% if block.settings.title != blank %}
-              <h2 class="font-bricolage font-bold text-4xl md:text-5xl text-black mb-6 hidden md:block {% if is_reversed %}text-right{% endif %}">
+              <h2 class="font-bricolage font-bold text-2xl md:text-5xl text-black mb-3 md:mb-6 {% if is_reversed %}text-right md:text-right{% endif %}">
                 {{ block.settings.title }}
               </h2>
             {% endif %}
             {% if block.settings.text != blank %}
-              <p class="text-black text-xs md:text-lg leading-relaxed {% if is_reversed %}md:text-right{% endif %}">
+              <p class="text-black text-xs md:text-lg leading-relaxed {% if is_reversed %}text-right md:text-right{% endif %}">
                 {{ block.settings.text }}
               </p>
             {% endif %}
@@ -43,11 +36,11 @@
 
           <!-- Image side -->
           {% if block.settings.image != blank %}
-            <div class="{% if is_reversed %}md:order-first{% endif %} overflow-hidden rounded-xl">
+            <div class="{% if is_reversed %}order-first{% endif %} rounded-xl overflow-hidden">
               <img
                 src="{{ block.settings.image | image_url: width: 800 }}"
                 alt="{{ block.settings.title }}"
-                class="w-full h-48 md:h-80 object-cover"
+                class="w-full h-44 md:h-80 object-cover"
                 width="800"
                 height="600"
               >
