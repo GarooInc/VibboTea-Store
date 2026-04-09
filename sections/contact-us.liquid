@@ -110,6 +110,11 @@
             </label>
         </div>
 
+        <!-- Honeypot (anti-spam) -->
+        <div style="display:none;" aria-hidden="true">
+            <input type="text" name="contact[website]" id="ContactFormHoneypot" tabindex="-1" autocomplete="off">
+        </div>
+
         <!-- Button -->
         <div class="mt-10">
             <button
@@ -145,13 +150,23 @@
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
+        // Honeypot check
+        const honeypot = form.querySelector('[name="contact[website]"]')?.value || '';
+        if (honeypot) return;
+
         const nombre = form.querySelector('[name="contact[first_name]"]')?.value?.trim() || '';
         const apellido = form.querySelector('[name="contact[last_name]"]')?.value?.trim() || '';
         const email = form.querySelector('[name="contact[email]"]')?.value?.trim() || '';
         const comments = form.querySelector('[name="contact[body]"]')?.value?.trim() || '';
 
         if (!nombre || !apellido || !email || !comments){
-            showMessage('err', 'Por favor completa todos los campos.');
+            showMessage('err', 'Please fill in all fields.');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('err', 'Please enter a valid email address.');
             return;
         }
 
