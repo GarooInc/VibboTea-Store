@@ -21,7 +21,8 @@
       {% for i in (1..4) %} 
           {% for block in section.blocks %}
           <div class="md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white 
-            rounded-xl flex flex-col items-center justify-center  card-focus">
+            rounded-xl flex flex-col items-center justify-center card-focus
+            {% if block.settings.title == 'Raisins' %}card-raisins{% endif %}">
             <div class="md:h-[18vw] h-[50vw] items-center justify-center flex">
               <img 
                 src="{{ block.settings.image | image_url: width: 400 }}"
