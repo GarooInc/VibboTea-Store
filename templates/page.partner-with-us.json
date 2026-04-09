@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "partner_hero_slide": {
@@ -22,7 +31,9 @@
           }
         }
       },
-      "block_order": ["slide_partner_hero"],
+      "block_order": [
+        "slide_partner_hero"
+      ],
       "name": "Partner Hero",
       "settings": {
         "autoplay": false,
@@ -57,9 +68,15 @@
           }
         }
       },
-      "block_order": ["step_apply", "step_rooted", "step_tea"],
+      "block_order": [
+        "step_apply",
+        "step_rooted",
+        "step_tea"
+      ],
       "name": "Partner Steps",
       "settings": {
+        "deco_top_left": "shopify://shop_images/Hojas4.png",
+        "deco_bottom_right": "shopify://shop_images/Mono_deCabeza_1_0d53b52b-5faa-49a0-9d2d-fb1c76295468.png",
         "cta_title": "Earn & grow with us",
         "cta_text": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics.",
         "cta_button_text": "APPLY TODAY",
@@ -67,5 +84,8 @@
       }
     }
   },
-  "order": ["partner_hero_slide", "partner_steps"]
+  "order": [
+    "partner_hero_slide",
+    "partner_steps"
+  ]
 }
