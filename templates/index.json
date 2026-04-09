@@ -197,6 +197,14 @@
     "prodcut_ingredients_NLmqhN": {
       "type": "prodcut-ingredients",
       "blocks": {
+        "ingredient_block_rTnt3Q": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/bayas-sauco_1.png",
+            "title": "Raisins",
+            "text": "Boosts flavonoids for antioxidants while cutting tannins, aiding digestion, heart health, and inflammation."
+          }
+        },
         "ingredient_block_Cq8RLq": {
           "type": "ingredient_block",
           "settings": {
@@ -279,6 +287,7 @@
         }
       },
       "block_order": [
+        "ingredient_block_rTnt3Q",
         "ingredient_block_Cq8RLq",
         "ingredient_block_r7hQXa",
         "ingredient_block_FFfHTV",
