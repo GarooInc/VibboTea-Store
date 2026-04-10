@@ -1,13 +1,18 @@
 <style>
   @media (max-width: 767px) {
-    .partner-step-img { height: 160px !important; }
-    .partner-step-title { font-size: 1.4rem !important; }
-    .partner-step-text { font-size: 0.8rem !important; }
-    .partner-step-row { margin-bottom: 2rem !important; gap: 0.75rem !important; }
-    .partner-step-img-wrap { max-width: 100% !important; }
+    .partner-step-img { width: 100% !important; object-fit: cover !important; }
+    .partner-step-title { font-size: 1.4rem !important; text-align: center !important; }
+    .partner-step-text { font-size: 0.8rem !important; text-align: left !important; }
+    .partner-step-text-right { padding-left: 10px !important; }
+    .partner-step-row { margin-bottom: 2rem !important; gap: 0.5rem !important; align-items: start !important; grid-template-columns: 1fr 1fr !important; }
+    .partner-step-img-wrap { max-width: 100% !important; margin-left: 0 !important; }
+    .step-img-1 { height: 150px !important; }
+    .step-img-2 { height: 180px !important; }
+    .step-img-3 { height: 210px !important; }
   }
   @media (min-width: 768px) {
     .partner-steps-content { padding-left: 22vw; padding-right: 22vw; }
+    .partner-step-img-right { margin-left: 4rem; }
   }
 </style>
 
@@ -27,9 +32,13 @@
 
   <div class="partner-steps-content w-full px-6">
 
+  {% assign step_index = 0 %}
   {% for block in section.blocks %}
     {% if block.type == 'step' %}
+      {% assign step_index = step_index | plus: 1 %}
       {% assign is_reversed = block.settings.image_left %}
+
+
       <div class="partner-step-row grid grid-cols-2 gap-6 md:gap-16 items-center md:mb-16">
 
         {% if is_reversed %}
@@ -39,7 +48,7 @@
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img w-full object-cover" style="height: 200px;"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
                 width="600" height="400"
               >
             </div>
@@ -52,7 +61,7 @@
               </h2>
             {% endif %}
             {% if block.settings.text != blank %}
-              <p class="partner-step-text text-black text-xs md:text-base leading-relaxed text-right">{{ block.settings.text }}</p>
+              <p class="partner-step-text partner-step-text-right text-black text-xs md:text-base leading-relaxed">{{ block.settings.text }}</p>
             {% endif %}
           </div>
 
@@ -70,11 +79,11 @@
           </div>
           <!-- Image RIGHT -->
           {% if block.settings.image != blank %}
-            <div class="rounded-xl overflow-hidden" style="max-width: 320px; margin-left: 4rem;">
+            <div class="partner-step-img-right rounded-xl overflow-hidden" style="max-width: 320px;">
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img w-full object-cover" style="height: 200px;"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
                 width="600" height="400"
               >
             </div>
