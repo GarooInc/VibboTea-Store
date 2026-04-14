@@ -18,7 +18,7 @@
         "isotipe": "shopify://shop_images/isotipo_black.png",
         "topbar_announcement_text": "<p>Sign-up to our newsletter</p>",
         "topbar_announcement_text_2": "<p>Sign-up to our newsletter</p>",
-        "topbar_link": "https://www.kickstarter.com/projects/drinkvibbo/vibbo-handcrafted-tea-blends/description",
+        "topbar_link": "shopify://pages/newsletter",
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/Logotipo_Blanco_Vibbo.png",
         "header_background": "semi-transparent"
