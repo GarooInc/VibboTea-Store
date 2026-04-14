@@ -1,9 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "newsletter_page_main": {
       "type": "newsletter-page",
       "name": "Newsletter Page",
-      "settings": {}
+      "settings": {
+        "latas_image": "shopify://shop_images/Group_90.png",
+        "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/41d0ad5a89a840a4b6b374fa52debdc9.mp4",
+        "logo": "shopify://shop_images/image_33.png",
+        "page_descripction": "<p>Stop settling for fake wellness. Real tea. Real people. Real purpose.</p>",
+        "page_suscribtion": "<p>Subscribe to our newsletter for launch updates</p>",
+        "placeholder_input": "Enter your email address",
+        "placeholder_button": "Subscribe",
+        "socials": "@drinkvibbo",
+        "facebook_url": "https://www.facebook.com/share/1YpkFeUr41/?mibextid=wwXIfr",
+        "instagram_url": "https://www.instagram.com/drinkvibbo/",
+        "tiktok_url": "https://www.tiktok.com/@drinkvibbo?_r=1&_t=ZS-94Ce00QFnwT",
+        "terms_link": "https://drinkvibbo.com/policies/terms-of-service",
+        "privacy_link": "https://drinkvibbo.com/policies/privacy-policy"
+      }
     }
   },
   "order": [
