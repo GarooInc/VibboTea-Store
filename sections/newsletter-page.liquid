@@ -1,24 +1,306 @@
 
-<div class="h-screen flex flex-col items-center justify-center">
+<section
+  class="relative  h-screen  md:min-h-[1000px] min-h-[900px] flex items-center justify-center w-full full-width pt-30"
+>
 
-  {% if section.settings.logo %}
-    <img
-      src="{{ section.settings.logo | image_url: width: 2000 }}"
-      width="{{ section.settings.logo.width }}"
-      height="{{ section.settings.logo.height }}"
-      class="mb-6 max-w-xs md:max-w-md md:w-250 w-100 pt-10"
-      alt="Logo"
+    {% assign mp4_url = section.settings.primary_video_url %}
+    {% assign youtube = false %}
+    {% assign mp4 = false %}
+
+    {% if mp4_url contains "youtube.com" or mp4_url contains "youtu.be" %}
+      {% assign youtube = true %}
+    {% elsif mp4_url contains ".mp4" %}
+      {% assign mp4 = true %}
+    {% endif %}
+
+<!-- CONTENEDOR DEL VIDEO -->
+<div class="absolute inset-0 w-full h-full overflow-hidden z-0 ">
+
+  {% if mp4 %}
+    <video
+      class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover
+             -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      autoplay
+      loop
+      muted
+      playsinline
     >
+      <source src="{{ mp4_url }}" type="video/mp4">
+    </video>
   {% endif %}
 
-  <div class="mx-auto text-center relative">
-    <h1 class="text-xl px-6 md:text-3xl font-bold font-bricolage text-black max-w-xl pt-10">
-      {{ section.settings.page_descripction | newline_to_br}}
-    </h1>
-  </div>
+  {% if youtube %}
+    <iframe
+      class="absolute top-1/2 left-1/2 w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      src="https://www.youtube.com/embed/{{ mp4_url | split: 'v=' | last }}?controls=0&mute=1&autoplay=1&loop=1&playlist={{ mp4_url | split: 'v=' | last }}"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+    ></iframe>
+  {% endif %}
 
 </div>
 
+
+
+  {% if section.settings.background_image %}
+    <img
+      src="{{ section.settings.background_image | image_url: width: 2500 }}"
+      alt="Background image"
+      width="{{ section.settings.background_image.width }}"
+      height="{{ section.settings.background_image.height }}"
+      class="absolute inset-0 w-full h-full object-cover min-h-screen z-0"
+    >
+  {% endif %}
+
+
+      <div class="h-screen flex flex-col items-center justify-center pt-10 z-2 ">
+
+        {% if section.settings.logo %}
+            <img
+            src="{{ section.settings.logo | image_url: width: 2000 }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            class="mb-6 lg:w-160 sm:w-100 w-70 "
+            alt="Logo"
+            >
+        {% endif %}
+
+        <div class="mx-auto text-center relative">
+            <h1 class="highlight-pill px-6 lg:text-6xl md:text-5xl text-4xl font-semibold font-bricolage
+                 text-white max-w-5xl pt-10">
+            {{ section.settings.page_descripction | newline_to_br}}
+            </h1>
+        </div>
+
+         <div class="mx-auto text-center relative">
+            <h1 class=" px-6 lg:text-3xl md:text-2xl text-xl  font-semibold font-bricolage page-descripction
+                 text-white lg:max-w-4xl max-w-3xl pt-10">
+            {{ section.settings.page_suscribtion | newline_to_br}}
+            </h1>
+        </div>
+
+
+
+
+
+
+        <form id="NewsletterForm" class="w-full flex flex-col items-center" >
+
+
+            <div class="grid grid-cols-5 md:flex items-center bg-white rounded-full overflow-hidden shadow
+                w-[95%] max-w-xs md:max-w-md h-10 md:h-12">
+
+            <!--  MOBILE  -->
+            <input
+                type="email"
+                name="email"
+                placeholder="{{ section.settings.placeholder_input }}"
+
+                class="col-span-3  md:flex md:flex-1 px-4 h-full
+                        text-gray-700 placeholder-gray-400 focus:outline-none"
+                />
+
+
+
+            <button
+                type="submit"
+                class="col-span-2 h-full bg-black text-white px-5 flex items-center
+                justify-center rounded-full md:text-sm text-xs hover:bg-gray-900 transition"
+                >
+                {{ section.settings.placeholder_button }}
+                </button>
+
+            </div>
+
+            <!-- Terms -->
+            <div class="py-6 flex items-start gap-3">
+                <input
+                type="checkbox"
+                name="terms"
+                id="ContactFormTerms"
+                required
+                class="mt-1 w-5 h-5 accent-black cursor-pointer"
+                >
+                    <label for="ContactFormTerms" class="md:text-sm text-xs text-white cursor-pointer">
+                    I agree to the
+                    <a href="{{ section.settings.terms_link }}" class="underline" target="_blank">Terms</a>
+                    and
+                    <a href="{{ section.settings.privacy_link }}" class="underline" target="_blank">Privacy Policy</a>
+                    </label>
+            </div>
+        </form>
+
+
+
+
+
+        <div class="flex flex-col md:flex-row w-full justify-center items-center
+            mt-5 md:mt-0 py-5  ">
+
+                <div class=" h-12 w-auto pl-4 pr-0
+                    flex items-center justify-between  ">
+
+                <p class="text-white text-[4vw] md:text-xl font-bricolage flex-1 px-3">
+                    {{ section.settings.socials }}
+                </p>
+
+
+                </div>
+                <div class="flex pl-2 gap-4  ">
+                    <div class="flex justify-end md:justify-between bg-white text-black rounded-full">
+                        <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener"
+                        class="footer-icon hover:opacity-70 transition-opacity scale-70"
+                        aria-label="Facebook">
+                        {%- render 'fb' -%}
+                        </a>
+                    </div>
+                    <div class="flex justify-end md:justify-center items-center bg-white text-black  rounded-full">
+                        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener"
+                        class="footer-icon hover:opacity-70 transition-opacity scale-65 min-w-12"
+                        aria-label="Instagram">
+                        {%- render 'ig' -%}
+                        </a>
+                    </div>
+                    <div class="flex justify-end md:justify-between bg-white text-black rounded-full ">
+                        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener"
+                        class="footer-icon hover:opacity-70 transition-opacity scale-80"
+                        aria-label="Tiktok">
+                        {%- render 'tiktok' -%}
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+    </div>
+
+<div class="absolute bottom-0 left-0 z-1 pointer-events-none">
+  <img
+    src="{{ section.settings.latas_image | image_url: width: 1200 }}"
+    alt="Latas"
+    width="{{ section.settings.latas_image.width }}"
+    height="{{ section.settings.latas_image.height }}"
+    class="w-60 md:w-95 lg:w-140 h-auto"
+  >
+</div>
+
+<div
+  id="subscribeModal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70"
+>
+  <div
+    class="bg-white rounded-2xl px-6 py-5 max-w-sm w-[90%] text-center
+           animate-fade-in relative"
+  >
+    <button
+      id="closeModal"
+      class="absolute top-3 right-3 text-black text-xl font-bold"
+      aria-label="Cerrar"
+    >
+      ✕
+    </button>
+
+    <h3 class="text-2xl font-bricolage font-semibold text-black mb-2">
+      Thank you 🎉
+    </h3>
+
+
+  </div>
+</div>
+
+
+
+</section>
+
+<style>
+
+
+h1.page-descripction strong,
+h1.page-descripction b {
+  background-color: #d9f66d;
+  padding: 0.15em 0.55em;
+  border-radius: 9999px;
+  display: inline-block;
+  line-height: 1;
+  font-weight: 800;
+
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+
+  -webkit-text-stroke: 1px #000;
+
+}
+
+@media (min-width: 768px) {
+  h1.page-descripction strong,
+  h1.page-descripction b {
+    -webkit-text-stroke: 2px #000;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+
+
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("NewsletterForm");
+  const modal = document.getElementById("subscribeModal");
+  const closeBtn = document.getElementById("closeModal");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = form.querySelector('input[name="email"]').value.trim();
+
+    if (!email) return;
+
+    try {
+      await fetch("https://agentsprod.redtec.ai/webhook/vibbo_newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      form.reset();
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
+  // Cerrar modal con botón
+  closeBtn.addEventListener("click", function () {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  });
+
+
+});
+</script>
 
 
 
@@ -26,19 +308,80 @@
 {
   "name": "Newsletter",
   "settings": [
-    
+
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagen de fondo"
+    },
+    {
+      "type": "image_picker",
+      "id": "latas_image",
+      "label": "Imagen izquierda latas"
+    },
+    {
+      "type": "url",
+      "id": "primary_video_url",
+      "label": "Video URL (MP4 o YouTube)"
+    },
     {
       "type": "image_picker",
       "id": "logo",
       "label": "Imagen de logo"
-    },    
+    },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "page_descripction",
-      "label": "Page Descripction",
-      "default": "text"
+      "label": "Page Descripction"
+    },
+    {
+      "type": "richtext",
+      "id": "page_suscribtion",
+      "label": "Page Subcribtion text"
+    },
+     {
+      "type": "text",
+      "id": "placeholder_input",
+      "label": "Place holder input",
+      "default": "Enter your email address"
+    },
+     {
+      "type": "text",
+      "id": "placeholder_button",
+      "label": "Place holder boton",
+      "default": "Subscribe"
+    },
+      {
+      "type": "text",
+      "id": "socials",
+      "label": "Social text",
+      "default": "@drinkvibbo"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Tiktok URL"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms URL"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy URL"
     }
-    
   ],
   "presets": [
     {
@@ -51,4 +394,3 @@
 
 
 {% endschema %}
-

@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "newsletter_page_main": {
+      "type": "newsletter-page",
+      "name": "Newsletter Page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "newsletter_page_main"
+  ]
+}
