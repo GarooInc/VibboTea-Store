@@ -50,6 +50,19 @@
         "topbar_link": "https://www.kickstarter.com/projects/drinkvibbo/vibbo-handcrafted-tea-blends/description"
       }
     },
+    "our_story": {
+      "type": "our-story",
+      "name": "Our Story",
+      "settings": {
+        "bg_color": "#FFF4DA",
+        "heading": "Our story",
+        "intro_text_1": "We believe wellness begins at source. In the soil, in the hands that tend it, and in the traditions that have kept entire communities thriving for generations.",
+        "intro_text_2": "Real wellness doesn't start in a lab or a factory, but in the roots, with you.",
+        "story_label": "VIBBO",
+        "story_desc_1": "VIBBO was born from a desire to create more than a beverage: it's an experience rooted in authenticity, crafted with true natural ingredients and vibrant flavors.",
+        "story_desc_2": "Each cup is designed as a sensory ritual that supports wellness and nourishes the body, celebrating tea in its purest, most honest form for your everyday ritual."
+      }
+    },
     "partner_steps": {
       "type": "partner-steps",
       "blocks": {
@@ -100,6 +113,7 @@
   "order": [
     "partner_hero_slide",
     "cinta_partner",
-    "partner_steps"
+    "partner_steps",
+    "our_story"
   ]
 }

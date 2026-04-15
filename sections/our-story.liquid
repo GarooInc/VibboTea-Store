@@ -1,0 +1,228 @@
+<style>
+  .our-story-section {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+  @media (max-width: 767px) {
+    .our-story-title { font-size: 3rem !important; }
+    .our-story-col-left { padding-right: 0 !important; }
+    .our-story-img-wrap { height: 220px !important; }
+  }
+</style>
+
+<section class="our-story-section relative overflow-hidden py-14 md:py-24" style="background-color: {{ section.settings.bg_color }};">
+
+  <!-- Deco top-left -->
+  {% if section.settings.deco_top_left %}
+    <div class="absolute top-0 left-0 pointer-events-none z-10 w-24 md:w-56">
+      <img
+        src="{{ section.settings.deco_top_left | image_url: width: 500 }}"
+        alt=""
+        width="500" height="500"
+        class="w-full object-contain"
+      >
+    </div>
+  {% endif %}
+
+  <!-- Deco top-right -->
+  {% if section.settings.deco_top_right %}
+    <div class="absolute top-0 right-0 pointer-events-none z-10 w-24 md:w-56">
+      <img
+        src="{{ section.settings.deco_top_right | image_url: width: 500 }}"
+        alt=""
+        width="500" height="500"
+        class="w-full object-contain"
+      >
+    </div>
+  {% endif %}
+
+  <!-- Deco bottom-left -->
+  {% if section.settings.deco_bottom_left %}
+    <div class="absolute bottom-0 left-0 pointer-events-none z-10 w-24 md:w-56">
+      <img
+        src="{{ section.settings.deco_bottom_left | image_url: width: 500 }}"
+        alt=""
+        width="500" height="500"
+        class="w-full object-contain"
+      >
+    </div>
+  {% endif %}
+
+  <!-- Deco bottom-right -->
+  {% if section.settings.deco_bottom_right %}
+    <div class="absolute bottom-0 right-0 pointer-events-none z-10 w-24 md:w-56">
+      <img
+        src="{{ section.settings.deco_bottom_right | image_url: width: 500 }}"
+        alt=""
+        width="500" height="500"
+        class="w-full object-contain"
+      >
+    </div>
+  {% endif %}
+
+  <div class="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-12">
+
+    <!-- ─── Row 1: Intro text + Heading ─── -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center mb-12 md:mb-20">
+
+      <!-- Left: paragraphs -->
+      <div class="our-story-col-left flex flex-col gap-6 md:pr-8">
+        {% if section.settings.intro_text_1 != blank %}
+          <p class="text-black text-base md:text-lg leading-relaxed">
+            {{ section.settings.intro_text_1 }}
+          </p>
+        {% endif %}
+        {% if section.settings.intro_text_2 != blank %}
+          <p class="text-black text-base md:text-lg leading-relaxed">
+            {{ section.settings.intro_text_2 }}
+          </p>
+        {% endif %}
+      </div>
+
+      <!-- Right: main title -->
+      <div class="flex items-center justify-center md:justify-end">
+        {% if section.settings.heading != blank %}
+          <h2 class="our-story-title font-bricolage font-bold text-5xl md:text-7xl lg:text-8xl text-black text-right leading-tight">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+      </div>
+
+    </div>
+
+    <!-- ─── Row 2: Image + description ─── -->
+    {% if section.settings.story_image or section.settings.story_label != blank or section.settings.story_desc_1 != blank %}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+
+        <!-- Left: image -->
+        {% if section.settings.story_image %}
+          <div class="our-story-img-wrap rounded-2xl overflow-hidden w-full" style="height: 320px;">
+            <img
+              src="{{ section.settings.story_image | image_url: width: 900 }}"
+              alt="{{ section.settings.story_label }}"
+              width="900" height="600"
+              class="w-full h-full object-cover"
+            >
+          </div>
+        {% endif %}
+
+        <!-- Right: label + text -->
+        <div class="flex flex-col justify-center gap-4">
+          {% if section.settings.story_label != blank %}
+            <p class="font-bricolage font-bold text-xs md:text-sm uppercase tracking-widest text-black/50">
+              {{ section.settings.story_label }}
+            </p>
+          {% endif %}
+          {% if section.settings.story_desc_1 != blank %}
+            <p class="text-black text-base md:text-lg leading-relaxed">
+              {{ section.settings.story_desc_1 }}
+            </p>
+          {% endif %}
+          {% if section.settings.story_desc_2 != blank %}
+            <p class="text-black text-base md:text-lg leading-relaxed">
+              {{ section.settings.story_desc_2 }}
+            </p>
+          {% endif %}
+        </div>
+
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFF4DA"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Title",
+      "default": "Our story"
+    },
+    {
+      "type": "header",
+      "content": "Intro text"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text_1",
+      "label": "Paragraph 1",
+      "default": "We believe wellness begins at source. In the soil, in the hands that tend it, and in the traditions that have kept entire communities thriving for generations."
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text_2",
+      "label": "Paragraph 2",
+      "default": "Real wellness doesn't start in a lab or a factory, but in the roots — with the most honest form of nature."
+    },
+    {
+      "type": "header",
+      "content": "Image + description"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "story_label",
+      "label": "Label (small text above)",
+      "default": "VIBBO"
+    },
+    {
+      "type": "textarea",
+      "id": "story_desc_1",
+      "label": "Description paragraph 1",
+      "default": "VIBBO was born from a desire to create more than a beverage: it's an experience rooted in authenticity, crafted with true natural ingredients and vibrant flavors."
+    },
+    {
+      "type": "textarea",
+      "id": "story_desc_2",
+      "label": "Description paragraph 2",
+      "default": "Each cup is designed as a sensory ritual that supports wellness and conscious connection, drawing on its purest, most honest form for your energy ritual."
+    },
+    {
+      "type": "header",
+      "content": "Decorative images"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_top_left",
+      "label": "Deco image — top left"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_top_right",
+      "label": "Deco image — top right"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_bottom_left",
+      "label": "Deco image — bottom left"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_bottom_right",
+      "label": "Deco image — bottom right"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story"
+    }
+  ]
+}
+{% endschema %}
