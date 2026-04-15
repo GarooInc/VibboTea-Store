@@ -45,10 +45,12 @@
         <div class="slide-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
           
-          {% if block.settings.page_title != blank %}    
-            <h1 class="text-[7vw] font-bold font-bricolage text-white
-              drop-shadow-lg leading-[0.9] ">
-              {{ block.settings.page_title | newline_to_br  }}
+          {% if block.settings.page_title != blank %}
+            <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+              <span>{{ block.settings.page_title | newline_to_br }}</span>
+              {% if block.settings.title_logo %}
+                <img src="{{ block.settings.title_logo | image_url: width: 400 }}" alt="VIBBO" width="400" height="200" style="height: 0.85em; width: auto; display: inline-block;">
+              {% endif %}
             </h1>
           {% endif %}
 
@@ -393,6 +395,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "page_title",
         "label": "Titulo principal (centrado)",
         "default": "Bienvenido a Nuestra Tienda"
+      },
+      {
+        "type": "image_picker",
+        "id": "title_logo",
+        "label": "Logo imagen (inline con el titulo)"
       },
       {
         "type": "text",
