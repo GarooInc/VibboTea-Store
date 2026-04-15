@@ -112,7 +112,13 @@
 
       <!-- Descripción VIBBO -->
       <div class="flex flex-col justify-center gap-4 our-story-text-2">
-        {% if section.settings.story_desc_1 != blank %}
+        {% if section.settings.story_logo %}
+          <p class="text-black text-sm md:text-base leading-relaxed">
+            {{ section.settings.story_desc_before }}
+            <img src="{{ section.settings.story_logo | image_url: width: 300 }}" alt="VIBBO" width="300" height="80" style="height: 1em; width: auto; display: inline-block; vertical-align: middle;">
+            {{ section.settings.story_desc_after }}
+          </p>
+        {% elsif section.settings.story_desc_1 != blank %}
           <p class="text-black text-sm md:text-base leading-relaxed">{{ section.settings.story_desc_1 }}</p>
         {% endif %}
         {% if section.settings.story_desc_2 != blank %}
@@ -203,6 +209,21 @@
       "id": "story_desc_1",
       "label": "Description paragraph 1",
       "default": "VIBBO was born from a desire to create more than a beverage: it's an experience rooted in authenticity, crafted with true natural ingredients and vibrant flavors."
+    },
+    {
+      "type": "textarea",
+      "id": "story_desc_before",
+      "label": "Description — texto antes del logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_logo",
+      "label": "Logo (reemplaza VIBBO)"
+    },
+    {
+      "type": "textarea",
+      "id": "story_desc_after",
+      "label": "Description — texto después del logo"
     },
     {
       "type": "textarea",
