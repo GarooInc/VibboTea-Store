@@ -2,22 +2,31 @@
   .our-story-section {
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    overflow-x: clip;
   }
+  .our-story-content { padding-left: 22vw; padding-right: 22vw; }
+  .our-story-deco-tr { top: auto !important; bottom: 0 !important; width: calc({{ section.settings.deco_size }}px * 2) !important; }
   @media (max-width: 767px) {
+    .our-story-content { padding-left: 1.5rem; padding-right: 1.5rem; }
     .our-story-heading { font-size: 2.8rem !important; }
     .our-story-grid { grid-template-columns: 1fr !important; }
-    .our-story-img { height: 260px !important; }
+    .our-story-img { height: 180px !important; }
+    .deco-top-left-img { width: 120px !important; top: -40px !important; left: 10px !important; }
+    .our-story-deco { width: 70px !important; }
+    .our-story-deco-tr { top: auto !important; bottom: 0; width: 110px !important; }
+    .our-story-img-right-wrap { margin-top: 60px !important; order: 1; }
+    .our-story-text-2 { order: 2; }
   }
 </style>
 
 <section
-  class="our-story-section relative overflow-hidden py-12 md:py-20"
-  style="background-color: {{ section.settings.bg_color }};"
+  class="our-story-section relative py-12 md:py-20"
+  style="background-color: {{ section.settings.bg_color }}; position: relative; z-index: 1;"
 >
 
   <!-- Deco top-left -->
   {% if section.settings.deco_top_left %}
-    <div class="absolute top-0 left-0 pointer-events-none z-10" style="width: {{ section.settings.deco_size }}px;">
+    <div class="absolute pointer-events-none deco-top-left-img" style="width: calc({{ section.settings.deco_size }}px * 1.8); top: -130px; left: 50px; z-index: 9999;">
       <img
         src="{{ section.settings.deco_top_left | image_url: width: 600 }}"
         alt="" width="600" height="600"
@@ -28,7 +37,7 @@
 
   <!-- Deco top-right -->
   {% if section.settings.deco_top_right %}
-    <div class="absolute top-0 right-0 pointer-events-none z-10" style="width: {{ section.settings.deco_size }}px;">
+    <div class="absolute top-0 right-0 pointer-events-none z-10 our-story-deco our-story-deco-tr" style="width: {{ section.settings.deco_size }}px;">
       <img
         src="{{ section.settings.deco_top_right | image_url: width: 600 }}"
         alt="" width="600" height="600"
@@ -39,7 +48,7 @@
 
   <!-- Deco bottom-left -->
   {% if section.settings.deco_bottom_left %}
-    <div class="absolute bottom-0 left-0 pointer-events-none z-10" style="width: {{ section.settings.deco_size }}px;">
+    <div class="absolute bottom-0 left-0 pointer-events-none z-10 our-story-deco" style="width: {{ section.settings.deco_size }}px;">
       <img
         src="{{ section.settings.deco_bottom_left | image_url: width: 600 }}"
         alt="" width="600" height="600"
@@ -50,7 +59,7 @@
 
   <!-- Deco bottom-right -->
   {% if section.settings.deco_bottom_right %}
-    <div class="absolute bottom-0 right-0 pointer-events-none z-10" style="width: {{ section.settings.deco_size }}px;">
+    <div class="absolute bottom-0 right-0 pointer-events-none z-10 our-story-deco" style="width: {{ section.settings.deco_size }}px;">
       <img
         src="{{ section.settings.deco_bottom_right | image_url: width: 600 }}"
         alt="" width="600" height="600"
@@ -59,7 +68,7 @@
     </div>
   {% endif %}
 
-  <div class="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-16">
+  <div class="our-story-content relative z-20 w-full">
 
     <!-- ── Fila 1: imagen izquierda | heading + texto ── -->
     <div class="our-story-grid grid grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12 items-center">
@@ -101,12 +110,7 @@
     <div class="our-story-grid grid grid-cols-2 gap-8 md:gap-12 items-center">
 
       <!-- Descripción VIBBO -->
-      <div class="flex flex-col justify-center gap-4">
-        {% if section.settings.story_label != blank %}
-          <p class="font-bricolage font-bold text-xs md:text-sm uppercase tracking-widest text-black/40">
-            {{ section.settings.story_label }}
-          </p>
-        {% endif %}
+      <div class="flex flex-col justify-center gap-4 our-story-text-2">
         {% if section.settings.story_desc_1 != blank %}
           <p class="text-black text-sm md:text-base leading-relaxed">{{ section.settings.story_desc_1 }}</p>
         {% endif %}
@@ -116,7 +120,7 @@
       </div>
 
       <!-- Imagen derecha -->
-      <div class="overflow-hidden rounded-2xl">
+      <div class="overflow-hidden rounded-2xl our-story-img-right-wrap" style="margin-top: 48px;">
         {% if section.settings.image_right %}
           <img
             src="{{ section.settings.image_right | image_url: width: 900 }}"
@@ -217,7 +221,7 @@
       "min": 200,
       "max": 600,
       "step": 20,
-      "default": 380
+      "default": 280
     },
     {
       "type": "header",
