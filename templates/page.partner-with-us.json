@@ -123,6 +123,36 @@
         "deco_top_right": "shopify://shop_images/Hojas2_1.png"
       }
     },
+    "testimonials_partner": {
+      "type": "testimonials",
+      "disabled": true,
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Williams",
+            "text": "I absolutely love this tea. The quality is amazing and the flavors are so vibrant and authentic!",
+            "stars": 5
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Williams",
+            "text": "Every time I've bought organic tea elsewhere, I've been disappointed. Not anymore — VIBBO is the real deal.",
+            "stars": 5
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2"],
+      "name": "Testimonials",
+      "settings": {
+        "bg_color": "#F5F5F0",
+        "heading": "Hear what others have to say",
+        "heading_size": 36,
+        "cards_visible": 2
+      }
+    },
     "faq_partner": {
       "type": "faq",
       "blocks": {
@@ -193,6 +223,7 @@
     "cinta_partner",
     "partner_steps",
     "our_story",
+    "testimonials_partner",
     "faq_partner"
   ]
 }
