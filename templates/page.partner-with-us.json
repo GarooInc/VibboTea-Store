@@ -21,7 +21,7 @@
             "video_mp4": "",
             "page_title": "Join",
             "title_logo": "shopify://shop_images/Frame_5.png",
-            "page_descripction": "Be a real influencer. Promote real wellness.",
+            "page_descripction": "Be a real influencer.\nPromote real wellness.",
             "title_sec": "",
             "desc_sec": "",
             "button_text": "APPLY TODAY",
@@ -93,6 +93,9 @@
         "deco_bottom_right": "shopify://shop_images/Mono_deCabeza_1_0d53b52b-5faa-49a0-9d2d-fb1c76295468.png",
         "cta_title": "Earn & grow with us",
         "cta_text": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics.",
+        "cta_text_before": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside",
+        "cta_logo": "shopify://shop_images/Frame_5_(black).png",
+        "cta_text_after": "as we support farmers, communities, and return to basics.",
         "cta_button_text": "APPLY TODAY",
         "cta_button_link": ""
       }

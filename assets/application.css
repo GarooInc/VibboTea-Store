@@ -1721,6 +1721,9 @@
   .text-\[3vw\] {
     font-size: 3vw;
   }
+  .text-\[4\.5vw\] {
+    font-size: 4.5vw;
+  }
   .text-\[4vw\] {
     font-size: 4vw;
   }
@@ -3269,9 +3272,19 @@
       padding-top: calc(var(--spacing) * 60);
     }
   }
+  .md\:pt-64 {
+    @media (width >= 48rem) {
+      padding-top: calc(var(--spacing) * 64);
+    }
+  }
   .md\:pt-65 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 65);
+    }
+  }
+  .md\:pt-80 {
+    @media (width >= 48rem) {
+      padding-top: calc(var(--spacing) * 80);
     }
   }
   .md\:pr-0 {
@@ -3465,6 +3478,11 @@
       font-size: 1vw;
     }
   }
+  .md\:text-\[2\.5vw\] {
+    @media (width >= 48rem) {
+      font-size: 2.5vw;
+    }
+  }
   .md\:text-\[3\.2vw\] {
     @media (width >= 48rem) {
       font-size: 3.2vw;
@@ -3473,6 +3491,11 @@
   .md\:text-\[3\.4vw\] {
     @media (width >= 48rem) {
       font-size: 3.4vw;
+    }
+  }
+  .md\:text-\[3\.5vw\] {
+    @media (width >= 48rem) {
+      font-size: 3.5vw;
     }
   }
   .md\:text-\[3\.6vw\] {

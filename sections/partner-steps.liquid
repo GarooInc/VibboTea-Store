@@ -106,7 +106,13 @@
       <h2 class="font-bricolage font-bold text-4xl md:text-6xl text-black cta-title" style="margin-bottom: 1.5rem;">
         {{ section.settings.cta_title }}
       </h2>
-      {% if section.settings.cta_text != blank %}
+      {% if section.settings.cta_logo %}
+        <p class="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed cta-text" style="margin-bottom: 2rem;">
+          {{ section.settings.cta_text_before }}
+          <img src="{{ section.settings.cta_logo | image_url: width: 300 }}" alt="VIBBO" width="300" height="80" style="height: 1em; width: auto; display: inline-block; vertical-align: middle;">
+          {{ section.settings.cta_text_after }}
+        </p>
+      {% elsif section.settings.cta_text != blank %}
         <p class="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed cta-text" style="margin-bottom: 2rem;">
           {{ section.settings.cta_text }}
         </p>
@@ -147,8 +153,23 @@
     {
       "type": "textarea",
       "id": "cta_text",
-      "label": "CTA Text",
+      "label": "CTA Text (sin logo)",
       "default": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics."
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text_before",
+      "label": "CTA Texto antes del logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_logo",
+      "label": "CTA Logo (reemplaza VIBBO)"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text_after",
+      "label": "CTA Texto después del logo"
     },
     {
       "type": "text",
