@@ -22,9 +22,9 @@
 
   {% comment %} titulo mobile {% endcomment %}
   {%- if section.settings.title_1 != blank -%}
-      <h2 class="md:hidden sm:text-8xl text-6xl font-semibold pl-30
+      <h2 class="md:hidden sm:text-8xl text-6xl font-semibold
         sm:pt-0 pt-20
-         tracking-tight text-black text-center">
+         tracking-tight text-black text-center relative z-10 pl-24">
         {{ section.settings.title_1 }}
       </h2>
   {%- endif -%}
@@ -33,7 +33,7 @@
     lg:py-0 py-20 flex flex-col md:gap-10">
 
     {%- comment -%} FILA 1 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pl-0 sm:pl-20 pl-15">
+    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pl-0 sm:pl-20">
       
       <div class="relative flex md:order-1 order-2 justify-center 
         md:justify-end w-full ">
@@ -41,7 +41,7 @@
           <img
             src="{{ section.settings.image_1 | image_url: width: 900 }}"
             alt="imagen persona"
-            class="rounded-3xl object-cover md:w-full"
+            class="rounded-3xl object-cover w-full"
             width="{{ section.settings.image_1.width }}"
             height="{{ section.settings.image_1.height }}"
           >
@@ -63,7 +63,7 @@
         {%- endif -%}
 
         {%- if section.settings.body_1 != blank -%}
-          <div class="text-xl sm:text-2xl lg:text-4xl md:text-3xl text-neutral-800 text-left md:py-5">
+          <div class="text-xl sm:text-2xl lg:text-4xl md:text-3xl text-neutral-800 text-center md:text-left md:py-5">
             {{ section.settings.body_1 }}
           </div>
         {%- endif -%}
@@ -72,8 +72,8 @@
     </div>
 
     {%- comment -%} FILA 2 {%- endcomment -%}
-    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pr-0 
-      sm:pr-20 pr-15 sm:pt-8 md:pt-0">
+    <div class="grid md:grid-cols-2 md:gap-10 gap-5 items-center md:pr-0
+      sm:pr-20 sm:pt-8 md:pt-0">
       
 
       <div class="order-1 space-y-4 md:space-y-6">
@@ -85,19 +85,19 @@
           </div>
 
           <div class="md:hidden text-lg
-            sm:text-2xl  text-neutral-800">
+            sm:text-2xl  text-neutral-800 text-center">
             {{ section.settings.body_2_small }}
           </div>
         {%- endif -%}
       </div>
 
-      <div class="order-2 flex justify-start">
+      <div class="order-2 flex justify-center md:justify-start">
         {%- if section.settings.image_2 != blank -%}
           <div class="relative w-full ">
             <img
               src="{{ section.settings.image_2 | image_url: width: 900 }}"
               alt="imagen taza de té"
-              class="rounded-3xl object-cover md:w-full"
+              class="rounded-3xl object-cover w-full"
               width="{{ section.settings.image_2.width }}"
               height="{{ section.settings.image_2.height }}"
             >
@@ -116,7 +116,7 @@
     </div>
     {%- comment -%} FILA 3 {%- endcomment -%}
     <div class="grid md:grid-cols-2 md:gap-10 gap-5
-       items-center md:pt-10 sm:pt-5 md:pl-0 pl-20 ">
+       items-center md:pt-10 sm:pt-5 md:pl-0">
       
       <div class="order-1 space-y-4 md:hidden">
         {%- if section.settings.body_2_small != blank -%}
@@ -127,8 +127,8 @@
           </div>
 
           <div class="md:hidden text-lg
-            sm:text-2xl  text-neutral-800">
-            {{ section.settings.body_2_small2 }} 
+            sm:text-2xl  text-neutral-800 text-center">
+            {{ section.settings.body_2_small2 }}
           </div>
         {%- endif -%}
       </div>
