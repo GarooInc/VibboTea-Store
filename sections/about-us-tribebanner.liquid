@@ -22,7 +22,7 @@
 
   {% comment %} titulo mobile {% endcomment %}
   {%- if section.settings.title_1 != blank -%}
-      <h2 class="md:hidden sm:text-8xl text-6xl font-semibold
+      <h2 class="md:hidden sm:text-8xl text-6xl font-semibold pl-30
         sm:pt-0 pt-20
          tracking-tight text-black text-center">
         {{ section.settings.title_1 }}
@@ -79,14 +79,14 @@
       <div class="order-1 space-y-4 md:space-y-6">
         {%- if section.settings.body_2_small != blank -%}
           <div class="hidden md:flex md:flex-col text-lg
-            sm:text-2xl lg:text-3xl text-neutral-800">
-            {{ section.settings.body_2_small }} 
+            sm:text-2xl lg:text-3xl text-neutral-800 leading-normal">
+            {{ section.settings.body_2_small }}
             {{ section.settings.body_2_small2 }}
           </div>
 
           <div class="md:hidden text-lg
             sm:text-2xl  text-neutral-800">
-            {{ section.settings.body_2_small }} 
+            {{ section.settings.body_2_small }}
           </div>
         {%- endif -%}
       </div>
