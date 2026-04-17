@@ -26,14 +26,14 @@
 
 
       <div class="w-full absolute justify-center items-center pt-50">
-        <div class="hidden sm:grid sm:grid-cols-3 w-full gap-6 sm:gap-5 
+        <div class="hidden sm:grid sm:grid-cols-3 w-full gap-6 sm:gap-5
           p-10 sm:pt-10 lg:pt-20 sm:px-5 lg:px-20 pt-42 ">
 
             <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
               <img 
                 src="{{ section.settings.image | img_url: '2000x2000' }}" 
                 alt="Imagen 1"
-                class="w-full h-full object-cover object-center"
+                class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image.width }}"
                 height="{{ section.settings.image.height }}"
               >
@@ -43,7 +43,7 @@
               <img 
                 src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
                 alt="Imagen 2"
-                class="w-full h-full object-cover object-center"
+                class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image2.width }}"
                 height="{{ section.settings.image2.height }}"
               >
@@ -53,7 +53,7 @@
               <img 
                 src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
                 alt="Imagen 3"
-                class="w-full h-full object-cover object-center"
+                class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image3.width }}"
                 height="{{ section.settings.image3.height }}"
               >
