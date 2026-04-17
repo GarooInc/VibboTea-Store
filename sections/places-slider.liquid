@@ -21,7 +21,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
             alt="{{ block.settings.map_alt | escape }}"
           />
 
-            <div class="block tracking-normal max-w-xs md:max-w-3xl 
+            <div class="block tracking-normal max-w-xs md:max-w-3xl
               text-left absolute md:top-20 top-10 md:left-20 left-5 md:text-2xl richnameplace font-bricolage">
               {{ block.settings.richtext }}
             </div>
@@ -172,6 +172,10 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   .custom-slider-places {
     height: 90vh;
     min-height: 600px;
+  }
+  .richnameplace p:first-child {
+    line-height: 1.5;
+    margin-bottom: 0;
   }
 }
 

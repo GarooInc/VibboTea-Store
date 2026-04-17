@@ -3434,6 +3434,24 @@
       font-size: 140px;
     }
   }
+  .md\:leading-\[1\.1\] {
+    @media (width >= 48rem) {
+      --tw-leading: 1.1;
+      line-height: 1.1;
+    }
+  }
+  .md\:leading-snug {
+    @media (width >= 48rem) {
+      --tw-leading: var(--leading-snug);
+      line-height: var(--leading-snug);
+    }
+  }
+  .md\:leading-tight {
+    @media (width >= 48rem) {
+      --tw-leading: var(--leading-tight);
+      line-height: var(--leading-tight);
+    }
+  }
   .lg\:hidden {
     @media (width >= 64rem) {
       display: none;
