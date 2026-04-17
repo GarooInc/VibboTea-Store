@@ -16,12 +16,12 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
     {% endfor %}
   </div>
   {% comment %} version mobile {% endcomment %}
-  <div class="md:hidden slides-wrapper-mobile relative w-full">
+  <div class="md:hidden slides-wrapper-mobile relative w-full overflow-hidden">
 
     {% for block in section.blocks %}
       {% assign img = block.settings.image_mobile %}
       <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}">
-        <img src="{{ img | img_url: '2000x2000' }}" 
+        <img src="{{ img | img_url: '2000x2000' }}"
           class="w-full h-auto max-h-full object-contain mx-auto"
           width="{{ img.width }}" 
           height="{{ img.height }}" 
@@ -104,27 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
       slides[i].style.position = "relative";
     }
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.onclick = () => {
       index = (index + 1) % slides.length;
       showSlide(index);
-    });
+    };
 
-    prevBtn.addEventListener("click", () => {
+    prevBtn.onclick = () => {
       index = (index - 1 + slides.length) % slides.length;
       showSlide(index);
-    });
-
-    // soporte touch swipe mobile
-    let touchStartX = 0;
-    wrapper.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    wrapper.addEventListener("touchend", (e) => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) { index = (index + 1) % slides.length; }
-        else { index = (index - 1 + slides.length) % slides.length; }
-        showSlide(index);
-      }
-    }, { passive: true });
+    };
   }
 
   if (window.innerWidth < 768) {
