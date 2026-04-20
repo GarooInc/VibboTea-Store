@@ -3173,11 +3173,6 @@
       padding-top: calc(var(--spacing) * 30);
     }
   }
-  .md\:pt-40 {
-    @media (width >= 48rem) {
-      padding-top: calc(var(--spacing) * 40);
-    }
-  }
   .md\:pt-46 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 46);
@@ -3196,6 +3191,21 @@
   .md\:pt-80 {
     @media (width >= 48rem) {
       padding-top: calc(var(--spacing) * 80);
+    }
+  }
+  .md\:pt-\[55px\] {
+    @media (width >= 48rem) {
+      padding-top: 55px;
+    }
+  }
+  .md\:pt-\[70px\] {
+    @media (width >= 48rem) {
+      padding-top: 70px;
+    }
+  }
+  .md\:pt-\[78px\] {
+    @media (width >= 48rem) {
+      padding-top: 78px;
     }
   }
   .md\:pr-0 {
@@ -3241,6 +3251,36 @@
   .md\:pb-20 {
     @media (width >= 48rem) {
       padding-bottom: calc(var(--spacing) * 20);
+    }
+  }
+  .md\:pb-\[42px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 42px;
+    }
+  }
+  .md\:pb-\[50px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 50px;
+    }
+  }
+  .md\:pb-\[65px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 65px;
+    }
+  }
+  .md\:pb-\[122px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 122px;
+    }
+  }
+  .md\:pb-\[130px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 130px;
+    }
+  }
+  .md\:pb-\[145px\] {
+    @media (width >= 48rem) {
+      padding-bottom: 145px;
     }
   }
   .md\:pl-0 {
@@ -3492,11 +3532,6 @@
   .lg\:pt-2 {
     @media (width >= 64rem) {
       padding-top: calc(var(--spacing) * 2);
-    }
-  }
-  .lg\:pt-5 {
-    @media (width >= 64rem) {
-      padding-top: calc(var(--spacing) * 5);
     }
   }
   .lg\:pt-20 {

@@ -101,7 +101,7 @@
 
       {% case position %}
         {% when 'top-left' %}
-          {% assign position_classes = 'items-start justify-start pt-10 pl-10' %}
+          {% assign position_classes = 'items-start justify-start md:pt-[78px] pt-10 pl-10' %}
         {% when 'top-center' %}
           {% assign position_classes = 'items-start justify-center pt-48' %}
         {% when 'top-right' %}
@@ -109,9 +109,9 @@
         {% when 'center' %}
           {% assign position_classes = 'items-center justify-center md:pt-80 pt-52 md:left-0 left-1/3' %}
         {% when 'bottom-left' %}
-          {% assign position_classes = 'items-end justify-start md:pb-20 md:pl-10 md:pt-0 pt-52 pl-5' %}
+          {% assign position_classes = 'items-end justify-start md:pb-[42px] md:pl-10 md:pt-0 pt-52 pl-5' %}
         {% when 'bottom-left-up' %}
-          {% assign position_classes = 'items-end justify-start pb-40 pl-10' %}
+          {% assign position_classes = 'items-end justify-start md:pb-[122px] pb-40 pl-10' %}
         {% when 'bottom-right' %}
           {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
         {% else %}
