@@ -1,5 +1,5 @@
 <footer
-  class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white flex flex-wrap items-start justify-between"
+  class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
   <!-- VERSION MOBILE -->
@@ -70,6 +70,7 @@
   </div>
 
   <!-- VERSIONO DESKTOP -->
+  <div class="hidden md:flex w-full items-start justify-between">
   <!-- COLUMNA IZQUIERDA -->
   <div class="hidden w-1/2 md:flex flex-col justify-between items-start p-8 md:pl-20 md:pt-20 h-full">
     <div>
@@ -114,20 +115,6 @@
         </div>
        
       </div>
-      <div class="flex flex-row space-y-1 md:pb-8">
-        {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
-          {% for link in linklists[section.settings.menu2_footer].links %}
-            <a href="{{ link.url }}" class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">{{ link.title }}</a>
-          {% endfor %}
-        {% else %}
-          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">Privacy Policy</a>
-          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg pr-5">Terms of Service</a>
-          <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg">Cookies Policy</a>
-        {% endif %}
-      </div>
-
-  
-
     </div>
 
   <!-- COLUMNA DERECHA -->
@@ -185,8 +172,9 @@
 
 
       </nav>
-      
+
   </div>
+  </div><!-- end desktop columns wrapper -->
 
   <!-- DESCRIPCION FULL WIDTH - DESKTOP -->
   {% if section.settings.descripcion2 %}
@@ -196,10 +184,26 @@
       </p>
     </div>
     <style>
-      .footer-desc-full { display: none; width: 100%; padding: 0 5rem 2.5rem; }
+      .footer-desc-full { display: none; width: 100%; padding: 0 5rem 2.5rem; margin-top: -5rem; }
       @media (min-width: 768px) { .footer-desc-full { display: flex; justify-content: center; } }
     </style>
   {% endif %}
+
+  <!-- PRIVACY LINKS - DESKTOP -->
+  <div class="footer-privacy-links" style="display:none; width:100%; padding: 0 5rem 2rem;">
+    {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
+      {% for link in linklists[section.settings.menu2_footer].links %}
+        <a href="{{ link.url }}" class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg transition-opacity pr-5">Privacy Policy</a>
+      <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg pr-5">Terms of Service</a>
+      <a class="hover:opacity-70 whitespace-nowrap text-xs md:text-lg">Cookies Policy</a>
+    {% endif %}
+  </div>
+  <style>
+    @media (min-width: 768px) { .footer-privacy-links { display: flex !important; } }
+  </style>
 
 </footer>
 
