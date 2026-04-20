@@ -131,6 +131,7 @@
     },
     "cinta_newsletter_CmHQnG": {
       "type": "cinta-newsletter",
+      "disabled": true,
       "name": "Liston",
       "settings": {
         "isotipe": "shopify://shop_images/isotipo_black.png",
