@@ -1,5 +1,5 @@
-<footer 
-  class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white flex items-start justify-between"
+<footer
+  class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white flex flex-wrap items-start justify-between"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
   <!-- VERSION MOBILE -->
@@ -48,8 +48,8 @@
       </div>
       <div>
         {% if section.settings.descripcion2 %}
-          <p class=" md:text-sm text-xs w-screen 
-            justify-center text-white font-bricolage 
+          <p class=" md:text-sm text-xs w-screen
+            text-center text-white font-bricolage
             leading-tight py-5 md:pt-0 pt-10 uppercase px-5">
             {{ section.settings.descripcion2 }}
           </p>
@@ -114,15 +114,6 @@
         </div>
        
       </div>
-      <div>
-        {% if section.settings.descripcion2 %}
-          <p class=" text-md w-screen 
-            justify-start text-white font-bricolage leading-tight pb-10 uppercase pr-20">
-            {{ section.settings.descripcion2 }}
-          </p>
-        {% endif %}
-      </div>
-
       <div class="flex flex-row space-y-1 md:pb-8">
         {% if section.settings.menu and linklists[section.settings.menu2_footer] and linklists[section.settings.menu2_footer].links.size > 0 %}
           {% for link in linklists[section.settings.menu2_footer].links %}
@@ -196,7 +187,19 @@
       </nav>
       
   </div>
-  
+
+  <!-- DESCRIPCION FULL WIDTH - DESKTOP -->
+  {% if section.settings.descripcion2 %}
+    <div class="footer-desc-full">
+      <p style="color:white; font-family:'Bricolage Grotesque',sans-serif; font-size:0.875rem; text-transform:uppercase; text-align:center; line-height:1.2;">
+        {{ section.settings.descripcion2 }}
+      </p>
+    </div>
+    <style>
+      .footer-desc-full { display: none; width: 100%; padding: 0 5rem 2.5rem; }
+      @media (min-width: 768px) { .footer-desc-full { display: flex; justify-content: center; } }
+    </style>
+  {% endif %}
 
 </footer>
 
