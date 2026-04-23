@@ -145,6 +145,12 @@
           {{ desc_parts[0] }}
         </div>
 
+        {% if section.settings.presentation_text != blank %}
+          <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
+            <strong>Presentation</strong>: {{ section.settings.presentation_text }}
+          </div>
+        {% endif %}
+
         <!-- Judge.me reviews -->
         <div class="mt-10 mb-4 flex justify-center">
           <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
@@ -440,6 +446,11 @@
       "type": "textarea",
       "id": "disclaimer_kickstarter",
       "label": "Disclaimer Kickstarter text"
+    },
+    {
+      "type": "textarea",
+      "id": "presentation_text",
+      "label": "Presentation text"
     }
   ],
   "presets": [{ "name": "Description product" }]

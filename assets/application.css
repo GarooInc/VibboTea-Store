@@ -1538,9 +1538,6 @@
   .pr-10 {
     padding-right: calc(var(--spacing) * 10);
   }
-  .pr-20 {
-    padding-right: calc(var(--spacing) * 20);
-  }
   .pr-30 {
     padding-right: calc(var(--spacing) * 30);
   }
@@ -3193,16 +3190,6 @@
       padding-top: calc(var(--spacing) * 80);
     }
   }
-  .md\:pt-\[55px\] {
-    @media (width >= 48rem) {
-      padding-top: 55px;
-    }
-  }
-  .md\:pt-\[70px\] {
-    @media (width >= 48rem) {
-      padding-top: 70px;
-    }
-  }
   .md\:pt-\[78px\] {
     @media (width >= 48rem) {
       padding-top: 78px;
@@ -3238,11 +3225,6 @@
       padding-bottom: calc(var(--spacing) * 0);
     }
   }
-  .md\:pb-8 {
-    @media (width >= 48rem) {
-      padding-bottom: calc(var(--spacing) * 8);
-    }
-  }
   .md\:pb-10 {
     @media (width >= 48rem) {
       padding-bottom: calc(var(--spacing) * 10);
@@ -3258,29 +3240,9 @@
       padding-bottom: 42px;
     }
   }
-  .md\:pb-\[50px\] {
-    @media (width >= 48rem) {
-      padding-bottom: 50px;
-    }
-  }
-  .md\:pb-\[65px\] {
-    @media (width >= 48rem) {
-      padding-bottom: 65px;
-    }
-  }
   .md\:pb-\[122px\] {
     @media (width >= 48rem) {
       padding-bottom: 122px;
-    }
-  }
-  .md\:pb-\[130px\] {
-    @media (width >= 48rem) {
-      padding-bottom: 130px;
-    }
-  }
-  .md\:pb-\[145px\] {
-    @media (width >= 48rem) {
-      padding-bottom: 145px;
     }
   }
   .md\:pl-0 {
