@@ -145,9 +145,10 @@
           {{ desc_parts[0] }}
         </div>
 
-        {% if section.settings.presentation_text != blank %}
+        {% assign presentation = product.metafields.custom.presentation %}
+        {% if presentation != blank %}
           <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
-            <strong>Presentation</strong>: {{ section.settings.presentation_text }}
+            <strong>Presentation</strong>: {{ presentation }}
           </div>
         {% endif %}
 
