@@ -152,6 +152,14 @@
         {% endif %}
 
 
+        <!-- Judge.me reviews -->
+        <div class="mb-4 flex justify-center" style="margin-top: 24px;">
+          <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
+            style="font-size: 2rem;">
+            {{ product.metafields.judgeme.badge }}
+          </div>
+        </div>
+
         <!-- Suscripción -->
         <div class='subscriptions_app_embed_block ' ></div>
 
