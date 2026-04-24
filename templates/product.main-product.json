@@ -30,7 +30,8 @@
         "timer_kickstarter": "SALES ENDS IN:",
         "time_discount_kickstarter": "2026-02-27 23:59:59",
         "kickstarter_link": "",
-        "disclaimer_kickstarter": ""
+        "disclaimer_kickstarter": "",
+        "presentation_text": ""
       }
     },
     "1774571432dbf133bd": {
@@ -256,7 +257,7 @@
       "type": "product-why-varios",
       "name": "Why Vibbo Slidder",
       "settings": {
-        "title": "Why Vibbo?",
+        "title": "Why choose Vibbo?",
         "image": "shopify://shop_images/Group_13.png",
         "image2": "shopify://shop_images/Group_56.png",
         "image3": "shopify://shop_images/Group_57.png",
