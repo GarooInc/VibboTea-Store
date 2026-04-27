@@ -49,7 +49,7 @@
             <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
-                <img src="{{ block.settings.title_logo | image_url: width: 400 }}" alt="VIBBO" width="400" height="200" style="height: 0.85em; width: auto; display: inline-block;">
+                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" style="height: 1em; width: auto; display: inline-block; max-width: 40vw;">
               {% endif %}
             </h1>
           {% endif %}
