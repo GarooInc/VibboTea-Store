@@ -147,7 +147,7 @@
         "text_button": "I want to feel human again",
         "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
-        "collection": "frontpage",
+        "collection": "shop",
         "limit": 12,
         "autoplay": true,
         "interval": 5000
