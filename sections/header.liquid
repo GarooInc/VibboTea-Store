@@ -253,6 +253,15 @@
 
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const topbar = document.querySelector('.topbar-wrapper');
+    const header = document.getElementById('main-header');
+    if (topbar && header) {
+      header.style.top = topbar.offsetHeight + 'px';
+    }
+  });
+</script>
+<script>
   function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
   const header = document.getElementById('main-header');
