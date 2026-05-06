@@ -23,7 +23,26 @@
       <div class="flex flex-col">
 
         <a href="{{ product.url }}" class="block">
-          <div class="w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
+          <div class="relative w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
+            {%- assign has_sold_out_tag = false -%}
+            {%- if product.tags contains 'Sold Out' -%}
+              {%- assign has_sold_out_tag = true -%}
+            {%- endif -%}
+            {%- assign negative_stock = true -%}
+            {%- for variant in product.variants -%}
+              {%- if variant.inventory_management == blank -%}
+                {%- assign negative_stock = false -%}
+                {%- break -%}
+              {%- elsif variant.inventory_quantity > 0 -%}
+                {%- assign negative_stock = false -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if has_sold_out_tag or negative_stock -%}
+              <div class="absolute top-3 left-3 z-10 bg-black text-white text-xs font-bricolage uppercase px-3 py-1 rounded-full">
+                Sold Out
+              </div>
+            {%- endif -%}
             {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
 
