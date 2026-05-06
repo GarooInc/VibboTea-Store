@@ -91,6 +91,12 @@
 
 {% endif %}
 
+<script>
+  if (window.location.pathname.startsWith('/collections/shop')) {
+    var clean = window.location.pathname.replace('/collections/shop', '/shop');
+    history.replaceState(null, '', clean + window.location.search + window.location.hash);
+  }
+</script>
 
 {% schema %}
 {
