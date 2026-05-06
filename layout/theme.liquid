@@ -38,5 +38,24 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+
+    <script>
+      (function() {
+        var rewrites = {
+          '/pages/about-us':       '/about-us',
+          '/pages/partner-with-us': '/partner-with-us',
+          '/pages/contact-us':     '/contact-us',
+          '/collections/shop':     '/shop'
+        };
+        var path = window.location.pathname;
+        for (var from in rewrites) {
+          if (path.startsWith(from)) {
+            var clean = path.replace(from, rewrites[from]);
+            history.replaceState(null, '', clean + window.location.search + window.location.hash);
+            break;
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
