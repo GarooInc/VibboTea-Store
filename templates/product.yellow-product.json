@@ -153,6 +153,7 @@
         "ingredient_block_cyNJi3": {
           "type": "ingredient_block",
           "settings": {
+            "image": "shopify://shop_images/bayas-sauco_1_9d735e7f-50ab-4f21-af76-0e1b2e8ad847.png",
             "title": "Raisins",
             "text": "Boosts flavonoids for antioxidants while cutting tannins, aiding digestion, heart health, and inflammation."
           }
