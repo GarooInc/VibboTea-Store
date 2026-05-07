@@ -145,6 +145,7 @@
           {{ desc_parts[0] }}
         </div>
 
+        <!-- DEBUG: {{ product.metafields.custom | json }} -->
         {% assign presentation = product.metafields.custom.presentation_text %}
         {% if presentation != blank %}
           <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
