@@ -168,13 +168,15 @@
 
         {% if section.settings.presentation_text != blank %}
           <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
-            <strong>Presentation</strong>: {{ section.settings.presentation_text }}
+            <strong class="block">Presentation</strong>
+            {{ section.settings.presentation_text | newline_to_br }}
           </div>
         {% endif %}
 
         {% if section.settings.steeping_instructions_text != blank %}
           <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
-            <strong>Steeping instructions:</strong> {{ section.settings.steeping_instructions_text }}
+            <strong class="block">Steeping instructions:</strong>
+            {{ section.settings.steeping_instructions_text | newline_to_br }}
           </div>
         {% endif %}
 
