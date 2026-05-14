@@ -172,6 +172,12 @@
           </div>
         {% endif %}
 
+        {% if section.settings.steeping_instructions_text != blank %}
+          <div class="text-sm text-black font-bricolage pt-2 md:pr-10">
+            <strong>Steeping instructions:</strong> {{ section.settings.steeping_instructions_text }}
+          </div>
+        {% endif %}
+
 
         <!-- Judge.me reviews -->
         <div class="mb-4 flex justify-center" style="margin-top: 24px;">
@@ -514,6 +520,11 @@
       "type": "textarea",
       "id": "presentation_text",
       "label": "Presentation text"
+    },
+    {
+      "type": "textarea",
+      "id": "steeping_instructions_text",
+      "label": "Steeping instructions text"
     }
   ],
   "presets": [{ "name": "Description product" }]
