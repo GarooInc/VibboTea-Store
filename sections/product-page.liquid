@@ -55,7 +55,7 @@
       </div>
 
       <!-- MINIATURAS -->
-      <div class="flex gap-2 overflow-x-auto pb-1" id="thumbnailStrip">
+      <div class="flex gap-2 overflow-x-auto pb-1 justify-center" id="thumbnailStrip">
         {% for media in product.media %}
           <button
             class="thumbnail-btn shrink-0 w-18 h-18 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer {% if forloop.first %}border-black opacity-100{% else %}border-transparent opacity-60{% endif %}"
@@ -341,6 +341,7 @@
 
 <script>
   let currentSlide = 0;
+  let autoplayInterval = null;
 
   function updateThumbnails() {
     const thumbs = document.querySelectorAll('.thumbnail-btn');
@@ -377,6 +378,23 @@
     currentSlide = (currentSlide - 1 + slides) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
     updateThumbnails();
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(slideNext, 3500);
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  const slider = document.getElementById('productSlider');
+  if (slider) {
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slider.addEventListener('touchstart', stopAutoplay, { passive: true });
+    slider.addEventListener('touchend', startAutoplay, { passive: true });
+    startAutoplay();
   }
 </script>
 
