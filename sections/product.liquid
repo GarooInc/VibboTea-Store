@@ -12,6 +12,12 @@
 </div>
 
 <div class="product-info">
+<!-- Start of Judge.me code --> 
+  <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+ {{ product.metafields.judgeme.badge }} 
+ </div> 
+<!-- End of Judge.me code -->
+
   <h1>{{ product.title }}</h1>
   <p>{{ product.price | money }}</p>
   <p>{{ product.description }}</p>
