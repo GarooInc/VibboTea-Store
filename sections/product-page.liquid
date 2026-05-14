@@ -6,50 +6,71 @@
 
     {% if product.media.size > 1 %}
 
-    <!-- SLIDER -->
-    <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
-      
-      <div class="flex transition-transform duration-500" id="sliderTrack">
-        {% for media in product.media %}
-          <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
-            {% if media.media_type == "image" %}
-              <img
-                src="{{ media | image_url: width: 1200 }}"
-                alt="{{ media.alt | escape }}"
-                class="w-full h-full object-cover"
-                width="{{ media.width }}"
-                height="{{ media.height }}"
-              />
-            {% elsif media.media_type == "video" %}
-              <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                <source src="{{ media.sources[1].url }}" type="video/mp4">
-              </video>
-            {% elsif media.media_type == "external_video" %}
-              {% if media.host == "youtube" %}
-                <iframe
-                  src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
-                  class="w-full h-full" frameborder="0"
-                  allow="autoplay; encrypted-media" allowfullscreen
-                ></iframe>
-              {% elsif media.host == "vimeo" %}
-                <iframe
-                  src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
-                  class="w-full h-full" frameborder="0"
-                  allow="autoplay; fullscreen" allowfullscreen
-                ></iframe>
+    <!-- SLIDER + THUMBNAILS -->
+    <div class="flex flex-col gap-3">
+
+      <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
+
+        <div class="flex transition-transform duration-500" id="sliderTrack">
+          {% for media in product.media %}
+            <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
+              {% if media.media_type == "image" %}
+                <img
+                  src="{{ media | image_url: width: 1200 }}"
+                  alt="{{ media.alt | escape }}"
+                  class="w-full h-full object-cover"
+                  width="{{ media.width }}"
+                  height="{{ media.height }}"
+                />
+              {% elsif media.media_type == "video" %}
+                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                  <source src="{{ media.sources[1].url }}" type="video/mp4">
+                </video>
+              {% elsif media.media_type == "external_video" %}
+                {% if media.host == "youtube" %}
+                  <iframe
+                    src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
+                    class="w-full h-full" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen
+                  ></iframe>
+                {% elsif media.host == "vimeo" %}
+                  <iframe
+                    src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+                    class="w-full h-full" frameborder="0"
+                    allow="autoplay; fullscreen" allowfullscreen
+                  ></iframe>
+                {% endif %}
               {% endif %}
-            {% endif %}
-          </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- BOTONES -->
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slidePrev()">
+          {% render 'arrow-slidder2' %}
+        </button>
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slideNext()">
+          {% render 'arrow-slidder' %}
+        </button>
+      </div>
+
+      <!-- MINIATURAS -->
+      <div class="flex gap-2 overflow-x-auto pb-1" id="thumbnailStrip">
+        {% for media in product.media %}
+          <button
+            class="thumbnail-btn shrink-0 w-18 h-18 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer {% if forloop.first %}border-black opacity-100{% else %}border-transparent opacity-60{% endif %}"
+            onclick="goToSlide({{ forloop.index0 }})"
+            aria-label="Ver imagen {{ forloop.index }}"
+          >
+            <img
+              src="{{ media.preview_image | image_url: width: 200 }}"
+              alt="{{ media.alt | escape }}"
+              class="w-full h-full object-cover"
+            />
+          </button>
         {% endfor %}
       </div>
 
-      <!-- BOTONES -->
-      <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slidePrev()">
-        {% render 'arrow-slidder2' %}
-      </button>
-      <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slideNext()">
-        {% render 'arrow-slidder' %}
-      </button>
     </div>
 
     {% else %}
@@ -321,11 +342,33 @@
 <script>
   let currentSlide = 0;
 
+  function updateThumbnails() {
+    const thumbs = document.querySelectorAll('.thumbnail-btn');
+    thumbs.forEach((thumb, i) => {
+      if (i === currentSlide) {
+        thumb.classList.add('border-black', 'opacity-100');
+        thumb.classList.remove('border-transparent', 'opacity-60');
+        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } else {
+        thumb.classList.remove('border-black', 'opacity-100');
+        thumb.classList.add('border-transparent', 'opacity-60');
+      }
+    });
+  }
+
+  function goToSlide(index) {
+    const track = document.getElementById("sliderTrack");
+    currentSlide = index;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails();
+  }
+
   function slideNext() {
     const track = document.getElementById("sliderTrack");
     const slides = track.children.length;
     currentSlide = (currentSlide + 1) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails();
   }
 
   function slidePrev() {
@@ -333,6 +376,7 @@
     const slides = track.children.length;
     currentSlide = (currentSlide - 1 + slides) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails();
   }
 </script>
 
