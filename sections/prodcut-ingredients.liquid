@@ -2,24 +2,22 @@
   class="w-full xl:py-20 xl:pb-40 py-15 pb-25 overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
-  
+
 <div class="w-full h-full mx-auto flex flex-col items-center justify-center ">
 
-  
   {% if section.settings.title %}
   <h2 class="text-center md:text-5xl text-[8vw] text-black font-normal font-bricolage md:pb-20 pb-15">
-
     {{ section.settings.title }}
   </h2>
   {% endif %}
 
   <!-- WRAPPER DEL CARRUSEL -->
-  <div class="relative w-full overflow-hidden flex items-center">
+  <div class="relative w-full overflow-visible flex items-center">
 
     <!-- Botón Prev -->
     <button
       onclick="ingredientsPrev()"
-      class="absolute left-2 md:left-6 z-10 pointer-events-auto hover:opacity-70 transition-opacity scale-75 md:scale-90"
+      class="absolute left-2 md:left-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
       aria-label="Anterior"
     >
       <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +28,7 @@
     </button>
 
     <!-- TRACK QUE SE MUEVE -->
-    <div id="ingredientsTrack" class="flex md:gap-10 gap-8 items-center will-change-transform">
+    <div id="ingredientsTrack" class="flex md:gap-10 gap-8 animate-infinite-scroll items-center">
       {% for i in (1..4) %}
           {% for block in section.blocks %}
           <div class="ingredient-card md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white
@@ -45,7 +43,6 @@
                 height="176"
               >
             </div>
-
             <h3 class="font-medium text-black font-bricolage xl:text-lg text-base">
               {{ block.settings.title }}</h3>
             <p class="text-black md:min-h-[8vw] min-h-[15vw]
@@ -59,7 +56,7 @@
     <!-- Botón Next -->
     <button
       onclick="ingredientsNext()"
-      class="absolute right-2 md:right-6 z-10 pointer-events-auto hover:opacity-70 transition-opacity scale-75 md:scale-90"
+      class="absolute right-2 md:right-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
       aria-label="Siguiente"
     >
       <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,140 +67,161 @@
     </button>
 
   </div>
-  
+
   </div>
 </div>
+
 {% if section.settings.imagen1 %}
-    <div class="absolute md:top-5 md:-translate-y-30 -translate-y-25 right-0 transform ">
-      <img
-        src="{{ section.settings.imagen1 | image_url: width: 1000 }}"
-        alt="Imagen 1"
-        class="md:w-[15vw] w-[25vw] object-cover "
-        width="{{ section.settings.imagen1.width }}"
-        height="{{ section.settings.imagen1.height }}"
-      />
-    </div>
-  {% endif %}
-  {% if section.settings.imagen2 %}
-    <div class="absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
-      <img
-        src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
-        alt="Imagen 2"
-        class="md:w-[35vw] w-[65vw] object-cover block"
-        width="{{ section.settings.imagen2.width }}"
-        height="{{ section.settings.imagen2.height }}"
-      />
-    </div>
-  {% endif %}
-  {% if section.settings.imagen3 %}
-    <div class="hidden md:block absolute right-20 translate-y-35 -bottom-12 transform">
-      <img
-        src="{{ section.settings.imagen3 | image_url: width: 1000 }}"
-        alt="Imagen 3"
-        class="w-[35vw] object-cover block"
-        width="{{ section.settings.imagen3.width }}"
-        height="{{ section.settings.imagen3.height }}"
-      />
-    </div>
-  {% endif %}
+  <div class="absolute md:top-5 md:-translate-y-30 -translate-y-25 right-0 transform ">
+    <img
+      src="{{ section.settings.imagen1 | image_url: width: 1000 }}"
+      alt="Imagen 1"
+      class="md:w-[15vw] w-[25vw] object-cover "
+      width="{{ section.settings.imagen1.width }}"
+      height="{{ section.settings.imagen1.height }}"
+    />
+  </div>
+{% endif %}
+{% if section.settings.imagen2 %}
+  <div class="absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
+    <img
+      src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
+      alt="Imagen 2"
+      class="md:w-[35vw] w-[65vw] object-cover block"
+      width="{{ section.settings.imagen2.width }}"
+      height="{{ section.settings.imagen2.height }}"
+    />
+  </div>
+{% endif %}
+{% if section.settings.imagen3 %}
+  <div class="hidden md:block absolute right-20 translate-y-35 -bottom-12 transform">
+    <img
+      src="{{ section.settings.imagen3 | image_url: width: 1000 }}"
+      alt="Imagen 3"
+      class="w-[35vw] object-cover block"
+      width="{{ section.settings.imagen3.width }}"
+      height="{{ section.settings.imagen3.height }}"
+    />
+  </div>
+{% endif %}
 
 <style>
+  @keyframes infinite-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-infinite-scroll {
+    display: flex;
+    animation: infinite-scroll var(--scroll-duration, 60s) var(--scroll-delay, 0s) linear infinite;
+  }
+
+  .animate-infinite-scroll:hover {
+    animation-play-state: paused;
+  }
+
   .card-focus {
     transition: transform 0.4s ease, opacity 0.4s ease;
     transform: scale(0.95);
   }
+
   .card-focus.is-center {
     transform: scale(1.2);
     opacity: 1;
     z-index: 10;
   }
+
   .card-focus img {
     transition: transform 0.4s ease;
   }
+
   .card-focus.is-center img {
     transform: scale(1.1);
   }
+
   .card-raisins img {
     padding: 2.5rem;
   }
 </style>
 
 <script>
-(function () {
-  const SPEED = 120; // px por segundo
-  const PAUSE_MS = 2500;
-
-  let pos = 0;
-  let lastTime = null;
-  let paused = false;
-  let pauseTimer = null;
-
-  function loop(ts) {
-    if (lastTime !== null && !paused) {
-      const delta = (ts - lastTime) / 1000;
-      const track = document.getElementById('ingredientsTrack');
-      if (track) {
-        const half = track.scrollWidth / 2;
-        pos += SPEED * delta;
-        if (pos >= half) pos -= half;
-        track.style.transform = `translateX(-${pos}px)`;
-      }
-    }
-    lastTime = ts;
-    requestAnimationFrame(loop);
-  }
-
-  function pauseAutoplay() {
-    paused = true;
-    clearTimeout(pauseTimer);
-    pauseTimer = setTimeout(() => { paused = false; }, PAUSE_MS);
-  }
-
-  function getCardStep() {
-    const card = document.querySelector('.ingredient-card');
-    if (!card) return 200;
-    const gap = window.innerWidth >= 768 ? 40 : 32;
-    return card.offsetWidth + gap;
-  }
-
-  window.ingredientsNext = function () {
-    const track = document.getElementById('ingredientsTrack');
-    if (!track) return;
-    const half = track.scrollWidth / 2;
-    pos = (pos + getCardStep()) % half;
-    track.style.transform = `translateX(-${pos}px)`;
-    pauseAutoplay();
-  };
-
-  window.ingredientsPrev = function () {
-    const track = document.getElementById('ingredientsTrack');
-    if (!track) return;
-    const half = track.scrollWidth / 2;
-    pos = (pos - getCardStep() + half) % half;
-    track.style.transform = `translateX(-${pos}px)`;
-    pauseAutoplay();
-  };
-
   function detectCenterCard() {
     const cards = document.querySelectorAll('.card-focus');
     const viewportCenter = window.innerWidth / 2;
     cards.forEach(card => {
       const rect = card.getBoundingClientRect();
       const cardCenter = rect.left + rect.width / 2;
-      const inRange = Math.abs(viewportCenter - cardCenter) < rect.width * 0.25;
-      card.classList.toggle('is-center', inRange);
+      const distance = Math.abs(viewportCenter - cardCenter);
+      const activationRange = rect.width * 0.25;
+      if (distance < activationRange) {
+        card.classList.add('is-center');
+      } else {
+        card.classList.remove('is-center');
+      }
     });
     requestAnimationFrame(detectCenterCard);
   }
 
-  requestAnimationFrame(loop);
   requestAnimationFrame(detectCenterCard);
-})();
 </script>
 
+<script>
+  function setInfiniteScrollSpeed() {
+    const track = document.getElementById('ingredientsTrack');
+    if (!track) return;
 
+    requestAnimationFrame(() => {
+      const half = track.scrollWidth / 2;
+      const speed = 120; // px por segundo
+      const duration = half / speed;
 
+      track.style.animation = 'none';
+      track.offsetHeight;
+      track.style.setProperty('--scroll-duration', `${duration}s`);
+      track.style.setProperty('--scroll-delay', '0s');
+      track.style.animation = '';
+    });
+  }
 
+  window.addEventListener('load', setInfiniteScrollSpeed);
+  window.addEventListener('resize', setInfiniteScrollSpeed);
+</script>
+
+<script>
+  function getIngredientCardStep() {
+    const card = document.querySelector('.ingredient-card');
+    if (!card) return 200;
+    const gap = window.innerWidth >= 768 ? 40 : 32;
+    return card.offsetWidth + gap;
+  }
+
+  function jumpIngredients(direction) {
+    const track = document.getElementById('ingredientsTrack');
+    if (!track) return;
+
+    const matrix = new DOMMatrix(getComputedStyle(track).transform);
+    const currentX = matrix.m41;
+    const half = track.scrollWidth / 2;
+    const cardStep = getIngredientCardStep();
+
+    let targetX = currentX - direction * cardStep;
+    if (targetX > 0) targetX -= half;
+    if (targetX < -half) targetX += half;
+
+    const durationStr = getComputedStyle(track).getPropertyValue('--scroll-duration').trim();
+    const duration = parseFloat(durationStr) || (half / 120);
+    const progress = Math.abs(targetX) / half;
+    const newDelay = -(progress * duration);
+
+    track.style.animation = 'none';
+    track.offsetHeight;
+    track.style.setProperty('--scroll-delay', `${newDelay}s`);
+    track.style.animation = '';
+  }
+
+  window.ingredientsNext = function () { jumpIngredients(1); };
+  window.ingredientsPrev = function () { jumpIngredients(-1); };
+</script>
 
 {% schema %}
 {
@@ -218,21 +236,20 @@
     {
       "type": "image_picker",
       "id": "imagen1",
-      "label": "Imagen 1",
+      "label": "Imagen 1"
     },
     {
       "type": "image_picker",
       "id": "imagen2",
-      "label": "Imagen 2",
+      "label": "Imagen 2"
     },
     {
       "type": "image_picker",
       "id": "imagen3",
-      "label": "Imagen 3",
+      "label": "Imagen 3"
     }
-  
   ],
-    "blocks": [
+  "blocks": [
     {
       "type": "ingredient_block",
       "name": "Ingredient Block",
@@ -257,11 +274,11 @@
       ]
     }
   ],
-    "presets": [
-        {
-        "name": "Product Ingredients",
-        "category": "Productos"
-        }
-    ]
+  "presets": [
+    {
+      "name": "Product Ingredients",
+      "category": "Productos"
+    }
+  ]
 }
 {% endschema %}
