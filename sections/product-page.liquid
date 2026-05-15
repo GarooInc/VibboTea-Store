@@ -351,13 +351,15 @@
   let currentSlide = 0;
   let autoplayInterval = null;
 
-  function updateThumbnails() {
+  function updateThumbnails(scrollToThumb = false) {
     const thumbs = document.querySelectorAll('.thumbnail-btn');
     thumbs.forEach((thumb, i) => {
       if (i === currentSlide) {
         thumb.classList.add('border-black', 'opacity-100');
         thumb.classList.remove('border-transparent', 'opacity-60');
-        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        if (scrollToThumb) {
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
       } else {
         thumb.classList.remove('border-black', 'opacity-100');
         thumb.classList.add('border-transparent', 'opacity-60');
@@ -369,7 +371,7 @@
     const track = document.getElementById("sliderTrack");
     currentSlide = index;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    updateThumbnails();
+    updateThumbnails(true);
   }
 
   function slideNext() {
