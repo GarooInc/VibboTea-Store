@@ -15,16 +15,29 @@
 
   <!-- WRAPPER DEL CARRUSEL -->
   <div class="relative w-full overflow-hidden flex items-center">
-    
+
+    <!-- Botón Prev -->
+    <button
+      onclick="ingredientsPrev()"
+      class="absolute left-2 md:left-6 z-10 pointer-events-auto hover:opacity-70 transition-opacity scale-75 md:scale-90"
+      aria-label="Anterior"
+    >
+      <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="28.2843" y="56.5685" width="40" height="40" rx="20" transform="rotate(-135 28.2843 56.5685)" fill="white" stroke="black" stroke-width="1.5"/>
+        <path d="M21.2839 28.2843H35.2846" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26.1629 33.234L21.2832 28.285L26.1629 23.3345" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
     <!-- TRACK QUE SE MUEVE -->
-    <div class="flex md:gap-10 gap-8 animate-infinite-scroll items-center">
-      {% for i in (1..4) %} 
+    <div id="ingredientsTrack" class="flex md:gap-10 gap-8 items-center will-change-transform">
+      {% for i in (1..4) %}
           {% for block in section.blocks %}
-          <div class="md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white 
+          <div class="ingredient-card md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white
             rounded-xl flex flex-col items-center justify-center card-focus
             {% if block.settings.title == 'Raisins' %}card-raisins{% endif %}">
             <div class="md:h-[18vw] h-[50vw] items-center justify-center flex">
-              <img 
+              <img
                 src="{{ block.settings.image | image_url: width: 400 }}"
                 alt="{{ block.settings.title }}"
                 class="w-32 h-32 md:w-44 md:h-44 object-contain p-4 md:p-6"
@@ -32,20 +45,29 @@
                 height="176"
               >
             </div>
-            
+
             <h3 class="font-medium text-black font-bricolage xl:text-lg text-base">
               {{ block.settings.title }}</h3>
-            <p class="text-black md:min-h-[8vw] min-h-[15vw] 
+            <p class="text-black md:min-h-[8vw] min-h-[15vw]
               font-bricolage text-center md:text-[0.9vw] text-[3vw] py-5 md:px-4 px-6">
               {{ block.settings.text }}</p>
           </div>
           {% endfor %}
       {%  endfor %}
-      
-
-     
-
     </div>
+
+    <!-- Botón Next -->
+    <button
+      onclick="ingredientsNext()"
+      class="absolute right-2 md:right-6 z-10 pointer-events-auto hover:opacity-70 transition-opacity scale-75 md:scale-90"
+      aria-label="Siguiente"
+    >
+      <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="28.2843" width="40" height="40" rx="20" transform="rotate(45 28.2843 0)" fill="white" stroke="black" stroke-width="1.5"/>
+        <path d="M35.2846 28.2843H21.2839" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30.4054 23.3345L35.2851 28.2835L30.4054 33.234" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
 
   </div>
   
@@ -86,108 +108,97 @@
   {% endif %}
 
 <style>
-    @keyframes infinite-scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-    }
-
-    .animate-infinite-scroll:hover {
-  animation-play-state: paused;
-}
-
-    .animate-infinite-scroll {
-      display: flex;
-      --scroll-duration: 60s; 
-      animation: infinite-scroll var(--scroll-duration) linear infinite;
-    }
-
-
-    
-    .card-focus {
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      transform: scale(0.95);
-    }
-
-
+  .card-focus {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(0.95);
+  }
   .card-focus.is-center {
     transform: scale(1.2);
     opacity: 1;
     z-index: 10;
   }
-  
-
- .card-focus img {
-  transition: transform 0.4s ease;
-}
-
-.card-focus.is-center img {
-  transform: scale(1.1);
-
-  
-}
-
-.card-raisins img {
-  padding: 2.5rem;
-}
-
+  .card-focus img {
+    transition: transform 0.4s ease;
+  }
+  .card-focus.is-center img {
+    transform: scale(1.1);
+  }
+  .card-raisins img {
+    padding: 2.5rem;
+  }
 </style>
 
 <script>
+(function () {
+  const SPEED = 120; // px por segundo
+  const PAUSE_MS = 2500;
+
+  let pos = 0;
+  let lastTime = null;
+  let paused = false;
+  let pauseTimer = null;
+
+  function loop(ts) {
+    if (lastTime !== null && !paused) {
+      const delta = (ts - lastTime) / 1000;
+      const track = document.getElementById('ingredientsTrack');
+      if (track) {
+        const half = track.scrollWidth / 2;
+        pos += SPEED * delta;
+        if (pos >= half) pos -= half;
+        track.style.transform = `translateX(-${pos}px)`;
+      }
+    }
+    lastTime = ts;
+    requestAnimationFrame(loop);
+  }
+
+  function pauseAutoplay() {
+    paused = true;
+    clearTimeout(pauseTimer);
+    pauseTimer = setTimeout(() => { paused = false; }, PAUSE_MS);
+  }
+
+  function getCardStep() {
+    const card = document.querySelector('.ingredient-card');
+    if (!card) return 200;
+    const gap = window.innerWidth >= 768 ? 40 : 32;
+    return card.offsetWidth + gap;
+  }
+
+  window.ingredientsNext = function () {
+    const track = document.getElementById('ingredientsTrack');
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    pos = (pos + getCardStep()) % half;
+    track.style.transform = `translateX(-${pos}px)`;
+    pauseAutoplay();
+  };
+
+  window.ingredientsPrev = function () {
+    const track = document.getElementById('ingredientsTrack');
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    pos = (pos - getCardStep() + half) % half;
+    track.style.transform = `translateX(-${pos}px)`;
+    pauseAutoplay();
+  };
+
   function detectCenterCard() {
     const cards = document.querySelectorAll('.card-focus');
-
     const viewportCenter = window.innerWidth / 2;
-
     cards.forEach(card => {
       const rect = card.getBoundingClientRect();
       const cardCenter = rect.left + rect.width / 2;
-
-      const distance = Math.abs(viewportCenter - cardCenter);
-
-      const activationRange = rect.width * 0.25;
-
-      if (distance < activationRange) {
-        card.classList.add('is-center');
-      } else {
-        card.classList.remove('is-center');
-      }
+      const inRange = Math.abs(viewportCenter - cardCenter) < rect.width * 0.25;
+      card.classList.toggle('is-center', inRange);
     });
-
     requestAnimationFrame(detectCenterCard);
   }
 
+  requestAnimationFrame(loop);
   requestAnimationFrame(detectCenterCard);
-</script>
-
-<script>
-  function setInfiniteScrollSpeed() {
-    const track = document.querySelector('.animate-infinite-scroll');
-    if (!track) return;
-
-    // Esperar a que el layout sea real
-    requestAnimationFrame(() => {
-      const totalWidth = track.scrollWidth;
-
-      // SOLO movemos la mitad (loop)
-      const scrollDistance = totalWidth / 2;
-
-      const speed = 80; // px por segundo
-      const duration = scrollDistance / speed;
-
-      // Reset animación (CLAVE)
-      track.style.animation = 'none';
-      track.offsetHeight; // force reflow
-      track.style.setProperty('--scroll-duration', `${duration}s`);
-      track.style.animation = '';
-    });
-  }
-
-  window.addEventListener('load', setInfiniteScrollSpeed);
-  window.addEventListener('resize', setInfiniteScrollSpeed);
+})();
 </script>
 
 
