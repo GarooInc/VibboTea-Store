@@ -87,16 +87,19 @@
       </div>
     {% endif %}
 
-      <!-- Judge.me reviews -->
-      <div class="mb-4 flex justify-center" style="margin-top: 24px;">
-        <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
-          style="font-size: 2rem;">
-          {{ product.metafields.judgeme.badge }}
-        </div>
-      </div>
 
       <div class="product-info w-full px-4 flex flex-col justify-between items-start h-auto">
         <div>
+
+          <!-- Judge.me reviews -->
+          <div class="mb-4 flex justify-center" style="margin-top: 24px;">
+            <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
+              style="font-size: 2rem;">
+              {{ product.metafields.judgeme.badge }}
+            </div>
+          </div>
+
+
           <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
             {{ product.title }}
           </h1>
