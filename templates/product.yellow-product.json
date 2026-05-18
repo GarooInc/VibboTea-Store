@@ -14,6 +14,10 @@
       "disabled": true,
       "settings": {}
     },
+    "1779083979a7d21fec": {
+      "type": "apps",
+      "settings": {}
+    },
     "product_page_rNtVMj": {
       "type": "product-page",
       "name": "Description product",
@@ -38,23 +42,12 @@
     "1774571475f1dbdda4": {
       "type": "apps",
       "blocks": {
-        "judge_me_reviews_review_widget_PtjVXR": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        },
         "appstle_subscription_appstle_subscription_product_page_widget_aPFgqp": {
           "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
           "settings": {}
         }
       },
       "block_order": [
-        "judge_me_reviews_review_widget_PtjVXR",
         "appstle_subscription_appstle_subscription_product_page_widget_aPFgqp"
       ],
       "settings": {}
@@ -320,6 +313,7 @@
   },
   "order": [
     "main",
+    "1779083979a7d21fec",
     "product_page_rNtVMj",
     "1774571475f1dbdda4",
     "product_instructions_color_arUrcX",
