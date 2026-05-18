@@ -16,6 +16,15 @@
     },
     "1779083979a7d21fec": {
       "type": "apps",
+      "blocks": {
+        "judge_me_reviews_preview_badge_NWR4KG": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_NWR4KG"
+      ],
       "settings": {}
     },
     "product_page_rNtVMj": {
