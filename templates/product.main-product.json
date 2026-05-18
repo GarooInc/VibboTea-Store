@@ -30,6 +30,15 @@
     "product_page_rNtVMj": {
       "type": "product-page",
       "name": "Description product",
+      "blocks": {
+        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py": {
+          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py"
+      ],
       "settings": {
         "text_button": "ADD TO CART",
         "sold_out_text": "SOLD OUT",
@@ -47,19 +56,6 @@
         "presentation_text": "",
         "steeping_instructions_text": "- Serving Size: 3 gr. (1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes"
       }
-    },
-    "1774571432dbf133bd": {
-      "type": "apps",
-      "blocks": {
-        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py": {
-          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py"
-      ],
-      "settings": {}
     },
     "product_instructions_KU7cmG": {
       "type": "product-instructions",
@@ -397,7 +393,6 @@
     "main",
     "1779085771408971c2",
     "product_page_rNtVMj",
-    "1774571432dbf133bd",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
     "product_why_varios_DGAVp8",

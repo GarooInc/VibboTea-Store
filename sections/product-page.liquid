@@ -190,8 +190,6 @@
             <strong class="block">Steeping instructions:</strong>
             {{ section.settings.steeping_instructions_text | newline_to_br }}
           </div>
-          <!-- Suscripción -->
-          <div class='subscriptions_app_embed_block ' ></div>
         {% endif %}
 
 
@@ -234,6 +232,8 @@
           </div>
         {% endunless %}
       </div>
+
+        {% content_for 'blocks' %}
 
       {% if section.settings.kickstarter_price %}
         {% comment %} El Add to Cart ya está dentro del bloque de precio kickstarter {% endcomment %}
@@ -535,6 +535,7 @@
       "label": "Steeping instructions text"
     }
   ],
+  "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "Description product" }]
 }
 {% endschema %}
