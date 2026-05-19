@@ -105,70 +105,75 @@
           </h1>
 
 
-        <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
+        <div id="priceWrapper" class="py-4 flex flex-col gap-3 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
-            <div class="flex flex-col">
-              <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pb-5">
-                {{ section.settings.text_kickstarter }}
-              </span>
+            <span class="text-md md:text-xl text-red-700 font-bricolage uppercase">
+              {{ section.settings.text_kickstarter }}
+            </span>
 
-              <!-- BUY NOW → Add to Cart -->
-              <div class="pb-5 w-full">
-                <button
-                  type="button"
-                  id="addToCartKickstarter"
-                  {% unless current_variant.available %}disabled{% endunless %}
-                  class="flex items-center justify-center w-full rounded-3xl py-3 
-                        hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
-                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-                >
-                  <span class="font-bricolage xl:text-xl text-sm text-center uppercase font-light px-10">
-                    {% if current_variant.available %}
-                      {{ section.settings.text_kickstarter_button }}
-                    {% else %}
-                      {{ section.settings.sold_out_text }}
-                    {% endif %}
-                  </span>
-                </button>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <div>
-                  <span class="text-3xl md:text-4xl text-black">
-                    {{ current_variant.price | money }}
-                  </span>
-                  <span class="text-2xl md:text-3xl text-gray-400 line-through">
-                    {{ current_variant.compare_at_price | money }}
-                  </span>
-                </div>
-                <span 
-                  class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
-                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-                >
-                  {{ section.settings.discount_text_kickstarter }}
+            <div id="priceDisplay" class="flex items-start gap-3 transition-all duration-300">
+              <div>
+                <span class="text-3xl md:text-4xl text-black">
+                  {{ current_variant.price | money }}
+                </span>
+                <span class="text-2xl md:text-3xl text-gray-400 line-through">
+                  {{ current_variant.compare_at_price | money }}
                 </span>
               </div>
+              <span
+                class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
+                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
+              >
+                {{ section.settings.discount_text_kickstarter }}
+              </span>
+            </div>
 
-              <p class="pt-2">{{ section.settings.discount_per_serving_kickstarter }}</p>
+            <p class="pt-1">{{ section.settings.discount_per_serving_kickstarter }}</p>
 
-              <div id="countdown" class="text-red-700 text-md md:text-lg pt-1">
-                {{ section.settings.timer_kickstarter }} <span id="timer"></span>
-              </div>
+            <div id="countdown" class="text-red-700 text-md md:text-lg">
+              {{ section.settings.timer_kickstarter }} <span id="timer"></span>
+            </div>
+
+            {%- for block in section.blocks -%}
+              {%- if block.type == '@app' -%}
+                {% render block %}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <div class="w-full">
+              <button
+                type="button"
+                id="addToCartKickstarter"
+                {% unless current_variant.available %}disabled{% endunless %}
+                class="flex items-center justify-center w-full rounded-3xl py-3
+                      hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
+                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
+              >
+                <span class="font-bricolage xl:text-xl text-sm text-center uppercase font-light px-10">
+                  {% if current_variant.available %}
+                    {{ section.settings.text_kickstarter_button }}
+                  {% else %}
+                    {{ section.settings.sold_out_text }}
+                  {% endif %}
+                </span>
+              </button>
             </div>
 
           {% else %}
-            {% if current_variant.compare_at_price > current_variant.price %}
-              <span class="text-2xl md:text-2xl text-gray-400 line-through">
-                {{ current_variant.compare_at_price | money }}
-              </span>
-              <span class="text-2xl md:text-3xl text-red-700 font-light">
-                {{ current_variant.price | money }}
-              </span>
-            {% else %}
-              <span class="text-2xl md:text-3xl text-gray-700">
-                {{ current_variant.price | money }}
-              </span>
-            {% endif %}
+            <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
+              {% if current_variant.compare_at_price > current_variant.price %}
+                <span class="text-2xl md:text-2xl text-gray-400 line-through">
+                  {{ current_variant.compare_at_price | money }}
+                </span>
+                <span class="text-2xl md:text-3xl text-red-700 font-light">
+                  {{ current_variant.price | money }}
+                </span>
+              {% else %}
+                <span class="text-2xl md:text-3xl text-gray-700">
+                  {{ current_variant.price | money }}
+                </span>
+              {% endif %}
+            </div>
           {% endif %}
         </div>
 
@@ -233,11 +238,7 @@
         {% endunless %}
       </div>
 
-        {% content_for 'blocks' %}
-
-      {% if section.settings.kickstarter_price %}
-        {% comment %} El Add to Cart ya está dentro del bloque de precio kickstarter {% endcomment %}
-      {% else %}
+      {% unless section.settings.kickstarter_price %}
         <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
           <button
@@ -255,7 +256,7 @@
             </span>
           </button>
         </form>
-      {% endif %}
+      {% endunless %}
 
       <div>
         <p class="text-sm text-gray-500 font-bricolage italic pb-20">
@@ -287,20 +288,25 @@
       const ksBtn = document.getElementById('addToCartKickstarter');
       if (ksBtn) ksBtn.dataset.variantId = option.dataset.variantId;
 
-      priceWrapper.classList.add('opacity-0', 'translate-y-2');
-      setTimeout(() => {
-        const price = option.dataset.price;
-        const compare = option.dataset.compare;
-        if (compare && compare !== '') {
-          priceWrapper.innerHTML = `
-            <span class="text-3xl md:text-4xl text-gray-400 line-through">${compare}</span>
-            <span class="text-sm md:text-xl text-red-700 font-light">DISCOUNTED KICKSTARTER PRICE NOW LIVE!</span>
-          `;
-        } else {
-          priceWrapper.innerHTML = `<span class="text-5xl md:text-6xl text-gray-700">${price}</span>`;
-        }
-        priceWrapper.classList.remove('opacity-0', 'translate-y-2');
-      }, 200);
+      const priceDisplay = document.getElementById('priceDisplay');
+      if (priceDisplay) {
+        priceDisplay.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => {
+          const price = option.dataset.price;
+          const compare = option.dataset.compare;
+          if (compare && compare !== '') {
+            priceDisplay.innerHTML = `
+              <div>
+                <span class="text-3xl md:text-4xl text-black">${price}</span>
+                <span class="text-2xl md:text-3xl text-gray-400 line-through">${compare}</span>
+              </div>
+            `;
+          } else {
+            priceDisplay.innerHTML = `<span class="text-3xl md:text-4xl text-black">${price}</span>`;
+          }
+          priceDisplay.classList.remove('opacity-0', 'translate-y-2');
+        }, 200);
+      }
     });
   });
 
@@ -309,17 +315,17 @@
   if (ksBtn) {
     // Guardar variant id inicial
     ksBtn.dataset.variantId = '{{ current_variant.id }}';
+    const btnText = ksBtn.querySelector('span');
 
     // Re-habilitar si el navegador restaura la página desde caché
     window.addEventListener('pageshow', () => {
       ksBtn.disabled = false;
-      btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
+      if (btnText) btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
     });
 
     ksBtn.addEventListener('click', async () => {
       const variantId = ksBtn.dataset.variantId;
-      const btnText = ksBtn.querySelector('span');
-      const originalText = btnText.textContent.trim();
+      const originalText = btnText ? btnText.textContent.trim() : '';
 
       ksBtn.disabled = true;
 

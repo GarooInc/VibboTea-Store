@@ -41,7 +41,7 @@
         {% for block in section.blocks %}
             <div class="how-block {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             <div class="grid grid-cols-3 gap-8 px-5 py-10 justify-center items-center">
-                {% for i in (1..10) limit: section.settings.gifs_count %}
+                {% for i in (1..10) limit: block.settings.gifs_count %}
                 {% assign gif_key = 'gif_' | append: i %}
                 {% assign text_key = 'text_' | append: i %}
 
@@ -55,8 +55,8 @@
                             src="{{ gif | image_url: width: 1200 }}"
                             alt=""
                             class="w-full md:h-[400px]! h-80 object-cover object-center rounded-xl "
-                            width="{{ block.settings.gif.width }}"
-                            height="{{ block.settings.gif.height }}"
+                            width="{{ gif.width }}"
+                            height="{{ gif.height }}"
                           >
                         </div>
 
@@ -94,8 +94,8 @@
                                 src="{{ gif | image_url: width: 1200 }}"
                                 alt=""
                                 class="w-full  object-cover rounded-2xl block h-80! object-center"
-                                width="{{ block.settings.gif.width }}"
-                            height="{{ block.settings.gif.height }}"
+                                width="{{ gif.width }}"
+                            height="{{ gif.height }}"
                             >
                             </div>
 
