@@ -9,9 +9,8 @@
 
 
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
-  <div class="md:hidden relative h-[120px] w-full bg-white">
-    
-  </div>
+  <!-- Spacer dinámico: JS mide header + topbar reales en lugar de valor fijo -->
+  <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
 
   <div class="slides-wrapper relative w-full md:h-screen h-[38vh] overflow-hidden">
     {% for block in section.blocks %}
@@ -216,6 +215,28 @@
   </div>
 </div>
 
+
+<script>
+  (function () {
+    function setHeroSpacer() {
+      if (window.innerWidth >= 768) return; // solo móvil
+      var spacer = document.getElementById('hero-header-spacer');
+      var header = document.getElementById('main-header');
+      var topbar = document.querySelector('.topbar-wrapper');
+      if (!spacer || !header) return;
+      var topbarH = topbar ? topbar.offsetHeight : 0;
+      var headerH = header.offsetHeight;
+      spacer.style.height = (topbarH + headerH) + 'px';
+    }
+
+    // Ejecutar después del primer paint para leer dimensiones reales
+    requestAnimationFrame(setHeroSpacer);
+    document.addEventListener('DOMContentLoaded', function () {
+      requestAnimationFrame(setHeroSpacer);
+    });
+    window.addEventListener('resize', setHeroSpacer);
+  })();
+</script>
 
 <style>
 .custom-slider .slide {
