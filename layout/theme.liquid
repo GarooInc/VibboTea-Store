@@ -29,6 +29,17 @@
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
+    <script>
+      (function() {
+        var hardRedirects = {
+          '/shop': '/collections/shop'
+        };
+        var path = window.location.pathname;
+        if (hardRedirects[path]) {
+          window.location.replace(hardRedirects[path]);
+        }
+      })();
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
@@ -48,17 +59,7 @@
           '/collections/shop':      '/shop'
         };
 
-        // Redirecciones reales (para URLs que Shopify no reconoce)
-        var hardRedirects = {
-          '/shop': '/collections/shop'
-        };
-
         var path = window.location.pathname;
-
-        if (hardRedirects[path]) {
-          window.location.replace(hardRedirects[path]);
-          return;
-        }
 
         for (var from in rewrites) {
           if (path.startsWith(from)) {
