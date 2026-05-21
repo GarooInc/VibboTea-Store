@@ -51,6 +51,11 @@
         "settings": {
           "allowed_templates": ""
         }
+      },
+      "11753626725791430220": {
+        "type": "shopify://apps/one-click-upsell/blocks/cart-drawer/bfe6e378-b73a-4871-b8d3-7d6ede22678e",
+        "disabled": false,
+        "settings": {}
       }
     }
   }
