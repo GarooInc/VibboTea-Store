@@ -42,12 +42,24 @@
     <script>
       (function() {
         var rewrites = {
-          '/pages/about-us':       '/about-us',
+          '/pages/about-us':        '/about-us',
           '/pages/partner-with-us': '/partner-with-us',
-          '/pages/contact-us':     '/contact-us',
-          '/collections/shop':     '/shop'
+          '/pages/contact-us':      '/contact-us',
+          '/collections/shop':      '/shop'
         };
+
+        // Redirecciones reales (para URLs que Shopify no reconoce)
+        var hardRedirects = {
+          '/shop': '/collections/shop'
+        };
+
         var path = window.location.pathname;
+
+        if (hardRedirects[path]) {
+          window.location.replace(hardRedirects[path]);
+          return;
+        }
+
         for (var from in rewrites) {
           if (path.startsWith(from)) {
             var clean = path.replace(from, rewrites[from]);
@@ -57,5 +69,6 @@
         }
       })();
     </script>
+
   </body>
 </html>
