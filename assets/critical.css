@@ -231,19 +231,19 @@ form#captcha_form {
 }
 
 /* Appstle subscription widget — price layout:
-   Row 1: $16.00 / per unit  (.appstle_prepaid_description)
+   Row 1: $16.00 / per unit
    Row 2: $240.00 (tachado)  $192.00 (suscripción) */
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper {
-  display: grid !important;
-  grid-template-columns: auto auto !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
   align-items: center !important;
   gap: 2px 8px !important;
 }
 
-/* Precio unitario — fila 1, ocupa ambas columnas */
+/* Precio unitario — ancho completo, va primero (fila 1) */
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_prepaid_description {
-  grid-column: 1 / -1 !important;
-  grid-row: 1 !important;
+  width: 100% !important;
+  order: -1 !important;
 }
 
 /* Agrega "/ per unit" después del precio unitario */
@@ -251,21 +251,14 @@ form#captcha_form {
   content: " / per unit";
 }
 
-/* Precio de suscripción ($192) — fila 2, columna 1 */
+/* Precio tachado ($240) y precio suscripción ($192) — fila 2, lado a lado */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only),
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount:not(.sr-only) {
-  grid-column: 1 !important;
-  grid-row: 2 !important;
+  width: auto !important;
+  order: 0 !important;
 }
 
-/* Precio tachado ($240) — fila 2, columna 2 */
-[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only) {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
-}
-
-/* Excluir sr-only del flujo del grid */
+/* Excluir sr-only del flujo */
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .sr-only {
   position: absolute !important;
-  grid-column: auto !important;
-  grid-row: auto !important;
 }
