@@ -229,3 +229,36 @@ form#captcha_form {
     align-items: center;
     flex-direction: column;
 }
+
+/* Appstle subscription widget — price layout:
+   Row 1: unit price + "/ per unit"
+   Row 2: precio tachado + precio con suscripción (side by side) */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper {
+  display: grid !important;
+  grid-template-columns: auto auto !important;
+  grid-template-rows: auto auto !important;
+  align-items: center !important;
+  gap: 2px 8px !important;
+}
+
+/* Unit price + "/ per unit" ocupa toda la fila superior */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_per_unit_price {
+  grid-column: 1 / -1 !important;
+  grid-row: 1 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* Precio tachado — fila 2, columna 1 */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+}
+
+/* Precio con suscripción — fila 2, columna 2 */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+}
