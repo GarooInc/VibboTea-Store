@@ -1,13 +1,64 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center
-   md:px-5 md:py-10 md:pt-46 pt-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start
+   md:px-5 md:py-10 md:pt-28 pt-32">
 
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
 
     {% if product.media.size > 1 %}
 
-    <!-- SLIDER + THUMBNAILS -->
-    <div class="flex flex-col gap-3">
+    <!-- DESKTOP: Imagen principal + grid de miniaturas abajo -->
+    <div class="hidden md:flex flex-col gap-3 w-full min-w-0 overflow-hidden md:sticky md:top-28 md:self-start">
+      <div class="w-full rounded-xl overflow-hidden relative" id="mainImageDesktop">
+        {% assign first_media = product.media[0] %}
+        {% if first_media.media_type == "image" %}
+          <img
+            src="{{ first_media | image_url: width: 1200 }}"
+            alt="{{ first_media.alt | escape }}"
+            class="w-full h-auto block"
+            id="mainDesktopImg"
+            width="{{ first_media.width }}"
+            height="{{ first_media.height }}"
+          />
+        {% elsif first_media.media_type == "video" %}
+          <video autoplay loop muted playsinline class="w-full h-auto block" id="mainDesktopVideo">
+            <source src="{{ first_media.sources[1].url }}" type="video/mp4">
+          </video>
+        {% endif %}
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer z-10" onclick="desktopPrev()">
+          {% render 'arrow-slidder2' %}
+        </button>
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer z-10" onclick="desktopNext()">
+          {% render 'arrow-slidder' %}
+        </button>
+      </div>
+      <div class="grid grid-cols-3 xl:grid-cols-4 w-full" style="gap: 8px;">
+        {% for media in product.media %}
+          {% assign is_video = false %}
+          {% if media.media_type == "video" or media.media_type == "external_video" %}
+            {% assign is_video = true %}
+          {% endif %}
+          <button
+            class="desktop-thumb rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer {% if is_video %}col-span-2{% else %}aspect-square{% endif %} {% if forloop.first %}border-black opacity-100{% else %}border-transparent opacity-60{% endif %}"
+            {% if is_video %}style="aspect-ratio: 2 / 1;"{% endif %}
+            data-src="{{ media | image_url: width: 1200 }}"
+            data-alt="{{ media.alt | escape }}"
+            data-type="{{ media.media_type }}"
+            {% if media.media_type == "video" %}data-video="{{ media.sources[1].url }}"{% endif %}
+            {% if media.media_type == "external_video" %}data-video="{{ media.sources[0].url }}"{% endif %}
+            aria-label="Ver imagen {{ forloop.index }}"
+          >
+            <img
+              src="{{ media.preview_image | image_url: width: 400 }}"
+              alt="{{ media.alt | escape }}"
+              class="w-full h-full object-cover"
+            />
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- MOBILE: Carrusel -->
+    <div class="md:hidden flex flex-col gap-3">
 
       <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
 
@@ -88,7 +139,7 @@
     {% endif %}
 
 
-      <div class="product-info w-full px-4 flex flex-col justify-between items-start h-auto">
+      <div class="product-info w-full flex flex-col justify-between items-start h-auto min-w-0">
         <div>
 
           <!-- Judge.me reviews -->
@@ -416,6 +467,57 @@
     slider.addEventListener('touchend', startAutoplay, { passive: true });
     startAutoplay();
   }
+
+  // Desktop grid: navegación principal
+  const desktopThumbs = document.querySelectorAll('.desktop-thumb');
+  const mainWrapper = document.getElementById('mainImageDesktop');
+  let desktopIndex = 0;
+
+  function desktopGoTo(index) {
+    const thumbsArr = Array.from(desktopThumbs);
+    desktopIndex = (index + thumbsArr.length) % thumbsArr.length;
+    const btn = thumbsArr[desktopIndex];
+
+    thumbsArr.forEach(b => {
+      b.classList.remove('border-black', 'opacity-100');
+      b.classList.add('border-transparent', 'opacity-60');
+    });
+    btn.classList.remove('border-transparent', 'opacity-60');
+    btn.classList.add('border-black', 'opacity-100');
+
+    const type = btn.dataset.type;
+    if (type === 'video' || type === 'external_video') {
+      let img = mainWrapper.querySelector('img');
+      if (img) img.remove();
+      let vid = mainWrapper.querySelector('video');
+      if (!vid) {
+        vid = document.createElement('video');
+        vid.autoplay = true; vid.loop = true; vid.muted = true; vid.playsInline = true;
+        vid.className = 'w-full h-auto block';
+        mainWrapper.insertBefore(vid, mainWrapper.querySelector('button'));
+      }
+      vid.src = btn.dataset.video;
+      vid.load(); vid.play();
+    } else {
+      let vid = mainWrapper.querySelector('video');
+      if (vid) vid.remove();
+      let img = mainWrapper.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        img.className = 'w-full h-auto block';
+        mainWrapper.insertBefore(img, mainWrapper.querySelector('button'));
+      }
+      img.src = btn.dataset.src;
+      img.alt = btn.dataset.alt;
+    }
+  }
+
+  function desktopNext() { desktopGoTo(desktopIndex + 1); }
+  function desktopPrev() { desktopGoTo(desktopIndex - 1); }
+
+  desktopThumbs.forEach((btn, i) => {
+    btn.addEventListener('click', () => desktopGoTo(i));
+  });
 </script>
 
 <script>
