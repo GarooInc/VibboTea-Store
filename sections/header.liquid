@@ -74,9 +74,8 @@
             <img
               src="{{ section.settings.logo | img_url: '2000x2000' }}"
               alt="Logo"
-              class=" w-23 object-contain"
-              width="{{ section.settings.background_image.width }}"
-              height="{{ section.settings.background_image.height }}"
+              style="width: {{ section.settings.logo_size_mobile }}px;"
+              class="object-contain"
             >
           </a>
 
@@ -122,9 +121,8 @@
         <img
           src="{{ section.settings.logo | img_url: '2000x2000' }}"
           alt="Logo"
-          class=" lg:w-30 w-24 object-contain"
-          width="{{ section.settings.logo.width }}"
-          height="{{ section.settings.logo.height }}"
+          style="width: {{ section.settings.logo_size_desktop }}px;"
+          class="object-contain"
         >
       </a>
 
@@ -483,6 +481,24 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_size_desktop",
+      "label": "Logo size desktop (px)",
+      "min": 60,
+      "max": 200,
+      "step": 4,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "logo_size_mobile",
+      "label": "Logo size mobile (px)",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "default": 92
     },
     {
       "type": "range",
