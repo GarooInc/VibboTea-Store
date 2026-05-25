@@ -86,14 +86,26 @@
           </h2>
         {% endif %}
       </div>
-      <!-- Hamburger Menu Button -->
-      <button
-        type="button"
-        class="mobile-menu-toggle {{ text_color | strip_newlines }} w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
-        aria-label="Toggle menu"
-        onclick="toggleMobileMenu()">
-        {%-  render 'icon-hamburger' %}
-      </button>
+      <!-- Cart + Hamburger -->
+      <div class="flex items-center gap-1">
+        <a href="{{ routes.cart_url }}"
+          class="relative {{ text_color | strip_newlines }} w-10 h-10 flex items-center justify-center hover:opacity-70 transition-opacity"
+          aria-label="Cart">
+          {%- render 'iconCart' -%}
+          {%- if cart.item_count > 0 -%}
+            <span class="absolute -top-0.5 -right-0.5 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
+              {{ cart.item_count }}
+            </span>
+          {%- endif -%}
+        </a>
+        <button
+          type="button"
+          class="mobile-menu-toggle {{ text_color | strip_newlines }} w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
+          aria-label="Toggle menu"
+          onclick="toggleMobileMenu()">
+          {%- render 'icon-hamburger' %}
+        </button>
+      </div>
 
 
 
@@ -135,30 +147,18 @@
     {% endfor %}
   </nav>
 
-  <!-- Col 3  -->
-  <div>
-      {% comment %} <div class="hidden md:flex justify-end md:pr-7 md:gap-2">
-            <button
-              type="button"
-              id="openSearch"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current"
-              aria-label="Search"
-            >
-              {%- render 'search' -%}
-            </button>
-
-            <a href="{{ routes.cart_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current "
-              aria-label="Cart">
-              {%- render 'iconCart' -%}
-            </a>
-            <a href="{{ routes.account_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current "
-              aria-label="User">
-              {%- render 'user' -%}
-            </a>
-        </div> {% endcomment %}
-
+  <!-- Col 3 — Cart button desktop -->
+  <div class="hidden md:flex justify-end pr-10">
+    <a href="{{ routes.cart_url }}"
+      class="relative hover:opacity-70 transition-opacity {{ text_color | strip_newlines }}"
+      aria-label="Cart">
+      {%- render 'iconCart' -%}
+      {%- if cart.item_count > 0 -%}
+        <span class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
+          {{ cart.item_count }}
+        </span>
+      {%- endif -%}
+    </a>
   </div>
 
 </div>
