@@ -21,6 +21,10 @@
         "topbar_link": "shopify://pages/newsletter",
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/Logotipo_Blanco_Vibbo.png",
+        "logo_size_desktop": 120,
+        "logo_size_mobile": 92,
+        "header_height_desktop": 60,
+        "header_height_mobile": 40,
         "cart_icon_size_desktop": 25,
         "cart_icon_size_mobile": 19,
         "header_background": "semi-transparent"
