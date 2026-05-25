@@ -89,7 +89,8 @@
       <!-- Cart + Hamburger -->
       <div class="flex items-center gap-1">
         <a href="{{ routes.cart_url }}"
-          class="relative {{ text_color | strip_newlines }} w-10 h-10 flex items-center justify-center hover:opacity-70 transition-opacity"
+          class="relative {{ text_color | strip_newlines }} flex items-center justify-center hover:opacity-70 transition-opacity"
+          style="width: {{ section.settings.cart_icon_size_mobile }}px; height: {{ section.settings.cart_icon_size_mobile }}px;"
           aria-label="Cart">
           {%- render 'iconCart' -%}
           {%- if cart.item_count > 0 -%}
@@ -121,7 +122,7 @@
         <img
           src="{{ section.settings.logo | img_url: '2000x2000' }}"
           alt="Logo"
-          class=" lg:w-40 w-30 object-contain"
+          class=" lg:w-30 w-24 object-contain"
           width="{{ section.settings.logo.width }}"
           height="{{ section.settings.logo.height }}"
         >
@@ -151,6 +152,7 @@
   <div class="hidden md:flex justify-end pr-10">
     <a href="{{ routes.cart_url }}"
       class="relative hover:opacity-70 transition-opacity {{ text_color | strip_newlines }}"
+      style="width: {{ section.settings.cart_icon_size_desktop }}px; height: {{ section.settings.cart_icon_size_desktop }}px;"
       aria-label="Cart">
       {%- render 'iconCart' -%}
       {%- if cart.item_count > 0 -%}
@@ -481,6 +483,24 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "cart_icon_size_desktop",
+      "label": "Cart icon size desktop (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cart_icon_size_mobile",
+      "label": "Cart icon size mobile (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 16
     },
     {
       "type": "select",
