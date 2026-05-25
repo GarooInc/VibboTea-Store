@@ -251,6 +251,22 @@ form#captcha_form {
   content: " / per unit";
 }
 
+/* Precio unitario — negro */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_prepaid_description {
+  color: #000000 !important;
+}
+
+/* Precio suscripción — gris */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount:not(.sr-only) {
+  color: #9ca3af !important;
+}
+
+/* Precio tachado — gris con tachado */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only) {
+  color: #9ca3af !important;
+  text-decoration: line-through !important;
+}
+
 /* Precio tachado ($240) y precio suscripción ($192) — fila 2, lado a lado */
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only),
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount:not(.sr-only) {
