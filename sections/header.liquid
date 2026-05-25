@@ -372,11 +372,11 @@
   }
 
   #main-header {
-    height: 60px;
+    height: {{ section.settings.header_height_mobile }}px;
   }
   @media (min-width: 768px) {
     #main-header {
-      height: 90px;
+      height: {{ section.settings.header_height_desktop }}px;
     }
   }
 
@@ -499,6 +499,24 @@
       "max": 160,
       "step": 4,
       "default": 92
+    },
+    {
+      "type": "range",
+      "id": "header_height_desktop",
+      "label": "Header height desktop (px)",
+      "min": 50,
+      "max": 120,
+      "step": 2,
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "header_height_mobile",
+      "label": "Header height mobile (px)",
+      "min": 40,
+      "max": 100,
+      "step": 2,
+      "default": 60
     },
     {
       "type": "range",
