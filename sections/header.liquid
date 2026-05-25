@@ -5,6 +5,17 @@
   endif
 -%}
 
+<style>
+  #main-header {
+    height: {{ section.settings.header_height_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    #main-header {
+      height: {{ section.settings.header_height_desktop }}px;
+    }
+  }
+</style>
+
 {% if section.settings.show_topbar %}
 <div class="topbar-wrapper blinkBW full-width py-1 cursor-pointer
       fixed top-0 w-full z-50 font-bricolage bg-white overflow-hidden">
@@ -42,7 +53,7 @@
 
 <header
   id="main-header"
-  class="fixed left-0 w-full md:h-30 h-20 bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
+  class="fixed left-0 w-full bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
   style="top: {{ topbar_height }}px;"
 >
 {%- capture background_class -%}
@@ -372,11 +383,11 @@
   }
 
   #main-header {
-    height: {{ section.settings.header_height_mobile }}px;
+    height: 60px;
   }
   @media (min-width: 768px) {
     #main-header {
-      height: {{ section.settings.header_height_desktop }}px;
+      height: 90px;
     }
   }
 
