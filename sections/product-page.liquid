@@ -7,7 +7,7 @@
     {% if product.media.size > 1 %}
 
     <!-- DESKTOP: Imagen principal + grid de miniaturas abajo -->
-    <div class="hidden md:flex flex-col gap-3 w-full min-w-0 overflow-hidden md:sticky md:top-28 md:self-start">
+    <div class="hidden md:flex flex-col gap-3 w-full min-w-0 overflow-hidden md:sticky md:top-28 md:self-start z-10">
       <div class="w-full rounded-xl overflow-hidden relative" id="mainImageDesktop">
         {% assign first_media = product.media[0] %}
         {% if first_media.media_type == "image" %}
