@@ -79,7 +79,7 @@
   <!-- movil (col 1) -->
 
     <div class="lg:hidden md:hidden xl:hidden  flex items-center justify-between py-2 w-full px-4 ">
-      <div class="flex items-center pl-3">
+      <div class="flex items-center pl-3" style="margin-top: -9px;">
         {% if section.settings.logo %}
           <a href="{{ routes.root_url }}">
             <img
@@ -100,7 +100,7 @@
       <div class="flex items-center gap-1">
         <a href="{{ routes.cart_url }}"
           class="relative {{ text_color | strip_newlines }} flex items-center justify-center hover:opacity-70 transition-opacity"
-          style="width: {{ section.settings.cart_icon_size_mobile }}px; height: {{ section.settings.cart_icon_size_mobile }}px;"
+          style="width: {{ section.settings.cart_icon_size_mobile }}px; height: {{ section.settings.cart_icon_size_mobile }}px; margin-top: -10px;"
           aria-label="Cart">
           {%- render 'iconCart' -%}
           {%- if cart.item_count > 0 -%}
@@ -112,6 +112,7 @@
         <button
           type="button"
           class="mobile-menu-toggle {{ text_color | strip_newlines }} w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
+          style="transform: translateY(-4px);"
           aria-label="Toggle menu"
           onclick="toggleMobileMenu()">
           {%- render 'icon-hamburger' %}
@@ -532,7 +533,7 @@
     {
       "type": "range",
       "id": "cart_vertical_offset",
-      "label": "Cart vertical position (px)",
+      "label": "Cart vertical position desktop (px)",
       "min": -20,
       "max": 20,
       "step": 1,
