@@ -126,7 +126,7 @@
 
 
   <!-- LOGO (col 1) -->
-  <div class="hidden md:flex items-center lg:pl-10 pl-4">
+  <div class="hidden md:flex items-center lg:pl-10 pl-4" style="margin-top: -4px;">
     {% if section.settings.logo %}
       <a href="{{ routes.root_url }}">
         <img
@@ -145,7 +145,7 @@
   </div>
 
   <!-- MENU desktop (col 2) -->
-  <nav class="hidden md:flex  md:justify-center space-x-8">
+  <nav class="hidden md:flex  md:justify-center space-x-8" style="margin-top: -4px;">
     {% for link in section.settings.menu.links %}
       <a
         href="{{ link.url }}"
@@ -158,7 +158,7 @@
   </nav>
 
   <!-- Col 3 — Cart button desktop -->
-  <div class="hidden md:flex justify-end pr-10">
+  <div class="hidden md:flex justify-end pr-10" style="margin-top: {{ section.settings.cart_vertical_offset }}px;">
     <a href="{{ routes.cart_url }}"
       class="relative hover:opacity-70 transition-opacity {{ text_color | strip_newlines }}"
       style="width: {{ section.settings.cart_icon_size_desktop }}px; height: {{ section.settings.cart_icon_size_desktop }}px;"
@@ -528,6 +528,15 @@
       "max": 100,
       "step": 2,
       "default": 60
+    },
+    {
+      "type": "range",
+      "id": "cart_vertical_offset",
+      "label": "Cart vertical position (px)",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "default": -5
     },
     {
       "type": "range",
