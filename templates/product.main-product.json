@@ -276,6 +276,24 @@
         "image_mobile3": "shopify://shop_images/Group_55_1.png"
       }
     },
+    "1779810531dada62b1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_9bJXk3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_9bJXk3"
+      ],
+      "settings": {}
+    },
     "faq_7VfkjP": {
       "type": "faq",
       "blocks": {
@@ -396,6 +414,7 @@
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
     "product_why_varios_DGAVp8",
+    "1779810531dada62b1",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
