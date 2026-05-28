@@ -61,7 +61,8 @@
   "shopify": {
     "checkout": {
       "marketing": {
-        "accept_marketing_checkbox_label": "I'd like to receive order/shipping updates and occasional offers."
+        "accept_marketing_checkbox_label": "I'd like to receive order/shipping updates and occasional offers.",
+        "accept_sms_checkbox_label": "I'd like to receive order/shipping updates and occasional offers."
       }
     }
   }
