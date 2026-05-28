@@ -29,7 +29,7 @@
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/1_1_4749cc65-e9c9-40fd-b0bb-f62ee4f5391b.png",
+            "image_desktop": "shopify://shop_images/1_2.png",
             "marca_agua": false,
             "texto_agua": "",
             "video_mp4": "",
@@ -129,7 +129,7 @@
       ],
       "name": "Header Slide",
       "settings": {
-        "autoplay": true,
+        "autoplay": false,
         "Time": 6000
       }
     },
