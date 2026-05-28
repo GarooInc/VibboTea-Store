@@ -63,6 +63,7 @@
         },
         "slide_pUe9jJ": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/2_5.png",
             "marca_agua": true,
@@ -81,6 +82,7 @@
         },
         "slide_3qAYpk": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/Group_60_1.png",
             "marca_agua": true,
@@ -99,6 +101,7 @@
         },
         "slide_qmBDkN": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/Desktop_-_44_1.png",
             "marca_agua": true,
