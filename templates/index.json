@@ -46,6 +46,7 @@
         },
         "slide_APGaHq": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "marca_agua": false,
             "texto_agua": "",
@@ -146,8 +147,8 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Powered by nature, harnessed by you.",
-        "section_desc": "Real plants, real soil, real wellness.  Guided by nature's wisdom alone, our tea blends harness ancestral agriculture, blending native botanicals for vibrant energy, steady balance, and deep calm. Untouched integrity.",
+        "section_title": "Real tea rituals for energy, reset, and calm.",
+        "section_desc": "Wellness got overcomplicated. We keep it real: traceable Guatemalan botanicals, handcrafted in small batches, and daily rituals that help you rise, reset, and unwind — no gimmicks, no shortcuts.",
         "text_button": "I want to feel human again",
         "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
