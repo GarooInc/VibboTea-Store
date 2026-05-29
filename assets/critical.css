@@ -205,6 +205,22 @@ body {
 
 .shopify_subscriptions_app_block_label{
   padding: 0.5rem !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(156, 163, 175, 0.35) !important;
+  border-radius: 1rem !important;
+  color: #111827 !important;
+}
+
+.subscriptions_app_embed_block .shopify_subscriptions_app_block_label:first-child {
+  background-color: #f8fafc !important;
+  border-color: #0284c7 !important;
+  color: #0f172a !important;
+}
+
+.subscriptions_app_embed_block .shopify_subscriptions_app_block_label input,
+.subscriptions_app_embed_block .shopify_subscriptions_app_block_label .shopify_subscriptions_app_block_label_text,
+.subscriptions_app_embed_block .shopify_subscriptions_app_block_label .shopify_subscriptions_app_block_label_title {
+  color: inherit !important;
 }
 
 .shopify_subscriptions_app_policy{
