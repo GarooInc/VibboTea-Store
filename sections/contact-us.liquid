@@ -1,11 +1,10 @@
 <div 
-    class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
-    style="width: 100vw; margin-left: calc(50% - 50vw);">
-    <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
+    class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8] overflow-hidden w-full">
+    <div class="relative flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
         <div class="text-black text-4xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
             {{ section.settings.title | newline_to_br }}
         </div>
-        <div class="absolute bottom-0 md:left-0 xl:left-40">
+        <div class="absolute bottom-0 md:left-0 xl:left-40 pointer-events-none">
             {% if section.settings.image1 %}
                 <img 
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
@@ -16,7 +15,7 @@
                 >
             {% endif %}
         </div>
-        <div class="absolute -top-10 md:bottom-0 left-0 w-52 md:w-96 overflow-hidden">
+        <div class="absolute -top-10 md:bottom-0 left-0 w-52 md:w-96 overflow-hidden pointer-events-none">
             {% if section.settings.image2 %}
                 <img 
                     src="{{ section.settings.image2 | image_url: width: 600 }}"
