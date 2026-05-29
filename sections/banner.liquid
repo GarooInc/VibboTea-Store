@@ -1,6 +1,20 @@
 
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
 <div 
-class="w-screen min-h-[80vh] bg-[#FFF9E8] flex flex-col-reverse md:flex-row justify-between"
+class="section-{{ section.id }}-padding w-screen min-h-[80vh] bg-[#FFF9E8] flex flex-col-reverse md:flex-row justify-between"
 style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
@@ -53,6 +67,54 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
       "id": "page_descripction",
       "label": "Page Descripction",
       "default": "<p>Workers y and Farmers</p>"
+    },
+    {
+      "type": "header",
+      "content": "Margen para Computadora (PC)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Margen para Móvil"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [

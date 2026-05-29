@@ -58,6 +58,12 @@
             {{ product.title }}
           </p>
 
+          {% if product.metafields.judgeme.badge != blank %}
+            <div class="pt-1 pb-1 text-[#8a8a8a] text-sm leading-none shop-rating-compact">
+              {{ product.metafields.judgeme.badge }}
+            </div>
+          {% endif %}
+
           <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
             {{ product.price | money }}
           </p>
@@ -90,6 +96,27 @@
 </section>
 
 {% endif %}
+
+{% style %}
+  .shop-rating-compact .jdgm-prev-badge,
+  .shop-rating-compact .jdgm-star,
+  .shop-rating-compact .jdgm-prev-badge__text,
+  .shop-rating-compact .jdgm-prev-badge__stars {
+    font-size: 0.875rem !important;
+    line-height: 1 !important;
+    color: #8a8a8a !important;
+  }
+
+  .shop-rating-compact .jdgm-prev-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .shop-rating-compact .jdgm-star {
+    color: #8a8a8a !important;
+  }
+{% endstyle %}
 
 
 {% schema %}
