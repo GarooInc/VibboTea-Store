@@ -145,12 +145,6 @@
           {{ desc_parts[0] }}
         </div>
 
-        {% if desc_parts[1] and desc_parts[1] != blank %}
-          <div class="text-sm text-black font-bricolage product-description md:pr-10">
-            {{ desc_parts[1] }}
-          </div>
-        {% endif %}
-
         <!-- Judge.me reviews -->
         <div class="mt-10 mb-4 flex justify-center">
           <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
@@ -161,6 +155,10 @@
 
         <!-- Suscripción -->
         <div class='subscriptions_app_embed_block ' ></div>
+
+        <div class="text-sm text-black font-bricolage product-description md:pr-10">
+          {{ desc_parts[1] }}
+        </div>
 
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
