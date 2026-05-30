@@ -15,7 +15,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
         
         <!-- Imagen del mapa -->
           <img src="{{ map_img | img_url: '2000x2000' }}" 
-            class="max-w-[800px] h-auto sm:max-h-120 max-[375px]:max-h-50 md:max-h-200 object-contain mx-auto"
+            class="max-w-[800px] h-auto sm:max-h-120 max-[375px]:max-h-50 md:max-h-200 object-contain mx-auto {% if forloop.first %}first-slide-map-mobile{% endif %}"
             width="{{ map_img.width }}" 
             height="{{ map_img.height }}" 
             alt="{{ block.settings.map_alt | escape }}"
@@ -181,6 +181,12 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 767px) {
+  .first-slide-map-mobile {
+    margin-top: 20px;
+  }
 }
 
 .custom-slider-places .slide {
