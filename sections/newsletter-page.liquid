@@ -1,6 +1,18 @@
 
 <div class="h-screen flex flex-col items-center justify-center">
 
+  {% assign newsletter_image = section.settings.imagen | default: 'shopify://shop_images/latas.png' %}
+
+  {% if newsletter_image %}
+    <div class="w-full flex justify-center pt-10 pb-6">
+      <img
+        src="{{ newsletter_image | image_url: width: 600 }}"
+        alt="Newsletter image"
+        class="w-[70vw] max-w-lg md:w-[40vw] object-contain"
+      >
+    </div>
+  {% endif %}
+
   {% if section.settings.logo %}
     <img
       src="{{ section.settings.logo | image_url: width: 2000 }}"
@@ -26,7 +38,12 @@
 {
   "name": "Newsletter",
   "settings": [
-    
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Newsletter image",
+      "default": "shopify://shop_images/latas.png"
+    },
     {
       "type": "image_picker",
       "id": "logo",
@@ -36,7 +53,7 @@
       "type": "text",
       "id": "page_descripction",
       "label": "Page Descripction",
-      "default": "text"
+      "default": "Subscribe to our newsletter for exclusive offers and rewards"
     }
     
   ],
