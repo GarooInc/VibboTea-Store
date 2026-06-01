@@ -214,7 +214,13 @@ body {
 }
 
 .shopify_subscriptions_app_policy{
-  color: gray !important;
+  color: #6B7280;
+}
+
+/* CSS variables for Judge.me star colors (used as fallback) */
+:root {
+  --jdgm-star-color: #FFD700;
+  --jdgm-star-empty-color: #D1D5DB;
 }
 
 .product-description li {
