@@ -277,6 +277,24 @@ form#captcha_form {
   order: 0 !important;
 }
 
+/* Monthly plan (sin .appstle_prepaid_description):
+   Row 1: $22.50 / per unit — negro, ancho completo
+   Row 2: $25.00 tachado — gris */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper:not(:has(.appstle_prepaid_description)) .appstle_subscription_amount:not(.sr-only) {
+  width: 100% !important;
+  order: -1 !important;
+  color: #000000 !important;
+  font-size: 14.5px !important;
+}
+
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper:not(:has(.appstle_prepaid_description)) .appstle_subscription_compare_amount:not(.sr-only) {
+  width: auto !important;
+  order: 0 !important;
+  color: #9ca3af !important;
+  text-decoration: line-through !important;
+  font-size: 13px !important;
+}
+
 /* Excluir sr-only del flujo */
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .sr-only {
   position: absolute !important;
