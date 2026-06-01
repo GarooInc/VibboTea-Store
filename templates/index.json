@@ -29,7 +29,7 @@
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/1_1.png",
+            "image_desktop": "shopify://shop_images/Desktop_-_2_6.png",
             "marca_agua": false,
             "texto_agua": "",
             "video_mp4": "",
@@ -46,11 +46,12 @@
         },
         "slide_APGaHq": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "marca_agua": false,
             "texto_agua": "",
             "video_mp4": "https://cdn.shopify.com/videos/c/o/v/42f79bab075f493eb08a05b81deb0e47.mp4",
-            "page_title": "KICKSTARTER NOW LIVE!",
+            "page_title": "SHOP BUNDLES & SUBSCRIPTIONS",
             "page_descripction": "",
             "title_sec": "",
             "desc_sec": "",
@@ -63,8 +64,9 @@
         },
         "slide_pUe9jJ": {
           "type": "slide",
+          "disabled": true,
           "settings": {
-            "image_desktop": "shopify://shop_images/2_5.png",
+            "image_desktop": "shopify://shop_images/1_1_4749cc65-e9c9-40fd-b0bb-f62ee4f5391b.png",
             "marca_agua": true,
             "texto_agua": "SOURCE: INGUAT",
             "video_mp4": "",
@@ -81,6 +83,7 @@
         },
         "slide_3qAYpk": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/Group_60_1.png",
             "marca_agua": true,
@@ -99,6 +102,7 @@
         },
         "slide_qmBDkN": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_desktop": "shopify://shop_images/Desktop_-_44_1.png",
             "marca_agua": true,
@@ -125,12 +129,13 @@
       ],
       "name": "Header Slide",
       "settings": {
-        "autoplay": true,
+        "autoplay": false,
         "Time": 6000
       }
     },
     "cinta_newsletter_CmHQnG": {
       "type": "cinta-newsletter",
+      "disabled": true,
       "name": "Liston",
       "settings": {
         "isotipe": "shopify://shop_images/isotipo_black.png",
@@ -142,8 +147,8 @@
       "type": "main-carousel",
       "name": "Carrusel de productos",
       "settings": {
-        "section_title": "Powered by nature, harnessed by you.",
-        "section_desc": "Real plants, real soil, real wellness.  Guided by nature's wisdom alone, our tea blends harness ancestral agriculture, blending native botanicals for vibrant energy, steady balance, and deep calm. Untouched integrity.",
+        "section_title": "Real tea rituals for energy, reset, and calm.",
+        "section_desc": "Wellness got overcomplicated. We keep it real: traceable Guatemalan botanicals, handcrafted in small batches, and daily rituals that help you rise, reset, and unwind — no gimmicks, no shortcuts.",
         "text_button": "I want to feel human again",
         "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
@@ -191,7 +196,7 @@
       ],
       "name": "Section Universe",
       "settings": {
-        "title": "Hot, iced, or mocktail, you pick"
+        "title": "Hot, iced, or mocktail, your choice."
       }
     },
     "prodcut_ingredients_NLmqhN": {
@@ -200,7 +205,7 @@
         "ingredient_block_rTnt3Q": {
           "type": "ingredient_block",
           "settings": {
-            "image": "shopify://shop_images/bayas-sauco_df16af95-c85e-4f5f-ab78-b69706f80de7.png",
+            "image": "shopify://shop_images/bayas-sauco_1_9d735e7f-50ab-4f21-af76-0e1b2e8ad847.png",
             "title": "Raisins",
             "text": "Boosts flavonoids for antioxidants while cutting tannins, aiding digestion, heart health, and inflammation."
           }
@@ -247,8 +252,9 @@
         },
         "ingredient_block_jxKxef": {
           "type": "ingredient_block",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/elderberry.png",
+            "image": "shopify://shop_images/bayas-sauco_1_9d735e7f-50ab-4f21-af76-0e1b2e8ad847.png",
             "title": "Elderberry",
             "text": "Anti-inflammatory, as well as being rich in antioxidants."
           }
@@ -324,7 +330,7 @@
         "instafeed_app_block_jiyqTn": {
           "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
-            "title": "Instafeed",
+            "title": "",
             "title_color": "",
             "title_size_v2": 0,
             "alignment": "center",

@@ -1,0 +1,249 @@
+<style>
+  @media (max-width: 767px) {
+    .partner-step-img { width: 100% !important; object-fit: cover !important; }
+    .partner-step-title { font-size: 1.4rem !important; text-align: center !important; }
+    .partner-step-text { font-size: 0.8rem !important; text-align: left !important; }
+    .partner-step-text-right { padding-left: 10px !important; }
+    .partner-step-row { margin-bottom: 2rem !important; gap: 0.5rem !important; align-items: start !important; grid-template-columns: 1fr 1fr !important; }
+    .partner-step-img-wrap { max-width: 100% !important; margin-left: 0 !important; }
+    .cta-title { text-align: center !important; margin-bottom: 1rem !important; }
+    .cta-text { text-align: center !important; }
+    .step-img-1 { height: 150px !important; }
+    .step-img-2 { height: 180px !important; }
+    .step-img-3 { height: 210px !important; }
+  }
+  @media (min-width: 768px) {
+    .partner-steps-content { padding-left: 22vw; padding-right: 22vw; }
+    .partner-step-img-right { margin-left: 4rem; }
+    .cta-title { text-align: center !important; }
+    .cta-text { text-align: center !important; max-width: 700px; margin-left: auto; margin-right: auto; }
+  }
+</style>
+
+<div class="w-full bg-white py-10 md:py-16 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
+
+  {% if section.settings.deco_top_left %}
+    <div class="absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-10">
+      <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
+    </div>
+  {% endif %}
+
+  {% if section.settings.deco_bottom_right %}
+    <div class="absolute bottom-0 w-20 md:w-64 pointer-events-none z-10" style="right: 20px;">
+      <img src="{{ section.settings.deco_bottom_right | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
+    </div>
+  {% endif %}
+
+  <div class="partner-steps-content w-full px-6">
+
+  {% assign step_index = 0 %}
+  {% for block in section.blocks %}
+    {% if block.type == 'step' %}
+      {% assign step_index = step_index | plus: 1 %}
+      {% assign is_reversed = block.settings.image_left %}
+
+
+      <div class="partner-step-row grid grid-cols-2 gap-6 md:gap-16 items-center md:mb-16">
+
+        {% if is_reversed %}
+          <!-- Image LEFT -->
+          {% if block.settings.image != blank %}
+            <div class="partner-step-img-wrap rounded-xl overflow-hidden" style="max-width: 320px;">
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.title }}"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
+                width="600" height="400"
+              >
+            </div>
+          {% endif %}
+          <!-- Text RIGHT -->
+          <div class="flex flex-col justify-center" style="padding-right: 1rem;">
+            {% if block.settings.title != blank %}
+              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
+                {{ block.settings.title }}
+              </h2>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <p class="partner-step-text partner-step-text-right text-black text-xs md:text-base leading-relaxed">{{ block.settings.text }}</p>
+            {% endif %}
+          </div>
+
+        {% else %}
+          <!-- Text LEFT -->
+          <div class="flex flex-col justify-center">
+            {% if block.settings.title != blank %}
+              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
+                {{ block.settings.title }}
+              </h2>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <p class="partner-step-text text-black text-xs md:text-base leading-relaxed">{{ block.settings.text }}</p>
+            {% endif %}
+          </div>
+          <!-- Image RIGHT -->
+          {% if block.settings.image != blank %}
+            <div class="partner-step-img-right rounded-xl overflow-hidden" style="max-width: 320px;">
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.title }}"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
+                width="600" height="400"
+              >
+            </div>
+          {% endif %}
+        {% endif %}
+
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  </div>
+
+  <!-- CTA final -->
+  {% if section.settings.cta_title != blank %}
+    <div style="text-align: center; padding: 2.5rem 1.5rem; width: 100%; display: block;">
+      <h2 class="font-bricolage font-bold text-4xl md:text-6xl text-black cta-title" style="margin-bottom: 1.5rem;">
+        {{ section.settings.cta_title }}
+      </h2>
+      {% if section.settings.cta_logo %}
+        <p class="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed cta-text" style="margin-bottom: 2rem;">
+          {{ section.settings.cta_text_before }}
+          <img src="{{ section.settings.cta_logo | image_url: width: 300 }}" alt="VIBBO" width="300" height="80" style="height: 1em; width: auto; display: inline-block; vertical-align: middle;">
+          {{ section.settings.cta_text_after }}
+        </p>
+      {% elsif section.settings.cta_text != blank %}
+        <p class="text-black text-base md:text-lg max-w-2xl mx-auto leading-relaxed cta-text" style="margin-bottom: 2rem;">
+          {{ section.settings.cta_text }}
+        </p>
+      {% endif %}
+      {% if section.settings.cta_button_text != blank %}
+        <a
+          href="{{ section.settings.cta_button_link }}"
+          class="inline-block bg-[#FFCD51] text-black font-bricolage font-medium uppercase px-10 py-3 rounded-full hover:opacity-80 transition"
+        >
+          {{ section.settings.cta_button_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Partner Steps",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "deco_top_left",
+      "label": "Decorative image (top left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_bottom_right",
+      "label": "Decorative image (bottom right)"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Earn & grow with us"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA Text (sin logo)",
+      "default": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics."
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text_before",
+      "label": "CTA Texto antes del logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_logo",
+      "label": "CTA Logo (reemplaza VIBBO)"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text_after",
+      "label": "CTA Texto después del logo"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "APPLY TODAY"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Step description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_left",
+          "label": "Image on the left",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partner Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "Tell us who you are and why real ingredients, traceability, and nature-led wellness matters to you. We're looking for authentic storytellers, not follower counts.",
+            "image_left": false
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Get rooted",
+            "text": "Once accepted, you'll receive your unique referral link or code, access to brand resources, and select products to experience and share.",
+            "image_left": true
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Spill the tea",
+            "text": "Create content that highlights origin, ingredients, rituals, and the people behind each cup. Educate, inspire, and spill the real tea your way: unapologetically authentic.",
+            "image_left": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

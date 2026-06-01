@@ -9,9 +9,8 @@
 
 
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
-  <div class="md:hidden relative h-[120px] w-full bg-white">
-    
-  </div>
+  <!-- Spacer dinámico: JS mide header + topbar reales en lugar de valor fijo -->
+  <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
 
   <div class="slides-wrapper relative w-full md:h-screen h-[38vh] overflow-hidden">
     {% for block in section.blocks %}
@@ -45,16 +44,18 @@
         <div class="slide-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
           
-          {% if block.settings.page_title != blank %}    
-            <h1 class="text-[7vw] font-bold font-bricolage text-white
-              drop-shadow-lg leading-[0.9] ">
-              {{ block.settings.page_title | newline_to_br  }}
+          {% if block.settings.page_title != blank %}
+            <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+              <span>{{ block.settings.page_title | newline_to_br }}</span>
+              {% if block.settings.title_logo %}
+                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
+              {% endif %}
             </h1>
           {% endif %}
 
           {% if block.settings.page_descripction != blank %}    
-            <p class="text-[2.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
-              {{ block.settings.page_descripction }}
+            <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.page_descripction | newline_to_br }}
             </p>
           {% endif %}
 
@@ -99,17 +100,17 @@
 
       {% case position %}
         {% when 'top-left' %}
-          {% assign position_classes = 'items-start justify-start pt-10 pl-10' %}
+          {% assign position_classes = 'items-start justify-start md:pt-[78px] pt-10 pl-10' %}
         {% when 'top-center' %}
           {% assign position_classes = 'items-start justify-center pt-48' %}
         {% when 'top-right' %}
           {% assign position_classes = 'items-start justify-end pt-10 pr-10' %}
         {% when 'center' %}
-          {% assign position_classes = 'items-center justify-center md:pt-50 pt-52 md:left-0 left-1/3' %}
+          {% assign position_classes = 'items-center justify-center md:pt-80 pt-52 md:left-0 left-1/3' %}
         {% when 'bottom-left' %}
-          {% assign position_classes = 'items-end justify-start md:pb-20 md:pl-10 md:pt-0 pt-52 pl-5' %}
+          {% assign position_classes = 'items-end justify-start md:pb-[42px] md:pl-10 md:pt-0 pt-52 pl-5' %}
         {% when 'bottom-left-up' %}
-          {% assign position_classes = 'items-end justify-start pb-40 pl-10' %}
+          {% assign position_classes = 'items-end justify-start md:pb-[122px] pb-40 pl-10' %}
         {% when 'bottom-right' %}
           {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
         {% else %}
@@ -215,10 +216,38 @@
 </div>
 
 
+<script>
+  (function () {
+    function setHeroSpacer() {
+      if (window.innerWidth >= 768) return; // solo móvil
+      var spacer = document.getElementById('hero-header-spacer');
+      var header = document.getElementById('main-header');
+      var topbar = document.querySelector('.topbar-wrapper');
+      if (!spacer || !header) return;
+      var topbarH = topbar ? topbar.offsetHeight : 0;
+      var headerH = header.offsetHeight;
+      spacer.style.height = (topbarH + headerH) + 'px';
+    }
+
+    // Ejecutar después del primer paint para leer dimensiones reales
+    requestAnimationFrame(setHeroSpacer);
+    document.addEventListener('DOMContentLoaded', function () {
+      requestAnimationFrame(setHeroSpacer);
+    });
+    window.addEventListener('resize', setHeroSpacer);
+  })();
+</script>
+
 <style>
 .custom-slider .slide {
   position: absolute;
   inset: 0;
+}
+
+@media (max-width: 767px) {
+  .hero-title-logo {
+    margin-left: -0.3em;
+  }
 }
 
 .custom-slider .slide {
@@ -393,6 +422,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "page_title",
         "label": "Titulo principal (centrado)",
         "default": "Bienvenido a Nuestra Tienda"
+      },
+      {
+        "type": "image_picker",
+        "id": "title_logo",
+        "label": "Logo imagen (inline con el titulo)"
       },
       {
         "type": "text",

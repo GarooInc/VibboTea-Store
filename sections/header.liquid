@@ -1,4 +1,3 @@
-
 {%- liquid
   assign topbar_height = 0
   if section.settings.show_topbar
@@ -6,17 +5,28 @@
   endif
 -%}
 
+<style>
+  #main-header {
+    height: {{ section.settings.header_height_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    #main-header {
+      height: {{ section.settings.header_height_desktop }}px;
+    }
+  }
+</style>
+
 {% if section.settings.show_topbar %}
-<div class="topbar-wrapper blinkBW full-width py-1 cursor-pointer 
-      fixed top-0 w-full z-50 font-bricolage bg-white">
+<div class="topbar-wrapper blinkBW full-width py-1 cursor-pointer
+      fixed top-0 w-full z-50 font-bricolage bg-white overflow-hidden">
 
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
     <div class="topbar-content ">
       {% for  i in (1..6) %}
         <div class="topbar-text text-sm md:text-base font-medium flex justify-center items-center gap-4 px-4 md:py-1 py-1.5">
           {% if section.settings.isotipe %}
-            <img 
-              src="{{ section.settings.isotipe | img_url: '200x200' }}" 
+            <img
+              src="{{ section.settings.isotipe | img_url: '200x200' }}"
               alt="Isotipe"
               class="inline-block h-6 w-5 object-contain"
               width="{{ section.settings.isotipe.width }}"
@@ -25,8 +35,8 @@
           {% endif %}
           {{ section.settings.topbar_announcement_text }}
           {% if section.settings.isotipe %}
-            <img 
-              src="{{ section.settings.isotipe | img_url: '200x200' }}" 
+            <img
+              src="{{ section.settings.isotipe | img_url: '200x200' }}"
               alt="Isotipe"
               class="inline-block h-6 w-5 object-contain"
               width="{{ section.settings.isotipe.width }}"
@@ -41,10 +51,10 @@
 </div>
 {% endif %}
 
-<header 
+<header
   id="main-header"
-  class="fixed left-0 w-full md:h-30 h-20 bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
-  style="top: calc({{ topbar_height }}px - 10px);"
+  class="fixed left-0 w-full bg-cover bg-center flex items-center justify-center overflow-hidden z-50"
+  style="top: {{ topbar_height }}px;"
 >
 {%- capture background_class -%}
   {%- if section.settings.header_background == 'transparent' -%}
@@ -64,111 +74,70 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<div class="justify-between absolute top-0 left-0 w-full md:grid md:grid-cols-3 items-center md:py-[3.5vh] px-0 ml-0 pl-0 z-30 {{ background_class | strip_newlines }}">
+<div class="justify-between absolute top-0 left-0 w-full h-full md:grid md:grid-cols-3 items-center px-0 ml-0 pl-0 z-30 {{ background_class | strip_newlines }}">
 
   <!-- movil (col 1) -->
 
-    <div class="lg:hidden md:hidden xl:hidden  flex items-center justify-between py-4 w-full px-4 ">
-      <div class="flex items-center pl-3">
+    <div class="lg:hidden md:hidden xl:hidden  flex items-center justify-between py-2 w-full px-4 ">
+      <div class="flex items-center pl-3" style="margin-top: -9px;">
         {% if section.settings.logo %}
           <a href="{{ routes.root_url }}">
-            <img 
-              src="{{ section.settings.logo | img_url: '2000x2000' }}" 
+            <img
+              src="{{ section.settings.logo | img_url: '2000x2000' }}"
               alt="Logo"
-              class=" w-23 object-contain"
-              width="{{ section.settings.background_image.width }}"
-              height="{{ section.settings.background_image.height }}"
+              style="width: {{ section.settings.logo_size_mobile }}px;"
+              class="object-contain"
             >
           </a>
-          
+
         {% else %}
           <h2 class="text-xl font-bold {{ text_color | strip_newlines }}">
             {{ shop.name }}
           </h2>
         {% endif %}
       </div>
-      <!-- Hamburger Menu Button -->
-      <button 
-        type="button" 
-        class="mobile-menu-toggle {{ text_color | strip_newlines }} w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
-        aria-label="Toggle menu"
-        onclick="toggleMobileMenu()">
-        {%-  render 'icon-hamburger' %}
-      </button>
-
-     
-      
-    </div>
-      <!-- MOBILE MENU -->
-      <div 
-          id="mobile-menu" 
-          class="lg:hidden hidden fixed inset-0 w-full min-h-screen h-screen px-8 z-[9999] pointer-events-auto top-0"
-          style="background-color: rgba(0, 0, 0, 0.65);"
-        >
-        {% comment %} <div class="flex justify-start gap-2 pt-20 relative z-50 pointer-events-auto">
-
-            
-            
-            <a href="{{ routes.account_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="User">
-              {%- render 'user' -%}
-            </a>
-            <a href="{{ routes.cart_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="Cart">
-              {%- render 'iconCart' -%}
-            </a>
-            <a href="{{ routes.all_products_collection_url }}" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="Instagram">
-              {%- render 'search' -%}
-            </a>
-        </div> {% endcomment %}
-
-
-        <!-- BOTÓN CERRAR -->
-        <button 
+      <!-- Cart + Hamburger -->
+      <div class="flex items-center gap-1">
+        <a href="{{ routes.cart_url }}"
+          class="relative {{ text_color | strip_newlines }} flex items-center justify-center hover:opacity-70 transition-opacity"
+          style="width: {{ section.settings.cart_icon_size_mobile }}px; height: {{ section.settings.cart_icon_size_mobile }}px; margin-top: -10px;"
+          aria-label="Cart">
+          {%- render 'iconCart' -%}
+          {%- if cart.item_count > 0 -%}
+            <span class="absolute -top-0.5 -right-0.5 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
+              {{ cart.item_count }}
+            </span>
+          {%- endif -%}
+        </a>
+        <button
           type="button"
-          aria-label="Close menu"
-          onclick="toggleMobileMenu()"
-          class="absolute top-28 right-6 z-[9999] w-12 h-12 flex items-center justify-center text-white text-3xl"
-        >
-          ✕
+          class="mobile-menu-toggle {{ text_color | strip_newlines }} w-12 h-12 flex flex-col justify-center items-center space-y-1.5"
+          style="transform: translateY(-4px);"
+          aria-label="Toggle menu"
+          onclick="toggleMobileMenu()">
+          {%- render 'icon-hamburger' %}
         </button>
-
-        {% comment %} descomentar y comentar el otro nav para version original  {% endcomment %}
-        {% comment %} <nav class="flex flex-col justify-center items-center h-full -translate-y-30">  {% endcomment %}
-        <nav class="flex flex-col justify-center items-center h-full">
-          {% for link in section.settings.menu.links %}
-            <a 
-              href="{{ link.url }}" 
-              class="text-2xl tracking-wider text-white transition-colors duration-200 text-center py-2 font-bricolage"
-              onclick="toggleMobileMenu()"
-            >
-              {{ link.title }}
-            </a>
-          {% endfor %}
-        </nav>
-
       </div>
 
 
 
-      
+    </div>
+
+
+
+
   <!-- LOGO (col 1) -->
-  <div class="hidden md:flex items-center lg:pl-10 pl-4">
+  <div class="hidden md:flex items-center lg:pl-10 pl-4" style="margin-top: -4px;">
     {% if section.settings.logo %}
       <a href="{{ routes.root_url }}">
-        <img 
-          src="{{ section.settings.logo | img_url: '2000x2000' }}" 
+        <img
+          src="{{ section.settings.logo | img_url: '2000x2000' }}"
           alt="Logo"
-          class=" lg:w-40 w-30 object-contain"
-          width="{{ section.settings.background_image.width }}"
-          height="{{ section.settings.background_image.height }}"
+          style="width: {{ section.settings.logo_size_desktop }}px;"
+          class="object-contain"
         >
       </a>
-      
+
     {% else %}
       <h2 class="text-xl font-bold {{ text_color | strip_newlines }}">
         {{ shop.name }}
@@ -177,10 +146,10 @@
   </div>
 
   <!-- MENU desktop (col 2) -->
-  <nav class="hidden md:flex  md:justify-center space-x-8">
+  <nav class="hidden md:flex  md:justify-center space-x-8" style="margin-top: -4px;">
     {% for link in section.settings.menu.links %}
-      <a 
-        href="{{ link.url }}" 
+      <a
+        href="{{ link.url }}"
         class="font-light font-bricolage text-sm lg:text-lg xl:text-xl p-4 tracking-wider
          uppercase {{ text_color | strip_newlines }} hover:font-bold transition-colors duration-200 whitespace-nowrap"
       >
@@ -189,45 +158,63 @@
     {% endfor %}
   </nav>
 
-  <!-- Col 3  -->
-  <div>
-      {% comment %} <div class="hidden md:flex justify-end md:pr-7 md:gap-2">
-            <button
-              type="button"
-              id="openSearch"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current"
-              aria-label="Search"
-            >
-              {%- render 'search' -%}
-            </button>
-
-            <a href="{{ routes.cart_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="Cart">
-              {%- render 'iconCart' -%}
-            </a>
-            <a href="{{ routes.account_url }}"
-              class="footer-icon hover:opacity-70 transition-opacity scale-90 {{ text_color | strip_newlines }} [&_svg]:stroke-current " 
-              aria-label="User">
-              {%- render 'user' -%}
-            </a>
-        </div> {% endcomment %}
-        
+  <!-- Col 3 — Cart button desktop -->
+  <div class="hidden md:flex justify-end pr-10" style="margin-top: {{ section.settings.cart_vertical_offset }}px;">
+    <a href="{{ routes.cart_url }}"
+      class="relative hover:opacity-70 transition-opacity {{ text_color | strip_newlines }}"
+      style="width: {{ section.settings.cart_icon_size_desktop }}px; height: {{ section.settings.cart_icon_size_desktop }}px;"
+      aria-label="Cart">
+      {%- render 'iconCart' -%}
+      {%- if cart.item_count > 0 -%}
+        <span class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
+          {{ cart.item_count }}
+        </span>
+      {%- endif -%}
+    </a>
   </div>
 
 </div>
 
- 
+
 </header>
 
+<!-- MOBILE MENU – outside <header> so header's translateY doesn't hide it -->
+<div
+  id="mobile-menu"
+  class="lg:hidden hidden fixed inset-0 w-full min-h-screen h-screen px-8 z-[9999] pointer-events-auto top-0"
+  style="background-color: rgba(0, 0, 0, 0.65);"
+>
+  <!-- BOTÓN CERRAR -->
+  <button
+    type="button"
+    aria-label="Close menu"
+    onclick="toggleMobileMenu()"
+    class="absolute top-28 right-6 z-[9999] w-12 h-12 flex items-center justify-center text-white text-3xl"
+  >
+    ✕
+  </button>
 
+  {% comment %} descomentar y comentar el otro nav para version original  {% endcomment %}
+  {% comment %} <nav class="flex flex-col justify-center items-center h-full -translate-y-30">  {% endcomment %}
+  <nav class="flex flex-col justify-center items-center h-full">
+    {% for link in section.settings.menu.links %}
+      <a
+        href="{{ link.url }}"
+        class="text-2xl tracking-wider text-white transition-colors duration-200 text-center py-2 font-bricolage"
+        onclick="toggleMobileMenu()"
+      >
+        {{ link.title }}
+      </a>
+    {% endfor %}
+  </nav>
+</div>
 
 <div
   id="searchOverlay"
   class="fixed inset-0 bg-black/40 backdrop-blur-sm z-999 hidden"
 >
   <div class="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
-    
+
     <predictive-search class="relative block">
       <form action="{{ routes.search_url }}" method="get" role="search">
         <input
@@ -235,7 +222,6 @@
           name="q"
           placeholder="Search products"
           autocomplete="off"
-          autofocus
           class="w-full h-14 px-6 text-lg outline-none bg-white "
         >
       </form>
@@ -253,12 +239,52 @@
 
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const topbar = document.querySelector('.topbar-wrapper');
+    const header = document.getElementById('main-header');
+    if (topbar && header) {
+      header.style.top = topbar.offsetHeight + 'px';
+    }
+  });
+</script>
+<script>
+  (function () {
+    var header = document.getElementById('main-header');
+    var topbar = document.querySelector('.topbar-wrapper');
+    if (!header) return;
+
+    var lastScrollY = 0;
+    var ticking = false;
+
+    function update() {
+      var topbarHeight = topbar ? topbar.offsetHeight : 0;
+      var currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        header.style.transform = 'translateY(calc(-100% - ' + topbarHeight + 'px))';
+        if (topbar) topbar.style.transform = 'translateY(-100%)';
+      } else if (currentScrollY < lastScrollY) {
+        header.style.transform = 'translateY(0)';
+        if (topbar) topbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
+<script>
   function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
-  const header = document.getElementById('main-header');
   const liston = document.getElementById('topbar-liston');
   menu.classList.toggle('hidden');
-  header.classList.toggle('h-screen');
   document.body.classList.toggle('overflow-hidden');
   if (liston) liston.classList.toggle('hidden');
 }
@@ -271,7 +297,7 @@
   function openSearch() {
     overlay.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
-    input?.focus();
+    setTimeout(() => input?.focus(), 50);
   }
 
   function closeSearch() {
@@ -321,7 +347,8 @@
       const products = data.resources.results.products;
 
       if (!products || products.length === 0) {
-        window.location.href = '/404';
+        this.results.innerHTML = '<p class="px-5 py-3 text-gray-500">No results found</p>';
+        this.results.classList.remove('hidden');
         return;
       }
 
@@ -355,7 +382,16 @@
   body {
     overflow-x: hidden;
   }
- 
+
+  #main-header {
+    height: 60px;
+  }
+  @media (min-width: 768px) {
+    #main-header {
+      height: 90px;
+    }
+  }
+
   header a sup {
     position: absolute;
     left: 100%;
@@ -376,11 +412,11 @@
     animation: scroll 10s linear infinite;
     white-space: nowrap;
   }
-  
+
   .topbar-text {
     flex-shrink: 0;
   }
-  
+
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -389,13 +425,21 @@
       transform: translateX(-50%);
     }
   }
-  
+
   .topbar-wrapper:hover .topbar-content {
     animation-play-state: paused;
   }
 
-  
- 
+  #main-header {
+    transition: transform 0.3s ease;
+  }
+
+  .topbar-wrapper {
+    transition: transform 0.3s ease;
+  }
+
+
+
 
 
 
@@ -435,7 +479,7 @@
       "id": "topbar_link",
       "label": "Topbar Link"
     },
-   
+
     {
       "type": "header",
       "content": "Header Settings"
@@ -449,6 +493,69 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_size_desktop",
+      "label": "Logo size desktop (px)",
+      "min": 60,
+      "max": 200,
+      "step": 4,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "logo_size_mobile",
+      "label": "Logo size mobile (px)",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "header_height_desktop",
+      "label": "Header height desktop (px)",
+      "min": 30,
+      "max": 120,
+      "step": 2,
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "header_height_mobile",
+      "label": "Header height mobile (px)",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "cart_vertical_offset",
+      "label": "Cart vertical position desktop (px)",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "default": -5
+    },
+    {
+      "type": "range",
+      "id": "cart_icon_size_desktop",
+      "label": "Cart icon size desktop (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cart_icon_size_mobile",
+      "label": "Cart icon size mobile (px)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 16
     },
     {
       "type": "select",

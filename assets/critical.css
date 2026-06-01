@@ -6,11 +6,16 @@
   margin: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   display: flex;
   flex-direction: column;
   margin: 0;
   min-height: 100svh;
+  overflow-x: hidden;
 }
 
 html:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
@@ -104,6 +109,7 @@ body {
   grid-template-columns: var(--content-grid);
   display: grid;
   width: 100%;
+  overflow-x: clip;
 }
 
 /* Child elements, by default, are constrained to the central column of the grid. */
@@ -205,22 +211,6 @@ body {
 
 .shopify_subscriptions_app_block_label{
   padding: 0.5rem !important;
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(156, 163, 175, 0.35) !important;
-  border-radius: 1rem !important;
-  color: #111827 !important;
-}
-
-.subscriptions_app_embed_block .shopify_subscriptions_app_block_label:first-child {
-  background-color: #f8fafc !important;
-  border-color: #0284c7 !important;
-  color: #0f172a !important;
-}
-
-.subscriptions_app_embed_block .shopify_subscriptions_app_block_label input,
-.subscriptions_app_embed_block .shopify_subscriptions_app_block_label .shopify_subscriptions_app_block_label_text,
-.subscriptions_app_embed_block .shopify_subscriptions_app_block_label .shopify_subscriptions_app_block_label_title {
-  color: inherit !important;
 }
 
 .shopify_subscriptions_app_policy{
@@ -238,4 +228,77 @@ form#captcha_form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/* Appstle subscription widget — price layout:
+   Row 1: $16.00 / per unit
+   Row 2: $240.00 (tachado)  $192.00 (suscripción) */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 2px 8px !important;
+}
+
+/* Precio unitario — ancho completo, va primero (fila 1) */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_prepaid_description {
+  width: 100% !important;
+  order: -1 !important;
+}
+
+/* Agrega "/ per unit" después del precio unitario */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_prepaid_description::after {
+  content: " / per unit";
+}
+
+/* Precio unitario — negro, más grande */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_prepaid_description {
+  color: #000000 !important;
+  font-size: 14.5px !important;
+}
+
+/* Precio suscripción — gris, más pequeño */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount:not(.sr-only) {
+  color: #9ca3af !important;
+  font-size: 13px !important;
+}
+
+/* Precio tachado — gris con tachado, más pequeño */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only) {
+  color: #9ca3af !important;
+  text-decoration: line-through !important;
+  font-size: 13px !important;
+}
+
+/* Precio tachado ($240) y precio suscripción ($192) — fila 2, lado a lado */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_compare_amount:not(.sr-only),
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .appstle_subscription_amount:not(.sr-only) {
+  width: auto !important;
+  order: 0 !important;
+}
+
+/* Monthly plan (sin .appstle_prepaid_description):
+   Row 1: $22.50 / per unit — negro, ancho completo
+   Row 2: $25.00 tachado — gris */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper:not(:has(.appstle_prepaid_description)) .appstle_subscription_amount:not(.sr-only) {
+  width: 100% !important;
+  order: -1 !important;
+  color: #000000 !important;
+  font-size: 14.5px !important;
+}
+
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper:not(:has(.appstle_prepaid_description)) .appstle_subscription_compare_amount:not(.sr-only) {
+  width: 100% !important;
+  order: 0 !important;
+  color: #9ca3af !important;
+  text-decoration: line-through !important;
+  text-decoration-line: line-through !important;
+  -webkit-text-decoration-line: line-through !important;
+  font-size: 13px !important;
+  text-align: right !important;
+}
+
+/* Excluir sr-only del flujo */
+[id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .sr-only {
+  position: absolute !important;
 }

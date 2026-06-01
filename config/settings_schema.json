@@ -8,6 +8,17 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Sube una imagen PNG sin fondo (sticker). Recomendado: 32x32 o 64x64 px."
+      }
+    ]
+  },
+  {
     "name": "t:general.typography",
     "settings": [
       {

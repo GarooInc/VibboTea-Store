@@ -29,6 +29,17 @@
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
+    <script>
+      (function() {
+        var hardRedirects = {
+          '/shop': '/collections/shop'
+        };
+        var path = window.location.pathname;
+        if (hardRedirects[path]) {
+          window.location.replace(hardRedirects[path]);
+        }
+      })();
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
@@ -38,5 +49,27 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+
+    <script>
+      (function() {
+        var rewrites = {
+          '/pages/about-us':        '/about-us',
+          '/pages/partner-with-us': '/partner-with-us',
+          '/pages/contact-us':      '/contact-us',
+          '/collections/shop':      '/shop'
+        };
+
+        var path = window.location.pathname;
+
+        for (var from in rewrites) {
+          if (path.startsWith(from)) {
+            var clean = path.replace(from, rewrites[from]);
+            history.replaceState(null, '', clean + window.location.search + window.location.hash);
+            break;
+          }
+        }
+      })();
+    </script>
+
   </body>
 </html>

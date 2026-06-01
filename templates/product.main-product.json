@@ -14,27 +14,21 @@
       "disabled": true,
       "settings": {}
     },
+    "1779085771408971c2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_preview_badge_ww7Nzb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_ww7Nzb"
+      ],
+      "settings": {}
+    },
     "product_page_rNtVMj": {
       "type": "product-page",
-      "name": "Description product",
-      "settings": {
-        "text_button": "ADD TO CART",
-        "sold_out_text": "SOLD OUT",
-        "kickstarter_price": true,
-        "text_kickstarter": "<p>Secure yours now with 15% off, arriving in May</p>",
-        "text_kickstarter_button": "BUY NOW",
-        "discount_text_kickstarter": "15% OFF",
-        "discount_per_serving_kickstarter": "$0.57 per serving",
-        "per_serving_bg_color": "#fab801",
-        "per_serving_text_color": "#000000",
-        "timer_kickstarter": "SALES ENDS IN:",
-        "time_discount_kickstarter": "2026-02-27 23:59:59",
-        "kickstarter_link": "",
-        "disclaimer_kickstarter": ""
-      }
-    },
-    "1774571432dbf133bd": {
-      "type": "apps",
       "blocks": {
         "appstle_subscription_appstle_subscription_product_page_widget_cFf9py": {
           "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
@@ -44,7 +38,24 @@
       "block_order": [
         "appstle_subscription_appstle_subscription_product_page_widget_cFf9py"
       ],
-      "settings": {}
+      "name": "Description product",
+      "settings": {
+        "text_button": "ADD TO CART",
+        "sold_out_text": "SOLD OUT",
+        "kickstarter_price": true,
+        "text_kickstarter": "<p>Secure yours now with 15% off</p>",
+        "text_kickstarter_button": "ADD TO CART",
+        "discount_text_kickstarter": "15% OFF",
+        "discount_per_serving_kickstarter": "$0.91 per serving",
+        "per_serving_bg_color": "#fab801",
+        "per_serving_text_color": "#000000",
+        "timer_kickstarter": "SALES ENDS IN:",
+        "time_discount_kickstarter": "2026-02-27 23:59:59",
+        "kickstarter_link": "",
+        "disclaimer_kickstarter": "",
+        "presentation_text": "",
+        "steeping_instructions_text": "- Serving Size: 2-3 gr. (1 tsp. - 1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes"
+      }
     },
     "product_instructions_KU7cmG": {
       "type": "product-instructions",
@@ -256,7 +267,7 @@
       "type": "product-why-varios",
       "name": "Why Vibbo Slidder",
       "settings": {
-        "title": "Why Vibbo?",
+        "title": "Why choose Vibbo?",
         "image": "shopify://shop_images/Group_13.png",
         "image2": "shopify://shop_images/Group_56.png",
         "image3": "shopify://shop_images/Group_57.png",
@@ -265,49 +276,67 @@
         "image_mobile3": "shopify://shop_images/Group_55_1.png"
       }
     },
+    "1779810531dada62b1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_9bJXk3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_9bJXk3"
+      ],
+      "settings": {}
+    },
     "faq_7VfkjP": {
       "type": "faq",
       "blocks": {
         "faq_4RH48d": {
           "type": "faq",
           "settings": {
-            "question": "Is VIBBO organic or ethically sourced?",
-            "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods."
+            "question": "Is VIBBO ethically sourced?",
+            "answer": "VIBBO is ethically sourced: we're actively working toward B Corp certification in the coming quarters, with all ingredients sustainably produced, fully traceable from the dirt to the cup— no B.S."
           }
         },
         "faq_xUfMyA": {
           "type": "faq",
           "settings": {
             "question": "Where do we sort our ingredients from?",
-            "answer": ""
+            "answer": "VIBBO sources all ingredients 100% from Guatemala across various regions, directly from local farmers and supporting surrounding communities—embracing our roots from soil to steep. No jokes, come and find out, we dare you ;)."
           }
         },
         "faq_YVfbax": {
           "type": "faq",
           "settings": {
             "question": "How should I drink it?",
-            "answer": ""
+            "answer": "Follow the GIF steps above: hot, cold, or as a mocktail. We're not just boring tea, we're an ingredient meant to be had fun with. Or drink it however you want; quite honestly, we don't care."
           }
         },
         "faq_TyxJfY": {
           "type": "faq",
           "settings": {
             "question": "How much, when, and how often should I drink VIBBO?",
-            "answer": ""
+            "answer": "Sip your chosen VIBBO blend daily, Hydra Boost mornings or mid-afternoon for energy, Gut Bliss anytime for cleanse vibes, Chill Vibes evenings for wind-down or during stress—steeped hot, iced, or as a mocktail, max 3-4 per day based on your flow, or inner chaos."
           }
         },
         "faq_t9PGRg": {
           "type": "faq",
           "settings": {
             "question": "Are there any artificial flavors, sweeteners, or additives in our blends?",
-            "answer": ""
+            "answer": "All natural baby."
           }
         },
         "faq_Nbb6HX": {
           "type": "faq",
           "settings": {
             "question": "What’s the shelf life and storage advice for our blends?",
-            "answer": ""
+            "answer": "VIBBO goes vibbin' for 24 months post-packaging, stash at room temp in a fresh, dry spot, no humidity please."
           }
         }
       },
@@ -380,11 +409,12 @@
   },
   "order": [
     "main",
+    "1779085771408971c2",
     "product_page_rNtVMj",
-    "1774571432dbf133bd",
     "product_instructions_KU7cmG",
     "prodcut_ingredients_FXkDBr",
     "product_why_varios_DGAVp8",
+    "1779810531dada62b1",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]

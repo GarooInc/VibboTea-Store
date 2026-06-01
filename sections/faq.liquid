@@ -1,59 +1,52 @@
 {% assign padding_top = section.settings.margin_top_image | default: 50 %}
-<section id="{{ section.settings.id_section }}">
-<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center relative">
+<section id="{{ section.settings.id_section }}" style="position: relative; z-index: 20;">
+<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center">
   <div class="md:min-w-[90vw] min-w-sm mx-auto text-center md:px-4 px-5">
 
-    {% if section.settings.title != blank %}
-      <h2 class="text-3xl md:text-5xl font-semibold mb-12 font-bricolage">
-        {{ section.settings.title }}
-      </h2>
-    {% endif %}
-    <div></div>
-
-    <p class="text-xl mb-12 p-5 pb-8">
-      {{section.settings.text_faq}}
-    </p>
     {% assign img_align = section.settings.image_alignment | default: 'right' %}
     {% assign target_w = section.settings.image_target_width | default: 800 %}
     {% assign target_h_default = section.settings.image_target_height | default: 533 %}
     {% assign auto_size = section.settings.image_auto_size %}
 
     {% if section.settings.image1 %}
-      {% assign orig_w = section.settings.image1.width | default: section.settings.image1.featured_media.width | default: 0 %}
-      {% assign orig_h = section.settings.image1.height | default: section.settings.image1.featured_media.height | default: 0 %}
-
+      {% assign orig_w = section.settings.image1.width | default: 0 %}
+      {% assign orig_h = section.settings.image1.height | default: 0 %}
       {% if auto_size and orig_w > 0 and orig_h > 0 %}
         {% assign target_h = orig_h | times: target_w | divided_by: orig_w %}
       {% else %}
         {% assign target_h = target_h_default %}
       {% endif %}
-
-      <div class="hidden md:block absolute -top-20 {% if img_align == 'right' %}-right-10{% else %}left-0{% endif %}
-          ">
-        <img 
-          src="{{ section.settings.image1 | image_url: width: target_w }}"
-          alt="{{ section.settings.title }}"
-          class="mt-10 w-72 object-cover rounded-2xl {% if img_align == 'right' %}-translate-x-1/4{% else %}translate-x-1/15{% endif %}"
-          width="{{ target_w }}"
-          height="{{ target_h }}"
-        >
-      </div>
     {% endif %}
 
+    <!-- Header: imagen + título/subtítulo lado a lado en desktop -->
+    <div class="w-full flex items-center gap-8 mb-10">
+      {% if section.settings.image1 %}
+        <div class="hidden md:block flex-shrink-0 w-48">
+          <img
+            src="{{ section.settings.image1 | image_url: width: target_w }}"
+            alt="{{ section.settings.title }}"
+            class="w-full object-contain"
+            width="{{ target_w }}"
+            height="{{ target_h }}"
+          >
+        </div>
+      {% endif %}
+      <div class="flex-1 text-center">
+        {% if section.settings.title != blank %}
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4 font-bricolage">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+        <p class="text-xl">
+          {{ section.settings.text_faq }}
+        </p>
+      </div>
+    </div>
 
-    <style>
-      @media (min-width: 768px) {
-        .faq-image-padding { padding-top: var(--faq-image-pt); }
-      }
-    </style>
-
-    <div class="w-full {% if section.settings.image1 %}faq-image-padding{% endif %}" 
-      {% if section.settings.image1 %}style="--faq-image-pt: {{ padding_top }}px;"{% endif %}>
-
+    <div class="w-full text-left">
       {% for block in section.blocks %}
       <div class="w-full pb-5" {{ block.shopify_attributes }}>
-        
-        <div 
+        <div
           class="faq-card border border-gray-300 rounded-xl px-5 py-5 cursor-pointer"
           data-faq
         >
@@ -61,24 +54,31 @@
             <h3 class="md:text-2xl font-semibold font-bricolage text-gray-800 text-left">
               {{ block.settings.question }}
             </h3>
-
             <button class="faq-toggle transition-transform duration-300" aria-label="toggle">
               {%- render 'arrow-faq1' -%}
             </button>
           </div>
-
-          <!-- Respuesta oculta -->
           <div class="faq-content max-h-0 overflow-hidden transition-all duration-500">
             <p class="text-gray-700 mt-3 pr-10 text-left max-w-8/9 md:text-lg text-xs pt-3 md:pt-0">
               {{ block.settings.answer }}
             </p>
           </div>
         </div>
-
       </div>
       {% endfor %}
-
     </div>
+
+    {% if section.settings.image1 %}
+    <div class="md:hidden flex justify-end mt-8">
+      <img
+        src="{{ section.settings.image1 | image_url: width: 400 }}"
+        alt="{{ section.settings.title }}"
+        class="w-40 object-cover"
+        width="400"
+        height="400"
+      >
+    </div>
+    {% endif %}
 
   </div>
 </div>

@@ -23,7 +23,26 @@
       <div class="flex flex-col">
 
         <a href="{{ product.url }}" class="block">
-          <div class="w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
+          <div class="relative w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
+            {%- assign has_sold_out_tag = false -%}
+            {%- if product.tags contains 'Sold Out' -%}
+              {%- assign has_sold_out_tag = true -%}
+            {%- endif -%}
+            {%- assign negative_stock = true -%}
+            {%- for variant in product.variants -%}
+              {%- if variant.inventory_management == blank -%}
+                {%- assign negative_stock = false -%}
+                {%- break -%}
+              {%- elsif variant.inventory_quantity > 0 -%}
+                {%- assign negative_stock = false -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if has_sold_out_tag or negative_stock -%}
+              <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                Sold Out
+              </div>
+            {%- endif -%}
             {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
 
@@ -58,12 +77,6 @@
             {{ product.title }}
           </p>
 
-          {% if product.metafields.judgeme.badge != blank %}
-            <div class="pt-1 pb-1 text-[#8a8a8a] text-sm leading-none shop-rating-compact">
-              {{ product.metafields.judgeme.badge }}
-            </div>
-          {% endif %}
-
           <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
             {{ product.price | money }}
           </p>
@@ -96,38 +109,6 @@
 </section>
 
 {% endif %}
-
-{% style %}
-  .shop-rating-compact .jdgm-prev-badge,
-  .shop-rating-compact .jdgm-prev-badge__text,
-  .shop-rating-compact .jdgm-prev-badge__stars {
-    font-size: 0.875rem !important;
-    line-height: 1 !important;
-    color: #8a8a8a !important;
-  }
-
-  .shop-rating-compact .jdgm-prev-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .shop-rating-compact .jdgm-star,
-  .shop-rating-compact .jdgm-star svg {
-    color: #ffc107 !important;
-    fill: #ffc107 !important;
-    stroke: #ffc107 !important;
-  }
-  
-  .shop-rating-compact .jdgm-prev-badge__stars,
-  .shop-rating-compact .jdgm-prev-badge__stars svg,
-  .shop-rating-compact .jdgm-prev-badge__stars path {
-    color: #ffc107 !important;
-    fill: #ffc107 !important;
-    stroke: #ffc107 !important;
-  }
-{% endstyle %}
-
 
 {% schema %}
 {

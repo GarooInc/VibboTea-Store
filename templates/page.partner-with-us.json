@@ -1,0 +1,232 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "partner_hero_slide": {
+      "type": "header-section-slide",
+      "blocks": {
+        "slide_partner_hero": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/image_18.png",
+            "marca_agua": false,
+            "texto_agua": "",
+            "video_mp4": "",
+            "page_title": "Join",
+            "title_logo": "shopify://shop_images/vibbowhite.svg",
+            "page_descripction": "Be a real influencer.\nPromote real wellness.",
+            "title_sec": "",
+            "desc_sec": "",
+            "button_text": "APPLY TODAY",
+            "button_link": "/pages/contact-us",
+            "link_popup": false,
+            "hover_text": "",
+            "button_position": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_partner_hero"
+      ],
+      "name": "Partner Hero",
+      "settings": {
+        "autoplay": false,
+        "Time": 6000
+      }
+    },
+    "cinta_partner": {
+      "type": "cinta-newsletter",
+      "disabled": true,
+      "name": "Liston",
+      "settings": {
+        "isotipe": "shopify://shop_images/isotipo_black.png",
+        "topbar_announcement_text": "<p>KICKSTARTER NOW LIVE - CLICK HERE TO PRE-ORDER</p>",
+        "topbar_link": "https://www.kickstarter.com/projects/drinkvibbo/vibbo-handcrafted-tea-blends/description"
+      }
+    },
+    "partner_steps": {
+      "type": "partner-steps",
+      "blocks": {
+        "step_apply": {
+          "type": "step",
+          "settings": {
+            "title": "Apply",
+            "text": "Tell us who you are and why real ingredients, traceability, and nature-led wellness matters to you. We're looking for authentic storytellers, not follower counts.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_6.png",
+            "image_left": false
+          }
+        },
+        "step_rooted": {
+          "type": "step",
+          "settings": {
+            "title": "Get rooted",
+            "text": "Once accepted, you'll receive your unique referral link or code, access to brand resources, and select products to experience and share.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_4.png",
+            "image_left": true
+          }
+        },
+        "step_tea": {
+          "type": "step",
+          "settings": {
+            "title": "Spill the tea",
+            "text": "Create content that highlights origin, ingredients, rituals, and the people behind each cup. Educate, inspire, and spill the real tea your way: unapologetically authentic.",
+            "image": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_4_1.png",
+            "image_left": false
+          }
+        }
+      },
+      "block_order": [
+        "step_apply",
+        "step_rooted",
+        "step_tea"
+      ],
+      "name": "Partner Steps",
+      "settings": {
+        "deco_top_left": "shopify://shop_images/Hojas4.png",
+        "deco_bottom_right": "shopify://shop_images/Mono_deCabeza_1_0d53b52b-5faa-49a0-9d2d-fb1c76295468.png",
+        "cta_title": "Earn & grow with us",
+        "cta_text": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside VIBBO as we support farmers, communities, and return to basics.",
+        "cta_text_before": "Earn commission on every sale you influence, unlock higher tiers, and grow alongside",
+        "cta_logo": "shopify://shop_images/Frame_5_black.png",
+        "cta_text_after": "as we support farmers, communities, and return to basics.",
+        "cta_button_text": "APPLY TODAY",
+        "cta_button_link": "/pages/contact-us"
+      }
+    },
+    "our_story": {
+      "type": "our-story",
+      "name": "Our Story",
+      "settings": {
+        "bg_color": "#fff4da",
+        "heading": "Our story",
+        "heading_size": 96,
+        "image_left": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_3.png",
+        "intro_text_1": "We believe wellness begins at source. In the soil, in the hands that tend it, and in the traditions that have kept entire communities thriving for generations.",
+        "intro_text_2": "Real wellness doesn't start in a lab or a factory, but in the roots, with you.",
+        "story_label": "VIBBO",
+        "story_desc_1": "VIBBO was born from a desire to create more than a beverage: it's an experience rooted in authenticity, crafted with true natural ingredients and vibrant flavors.",
+        "story_desc_before": "",
+        "story_logo": "shopify://shop_images/Frame_5_black.png",
+        "story_desc_after": "was born from a desire to create more than a beverage: it's an experience rooted in authenticity, crafted with true natural ingredients and vibrant flavors.",
+        "story_desc_2": "Each cup is designed as a sensory ritual that supports wellness and nourishes the body, celebrating tea in its purest, most honest form for your everyday ritual.",
+        "image_right": "shopify://shop_images/fashionable-women-embracing-springs-beauty-while-c-2025-02-27-03-20-41-utc_4_22f51a2a-6efd-4579-99e4-2ad936644070.png",
+        "image_height": 280,
+        "deco_size": 160,
+        "deco_top_left": "shopify://shop_images/Jaguar_Volando_1.png",
+        "deco_top_right": "shopify://shop_images/Hojas2_1.png"
+      }
+    },
+    "testimonials_partner": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Williams",
+            "text": "I absolutely love this tea. The quality is amazing and the flavors are so vibrant and authentic!",
+            "stars": 5
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Williams",
+            "text": "Every time I've bought organic tea elsewhere, I've been disappointed. Not anymore — VIBBO is the real deal.",
+            "stars": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2"
+      ],
+      "disabled": true,
+      "name": "Testimonials",
+      "settings": {
+        "bg_color": "#f5f5f0",
+        "heading": "Hear what others have to say",
+        "heading_size": 36,
+        "cards_visible": 2
+      }
+    },
+    "faq_partner": {
+      "type": "faq",
+      "blocks": {
+        "faq_partner_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I join?",
+            "answer": "Applications are submitted through our partner platform, which helps us manage collabs, gifting, and commissions smoothly. Once you apply, our team will carefully review your submission. You'll be notified of your status within a few business days ;)"
+          }
+        },
+        "faq_partner_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is a good fit for the program?",
+            "answer": "We look for creators who:<br>• Produce wellness content<br>• Care about natural ingredients, sustainability, and traceability<br>• Enjoy education, storytelling, or slow-living content<br>• Have an engaged audience, size is not mandatory :)<br>• Are located in regions where VIBBO currently ships and operates (US, Guatemala)"
+          }
+        },
+        "faq_partner_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How does earning work?",
+            "answer": "Our ambassadors earn a percentage of sales generated through their personalized link or code. Rates are competitive and may evolve based on ongoing participation and impact.<br><br>All referral tracking and payouts are handled securely through our collaboration platform, ensuring clarity and reliability for everyone involved."
+          }
+        },
+        "faq_partner_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Where is the program available?",
+            "answer": "At this time, the VIBBO Ambassador Program is available to creators based in the United States. We'll expand to new regions as we grow together. Stay tuned!"
+          }
+        },
+        "faq_partner_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What do ambassadors receive?",
+            "answer": "VIBBO Ambassadors are eligible to receive:<br>• Product to experience and share authentically<br>• Earnings through commission on qualifying referrals<br>• Early access to launches and limited blends<br>• Opportunities to collaborate on storytelling, features, and campaigns<br>• Invitations to special initiatives tied to community and impact"
+          }
+        },
+        "faq_partner_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Why do I need to create a Shopify Collab account?",
+            "answer": "The platform allows us to:<br>• Track referrals accurately<br>• Deliver commissions efficiently<br>• Coordinate product shipments and campaigns<br><br>It keeps everything transparent and organized, so you can focus on creating."
+          }
+        }
+      },
+      "block_order": [
+        "faq_partner_1",
+        "faq_partner_2",
+        "faq_partner_3",
+        "faq_partner_4",
+        "faq_partner_5",
+        "faq_partner_6"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "title": "FAQ's",
+        "id_section": "#faqPartner",
+        "text_faq": "Read below for a good time.",
+        "image1": "shopify://shop_images/mono_sentado.png",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    }
+  },
+  "order": [
+    "partner_hero_slide",
+    "cinta_partner",
+    "partner_steps",
+    "our_story",
+    "testimonials_partner",
+    "faq_partner"
+  ]
+}

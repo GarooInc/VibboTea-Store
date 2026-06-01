@@ -1,21 +1,25 @@
 <div 
-    class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8] overflow-hidden w-full">
-    <div class="relative flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
-        <div class="text-black text-4xl md:text-5xl font-bricolage font-semibold leading-[1.1]">
+    class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
+    style="width: 100vw; margin-left: calc(50% - 50vw);">
+    <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
+        <div class="text-black text-3xl font-bricolage font-semibold leading-[1.1] md:hidden">
+            {{ section.settings.mobile_title | newline_to_br }}
+        </div>
+        <div class="text-black text-7xl font-bricolage font-semibold leading-[1.1] hidden md:block">
             {{ section.settings.title | newline_to_br }}
         </div>
-        <div class="absolute bottom-0 md:left-0 xl:left-40 pointer-events-none">
+        <div class="absolute bottom-0 md:right-[calc(50%-55px)]">
             {% if section.settings.image1 %}
-                <img 
+                <img
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
                     alt="Image 1"
-                    class="mt-10 md:ml-0 xl:w-[600px] md:w-[520px] object-cover rounded-2xl "
+                    class="mt-10 md:ml-0 xl:w-[500px] md:w-[420px] object-cover rounded-2xl "
                     width="600"
                     height="600"
                 >
             {% endif %}
         </div>
-        <div class="absolute -top-10 md:bottom-0 left-0 w-52 md:w-96 overflow-hidden pointer-events-none">
+        <div class="absolute -top-10 md:bottom-0 left-0 w-52 md:w-96 overflow-hidden">
             {% if section.settings.image2 %}
                 <img 
                     src="{{ section.settings.image2 | image_url: width: 600 }}"
@@ -77,24 +81,6 @@
             >
         </div>
 
-        <!-- Subject -->
-        <div class="mt-5 pb-4">
-            <label for="ContactFormSubject" class="block mb-1 font-medium font-bricolage pb-2">Subject</label>
-            <select
-                name="contact[subject]"
-                id="ContactFormSubject"
-                class="w-full border border-gray-300 bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
-                required
-            >
-                <option value="" disabled selected>Select from the drop down</option>
-                <option value="General inquiry">General inquiry</option>
-                <option value="Orders">Orders</option>
-                <option value="Partnerships">Partnerships</option>
-                <option value="Affiliated marketing">Affiliated marketing</option>
-                <option value="Whole sale">Whole sale</option>
-            </select>
-        </div>
-
         <!-- Message -->
         <div class="mt-5 pb-4">
             <label for="ContactFormMessage" class="block mb-1 font-medium  font-bricolage pb-2">How can we help?</label>
@@ -122,6 +108,11 @@
                 and 
                 <a href="{{ section.settings.privacy_link }}" class="underline hover:text-black" target="_blank">Privacy Policy</a>
             </label>
+        </div>
+
+        <!-- Honeypot (anti-spam) -->
+        <div style="display:none;" aria-hidden="true">
+            <input type="text" name="contact[website]" id="ContactFormHoneypot" tabindex="-1" autocomplete="off">
         </div>
 
         <!-- Button -->
@@ -159,14 +150,23 @@
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
+        // Honeypot check
+        const honeypot = form.querySelector('[name="contact[website]"]')?.value || '';
+        if (honeypot) return;
+
         const nombre = form.querySelector('[name="contact[first_name]"]')?.value?.trim() || '';
         const apellido = form.querySelector('[name="contact[last_name]"]')?.value?.trim() || '';
         const email = form.querySelector('[name="contact[email]"]')?.value?.trim() || '';
-        const subject = form.querySelector('[name="contact[subject]"]')?.value?.trim() || '';
         const comments = form.querySelector('[name="contact[body]"]')?.value?.trim() || '';
 
-        if (!nombre || !apellido || !email || !subject || !comments){
-            showMessage('err', 'Por favor completa todos los campos.');
+        if (!nombre || !apellido || !email || !comments){
+            showMessage('err', 'Please fill in all fields.');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('err', 'Please enter a valid email address.');
             return;
         }
 
@@ -174,7 +174,6 @@
             nombre,
             apellido,
             email,
-            subject,
             comments,
             submittedAt: new Date().toISOString()
         };
@@ -218,7 +217,13 @@
     {
       "type": "textarea",
       "id": "title",
-      "label": "Title",
+      "label": "Title (Desktop)",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_title",
+      "label": "Title (Mobile)",
       "default": "Title"
     },
     {

@@ -1,55 +1,127 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center
-   md:px-5 md:py-10 md:pt-46 pt-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start
+   md:px-5 md:py-10 md:pt-28 pt-32">
 
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
 
     {% if product.media.size > 1 %}
 
-    <!-- SLIDER -->
-    <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
-      
-      <div class="flex transition-transform duration-500" id="sliderTrack">
+    <!-- DESKTOP: Imagen principal + grid de miniaturas abajo -->
+    <div class="hidden md:flex flex-col gap-3 w-full min-w-0 overflow-hidden md:sticky md:top-28 md:self-start z-10">
+      <div class="w-full rounded-xl overflow-hidden relative" id="mainImageDesktop">
+        {% assign first_media = product.media[0] %}
+        {% if first_media.media_type == "image" %}
+          <img
+            src="{{ first_media | image_url: width: 1200 }}"
+            alt="{{ first_media.alt | escape }}"
+            class="w-full h-auto block"
+            id="mainDesktopImg"
+            width="{{ first_media.width }}"
+            height="{{ first_media.height }}"
+          />
+        {% elsif first_media.media_type == "video" %}
+          <video autoplay loop muted playsinline class="w-full h-auto block" id="mainDesktopVideo">
+            <source src="{{ first_media.sources[1].url }}" type="video/mp4">
+          </video>
+        {% endif %}
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer z-10" onclick="desktopPrev()">
+          {% render 'arrow-slidder2' %}
+        </button>
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer z-10" onclick="desktopNext()">
+          {% render 'arrow-slidder' %}
+        </button>
+      </div>
+      <div class="grid grid-cols-3 xl:grid-cols-4 w-full" style="gap: 8px;">
         {% for media in product.media %}
-          <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
-            {% if media.media_type == "image" %}
-              <img
-                src="{{ media | image_url: width: 1200 }}"
-                alt="{{ media.alt | escape }}"
-                class="w-full h-full object-cover"
-                width="{{ media.width }}"
-                height="{{ media.height }}"
-              />
-            {% elsif media.media_type == "video" %}
-              <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                <source src="{{ media.sources[1].url }}" type="video/mp4">
-              </video>
-            {% elsif media.media_type == "external_video" %}
-              {% if media.host == "youtube" %}
-                <iframe
-                  src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
-                  class="w-full h-full" frameborder="0"
-                  allow="autoplay; encrypted-media" allowfullscreen
-                ></iframe>
-              {% elsif media.host == "vimeo" %}
-                <iframe
-                  src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
-                  class="w-full h-full" frameborder="0"
-                  allow="autoplay; fullscreen" allowfullscreen
-                ></iframe>
+          {% assign is_video = false %}
+          {% if media.media_type == "video" or media.media_type == "external_video" %}
+            {% assign is_video = true %}
+          {% endif %}
+          <button
+            class="desktop-thumb rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer {% if is_video %}col-span-2{% else %}aspect-square{% endif %} {% if forloop.first %}border-black opacity-100{% else %}border-transparent opacity-60{% endif %}"
+            {% if is_video %}style="aspect-ratio: 2 / 1;"{% endif %}
+            data-src="{{ media | image_url: width: 1200 }}"
+            data-alt="{{ media.alt | escape }}"
+            data-type="{{ media.media_type }}"
+            {% if media.media_type == "video" %}data-video="{{ media.sources[1].url }}"{% endif %}
+            {% if media.media_type == "external_video" %}data-video="{{ media.sources[0].url }}"{% endif %}
+            aria-label="Ver imagen {{ forloop.index }}"
+          >
+            <img
+              src="{{ media.preview_image | image_url: width: 400 }}"
+              alt="{{ media.alt | escape }}"
+              class="w-full h-full object-cover"
+            />
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- MOBILE: Carrusel -->
+    <div class="md:hidden flex flex-col gap-3">
+
+      <div class="relative w-full overflow-hidden rounded-xl" id="productSlider">
+
+        <div class="flex transition-transform duration-500" id="sliderTrack">
+          {% for media in product.media %}
+            <div class="w-full h-full shrink-0 aspect-square overflow-hidden rounded-xl">
+              {% if media.media_type == "image" %}
+                <img
+                  src="{{ media | image_url: width: 1200 }}"
+                  alt="{{ media.alt | escape }}"
+                  class="w-full h-full object-cover"
+                  width="{{ media.width }}"
+                  height="{{ media.height }}"
+                />
+              {% elsif media.media_type == "video" %}
+                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                  <source src="{{ media.sources[1].url }}" type="video/mp4">
+                </video>
+              {% elsif media.media_type == "external_video" %}
+                {% if media.host == "youtube" %}
+                  <iframe
+                    src="https://www.youtube.com/embed/{{ media.external_id }}?autoplay=1&mute=1&loop=1&playlist={{ media.external_id }}&controls=0&modestbranding=1&rel=0"
+                    class="w-full h-full" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen
+                  ></iframe>
+                {% elsif media.host == "vimeo" %}
+                  <iframe
+                    src="https://player.vimeo.com/video/{{ media.external_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+                    class="w-full h-full" frameborder="0"
+                    allow="autoplay; fullscreen" allowfullscreen
+                  ></iframe>
+                {% endif %}
               {% endif %}
-            {% endif %}
-          </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- BOTONES -->
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slidePrev()">
+          {% render 'arrow-slidder2' %}
+        </button>
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slideNext()">
+          {% render 'arrow-slidder' %}
+        </button>
+      </div>
+
+      <!-- MINIATURAS -->
+      <div class="flex gap-2 overflow-x-auto pb-1 justify-center" id="thumbnailStrip">
+        {% for media in product.media %}
+          <button
+            class="thumbnail-btn shrink-0 w-18 h-18 rounded-lg overflow-hidden border-2 transition-all duration-200 cursor-pointer {% if forloop.first %}border-black opacity-100{% else %}border-transparent opacity-60{% endif %}"
+            onclick="goToSlide({{ forloop.index0 }})"
+            aria-label="Ver imagen {{ forloop.index }}"
+          >
+            <img
+              src="{{ media.preview_image | image_url: width: 200 }}"
+              alt="{{ media.alt | escape }}"
+              class="w-full h-full object-cover"
+            />
+          </button>
         {% endfor %}
       </div>
 
-      <!-- BOTONES -->
-      <button class="absolute left-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slidePrev()">
-        {% render 'arrow-slidder2' %}
-      </button>
-      <button class="absolute right-0 top-1/2 -translate-y-1/2 text-black px-3 py-2 cursor-pointer" onclick="slideNext()">
-        {% render 'arrow-slidder' %}
-      </button>
     </div>
 
     {% else %}
@@ -66,101 +138,121 @@
       </div>
     {% endif %}
 
-    <div class="product-info w-full px-4 flex flex-col justify-between items-start h-auto">
-      <div>
-        <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
-          {{ product.title }}
-        </h1>
 
-        <div id="priceWrapper" class="py-4 flex items-center gap-4 transition-all duration-300">
+      <div class="product-info w-full flex flex-col justify-between items-start h-auto min-w-0">
+        <div>
+
+          <!-- Judge.me reviews -->
+          <div class="mb-4 flex justify-left" style="margin-top: 24px;">
+            <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
+              style="font-size: 1.3rem;">
+              {{ product.metafields.judgeme.badge }}
+            </div>
+          </div>
+
+
+          <h1 class="text-3xl md:text-4xl font-bricolage font-medium text-black mb-4">
+            {{ product.title }}
+          </h1>
+
+
+        <div id="priceWrapper" class="py-4 flex flex-col gap-3 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
-            <div class="flex flex-col">
-              <span class="text-md md:text-xl text-red-700 font-bricolage uppercase pb-5">
-                {{ section.settings.text_kickstarter }}
-              </span>
+            <span class="text-md md:text-xl text-red-700 font-bricolage uppercase">
+              {{ section.settings.text_kickstarter }}
+            </span>
 
-              <!-- BUY NOW → Add to Cart -->
-              <div class="pb-5 w-full">
-                <button
-                  type="button"
-                  id="addToCartKickstarter"
-                  {% unless current_variant.available %}disabled{% endunless %}
-                  class="flex items-center justify-center w-full rounded-3xl py-3 
-                        hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
-                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-                >
-                  <span class="font-bricolage xl:text-xl text-sm text-center uppercase font-light px-10">
-                    {% if current_variant.available %}
-                      {{ section.settings.text_kickstarter_button }}
-                    {% else %}
-                      {{ section.settings.sold_out_text }}
-                    {% endif %}
-                  </span>
-                </button>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <div>
-                  <span class="text-3xl md:text-4xl text-black">
-                    {{ current_variant.price | money }}
-                  </span>
-                  <span class="text-2xl md:text-3xl text-gray-400 line-through">
-                    {{ current_variant.compare_at_price | money }}
-                  </span>
-                </div>
-                <span 
-                  class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
-                  style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-                >
-                  {{ section.settings.discount_text_kickstarter }}
+            <div id="priceDisplay" class="flex items-start gap-3 transition-all duration-300">
+              <div>
+                <span class="text-3xl md:text-4xl text-black">
+                  {{ current_variant.price | money }}
+                </span>
+                <span class="text-2xl md:text-3xl text-gray-400 line-through">
+                  {{ current_variant.compare_at_price | money }}
                 </span>
               </div>
+              <span
+                class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
+                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
+              >
+                {{ section.settings.discount_text_kickstarter }}
+              </span>
+            </div>
 
-              <p class="pt-2">{{ section.settings.discount_per_serving_kickstarter }}</p>
+            <p class="pt-1">{{ section.settings.discount_per_serving_kickstarter }}</p>
 
-              <div id="countdown" class="text-red-700 text-md md:text-lg pt-1">
-                {{ section.settings.timer_kickstarter }} <span id="timer"></span>
+            <div id="countdown" class="text-red-700 text-md md:text-lg">
+              {{ section.settings.timer_kickstarter }} <span id="timer"></span>
+            </div>
+
+            <!-- Descripción con widget embebido donde dice ProductDrop -->
+            {% assign desc_parts = product.description | split: 'ProductDrop' %}
+            <div class="text-sm text-black font-bricolage product-description md:pr-10">
+              {{ desc_parts[0] }}
+            </div>
+
+            {% if section.settings.presentation_text != blank %}
+              <div class="text-sm text-black font-bricolage md:pr-10">
+                <strong class="block">Presentation</strong>
+                {{ section.settings.presentation_text | newline_to_br }}
               </div>
+            {% endif %}
+
+            {% if section.settings.steeping_instructions_text != blank %}
+              <div class="text-sm text-black font-bricolage md:pr-10">
+                <strong class="block">Steeping instructions:</strong>
+                {{ section.settings.steeping_instructions_text | newline_to_br }}
+              </div>
+            {% endif %}
+
+            {% if desc_parts[1] != blank %}
+              <div class="text-sm text-black font-bricolage product-description md:pr-10">
+                {{ desc_parts[1] }}
+              </div>
+            {% endif %}
+
+            {%- for block in section.blocks -%}
+              {%- if block.type == '@app' -%}
+                {% render block %}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <div class="w-full">
+              <button
+                type="button"
+                id="addToCartKickstarter"
+                {% unless current_variant.available %}disabled{% endunless %}
+                class="flex items-center justify-center w-full rounded-3xl py-3
+                      hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
+                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
+              >
+                <span class="font-bricolage xl:text-xl text-sm text-center uppercase font-light px-10">
+                  {% if current_variant.available %}
+                    {{ section.settings.text_kickstarter_button }}
+                  {% else %}
+                    {{ section.settings.sold_out_text }}
+                  {% endif %}
+                </span>
+              </button>
             </div>
 
           {% else %}
-            {% if current_variant.compare_at_price > current_variant.price %}
-              <span class="text-2xl md:text-2xl text-gray-400 line-through">
-                {{ current_variant.compare_at_price | money }}
-              </span>
-              <span class="text-2xl md:text-3xl text-red-700 font-light">
-                {{ current_variant.price | money }}
-              </span>
-            {% else %}
-              <span class="text-2xl md:text-3xl text-gray-700">
-                {{ current_variant.price | money }}
-              </span>
-            {% endif %}
+            <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
+              {% if current_variant.compare_at_price > current_variant.price %}
+                <span class="text-2xl md:text-2xl text-gray-400 line-through">
+                  {{ current_variant.compare_at_price | money }}
+                </span>
+                <span class="text-2xl md:text-3xl text-red-700 font-light">
+                  {{ current_variant.price | money }}
+                </span>
+              {% else %}
+                <span class="text-2xl md:text-3xl text-gray-700">
+                  {{ current_variant.price | money }}
+                </span>
+              {% endif %}
+            </div>
           {% endif %}
         </div>
-
-        <!-- Descripción con widget embebido donde dice ProductDrop -->
-        {% assign desc_parts = product.description | split: 'ProductDrop' %}
-        <div class="text-sm text-black font-bricolage pt-4 product-description md:pr-10">
-          {{ desc_parts[0] }}
-        </div>
-
-        {% if desc_parts[1] and desc_parts[1] != blank %}
-          <div class="text-sm text-black font-bricolage product-description md:pr-10">
-            {{ desc_parts[1] }}
-          </div>
-        {% endif %}
-
-        <!-- Judge.me reviews -->
-        <div class="mt-10 mb-4 flex justify-center">
-          <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}'
-            style="font-size: 2rem;"> 
-            {{ product.metafields.judgeme.badge }} 
-          </div>
-        </div>
-
-        <!-- Suscripción -->
-        <div class='subscriptions_app_embed_block ' ></div>
 
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
@@ -197,9 +289,7 @@
         {% endunless %}
       </div>
 
-      {% if section.settings.kickstarter_price %}
-        {% comment %} El Add to Cart ya está dentro del bloque de precio kickstarter {% endcomment %}
-      {% else %}
+      {% unless section.settings.kickstarter_price %}
         <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
           <button
@@ -217,7 +307,7 @@
             </span>
           </button>
         </form>
-      {% endif %}
+      {% endunless %}
 
       <div>
         <p class="text-sm text-gray-500 font-bricolage italic pb-20">
@@ -249,20 +339,25 @@
       const ksBtn = document.getElementById('addToCartKickstarter');
       if (ksBtn) ksBtn.dataset.variantId = option.dataset.variantId;
 
-      priceWrapper.classList.add('opacity-0', 'translate-y-2');
-      setTimeout(() => {
-        const price = option.dataset.price;
-        const compare = option.dataset.compare;
-        if (compare && compare !== '') {
-          priceWrapper.innerHTML = `
-            <span class="text-3xl md:text-4xl text-gray-400 line-through">${compare}</span>
-            <span class="text-sm md:text-xl text-red-700 font-light">DISCOUNTED KICKSTARTER PRICE NOW LIVE!</span>
-          `;
-        } else {
-          priceWrapper.innerHTML = `<span class="text-5xl md:text-6xl text-gray-700">${price}</span>`;
-        }
-        priceWrapper.classList.remove('opacity-0', 'translate-y-2');
-      }, 200);
+      const priceDisplay = document.getElementById('priceDisplay');
+      if (priceDisplay) {
+        priceDisplay.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => {
+          const price = option.dataset.price;
+          const compare = option.dataset.compare;
+          if (compare && compare !== '') {
+            priceDisplay.innerHTML = `
+              <div>
+                <span class="text-3xl md:text-4xl text-black">${price}</span>
+                <span class="text-2xl md:text-3xl text-gray-400 line-through">${compare}</span>
+              </div>
+            `;
+          } else {
+            priceDisplay.innerHTML = `<span class="text-3xl md:text-4xl text-black">${price}</span>`;
+          }
+          priceDisplay.classList.remove('opacity-0', 'translate-y-2');
+        }, 200);
+      }
     });
   });
 
@@ -271,17 +366,17 @@
   if (ksBtn) {
     // Guardar variant id inicial
     ksBtn.dataset.variantId = '{{ current_variant.id }}';
+    const btnText = ksBtn.querySelector('span');
 
     // Re-habilitar si el navegador restaura la página desde caché
     window.addEventListener('pageshow', () => {
       ksBtn.disabled = false;
-      btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
+      if (btnText) btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
     });
 
     ksBtn.addEventListener('click', async () => {
       const variantId = ksBtn.dataset.variantId;
-      const btnText = ksBtn.querySelector('span');
-      const originalText = btnText.textContent.trim();
+      const originalText = btnText ? btnText.textContent.trim() : '';
 
       ksBtn.disabled = true;
 
@@ -315,12 +410,37 @@
 
 <script>
   let currentSlide = 0;
+  let autoplayInterval = null;
+
+  function updateThumbnails(scrollToThumb = false) {
+    const thumbs = document.querySelectorAll('.thumbnail-btn');
+    thumbs.forEach((thumb, i) => {
+      if (i === currentSlide) {
+        thumb.classList.add('border-black', 'opacity-100');
+        thumb.classList.remove('border-transparent', 'opacity-60');
+        if (scrollToThumb) {
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      } else {
+        thumb.classList.remove('border-black', 'opacity-100');
+        thumb.classList.add('border-transparent', 'opacity-60');
+      }
+    });
+  }
+
+  function goToSlide(index) {
+    const track = document.getElementById("sliderTrack");
+    currentSlide = index;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails(true);
+  }
 
   function slideNext() {
     const track = document.getElementById("sliderTrack");
     const slides = track.children.length;
     currentSlide = (currentSlide + 1) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails();
   }
 
   function slidePrev() {
@@ -328,7 +448,76 @@
     const slides = track.children.length;
     currentSlide = (currentSlide - 1 + slides) % slides;
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateThumbnails();
   }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(slideNext, 3500);
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  const slider = document.getElementById('productSlider');
+  if (slider) {
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slider.addEventListener('touchstart', stopAutoplay, { passive: true });
+    slider.addEventListener('touchend', startAutoplay, { passive: true });
+    startAutoplay();
+  }
+
+  // Desktop grid: navegación principal
+  const desktopThumbs = document.querySelectorAll('.desktop-thumb');
+  const mainWrapper = document.getElementById('mainImageDesktop');
+  let desktopIndex = 0;
+
+  function desktopGoTo(index) {
+    const thumbsArr = Array.from(desktopThumbs);
+    desktopIndex = (index + thumbsArr.length) % thumbsArr.length;
+    const btn = thumbsArr[desktopIndex];
+
+    thumbsArr.forEach(b => {
+      b.classList.remove('border-black', 'opacity-100');
+      b.classList.add('border-transparent', 'opacity-60');
+    });
+    btn.classList.remove('border-transparent', 'opacity-60');
+    btn.classList.add('border-black', 'opacity-100');
+
+    const type = btn.dataset.type;
+    if (type === 'video' || type === 'external_video') {
+      let img = mainWrapper.querySelector('img');
+      if (img) img.remove();
+      let vid = mainWrapper.querySelector('video');
+      if (!vid) {
+        vid = document.createElement('video');
+        vid.autoplay = true; vid.loop = true; vid.muted = true; vid.playsInline = true;
+        vid.className = 'w-full h-auto block';
+        mainWrapper.insertBefore(vid, mainWrapper.querySelector('button'));
+      }
+      vid.src = btn.dataset.video;
+      vid.load(); vid.play();
+    } else {
+      let vid = mainWrapper.querySelector('video');
+      if (vid) vid.remove();
+      let img = mainWrapper.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        img.className = 'w-full h-auto block';
+        mainWrapper.insertBefore(img, mainWrapper.querySelector('button'));
+      }
+      img.src = btn.dataset.src;
+      img.alt = btn.dataset.alt;
+    }
+  }
+
+  function desktopNext() { desktopGoTo(desktopIndex + 1); }
+  function desktopPrev() { desktopGoTo(desktopIndex - 1); }
+
+  desktopThumbs.forEach((btn, i) => {
+    btn.addEventListener('click', () => desktopGoTo(i));
+  });
 </script>
 
 <script>
@@ -442,8 +631,19 @@
       "type": "textarea",
       "id": "disclaimer_kickstarter",
       "label": "Disclaimer Kickstarter text"
+    },
+    {
+      "type": "textarea",
+      "id": "presentation_text",
+      "label": "Presentation text"
+    },
+    {
+      "type": "textarea",
+      "id": "steeping_instructions_text",
+      "label": "Steeping instructions text"
     }
   ],
+  "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "Description product" }]
 }
 {% endschema %}

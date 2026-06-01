@@ -97,6 +97,10 @@
   href="{{ canonical_url }}"
 >
 
+{%- if settings.favicon -%}
+  <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 64 }}" type="image/png">
+{%- endif -%}
+
 {% if page_description %}
   <meta
     name="description"

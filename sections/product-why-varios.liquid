@@ -161,7 +161,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateCarousel(0);
-    startAutoplay();
+
+    // Pause autoplay when section scrolls out of view, resume when back
+    if ('IntersectionObserver' in window && wrapper) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startAutoplay();
+          } else {
+            stopAutoplay();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(wrapper);
+    } else {
+      startAutoplay();
+    }
   }
 
   // MOBILE

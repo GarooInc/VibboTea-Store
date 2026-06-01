@@ -14,53 +14,48 @@
       "disabled": true,
       "settings": {}
     },
+    "1779085672e0a23237": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_preview_badge_RBgziM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_RBgziM"
+      ],
+      "settings": {}
+    },
     "product_page_rNtVMj": {
       "type": "product-page",
+      "blocks": {
+        "appstle_subscription_appstle_subscription_product_page_widget_EhbhKy": {
+          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "appstle_subscription_appstle_subscription_product_page_widget_EhbhKy"
+      ],
       "name": "Description product",
       "settings": {
         "text_button": "ADD TO CART",
         "sold_out_text": "SOLD OUT",
         "kickstarter_price": true,
-        "text_kickstarter": "<p>Secure yours now with 20% off, arriving in May</p>",
-        "text_kickstarter_button": "BUY NOW",
+        "text_kickstarter": "<p>Secure yours now with 20% off</p>",
+        "text_kickstarter_button": "ADD TO CART",
         "discount_text_kickstarter": "20% OFF",
-        "discount_per_serving_kickstarter": "$0.57 per serving",
+        "discount_per_serving_kickstarter": "$0.71 per serving",
         "per_serving_bg_color": "#dffa7d",
         "per_serving_text_color": "#000000",
         "timer_kickstarter": "SALES ENDS IN:",
         "time_discount_kickstarter": "2026-02-27 23:59:59",
         "kickstarter_link": "",
-        "disclaimer_kickstarter": ""
+        "disclaimer_kickstarter": "",
+        "presentation_text": "70gr. of loose leaf tea with 25 biodegradable woodpulp tea bags inside.",
+        "steeping_instructions_text": "- Serving Size: 2-3 gr. (1 tsp. - 1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes"
       }
-    },
-    "1766421284c922609f": {
-      "type": "apps",
-      "blocks": {
-        "appstle_subscription_appstle_subscription_product_page_widget_EhbhKy": {
-          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
-          "settings": {}
-        },
-        "subscriptions_app_block_tWeTdA": {
-          "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
-          "disabled": true,
-          "settings": {
-            "widget_style": "card",
-            "widget_style_card_selector": "radio_button",
-            "subscription_policy_url": "",
-            "color_text_body": "#6d7175",
-            "dividers_color": "#8f8d8d",
-            "background_color": "#ffffff",
-            "border_thickness": 1,
-            "border_radius": 0,
-            "product": "{{product}}"
-          }
-        }
-      },
-      "block_order": [
-        "appstle_subscription_appstle_subscription_product_page_widget_EhbhKy",
-        "subscriptions_app_block_tWeTdA"
-      ],
-      "settings": {}
     },
     "product_instructions_color_arUrcX": {
       "type": "product-instructions-color",
@@ -194,10 +189,28 @@
       "type": "product-why-image",
       "name": "Product Why Vibbo Image",
       "settings": {
-        "title": "Why Choose Vibbo?",
+        "title": "Why choose Vibbo?",
         "image": "shopify://shop_images/Group_57.png",
         "image_mobile": "shopify://shop_images/Group_55_1.png"
       }
+    },
+    "1779810658d9f36feb": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_j9HqjH": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_j9HqjH"
+      ],
+      "settings": {}
     },
     "faq_7VfkjP": {
       "type": "faq",
@@ -314,11 +327,12 @@
   },
   "order": [
     "main",
+    "1779085672e0a23237",
     "product_page_rNtVMj",
-    "1766421284c922609f",
     "product_instructions_color_arUrcX",
     "prodcut_ingredients_FXkDBr",
     "product_why_image_bRJRVp",
+    "1779810658d9f36feb",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
