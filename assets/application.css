@@ -4086,3 +4086,22 @@
     }
   }
 }
+
+/* Force Judge.me review stars to yellow when the app injects its own SVGs */
+.jdgm-widget .jdgm-star,
+.jdgm-widget .jdgm-star svg path,
+.jdgm-widget .jdgm-prev-badge__stars svg path,
+.jdgm-preview-badge .jdgm-star,
+.jdgm-preview-badge .jdgm-star svg path,
+.jdgm-preview-badge__stars svg path {
+  color: #FFD700 !important;
+  fill: #FFD700 !important;
+  stroke: #FFD700 !important;
+}
+
+/* Also target common preview badge classes */
+.jdgm--preview-badge .jdgm-star svg path,
+.jdgm--done .jdgm-star svg path {
+  color: #FFD700 !important;
+  fill: #FFD700 !important;
+}
