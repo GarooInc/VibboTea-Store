@@ -102,7 +102,7 @@
           class="relative {{ text_color | strip_newlines }} flex items-center justify-center hover:opacity-70 transition-opacity"
           style="width: {{ section.settings.cart_icon_size_mobile }}px; height: {{ section.settings.cart_icon_size_mobile }}px; margin-top: -10px;"
           aria-label="Cart"
-          onclick="event.preventDefault(); openCartDrawer();">
+          aria-label="Cart">
           {%- render 'iconCart' -%}
           {%- if cart.item_count > 0 -%}
             <span class="absolute -top-0.5 -right-0.5 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
@@ -164,8 +164,7 @@
     <a href="{{ routes.cart_url }}"
       class="relative hover:opacity-70 transition-opacity {{ text_color | strip_newlines }}"
       style="width: {{ section.settings.cart_icon_size_desktop }}px; height: {{ section.settings.cart_icon_size_desktop }}px;"
-      aria-label="Cart"
-      onclick="event.preventDefault(); openCartDrawer();">
+      aria-label="Cart">
       {%- render 'iconCart' -%}
       {%- if cart.item_count > 0 -%}
         <span class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center leading-none">
@@ -378,118 +377,6 @@
       topbarContent.style.animationDuration = duration + 's';
     }
   });
-</script>
-
-<!-- CART DRAWER -->
-<div id="cart-overlay" onclick="closeCartDrawer()"
-  class="fixed inset-0 bg-black/40 z-[9997] hidden transition-opacity duration-300"></div>
-
-<div id="cart-drawer"
-  class="fixed top-0 right-0 h-full w-full md:w-1/2 bg-white z-[9998] translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
-
-  <div class="flex items-center justify-between px-6 py-5 border-b">
-    <h2 class="text-xl font-bricolage font-semibold uppercase tracking-wide">Your Cart</h2>
-    <button onclick="closeCartDrawer()" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-black text-2xl leading-none">✕</button>
-  </div>
-
-  <div id="cart-drawer-items" class="flex-1 overflow-y-auto px-6 py-4"></div>
-
-  <div class="px-6 py-5 border-t bg-white">
-    <div class="flex justify-between items-center mb-4">
-      <span class="font-bricolage font-semibold text-base uppercase tracking-wide">Subtotal</span>
-      <span id="cart-drawer-subtotal" class="font-bricolage text-base"></span>
-    </div>
-    <a href="/checkout" class="block w-full bg-gray-800 text-white text-center py-3 rounded-3xl font-bricolage uppercase font-light text-sm hover:opacity-70 transition-opacity mb-2">
-      Checkout
-    </a>
-    <a href="{{ routes.cart_url }}" class="block w-full text-center py-2 text-sm text-gray-400 font-bricolage hover:underline">
-      View full cart
-    </a>
-  </div>
-</div>
-
-<script>
-  window.shopMoneyFormat = {{ shop.money_format | json }};
-
-  function formatMoney(cents) {
-    const amount = (cents / 100).toFixed(2);
-    return window.shopMoneyFormat
-      .replace('{{amount}}', amount)
-      .replace('{{amount_no_decimals}}', Math.floor(cents / 100))
-      .replace('{{amount_with_comma_separator}}', amount.replace('.', ','))
-      .replace('{{amount_no_decimals_with_comma_separator}}', Math.floor(cents / 100));
-  }
-
-  async function openCartDrawer() {
-    await refreshCartDrawer();
-    document.getElementById('cart-overlay').classList.remove('hidden');
-    requestAnimationFrame(() => {
-      document.getElementById('cart-drawer').classList.remove('translate-x-full');
-    });
-    document.body.classList.add('overflow-hidden');
-  }
-
-  function closeCartDrawer() {
-    document.getElementById('cart-drawer').classList.add('translate-x-full');
-    document.getElementById('cart-overlay').classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
-  }
-
-  async function refreshCartDrawer() {
-    const res = await fetch('/cart.js');
-    const cart = await res.json();
-    renderCartDrawer(cart);
-  }
-
-  function renderCartDrawer(cart) {
-    const subtotalEl = document.getElementById('cart-drawer-subtotal');
-    const itemsEl = document.getElementById('cart-drawer-items');
-
-    subtotalEl.textContent = formatMoney(cart.total_price);
-
-    if (cart.item_count === 0) {
-      itemsEl.innerHTML = '<p class="text-gray-400 text-center py-16 font-bricolage">Your cart is empty.</p>';
-      return;
-    }
-
-    itemsEl.innerHTML = cart.items.map(item => `
-      <div class="flex gap-4 py-4 border-b last:border-0">
-        <img src="${item.image}" alt="${item.title}" class="w-20 h-20 object-cover rounded-lg flex-shrink-0 bg-gray-100">
-        <div class="flex-1 min-w-0">
-          <p class="font-bricolage font-medium text-sm truncate">${item.product_title}</p>
-          ${item.variant_title && item.variant_title !== 'Default Title' ? `<p class="text-xs text-gray-400 mt-0.5">${item.variant_title}</p>` : ''}
-          <p class="text-sm text-gray-700 mt-1">${formatMoney(item.price)}</p>
-          <div class="flex items-center gap-3 mt-2">
-            <button onclick="updateCartItem('${item.key}', ${item.quantity - 1})"
-              class="w-6 h-6 border border-gray-300 rounded flex items-center justify-center text-sm hover:bg-gray-100">−</button>
-            <span class="text-sm font-bricolage">${item.quantity}</span>
-            <button onclick="updateCartItem('${item.key}', ${item.quantity + 1})"
-              class="w-6 h-6 border border-gray-300 rounded flex items-center justify-center text-sm hover:bg-gray-100">+</button>
-            <button onclick="updateCartItem('${item.key}', 0)"
-              class="ml-auto text-xs text-gray-400 hover:text-red-500 font-bricolage">Remove</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    updateAllCartBadges(cart.item_count);
-  }
-
-  async function updateCartItem(key, quantity) {
-    await fetch('/cart/change.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: key, quantity })
-    });
-    await refreshCartDrawer();
-  }
-
-  function updateAllCartBadges(count) {
-    document.querySelectorAll('[data-cart-badge]').forEach(el => {
-      el.textContent = count;
-      el.classList.toggle('hidden', count === 0);
-    });
-  }
 </script>
 
 {% stylesheet %}
