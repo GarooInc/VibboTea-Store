@@ -13,7 +13,6 @@
       "type": "newsletter-page",
       "name": "Newsletter Page",
       "settings": {
-        "latas_image": "shopify://shop_images/Group_35.png",
         "primary_video_url": "https://cdn.shopify.com/videos/c/o/v/41d0ad5a89a840a4b6b374fa52debdc9.mp4",
         "logo": "shopify://shop_images/image_33.png",
         "page_descripction": "<p>Stop settling for fake wellness. Real tea. Real people. Real purpose.</p>",
