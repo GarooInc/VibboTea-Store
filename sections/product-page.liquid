@@ -235,9 +235,11 @@
               {%- endif -%}
             {%- endfor -%}
 
-            <div class="w-full">
+            <form method="post" action="{{ routes.cart_add_url }}" id="kickstarterForm" class="w-full">
+              <input type="hidden" name="id" id="kickstarterVariantId" value="{{ current_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
               <button
-                type="button"
+                type="submit"
                 id="addToCartKickstarter"
                 {% unless current_variant.available %}disabled{% endunless %}
                 class="flex items-center justify-center w-full rounded-3xl py-3
@@ -252,7 +254,7 @@
                   {% endif %}
                 </span>
               </button>
-            </div>
+            </form>
 
           {% else %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
@@ -353,9 +355,9 @@
       // Actualizar form normal (modo no-kickstarter)
       if (variantInput) variantInput.value = option.dataset.variantId;
 
-      // Actualizar botón kickstarter
-      const ksBtn = document.getElementById('addToCartKickstarter');
-      if (ksBtn) ksBtn.dataset.variantId = option.dataset.variantId;
+      // Actualizar form kickstarter
+      const ksVariantInput = document.getElementById('kickstarterVariantId');
+      if (ksVariantInput) ksVariantInput.value = option.dataset.variantId;
 
       const priceDisplay = document.getElementById('priceDisplay');
       if (priceDisplay) {
@@ -379,51 +381,11 @@
     });
   });
 
-  // Add to Cart via Cart API para el botón kickstarter
-  const ksBtn = document.getElementById('addToCartKickstarter');
-  if (ksBtn) {
-    // Guardar variant id inicial
-    ksBtn.dataset.variantId = '{{ current_variant.id }}';
-    const btnText = ksBtn.querySelector('span');
-
-    // Re-habilitar si el navegador restaura la página desde caché
-    window.addEventListener('pageshow', () => {
-      ksBtn.disabled = false;
-      if (btnText) btnText.textContent = ksBtn.dataset.originalText || '{{ section.settings.text_button }}';
-    });
-
-    ksBtn.addEventListener('click', async () => {
-      const variantId = ksBtn.dataset.variantId;
-      const originalText = btnText ? btnText.textContent.trim() : '';
-
-      ksBtn.disabled = true;
-
-      try {
-        const res = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: parseInt(variantId), quantity: 1 })
-        });
-
-        if (res.ok) {
-          window.location.href = '/cart';
-        } else {
-          const err = await res.json();
-          btnText.textContent = err.description || 'Error';
-          setTimeout(() => {
-            btnText.textContent = originalText;
-            ksBtn.disabled = false;
-          }, 2000);
-        }
-      } catch (e) {
-        btnText.textContent = 'Error';
-        setTimeout(() => {
-          btnText.textContent = originalText;
-          ksBtn.disabled = false;
-        }, 2000);
-      }
-    });
-  }
+  // Re-habilitar botón kickstarter si el navegador restaura desde caché
+  window.addEventListener('pageshow', () => {
+    const ksBtn = document.getElementById('addToCartKickstarter');
+    if (ksBtn) ksBtn.disabled = false;
+  });
 </script>
 
 <script>
