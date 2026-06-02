@@ -176,16 +176,6 @@
 
     </div>
 
-<div class="absolute bottom-0 left-0 z-1 pointer-events-none">
-  <img
-    src="{{ section.settings.latas_image | image_url: width: 1200 }}"
-    alt="Latas"
-    width="{{ section.settings.latas_image.width }}"
-    height="{{ section.settings.latas_image.height }}"
-    class="w-60 md:w-95 lg:w-140 h-auto"
-  >
-</div>
-
 <div
   id="subscribeModal"
   class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70"
@@ -313,11 +303,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "type": "image_picker",
       "id": "background_image",
       "label": "Imagen de fondo"
-    },
-    {
-      "type": "image_picker",
-      "id": "latas_image",
-      "label": "Imagen izquierda latas"
     },
     {
       "type": "url",
