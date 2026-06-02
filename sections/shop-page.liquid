@@ -78,24 +78,9 @@
           </p>
         </a>
 
-        {% if product.metafields.reviews.rating %}
-          <div class="flex items-center gap-2 pt-2">
-            <div class="flex items-center gap-1">
-              {% for i in (1..5) %}
-                {% if i <= product.metafields.reviews.rating.value %}
-                  <svg class="w-4 h-4" viewBox="0 0 20 20" aria-hidden="true" style="color: #FFD700; fill: currentColor;">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                  </svg>
-                {% else %}
-                  <svg class="w-4 h-4" viewBox="0 0 20 20" aria-hidden="true" style="color: #D1D5DB; fill: currentColor;">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                  </svg>
-                {% endif %}
-              {% endfor %}
-            </div>
-            <span class="text-xs text-gray-500">({{ product.metafields.reviews.rating.value }})</span>
-          </div>
-        {% endif %}
+        <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'>
+          {{ product.metafields.judgeme.badge }}
+        </div>
 
         <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
           {{ product.price | money }}
