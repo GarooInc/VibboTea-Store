@@ -175,9 +175,10 @@
         const nombre = form.querySelector('[name="contact[first_name]"]')?.value?.trim() || '';
         const apellido = form.querySelector('[name="contact[last_name]"]')?.value?.trim() || '';
         const email = form.querySelector('[name="contact[email]"]')?.value?.trim() || '';
+        const reason = form.querySelector('[name="contact[reason]"]')?.value?.trim() || '';
         const comments = form.querySelector('[name="contact[body]"]')?.value?.trim() || '';
 
-        if (!nombre || !apellido || !email || !comments){
+        if (!nombre || !apellido || !email || !reason || !comments){
             showMessage('err', 'Please fill in all fields.');
             return;
         }
@@ -192,6 +193,7 @@
             nombre,
             apellido,
             email,
+            reason,
             comments,
             submittedAt: new Date().toISOString()
         };
