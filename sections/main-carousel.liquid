@@ -54,7 +54,26 @@
               {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
                 
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                <div class="relative w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                  {%- assign has_sold_out_tag = false -%}
+                  {%- if product.tags contains 'Sold Out' -%}
+                    {%- assign has_sold_out_tag = true -%}
+                  {%- endif -%}
+                  {%- assign negative_stock = true -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.inventory_management == blank -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- elsif variant.inventory_quantity > 0 -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if has_sold_out_tag or negative_stock -%}
+                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                      Sold Out
+                    </div>
+                  {%- endif -%}
                   <img
                     src="{{ second_image | image_url: width: 800 }}"
                     alt="{{ second_image.alt | escape }}"
@@ -67,7 +86,26 @@
 
               {% elsif product.featured_media %}
                 <!-- fallback -->
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                <div class="relative w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                  {%- assign has_sold_out_tag = false -%}
+                  {%- if product.tags contains 'Sold Out' -%}
+                    {%- assign has_sold_out_tag = true -%}
+                  {%- endif -%}
+                  {%- assign negative_stock = true -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.inventory_management == blank -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- elsif variant.inventory_quantity > 0 -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if has_sold_out_tag or negative_stock -%}
+                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                      Sold Out
+                    </div>
+                  {%- endif -%}
                   <img
                     src="{{ product.featured_media | image_url: width: 800 }}"
                     alt="{{ product.featured_media.alt | escape }}"
@@ -143,7 +181,26 @@
               {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
                 
-                <div class="w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                <div class="relative w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                  {%- assign has_sold_out_tag = false -%}
+                  {%- if product.tags contains 'Sold Out' -%}
+                    {%- assign has_sold_out_tag = true -%}
+                  {%- endif -%}
+                  {%- assign negative_stock = true -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.inventory_management == blank -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- elsif variant.inventory_quantity > 0 -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if has_sold_out_tag or negative_stock -%}
+                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                      Sold Out
+                    </div>
+                  {%- endif -%}
                   <img
                     src="{{ second_image | image_url: width: 800 }}"
                     alt="{{ second_image.alt | escape }}"
@@ -154,7 +211,26 @@
                   >
                 </div>
               {% elsif product.featured_media %}
-                <div class="w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                <div class="relative w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                  {%- assign has_sold_out_tag = false -%}
+                  {%- if product.tags contains 'Sold Out' -%}
+                    {%- assign has_sold_out_tag = true -%}
+                  {%- endif -%}
+                  {%- assign negative_stock = true -%}
+                  {%- for variant in product.variants -%}
+                    {%- if variant.inventory_management == blank -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- elsif variant.inventory_quantity > 0 -%}
+                      {%- assign negative_stock = false -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- if has_sold_out_tag or negative_stock -%}
+                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                      Sold Out
+                    </div>
+                  {%- endif -%}
                   <img
                     src="{{ product.featured_media | image_url: width: 800 }}"
                     alt="{{ product.featured_media.alt | escape }}"
