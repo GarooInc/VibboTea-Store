@@ -391,8 +391,7 @@
           ksBtn.disabled = false;
           document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
           document.dispatchEvent(new CustomEvent('cart:updated', { bubbles: true }));
-          const cartLink = document.querySelector('a[aria-label="Cart"]');
-          if (cartLink) cartLink.click();
+          document.dispatchEvent(new CustomEvent('theme:cart:open', { bubbles: true }));
         } else {
           const err = await res.json();
           btnText.textContent = err.description || 'Error';
