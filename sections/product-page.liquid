@@ -290,7 +290,7 @@
       </div>
 
       {% unless section.settings.kickstarter_price %}
-        <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
+        <form id="addToCartForm" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
           <button
             type="submit"
@@ -388,7 +388,8 @@
         });
 
         if (res.ok) {
-          window.location.href = '/cart';
+          ksBtn.disabled = false;
+          if (typeof openCartDrawer === 'function') openCartDrawer();
         } else {
           const err = await res.json();
           btnText.textContent = err.description || 'Error';
@@ -549,6 +550,38 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+  }
+</script>
+
+<script>
+  const addToCartForm = document.getElementById('addToCartForm');
+  if (addToCartForm) {
+    addToCartForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const variantId = document.getElementById('variantInput').value;
+      const btn = addToCartForm.querySelector('button[type="submit"]');
+      const btnText = btn ? btn.querySelector('span') : null;
+      const originalText = btnText ? btnText.textContent : '';
+
+      if (btn) btn.disabled = true;
+
+      const res = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: parseInt(variantId), quantity: 1 })
+      });
+
+      if (res.ok) {
+        if (btn) btn.disabled = false;
+        if (typeof openCartDrawer === 'function') openCartDrawer();
+      } else {
+        if (btnText) btnText.textContent = 'Error';
+        setTimeout(() => {
+          if (btnText) btnText.textContent = originalText;
+          if (btn) btn.disabled = false;
+        }, 2000);
+      }
+    });
   }
 </script>
 
