@@ -1,0 +1,115 @@
+{% doc %}
+  Renders a compact row of product features with icons.
+  
+  Displays 4 key product characteristics: 100% Natural, No Added Sugar,
+  No Microplastics, and 30-Day Guarantee. Layout is responsive with
+  2 columns on mobile and 4 columns on desktop.
+
+  @example
+  {% render 'product-features-row' %}
+{% enddoc %}
+
+<div class="product-features-row">
+  <div class="product-features-row__grid">
+    
+    <!-- 100% Natural -->
+    <div class="product-features-row__item">
+      <div class="product-features-row__icon">
+        {{ '100-natural.svg' | asset_url | inline_asset_content }}
+      </div>
+      <span class="product-features-row__text">{{ 'product_features.natural' | t }}</span>
+    </div>
+
+    <!-- No Added Sugar -->
+    <div class="product-features-row__item">
+      <div class="product-features-row__icon">
+        {{ 'no-added-sugar.svg' | asset_url | inline_asset_content }}
+      </div>
+      <span class="product-features-row__text">{{ 'product_features.no_sugar' | t }}</span>
+    </div>
+
+    <!-- No Microplastics -->
+    <div class="product-features-row__item">
+      <div class="product-features-row__icon">
+        {{ 'no-microplastics.svg' | asset_url | inline_asset_content }}
+      </div>
+      <span class="product-features-row__text">{{ 'product_features.no_microplastics' | t }}</span>
+    </div>
+
+    <!-- 30-Day Guarantee -->
+    <div class="product-features-row__item">
+      <div class="product-features-row__icon">
+        {{ '30-day-guarantee.svg' | asset_url | inline_asset_content }}
+      </div>
+      <span class="product-features-row__text">{{ 'product_features.guarantee' | t }}</span>
+    </div>
+
+  </div>
+</div>
+
+{% stylesheet %}
+  .product-features-row {
+    width: 100%;
+    padding: 1rem 0;
+    margin: 1rem 0;
+  }
+
+  .product-features-row__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .product-features-row__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  .product-features-row__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .product-features-row__icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .product-features-row__icon {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .product-features-row__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .product-features-row__text {
+    font-family: var(--font-bricolage, sans-serif);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .product-features-row__text {
+      font-size: 0.85rem;
+    }
+  }
+{% endstylesheet %}

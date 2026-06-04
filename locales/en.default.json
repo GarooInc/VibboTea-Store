@@ -51,6 +51,12 @@
     "password": "Password",
     "enter": "Enter"
   },
+  "product_features": {
+    "natural": "100% Natural",
+    "no_sugar": "No Added Sugar or Sweeteners",
+    "no_microplastics": "No Microplastics",
+    "guarantee": "30-Day Guarantee"
+  },
   "search": {
     "title": "Search",
     "placeholder": "Search articles, pages, or products",
