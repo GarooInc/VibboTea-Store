@@ -92,6 +92,7 @@
         },
         "how_block_XTMXa6": {
           "type": "how_block",
+          "disabled": true,
           "settings": {
             "gifs_count": 5,
             "text_1": "Add ice, 4 oz Chill Vibes blend, 1 oz lemon juice, and 1 oz sweetener to a mixing glass.",
@@ -108,7 +109,6 @@
         "how_block_jc9qbi",
         "how_block_XTMXa6"
       ],
-      "disabled": true,
       "name": "Product how color",
       "settings": {
         "title": "We won't show you how, but these are some of the many.",
