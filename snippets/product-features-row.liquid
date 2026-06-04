@@ -18,8 +18,8 @@
         src="{{ '100-natural.svg' | asset_url }}" 
         alt="100% Natural" 
         class="product-features-row__icon"
-        width="45"
-        height="45"
+        width="40"
+        height="40"
       >
       <span class="product-features-row__text">{{ 'product_features.natural' | t }}</span>
     </div>
@@ -30,8 +30,8 @@
         src="{{ 'no-added-sugar.svg' | asset_url }}" 
         alt="No Added Sugar" 
         class="product-features-row__icon"
-        width="45"
-        height="45"
+        width="40"
+        height="40"
       >
       <span class="product-features-row__text">{{ 'product_features.no_sugar' | t }}</span>
     </div>
@@ -42,8 +42,8 @@
         src="{{ 'no-microplastics.svg' | asset_url }}" 
         alt="No Microplastics" 
         class="product-features-row__icon"
-        width="45"
-        height="45"
+        width="40"
+        height="40"
       >
       <span class="product-features-row__text">{{ 'product_features.no_microplastics' | t }}</span>
     </div>
@@ -54,8 +54,8 @@
         src="{{ '30-day-guarantee.svg' | asset_url }}" 
         alt="30-Day Guarantee" 
         class="product-features-row__icon"
-        width="45"
-        height="45"
+        width="40"
+        height="40"
       >
       <span class="product-features-row__text">{{ 'product_features.guarantee' | t }}</span>
     </div>
@@ -66,24 +66,28 @@
 {% stylesheet %}
   .product-features-row {
     width: 100%;
-    padding: 1.25rem 1rem;
-    margin: 1.5rem 0;
-    background-color: #f9f7f3;
-    border: 2px solid #e8e6e0;
-    border-radius: 12px;
+    padding: 1.75rem 1rem;
+    margin: 2rem 0;
+    background-color: #ffffff;
+    border: 1px solid #e8e6e0;
+    border-radius: 8px;
   }
 
   .product-features-row__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.25rem 0.75rem;
     width: 100%;
   }
 
   @media (min-width: 768px) {
+    .product-features-row {
+      padding: 2rem 1.5rem;
+    }
+    
     .product-features-row__grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 2rem;
     }
   }
 
@@ -96,24 +100,24 @@
   }
 
   .product-features-row__icon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     flex-shrink: 0;
     display: block;
   }
 
   @media (min-width: 768px) {
     .product-features-row__icon {
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
     }
   }
 
   .product-features-row__text {
     font-family: var(--font-bricolage, sans-serif);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.2;
     color: #1a1a1a;
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -122,7 +126,7 @@
 
   @media (min-width: 768px) {
     .product-features-row__text {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
   }
 {% endstylesheet %}
