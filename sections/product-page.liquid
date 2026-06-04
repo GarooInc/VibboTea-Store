@@ -184,11 +184,13 @@
               {{ section.settings.timer_kickstarter }} <span id="timer"></span>
             </div>
 
-            <!-- Product Features Row -->
-            {% render 'product-features-row' %}
+            <!-- Product Features Row (exclude Filter Bags) -->
+            {% unless product.handle == 'filter-bags' %}
+              {% render 'product-features-row' %}
+            {% endunless %}
 
             <!-- Descripción con widget embebido donde dice ProductDrop -->
-            {% assign desc_parts = product.description | split: 'ProductDrop' %}
+            {% assign desc_parts = product.description | split: 'ProductDrop' %}}
             <div class="text-sm text-black font-bricolage product-description md:pr-10">
               {{ desc_parts[0] }}
             </div>
