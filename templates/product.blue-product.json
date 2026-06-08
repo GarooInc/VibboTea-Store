@@ -75,6 +75,18 @@
             "text_6": "Description 6"
           }
         },
+        "how_block_3pM6DF": {
+          "type": "how_block",
+          "settings": {
+            "gifs_count": 3,
+            "text_1": "Description 1",
+            "text_2": "Description 2",
+            "text_3": "Description 3",
+            "text_4": "Description 4",
+            "text_5": "Description 5",
+            "text_6": "Description 6"
+          }
+        },
         "how_block_jc9qbi": {
           "type": "how_block",
           "settings": {
@@ -92,9 +104,9 @@
         },
         "how_block_XTMXa6": {
           "type": "how_block",
-          "disabled": true,
           "settings": {
             "gifs_count": 5,
+            "gif_1": "shopify://shop_images/Adobe_Express_-_RELAX_DRINK_1.3.gif",
             "text_1": "Add ice, 4 oz Chill Vibes blend, 1 oz lemon juice, and 1 oz sweetener to a mixing glass.",
             "text_2": "Shake for 20 seconds and strain into glass.",
             "text_3": "Garnish with an orange wedge.",
@@ -106,6 +118,7 @@
       },
       "block_order": [
         "how_block_yQkjpg",
+        "how_block_3pM6DF",
         "how_block_jc9qbi",
         "how_block_XTMXa6"
       ],
