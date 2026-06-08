@@ -75,18 +75,6 @@
             "text_6": "Description 6"
           }
         },
-        "how_block_3pM6DF": {
-          "type": "how_block",
-          "settings": {
-            "gifs_count": 3,
-            "text_1": "Description 1",
-            "text_2": "Description 2",
-            "text_3": "Description 3",
-            "text_4": "Description 4",
-            "text_5": "Description 5",
-            "text_6": "Description 6"
-          }
-        },
         "how_block_jc9qbi": {
           "type": "how_block",
           "settings": {
@@ -118,7 +106,6 @@
       },
       "block_order": [
         "how_block_yQkjpg",
-        "how_block_3pM6DF",
         "how_block_jc9qbi",
         "how_block_XTMXa6"
       ],
