@@ -18,8 +18,8 @@
         src="{{ '100-natural.svg' | asset_url }}" 
         alt="100% Natural" 
         class="product-features-row__icon"
-        width="32"
-        height="32"
+        width="48"
+        height="48"
       >
       <span class="product-features-row__text">{{ 'product_features.natural' | t }}</span>
     </div>
@@ -30,8 +30,8 @@
         src="{{ 'no-added-sugar.svg' | asset_url }}" 
         alt="No Added Sugar" 
         class="product-features-row__icon"
-        width="32"
-        height="32"
+        width="48"
+        height="48"
       >
       <span class="product-features-row__text">{{ 'product_features.no_sugar' | t }}</span>
     </div>
@@ -42,8 +42,8 @@
         src="{{ 'no-microplastics.svg' | asset_url }}" 
         alt="No Microplastics" 
         class="product-features-row__icon"
-        width="32"
-        height="32"
+        width="48"
+        height="48"
       >
       <span class="product-features-row__text">{{ 'product_features.no_microplastics' | t }}</span>
     </div>
@@ -54,8 +54,8 @@
         src="{{ '30-day-guarantee.svg' | asset_url }}" 
         alt="30-Day Guarantee" 
         class="product-features-row__icon"
-        width="32"
-        height="32"
+        width="48"
+        height="48"
       >
       <span class="product-features-row__text">{{ 'product_features.guarantee' | t }}</span>
     </div>
@@ -74,7 +74,7 @@
   .product-features-row__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem 0.5rem;
+    gap: 0.5rem 0.25rem;
     width: 100%;
   }
 
@@ -85,8 +85,10 @@
     }
     
     .product-features-row__grid {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(4, auto);
+      gap: 0.5rem;
+      width: fit-content;
+      margin-right: auto;
     }
   }
 
@@ -95,21 +97,27 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.25rem;
+    gap: 0.4rem;
+    padding: 0.1rem;
+  }
+
+  @media (min-width: 768px) {
+    .product-features-row__item {
+      justify-content: flex-start;
+    }
   }
 
   .product-features-row__icon {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
     display: block;
   }
 
   @media (min-width: 768px) {
     .product-features-row__icon {
-      width: 40px;
-      height: 40px;
+      width: 72px;
+      height: 72px;
     }
   }
 
@@ -127,7 +135,7 @@
 
   @media (min-width: 768px) {
     .product-features-row__text {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       max-width: none;
     }
   }
