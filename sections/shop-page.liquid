@@ -53,7 +53,7 @@
                     width="{{ second_image.width }}"
                     height="{{ second_image.height }}"
                     loading="lazy"
-                    class="w-full h-auto object-cover scale-105 hover:scale-110 transition-transform duration-350"
+                    class="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-350"
                   >
                 </div>
 
@@ -65,7 +65,7 @@
                     alt="{{ product.featured_media.alt | escape }}"
                     width="{{ product.featured_media.width }}"
                     height="{{ product.featured_media.height }}"
-                    class="w-full h-auto object-cover"
+                    class="w-full h-full object-cover"
                   >
                 </div>
               {% else %}
