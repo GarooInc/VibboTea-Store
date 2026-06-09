@@ -18,58 +18,64 @@
         />
     </div>
 
-    <div class="md:hidden flex justify-center items-center px-5 md:px-20 relative">
-        <div class="relative inline-block cursor-zoom-in" id="why-vibbo-zoom-trigger">
+    <div class="md:hidden flex justify-center items-center px-5 md:px-20">
+        <div style="position: relative; display: inline-block; cursor: zoom-in;" id="why-vibbo-zoom-trigger">
             <img src="{{ section.settings.image_mobile | img_url: 'master' }}"
                 alt="Why Vibbo Image"
                 class="w-full h-auto max-w-lg md:max-w-none"
                 width="{{ section.settings.image_mobile.width }}"
                 height="{{ section.settings.image_mobile.height }}"
             />
-            <div class="absolute bottom-2 right-2 bg-black/50 rounded-full p-1.5 pointer-events-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0zm-3-1H9m4 0v4m0-4V7"/>
+            <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.5); border-radius: 9999px; padding: 6px; pointer-events: none; display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px; display: block;" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="16.5" y1="16.5" x2="21" y2="21"/>
                 </svg>
             </div>
         </div>
     </div>
 
-    <!-- Lightbox overlay -->
-    <div id="why-vibbo-lightbox" class="fixed inset-0 z-[9999] bg-black/90 hidden items-center justify-center">
-        <button id="why-vibbo-close" class="absolute top-4 right-4 text-white bg-black/50 rounded-full w-9 h-9 flex items-center justify-center text-xl leading-none z-10">&#x2715;</button>
-        <img src="{{ section.settings.image_mobile | img_url: 'master' }}"
-            alt="Why Vibbo Image"
-            class="max-w-full max-h-full object-contain"
-            style="touch-action: pinch-zoom;"
-        />
-    </div>
-
-    <script>
-        (function() {
-            var trigger = document.getElementById('why-vibbo-zoom-trigger');
-            var lightbox = document.getElementById('why-vibbo-lightbox');
-            var closeBtn = document.getElementById('why-vibbo-close');
-
-            trigger.addEventListener('click', function() {
-                lightbox.classList.remove('hidden');
-                lightbox.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-            });
-
-            function closeLightbox() {
-                lightbox.classList.add('hidden');
-                lightbox.classList.remove('flex');
-                document.body.style.overflow = '';
-            }
-
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
-            });
-        })();
-    </script>
-
 </div>
+
+<!-- Lightbox overlay (fuera del contenedor para evitar conflictos con overflow) -->
+<div id="why-vibbo-lightbox" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center;">
+    <button id="why-vibbo-close" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; border-radius: 9999px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px; display: block;" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+    </button>
+    <img src="{{ section.settings.image_mobile | img_url: 'master' }}"
+        alt="Why Vibbo Image"
+        style="max-width: 100%; max-height: 100%; object-fit: contain; touch-action: pinch-zoom;"
+    />
+</div>
+
+<script>
+    (function() {
+        var trigger = document.getElementById('why-vibbo-zoom-trigger');
+        var lightbox = document.getElementById('why-vibbo-lightbox');
+        var closeBtn = document.getElementById('why-vibbo-close');
+
+        trigger.addEventListener('click', function() {
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+    })();
+</script>
 
 
 
