@@ -408,21 +408,6 @@
         "placeholder": "email address",
         "title_mobile": "You know you want to"
       }
-    },
-    "17810236819f8082c7": {
-      "type": "apps",
-      "blocks": {
-        "klaviyo_email_marketing_sms_form_embed_block_3dEY4W": {
-          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
-          "settings": {
-            "formId": "UcYx3V"
-          }
-        }
-      },
-      "block_order": [
-        "klaviyo_email_marketing_sms_form_embed_block_3dEY4W"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -435,7 +420,6 @@
     "main_socials_section_7yLtAb",
     "1774481532f295fddf",
     "faq_UxEWVW",
-    "newsletter_ri4VmU",
-    "17810236819f8082c7"
+    "newsletter_ri4VmU"
   ]
 }
