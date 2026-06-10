@@ -1,6 +1,6 @@
 <section class="about-us-pledge-section full-width flex flex-col font-bricolage relative range-height-section">
   <div
-    class="pledge-hero relative w-full min-h-[420px] md:min-h-[520px] lg:min-h-[580px]
+    class="pledge-hero relative z-10 overflow-visible w-full min-h-[420px] md:min-h-[520px] lg:min-h-[580px]
            px-6 lg:px-28 md:py-20 py-10
            bg-[#FFF4DA] bg-cover bg-center bg-no-repeat"
     style="
@@ -24,9 +24,8 @@
       {% endif %}
     </div>
 
-    <div class="pledge-cards hidden sm:block absolute inset-x-0 bottom-0 translate-y-1/2 z-10 px-5 lg:px-20">
-      <div class="grid sm:grid-cols-3 w-full gap-5 lg:gap-6">
-        <div class="flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+    <div class="pledge-cards absolute inset-x-0 bottom-0 z-20 px-5 lg:px-20">
+      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
           <img
             src="{{ section.settings.image | image_url: width: 1200 }}"
             alt="Imagen 1"
@@ -37,7 +36,7 @@
           >
         </div>
 
-        <div class="flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+        <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
           <img
             src="{{ section.settings.image2 | image_url: width: 1200 }}"
             alt="Imagen 2"
@@ -48,7 +47,7 @@
           >
         </div>
 
-        <div class="flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+        <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
           <img
             src="{{ section.settings.image3 | image_url: width: 1200 }}"
             alt="Imagen 3"
@@ -58,7 +57,6 @@
             loading="lazy"
           >
         </div>
-      </div>
     </div>
 
     <div class="sm:hidden relative z-10 w-full px-4 pt-16 pb-4">
@@ -115,8 +113,7 @@
 
   {% if section.settings.text != blank %}
     <div
-      class="pledge-text bg-white relative z-0 w-full flex justify-center
-        pt-10 sm:pt-40 md:pt-52 lg:pt-56 pb-10 md:pb-16 px-4 text-center"
+      class="pledge-text bg-white relative z-0 w-full flex justify-center pb-10 md:pb-16 px-4 text-center"
     >
       <div class="max-w-2xl md:max-w-6xl text-xl sm:text-3xl md:text-4xl text-black">
         {{ section.settings.text }}
@@ -206,6 +203,45 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+.about-us-pledge-section .pledge-hero {
+  overflow: visible;
+}
+
+.about-us-pledge-section .pledge-cards {
+  display: none;
+  gap: calc(var(--spacing) * 5);
+  transform: translateY(50%);
+}
+
+@media (width >= 40rem) {
+  .about-us-pledge-section .pledge-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 64rem) {
+  .about-us-pledge-section .pledge-cards {
+    gap: calc(var(--spacing) * 6);
+  }
+}
+
+.about-us-pledge-section .pledge-text {
+  padding-top: calc(var(--spacing) * 10);
+}
+
+@media (width >= 40rem) {
+  .about-us-pledge-section .pledge-text {
+    padding-top: calc(var(--spacing) * 52);
+  }
+}
+
+@media (width >= 64rem) {
+  .about-us-pledge-section .pledge-text {
+    padding-top: calc(var(--spacing) * 56);
+  }
+}
+
 @media (min-width: 370px) and (max-width: 639px) {
   .range-height-section {
     height: auto;
