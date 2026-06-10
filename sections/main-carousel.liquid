@@ -49,12 +49,18 @@
       :style="`transform: translateX(-${index * 33.33}%)`">
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
+          {% assign product_image_class = 'absolute inset-0 w-full h-full object-cover object-center' %}
+          {% assign product_image_style = '' %}
+          {% if product.handle == 'assorted-reset-bundle-set' %}
+            {% assign product_image_style = 'object-position: center 38%;' %}
+          {% endif %}
+
           <div class="snap-start shrink-0 w-full md:w-[33%] px-4">
             <a href="{{ product.url }}" class="block w-full">
               {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
                 
-                <div class="relative w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                <div class="relative w-full aspect-square bg-white rounded-2xl overflow-hidden">
                   {%- assign has_sold_out_tag = false -%}
                   {%- if product.tags contains 'Sold Out' -%}
                     {%- assign has_sold_out_tag = true -%}
@@ -80,13 +86,14 @@
                     width="{{ second_image.width }}"
                     height="{{ second_image.height }}"
                     loading="lazy"
-                    class="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-350"
+                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                    {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
                 </div>
 
               {% elsif product.featured_media %}
                 <!-- fallback -->
-                <div class="relative w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
+                <div class="relative w-full aspect-square bg-white rounded-2xl overflow-hidden">
                   {%- assign has_sold_out_tag = false -%}
                   {%- if product.tags contains 'Sold Out' -%}
                     {%- assign has_sold_out_tag = true -%}
@@ -111,11 +118,12 @@
                     alt="{{ product.featured_media.alt | escape }}"
                     width="{{ product.featured_media.width }}"
                     height="{{ product.featured_media.height }}"
-                    class="w-full h-full object-cover"
+                    class="{{ product_image_class }}"
+                    {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
                 </div>
               {% else %}
-                <div class="w-full md:h-[30vw]  rounded-2xl overflow-hidden bg-gray-200" ></div>
+                <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200"></div>
               {% endif %}
 
               
@@ -176,12 +184,18 @@
        :style="`transform: translateX(-${index * 100}%)`" >
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
+          {% assign product_image_class = 'absolute inset-0 w-full h-full object-cover object-center' %}
+          {% assign product_image_style = '' %}
+          {% if product.handle == 'assorted-reset-bundle-set' %}
+            {% assign product_image_style = 'object-position: center 38%;' %}
+          {% endif %}
+
           <div class="snap-start shrink-0 w-full">
             <a href="{{ product.url }}" class="block px-4 w-full">
               {% if product.media.size > 1 %}
                 {% assign second_image = product.media[0] %}
                 
-                <div class="relative w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
                   {%- assign has_sold_out_tag = false -%}
                   {%- if product.tags contains 'Sold Out' -%}
                     {%- assign has_sold_out_tag = true -%}
@@ -207,11 +221,12 @@
                     width="{{ second_image.width }}"
                     height="{{ second_image.height }}"
                     loading="lazy"
-                    class="w-full h-auto object-cover scale-105 hover:scale-115 transition-transform duration-350"
+                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                    {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
                 </div>
               {% elsif product.featured_media %}
-                <div class="relative w-full h-[100vw] rounded-2xl overflow-hidden flex items-center justify-center bg-white">
+                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
                   {%- assign has_sold_out_tag = false -%}
                   {%- if product.tags contains 'Sold Out' -%}
                     {%- assign has_sold_out_tag = true -%}
@@ -237,11 +252,12 @@
                     width="{{ product.featured_media.width }}"
                     height="{{ product.featured_media.height }}"
                     loading="lazy"
-                    class="w-full h-auto object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
+                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-300"
+                    {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
                 </div>
               {% else %}
-                <div class="w-full rounded-2xl overflow-hidden h-[100vw] bg-gray-200" ></div>
+                <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200"></div>
               {% endif %}
 
               <div class="mt-4">
