@@ -381,13 +381,21 @@
             "question": "Do you offer international shipping?",
             "answer": "Nope, we are not globe-trotting just yet, we're keeping it cozy in the US and Guatemala for now. But stock up on our blends, and we'll hustle to ship your way very soon!"
           }
+        },
+        "faq_cWFPkH": {
+          "type": "faq",
+          "settings": {
+            "question": "What's our return policy?",
+            "answer": "We stand behind every blend we make, period.\n\nIf VIBBO isn't for you, we get it. No hard feelings, no drama. You have 30 days from the date of delivery to request a return. If something isn't right, reach out to us and we'll make it right.\n\nHere's how it works:\n\nWe'll refund the full product price, no questions, no hoops.\n\nReturn shipping costs are on you. Since we ship from our end, getting it back is yours to handle.\n\nTo qualify, returned items must contain at least 70% of the original product — meaning no more than 30% used.\n\nOnce we receive your return and confirm its condition, your refund will be processed within 5–7 business days.\n\nWhy do we do this? Because we're not here to hide behind fine print. We're confident in what we've built — straight from Guatemala, clean ingredients, real results. \n\nIf it doesn't work for you, that's honest, and honesty goes both ways."
+          }
         }
       },
       "block_order": [
         "faq_tHqFtF",
         "faq_GefwmB",
         "faq_r8XVV9",
-        "faq_iAy7pW"
+        "faq_iAy7pW",
+        "faq_cWFPkH"
       ],
       "name": "FAQ",
       "settings": {
