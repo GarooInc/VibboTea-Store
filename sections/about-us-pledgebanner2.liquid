@@ -29,33 +29,36 @@
         <div class="hidden sm:grid sm:grid-cols-3 w-full gap-6 sm:gap-5
           p-10 sm:pt-10 lg:pt-20 sm:px-5 lg:px-20 pt-42 ">
 
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
+            <div class="relative w-full aspect-square md:aspect-auto md:h-[420px] overflow-hidden rounded-xl bg-white">
               <img 
-                src="{{ section.settings.image | img_url: '2000x2000' }}" 
+                src="{{ section.settings.image | image_url: width: 1200 }}" 
                 alt="Imagen 1"
                 class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image.width }}"
                 height="{{ section.settings.image.height }}"
+                loading="lazy"
               >
             </div>
 
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
+            <div class="relative w-full aspect-square md:aspect-auto md:h-[420px] overflow-hidden rounded-xl bg-white">
               <img 
-                src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
+                src="{{ section.settings.image2 | image_url: width: 1200 }}" 
                 alt="Imagen 2"
                 class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image2.width }}"
                 height="{{ section.settings.image2.height }}"
+                loading="lazy"
               >
             </div>
 
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
+            <div class="relative w-full aspect-square md:aspect-auto md:h-[420px] overflow-hidden rounded-xl bg-white">
               <img 
-                src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
+                src="{{ section.settings.image3 | image_url: width: 1200 }}" 
                 alt="Imagen 3"
                 class="w-full h-full object-contain object-center"
                 width="{{ section.settings.image3.width }}"
                 height="{{ section.settings.image3.height }}"
+                loading="lazy"
               >
             </div>
         </div>
@@ -64,37 +67,40 @@
           <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
             <div class="carousel-track flex transition-transform duration-300 ease-in-out">
               {% if section.settings.image %}
-                <div class="carousel-slide min-w-full">
+                <div class="carousel-slide min-w-full bg-white rounded-xl overflow-hidden">
                   <img 
-                    src="{{ section.settings.image | img_url: '2000x2000' }}" 
+                    src="{{ section.settings.image | image_url: width: 1200 }}" 
                     alt="Imagen 1"
-                    class="w-full h-[300px] object-cover object-center"
+                    class="w-full h-[300px] object-contain object-center"
                     width="{{ section.settings.image.width }}"
                     height="{{ section.settings.image.height }}"
+                    loading="lazy"
                   >
                 </div>
               {% endif %}
 
               {% if section.settings.image2 %}
-                <div class="carousel-slide min-w-full">
+                <div class="carousel-slide min-w-full bg-white rounded-xl overflow-hidden">
                   <img 
-                    src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
+                    src="{{ section.settings.image2 | image_url: width: 1200 }}" 
                     alt="Imagen 2"
-                    class="w-full h-[300px] object-cover object-center"
+                    class="w-full h-[300px] object-contain object-center"
                     width="{{ section.settings.image2.width }}"
                     height="{{ section.settings.image2.height }}"
+                    loading="lazy"
                   >
                 </div>
               {% endif %}
 
               {% if section.settings.image3 %}
-                <div class="carousel-slide min-w-full">
+                <div class="carousel-slide min-w-full bg-white rounded-xl overflow-hidden">
                   <img 
-                    src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
+                    src="{{ section.settings.image3 | image_url: width: 1200 }}" 
                     alt="Imagen 3"
-                    class="w-full h-[300px] object-cover object-center"
+                    class="w-full h-[300px] object-contain object-center"
                     width="{{ section.settings.image3.width }}"
                     height="{{ section.settings.image3.height }}"
+                    loading="lazy"
                   >
                 </div>
               {% endif %}
