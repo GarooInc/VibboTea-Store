@@ -20,10 +20,16 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10
     px-4 md:px-10 py-10 md:py-16">
     {% for product in coll.products %}
+      {% assign product_image_class = 'absolute inset-0 w-full h-full object-cover object-center' %}
+      {% assign product_image_style = '' %}
+      {% if product.handle == 'assorted-reset-bundle-set' %}
+        {% assign product_image_style = 'object-position: center 38%;' %}
+      {% endif %}
+
       <div class="flex flex-col">
 
         <a href="{{ product.url }}" class="block">
-          <div class="relative w-full aspect-5/5 rounded-2xl overflow-hidden bg-white">
+          <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
             {%- assign has_sold_out_tag = false -%}
             {%- if product.tags contains 'Sold Out' -%}
               {%- assign has_sold_out_tag = true -%}
@@ -44,33 +50,28 @@
               </div>
             {%- endif -%}
             {% if product.media.size > 1 %}
-                {% assign second_image = product.media[0] %}
-
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
-                  <img
-                    src="{{ second_image | image_url: width: 800 }}"
-                    alt="{{ second_image.alt | escape }}"
-                    width="{{ second_image.width }}"
-                    height="{{ second_image.height }}"
-                    loading="lazy"
-                    class="w-full h-auto object-cover scale-105 hover:scale-110 transition-transform duration-350"
-                  >
-                </div>
-
-              {% elsif product.featured_media %}
-                <!-- fallback -->
-                <div class="w-full md:h-[30vw] bg-white rounded-2xl overflow-hidden flex items-center justify-center">
-                  <img
-                    src="{{ product.featured_media | image_url: width: 800 }}"
-                    alt="{{ product.featured_media.alt | escape }}"
-                    width="{{ product.featured_media.width }}"
-                    height="{{ product.featured_media.height }}"
-                    class="w-full h-auto object-cover"
-                  >
-                </div>
-              {% else %}
-                <div class="w-full md:h-[30vw]  rounded-2xl overflow-hidden bg-gray-200" ></div>
-              {% endif %}
+              {% assign second_image = product.media[0] %}
+              <img
+                src="{{ second_image | image_url: width: 800 }}"
+                alt="{{ second_image.alt | escape }}"
+                width="{{ second_image.width }}"
+                height="{{ second_image.height }}"
+                loading="lazy"
+                class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
+              >
+            {% elsif product.featured_media %}
+              <img
+                src="{{ product.featured_media | image_url: width: 800 }}"
+                alt="{{ product.featured_media.alt | escape }}"
+                width="{{ product.featured_media.width }}"
+                height="{{ product.featured_media.height }}"
+                class="{{ product_image_class }}"
+                {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
+              >
+            {% else %}
+              <div class="w-full h-full bg-gray-200"></div>
+            {% endif %}
           </div>
 
           <p class="font-bricolage text-lg md:text-xl text-[#575757] pt-3">

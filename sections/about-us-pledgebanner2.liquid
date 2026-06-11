@@ -1,135 +1,125 @@
-<section class="full-width flex flex-col font-bricolage min-h-screen relative range-height-section">
+<section class="about-us-pledge-section full-width flex flex-col font-bricolage relative range-height-section">
   <div
-  class="w-full px-6 lg:px-28 md:py-20 py-10
-         bg-[#FFF4DA] bg-cover bg-center bg-no-repeat h-1/2 sm:h-2/3 relative"
-  style="
-    {% if section.settings.bg_image %}
-      background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
-    {% endif %}">
-    <div class="absolute inset-0 bg-black opacity-30">
+    class="pledge-hero relative z-10 overflow-visible w-full min-h-[420px] md:min-h-[520px] lg:min-h-[580px]
+           px-6 lg:px-28 md:py-20 py-10
+           bg-[#FFF4DA] bg-cover bg-center bg-no-repeat"
+    style="
+      {% if section.settings.bg_image %}
+        background-image: url('{{ section.settings.bg_image | image_url: width: 2000 }}');
+      {% endif %}">
+    <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    </div>
-
-      {% if section.settings.eyebrow != blank %}
-        <p class="text-5xl md:text-7xl sm:text-5xl mx-auto font-bold text-white z-10 relative">
-          {{ section.settings.eyebrow }}</p>
-      {% endif %}
-
-      <div class="w-full flex justify-end">
-        {% if section.settings.title != blank %}
-          <h2 class="text-2xl md:text-3xl sm:text-3xl font-bold w-full
-            text-right tracking-tight text-white max-w-2xl sm:max-w-md md:max-w-2xl pt-10 relative z-10">
-            {{ section.settings.title }}</h2>
-        {% endif %}
-      </div>
-    </div>
-
-
-      <div class="w-full absolute justify-center items-center pt-50">
-        <div class="hidden sm:grid sm:grid-cols-3 w-full gap-6 sm:gap-5
-          p-10 sm:pt-10 lg:pt-20 sm:px-5 lg:px-20 pt-42 ">
-
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
-              <img 
-                src="{{ section.settings.image | img_url: '2000x2000' }}" 
-                alt="Imagen 1"
-                class="w-full h-full object-contain object-center"
-                width="{{ section.settings.image.width }}"
-                height="{{ section.settings.image.height }}"
-              >
-            </div>
-
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
-              <img 
-                src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
-                alt="Imagen 2"
-                class="w-full h-full object-contain object-center"
-                width="{{ section.settings.image2.width }}"
-                height="{{ section.settings.image2.height }}"
-              >
-            </div>
-
-            <div class="relative w-full md:h-[420px] overflow-hidden rounded-xl">
-              <img 
-                src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
-                alt="Imagen 3"
-                class="w-full h-full object-contain object-center"
-                width="{{ section.settings.image3.width }}"
-                height="{{ section.settings.image3.height }}"
-              >
-            </div>
-        </div>
-
-        <div class="sm:hidden relative w-full px-4 pt-20">
-          <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
-            <div class="carousel-track flex transition-transform duration-300 ease-in-out">
-              {% if section.settings.image %}
-                <div class="carousel-slide min-w-full">
-                  <img 
-                    src="{{ section.settings.image | img_url: '2000x2000' }}" 
-                    alt="Imagen 1"
-                    class="w-full h-[300px] object-cover object-center"
-                    width="{{ section.settings.image.width }}"
-                    height="{{ section.settings.image.height }}"
-                  >
-                </div>
-              {% endif %}
-
-              {% if section.settings.image2 %}
-                <div class="carousel-slide min-w-full">
-                  <img 
-                    src="{{ section.settings.image2 | img_url: '2000x2000' }}" 
-                    alt="Imagen 2"
-                    class="w-full h-[300px] object-cover object-center"
-                    width="{{ section.settings.image2.width }}"
-                    height="{{ section.settings.image2.height }}"
-                  >
-                </div>
-              {% endif %}
-
-              {% if section.settings.image3 %}
-                <div class="carousel-slide min-w-full">
-                  <img 
-                    src="{{ section.settings.image3 | img_url: '2000x2000' }}" 
-                    alt="Imagen 3"
-                    class="w-full h-[300px] object-cover object-center"
-                    width="{{ section.settings.image3.width }}"
-                    height="{{ section.settings.image3.height }}"
-                  >
-                </div>
-              {% endif %}
-            </div>
-          </div>
-
-          <div class="flex justify-center gap-2 mt-4">
-            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="0"></button>
-            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="1"></button>
-            <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="2"></button>
-          </div>
-        </div>
-    </div>
-
-
-    {% if section.settings.text != blank %}
-      <div
-        class="
-          absolute
-          bottom-10
-          sm:bottom-30
-          md:bottom-0 md:pb-10
-          left-1/2 -translate-x-1/2
-          w-full flex justify-center
-          md:max-w-6xl max-w-2xl
-          md:text-4xl sm:text-3xl text-xl
-          text-black px-4 pt-10 text-center
-        "
-      >
-        {{ section.settings.text }}
-      </div>
+    {% if section.settings.eyebrow != blank %}
+      <p class="text-5xl md:text-7xl sm:text-5xl mx-auto font-bold text-white z-10 relative">
+        {{ section.settings.eyebrow }}
+      </p>
     {% endif %}
 
+    <div class="w-full flex justify-end">
+      {% if section.settings.title != blank %}
+        <h2 class="text-2xl md:text-3xl sm:text-3xl font-bold w-full
+          text-right tracking-tight text-white max-w-2xl sm:max-w-md md:max-w-2xl pt-10 relative z-10">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+    </div>
 
-    
+    <div class="pledge-cards absolute inset-x-0 bottom-0 z-20 px-5 lg:px-20">
+      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            alt="Imagen 1"
+            class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+          <img
+            src="{{ section.settings.image2 | image_url: width: 1200 }}"
+            alt="Imagen 2"
+            class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+            width="{{ section.settings.image2.width }}"
+            height="{{ section.settings.image2.height }}"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+          <img
+            src="{{ section.settings.image3 | image_url: width: 1200 }}"
+            alt="Imagen 3"
+            class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+            width="{{ section.settings.image3.width }}"
+            height="{{ section.settings.image3.height }}"
+            loading="lazy"
+          >
+        </div>
+    </div>
+
+    <div class="sm:hidden relative z-10 w-full px-4 pt-16 pb-4">
+      <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
+        <div class="carousel-track flex transition-transform duration-300 ease-in-out">
+          {% if section.settings.image %}
+            <div class="carousel-slide min-w-full bg-white rounded-xl">
+              <img
+                src="{{ section.settings.image | image_url: width: 1200 }}"
+                alt="Imagen 1"
+                class="w-full h-[300px] object-contain object-center"
+                width="{{ section.settings.image.width }}"
+                height="{{ section.settings.image.height }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+
+          {% if section.settings.image2 %}
+            <div class="carousel-slide min-w-full bg-white rounded-xl">
+              <img
+                src="{{ section.settings.image2 | image_url: width: 1200 }}"
+                alt="Imagen 2"
+                class="w-full h-[300px] object-contain object-center"
+                width="{{ section.settings.image2.width }}"
+                height="{{ section.settings.image2.height }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+
+          {% if section.settings.image3 %}
+            <div class="carousel-slide min-w-full bg-white rounded-xl">
+              <img
+                src="{{ section.settings.image3 | image_url: width: 1200 }}"
+                alt="Imagen 3"
+                class="w-full h-[300px] object-contain object-center"
+                width="{{ section.settings.image3.width }}"
+                height="{{ section.settings.image3.height }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-2 mt-4">
+        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="0"></button>
+        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="1"></button>
+        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="2"></button>
+      </div>
+    </div>
+  </div>
+
+  {% if section.settings.text != blank %}
+    <div
+      class="pledge-text bg-white relative z-0 w-full flex justify-center pb-10 md:pb-16 px-4 text-center"
+    >
+      <div class="max-w-2xl md:max-w-6xl text-xl sm:text-3xl md:text-4xl text-black">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  {% endif %}
 </section>
 
 <script>
@@ -141,10 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateCarousel(index) {
     if (!track) return;
-    
+
     currentIndex = index;
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
+
     dots.forEach((dot, i) => {
       if (i === currentIndex) {
         dot.classList.remove('bg-gray-400');
@@ -167,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
     clearInterval(autoplayInterval);
   }
 
-  // Click en los puntos
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       stopAutoplay();
@@ -176,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Swipe touch
   let startX = 0;
   let isDragging = false;
 
@@ -191,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!isDragging) return;
       const currentX = e.touches[0].clientX;
       const diff = startX - currentX;
-      
+
       if (Math.abs(diff) > 50) {
         if (diff > 0 && currentIndex < dots.length - 1) {
           currentIndex++;
@@ -209,22 +197,58 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Iniciar
   updateCarousel(0);
   startAutoplay();
 });
 </script>
 
 <style>
-@media (min-width: 370px) and (max-width: 639px) {
-  .range-height-section {
-    height: 800px;        
-    min-height: screen;    
-    overflow: hidden;
+.about-us-pledge-section .pledge-hero {
+  overflow: visible;
+}
+
+.about-us-pledge-section .pledge-cards {
+  display: none;
+  gap: calc(var(--spacing) * 5);
+  transform: translateY(50%);
+}
+
+@media (width >= 40rem) {
+  .about-us-pledge-section .pledge-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+@media (width >= 64rem) {
+  .about-us-pledge-section .pledge-cards {
+    gap: calc(var(--spacing) * 6);
+  }
+}
 
+.about-us-pledge-section .pledge-text {
+  padding-top: calc(var(--spacing) * 10);
+}
+
+@media (width >= 40rem) {
+  .about-us-pledge-section .pledge-text {
+    padding-top: calc(var(--spacing) * 52);
+  }
+}
+
+@media (width >= 64rem) {
+  .about-us-pledge-section .pledge-text {
+    padding-top: calc(var(--spacing) * 56);
+  }
+}
+
+@media (min-width: 370px) and (max-width: 639px) {
+  .range-height-section {
+    height: auto;
+    min-height: 800px;
+    overflow: hidden;
+  }
+}
 </style>
 
 {% schema %}
@@ -251,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Imagen 1" 
+      "label": "Imagen 1"
     },
     {
       "type": "image_picker",

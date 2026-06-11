@@ -381,13 +381,21 @@
             "question": "Do you offer international shipping?",
             "answer": "Nope, we are not globe-trotting just yet, we're keeping it cozy in the US and Guatemala for now. But stock up on our blends, and we'll hustle to ship your way very soon!"
           }
+        },
+        "faq_cWFPkH": {
+          "type": "faq",
+          "settings": {
+            "question": "What's our return policy?",
+            "answer": "We stand behind every blend, period. If VIBBO isn’t for you, you have 30 days to request a return, no hard feelings ;). We offer full refunds with no questions asked, as long as at least 70% of the product remains in good conditions. Return shipping is the customer’s responsibility, and refunds are processed within 5–7 business days after we receive the item.\n\nIf VIBBO doesn't work for you, that's honest, and honesty goes both ways."
+          }
         }
       },
       "block_order": [
         "faq_tHqFtF",
         "faq_GefwmB",
         "faq_r8XVV9",
-        "faq_iAy7pW"
+        "faq_iAy7pW",
+        "faq_cWFPkH"
       ],
       "name": "FAQ",
       "settings": {
@@ -396,17 +404,6 @@
         "text_faq": "Read below for a good time.",
         "image_alignment": "right",
         "margin_top_image": 50
-      }
-    },
-    "newsletter_ri4VmU": {
-      "type": "newsletter",
-      "name": "Newsletter",
-      "settings": {
-        "imagen": "shopify://shop_images/latas.png",
-        "title": "What are you waiting for?",
-        "texto1": "Sign up to our newsletter and be the first to know about our launch and exclusive offers.",
-        "placeholder": "email address",
-        "title_mobile": "You know you want to"
       }
     }
   },
@@ -419,7 +416,6 @@
     "prodcut_ingredients_NLmqhN",
     "main_socials_section_7yLtAb",
     "1774481532f295fddf",
-    "faq_UxEWVW",
-    "newsletter_ri4VmU"
+    "faq_UxEWVW"
   ]
 }
