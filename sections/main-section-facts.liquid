@@ -12,6 +12,11 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
           height="{{ img.height }}" 
           alt="{{ block.settings.alt | escape }}"
         />
+        {% if forloop.first and section.settings.first_slide_eyebrow != blank %}
+          <p class="facts-first-slide-eyebrow facts-first-slide-eyebrow--desktop font-bricolage font-bold text-black">
+            {{ section.settings.first_slide_eyebrow }}
+          </p>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -27,6 +32,11 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
           height="{{ img.height }}" 
           alt="{{ block.settings.alt | escape }}"
         />
+        {% if forloop.first and section.settings.first_slide_eyebrow != blank %}
+          <p class="facts-first-slide-eyebrow facts-first-slide-eyebrow--mobile font-bricolage font-bold text-black">
+            {{ section.settings.first_slide_eyebrow }}
+          </p>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -74,6 +84,43 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 .custom-slider-facts .slide img {
   display: block;
+}
+
+.custom-slider-facts .facts-first-slide-eyebrow {
+  position: absolute;
+  z-index: 10;
+  margin: 0;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.custom-slider-facts .facts-first-slide-eyebrow--desktop {
+  display: none;
+  top: 18%;
+  left: 50%;
+  right: 6%;
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  text-align: left;
+}
+
+.custom-slider-facts .facts-first-slide-eyebrow--mobile {
+  display: block;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .custom-slider-facts .facts-first-slide-eyebrow--desktop {
+    display: block;
+  }
+
+  .custom-slider-facts .facts-first-slide-eyebrow--mobile {
+    display: none;
+  }
 }
 
 
@@ -129,6 +176,12 @@ document.addEventListener("DOMContentLoaded", function () {
 {
   "name": "Slider Facts",
   "settings": [
+    {
+      "type": "text",
+      "id": "first_slide_eyebrow",
+      "label": "First slide eyebrow",
+      "default": "Did You Know?"
+    },
     {
       "type": "checkbox",
       "id": "autoplay",
