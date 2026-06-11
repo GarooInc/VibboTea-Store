@@ -13,10 +13,27 @@
     .step-img-3 { height: 210px !important; }
   }
   @media (min-width: 768px) {
-    .partner-steps-content { padding-left: 22vw; padding-right: 22vw; }
-    .partner-step-img-right { margin-left: 4rem; }
+    .partner-steps-content {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: calc(var(--spacing) * 8);
+      padding-right: calc(var(--spacing) * 8);
+    }
+    .partner-step-img-wrap,
+    .partner-step-img-right {
+      max-width: 380px;
+    }
+    .partner-step-img-right { margin-left: 2rem; }
     .cta-title { text-align: center !important; }
     .cta-text { text-align: center !important; max-width: 700px; margin-left: auto; margin-right: auto; }
+  }
+
+  @media (min-width: 1280px) {
+    .partner-steps-content {
+      padding-left: calc(var(--spacing) * 12);
+      padding-right: calc(var(--spacing) * 12);
+    }
   }
 </style>
 
