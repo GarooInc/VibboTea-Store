@@ -1,39 +1,4 @@
 <style>
-  .partner-steps-section {
-    isolation: isolate;
-  }
-
-  .partner-steps-content,
-  .partner-steps-cta {
-    position: relative;
-    z-index: 20;
-  }
-
-  .partner-deco {
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .partner-deco-top-left {
-    top: 0;
-    left: 0;
-    width: clamp(4rem, 14vw, 12rem);
-    max-height: min(40vh, 16rem);
-    overflow: hidden;
-  }
-
-  .partner-deco-bottom-right {
-    bottom: 0;
-    right: 1.25rem;
-    width: clamp(4rem, 12vw, 10rem);
-    max-height: min(35vh, 14rem);
-    overflow: hidden;
-  }
-
-  .partner-step-row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
   @media (max-width: 767px) {
     .partner-step-img { width: 100% !important; object-fit: cover !important; }
     .partner-step-title { font-size: 1.4rem !important; text-align: center !important; }
@@ -64,52 +29,25 @@
     .cta-text { text-align: center !important; max-width: 700px; margin-left: auto; margin-right: auto; }
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .partner-step-row {
-      gap: calc(var(--spacing) * 6);
-    }
-
-    .partner-step-img-wrap,
-    .partner-step-img-right {
-      max-width: 260px;
-    }
-
-    .partner-step-img-right {
-      margin-left: 1rem;
-    }
-
-    .partner-deco-top-left {
-      width: clamp(3.5rem, 10vw, 8rem);
-    }
-  }
-
   @media (min-width: 1280px) {
     .partner-steps-content {
       padding-left: calc(var(--spacing) * 12);
       padding-right: calc(var(--spacing) * 12);
     }
-
-    .partner-deco-top-left {
-      width: clamp(6rem, 12vw, 16rem);
-    }
-
-    .partner-deco-bottom-right {
-      width: clamp(5rem, 10vw, 14rem);
-    }
   }
 </style>
 
-<div class="partner-steps-section w-full bg-white py-10 md:py-16 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
+<div class="w-full bg-white py-10 md:py-16 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
 
   {% if section.settings.deco_top_left %}
-    <div class="partner-deco partner-deco-top-left absolute">
-      <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full h-full object-contain object-left-top">
+    <div class="absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-10">
+      <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
     </div>
   {% endif %}
 
   {% if section.settings.deco_bottom_right %}
-    <div class="partner-deco partner-deco-bottom-right absolute">
-      <img src="{{ section.settings.deco_bottom_right | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full h-full object-contain object-right-bottom">
+    <div class="absolute bottom-0 w-20 md:w-64 pointer-events-none z-10" style="right: 20px;">
+      <img src="{{ section.settings.deco_bottom_right | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
     </div>
   {% endif %}
 
@@ -127,7 +65,7 @@
         {% if is_reversed %}
           <!-- Image LEFT -->
           {% if block.settings.image != blank %}
-            <div class="partner-step-img-wrap rounded-xl overflow-hidden">
+            <div class="partner-step-img-wrap rounded-xl overflow-hidden" style="max-width: 320px;">
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
@@ -162,7 +100,7 @@
           </div>
           <!-- Image RIGHT -->
           {% if block.settings.image != blank %}
-            <div class="partner-step-img-right rounded-xl overflow-hidden">
+            <div class="partner-step-img-right rounded-xl overflow-hidden" style="max-width: 320px;">
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
@@ -181,7 +119,7 @@
 
   <!-- CTA final -->
   {% if section.settings.cta_title != blank %}
-    <div class="partner-steps-cta" style="text-align: center; padding: 2.5rem 1.5rem; width: 100%; display: block;">
+    <div style="text-align: center; padding: 2.5rem 1.5rem; width: 100%; display: block;">
       <h2 class="font-bricolage font-bold text-4xl md:text-6xl text-black cta-title" style="margin-bottom: 1.5rem;">
         {{ section.settings.cta_title }}
       </h2>
