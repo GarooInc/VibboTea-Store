@@ -4,12 +4,12 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
     {% for block in section.blocks %}
       {% assign map_img = block.settings.map_image %}
       {% assign bg_color = block.settings.background_color | default: '#ffffff' %}
-      <div class="slide absolute inset-0 {% if forloop.first %}active{% endif %}" style="background-color: {{ bg_color }};">
+      <div class="slide absolute inset-0 {% if forloop.first %}active first-slide{% endif %}" style="background-color: {{ bg_color }};">
         
         
         
         <div class="slide-content relative w-full h-full flex md:flex-row
-          flex-col items-center md:justify-center justify-start pt-20 md:pt-10">
+          flex-col items-center md:justify-center justify-start pt-20 md:pt-10 {% if forloop.first %}first-slide-content{% endif %}">
             
 
         
@@ -207,10 +207,40 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   display: block;
 }
 
-/* Ajuste del mapa solo en la primera slide para mobile */
+/* Primera slide mobile: texto arriba, mapa abajo */
 @media (max-width: 767px) {
-  .custom-slider-places .slide img.first-slide-map {
-    margin-top: 60px;
+  .custom-slider-places .slide.first-slide .first-slide-content {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 0;
+    padding-bottom: calc(var(--spacing) * 14);
+  }
+
+  .custom-slider-places .slide.first-slide .richnameplace {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 1;
+    flex-shrink: 0;
+    padding: calc(var(--spacing) * 10) calc(var(--spacing) * 5) calc(var(--spacing) * 4);
+    max-width: none;
+  }
+
+  .custom-slider-places .slide.first-slide .first-slide-map {
+    order: 2;
+    margin-top: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 92%;
+    width: auto;
+    height: auto;
+    max-height: 58vh;
+  }
+
+  .custom-slider-places .slide.first-slide .first-slide-content > div:last-child {
+    display: none;
   }
 }
 </style>
