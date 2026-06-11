@@ -1,7 +1,6 @@
 <section class="about-us-pledge-section full-width flex flex-col font-bricolage relative range-height-section">
   <div
-    class="pledge-hero relative w-full min-h-[420px] md:min-h-[520px] lg:min-h-[580px]
-           px-6 lg:px-28 md:py-20 py-10
+    class="pledge-stage relative w-full px-6 lg:px-28 md:py-20 py-10 pb-12 md:pb-20
            bg-[#FFF4DA] bg-cover bg-center bg-no-repeat"
     style="
       {% if section.settings.bg_image %}
@@ -9,7 +8,7 @@
       {% endif %}">
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="pledge-hero-copy relative z-10">
+    <div class="pledge-hero-copy relative z-10 pb-10 md:pb-14">
       {% if section.settings.eyebrow != blank %}
         <p class="text-5xl md:text-7xl sm:text-5xl mx-auto font-bold text-white">
           {{ section.settings.eyebrow }}
@@ -26,7 +25,42 @@
       </div>
     </div>
 
-    <div class="pledge-carousel sm:hidden relative z-10 w-full px-4 pt-16 pb-4">
+    <div class="pledge-cards relative z-10">
+      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          alt="Imagen 1"
+          class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+        <img
+          src="{{ section.settings.image2 | image_url: width: 1200 }}"
+          alt="Imagen 2"
+          class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+          width="{{ section.settings.image2.width }}"
+          height="{{ section.settings.image2.height }}"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+        <img
+          src="{{ section.settings.image3 | image_url: width: 1200 }}"
+          alt="Imagen 3"
+          class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
+          width="{{ section.settings.image3.width }}"
+          height="{{ section.settings.image3.height }}"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+    <div class="pledge-carousel relative z-10 w-full px-4 pt-8 pb-4">
       <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
         <div class="carousel-track flex transition-transform duration-300 ease-in-out">
           {% if section.settings.image %}
@@ -78,43 +112,8 @@
     </div>
   </div>
 
-  <div class="pledge-cards relative z-20 px-5 lg:px-20">
-    <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
-      <img
-        src="{{ section.settings.image | image_url: width: 1200 }}"
-        alt="Imagen 1"
-        class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
-        width="{{ section.settings.image.width }}"
-        height="{{ section.settings.image.height }}"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
-      <img
-        src="{{ section.settings.image2 | image_url: width: 1200 }}"
-        alt="Imagen 2"
-        class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
-        width="{{ section.settings.image2.width }}"
-        height="{{ section.settings.image2.height }}"
-        loading="lazy"
-      >
-    </div>
-
-    <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
-      <img
-        src="{{ section.settings.image3 | image_url: width: 1200 }}"
-        alt="Imagen 3"
-        class="w-full h-auto max-h-[280px] md:max-h-[360px] object-contain object-center"
-        width="{{ section.settings.image3.width }}"
-        height="{{ section.settings.image3.height }}"
-        loading="lazy"
-      >
-    </div>
-  </div>
-
   {% if section.settings.text != blank %}
-    <div class="pledge-text bg-white relative z-0 w-full flex justify-center pb-10 md:pb-16 px-4 text-center">
+    <div class="pledge-text bg-white relative w-full flex justify-center py-10 md:py-16 px-4 text-center">
       <div class="max-w-2xl md:max-w-6xl text-xl sm:text-3xl md:text-4xl text-black">
         {{ section.settings.text }}
       </div>
@@ -203,49 +202,30 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-/* pledge-layout-v3: hero copy above, cards in flow between hero and disclaimer */
+/* pledge-layout-v4: text and cards stacked in flow inside field background */
 .about-us-pledge-section .pledge-cards {
   display: none;
   gap: calc(var(--spacing) * 5);
-  margin-top: calc(var(--spacing) * -40);
 }
 
-.about-us-pledge-section .pledge-text {
-  padding-top: calc(var(--spacing) * 10);
+.about-us-pledge-section .pledge-carousel {
+  display: block;
 }
 
 @media (width >= 40rem) {
   .about-us-pledge-section .pledge-cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: calc(var(--spacing) * -50);
   }
 
-  .about-us-pledge-section .pledge-text {
-    padding-top: calc(var(--spacing) * 52);
+  .about-us-pledge-section .pledge-carousel {
+    display: none;
   }
 }
 
 @media (width >= 64rem) {
   .about-us-pledge-section .pledge-cards {
     gap: calc(var(--spacing) * 6);
-    margin-top: calc(var(--spacing) * -55);
-  }
-
-  .about-us-pledge-section .pledge-text {
-    padding-top: calc(var(--spacing) * 56);
-  }
-}
-
-@media (width < 40rem) {
-  .about-us-pledge-section .pledge-carousel {
-    display: block;
-  }
-}
-
-@media (width >= 40rem) {
-  .about-us-pledge-section .pledge-carousel {
-    display: none;
   }
 }
 
