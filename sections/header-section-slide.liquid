@@ -12,14 +12,14 @@
   <!-- Spacer dinámico: JS mide header + topbar reales en lugar de valor fijo -->
   <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
 
-  <div class="slides-wrapper relative w-full md:h-screen h-[38vh] overflow-hidden">
+  <div class="slides-wrapper hero-slides-wrapper relative w-full md:h-screen overflow-hidden">
     {% for block in section.blocks %}
       <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
 
           
           {% if block.settings.video_mp4 != blank %}
             <video
-             class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
+             class="hero-slide-media absolute inset-0 w-full h-full"
               autoplay
               muted
               loop
@@ -31,7 +31,7 @@
           {% elsif block.settings.image_desktop %}
             <img
               src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
-              class="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center"
+              class="hero-slide-media absolute inset-0 w-full h-full"
               alt="{{ block.settings.alt | escape }}"
               width="{{ section.settings.image_desktop.width }}"
               height="{{ section.settings.image_desktop.height }}"
@@ -232,9 +232,31 @@
   inset: 0;
 }
 
+.hero-slide-media {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-slides-wrapper {
+  height: 38vh;
+}
+
+@media (min-width: 768px) {
+  .hero-slides-wrapper {
+    height: 100vh;
+  }
+}
+
 @media (max-width: 767px) {
   .hero-title-logo {
     margin-left: -0.3em;
+  }
+
+  .hero-slide-media {
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain;
+    object-position: top center;
   }
 }
 
