@@ -248,6 +248,7 @@
       ],
       "name": "Slider Facts",
       "settings": {
+        "first_slide_eyebrow": "Did You Know?",
         "autoplay": false
       }
     },
