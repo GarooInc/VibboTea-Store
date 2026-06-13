@@ -1,0 +1,152 @@
+{% doc %}
+  Expandable product details accordion (Pique-style) for ingredients,
+  presentation, and steeping instructions.
+
+  @param {string} ingredients - Ingredients list text
+  @param {string} presentation - Presentation copy
+  @param {string} steeping - Steeping instructions copy
+{% enddoc %}
+
+{% if ingredients != blank or presentation != blank or steeping != blank %}
+  <div class="product-details-accordion md:pr-10">
+    {% if ingredients != blank %}
+      <div class="product-details-accordion__item" data-product-accordion>
+        <button
+          type="button"
+          class="product-details-accordion__trigger"
+          aria-expanded="false"
+        >
+          <span class="product-details-accordion__title">Ingredients</span>
+          <span class="product-details-accordion__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="product-details-accordion__panel">
+          <div class="product-details-accordion__content">
+            {{ ingredients }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if presentation != blank %}
+      <div class="product-details-accordion__item" data-product-accordion>
+        <button
+          type="button"
+          class="product-details-accordion__trigger"
+          aria-expanded="false"
+        >
+          <span class="product-details-accordion__title">Presentation</span>
+          <span class="product-details-accordion__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="product-details-accordion__panel">
+          <div class="product-details-accordion__content">
+            {{ presentation | newline_to_br }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if steeping != blank %}
+      <div class="product-details-accordion__item" data-product-accordion>
+        <button
+          type="button"
+          class="product-details-accordion__trigger"
+          aria-expanded="false"
+        >
+          <span class="product-details-accordion__title">Steeping instructions</span>
+          <span class="product-details-accordion__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="product-details-accordion__panel">
+          <div class="product-details-accordion__content">
+            {{ steeping | newline_to_br }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    (function () {
+      if (window.__productDetailsAccordionInit) return;
+      window.__productDetailsAccordionInit = true;
+
+      document.addEventListener('click', function (event) {
+        var trigger = event.target.closest('.product-details-accordion__trigger');
+        if (!trigger) return;
+
+        var item = trigger.closest('[data-product-accordion]');
+        var panel = item && item.querySelector('.product-details-accordion__panel');
+        var icon = trigger.querySelector('.product-details-accordion__icon');
+        if (!panel || !icon) return;
+
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+        if (isOpen) {
+          panel.style.maxHeight = '0px';
+          trigger.setAttribute('aria-expanded', 'false');
+          icon.textContent = '+';
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          trigger.setAttribute('aria-expanded', 'true');
+          icon.textContent = '−';
+        }
+      });
+    })();
+  </script>
+{% endif %}
+
+{% stylesheet %}
+  .product-details-accordion {
+    width: 100%;
+    border-top: 1px solid #1a1a1a;
+    margin-top: 0.5rem;
+  }
+
+  .product-details-accordion__item {
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .product-details-accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-bricolage, sans-serif);
+  }
+
+  .product-details-accordion__title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+
+  .product-details-accordion__icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    font-weight: 400;
+    color: #1a1a1a;
+    text-align: center;
+  }
+
+  .product-details-accordion__panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .product-details-accordion__content {
+    padding: 0 0 1rem;
+    font-family: var(--font-bricolage, sans-serif);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #1a1a1a;
+  }
+{% endstylesheet %}
