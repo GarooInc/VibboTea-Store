@@ -205,6 +205,11 @@ body {
   text-transform: uppercase !important;
 }
 
+.page-app-route #appstleSubscriptionCustomerPortal,
+.page-app-route .appstle-customer-portal {
+  padding-top: var(--site-header-offset, 110px);
+}
+
 .subscriptions_app_embed_block label {
     font-size: 14px !important;
 }
