@@ -205,7 +205,10 @@
 <style>
 .custom-slider .slide {
   position: absolute;
-  inset: 0;
+  top: var(--site-header-offset, 110px);
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .hero-slide-media {
@@ -217,7 +220,6 @@
 
 .hero-slides-wrapper {
   height: 38vh;
-  padding-top: var(--site-header-offset, 110px);
   box-sizing: border-box;
 }
 
