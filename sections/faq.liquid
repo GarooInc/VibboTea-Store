@@ -1,6 +1,6 @@
 {% assign padding_top = section.settings.margin_top_image | default: 50 %}
 <section id="{{ section.settings.id_section }}" class="faq-section" style="position: relative; z-index: 20;">
-<div class="faq-section__wrap w-full bg-white py-10 flex flex-col items-center">
+<div class="faq-section__wrap w-full bg-white flex flex-col items-center">
   <div class="faq-section__inner min-w-sm mx-auto text-center px-5 md:px-4">
 
     {% assign img_align = section.settings.image_alignment | default: 'right' %}
@@ -19,7 +19,7 @@
     {% endif %}
 
     <!-- Header: imagen + título/subtítulo lado a lado en desktop -->
-    <div class="faq-section__header w-full flex items-center gap-8 mb-10">
+    <div class="faq-section__header w-full flex items-center gap-8">
       {% if section.settings.image1 %}
         <div class="hidden md:block flex-shrink-0 w-48">
           <img
@@ -85,6 +85,15 @@
 </section>
 
 <style>
+  .faq-section__wrap {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .faq-section__header {
+    margin-bottom: 2.75rem;
+  }
+
   @media (min-width: 768px) {
     .faq-section__wrap {
       padding-top: 1.5rem;
@@ -96,7 +105,7 @@
     }
 
     .faq-section__header {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .faq-section__subtitle {
