@@ -1,7 +1,7 @@
 {% assign padding_top = section.settings.margin_top_image | default: 50 %}
-<section id="{{ section.settings.id_section }}" style="position: relative; z-index: 20;">
-<div class="w-full bg-white py-10 md:py-20 flex flex-col items-center">
-  <div class="md:min-w-[90vw] min-w-sm mx-auto text-center md:px-4 px-5">
+<section id="{{ section.settings.id_section }}" class="faq-section" style="position: relative; z-index: 20;">
+<div class="faq-section__wrap w-full bg-white flex flex-col items-center">
+  <div class="faq-section__inner min-w-sm mx-auto text-center px-5 md:px-4">
 
     {% assign img_align = section.settings.image_alignment | default: 'right' %}
     {% assign target_w = section.settings.image_target_width | default: 800 %}
@@ -19,7 +19,7 @@
     {% endif %}
 
     <!-- Header: imagen + título/subtítulo lado a lado en desktop -->
-    <div class="w-full flex items-center gap-8 mb-10">
+    <div class="faq-section__header w-full flex items-center gap-8">
       {% if section.settings.image1 %}
         <div class="hidden md:block flex-shrink-0 w-48">
           <img
@@ -37,21 +37,21 @@
             {{ section.settings.title }}
           </h2>
         {% endif %}
-        <p class="text-xl">
+        <p class="faq-section__subtitle text-xl">
           {{ section.settings.text_faq }}
         </p>
       </div>
     </div>
 
-    <div class="w-full text-left">
+    <div class="faq-section__list w-full text-left">
       {% for block in section.blocks %}
-      <div class="w-full pb-5" {{ block.shopify_attributes }}>
+      <div class="faq-section__item w-full pb-5" {{ block.shopify_attributes }}>
         <div
           class="faq-card border border-gray-300 rounded-xl px-5 py-5 cursor-pointer"
           data-faq
         >
           <div class="flex items-center justify-between">
-            <h3 class="md:text-2xl font-semibold font-bricolage text-gray-800 text-left">
+            <h3 class="faq-card__question md:text-2xl font-semibold font-bricolage text-gray-800 text-left">
               {{ block.settings.question }}
             </h3>
             <button class="faq-toggle transition-transform duration-300" aria-label="toggle">
@@ -59,7 +59,7 @@
             </button>
           </div>
           <div class="faq-content max-h-0 overflow-hidden transition-all duration-500">
-            <p class="text-gray-700 mt-3 pr-10 text-left max-w-8/9 md:text-lg text-xs pt-3 md:pt-0">
+            <p class="faq-card__answer text-gray-700 mt-3 pr-10 text-left max-w-8/9 md:text-lg text-xs pt-3 md:pt-0">
               {{ block.settings.answer }}
             </p>
           </div>
@@ -84,6 +84,55 @@
 </div>
 </section>
 
+<style>
+  .faq-section__wrap {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .faq-section__header {
+    margin-bottom: 2.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .faq-section__wrap {
+      padding-top: 1.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .faq-section__inner {
+      width: min(94vw, 1240px);
+    }
+
+    .faq-section__header {
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-section__subtitle {
+      font-size: 1.35rem;
+    }
+
+    .faq-section__item {
+      padding-bottom: 1.25rem;
+    }
+
+    .faq-card {
+      padding: 1.75rem 2.5rem;
+      border-radius: 1rem;
+    }
+
+    .faq-card__question {
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+
+    .faq-card__answer {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      padding-top: 0.75rem;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {

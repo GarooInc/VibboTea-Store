@@ -12,7 +12,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
           height="{{ img.height }}" 
           alt="{{ block.settings.alt | escape }}"
         />
-        {% if forloop.first and section.settings.first_slide_eyebrow != blank %}
+        {% if section.settings.first_slide_eyebrow != blank and forloop.last == false %}
           <p class="facts-first-slide-eyebrow facts-first-slide-eyebrow--desktop font-bricolage font-bold text-black">
             {{ section.settings.first_slide_eyebrow }}
           </p>
@@ -32,7 +32,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
           height="{{ img.height }}" 
           alt="{{ block.settings.alt | escape }}"
         />
-        {% if forloop.first and section.settings.first_slide_eyebrow != blank %}
+        {% if section.settings.first_slide_eyebrow != blank and forloop.last == false %}
           <p class="facts-first-slide-eyebrow facts-first-slide-eyebrow--mobile font-bricolage font-bold text-black">
             {{ section.settings.first_slide_eyebrow }}
           </p>
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "text",
       "id": "first_slide_eyebrow",
-      "label": "First slide eyebrow",
+      "label": "Slide eyebrow",
       "default": "Did You Know?"
     },
     {

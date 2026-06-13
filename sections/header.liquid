@@ -239,13 +239,34 @@
 
 
 <script>
+  function setSiteHeaderOffset() {
+    var topbar = document.querySelector('.topbar-wrapper');
+    var header = document.getElementById('main-header');
+    if (!header) return;
+    var offset = (topbar ? topbar.offsetHeight : 0) + header.offsetHeight;
+    document.documentElement.style.setProperty('--site-header-offset', offset + 'px');
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     const topbar = document.querySelector('.topbar-wrapper');
     const header = document.getElementById('main-header');
     if (topbar && header) {
       header.style.top = topbar.offsetHeight + 'px';
     }
+    setSiteHeaderOffset();
   });
+
+  (function () {
+    var resizeTicking = false;
+    window.addEventListener('resize', function () {
+      if (resizeTicking) return;
+      resizeTicking = true;
+      requestAnimationFrame(function () {
+        setSiteHeaderOffset();
+        resizeTicking = false;
+      });
+    }, { passive: true });
+  })();
 </script>
 <script>
   (function () {
