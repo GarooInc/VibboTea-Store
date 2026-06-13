@@ -3,7 +3,7 @@
   
   Displays 4 key product characteristics: 100% Natural, No Added Sugar,
   No Microplastics, and 30-Day Guarantee. Layout is responsive with
-  2x2 grid on mobile/tablet and a single row of 4 items on large desktop.
+  2x2 grid on mobile/tablet and a single horizontal row on large desktop.
 
   @example
   {% render 'product-features-row' %}
@@ -148,16 +148,15 @@
   @media (min-width: 1024px) {
     .product-features-row__grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.5rem 0.75rem;
+      gap: 0.4rem 0.5rem;
+      align-items: stretch;
     }
 
     .product-features-row__item {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
-      justify-content: flex-start;
-      gap: 0.5rem;
-      text-align: center;
+      column-gap: 0.35rem;
     }
 
     .product-features-row__icon-wrap {
@@ -165,13 +164,44 @@
     }
 
     .product-features-row__icon {
-      width: 112px;
-      height: 112px;
+      width: 72px;
+      height: 72px;
     }
 
     .product-features-row__text {
-      text-align: center;
-      width: 100%;
+      text-align: left;
+      font-size: 0.55rem;
+      line-height: 1.2;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .product-features-row__grid {
+      gap: 0.5rem 0.65rem;
+    }
+
+    .product-features-row__item {
+      column-gap: 0.4rem;
+    }
+
+    .product-features-row__icon {
+      width: 88px;
+      height: 88px;
+    }
+
+    .product-features-row__text {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .product-features-row__icon {
+      width: 96px;
+      height: 96px;
+    }
+
+    .product-features-row__text {
+      font-size: 0.65rem;
     }
   }
 {% endstylesheet %}
