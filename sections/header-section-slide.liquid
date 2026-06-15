@@ -10,6 +10,7 @@
 
   <link href="{{ 'sections-header.css' | asset_url }}" rel="stylesheet" />
 
+  <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
   <div class="slides-wrapper hero-slides-wrapper relative w-full overflow-hidden">
     {% for block in section.blocks %}
       <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
@@ -39,7 +40,7 @@
           
 
 
-        <div class="slide-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
+        <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
           
           {% if block.settings.page_title != blank %}
@@ -60,7 +61,7 @@
         </div>
 
         <div class="slide-content md:hidden absolute inset-0 flex flex-col justify-center
-            items-start px-5 md:px-10 z-40 -top-7">
+            items-start px-5 md:px-10 z-40">
           
           {% if block.settings.title_sec != blank %}
             <h1 class="text-2xl md:text-5xl lg:text-7xl font-bricolage font-bold text-white leading-tight">
@@ -212,7 +213,7 @@
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: top center;
 }
 
 .hero-slides-wrapper {
@@ -229,6 +230,14 @@
 @media (max-width: 767px) {
   .hero-title-logo {
     margin-left: -0.3em;
+  }
+
+  .custom-slider .hero-center-content p {
+    max-width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    white-space: normal;
+    word-break: break-word;
   }
 }
 
@@ -270,6 +279,24 @@
 
 
 </style>
+
+<script>
+(function () {
+  function setHeroSpacer() {
+    if (window.innerWidth >= 768) return;
+    var spacer = document.getElementById('hero-header-spacer');
+    var header = document.getElementById('main-header');
+    var topbar = document.querySelector('.topbar-wrapper');
+    if (!spacer || !header) return;
+    var topbarH = topbar ? topbar.offsetHeight : 0;
+    var headerH = header.offsetHeight;
+    spacer.style.height = (topbarH + headerH) + 'px';
+  }
+  requestAnimationFrame(setHeroSpacer);
+  document.addEventListener('DOMContentLoaded', function () { requestAnimationFrame(setHeroSpacer); });
+  window.addEventListener('resize', setHeroSpacer);
+})();
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
