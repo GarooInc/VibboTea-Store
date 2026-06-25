@@ -157,31 +157,10 @@
 
         <div id="priceWrapper" class="py-4 flex flex-col gap-3 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
-            <span class="text-md md:text-xl text-red-700 font-bricolage uppercase">
-              {{ section.settings.text_kickstarter }}
-            </span>
-
-            <div id="priceDisplay" class="flex items-start gap-3 transition-all duration-300">
-              <div>
-                <span class="text-3xl md:text-4xl text-black">
-                  {{ current_variant.price | money }}
-                </span>
-                <span class="text-2xl md:text-3xl text-gray-400 line-through">
-                  {{ current_variant.compare_at_price | money }}
-                </span>
-              </div>
-              <span
-                class="text-xs md:text-lg font-bricolage font-light p-1 px-3 rounded-xl flex mt-2"
-                style="background-color: {{ section.settings.per_serving_bg_color }}; color: {{ section.settings.per_serving_text_color }};"
-              >
-                {{ section.settings.discount_text_kickstarter }}
+            <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
+              <span class="text-3xl md:text-4xl text-black">
+                {{ current_variant.price | money }}
               </span>
-            </div>
-
-            <p class="pt-1">{{ section.settings.discount_per_serving_kickstarter }}</p>
-
-            <div id="countdown" class="text-red-700 text-md md:text-lg">
-              {{ section.settings.timer_kickstarter }} <span id="timer"></span>
             </div>
 
             <!-- Product Features Row (exclude Filter Bags) -->
@@ -254,18 +233,9 @@
 
           {% else %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
-              {% if current_variant.compare_at_price > current_variant.price %}
-                <span class="text-2xl md:text-2xl text-gray-400 line-through">
-                  {{ current_variant.compare_at_price | money }}
-                </span>
-                <span class="text-2xl md:text-3xl text-red-700 font-light">
-                  {{ current_variant.price | money }}
-                </span>
-              {% else %}
-                <span class="text-2xl md:text-3xl text-gray-700">
-                  {{ current_variant.price | money }}
-                </span>
-              {% endif %}
+              <span class="text-2xl md:text-3xl text-gray-700">
+                {{ current_variant.price | money }}
+              </span>
             </div>
           {% endif %}
         </div>
@@ -288,8 +258,6 @@
                 data-variant-id="{{ variant.id }}"
                 data-price="{{ variant.price | money }}"
                 data-price-raw="{{ variant.price }}"
-                data-compare="{{ variant.compare_at_price | money }}"
-                data-compare-raw="{{ variant.compare_at_price }}"
               >
                 <div class="w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
                   <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
@@ -360,17 +328,7 @@
         priceDisplay.classList.add('opacity-0', 'translate-y-2');
         setTimeout(() => {
           const price = option.dataset.price;
-          const compare = option.dataset.compare;
-          if (compare && compare !== '') {
-            priceDisplay.innerHTML = `
-              <div>
-                <span class="text-3xl md:text-4xl text-black">${price}</span>
-                <span class="text-2xl md:text-3xl text-gray-400 line-through">${compare}</span>
-              </div>
-            `;
-          } else {
-            priceDisplay.innerHTML = `<span class="text-3xl md:text-4xl text-black">${price}</span>`;
-          }
+          priceDisplay.innerHTML = `<span class="text-3xl md:text-4xl text-black">${price}</span>`;
           priceDisplay.classList.remove('opacity-0', 'translate-y-2');
         }, 200);
       }
@@ -496,38 +454,6 @@
   });
 </script>
 
-<script>
-  if (document.getElementById("timer")) {
-    function getEndOfDay() {
-      const end = new Date();
-      end.setHours(23, 59, 59, 999);
-      return end.getTime();
-    }
-
-    const endTime = getEndOfDay();
-
-    function updateCountdown() {
-      const timerEl = document.getElementById("timer");
-      if (!timerEl) return;
-
-      const distance = endTime - new Date().getTime();
-      if (distance <= 0) { location.reload(); return; }
-
-      const h = Math.floor(distance / (1000 * 60 * 60));
-      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-      timerEl.innerHTML =
-        String(h).padStart(2,'0') + ":" +
-        String(m).padStart(2,'0') + ":" +
-        String(s).padStart(2,'0');
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  }
-</script>
-
 {% schema %}
 {
   "name": "Description product",
@@ -547,32 +473,14 @@
     {
       "type": "checkbox",
       "id": "kickstarter_price",
-      "label": "Kickstarter price",
+      "label": "Use custom product details layout",
       "default": true
-    },
-    {
-      "type": "richtext",
-      "id": "text_kickstarter",
-      "label": "Kickstarter text",
-      "default": "<p>A DISCOUNTED KICKSTARTER PRICE NOW LIVE!</p>"
     },
     {
       "type": "text",
       "id": "text_kickstarter_button",
-      "label": "Kickstarter button text",
-      "default": "ADD DISCOUNT"
-    },
-    {
-      "type": "text",
-      "id": "discount_text_kickstarter",
-      "label": "Discount text",
-      "default": "20% OFF"
-    },
-    {
-      "type": "text",
-      "id": "discount_per_serving_kickstarter",
-      "label": "Discount per serving text",
-      "default": "$0.57 per serving"
+      "label": "Add to cart button text",
+      "default": "ADD TO CART"
     },
     {
       "type": "color",
@@ -585,23 +493,6 @@
       "id": "per_serving_text_color",
       "label": "Per Serving Text Color",
       "default": "#000000"
-    },
-    {
-      "type": "text",
-      "id": "timer_kickstarter",
-      "label": "Timer text",
-      "default": "SALES ENDS IN: "
-    },
-    {
-      "type": "text",
-      "id": "time_discount_kickstarter",
-      "label": "Discount End Date (YYYY-MM-DD HH:MM:SS)",
-      "default": "2026-02-27 23:59:59"
-    },
-    {
-      "type": "url",
-      "id": "kickstarter_link",
-      "label": "Kickstarter link"
     },
     {
       "type": "textarea",

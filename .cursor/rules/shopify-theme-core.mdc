@@ -1,0 +1,14 @@
+---
+description: Core workflow and architecture guidance for this custom Shopify theme
+alwaysApply: true
+---
+
+# Shopify Theme Core
+
+- Treat this repository as the source of truth for storefront front-end changes that cannot be safely made in the Shopify UI.
+- Keep changes inside Shopify theme boundaries: `layout`, `sections`, `snippets`, `blocks`, `templates`, `assets`, `config`, and `locales`.
+- Prefer merchant-editable `sections`, reusable `snippets`, and Shopify `blocks` over one-off markup when the same UI pattern may be reused.
+- Preserve required layout hooks: `{{ content_for_header }}`, `{{ content_for_layout }}`, and section groups such as `{% sections 'header-group' %}`.
+- Do not edit `config/settings_data.json` unless the user explicitly asks to change stored theme settings.
+- Use Theme Check conventions from `.theme-check.yml`; run or recommend validation after Liquid/schema changes with meaningful risk.
+- Keep edits scoped to the requested front-end behavior and avoid unrelated visual, copy, or schema churn.

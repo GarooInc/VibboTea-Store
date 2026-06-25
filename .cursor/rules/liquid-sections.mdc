@@ -1,0 +1,16 @@
+---
+description: Standards for Shopify Liquid sections in this theme
+globs: "sections/*.liquid"
+alwaysApply: false
+---
+
+# Liquid Sections
+
+- Every section should keep a valid `{% schema %}` block unless it is an intentionally static legacy section.
+- Prefer `section.settings` and blocks for content, media, links, colors, spacing, and toggles that merchants may need to edit.
+- Use schema labels with translation keys such as `t:labels.title` when adding editor-facing labels.
+- Keep wrapper markup compatible with the theme editor; include `{{ section.shopify_attributes }}` when adding editable section wrappers.
+- Scope section CSS and JS with `{% stylesheet %}` and `{% javascript %}` when practical; each section can only have one of each tag.
+- Do not put Liquid output inside `{% javascript %}` or `{% stylesheet %}` tags; pass dynamic values through data attributes, CSS variables, or inline styles.
+- For single CSS-property settings, prefer CSS variables. For multi-property variants, prefer schema `select` values mapped to classes.
+- Avoid adding new hardcoded user-facing copy; use locale keys or schema settings.

@@ -1,0 +1,16 @@
+---
+description: Shopify media, accessibility, and front-end performance standards
+globs: "**/*.liquid"
+alwaysApply: false
+---
+
+# Media And Performance
+
+- Prefer `image_url` and `image_tag` for Shopify images; avoid adding new `img_url` usage.
+- Include meaningful `alt` text for content images and empty alt text only for decorative images.
+- Provide `width` and `height` on images or use `image_tag` output to reduce layout shift.
+- Use `loading: 'lazy'` for below-the-fold images and avoid lazy-loading likely LCP hero/product media.
+- Keep video embeds restrained: use `playsinline`, muted autoplay only when needed, and avoid loading heavy external embeds unnecessarily.
+- Avoid adding new global functions or inline handlers when a scoped listener, Alpine pattern, or component-level script is clearer.
+- Preserve accessibility on controls: real `<button>` elements for actions, clear `aria-label` values, keyboard-safe interactions, and visible focus behavior.
+- Before changing product, cart, search, or collection Liquid, consider Shopify object limits and Theme Check warnings.

@@ -1,0 +1,15 @@
+---
+description: Localization standards for Shopify Liquid and locale JSON files
+globs: "**/*.{liquid,json}"
+alwaysApply: false
+---
+
+# Localization
+
+- New user-facing text in Liquid should use `{{ 'key.path' | t }}` unless the text is merchant-provided through schema settings.
+- Add storefront copy to `locales/en.default.json`; add theme editor labels and schema strings to `locales/en.default.schema.json`.
+- Use descriptive `snake_case` keys grouped by feature, section, or domain, and keep nesting to about three levels when practical.
+- Use interpolation for dynamic text instead of concatenating translated strings in Liquid.
+- Keep UI copy concise and sentence case, matching existing terminology in the theme.
+- Escape translated or dynamic values unless intentionally rendering trusted HTML.
+- When editing JSON locale files, preserve valid JSON, alphabetical or nearby grouping when it already exists, and avoid unrelated reordering.

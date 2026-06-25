@@ -1,0 +1,15 @@
+---
+description: Reuse and documentation standards for Shopify snippets and blocks
+globs: "{snippets,blocks}/*.liquid"
+alwaysApply: false
+---
+
+# Snippets And Blocks
+
+- Render snippets with `{% render 'name', param: value %}` and pass required data explicitly.
+- Do not rely on variables assigned in a parent file unless they are Shopify globals or intentionally documented context.
+- Add or update LiquidDoc for reusable snippets and statically rendered blocks, including required params and at least one usage example.
+- Keep snippets focused on reusable markup or logic; promote merchant-editable UI to a block or section when customization is needed.
+- Blocks that merchants edit should include valid `{% schema %}` and use `block.settings` for configurable values.
+- Preserve `{{ block.shopify_attributes }}` on editable block wrappers so the Shopify theme editor can target them.
+- Prefer composing existing snippets before duplicating icon, image, product-card, or accordion markup.

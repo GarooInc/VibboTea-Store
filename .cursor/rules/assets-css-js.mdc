@@ -1,0 +1,15 @@
+---
+description: Guidance for theme CSS and JavaScript assets
+globs: "assets/*.{css,js}"
+alwaysApply: false
+---
+
+# Assets CSS And JS
+
+- Treat `assets/application.css` as compiled Tailwind output unless the user asks to edit it directly or a source workflow is confirmed.
+- Prefer component-scoped `{% stylesheet %}` in `sections`, `snippets`, or `blocks` for isolated UI styles.
+- Keep `critical.css` limited to styles required for above-the-fold rendering or global layout stability.
+- Avoid adding new dependencies or CDN scripts without a clear user request and compatibility reason.
+- Preserve existing global integrations loaded in `layout/theme.liquid`, including Alpine and Klaviyo.
+- Keep JavaScript progressive where possible: markup should remain understandable and core links/forms should work without custom JS.
+- When editing SVG or icon assets, preserve viewBox, accessible naming expectations, and Shopify-safe static asset references.
