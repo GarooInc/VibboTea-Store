@@ -162,13 +162,6 @@
             "text": "Crafted with flavonoid-rich ingredients and a smooth, balanced profile."
           }
         },
-        "ingredient_block_P8NfCf": {
-          "type": "ingredient_block",
-          "settings": {
-            "title": "Ingredient Title",
-            "text": "Ingredient description"
-          }
-        },
         "ingredient_block_rtJXtk": {
           "type": "ingredient_block",
           "settings": {
@@ -185,7 +178,6 @@
         "ingredient_block_eyNiWw",
         "ingredient_block_izL4A4",
         "ingredient_block_cyNJi3",
-        "ingredient_block_P8NfCf",
         "ingredient_block_rtJXtk"
       ],
       "name": "Product Ingredients",
