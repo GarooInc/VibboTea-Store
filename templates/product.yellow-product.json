@@ -119,7 +119,7 @@
           "settings": {
             "image": "shopify://shop_images/pinatrozos_1.png",
             "title": "Pineapple pieces",
-            "text": "Supplies bromelain, vitamin C, and electrolytes for digestion, inflammation reduction, and recovery.​"
+            "text": "Contains bromelain, vitamin C, and electrolytes from natural ingredients."
           }
         },
         "ingredient_block_JwPmcy": {
@@ -127,7 +127,7 @@
           "settings": {
             "image": "shopify://shop_images/black-tea.png",
             "title": "Black tea",
-            "text": "Natural caffeine and antioxidants for sustained energy, focus, and heart health support.​"
+            "text": "Made with natural caffeine sources and plant compounds."
           }
         },
         "ingredient_block_MMwqRy": {
@@ -135,7 +135,7 @@
           "settings": {
             "image": "shopify://shop_images/hibisco.png",
             "title": "Hibiscus",
-            "text": "Hydratation with potassium, vitamin C, and antioxidants for electrolyte balance and immunity.​"
+            "text": "Includes potassium, vitamin C, and plant-based ingredients in a naturally refreshing blend."
           }
         },
         "ingredient_block_eyNiWw": {
@@ -143,7 +143,7 @@
           "settings": {
             "image": "shopify://shop_images/cascara_de_cacao_2.png",
             "title": "Cocoa husk",
-            "text": "Provides theobromine and polyphenols for smooth energy, mood lift, and circulation.​"
+            "text": "Features theobromine and naturally occurring plant compounds with a smooth, rounded taste."
           }
         },
         "ingredient_block_izL4A4": {
@@ -151,7 +151,7 @@
           "settings": {
             "image": "shopify://shop_images/coco__2.png",
             "title": "Coconut",
-            "text": "Offers potassium, magnesium, and medium-chain fats for optimal hydration and quick energy fuel.​"
+            "text": "Provides potassium, magnesium, and naturally derived fats from whole ingredients in a refreshing blend."
           }
         },
         "ingredient_block_cyNJi3": {
@@ -159,7 +159,14 @@
           "settings": {
             "image": "shopify://shop_images/bayas-sauco_1_9d735e7f-50ab-4f21-af76-0e1b2e8ad847.png",
             "title": "Raisins",
-            "text": "Boosts flavonoids for antioxidants while cutting tannins, aiding digestion, heart health, and inflammation."
+            "text": "Crafted with flavonoid-rich ingredients and a smooth, balanced profile."
+          }
+        },
+        "ingredient_block_P8NfCf": {
+          "type": "ingredient_block",
+          "settings": {
+            "title": "Ingredient Title",
+            "text": "Ingredient description"
           }
         },
         "ingredient_block_rtJXtk": {
@@ -167,7 +174,7 @@
           "settings": {
             "image": "shopify://shop_images/diedblacklemos.png",
             "title": "Dried black lemon",
-            "text": "Delivers citric acid, vitamin C, and detox support for digestion, alkalizing, and absorption."
+            "text": "Includes citric acid and vitamin C from naturally sourced ingredients with a bright, crisp taste."
           }
         }
       },
@@ -178,6 +185,7 @@
         "ingredient_block_eyNiWw",
         "ingredient_block_izL4A4",
         "ingredient_block_cyNJi3",
+        "ingredient_block_P8NfCf",
         "ingredient_block_rtJXtk"
       ],
       "name": "Product Ingredients",
