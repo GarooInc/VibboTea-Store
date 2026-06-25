@@ -60,54 +60,50 @@
       </div>
     </div>
 
-    <div class="pledge-carousel relative z-10 w-full px-4 pt-8 pb-4">
-      <div class="carousel-wrapper-{{ section.id }} overflow-hidden rounded-xl">
-        <div class="carousel-track flex transition-transform duration-300 ease-in-out">
-          {% if section.settings.image %}
-            <div class="carousel-slide min-w-full bg-white rounded-xl">
-              <img
-                src="{{ section.settings.image | image_url: width: 1200 }}"
-                alt="Imagen 1"
-                class="w-full h-[300px] object-contain object-center"
-                width="{{ section.settings.image.width }}"
-                height="{{ section.settings.image.height }}"
-                loading="lazy"
-              >
-            </div>
-          {% endif %}
+    <div class="pledge-carousel relative z-10 w-full pt-8 pb-4 overflow-visible">
+      <div class="relative w-full overflow-visible flex items-center">
+        <div id="pledgeTrack-{{ section.id }}" class="pledge-scroll-track flex gap-8 items-center">
+          {% for i in (1..4) %}
+            {% if section.settings.image %}
+              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+                <img
+                  src="{{ section.settings.image | image_url: width: 1200 }}"
+                  alt="Imagen 1"
+                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  width="{{ section.settings.image.width }}"
+                  height="{{ section.settings.image.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
 
-          {% if section.settings.image2 %}
-            <div class="carousel-slide min-w-full bg-white rounded-xl">
-              <img
-                src="{{ section.settings.image2 | image_url: width: 1200 }}"
-                alt="Imagen 2"
-                class="w-full h-[300px] object-contain object-center"
-                width="{{ section.settings.image2.width }}"
-                height="{{ section.settings.image2.height }}"
-                loading="lazy"
-              >
-            </div>
-          {% endif %}
+            {% if section.settings.image2 %}
+              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+                <img
+                  src="{{ section.settings.image2 | image_url: width: 1200 }}"
+                  alt="Imagen 2"
+                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  width="{{ section.settings.image2.width }}"
+                  height="{{ section.settings.image2.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
 
-          {% if section.settings.image3 %}
-            <div class="carousel-slide min-w-full bg-white rounded-xl">
-              <img
-                src="{{ section.settings.image3 | image_url: width: 1200 }}"
-                alt="Imagen 3"
-                class="w-full h-[300px] object-contain object-center"
-                width="{{ section.settings.image3.width }}"
-                height="{{ section.settings.image3.height }}"
-                loading="lazy"
-              >
-            </div>
-          {% endif %}
+            {% if section.settings.image3 %}
+              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+                <img
+                  src="{{ section.settings.image3 | image_url: width: 1200 }}"
+                  alt="Imagen 3"
+                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  width="{{ section.settings.image3.width }}"
+                  height="{{ section.settings.image3.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
-      </div>
-
-      <div class="flex justify-center gap-2 mt-4">
-        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="0"></button>
-        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="1"></button>
-        <button class="carousel-dot-{{ section.id }} w-2 h-2 rounded-full bg-gray-400 transition-all duration-300" data-index="2"></button>
       </div>
     </div>
   </div>
@@ -121,87 +117,38 @@
   {% endif %}
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const track = document.querySelector('.carousel-wrapper-{{ section.id }} .carousel-track');
-  const dots = document.querySelectorAll('.carousel-dot-{{ section.id }}');
-  let currentIndex = 0;
-  let autoplayInterval;
-
-  function updateCarousel(index) {
-    if (!track) return;
-
-    currentIndex = index;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.classList.remove('bg-gray-400');
-        dot.classList.add('bg-black', 'w-6');
-      } else {
-        dot.classList.remove('bg-black', 'w-6');
-        dot.classList.add('bg-gray-400');
-      }
-    });
-  }
-
-  function startAutoplay() {
-    autoplayInterval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % dots.length;
-      updateCarousel(currentIndex);
-    }, 3000);
-  }
-
-  function stopAutoplay() {
-    clearInterval(autoplayInterval);
-  }
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      stopAutoplay();
-      updateCarousel(parseInt(dot.dataset.index));
-      startAutoplay();
-    });
-  });
-
-  let startX = 0;
-  let isDragging = false;
-
-  if (track) {
-    track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      stopAutoplay();
-    });
-
-    track.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const currentX = e.touches[0].clientX;
-      const diff = startX - currentX;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentIndex < dots.length - 1) {
-          currentIndex++;
-        } else if (diff < 0 && currentIndex > 0) {
-          currentIndex--;
-        }
-        updateCarousel(currentIndex);
-        isDragging = false;
-      }
-    });
-
-    track.addEventListener('touchend', () => {
-      isDragging = false;
-      startAutoplay();
-    });
-  }
-
-  updateCarousel(0);
-  startAutoplay();
-});
-</script>
-
 <style>
+@keyframes pledge-infinite-scroll-{{ section.id }} {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.about-us-pledge-section .pledge-scroll-track {
+  animation: pledge-infinite-scroll-{{ section.id }} var(--scroll-duration, 36s) var(--scroll-delay, 0s) linear infinite;
+}
+
+.about-us-pledge-section .pledge-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.about-us-pledge-section .pledge-scroll-card {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: scale(0.95);
+}
+
+.about-us-pledge-section .pledge-scroll-card.is-center {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+.about-us-pledge-section .pledge-scroll-card img {
+  transition: transform 0.4s ease;
+}
+
+.about-us-pledge-section .pledge-scroll-card.is-center img {
+  transform: scale(1.04);
+}
+
 /* pledge-layout-v4: text and cards stacked in flow inside field background */
 .about-us-pledge-section .pledge-cards {
   display: none;
@@ -237,6 +184,51 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.getElementById('pledgeTrack-{{ section.id }}');
+  if (!track) return;
+
+  function setPledgeScrollSpeed() {
+    if (window.innerWidth >= 640) return;
+
+    requestAnimationFrame(() => {
+      const half = track.scrollWidth / 2;
+      const speed = 120;
+      const duration = half / speed;
+
+      track.style.animation = 'none';
+      track.offsetHeight;
+      track.style.setProperty('--scroll-duration', `${duration}s`);
+      track.style.setProperty('--scroll-delay', '0s');
+      track.style.animation = '';
+    });
+  }
+
+  function detectCenterCard() {
+    if (window.innerWidth >= 640) return;
+
+    const cards = track.querySelectorAll('.pledge-scroll-card');
+    const viewportCenter = window.innerWidth / 2;
+
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const distance = Math.abs(viewportCenter - cardCenter);
+      const activationRange = rect.width * 0.25;
+
+      card.classList.toggle('is-center', distance < activationRange);
+    });
+
+    requestAnimationFrame(detectCenterCard);
+  }
+
+  setPledgeScrollSpeed();
+  detectCenterCard();
+  window.addEventListener('resize', setPledgeScrollSpeed);
+});
+</script>
 
 {% schema %}
 {

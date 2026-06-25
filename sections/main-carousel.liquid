@@ -132,6 +132,9 @@
                 <p class="font-bricolage text-2xl md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">
                   {{ product.title }}
                 </p>
+                <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}" data-auto-install="false">
+                  {{ product.metafields.judgeme.badge }}
+                </div>
                 <p class="font-bricolage text-2xl md:text-3xl  md:pt-1 text-left text-black font-medium">
                   {{ product.price | money }}
                 </p>
@@ -262,6 +265,9 @@
 
               <div class="mt-4">
                 <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">{{ product.title }}</p>
+                <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}" data-auto-install="false">
+                  {{ product.metafields.judgeme.badge }}
+                </div>
                 <p class="font-bricolage text-3xl text-left text-black font-medium">{{ product.price | money }}</p>
               </div>
 

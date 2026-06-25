@@ -2,8 +2,14 @@
   <div class="flex md:flex-row flex-col gap-6 py-5">
     
     <div class="relative md:w-1/2 w-full text-center">
-      <h2 class="font-bricolage font-semibold md:text-[3vw] text-[8vw]">
-        {{  section.settings.title}}
+      {% assign title_lines = section.settings.title | split: ', but ' %}
+      <h2 class="product-how-title font-bricolage font-semibold">
+        {% if title_lines.size == 2 %}
+          <span>{{ title_lines[0] }},</span>
+          <span>but {{ title_lines[1] }}</span>
+        {% else %}
+          <span>{{ section.settings.title | newline_to_br }}</span>
+        {% endif %}
       </h2>
     </div>
 
@@ -194,6 +200,22 @@
 
 
 <style>
+.product-how-title {
+  font-size: clamp(1.25rem, 5.4vw, 2rem);
+  line-height: 1.15;
+}
+
+.product-how-title span {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .product-how-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+  }
+}
+
 .drink-option {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }

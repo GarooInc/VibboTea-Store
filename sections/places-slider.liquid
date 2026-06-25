@@ -40,12 +40,12 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
               {% endif %}
               
               <!-- Ingredientes desktop -->
-              <div class="md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3
+              <div class="places-ingredients-list md:gap-4 md:flex md:flex-col grid grid-cols-2 grid-rows-3
                   sm:grid-cols-4 sm:grid-rows-2 sm:gap-y-0
                   sm:gap-3 md:pt-4 md:pl-6 md:h-80 h-70
                 ">
                 {% if block.settings.ingredient_1_name != blank or block.settings.ingredient_1_image != blank %}
-                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+                  <div class="places-ingredient flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_1_image != blank %}
                       <img src="{{ block.settings.ingredient_1_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_1_name | escape }}"
@@ -61,7 +61,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                 {% endif %}
 
                 {% if block.settings.ingredient_2_name != blank or block.settings.ingredient_2_image != blank %}
-                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+                  <div class="places-ingredient flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
   
                     {% if block.settings.ingredient_2_image != blank %}
                       <img src="{{ block.settings.ingredient_2_image | img_url: '100x100' }}" 
@@ -78,7 +78,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                 {% endif %}
 
                 {% if block.settings.ingredient_3_name != blank or block.settings.ingredient_3_image != blank %}
-                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+                  <div class="places-ingredient flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
 
                     {% if block.settings.ingredient_3_image != blank %}
                       <img src="{{ block.settings.ingredient_3_image | img_url: '100x100' }}" 
@@ -95,7 +95,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                 {% endif %}
 
                 {% if block.settings.ingredient_4_name != blank or block.settings.ingredient_4_image != blank %}
-                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+                  <div class="places-ingredient flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_4_image != blank %}
                       <img src="{{ block.settings.ingredient_4_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_4_name | escape }}"
@@ -111,7 +111,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
                 {% endif %}
 
                 {% if block.settings.ingredient_5_name != blank or block.settings.ingredient_5_image != blank %}
-                  <div class=" flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
+                  <div class="places-ingredient flex items-center justify-start gap-3 sm:h-10 sm:pt-10 md:h-auto md:pt-0 ">
                     {% if block.settings.ingredient_5_image != blank %}
                       <img src="{{ block.settings.ingredient_5_image | img_url: '100x100' }}" 
                         alt="{{ block.settings.ingredient_5_name | escape }}"
@@ -242,6 +242,60 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
   .custom-slider-places .slide.first-slide .first-slide-content > div:last-child {
     display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .custom-slider-places {
+    height: 100svh;
+    min-height: 560px;
+  }
+
+  .custom-slider-places .slide-content {
+    padding-top: 3.75rem;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) .richnameplace {
+    top: 1.5rem;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) > .slide-content > img {
+    max-height: 11.5rem;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) .md\:absolute {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) .text-right {
+    width: 100%;
+  }
+
+  .custom-slider-places .places-ingredients-list {
+    height: auto;
+    min-height: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(2rem, auto);
+    row-gap: 0.65rem;
+    column-gap: 0.75rem;
+  }
+
+  .custom-slider-places .places-ingredient {
+    gap: 0.45rem;
+    min-width: 0;
+  }
+
+  .custom-slider-places .places-ingredient img {
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 auto;
+  }
+
+  .custom-slider-places .places-ingredient span {
+    font-size: 0.72rem;
+    line-height: 1.1;
+    text-align: left;
   }
 }
 </style>

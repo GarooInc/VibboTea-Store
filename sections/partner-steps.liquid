@@ -14,25 +14,37 @@
   }
   @media (min-width: 768px) {
     .partner-steps-content {
-      max-width: 1280px;
+      max-width: 1440px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: calc(var(--spacing) * 8);
-      padding-right: calc(var(--spacing) * 8);
+      padding-left: calc(var(--spacing) * 6);
+      padding-right: calc(var(--spacing) * 6);
     }
     .partner-step-img-wrap,
     .partner-step-img-right {
-      max-width: 380px;
+      width: min(100%, 430px);
+      max-width: none;
     }
-    .partner-step-img-right { margin-left: 2rem; }
+    .partner-step-img-wrap { justify-self: start; }
+    .partner-step-img-right { justify-self: end; }
+    .partner-step-copy {
+      max-width: 430px;
+    }
+    .partner-step-copy-right {
+      justify-self: end;
+    }
+    .partner-step-copy-left {
+      justify-self: start;
+    }
+    .partner-step-title { text-align: left !important; }
     .cta-title { text-align: center !important; }
     .cta-text { text-align: center !important; max-width: 700px; margin-left: auto; margin-right: auto; }
   }
 
   @media (min-width: 1280px) {
     .partner-steps-content {
-      padding-left: calc(var(--spacing) * 12);
-      padding-right: calc(var(--spacing) * 12);
+      padding-left: calc(var(--spacing) * 16);
+      padding-right: calc(var(--spacing) * 16);
     }
   }
 </style>
@@ -60,22 +72,22 @@
       {% assign is_reversed = block.settings.image_left %}
 
 
-      <div class="partner-step-row grid grid-cols-2 gap-6 md:gap-16 items-center md:mb-16">
+      <div class="partner-step-row grid grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center md:mb-16">
 
         {% if is_reversed %}
           <!-- Image LEFT -->
           {% if block.settings.image != blank %}
-            <div class="partner-step-img-wrap rounded-xl overflow-hidden" style="max-width: 320px;">
+            <div class="partner-step-img-wrap rounded-xl overflow-hidden">
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 220px;"
                 width="600" height="400"
               >
             </div>
           {% endif %}
           <!-- Text RIGHT -->
-          <div class="flex flex-col justify-center" style="padding-right: 1rem;">
+          <div class="partner-step-copy partner-step-copy-right flex flex-col justify-center">
             {% if block.settings.title != blank %}
               <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
                 {{ block.settings.title }}
@@ -88,7 +100,7 @@
 
         {% else %}
           <!-- Text LEFT -->
-          <div class="flex flex-col justify-center">
+          <div class="partner-step-copy partner-step-copy-left flex flex-col justify-center">
             {% if block.settings.title != blank %}
               <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
                 {{ block.settings.title }}
@@ -100,11 +112,11 @@
           </div>
           <!-- Image RIGHT -->
           {% if block.settings.image != blank %}
-            <div class="partner-step-img-right rounded-xl overflow-hidden" style="max-width: 320px;">
+            <div class="partner-step-img-right rounded-xl overflow-hidden">
               <img
                 src="{{ block.settings.image | image_url: width: 600 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 200px;"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 220px;"
                 width="600" height="400"
               >
             </div>

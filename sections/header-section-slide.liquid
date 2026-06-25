@@ -134,21 +134,19 @@
       </div>
 
         {% if block.settings.link_popup %}
-            <div class="relative group pt-90">
-  
-              <div class="w-32 h-32 ">
-                
-              </div>
+            <div class="hero-disclaimer-trigger absolute right-4 bottom-4 md:right-8 md:bottom-8 z-60 group">
+              <button
+                type="button"
+                class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
+                aria-label="Show disclaimer"
+              >
+                i
+              </button>
 
-              <!-- Pop up -->
-              <div class="absolute inset-0 md:flex items-start justify-center
-                          xl:pt-83 xl:pl-220 xl:px-50 lg:pt-70 lg:pl-220 lg:px-20 md:pt-65 md:pl-180 md:px-10
-                          xs:pt-65 xs:pl-10 sm:px-10 hidden z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          
-                <span class="bg-black text-white text-sm px-3 py-2 rounded-lg shadow-lg">
+              <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
                   {{ block.settings.hover_text }}
                 </span>
-
               </div>
             </div>
 

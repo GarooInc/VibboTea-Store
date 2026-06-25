@@ -1,36 +1,40 @@
 <section class="roots-section full-width flex flex-col font-bricolage relative z-10 bg-white">
   <div class="w-full flex flex-col px-6 lg:px-28 md:pt-10 md:py-15 py-15 pb-10 md:pb-14">
 
-    <div class="w-full flex justify-start">
-      {% if section.settings.title != blank %}
-        <h2 class="text-6xl md:text-7xl font-semibold w-full text-left
-          tracking-tight text-black max-w-2xl md:pt-4">{{ section.settings.title }}</h2>
-      {% endif %}
-    </div>
+    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-2 md:gap-16 gap-8 items-end">
+      <div>
+        <div class="w-full flex justify-start">
+          {% if section.settings.title != blank %}
+            <h2 class="roots-title text-6xl md:text-7xl font-semibold w-full text-left
+              tracking-tight text-black max-w-2xl md:pt-4">{{ section.settings.title }}</h2>
+          {% endif %}
+        </div>
 
-    {% if section.settings.eyebrow != blank %}
-      <div class="w-full md:pt-10 pt-6">
-        <p class="max-w-4xl lg:text-3xl text-xl font-light text-black leading-relaxed">
-          {{ section.settings.eyebrow }}
-        </p>
+        {% if section.settings.eyebrow != blank %}
+          <div class="w-full md:pt-10 pt-6">
+            <p class="roots-eyebrow max-w-4xl lg:text-3xl text-xl font-light text-black leading-relaxed">
+              {{ section.settings.eyebrow }}
+            </p>
+          </div>
+        {% endif %}
       </div>
-    {% endif %}
 
-    {% if section.settings.text1 != blank or section.settings.text2 != blank %}
-      <div class="w-full md:pt-6 pt-4 flex flex-col gap-2">
+      {% if section.settings.text1 != blank or section.settings.text2 != blank %}
+      <div class="roots-detail-copy w-full md:pt-0 pt-0 flex flex-col gap-2 md:justify-self-end md:text-right">
         {% if section.settings.text1 != blank %}
-          <div class="max-w-xl lg:text-4xl text-2xl font-light text-neutral-800">
+          <div class="roots-text-primary max-w-xl lg:text-4xl text-2xl font-light text-neutral-800">
             {{ section.settings.text1 }}
           </div>
         {% endif %}
 
         {% if section.settings.text2 != blank %}
-          <div class="max-w-md lg:text-4xl text-2xl font-medium text-neutral-800">
+          <div class="roots-text-secondary max-w-md lg:text-4xl text-2xl font-medium text-neutral-800 md:ml-auto">
             {{ section.settings.text2 }}
           </div>
         {% endif %}
       </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 
   {% if section.settings.image %}
@@ -44,6 +48,63 @@
     </div>
   {% endif %}
 </section>
+
+<style>
+  .roots-section .roots-title,
+  .roots-section .roots-eyebrow,
+  .roots-section .roots-text-primary,
+  .roots-section .roots-text-secondary {
+    text-wrap: balance;
+  }
+
+  .roots-section .roots-title p,
+  .roots-section .roots-text-primary p,
+  .roots-section .roots-text-secondary p {
+    margin: 0;
+  }
+
+  .roots-section .roots-title {
+    max-width: 11ch;
+    line-height: 0.95;
+  }
+
+  .roots-section .roots-eyebrow {
+    max-width: 28ch;
+    line-height: 1.2;
+  }
+
+  .roots-section .roots-detail-copy {
+    max-width: 24ch;
+  }
+
+  .roots-section .roots-text-primary,
+  .roots-section .roots-text-secondary {
+    line-height: 1.08;
+  }
+
+  @media (max-width: 767px) {
+    .roots-section .roots-title {
+      max-width: 10ch;
+      font-size: clamp(3rem, 16vw, 4rem);
+    }
+
+    .roots-section .roots-eyebrow {
+      max-width: 30ch;
+      font-size: clamp(1rem, 4.2vw, 1.25rem);
+    }
+
+    .roots-section .roots-detail-copy {
+      max-width: 24ch;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .roots-section .roots-text-primary,
+    .roots-section .roots-text-secondary {
+      font-size: clamp(1.3rem, 6vw, 1.65rem);
+    }
+  }
+</style>
 
 {% schema %}
 {

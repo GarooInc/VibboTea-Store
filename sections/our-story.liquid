@@ -6,13 +6,14 @@
   }
   .our-story-content { padding-left: 22vw; padding-right: 22vw; }
   .our-story-deco-tr { top: auto !important; bottom: 0 !important; width: calc({{ section.settings.deco_size }}px * 2) !important; }
+  .our-story-deco-tl { width: calc({{ section.settings.deco_size }}px * 2.6) !important; }
   @media (max-width: 767px) {
     .our-story-content { padding-left: 1.5rem; padding-right: 1.5rem; }
     .our-story-heading { font-size: 1.8rem !important; white-space: normal !important; }
     .our-story-grid { grid-template-columns: 1fr 1fr !important; gap: 0.5rem !important; margin-bottom: 1.5rem !important; }
     .our-story-img { height: 190px !important; }
     .our-story-content p { font-size: 0.8rem !important; }
-    .deco-top-left-img { width: 80px !important; top: -30px !important; left: 10px !important; }
+    .deco-top-left-img { width: 140px !important; top: -45px !important; left: 10px !important; }
     .our-story-deco { width: 50px !important; }
     .our-story-deco-tr { top: auto !important; bottom: 0; width: 80px !important; }
     .our-story-img-right-wrap { margin-top: 0 !important; order: unset !important; }
@@ -27,7 +28,7 @@
 
   <!-- Deco top-left -->
   {% if section.settings.deco_top_left %}
-    <div class="absolute pointer-events-none deco-top-left-img" style="width: calc({{ section.settings.deco_size }}px * 1.8); top: -130px; left: 50px; z-index: 9999;">
+    <div class="absolute pointer-events-none deco-top-left-img our-story-deco-tl" style="top: -150px; left: 40px; z-index: 9999;">
       <img
         src="{{ section.settings.deco_top_left | image_url: width: 600 }}"
         alt="" width="600" height="600"

@@ -241,6 +241,30 @@ form#captcha_form {
     flex-direction: column;
 }
 
+[id^="appstle_subscription_widget"],
+[id^="appstle_subscription_widget"] * {
+  font-weight: 400 !important;
+}
+
+[id^="appstle_subscription_widget"] strong,
+[id^="appstle_subscription_widget"] b,
+[id^="appstle_subscription_widget"] label,
+[id^="appstle_subscription_widget"] .sellingplan,
+[id^="appstle_subscription_widget"] .appstle_select_label {
+  font-weight: 400 !important;
+}
+
+#insta-feed > h2 {
+  font-family: var(--font-bricolage, sans-serif) !important;
+  font-size: clamp(3.5rem, 7vw, 6.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 0.95 !important;
+  text-align: center !important;
+  margin: 0 auto 2rem !important;
+  padding: 0 1.5rem !important;
+  color: #000 !important;
+}
+
 /* Appstle subscription widget — price layout:
    Row 1: $16.00 / per unit
    Row 2: $240.00 (tachado)  $192.00 (suscripción) */
