@@ -332,10 +332,10 @@
           "settings": {
             "title": "",
             "title_color": "",
-            "title_size_v2": 0,
+            "title_size_v2": 35,
             "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
+            "instafeed_margin_top": 27,
+            "instafeed_margin_bottom": 8,
             "instafeed_margin_sides": 0,
             "show_instagram_link": true,
             "link_alignment": "left",
