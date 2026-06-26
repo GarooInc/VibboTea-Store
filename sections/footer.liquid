@@ -2,20 +2,6 @@
   class="w-screen md:min-h-[55vh] min-h-[40vh]   bg-[#1D1D1B] text-white"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
-  {% if section.settings.descripcion %}
-    {% assign social_title_parts = section.settings.descripcion | split: '?' %}
-    <div class="w-full px-6 md:px-10 pt-10 md:pt-14 pb-6 md:pb-4 text-center">
-      <h2 class="text-[clamp(2.75rem,9vw,6.5rem)] font-bold font-bricolage leading-[0.95] text-white mx-auto max-w-6xl">
-        {{ social_title_parts[0] }}?
-      </h2>
-      {% if social_title_parts[1] != blank %}
-        <p class="font-bricolage text-sm md:text-xl leading-snug text-white/80 mt-5 mx-auto max-w-3xl">
-          {{ social_title_parts[1] | strip }}
-        </p>
-      {% endif %}
-    </div>
-  {% endif %}
-
   <!-- VERSION MOBILE -->
   <div class="md:hidden flex py-10 w-full flex-col items-center justify-between px-5">
     <!-- LOGO -->
@@ -29,6 +15,11 @@
           height="{{ section.settings.logo.height }}"
         >
       {% endif %}
+      {% if section.settings.descripcion %}
+      <p class="md:text-[1.2vw] text-xs text-white mt-2 pt-5 md:pr-[15vw] font-bricolage leading-tight">
+        {{ section.settings.descripcion | newline_to_br}}
+      </p>
+    {% endif %}
     </div>
      <!-- SOCIALS -->
     <div class="flex pl-2 gap-4 md:pb-20 ">
@@ -93,7 +84,11 @@
       >
     {% endif %}
   <!-- descripcion debajo del footer -->
-    </div>
+    {% if section.settings.descripcion %}
+      <p class="md:text-[1.2vw] text-xs text-white mt-2 pt-5 md:pr-[15vw] font-bricolage leading-tight">
+        {{ section.settings.descripcion }}
+      </p>
+    {% endif %}</div>
 
       <!-- seccion de iconos de redes sociales -->
       <div class="flex pl-2 gap-4 md:pb-20 ">
