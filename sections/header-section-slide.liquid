@@ -139,6 +139,7 @@
                 type="button"
                 class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
                 aria-label="Show disclaimer"
+                aria-expanded="false"
               >
                 i
               </button>
@@ -206,12 +207,36 @@
   top: 34%;
   right: 1rem;
   width: max-content;
+  overflow: visible;
   padding: 0.75rem;
   margin: -0.75rem;
 }
 
+.hero-disclaimer-tooltip {
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: min(18rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+}
+
+.hero-disclaimer-tooltip span {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-size: 0.875rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
 .hero-disclaimer-trigger:hover .hero-disclaimer-tooltip,
-.hero-disclaimer-trigger:focus-within .hero-disclaimer-tooltip {
+.hero-disclaimer-trigger:focus-within .hero-disclaimer-tooltip,
+.hero-disclaimer-trigger.is-open .hero-disclaimer-tooltip {
   opacity: 1;
 }
 
@@ -313,6 +338,39 @@
   requestAnimationFrame(setHeroSpacer);
   document.addEventListener('DOMContentLoaded', function () { requestAnimationFrame(setHeroSpacer); });
   window.addEventListener('resize', setHeroSpacer);
+})();
+</script>
+
+<script>
+(function () {
+  function closeOtherDisclaimers(currentTrigger) {
+    document.querySelectorAll('.hero-disclaimer-trigger.is-open').forEach(function (trigger) {
+      if (trigger === currentTrigger) return;
+      trigger.classList.remove('is-open');
+      var button = trigger.querySelector('button');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    var button = event.target.closest('.hero-disclaimer-trigger button');
+    if (button) {
+      var trigger = button.closest('.hero-disclaimer-trigger');
+      var isOpen = trigger.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      closeOtherDisclaimers(trigger);
+      return;
+    }
+
+    if (!event.target.closest('.hero-disclaimer-trigger')) {
+      closeOtherDisclaimers(null);
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+    closeOtherDisclaimers(null);
+  });
 })();
 </script>
 
