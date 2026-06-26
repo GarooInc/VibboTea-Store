@@ -65,40 +65,40 @@
         <div id="pledgeTrack-{{ section.id }}" class="pledge-scroll-track flex gap-8 items-center">
           {% for i in (1..4) %}
             {% if section.settings.image %}
-              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
                 <img
                   src="{{ section.settings.image | image_url: width: 1200 }}"
                   alt="Imagen 1"
-                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  class="w-full h-auto max-h-[230px] object-contain object-center"
                   width="{{ section.settings.image.width }}"
                   height="{{ section.settings.image.height }}"
-                  loading="lazy"
+                  loading="eager"
                 >
               </div>
             {% endif %}
 
             {% if section.settings.image2 %}
-              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
                 <img
                   src="{{ section.settings.image2 | image_url: width: 1200 }}"
                   alt="Imagen 2"
-                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  class="w-full h-auto max-h-[230px] object-contain object-center"
                   width="{{ section.settings.image2.width }}"
                   height="{{ section.settings.image2.height }}"
-                  loading="lazy"
+                  loading="eager"
                 >
               </div>
             {% endif %}
 
             {% if section.settings.image3 %}
-              <div class="pledge-scroll-card min-w-[70vw] bg-white rounded-xl flex items-center justify-center p-5 h-[320px]">
+              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
                 <img
                   src="{{ section.settings.image3 | image_url: width: 1200 }}"
                   alt="Imagen 3"
-                  class="w-full h-auto max-h-[280px] object-contain object-center"
+                  class="w-full h-auto max-h-[230px] object-contain object-center"
                   width="{{ section.settings.image3.width }}"
                   height="{{ section.settings.image3.height }}"
-                  loading="lazy"
+                  loading="eager"
                 >
               </div>
             {% endif %}
@@ -137,7 +137,7 @@
 }
 
 .about-us-pledge-section .pledge-scroll-card.is-center {
-  transform: scale(1.08);
+  transform: scale(1.03);
   z-index: 10;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .about-us-pledge-section .pledge-scroll-card.is-center img {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 /* pledge-layout-v4: text and cards stacked in flow inside field background */
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     requestAnimationFrame(() => {
       const half = track.scrollWidth / 2;
-      const speed = 120;
+      const speed = 45;
       const duration = half / speed;
 
       track.style.animation = 'none';
