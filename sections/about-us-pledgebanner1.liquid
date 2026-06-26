@@ -1,8 +1,8 @@
 <section class="roots-section full-width flex flex-col font-bricolage relative z-10 bg-white">
-  <div class="w-full flex flex-col px-6 lg:px-28 md:pt-10 md:py-15 py-15 pb-10 md:pb-14">
+  <div class="w-full flex flex-col px-6 lg:px-28 md:pt-6 md:py-15 py-15 pb-10 md:pb-14">
 
-    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-2 md:gap-16 gap-8 items-end">
-      <div>
+    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] md:gap-16 lg:gap-24 gap-8 items-center">
+      <div class="roots-left-copy">
         <div class="w-full flex justify-start">
           {% if section.settings.title != blank %}
             <h2 class="roots-title text-6xl md:text-7xl font-semibold w-full text-left
@@ -69,23 +69,34 @@
   }
 
   .roots-section .roots-eyebrow {
-    max-width: 28ch;
+    max-width: 32ch;
     line-height: 1.2;
   }
 
   .roots-section .roots-detail-copy {
-    max-width: 24ch;
+    max-width: 38ch;
   }
 
   .roots-section .roots-text-primary,
   .roots-section .roots-text-secondary {
-    line-height: 1.08;
+    line-height: 1.05;
+  }
+
+  .roots-section .roots-text-primary {
+    max-width: 34ch;
+  }
+
+  .roots-section .roots-text-secondary {
+    max-width: 22ch;
   }
 
   @media (max-width: 767px) {
+    .roots-section .roots-copy-grid {
+      gap: 2.75rem;
+    }
+
     .roots-section .roots-title {
       max-width: 10ch;
-      font-size: clamp(3rem, 16vw, 4rem);
     }
 
     .roots-section .roots-eyebrow {
@@ -94,14 +105,21 @@
     }
 
     .roots-section .roots-detail-copy {
-      max-width: 24ch;
+      max-width: 31ch;
       margin-left: auto;
+      margin-right: auto;
       text-align: right;
     }
 
     .roots-section .roots-text-primary,
     .roots-section .roots-text-secondary {
-      font-size: clamp(1.3rem, 6vw, 1.65rem);
+      font-size: clamp(1.35rem, 5.8vw, 1.55rem);
+      line-height: 1.1;
+    }
+
+    .roots-section .roots-text-primary,
+    .roots-section .roots-text-secondary {
+      max-width: 100%;
     }
   }
 </style>
