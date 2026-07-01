@@ -25,7 +25,7 @@
             "title_sec": "",
             "desc_sec": "",
             "button_text": "APPLY TODAY",
-            "button_link": "drinkvibbo.com/pages/collab",
+            "button_link": "/pages/collab",
             "link_popup": false,
             "hover_text": "",
             "button_position": "center"
