@@ -210,6 +210,7 @@ body {
   padding-top: var(--site-header-offset, 110px);
 }
 
+
 .subscriptions_app_embed_block label {
     font-size: 14px !important;
 }
@@ -220,6 +221,12 @@ body {
 
 .shopify_subscriptions_app_policy{
   color: #6B7280;
+}
+
+.collabs-page__main,
+.collabs-page__partnership {
+  padding-bottom: 8px !important;
+  margin-bottom: 0 !important;
 }
 
 /* CSS variables for Judge.me star colors (used as fallback) */
