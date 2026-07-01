@@ -9,13 +9,54 @@
  */
 {
   "sections": {
+    "cinta_newsletter_FbwDR7": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "topbar_announcement_text": "",
+        "topbar_link": ""
+      }
+    },
+    "cinta_newsletter_7e8DLt": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "topbar_announcement_text": "",
+        "topbar_link": ""
+      }
+    },
+    "cinta_newsletter_WN6mcX": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "topbar_announcement_text": "",
+        "topbar_link": ""
+      }
+    },
+    "cinta_newsletter_kUTmCY": {
+      "type": "cinta-newsletter",
+      "name": "Liston",
+      "settings": {
+        "topbar_announcement_text": "",
+        "topbar_link": ""
+      }
+    },
     "collabs": {
       "type": "apps",
       "blocks": {
         "f08151e4-9174-40b5-a131-5848c2de39fd": {
           "type": "shopify://apps/collabs/blocks/application-page/54758706-9f25-4fa9-a553-64720a4c998b",
           "settings": {
-            "heading": "Join the VIBBO Tea community"
+            "heading": "Join the VIBBO Tea community",
+            "show_square_logo": true,
+            "show_partnership_info": true,
+            "button_text": "Apply now",
+            "number_of_images": "4",
+            "logo_position": "above",
+            "corner_style": "square",
+            "button_background_color": "#000000",
+            "button_label_color": "#ffffff",
+            "link_color": "#2c6ecb"
           }
         }
       },
@@ -26,6 +67,10 @@
     }
   },
   "order": [
+    "cinta_newsletter_FbwDR7",
+    "cinta_newsletter_7e8DLt",
+    "cinta_newsletter_WN6mcX",
+    "cinta_newsletter_kUTmCY",
     "collabs"
   ]
 }
