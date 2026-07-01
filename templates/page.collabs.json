@@ -9,38 +9,6 @@
  */
 {
   "sections": {
-    "cinta_newsletter_FbwDR7": {
-      "type": "cinta-newsletter",
-      "name": "Liston",
-      "settings": {
-        "topbar_announcement_text": "",
-        "topbar_link": ""
-      }
-    },
-    "cinta_newsletter_7e8DLt": {
-      "type": "cinta-newsletter",
-      "name": "Liston",
-      "settings": {
-        "topbar_announcement_text": "",
-        "topbar_link": ""
-      }
-    },
-    "cinta_newsletter_WN6mcX": {
-      "type": "cinta-newsletter",
-      "name": "Liston",
-      "settings": {
-        "topbar_announcement_text": "",
-        "topbar_link": ""
-      }
-    },
-    "cinta_newsletter_kUTmCY": {
-      "type": "cinta-newsletter",
-      "name": "Liston",
-      "settings": {
-        "topbar_announcement_text": "",
-        "topbar_link": ""
-      }
-    },
     "collabs": {
       "type": "apps",
       "blocks": {
@@ -67,10 +35,6 @@
     }
   },
   "order": [
-    "cinta_newsletter_FbwDR7",
-    "cinta_newsletter_7e8DLt",
-    "cinta_newsletter_WN6mcX",
-    "cinta_newsletter_kUTmCY",
     "collabs"
   ]
 }
