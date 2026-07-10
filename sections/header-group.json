@@ -16,8 +16,8 @@
       "settings": {
         "show_topbar": true,
         "isotipe": "shopify://shop_images/isotipo_black.png",
-        "topbar_announcement_text": "<p>Sign-up to our newsletter</p>",
-        "topbar_announcement_text_2": "<p>Sign-up to our newsletter</p>",
+        "topbar_announcement_text": "<p>Get your mystery discount</p>",
+        "topbar_announcement_text_2": "<p>Get your mystery discount</p>",
         "topbar_link": "shopify://pages/newsletter",
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/Logotipo_Blanco_Vibbo.png",
@@ -25,6 +25,7 @@
         "logo_size_mobile": 92,
         "header_height_desktop": 56,
         "header_height_mobile": 52,
+        "cart_vertical_offset": -5,
         "cart_icon_size_desktop": 25,
         "cart_icon_size_mobile": 19,
         "header_background": "semi-transparent"
