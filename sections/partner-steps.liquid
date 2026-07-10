@@ -22,13 +22,28 @@
     }
     .partner-step-img-wrap,
     .partner-step-img-right {
-      width: min(100%, 430px);
+      width: min(100%, 650px);
       max-width: none;
+    }
+    .partner-step-img {
+      height: clamp(360px, 30vw, 460px) !important;
     }
     .partner-step-img-wrap { justify-self: start; }
     .partner-step-img-right { justify-self: end; }
+    .partner-step-row { align-items: start !important; margin-bottom: 2rem !important; }
+    .partner-step-row > * {
+      min-width: 0;
+    }
+    /* La imagen de la primera fila se estira para llenar la altura de la columna de texto (evita banda vacía) */
+    .partner-step-row:first-of-type .partner-step-img-right {
+      align-self: stretch;
+    }
+    .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
+      height: 100% !important;
+    }
     .partner-step-copy {
-      max-width: 430px;
+      max-width: 650px;
+      padding-top: 0.5rem;
     }
     .partner-step-copy-right {
       justify-self: end;
@@ -36,7 +51,11 @@
     .partner-step-copy-left {
       justify-self: start;
     }
-    .partner-step-title { text-align: left !important; }
+    .partner-step-title { text-align: center !important; margin-bottom: 3rem !important; }
+    /* Baja solo la columna de texto de la primera fila para que quede debajo de la hoja */
+    .partner-step-row:first-of-type .partner-step-copy {
+      padding-top: 150px;
+    }
     .cta-title { text-align: center !important; }
     .cta-text { text-align: center !important; max-width: 700px; margin-left: auto; margin-right: auto; }
   }
@@ -52,18 +71,18 @@
 <div class="w-full bg-white py-10 md:py-16 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
 
   {% if section.settings.deco_top_left %}
-    <div class="absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-10">
+    <div class="absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-0">
       <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
     </div>
   {% endif %}
 
   {% if section.settings.deco_bottom_right %}
-    <div class="absolute bottom-0 w-20 md:w-64 pointer-events-none z-10" style="right: 20px;">
+    <div class="absolute bottom-0 w-20 md:w-64 pointer-events-none z-0" style="right: 20px;">
       <img src="{{ section.settings.deco_bottom_right | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
     </div>
   {% endif %}
 
-  <div class="partner-steps-content w-full px-6">
+  <div class="partner-steps-content w-full px-6 relative z-10">
 
   {% assign step_index = 0 %}
   {% for block in section.blocks %}
@@ -79,45 +98,45 @@
           {% if block.settings.image != blank %}
             <div class="partner-step-img-wrap rounded-xl overflow-hidden">
               <img
-                src="{{ block.settings.image | image_url: width: 600 }}"
+                src="{{ block.settings.image | image_url: width: 800 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 220px;"
-                width="600" height="400"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 300px;"
+                width="800" height="460"
               >
             </div>
           {% endif %}
           <!-- Text RIGHT -->
-          <div class="partner-step-copy partner-step-copy-right flex flex-col justify-center">
+          <div class="partner-step-copy partner-step-copy-right flex flex-col justify-start">
             {% if block.settings.title != blank %}
-              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
+              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-6xl lg:text-8xl text-black mb-2 md:mb-6 lg:mb-40 text-center">
                 {{ block.settings.title }}
               </h2>
             {% endif %}
             {% if block.settings.text != blank %}
-              <p class="partner-step-text partner-step-text-right text-black text-xs md:text-base leading-relaxed">{{ block.settings.text }}</p>
+              <p class="partner-step-text partner-step-text-right text-black text-xs md:text-2xl lg:text-3xl leading-relaxed">{{ block.settings.text }}</p>
             {% endif %}
           </div>
 
         {% else %}
           <!-- Text LEFT -->
-          <div class="partner-step-copy partner-step-copy-left flex flex-col justify-center">
+          <div class="partner-step-copy partner-step-copy-left flex flex-col justify-start">
             {% if block.settings.title != blank %}
-              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-5xl text-black mb-2 md:mb-4 text-center">
+              <h2 class="partner-step-title font-bricolage font-bold text-xl md:text-6xl lg:text-8xl text-black mb-2 md:mb-6 lg:mb-40 text-center">
                 {{ block.settings.title }}
               </h2>
             {% endif %}
             {% if block.settings.text != blank %}
-              <p class="partner-step-text text-black text-xs md:text-base leading-relaxed">{{ block.settings.text }}</p>
+              <p class="partner-step-text text-black text-xs md:text-2xl lg:text-3xl leading-relaxed">{{ block.settings.text }}</p>
             {% endif %}
           </div>
           <!-- Image RIGHT -->
           {% if block.settings.image != blank %}
             <div class="partner-step-img-right rounded-xl overflow-hidden">
               <img
-                src="{{ block.settings.image | image_url: width: 600 }}"
+                src="{{ block.settings.image | image_url: width: 800 }}"
                 alt="{{ block.settings.title }}"
-                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 220px;"
-                width="600" height="400"
+                class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 300px;"
+                width="800" height="460"
               >
             </div>
           {% endif %}
