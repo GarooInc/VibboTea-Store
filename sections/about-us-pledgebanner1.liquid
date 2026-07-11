@@ -1,38 +1,32 @@
 <section class="roots-section full-width flex flex-col font-bricolage relative z-10 bg-white">
   <div class="w-full flex flex-col px-6 lg:px-28 md:pt-6 md:py-15 py-15 pb-10 md:pb-14">
 
-    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12 lg:gap-16 gap-8 items-center">
-      <div class="roots-left-copy">
-        <div class="w-full flex justify-start">
-          {% if section.settings.title != blank %}
-            <h2 class="roots-title text-6xl md:text-7xl font-semibold w-full text-left
-              tracking-tight text-black max-w-2xl md:pt-4">{{ section.settings.title }}</h2>
-          {% endif %}
+    <div class="roots-copy-grid">
+      {% if section.settings.title != blank %}
+        <div class="roots-title-wrap">
+          <h2 class="roots-title text-6xl md:text-7xl font-semibold w-full text-left
+            tracking-tight text-black md:pt-4">{{ section.settings.title }}</h2>
         </div>
+      {% endif %}
 
-        {% if section.settings.eyebrow != blank %}
-          <div class="w-full md:pt-10 pt-6">
-            <p class="roots-eyebrow max-w-4xl lg:text-3xl text-xl font-light text-black leading-relaxed">
-              {{ section.settings.eyebrow }}
-            </p>
-          </div>
-        {% endif %}
-      </div>
+      {% if section.settings.text1 != blank %}
+        <div class="roots-text-primary lg:text-4xl text-2xl font-light text-neutral-800">
+          {{ section.settings.text1 }}
+        </div>
+      {% endif %}
 
-      {% if section.settings.text1 != blank or section.settings.text2 != blank %}
-      <div class="roots-detail-copy w-full md:pt-0 pt-0 flex flex-col gap-2 md:justify-self-start md:text-left">
-        {% if section.settings.text1 != blank %}
-          <div class="roots-text-primary max-w-xl lg:text-4xl text-2xl font-light text-neutral-800">
-            {{ section.settings.text1 }}
-          </div>
-        {% endif %}
+      {% if section.settings.eyebrow != blank %}
+        <div class="roots-eyebrow-wrap">
+          <p class="roots-eyebrow lg:text-3xl text-xl font-light text-black leading-relaxed">
+            {{ section.settings.eyebrow }}
+          </p>
+        </div>
+      {% endif %}
 
-        {% if section.settings.text2 != blank %}
-          <div class="roots-text-secondary max-w-md lg:text-4xl text-2xl font-medium text-neutral-800">
-            {{ section.settings.text2 }}
-          </div>
-        {% endif %}
-      </div>
+      {% if section.settings.text2 != blank %}
+        <div class="roots-text-secondary lg:text-4xl text-2xl font-medium text-neutral-800">
+          {{ section.settings.text2 }}
+        </div>
       {% endif %}
     </div>
   </div>
@@ -50,14 +44,10 @@
 </section>
 
 <style>
-  .roots-section .roots-title,
-  .roots-section .roots-eyebrow,
-  .roots-section .roots-text-primary {
-    text-wrap: balance;
-  }
-
-  .roots-section .roots-text-secondary {
-    text-wrap: nowrap;
+  .roots-section .roots-copy-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 
   .roots-section .roots-title p,
@@ -69,29 +59,61 @@
   .roots-section .roots-title {
     max-width: 11ch;
     line-height: 0.95;
+    text-wrap: balance;
   }
 
   .roots-section .roots-eyebrow {
     max-width: 32ch;
     line-height: 1.2;
-  }
-
-  .roots-section .roots-detail-copy {
-    max-width: 44ch;
-    margin-left: -1.5rem;
-  }
-
-  .roots-section .roots-text-primary,
-  .roots-section .roots-text-secondary {
-    line-height: 1.05;
+    text-wrap: balance;
   }
 
   .roots-section .roots-text-primary {
-    max-width: 42ch;
+    line-height: 1.05;
+    text-wrap: balance;
   }
 
   .roots-section .roots-text-secondary {
-    max-width: none;
+    line-height: 1.05;
+    text-wrap: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .roots-section .roots-copy-grid {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-rows: auto auto;
+      column-gap: clamp(2rem, 5vw, 4rem);
+      row-gap: clamp(2.5rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .roots-section .roots-title-wrap {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .roots-section .roots-text-primary {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: start;
+      justify-self: start;
+      max-width: 22ch;
+      padding-top: 0.25rem;
+    }
+
+    .roots-section .roots-eyebrow-wrap {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .roots-section .roots-text-secondary {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
+      text-align: right;
+      max-width: none;
+      width: 100%;
+    }
   }
 
   @media (max-width: 767px) {
@@ -108,26 +130,17 @@
       font-size: clamp(1rem, 4.2vw, 1.25rem);
     }
 
-    .roots-section .roots-detail-copy {
-      max-width: 31ch;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: right;
-    }
-
-    .roots-section .roots-text-secondary {
-      text-wrap: balance;
-    }
-
     .roots-section .roots-text-primary,
     .roots-section .roots-text-secondary {
       font-size: clamp(1.35rem, 5.8vw, 1.55rem);
       line-height: 1.1;
+      text-align: right;
+      margin-left: auto;
+      max-width: 31ch;
     }
 
-    .roots-section .roots-text-primary,
     .roots-section .roots-text-secondary {
-      max-width: 100%;
+      text-wrap: balance;
     }
   }
 </style>
