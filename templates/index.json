@@ -320,6 +320,7 @@
             "name": "Alex M.",
             "comment": "I sh*t you not my headaches are GONE after making this part of my morning ritual.",
             "product": "shopify://products/hydra-boost-natural-energy",
+            "product_handle": "hydra-boost-natural-energy",
             "custom_label": ""
           }
         },
@@ -330,6 +331,7 @@
             "name": "Jordan K.",
             "comment": "These are a lifesaver — I feel so much better after using them every day.",
             "product": "shopify://products/chill-vibes-natural-relax",
+            "product_handle": "chill-vibes-natural-relax",
             "custom_label": ""
           }
         },
@@ -340,6 +342,7 @@
             "name": "Taylor R.",
             "comment": "I add these to no joke every beverage I consume throughout the day.",
             "product": "shopify://products/gut-bliss-detox",
+            "product_handle": "gut-bliss-detox",
             "custom_label": ""
           }
         },
@@ -350,6 +353,7 @@
             "name": "Casey L.",
             "comment": "Bloat be gone! I noticed less bloat and pain right away.",
             "product": "shopify://products/gut-bliss-detox",
+            "product_handle": "gut-bliss-detox",
             "custom_label": ""
           }
         }

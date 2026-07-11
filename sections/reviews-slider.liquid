@@ -49,14 +49,21 @@
                   </p>
                 {% endif %}
 
-                {% if block.settings.product != blank %}
+                {% liquid
+                  assign review_product = block.settings.product
+                  if review_product == blank and block.settings.product_handle != blank
+                    assign review_product = all_products[block.settings.product_handle]
+                  endif
+                %}
+
+                {% if review_product != blank %}
                   {% assign link_label = block.settings.custom_label %}
                   {% if link_label == blank %}
-                    {% assign link_label = 'Shop ' | append: block.settings.product.title %}
+                    {% assign link_label = 'Shop ' | append: review_product.title %}
                   {% endif %}
                   <a
-                    href="{{ block.settings.product.url }}"
-                    class="text-black font-bricolage underline md:text-[0.9vw] text-[3vw] hover:opacity-70 transition-opacity mt-2 shrink-0"
+                    href="{{ review_product.url }}"
+                    class="text-black font-bricolage underline text-sm md:text-base hover:opacity-70 transition-opacity mt-2 shrink-0"
                   >
                     {{ link_label }}
                   </a>
@@ -246,6 +253,12 @@
         },
         {
           "type": "text",
+          "id": "product_handle",
+          "label": "Product handle",
+          "info": "Fallback when the product picker is empty (e.g. after Git sync). Example: hydra-boost-natural-energy"
+        },
+        {
+          "type": "text",
           "id": "custom_label",
           "label": "Custom product link label",
           "info": "Optional. Defaults to \"Shop {product title}\"."
@@ -263,7 +276,8 @@
           "settings": {
             "stars": 5,
             "name": "Alex M.",
-            "comment": "I sh*t you not my headaches are GONE after making this part of my morning ritual."
+            "comment": "I sh*t you not my headaches are GONE after making this part of my morning ritual.",
+            "product_handle": "hydra-boost-natural-energy"
           }
         },
         {
@@ -271,7 +285,8 @@
           "settings": {
             "stars": 5,
             "name": "Jordan K.",
-            "comment": "These are a lifesaver — I feel so much better after using them every day."
+            "comment": "These are a lifesaver — I feel so much better after using them every day.",
+            "product_handle": "chill-vibes-natural-relax"
           }
         },
         {
@@ -279,7 +294,8 @@
           "settings": {
             "stars": 5,
             "name": "Taylor R.",
-            "comment": "I add these to no joke every beverage I consume throughout the day."
+            "comment": "I add these to no joke every beverage I consume throughout the day.",
+            "product_handle": "gut-bliss-detox"
           }
         },
         {
@@ -287,7 +303,8 @@
           "settings": {
             "stars": 5,
             "name": "Casey L.",
-            "comment": "Bloat be gone! I noticed less bloat and pain right away."
+            "comment": "Bloat be gone! I noticed less bloat and pain right away.",
+            "product_handle": "gut-bliss-detox"
           }
         }
       ]
