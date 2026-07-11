@@ -1,0 +1,36 @@
+{% comment %}
+  Product carousel review row: stars + "reviews" or "No reviews" (no count).
+
+  Accepts:
+  - product: {Product} The product to show review info for
+{% endcomment %}
+
+{% liquid
+  assign review_count = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count | plus: 0
+  assign rating_value = product.metafields.reviews.rating.value | default: 0 | plus: 0
+
+  if review_count == 0 and product.metafields.judgeme.badge != blank
+    assign badge_html = product.metafields.judgeme.badge | strip
+    if badge_html contains "data-number-of-reviews='"
+      assign count_chunk = badge_html | split: "data-number-of-reviews='" | last | split: "'" | first
+      assign review_count = count_chunk | plus: 0
+    endif
+    if badge_html contains "data-average-rating='"
+      assign rating_chunk = badge_html | split: "data-average-rating='" | last | split: "'" | first
+      assign rating_value = rating_chunk | plus: 0
+    endif
+  endif
+
+  assign rating_value = rating_value | round
+%}
+
+<div class="product-carousel-reviews flex items-center gap-2 pt-1">
+  {% render 'star-rating', rating: rating_value, size_class: 'w-4 h-4' %}
+  <span class="font-bricolage text-sm text-[#575757]">
+    {% if review_count > 0 %}
+      reviews
+    {% else %}
+      No reviews
+    {% endif %}
+  </span>
+</div>
