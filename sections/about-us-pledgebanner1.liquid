@@ -1,7 +1,7 @@
 <section class="roots-section full-width flex flex-col font-bricolage relative z-10 bg-white">
   <div class="w-full flex flex-col px-6 lg:px-28 md:pt-6 md:py-15 py-15 pb-10 md:pb-14">
 
-    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] md:gap-16 lg:gap-24 gap-8 items-center">
+    <div class="roots-copy-grid grid grid-cols-1 md:grid-cols-[1fr_1fr] md:gap-12 lg:gap-16 gap-8 items-center">
       <div class="roots-left-copy">
         <div class="w-full flex justify-start">
           {% if section.settings.title != blank %}
@@ -20,7 +20,7 @@
       </div>
 
       {% if section.settings.text1 != blank or section.settings.text2 != blank %}
-      <div class="roots-detail-copy w-full md:pt-0 pt-0 flex flex-col gap-2 md:justify-self-end md:text-right">
+      <div class="roots-detail-copy w-full md:pt-0 pt-0 flex flex-col gap-2 md:justify-self-start md:text-left">
         {% if section.settings.text1 != blank %}
           <div class="roots-text-primary max-w-xl lg:text-4xl text-2xl font-light text-neutral-800">
             {{ section.settings.text1 }}
@@ -28,7 +28,7 @@
         {% endif %}
 
         {% if section.settings.text2 != blank %}
-          <div class="roots-text-secondary max-w-md lg:text-4xl text-2xl font-medium text-neutral-800 md:ml-auto">
+          <div class="roots-text-secondary max-w-md lg:text-4xl text-2xl font-medium text-neutral-800">
             {{ section.settings.text2 }}
           </div>
         {% endif %}
@@ -52,9 +52,12 @@
 <style>
   .roots-section .roots-title,
   .roots-section .roots-eyebrow,
-  .roots-section .roots-text-primary,
-  .roots-section .roots-text-secondary {
+  .roots-section .roots-text-primary {
     text-wrap: balance;
+  }
+
+  .roots-section .roots-text-secondary {
+    text-wrap: nowrap;
   }
 
   .roots-section .roots-title p,
@@ -74,7 +77,8 @@
   }
 
   .roots-section .roots-detail-copy {
-    max-width: 38ch;
+    max-width: 44ch;
+    margin-left: -1.5rem;
   }
 
   .roots-section .roots-text-primary,
@@ -83,11 +87,11 @@
   }
 
   .roots-section .roots-text-primary {
-    max-width: 34ch;
+    max-width: 42ch;
   }
 
   .roots-section .roots-text-secondary {
-    max-width: 22ch;
+    max-width: none;
   }
 
   @media (max-width: 767px) {
@@ -109,6 +113,10 @@
       margin-left: auto;
       margin-right: auto;
       text-align: right;
+    }
+
+    .roots-section .roots-text-secondary {
+      text-wrap: balance;
     }
 
     .roots-section .roots-text-primary,
