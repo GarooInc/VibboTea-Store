@@ -176,7 +176,7 @@
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fcc7eb468c244609a93068c66441f623.mp4",
             "text": "Reset",
             "button_text": "get refreshed",
-            "button_url": "shopify://products/gut-bliss-detox"
+            "button_url": "shopify://products/gut-bliss-natural-detox"
           }
         },
         "video_block_4YGmdY": {
@@ -341,8 +341,8 @@
             "stars": 5,
             "name": "Taylor R.",
             "comment": "I add these to no joke every beverage I consume throughout the day.",
-            "product": "shopify://products/gut-bliss-detox",
-            "product_handle": "gut-bliss-detox",
+            "product": "shopify://products/gut-bliss-natural-detox",
+            "product_handle": "gut-bliss-natural-detox",
             "custom_label": ""
           }
         },
@@ -352,8 +352,8 @@
             "stars": 5,
             "name": "Casey L.",
             "comment": "Bloat be gone! I noticed less bloat and pain right away.",
-            "product": "shopify://products/gut-bliss-detox",
-            "product_handle": "gut-bliss-detox",
+            "product": "shopify://products/gut-bliss-natural-detox",
+            "product_handle": "gut-bliss-natural-detox",
             "custom_label": ""
           }
         }
