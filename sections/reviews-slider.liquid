@@ -31,24 +31,20 @@
           {% for block in section.blocks %}
             {% if block.type == 'review' %}
               <div
-                class="review-card md:min-w-[20vw] min-w-[60vw] w-full bg-white rounded-xl flex flex-col items-center justify-start review-card-focus md:px-6 px-5 md:py-8 py-6 md:min-h-[22vw] min-h-[55vw]"
+                class="review-card md:min-w-[20vw] min-w-[60vw] w-full bg-white rounded-xl flex flex-col items-center gap-3 review-card-focus md:px-6 px-5 md:py-8 py-6"
                 {{ block.shopify_attributes }}
               >
                 {% assign stars = block.settings.stars | default: 5 %}
-                <div class="review-stars text-[#FFCD51] md:text-lg text-base mb-4" aria-label="{{ stars }} out of 5 stars">
-                  {% for star in (1..stars) %}
-                    <span aria-hidden="true">★</span>
-                  {% endfor %}
-                </div>
+                {% render 'star-rating', rating: stars, size_class: 'w-4 h-4 md:w-5 md:h-5' %}
 
                 {% if block.settings.name != blank %}
-                  <p class="font-medium text-black font-bricolage xl:text-lg text-base mb-3 text-center">
+                  <p class="font-medium text-black font-bricolage xl:text-lg text-base text-center">
                     {{ block.settings.name }}
                   </p>
                 {% endif %}
 
                 {% if block.settings.comment != blank %}
-                  <p class="text-black font-bricolage text-center md:text-[0.9vw] text-[3vw] md:min-h-[8vw] min-h-[15vw] flex-1 md:px-2 px-1 mb-4">
+                  <p class="text-black font-bricolage text-center md:text-[0.9vw] text-[3vw] md:px-2 px-1">
                     {{ block.settings.comment }}
                   </p>
                 {% endif %}
@@ -60,7 +56,7 @@
                   {% endif %}
                   <a
                     href="{{ block.settings.product.url }}"
-                    class="text-black font-bricolage underline md:text-[0.9vw] text-[3vw] hover:opacity-70 transition-opacity mt-auto"
+                    class="text-black font-bricolage underline md:text-[0.9vw] text-[3vw] hover:opacity-70 transition-opacity mt-2 shrink-0"
                   >
                     {{ link_label }}
                   </a>

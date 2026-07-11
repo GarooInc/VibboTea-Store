@@ -1,0 +1,28 @@
+{% comment %}
+  Renders a 5-star rating row using the same SVG stars as product cards.
+
+  Accepts:
+  - rating: {Number} Star count from 1 to 5
+  - size_class: {String} Optional Tailwind size classes (default: w-4 h-4)
+{% endcomment %}
+
+{% assign star_rating = rating | default: 5 | plus: 0 %}
+{% assign star_size_class = size_class | default: 'w-4 h-4' %}
+
+<div
+  class="flex items-center gap-0.5"
+  role="img"
+  aria-label="{{ star_rating }} out of 5 stars"
+>
+  {% for i in (1..5) %}
+    {% if i <= star_rating %}
+      <svg class="{{ star_size_class }}" viewBox="0 0 20 20" style="color: var(--jdgm-star-color, #FFD700); fill: currentColor;" aria-hidden="true">
+        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+      </svg>
+    {% else %}
+      <svg class="{{ star_size_class }}" viewBox="0 0 20 20" style="color: var(--jdgm-star-empty-color, #D1D5DB); fill: currentColor;" aria-hidden="true">
+        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+      </svg>
+    {% endif %}
+  {% endfor %}
+</div>
