@@ -26,7 +26,7 @@
     </div>
 
     <div class="pledge-cards relative z-10">
-      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+      <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image | image_url: width: 1200 }}"
           alt="Imagen 1"
@@ -37,7 +37,7 @@
         >
       </div>
 
-      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+      <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image2 | image_url: width: 1200 }}"
           alt="Imagen 2"
@@ -48,7 +48,7 @@
         >
       </div>
 
-      <div class="pledge-card flex items-center justify-center rounded-xl bg-white p-5 md:p-6 h-[320px] md:h-[400px]">
+      <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image3 | image_url: width: 1200 }}"
           alt="Imagen 3"
@@ -65,7 +65,7 @@
         <div id="pledgeTrack-{{ section.id }}" class="pledge-scroll-track flex gap-8 items-center">
           {% for i in (1..4) %}
             {% if section.settings.image %}
-              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
+              <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image | image_url: width: 1200 }}"
                   alt="Imagen 1"
@@ -78,7 +78,7 @@
             {% endif %}
 
             {% if section.settings.image2 %}
-              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
+              <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image2 | image_url: width: 1200 }}"
                   alt="Imagen 2"
@@ -91,7 +91,7 @@
             {% endif %}
 
             {% if section.settings.image3 %}
-              <div class="pledge-scroll-card min-w-[72vw] bg-white/95 rounded-xl flex items-center justify-center p-5 h-[260px] shadow-sm">
+              <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image3 | image_url: width: 1200 }}"
                   alt="Imagen 3"
