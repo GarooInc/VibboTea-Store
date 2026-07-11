@@ -310,6 +310,61 @@
         "title": "Product ingredients"
       }
     },
+    "reviews_slider_home": {
+      "type": "reviews-slider",
+      "blocks": {
+        "review_hydra_boost": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Alex M.",
+            "comment": "I sh*t you not my headaches are GONE after making this part of my morning ritual.",
+            "product": "shopify://products/hydra-boost-natural-energy",
+            "custom_label": ""
+          }
+        },
+        "review_chill_vibes": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Jordan K.",
+            "comment": "These are a lifesaver — I feel so much better after using them every day.",
+            "product": "shopify://products/chill-vibes-natural-relax",
+            "custom_label": ""
+          }
+        },
+        "review_gut_bliss": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Taylor R.",
+            "comment": "I add these to no joke every beverage I consume throughout the day.",
+            "product": "shopify://products/gut-bliss-detox",
+            "custom_label": ""
+          }
+        },
+        "review_gut_bliss_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Casey L.",
+            "comment": "Bloat be gone! I noticed less bloat and pain right away.",
+            "product": "shopify://products/gut-bliss-detox",
+            "custom_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_hydra_boost",
+        "review_chill_vibes",
+        "review_gut_bliss",
+        "review_gut_bliss_2"
+      ],
+      "name": "Reviews Slider",
+      "settings": {
+        "title": "What people are saying"
+      }
+    },
     "main_socials_section_7yLtAb": {
       "type": "main-socials-section",
       "disabled": true,
@@ -414,6 +469,7 @@
     "main_carousel_NYTaep",
     "main_universe_section_yaVDzH",
     "prodcut_ingredients_NLmqhN",
+    "reviews_slider_home",
     "main_socials_section_7yLtAb",
     "1774481532f295fddf",
     "faq_UxEWVW"

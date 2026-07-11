@@ -1,0 +1,301 @@
+<div
+  class="reviews-slider w-full xl:py-10 xl:pb-40 py-15 pb-25 overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
+  style="width: 100vw; margin-left: calc(50% - 50vw);"
+  {{ section.shopify_attributes }}
+>
+  <div class="w-full h-full mx-auto flex flex-col items-center justify-center">
+
+    {% if section.settings.title != blank %}
+      <h2 class="text-center md:text-5xl text-[8vw] text-black font-normal font-bricolage md:pb-20 pb-15">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    <div class="relative w-full overflow-visible flex items-center">
+
+      <button
+        type="button"
+        onclick="reviewsPrev()"
+        class="absolute left-2 md:left-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
+        aria-label="Previous review"
+      >
+        <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="28.2843" y="56.5685" width="40" height="40" rx="20" transform="rotate(-135 28.2843 56.5685)" fill="white" stroke="black" stroke-width="1.5"/>
+          <path d="M21.2839 28.2843H35.2846" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26.1629 33.234L21.2832 28.285L26.1629 23.3345" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div id="reviewsTrack" class="reviews-track flex md:gap-10 gap-8 reviews-animate-scroll items-center">
+        {% for i in (1..4) %}
+          {% for block in section.blocks %}
+            {% if block.type == 'review' %}
+              <div
+                class="review-card md:min-w-[20vw] min-w-[60vw] w-full bg-white rounded-xl flex flex-col items-center justify-start review-card-focus md:px-6 px-5 md:py-8 py-6 md:min-h-[22vw] min-h-[55vw]"
+                {{ block.shopify_attributes }}
+              >
+                {% assign stars = block.settings.stars | default: 5 %}
+                <div class="review-stars text-[#FFCD51] md:text-lg text-base mb-4" aria-label="{{ stars }} out of 5 stars">
+                  {% for star in (1..stars) %}
+                    <span aria-hidden="true">★</span>
+                  {% endfor %}
+                </div>
+
+                {% if block.settings.name != blank %}
+                  <p class="font-medium text-black font-bricolage xl:text-lg text-base mb-3 text-center">
+                    {{ block.settings.name }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.comment != blank %}
+                  <p class="text-black font-bricolage text-center md:text-[0.9vw] text-[3vw] md:min-h-[8vw] min-h-[15vw] flex-1 md:px-2 px-1 mb-4">
+                    {{ block.settings.comment }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.product != blank %}
+                  {% assign link_label = block.settings.custom_label %}
+                  {% if link_label == blank %}
+                    {% assign link_label = 'Shop ' | append: block.settings.product.title %}
+                  {% endif %}
+                  <a
+                    href="{{ block.settings.product.url }}"
+                    class="text-black font-bricolage underline md:text-[0.9vw] text-[3vw] hover:opacity-70 transition-opacity mt-auto"
+                  >
+                    {{ link_label }}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+
+      <button
+        type="button"
+        onclick="reviewsNext()"
+        class="absolute right-2 md:right-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
+        aria-label="Next review"
+      >
+        <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="28.2843" width="40" height="40" rx="20" transform="rotate(45 28.2843 0)" fill="white" stroke="black" stroke-width="1.5"/>
+          <path d="M35.2846 28.2843H21.2839" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30.4054 23.3345L35.2851 28.2835L30.4054 33.234" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes reviews-infinite-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .reviews-animate-scroll {
+    display: flex;
+    animation: reviews-infinite-scroll var(--reviews-scroll-duration, 60s) var(--reviews-scroll-delay, 0s) linear infinite;
+  }
+
+  .reviews-animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  .review-card-focus {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(0.95);
+  }
+
+  .review-card-focus.is-center {
+    transform: scale(1.2);
+    opacity: 1;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  (function () {
+    function detectCenterReviewCard() {
+      const cards = document.querySelectorAll('.review-card-focus');
+      if (!cards.length) return;
+
+      const viewportCenter = window.innerWidth / 2;
+      cards.forEach(function (card) {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(viewportCenter - cardCenter);
+        const activationRange = rect.width * 0.25;
+
+        if (distance < activationRange) {
+          card.classList.add('is-center');
+        } else {
+          card.classList.remove('is-center');
+        }
+      });
+
+      requestAnimationFrame(detectCenterReviewCard);
+    }
+
+    if (document.getElementById('reviewsTrack')) {
+      requestAnimationFrame(detectCenterReviewCard);
+    }
+  })();
+</script>
+
+<script>
+  (function () {
+    function setReviewsScrollSpeed() {
+      const track = document.getElementById('reviewsTrack');
+      if (!track) return;
+
+      requestAnimationFrame(function () {
+        const half = track.scrollWidth / 2;
+        const speed = 120;
+        const duration = half / speed;
+
+        track.style.animation = 'none';
+        track.offsetHeight;
+        track.style.setProperty('--reviews-scroll-duration', duration + 's');
+        track.style.setProperty('--reviews-scroll-delay', '0s');
+        track.style.animation = '';
+      });
+    }
+
+    window.addEventListener('load', setReviewsScrollSpeed);
+    window.addEventListener('resize', setReviewsScrollSpeed);
+  })();
+</script>
+
+<script>
+  (function () {
+    function getReviewCardStep() {
+      const card = document.querySelector('.review-card');
+      if (!card) return 200;
+      const gap = window.innerWidth >= 768 ? 40 : 32;
+      return card.offsetWidth + gap;
+    }
+
+    function jumpReviews(direction) {
+      const track = document.getElementById('reviewsTrack');
+      if (!track) return;
+
+      const matrix = new DOMMatrix(getComputedStyle(track).transform);
+      const currentX = matrix.m41;
+      const half = track.scrollWidth / 2;
+      const cardStep = getReviewCardStep();
+
+      let targetX = currentX - direction * cardStep;
+      if (targetX > 0) targetX -= half;
+      if (targetX < -half) targetX += half;
+
+      const durationStr = getComputedStyle(track).getPropertyValue('--reviews-scroll-duration').trim();
+      const duration = parseFloat(durationStr) || (half / 120);
+      const progress = Math.abs(targetX) / half;
+      const newDelay = -(progress * duration);
+
+      track.style.animation = 'none';
+      track.offsetHeight;
+      track.style.setProperty('--reviews-scroll-delay', newDelay + 's');
+      track.style.animation = '';
+    }
+
+    window.reviewsNext = function () { jumpReviews(1); };
+    window.reviewsPrev = function () { jumpReviews(-1); };
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Reviews Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What people are saying"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Sarah W."
+        },
+        {
+          "type": "textarea",
+          "id": "comment",
+          "label": "Comment",
+          "default": "I absolutely love this tea. The quality is amazing and the flavors are so vibrant!"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "custom_label",
+          "label": "Custom product link label",
+          "info": "Optional. Defaults to \"Shop {product title}\"."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Slider",
+      "category": "Productos",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Alex M.",
+            "comment": "I sh*t you not my headaches are GONE after making this part of my morning ritual."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Jordan K.",
+            "comment": "These are a lifesaver — I feel so much better after using them every day."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Taylor R.",
+            "comment": "I add these to no joke every beverage I consume throughout the day."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "name": "Casey L.",
+            "comment": "Bloat be gone! I noticed less bloat and pain right away."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
