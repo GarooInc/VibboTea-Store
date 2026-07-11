@@ -29,7 +29,7 @@
       <div class="flex flex-col">
 
         <a href="{{ product.url }}" class="block">
-          <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
+          <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white group">
             {%- assign has_sold_out_tag = false -%}
             {%- if product.tags contains 'Sold Out' -%}
               {%- assign has_sold_out_tag = true -%}
@@ -49,15 +49,25 @@
                 Sold Out
               </div>
             {%- endif -%}
-            {% if product.media.size > 1 %}
-              {% assign second_image = product.media[0] %}
+            {% liquid
+              assign primary_media = product.media[0] | default: product.featured_media
+              assign hover_media_index = 2
+              if product.handle == 'assorted-reset-bundle-set' or product.handle == 'filter-bags'
+                assign hover_media_index = 1
+              endif
+              assign hover_media = nil
+              if product.media.size > hover_media_index
+                assign hover_media = product.media[hover_media_index]
+              endif
+            %}
+            {% if primary_media %}
               <img
-                src="{{ second_image | image_url: width: 800 }}"
-                alt="{{ second_image.alt | escape }}"
-                width="{{ second_image.width }}"
-                height="{{ second_image.height }}"
+                src="{{ primary_media | image_url: width: 800 }}"
+                alt="{{ primary_media.alt | escape }}"
+                width="{{ primary_media.width }}"
+                height="{{ primary_media.height }}"
                 loading="lazy"
-                class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                class="{{ product_image_class }}{% if hover_media %} transition-opacity duration-350 group-hover:opacity-0{% else %} hover:scale-105 transition-transform duration-350{% endif %}"
                 {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
               >
             {% elsif product.featured_media %}
@@ -71,6 +81,17 @@
               >
             {% else %}
               <div class="w-full h-full bg-gray-200"></div>
+            {% endif %}
+            {% if hover_media %}
+              <img
+                src="{{ hover_media | image_url: width: 800 }}"
+                alt="{{ hover_media.alt | escape }}"
+                width="{{ hover_media.width }}"
+                height="{{ hover_media.height }}"
+                loading="lazy"
+                class="{{ product_image_class }} opacity-0 transition-opacity duration-350 group-hover:opacity-100"
+                {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
+              >
             {% endif %}
           </div>
 
