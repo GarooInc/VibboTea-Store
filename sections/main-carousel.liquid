@@ -57,74 +57,56 @@
 
           <div class="snap-start shrink-0 w-full md:w-[33%] px-4">
             <a href="{{ product.url }}" class="block w-full">
-              {% if product.media.size > 1 %}
-                {% assign second_image = product.media[0] %}
-                
-                <div class="relative w-full aspect-square bg-white rounded-2xl overflow-hidden">
-                  {%- assign has_sold_out_tag = false -%}
-                  {%- if product.tags contains 'Sold Out' -%}
-                    {%- assign has_sold_out_tag = true -%}
+              {% liquid
+                assign primary_media = product.media[0] | default: product.featured_media
+                assign hover_media = nil
+                if product.media.size > 1
+                  assign hover_media = product.media[1]
+                endif
+              %}
+              <div class="relative w-full aspect-square bg-white rounded-2xl overflow-hidden group">
+                {%- assign has_sold_out_tag = false -%}
+                {%- if product.tags contains 'Sold Out' -%}
+                  {%- assign has_sold_out_tag = true -%}
+                {%- endif -%}
+                {%- assign negative_stock = true -%}
+                {%- for variant in product.variants -%}
+                  {%- if variant.inventory_management == blank -%}
+                    {%- assign negative_stock = false -%}
+                    {%- break -%}
+                  {%- elsif variant.inventory_quantity > 0 -%}
+                    {%- assign negative_stock = false -%}
+                    {%- break -%}
                   {%- endif -%}
-                  {%- assign negative_stock = true -%}
-                  {%- for variant in product.variants -%}
-                    {%- if variant.inventory_management == blank -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- elsif variant.inventory_quantity > 0 -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- if has_sold_out_tag or negative_stock -%}
-                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
-                      Sold Out
-                    </div>
-                  {%- endif -%}
+                {%- endfor -%}
+                {%- if has_sold_out_tag or negative_stock -%}
+                  <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                    Sold Out
+                  </div>
+                {%- endif -%}
+                {% if primary_media %}
                   <img
-                    src="{{ second_image | image_url: width: 800 }}"
-                    alt="{{ second_image.alt | escape }}"
-                    width="{{ second_image.width }}"
-                    height="{{ second_image.height }}"
+                    src="{{ primary_media | image_url: width: 800 }}"
+                    alt="{{ primary_media.alt | escape }}"
+                    width="{{ primary_media.width }}"
+                    height="{{ primary_media.height }}"
                     loading="lazy"
-                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                    class="{{ product_image_class }}{% if hover_media %} transition-opacity duration-350 group-hover:opacity-0{% else %} hover:scale-105 transition-transform duration-350{% endif %}"
                     {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
-                </div>
-
-              {% elsif product.featured_media %}
-                <!-- fallback -->
-                <div class="relative w-full aspect-square bg-white rounded-2xl overflow-hidden">
-                  {%- assign has_sold_out_tag = false -%}
-                  {%- if product.tags contains 'Sold Out' -%}
-                    {%- assign has_sold_out_tag = true -%}
-                  {%- endif -%}
-                  {%- assign negative_stock = true -%}
-                  {%- for variant in product.variants -%}
-                    {%- if variant.inventory_management == blank -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- elsif variant.inventory_quantity > 0 -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- if has_sold_out_tag or negative_stock -%}
-                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
-                      Sold Out
-                    </div>
-                  {%- endif -%}
+                {% endif %}
+                {% if hover_media %}
                   <img
-                    src="{{ product.featured_media | image_url: width: 800 }}"
-                    alt="{{ product.featured_media.alt | escape }}"
-                    width="{{ product.featured_media.width }}"
-                    height="{{ product.featured_media.height }}"
-                    class="{{ product_image_class }}"
+                    src="{{ hover_media | image_url: width: 800 }}"
+                    alt="{{ hover_media.alt | escape }}"
+                    width="{{ hover_media.width }}"
+                    height="{{ hover_media.height }}"
+                    loading="lazy"
+                    class="{{ product_image_class }} opacity-0 transition-opacity duration-350 group-hover:opacity-100"
                     {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
-                </div>
-              {% else %}
-                <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200"></div>
-              {% endif %}
+                {% endif %}
+              </div>
 
               
 
@@ -193,73 +175,56 @@
 
           <div class="snap-start shrink-0 w-full">
             <a href="{{ product.url }}" class="block px-4 w-full">
-              {% if product.media.size > 1 %}
-                {% assign second_image = product.media[0] %}
-                
-                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
-                  {%- assign has_sold_out_tag = false -%}
-                  {%- if product.tags contains 'Sold Out' -%}
-                    {%- assign has_sold_out_tag = true -%}
+              {% liquid
+                assign primary_media = product.media[0] | default: product.featured_media
+                assign hover_media = nil
+                if product.media.size > 1
+                  assign hover_media = product.media[1]
+                endif
+              %}
+              <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white group">
+                {%- assign has_sold_out_tag = false -%}
+                {%- if product.tags contains 'Sold Out' -%}
+                  {%- assign has_sold_out_tag = true -%}
+                {%- endif -%}
+                {%- assign negative_stock = true -%}
+                {%- for variant in product.variants -%}
+                  {%- if variant.inventory_management == blank -%}
+                    {%- assign negative_stock = false -%}
+                    {%- break -%}
+                  {%- elsif variant.inventory_quantity > 0 -%}
+                    {%- assign negative_stock = false -%}
+                    {%- break -%}
                   {%- endif -%}
-                  {%- assign negative_stock = true -%}
-                  {%- for variant in product.variants -%}
-                    {%- if variant.inventory_management == blank -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- elsif variant.inventory_quantity > 0 -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- if has_sold_out_tag or negative_stock -%}
-                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
-                      Sold Out
-                    </div>
-                  {%- endif -%}
+                {%- endfor -%}
+                {%- if has_sold_out_tag or negative_stock -%}
+                  <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+                    Sold Out
+                  </div>
+                {%- endif -%}
+                {% if primary_media %}
                   <img
-                    src="{{ second_image | image_url: width: 800 }}"
-                    alt="{{ second_image.alt | escape }}"
-                    width="{{ second_image.width }}"
-                    height="{{ second_image.height }}"
+                    src="{{ primary_media | image_url: width: 800 }}"
+                    alt="{{ primary_media.alt | escape }}"
+                    width="{{ primary_media.width }}"
+                    height="{{ primary_media.height }}"
                     loading="lazy"
-                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-350"
+                    class="{{ product_image_class }}{% if hover_media %} transition-opacity duration-350 group-hover:opacity-0{% else %} hover:scale-105 transition-transform duration-350{% endif %}"
                     {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
-                </div>
-              {% elsif product.featured_media %}
-                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white">
-                  {%- assign has_sold_out_tag = false -%}
-                  {%- if product.tags contains 'Sold Out' -%}
-                    {%- assign has_sold_out_tag = true -%}
-                  {%- endif -%}
-                  {%- assign negative_stock = true -%}
-                  {%- for variant in product.variants -%}
-                    {%- if variant.inventory_management == blank -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- elsif variant.inventory_quantity > 0 -%}
-                      {%- assign negative_stock = false -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- if has_sold_out_tag or negative_stock -%}
-                    <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
-                      Sold Out
-                    </div>
-                  {%- endif -%}
+                {% endif %}
+                {% if hover_media %}
                   <img
-                    src="{{ product.featured_media | image_url: width: 800 }}"
-                    alt="{{ product.featured_media.alt | escape }}"
-                    width="{{ product.featured_media.width }}"
-                    height="{{ product.featured_media.height }}"
+                    src="{{ hover_media | image_url: width: 800 }}"
+                    alt="{{ hover_media.alt | escape }}"
+                    width="{{ hover_media.width }}"
+                    height="{{ hover_media.height }}"
                     loading="lazy"
-                    class="{{ product_image_class }} hover:scale-105 transition-transform duration-300"
+                    class="{{ product_image_class }} opacity-0 transition-opacity duration-350 group-hover:opacity-100"
                     {% if product_image_style != '' %}style="{{ product_image_style }}"{% endif %}
                   >
-                </div>
-              {% else %}
-                <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-200"></div>
-              {% endif %}
+                {% endif %}
+              </div>
 
               <div class="mt-4">
                 <p class="font-bricolage text-lg md:text-[1.1vw] text-left text-[#575757] font-medium pt-4">{{ product.title }}</p>
