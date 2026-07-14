@@ -4,7 +4,7 @@
     margin-left: calc(50% - 50vw);
     overflow-x: clip;
   }
-  .our-story-content { padding-left: 22vw; padding-right: 22vw; }
+  .our-story-content { padding-left: clamp(1.5rem, 7vw, 110px); padding-right: clamp(1.5rem, 7vw, 110px); }
   .our-story-deco-tr { top: auto !important; bottom: 0 !important; width: calc({{ section.settings.deco_size }}px * 2) !important; }
   .our-story-deco-tl { width: calc({{ section.settings.deco_size }}px * 2.6) !important; }
   @media (max-width: 767px) {
@@ -93,7 +93,7 @@
         {% if section.settings.heading != blank %}
           <h2
             class="our-story-heading font-bricolage font-bold leading-none text-black"
-            style="font-size: {{ section.settings.heading_size }}px; white-space: nowrap;"
+            style="font-size: clamp(2.5rem, 7vw, {{ section.settings.heading_size }}px);"
           >
             {{ section.settings.heading }}
           </h2>
