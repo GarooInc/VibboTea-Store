@@ -52,6 +52,56 @@
     {% sections 'footer-group' %}
 
     <script>
+      (function stackBottomWidgets() {
+        function findKlaviyoTeaser() {
+          return document.querySelector('[class*="kl-private-reset-css"], [class*="kl-teaser"], [class*="Teaser-pointer"]');
+        }
+        function findCookieBanner() {
+          var selectors = [
+            '#pandectes-banner',
+            '[id*="pandectes"]',
+            '[class*="pandectes"]',
+            '.cc-window',
+            '[class*="cookie-consent"]',
+            '[class*="cookie-banner"]',
+            '[aria-label*="cookie" i]',
+            '[aria-label*="consent" i]'
+          ];
+          for (var i = 0; i < selectors.length; i++) {
+            var el = document.querySelector(selectors[i]);
+            if (el) return el;
+          }
+          var allFixed = document.querySelectorAll('body > div');
+          for (var j = 0; j < allFixed.length; j++) {
+            var s = window.getComputedStyle(allFixed[j]);
+            if (s.position === 'fixed' && parseInt(s.bottom) <= 20 && parseInt(s.left) <= 20) {
+              var isKlaviyo = allFixed[j].querySelector('[class*="kl-private"], [class*="Teaser-pointer"]');
+              if (!isKlaviyo && allFixed[j].offsetWidth < 200 && allFixed[j].offsetHeight < 200) {
+                return allFixed[j];
+              }
+            }
+          }
+          return null;
+        }
+        function adjust() {
+          var klaviyo = findKlaviyoTeaser();
+          var cookie = findCookieBanner();
+          if (klaviyo && cookie) {
+            var kRect = klaviyo.getBoundingClientRect();
+            var cRect = cookie.getBoundingClientRect();
+            if (Math.abs(kRect.left - cRect.left) < 120 && Math.abs(kRect.bottom - cRect.bottom) < 120) {
+              cookie.style.setProperty('bottom', (window.innerHeight - kRect.top + 8) + 'px', 'important');
+              cookie.style.setProperty('transition', 'bottom 0.3s ease', 'important');
+            }
+          }
+        }
+        var obs = new MutationObserver(function() { setTimeout(adjust, 500); });
+        obs.observe(document.body, { childList: true, subtree: true });
+        window.addEventListener('load', function() { setTimeout(adjust, 1500); setTimeout(adjust, 3000); });
+      })();
+    </script>
+
+    <script>
       (function() {
         var rewrites = {
           '/pages/about-us':        '/about-us',

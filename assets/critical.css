@@ -344,10 +344,3 @@ form#captcha_form {
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .sr-only {
   position: absolute !important;
 }
-
-/* Stack Pandectes cookie icon above the Klaviyo discount teaser */
-#pandectes-banner,
-div[id*="pandectes"],
-div[class*="pandectes"] {
-  bottom: 100px !important;
-}
