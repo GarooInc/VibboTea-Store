@@ -52,6 +52,20 @@
     {% sections 'footer-group' %}
 
     <script>
+      (function checkCookieBar() {
+        var observer = new MutationObserver(function() {
+          var bar = document.querySelector('#pandectes-banner, [id*="pandectes"], .cc-window, [class*="cookie-consent"], [class*="cookie-banner"]');
+          if (bar && bar.offsetHeight > 0) {
+            document.body.classList.add('has-cookie-bar');
+          } else {
+            document.body.classList.remove('has-cookie-bar');
+          }
+        });
+        observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+      })();
+    </script>
+
+    <script>
       (function() {
         var rewrites = {
           '/pages/about-us':        '/about-us',

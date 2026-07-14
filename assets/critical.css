@@ -344,3 +344,13 @@ form#captcha_form {
 [id^="appstle_subscription_widget"] .appstle_subscription_amount_wrapper .sr-only {
   position: absolute !important;
 }
+
+/* Lift Klaviyo discount teaser above the Pandectes cookie bar */
+div[class*="kl-private-reset-css"] {
+  z-index: 99999 !important;
+}
+
+body.has-cookie-bar div[class*="kl-private-reset-css"] {
+  transform: translateY(-70px) !important;
+  transition: transform 0.3s ease !important;
+}
