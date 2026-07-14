@@ -6,6 +6,8 @@
   }
   .our-story-content { padding-left: clamp(1.5rem, 7vw, 110px); padding-right: clamp(1.5rem, 7vw, 110px); }
   .our-story-deco-tr { top: auto !important; bottom: 0 !important; width: calc({{ section.settings.deco_size }}px * 2) !important; }
+  /* Recorta la punta suelta de la hoja (lado izquierdo) sin moverla */
+  .our-story-deco-tr img { clip-path: inset(0 0 0 22%); }
   .our-story-deco-tl { width: calc({{ section.settings.deco_size }}px * 2.1) !important; }
   @media (max-width: 767px) {
     .our-story-content { padding-left: 1.5rem; padding-right: 1.5rem; }

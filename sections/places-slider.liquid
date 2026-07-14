@@ -155,8 +155,8 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 .custom-slider-places {
   position: relative;
-  height: 95vh;
-  min-height: 600px;
+  height: auto;
+  min-height: 480px;
   overflow: hidden;
 }
 
@@ -171,8 +171,29 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 /* MD+ */
 @media (min-width: 768px) {
   .custom-slider-places {
-    height: 90vh;
-    min-height: 600px;
+    height: 72vh;
+    min-height: 540px;
+    max-height: 800px;
+  }
+  /* El mapa llena la altura de la section (al ras) sin agrandar el componente */
+  .custom-slider-places .slide-content {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .custom-slider-places .slide-content > img {
+    height: 100%;
+    max-height: 100%;
+    max-width: 46vw;
+    width: auto;
+  }
+  /* Primera slide (intro): mapa a la derecha para que el texto no lo tape */
+  .custom-slider-places .slide.first-slide .slide-content {
+    justify-content: flex-end;
+  }
+  .custom-slider-places .slide.first-slide .first-slide-map {
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: 5vw;
   }
   .richnameplace p:first-child {
     line-height: 1.5;
@@ -198,7 +219,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 }
 
 .custom-slider-places .slide.active {
-  position: absolute;
+  position: relative;
   opacity: 1;
 }
 
@@ -234,10 +255,10 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
     margin-bottom: 0;
     margin-left: auto;
     margin-right: auto;
-    max-width: 92%;
+    max-width: 100%;
     width: auto;
     height: auto;
-    max-height: 58vh;
+    max-height: 64vh;
   }
 
   .custom-slider-places .slide.first-slide .first-slide-content > div:last-child {
@@ -247,8 +268,8 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
 @media (max-width: 390px) {
   .custom-slider-places {
-    height: 100svh;
-    min-height: 560px;
+    height: auto;
+    min-height: 460px;
   }
 
   .custom-slider-places .slide-content {
