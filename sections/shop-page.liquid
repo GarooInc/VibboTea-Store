@@ -51,7 +51,7 @@
             {%- endif -%}
             {% liquid
               assign primary_media = product.media[0] | default: product.featured_media
-              assign hover_media_index = 2
+              assign hover_media_index = 3
               if product.handle == 'assorted-reset-bundle-set' or product.handle == 'filter-bags'
                 assign hover_media_index = 1
               endif
