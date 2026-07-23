@@ -40,68 +40,25 @@
           
 
 
-        {% liquid
-          assign hero_has_center_copy = false
-          if block.settings.page_title != blank or block.settings.page_descripction != blank or block.settings.features_line != blank
-            assign hero_has_center_copy = true
-          endif
-          if block.settings.link_popup and block.settings.features_line != blank
-            assign hero_has_center_copy = true
-          endif
-        %}
-
-        {% if hero_has_center_copy %}
-          {% if block.settings.hero_text_dark %}
-            <div class="hero-baked-text-cover absolute top-0 left-0 w-full pointer-events-none" aria-hidden="true"></div>
+        <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
+              flex flex-col items-center justify-center text-center overflow-hidden">
+          
+          {% if block.settings.page_title != blank %}
+            <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+              <span>{{ block.settings.page_title | newline_to_br }}</span>
+              {% if block.settings.title_logo %}
+                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
+              {% endif %}
+            </h1>
           {% endif %}
 
-          <div class="slide-content hero-center-content absolute top-0 left-0 w-full z-40
-                flex flex-col items-center text-center overflow-visible
-                {% if block.settings.hero_text_dark %}hero-text-dark justify-start{% else %}h-[40vh] md:h-screen justify-center overflow-hidden{% endif %}">
+          {% if block.settings.page_descripction != blank %}    
+            <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.page_descripction | newline_to_br }}
+            </p>
+          {% endif %}
 
-            {% if block.settings.page_title != blank %}
-              <h1 class="hero-center-title font-bold font-bricolage leading-[0.95] flex items-center justify-center gap-3 flex-wrap
-                {% if block.settings.hero_text_dark %}text-black{% else %}text-[7vw] text-white drop-shadow-lg leading-[0.9]{% endif %}">
-                <span>{{ block.settings.page_title | newline_to_br }}</span>
-                {% if block.settings.title_logo %}
-                  <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
-                {% endif %}
-              </h1>
-            {% endif %}
-
-            {% if block.settings.page_descripction != blank %}
-              <p class="font-bricolage
-                {% if block.settings.hero_text_dark %}text-black mt-2 md:mt-3{% else %}text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white drop-shadow-lg leading-[0.9]{% endif %}">
-                {{ block.settings.page_descripction | newline_to_br }}
-              </p>
-            {% endif %}
-
-            {% if block.settings.features_line != blank or block.settings.link_popup %}
-              <p class="hero-features-line font-bricolage">
-                {% if block.settings.features_line != blank %}
-                  <span class="hero-features-text">{{ block.settings.features_line }}</span>
-                {% endif %}
-                {% if block.settings.link_popup %}
-                  <span class="hero-disclaimer-trigger group">
-                    <button
-                      type="button"
-                      class="hero-disclaimer-btn"
-                      aria-label="Show disclaimer"
-                      aria-expanded="false"
-                    >
-                      i
-                    </button>
-                    <span class="hero-disclaimer-tooltip absolute left-1/2 top-full mt-2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                      <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
-                        {{ block.settings.hover_text }}
-                      </span>
-                    </span>
-                  </span>
-                {% endif %}
-              </p>
-            {% endif %}
-          </div>
-        {% endif %}
+        </div>
 
         <div class="slide-content md:hidden absolute inset-0 flex flex-col justify-center
             items-start px-5 md:px-10 z-40">
@@ -176,6 +133,26 @@
         </a>
       </div>
 
+        {% if block.settings.link_popup %}
+            <div class="hero-disclaimer-trigger absolute z-50 group">
+              <button
+                type="button"
+                class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
+                aria-label="Show disclaimer"
+                aria-expanded="false"
+              >
+                i
+              </button>
+
+              <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
+                  {{ block.settings.hover_text }}
+                </span>
+              </div>
+            </div>
+
+          {% endif %}
+
     </div>
       
     {% endfor %}
@@ -226,75 +203,20 @@
 
 
 <style>
-.hero-baked-text-cover {
-  height: clamp(7.5rem, 22vw, 14rem);
-  background: #f2f2ee;
-  z-index: 30;
-}
-
-.hero-text-dark.hero-center-content {
-  padding: clamp(1.25rem, 3.5vw, 2.75rem) 1rem 0;
-  max-width: 100%;
-}
-
-.hero-text-dark .hero-center-title {
-  font-size: clamp(1.35rem, 3.6vw, 3.75rem);
-  letter-spacing: -0.02em;
-  max-width: 18ch;
-}
-
-.hero-features-line {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.4rem;
-  margin: 0.65rem auto 0;
-  max-width: min(52rem, calc(100% - 1.5rem));
-  color: #111;
-  font-size: clamp(0.58rem, 1.35vw, 1.05rem);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.35;
-  text-transform: uppercase;
-}
-
-.hero-features-text {
-  display: inline;
-}
-
 .hero-disclaimer-trigger {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
+  top: 34%;
+  right: 1rem;
   width: max-content;
   overflow: visible;
-  padding: 0.35rem;
-  margin: -0.35rem;
-}
-
-.hero-disclaimer-btn {
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 9999px;
-  border: 1px solid #111;
-  background: #fff;
-  color: #111;
-  font-size: 0.7rem;
-  line-height: 1;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
+  padding: 0.75rem;
+  margin: -0.75rem;
 }
 
 .hero-disclaimer-tooltip {
+  top: calc(100% + 0.5rem);
+  right: 0;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
-  z-index: 60;
 }
 
 .hero-disclaimer-tooltip span {
@@ -310,9 +232,6 @@
   font-size: 0.875rem;
   line-height: 1.35;
   text-align: left;
-  text-transform: none;
-  letter-spacing: normal;
-  font-weight: 400;
 }
 
 .hero-disclaimer-trigger:hover .hero-disclaimer-tooltip,
@@ -321,25 +240,10 @@
   opacity: 1;
 }
 
-@media (max-width: 767px) {
-  .hero-baked-text-cover {
-    height: clamp(5.5rem, 28vw, 8.5rem);
-  }
-
-  .hero-text-dark .hero-center-title {
-    max-width: 16ch;
-  }
-
-  .hero-features-line {
-    margin-top: 0.45rem;
-    gap: 0.25rem 0.3rem;
-    font-size: clamp(0.5rem, 2.4vw, 0.72rem);
-  }
-
-  .hero-disclaimer-btn {
-    width: 1rem;
-    height: 1rem;
-    font-size: 0.62rem;
+@media (min-width: 768px) {
+  .hero-disclaimer-trigger {
+    top: 32%;
+    right: 2rem;
   }
 }
 
@@ -614,21 +518,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "page_descripction",
         "label": "Descripcion (centrado)",
         "default": "text"
-      },
-      {
-        "type": "text",
-        "id": "features_line",
-        "label": "Línea de features (centrada)",
-        "default": "100% NATURAL • NO ADDED SUGAR OR SWEETENERS • NO MICROPLASTICS • 30-DAY WARRANTY",
-        "info": "El icono i del disclaimer se muestra a la par de esta línea cuando Pop Up está activo."
-      },
-      {
-        "type": "checkbox",
-        "id": "hero_text_dark",
-        "label": "Texto oscuro (hero claro)",
-        "default": false,
-        "info": "Actívalo cuando el fondo del slide es claro, para título/features en negro."
-      },
+      }, 
       {
         "type": "textarea",
         "id": "title_sec",
