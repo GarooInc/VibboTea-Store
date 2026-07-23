@@ -141,10 +141,10 @@
             <div
               class="hero-disclaimer-trigger absolute z-50 group"
               style="
-                --hero-i-top: {{ block.settings.disclaimer_top | default: 17 }}%;
-                --hero-i-left: {{ block.settings.disclaimer_left | default: 78 }}%;
-                --hero-i-top-mobile: {{ block.settings.disclaimer_top_mobile | default: 36 }}%;
-                --hero-i-left-mobile: {{ block.settings.disclaimer_left_mobile | default: 86 }}%;
+                --hero-i-top: {{ block.settings.i_pos_top_desk | default: 22 }}%;
+                --hero-i-left: {{ block.settings.i_pos_left_desk | default: 87 }}%;
+                --hero-i-top-mobile: {{ block.settings.i_pos_top_mob | default: 28 }}%;
+                --hero-i-left-mobile: {{ block.settings.i_pos_left_mob | default: 92 }}%;
               "
             >
               <button
@@ -215,8 +215,8 @@
 
 <style>
 .hero-disclaimer-trigger {
-  top: var(--hero-i-top, 17%);
-  left: var(--hero-i-left, 78%);
+  top: var(--hero-i-top, 22%);
+  left: var(--hero-i-left, 87%);
   right: auto;
   width: max-content;
   overflow: visible;
@@ -261,8 +261,8 @@
 
 @media (max-width: 767px) {
   .hero-disclaimer-trigger {
-    top: var(--hero-i-top-mobile, 36%);
-    left: var(--hero-i-left-mobile, 86%);
+    top: var(--hero-i-top-mobile, 28%);
+    left: var(--hero-i-left-mobile, 92%);
   }
 }
 
@@ -583,40 +583,40 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         "type": "range",
-        "id": "disclaimer_top",
+        "id": "i_pos_top_desk",
         "label": "Icono i — top desktop (%)",
         "min": 5,
         "max": 50,
         "step": 1,
-        "default": 17,
-        "info": "Posición vertical del icono junto a WARRANTY. No usa texto HTML del hero."
+        "default": 22,
+        "info": "Alinea el icono con WARRANTY. Sube el valor para bajar el icono."
       },
       {
         "type": "range",
-        "id": "disclaimer_left",
+        "id": "i_pos_left_desk",
         "label": "Icono i — left desktop (%)",
         "min": 40,
         "max": 95,
         "step": 1,
-        "default": 78
+        "default": 87
       },
       {
         "type": "range",
-        "id": "disclaimer_top_mobile",
+        "id": "i_pos_top_mob",
         "label": "Icono i — top mobile (%)",
         "min": 10,
         "max": 70,
         "step": 1,
-        "default": 36
+        "default": 28
       },
       {
         "type": "range",
-        "id": "disclaimer_left_mobile",
+        "id": "i_pos_left_mob",
         "label": "Icono i — left mobile (%)",
         "min": 50,
         "max": 98,
         "step": 1,
-        "default": 86
+        "default": 92
       },
       {
         "type": "select",
