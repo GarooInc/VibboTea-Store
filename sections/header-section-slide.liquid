@@ -138,15 +138,7 @@
       </div>
 
         {% if block.settings.link_popup %}
-            <div
-              class="hero-disclaimer-trigger absolute z-50 group"
-              style="
-                --hero-i-top: {{ block.settings.i_top_d | default: 30 }}%;
-                --hero-i-left: {{ block.settings.i_left_d | default: 91 }}%;
-                --hero-i-top-mobile: {{ block.settings.i_top_m | default: 40 }}%;
-                --hero-i-left-mobile: {{ block.settings.i_left_m | default: 94 }}%;
-              "
-            >
+            <div class="hero-disclaimer-trigger absolute z-50 group">
               <button
                 type="button"
                 class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
@@ -214,9 +206,11 @@
 
 
 <style>
+/* Anchor the disclaimer icon to the centered features line ending at WARRANTY.
+   Uses viewport-relative units so it tracks the baked-in hero copy better than raw left/%. */
 .hero-disclaimer-trigger {
-  top: var(--hero-i-top, 30%);
-  left: var(--hero-i-left, 91%);
+  top: clamp(12.75rem, 34vh, 19rem);
+  left: calc(50% + min(28vw, 26rem));
   right: auto;
   width: max-content;
   overflow: visible;
@@ -261,8 +255,14 @@
 
 @media (max-width: 767px) {
   .hero-disclaimer-trigger {
-    top: var(--hero-i-top-mobile, 40%);
-    left: var(--hero-i-left-mobile, 94%);
+    top: clamp(9.5rem, 46vw, 13rem);
+    left: calc(50% + min(34vw, 11rem));
+  }
+}
+
+@media (min-width: 768px) and (max-height: 820px) {
+  .hero-disclaimer-trigger {
+    top: clamp(11.5rem, 30vh, 15.5rem);
   }
 }
 
@@ -580,43 +580,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "hover_text",
         "label": "Texto del hover",
         "default": "Texto"
-      },
-      {
-        "type": "range",
-        "id": "i_top_d",
-        "label": "Icono i — top desktop (%)",
-        "min": 10,
-        "max": 55,
-        "step": 1,
-        "default": 30,
-        "info": "Debe quedar en la línea de features, a la derecha de WARRANTY (no en GUATEMALAN)."
-      },
-      {
-        "type": "range",
-        "id": "i_left_d",
-        "label": "Icono i — left desktop (%)",
-        "min": 50,
-        "max": 98,
-        "step": 1,
-        "default": 91
-      },
-      {
-        "type": "range",
-        "id": "i_top_m",
-        "label": "Icono i — top mobile (%)",
-        "min": 15,
-        "max": 70,
-        "step": 1,
-        "default": 40
-      },
-      {
-        "type": "range",
-        "id": "i_left_m",
-        "label": "Icono i — left mobile (%)",
-        "min": 55,
-        "max": 98,
-        "step": 1,
-        "default": 94
       },
       {
         "type": "select",
