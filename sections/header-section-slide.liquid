@@ -1,6 +1,6 @@
 {% comment %}
-  github-sync-restore-2026-07-23: hero warranty HTML overlay removed.
-  Keep only the floating disclaimer "i" trigger; title/features stay in the hero image.
+  Features row is HTML (stable across viewports). Title stays in the hero image.
+  show_center_title must stay false on the light desktop hero to avoid stale page_title overlays.
 {% endcomment %}
 <div
   class="slider-facts-{{ section.id }} custom-slider relative 
@@ -17,7 +17,7 @@
   <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
   <div class="slides-wrapper hero-slides-wrapper relative w-full overflow-hidden">
     {% for block in section.blocks %}
-      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
+      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}{% if block.settings.show_features_row %} has-features-row{% endif %}">
 
           
           {% if block.settings.video_mp4 != blank %}
@@ -41,8 +41,31 @@
             />
           {% endif %}
 
-          
-
+          {% if block.settings.show_features_row and block.settings.features_row_text != blank %}
+            <div class="hero-features-band-mask absolute left-0 right-0 pointer-events-none" aria-hidden="true"></div>
+            <div class="hero-features-row absolute left-0 right-0 z-40 flex justify-center px-4">
+              <p class="hero-features-row__text font-bricolage">
+                <span>{{ block.settings.features_row_text }}</span>
+                {% if block.settings.link_popup %}
+                  <span class="hero-disclaimer-trigger group">
+                    <button
+                      type="button"
+                      class="hero-disclaimer-btn"
+                      aria-label="Show disclaimer"
+                      aria-expanded="false"
+                    >
+                      i
+                    </button>
+                    <span class="hero-disclaimer-tooltip absolute left-1/2 top-full mt-2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                      <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug normal-case tracking-normal font-normal">
+                        {{ block.settings.hover_text }}
+                      </span>
+                    </span>
+                  </span>
+                {% endif %}
+              </p>
+            </div>
+          {% endif %}
 
         <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
@@ -137,25 +160,6 @@
         </a>
       </div>
 
-        {% if block.settings.link_popup %}
-            <div class="hero-disclaimer-trigger absolute z-50 group">
-              <button
-                type="button"
-                class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
-                aria-label="Show disclaimer"
-                aria-expanded="false"
-              >
-                i
-              </button>
-
-              <div class="hero-disclaimer-tooltip absolute left-1/2 top-full mt-2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
-                  {{ block.settings.hover_text }}
-                </span>
-              </div>
-            </div>
-          {% endif %}
-
     </div>
       
     {% endfor %}
@@ -206,17 +210,62 @@
 
 
 <style>
-/* Anchor the disclaimer icon to the centered features line ending at WARRANTY.
-   Uses viewport-relative units so it tracks the baked-in hero copy better than raw left/%. */
+.hero-features-band-mask {
+  top: clamp(10.25rem, 27vh, 15.5rem);
+  height: clamp(1.75rem, 4.5vh, 2.75rem);
+  background: #f3f3ef;
+  z-index: 35;
+}
+
+.hero-features-row {
+  top: clamp(10.25rem, 27vh, 15.5rem);
+  pointer-events: none;
+}
+
+.hero-features-row__text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.4rem;
+  margin: 0;
+  max-width: min(64rem, calc(100vw - 2rem));
+  color: #111;
+  font-size: clamp(0.7rem, 1.45vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.045em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: auto;
+}
+
 .hero-disclaimer-trigger {
-  top: clamp(12.75rem, 34vh, 19rem);
-  left: calc(50% + min(28vw, 26rem));
-  right: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
   width: max-content;
   overflow: visible;
-  padding: 0.5rem;
-  margin: -0.5rem;
-  transform: translate(0, -50%);
+  padding: 0.25rem;
+  margin: -0.25rem;
+}
+
+.hero-disclaimer-btn {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  font-size: 0.7rem;
+  line-height: 1;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .hero-disclaimer-tooltip {
@@ -246,7 +295,7 @@
   opacity: 1;
 }
 
-/* Safety: never reintroduce the old HTML hero overlay */
+/* Safety: hide any leftover absolute-overlay classes from stale builds */
 .hero-baked-text-cover,
 .hero-features-line,
 .hero-text-dark {
@@ -254,15 +303,31 @@
 }
 
 @media (max-width: 767px) {
-  .hero-disclaimer-trigger {
-    top: clamp(9.5rem, 46vw, 13rem);
-    left: calc(50% + min(34vw, 11rem));
+  .hero-features-band-mask,
+  .hero-features-row {
+    top: clamp(7.75rem, 38vw, 11rem);
+  }
+
+  .hero-features-band-mask {
+    height: clamp(1.5rem, 5.5vw, 2.25rem);
+  }
+
+  .hero-features-row__text {
+    font-size: clamp(0.52rem, 2.4vw, 0.78rem);
+    gap: 0.25rem 0.3rem;
+  }
+
+  .hero-disclaimer-btn {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.62rem;
   }
 }
 
 @media (min-width: 768px) and (max-height: 820px) {
-  .hero-disclaimer-trigger {
-    top: clamp(11.5rem, 30vh, 15.5rem);
+  .hero-features-band-mask,
+  .hero-features-row {
+    top: clamp(9.75rem, 24vh, 13.5rem);
   }
 }
 
@@ -580,6 +645,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "hover_text",
         "label": "Texto del hover",
         "default": "Texto"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_features_row",
+        "label": "Mostrar fila de features (HTML)",
+        "default": false,
+        "info": "Renderiza la línea de benefits en HTML con el icono i inline junto a WARRANTY. Mantén el título en la imagen."
+      },
+      {
+        "type": "text",
+        "id": "features_row_text",
+        "label": "Texto de la fila de features",
+        "default": "100% NATURAL • NO ADDED SUGAR OR SWEETENERS • NO MICROPLASTICS • 30-DAY WARRANTY"
       },
       {
         "type": "select",
