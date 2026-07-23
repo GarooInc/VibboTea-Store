@@ -197,7 +197,7 @@
         "faq_partner_6": {
           "type": "faq",
           "settings": {
-            "question": "Why do I need to create a Shopify Collab account?",
+            "question": "Why do I need to create a Shopify Collab / Trybe account?",
             "answer": "The platform allows us to:<br>• Track referrals accurately<br>• Deliver commissions efficiently<br>• Coordinate product shipments and campaigns<br><br>It keeps everything transparent and organized, so you can focus on creating."
           }
         }
