@@ -138,7 +138,15 @@
       </div>
 
         {% if block.settings.link_popup %}
-            <div class="hero-disclaimer-trigger absolute z-50 group">
+            <div
+              class="hero-disclaimer-trigger absolute z-50 group"
+              style="
+                --hero-i-top: {{ block.settings.disclaimer_top | default: 17 }}%;
+                --hero-i-left: {{ block.settings.disclaimer_left | default: 78 }}%;
+                --hero-i-top-mobile: {{ block.settings.disclaimer_top_mobile | default: 36 }}%;
+                --hero-i-left-mobile: {{ block.settings.disclaimer_left_mobile | default: 86 }}%;
+              "
+            >
               <button
                 type="button"
                 class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
@@ -148,13 +156,12 @@
                 i
               </button>
 
-              <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+              <div class="hero-disclaimer-tooltip absolute left-1/2 top-full mt-2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
                 <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
                   {{ block.settings.hover_text }}
                 </span>
               </div>
             </div>
-
           {% endif %}
 
     </div>
@@ -208,19 +215,20 @@
 
 <style>
 .hero-disclaimer-trigger {
-  top: 34%;
-  right: 1rem;
+  top: var(--hero-i-top, 17%);
+  left: var(--hero-i-left, 78%);
+  right: auto;
   width: max-content;
   overflow: visible;
   padding: 0.75rem;
   margin: -0.75rem;
+  transform: translate(-50%, -50%);
 }
 
 .hero-disclaimer-tooltip {
-  top: calc(100% + 0.5rem);
-  right: 0;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
+  z-index: 60;
 }
 
 .hero-disclaimer-tooltip span {
@@ -244,17 +252,17 @@
   opacity: 1;
 }
 
-/* Hide any leftover HTML hero overlay from a stale theme build */
+/* Safety: never reintroduce the old HTML hero overlay */
 .hero-baked-text-cover,
 .hero-features-line,
 .hero-text-dark {
   display: none !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .hero-disclaimer-trigger {
-    top: 32%;
-    right: 2rem;
+    top: var(--hero-i-top-mobile, 36%);
+    left: var(--hero-i-left-mobile, 86%);
   }
 }
 
@@ -572,6 +580,43 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "hover_text",
         "label": "Texto del hover",
         "default": "Texto"
+      },
+      {
+        "type": "range",
+        "id": "disclaimer_top",
+        "label": "Icono i — top desktop (%)",
+        "min": 5,
+        "max": 50,
+        "step": 1,
+        "default": 17,
+        "info": "Posición vertical del icono junto a WARRANTY. No usa texto HTML del hero."
+      },
+      {
+        "type": "range",
+        "id": "disclaimer_left",
+        "label": "Icono i — left desktop (%)",
+        "min": 40,
+        "max": 95,
+        "step": 1,
+        "default": 78
+      },
+      {
+        "type": "range",
+        "id": "disclaimer_top_mobile",
+        "label": "Icono i — top mobile (%)",
+        "min": 10,
+        "max": 70,
+        "step": 1,
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "disclaimer_left_mobile",
+        "label": "Icono i — left mobile (%)",
+        "min": 50,
+        "max": 98,
+        "step": 1,
+        "default": 86
       },
       {
         "type": "select",
