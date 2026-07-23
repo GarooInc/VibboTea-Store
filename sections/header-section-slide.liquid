@@ -141,10 +141,10 @@
             <div
               class="hero-disclaimer-trigger absolute z-50 group"
               style="
-                --hero-i-top: {{ block.settings.i_pos_top_desk | default: 22 }}%;
-                --hero-i-left: {{ block.settings.i_pos_left_desk | default: 87 }}%;
-                --hero-i-top-mobile: {{ block.settings.i_pos_top_mob | default: 28 }}%;
-                --hero-i-left-mobile: {{ block.settings.i_pos_left_mob | default: 92 }}%;
+                --hero-i-top: {{ block.settings.i_top_d | default: 30 }}%;
+                --hero-i-left: {{ block.settings.i_left_d | default: 91 }}%;
+                --hero-i-top-mobile: {{ block.settings.i_top_m | default: 40 }}%;
+                --hero-i-left-mobile: {{ block.settings.i_left_m | default: 94 }}%;
               "
             >
               <button
@@ -215,14 +215,14 @@
 
 <style>
 .hero-disclaimer-trigger {
-  top: var(--hero-i-top, 22%);
-  left: var(--hero-i-left, 87%);
+  top: var(--hero-i-top, 30%);
+  left: var(--hero-i-left, 91%);
   right: auto;
   width: max-content;
   overflow: visible;
-  padding: 0.75rem;
-  margin: -0.75rem;
-  transform: translate(-50%, -50%);
+  padding: 0.5rem;
+  margin: -0.5rem;
+  transform: translate(0, -50%);
 }
 
 .hero-disclaimer-tooltip {
@@ -261,8 +261,8 @@
 
 @media (max-width: 767px) {
   .hero-disclaimer-trigger {
-    top: var(--hero-i-top-mobile, 28%);
-    left: var(--hero-i-left-mobile, 92%);
+    top: var(--hero-i-top-mobile, 40%);
+    left: var(--hero-i-left-mobile, 94%);
   }
 }
 
@@ -583,40 +583,40 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         "type": "range",
-        "id": "i_pos_top_desk",
+        "id": "i_top_d",
         "label": "Icono i — top desktop (%)",
-        "min": 5,
-        "max": 50,
-        "step": 1,
-        "default": 22,
-        "info": "Alinea el icono con WARRANTY. Sube el valor para bajar el icono."
-      },
-      {
-        "type": "range",
-        "id": "i_pos_left_desk",
-        "label": "Icono i — left desktop (%)",
-        "min": 40,
-        "max": 95,
-        "step": 1,
-        "default": 87
-      },
-      {
-        "type": "range",
-        "id": "i_pos_top_mob",
-        "label": "Icono i — top mobile (%)",
         "min": 10,
-        "max": 70,
+        "max": 55,
         "step": 1,
-        "default": 28
+        "default": 30,
+        "info": "Debe quedar en la línea de features, a la derecha de WARRANTY (no en GUATEMALAN)."
       },
       {
         "type": "range",
-        "id": "i_pos_left_mob",
-        "label": "Icono i — left mobile (%)",
+        "id": "i_left_d",
+        "label": "Icono i — left desktop (%)",
         "min": 50,
         "max": 98,
         "step": 1,
-        "default": 92
+        "default": 91
+      },
+      {
+        "type": "range",
+        "id": "i_top_m",
+        "label": "Icono i — top mobile (%)",
+        "min": 15,
+        "max": 70,
+        "step": 1,
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "i_left_m",
+        "label": "Icono i — left mobile (%)",
+        "min": 55,
+        "max": 98,
+        "step": 1,
+        "default": 94
       },
       {
         "type": "select",

@@ -42,10 +42,10 @@
             "button_link": "",
             "link_popup": true,
             "hover_text": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.",
-            "i_pos_top_desk": 22,
-            "i_pos_left_desk": 87,
-            "i_pos_top_mob": 28,
-            "i_pos_left_mob": 92,
+            "i_top_d": 30,
+            "i_left_d": 91,
+            "i_top_m": 40,
+            "i_left_m": 94,
             "button_position": "bottom-center"
           }
         },
