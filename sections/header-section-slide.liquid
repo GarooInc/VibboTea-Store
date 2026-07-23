@@ -409,6 +409,107 @@
 
 <script>
 (function () {
+  // #region agent log
+  function dbg(hypothesisId, message, data) {
+    fetch('http://127.0.0.1:7927/ingest/c89e62aa-d4a5-4762-aabb-c9219a6316f4', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '1ab170' },
+      body: JSON.stringify({
+        sessionId: '1ab170',
+        runId: 'pre-fix',
+        hypothesisId: hypothesisId,
+        location: 'header-section-slide.liquid:features-debug',
+        message: message,
+        data: data || {},
+        timestamp: Date.now()
+      })
+    }).catch(function () {});
+  }
+  function measureFeaturesDebug() {
+    var row = document.querySelector('.hero-features-row');
+    var text = document.querySelector('.hero-features-row__text');
+    var mask = document.querySelector('.hero-features-band-mask');
+    var slide = document.querySelector('.custom-slider .slide.active') || document.querySelector('.custom-slider .slide');
+    var media = slide ? slide.querySelector('.hero-slide-media') : null;
+    var header = document.getElementById('main-header');
+    var topbar = document.querySelector('.topbar-wrapper');
+    var rowCs = row ? getComputedStyle(row) : null;
+    var textCs = text ? getComputedStyle(text) : null;
+    var maskCs = mask ? getComputedStyle(mask) : null;
+    var rowRect = row ? row.getBoundingClientRect() : null;
+    var textRect = text ? text.getBoundingClientRect() : null;
+    var maskRect = mask ? mask.getBoundingClientRect() : null;
+    var slideRect = slide ? slide.getBoundingClientRect() : null;
+    var mediaRect = media ? media.getBoundingClientRect() : null;
+
+    dbg('A', 'features-row geometry', {
+      exists: !!row,
+      topCss: rowCs ? rowCs.top : null,
+      rowTop: rowRect ? rowRect.top : null,
+      rowHeight: rowRect ? rowRect.height : null,
+      slideTop: slideRect ? slideRect.top : null,
+      vh: window.innerHeight,
+      vw: window.innerWidth,
+      headerH: header ? header.offsetHeight : 0,
+      topbarH: topbar ? topbar.offsetHeight : 0
+    });
+
+    dbg('C', 'features-row font size', {
+      exists: !!text,
+      fontSize: textCs ? textCs.fontSize : null,
+      lineHeight: textCs ? textCs.lineHeight : null,
+      textWidth: textRect ? textRect.width : null,
+      textHeight: textRect ? textRect.height : null,
+      sample: text ? (text.textContent || '').trim().slice(0, 80) : null
+    });
+
+    dbg('B', 'features-band-mask coverage', {
+      exists: !!mask,
+      topCss: maskCs ? maskCs.top : null,
+      heightCss: maskCs ? maskCs.height : null,
+      bg: maskCs ? maskCs.backgroundColor : null,
+      zIndex: maskCs ? maskCs.zIndex : null,
+      maskTop: maskRect ? maskRect.top : null,
+      maskBottom: maskRect ? maskRect.bottom : null,
+      maskHeight: maskRect ? maskRect.height : null,
+      rowTop: rowRect ? rowRect.top : null,
+      rowBottom: rowRect ? rowRect.bottom : null
+    });
+
+    dbg('D', 'mask vs row alignment', {
+      maskCoversRow: !!(maskRect && rowRect && maskRect.top <= rowRect.top + 2 && maskRect.bottom >= rowRect.bottom - 2),
+      verticalGapMaskToRow: (maskRect && rowRect) ? (rowRect.top - maskRect.top) : null,
+      heightDelta: (maskRect && rowRect) ? (maskRect.height - rowRect.height) : null
+    });
+
+    dbg('E', 'image media frame', {
+      mediaExists: !!media,
+      mediaTop: mediaRect ? mediaRect.top : null,
+      mediaHeight: mediaRect ? mediaRect.height : null,
+      objectFit: media ? getComputedStyle(media).objectFit : null,
+      objectPosition: media ? getComputedStyle(media).objectPosition : null,
+      estimatedImageFeaturesBandFromTop: mediaRect ? (mediaRect.top + mediaRect.height * 0.20) : null,
+      htmlRowTop: rowRect ? rowRect.top : null
+    });
+  }
+  function run() {
+    requestAnimationFrame(function () {
+      measureFeaturesDebug();
+      setTimeout(measureFeaturesDebug, 800);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+  window.addEventListener('load', function () { setTimeout(measureFeaturesDebug, 300); });
+  // #endregion
+})();
+</script>
+
+<script>
+(function () {
   function setHeroSpacer() {
     if (window.innerWidth >= 768) return;
     var spacer = document.getElementById('hero-header-spacer');
