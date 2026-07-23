@@ -1,3 +1,7 @@
+{% comment %}
+  github-sync-restore-2026-07-23: hero warranty HTML overlay removed.
+  Keep only the floating disclaimer "i" trigger; title/features stay in the hero image.
+{% endcomment %}
 <div
   class="slider-facts-{{ section.id }} custom-slider relative 
          h-[55vh] lg:h-screen w-screen
@@ -238,6 +242,13 @@
 .hero-disclaimer-trigger:focus-within .hero-disclaimer-tooltip,
 .hero-disclaimer-trigger.is-open .hero-disclaimer-tooltip {
   opacity: 1;
+}
+
+/* Hide any leftover HTML hero overlay from a stale theme build */
+.hero-baked-text-cover,
+.hero-features-line,
+.hero-text-dark {
+  display: none !important;
 }
 
 @media (min-width: 768px) {
