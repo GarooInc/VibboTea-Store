@@ -47,7 +47,7 @@
         <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
           
-          {% if block.settings.page_title != blank %}
+          {% if block.settings.show_center_title and block.settings.page_title != blank %}
             <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
@@ -56,7 +56,7 @@
             </h1>
           {% endif %}
 
-          {% if block.settings.page_descripction != blank %}    
+          {% if block.settings.show_center_title and block.settings.page_descripction != blank %}    
             <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
               {{ block.settings.page_descripction | newline_to_br }}
             </p>
@@ -518,6 +518,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "page_title",
         "label": "Titulo principal (centrado)",
         "default": "Bienvenido a Nuestra Tienda"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_center_title",
+        "label": "Mostrar título/descripcion centrados",
+        "default": false,
+        "info": "Desactivado por defecto. Evita que un page_title guardado en el editor se superponga a la imagen del hero."
       },
       {
         "type": "image_picker",
