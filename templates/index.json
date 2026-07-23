@@ -34,7 +34,6 @@
             "texto_agua": "",
             "video_mp4": "",
             "page_title": "",
-            "show_center_title": false,
             "page_descripction": "",
             "title_sec": "",
             "desc_sec": "",
@@ -42,8 +41,6 @@
             "button_link": "",
             "link_popup": true,
             "hover_text": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.",
-            "show_features_row": true,
-            "features_row_text": "100% NATURAL • NO ADDED SUGAR OR SWEETENERS • NO MICROPLASTICS • 30-DAY WARRANTY",
             "button_position": "bottom-center"
           }
         },
@@ -55,7 +52,6 @@
             "texto_agua": "",
             "video_mp4": "https://cdn.shopify.com/videos/c/o/v/42f79bab075f493eb08a05b81deb0e47.mp4",
             "page_title": "SHOP BUNDLES & SUBSCRIPTIONS",
-            "show_center_title": true,
             "page_descripction": "",
             "title_sec": "",
             "desc_sec": "",

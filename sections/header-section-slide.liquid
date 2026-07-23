@@ -1,7 +1,3 @@
-{% comment %}
-  Features row is HTML (stable across viewports). Title stays in the hero image.
-  show_center_title must stay false on the light desktop hero to avoid stale page_title overlays.
-{% endcomment %}
 <div
   class="slider-facts-{{ section.id }} custom-slider relative 
          h-[55vh] lg:h-screen w-screen
@@ -17,7 +13,7 @@
   <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
   <div class="slides-wrapper hero-slides-wrapper relative w-full overflow-hidden">
     {% for block in section.blocks %}
-      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}{% if block.settings.show_features_row %} has-features-row{% endif %}">
+      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
 
           
           {% if block.settings.video_mp4 != blank %}
@@ -41,36 +37,13 @@
             />
           {% endif %}
 
-          {% if block.settings.show_features_row and block.settings.features_row_text != blank %}
-            <div class="hero-features-band-mask absolute left-0 right-0 pointer-events-none" aria-hidden="true"></div>
-            <div class="hero-features-row absolute left-0 right-0 z-40 flex justify-center px-4">
-              <p class="hero-features-row__text font-bricolage">
-                <span>{{ block.settings.features_row_text }}</span>
-                {% if block.settings.link_popup %}
-                  <span class="hero-disclaimer-trigger group">
-                    <button
-                      type="button"
-                      class="hero-disclaimer-btn"
-                      aria-label="Show disclaimer"
-                      aria-expanded="false"
-                    >
-                      i
-                    </button>
-                    <span class="hero-disclaimer-tooltip absolute left-1/2 top-full mt-2 -translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                      <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug normal-case tracking-normal font-normal">
-                        {{ block.settings.hover_text }}
-                      </span>
-                    </span>
-                  </span>
-                {% endif %}
-              </p>
-            </div>
-          {% endif %}
+          
+
 
         <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
               flex flex-col items-center justify-center text-center overflow-hidden">
           
-          {% if block.settings.show_center_title and block.settings.page_title != blank %}
+          {% if block.settings.page_title != blank %}
             <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
@@ -79,7 +52,7 @@
             </h1>
           {% endif %}
 
-          {% if block.settings.show_center_title and block.settings.page_descripction != blank %}    
+          {% if block.settings.page_descripction != blank %}    
             <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
               {{ block.settings.page_descripction | newline_to_br }}
             </p>
@@ -160,6 +133,26 @@
         </a>
       </div>
 
+        {% if block.settings.link_popup %}
+            <div class="hero-disclaimer-trigger absolute z-50 group">
+              <button
+                type="button"
+                class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
+                aria-label="Show disclaimer"
+                aria-expanded="false"
+              >
+                i
+              </button>
+
+              <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
+                  {{ block.settings.hover_text }}
+                </span>
+              </div>
+            </div>
+
+          {% endif %}
+
     </div>
       
     {% endfor %}
@@ -210,68 +203,20 @@
 
 
 <style>
-.hero-features-band-mask {
-  top: clamp(13.5rem, 34vh, 21rem);
-  height: clamp(2.75rem, 7vh, 4rem);
-  background: #f3f3ef;
-  z-index: 35;
-}
-
-.hero-features-row {
-  top: clamp(13.5rem, 34vh, 21rem);
-  pointer-events: none;
-}
-
-.hero-features-row__text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.45rem;
-  margin: 0;
-  max-width: min(68rem, calc(100vw - 2rem));
-  color: #111;
-  font-size: clamp(1rem, 2.05vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: 0.045em;
-  line-height: 1.3;
-  text-transform: uppercase;
-  text-align: center;
-  pointer-events: auto;
-}
-
 .hero-disclaimer-trigger {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  vertical-align: middle;
+  top: 34%;
+  right: 1rem;
   width: max-content;
   overflow: visible;
-  padding: 0.25rem;
-  margin: -0.25rem;
-}
-
-.hero-disclaimer-btn {
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 9999px;
-  border: 1px solid #111;
-  background: #fff;
-  color: #111;
-  font-size: 0.7rem;
-  line-height: 1;
-  font-family: inherit;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
+  padding: 0.75rem;
+  margin: -0.75rem;
 }
 
 .hero-disclaimer-tooltip {
+  top: calc(100% + 0.5rem);
+  right: 0;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
-  z-index: 60;
 }
 
 .hero-disclaimer-tooltip span {
@@ -295,39 +240,10 @@
   opacity: 1;
 }
 
-/* Safety: hide any leftover absolute-overlay classes from stale builds */
-.hero-baked-text-cover,
-.hero-features-line,
-.hero-text-dark {
-  display: none !important;
-}
-
-@media (max-width: 767px) {
-  .hero-features-band-mask,
-  .hero-features-row {
-    top: clamp(9.5rem, 44vw, 13rem);
-  }
-
-  .hero-features-band-mask {
-    height: clamp(2rem, 7vw, 2.75rem);
-  }
-
-  .hero-features-row__text {
-    font-size: clamp(0.72rem, 3.1vw, 1rem);
-    gap: 0.3rem 0.35rem;
-  }
-
-  .hero-disclaimer-btn {
-    width: 1.05rem;
-    height: 1.05rem;
-    font-size: 0.65rem;
-  }
-}
-
-@media (min-width: 768px) and (max-height: 820px) {
-  .hero-features-band-mask,
-  .hero-features-row {
-    top: clamp(11.5rem, 30vh, 16rem);
+@media (min-width: 768px) {
+  .hero-disclaimer-trigger {
+    top: 32%;
+    right: 2rem;
   }
 }
 
@@ -406,107 +322,6 @@
 
 
 </style>
-
-<script>
-(function () {
-  // #region agent log
-  function dbg(hypothesisId, message, data) {
-    fetch('http://127.0.0.1:7927/ingest/c89e62aa-d4a5-4762-aabb-c9219a6316f4', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '1ab170' },
-      body: JSON.stringify({
-        sessionId: '1ab170',
-        runId: 'post-fix',
-        hypothesisId: hypothesisId,
-        location: 'header-section-slide.liquid:features-debug',
-        message: message,
-        data: data || {},
-        timestamp: Date.now()
-      })
-    }).catch(function () {});
-  }
-  function measureFeaturesDebug() {
-    var row = document.querySelector('.hero-features-row');
-    var text = document.querySelector('.hero-features-row__text');
-    var mask = document.querySelector('.hero-features-band-mask');
-    var slide = document.querySelector('.custom-slider .slide.active') || document.querySelector('.custom-slider .slide');
-    var media = slide ? slide.querySelector('.hero-slide-media') : null;
-    var header = document.getElementById('main-header');
-    var topbar = document.querySelector('.topbar-wrapper');
-    var rowCs = row ? getComputedStyle(row) : null;
-    var textCs = text ? getComputedStyle(text) : null;
-    var maskCs = mask ? getComputedStyle(mask) : null;
-    var rowRect = row ? row.getBoundingClientRect() : null;
-    var textRect = text ? text.getBoundingClientRect() : null;
-    var maskRect = mask ? mask.getBoundingClientRect() : null;
-    var slideRect = slide ? slide.getBoundingClientRect() : null;
-    var mediaRect = media ? media.getBoundingClientRect() : null;
-
-    dbg('A', 'features-row geometry', {
-      exists: !!row,
-      topCss: rowCs ? rowCs.top : null,
-      rowTop: rowRect ? rowRect.top : null,
-      rowHeight: rowRect ? rowRect.height : null,
-      slideTop: slideRect ? slideRect.top : null,
-      vh: window.innerHeight,
-      vw: window.innerWidth,
-      headerH: header ? header.offsetHeight : 0,
-      topbarH: topbar ? topbar.offsetHeight : 0
-    });
-
-    dbg('C', 'features-row font size', {
-      exists: !!text,
-      fontSize: textCs ? textCs.fontSize : null,
-      lineHeight: textCs ? textCs.lineHeight : null,
-      textWidth: textRect ? textRect.width : null,
-      textHeight: textRect ? textRect.height : null,
-      sample: text ? (text.textContent || '').trim().slice(0, 80) : null
-    });
-
-    dbg('B', 'features-band-mask coverage', {
-      exists: !!mask,
-      topCss: maskCs ? maskCs.top : null,
-      heightCss: maskCs ? maskCs.height : null,
-      bg: maskCs ? maskCs.backgroundColor : null,
-      zIndex: maskCs ? maskCs.zIndex : null,
-      maskTop: maskRect ? maskRect.top : null,
-      maskBottom: maskRect ? maskRect.bottom : null,
-      maskHeight: maskRect ? maskRect.height : null,
-      rowTop: rowRect ? rowRect.top : null,
-      rowBottom: rowRect ? rowRect.bottom : null
-    });
-
-    dbg('D', 'mask vs row alignment', {
-      maskCoversRow: !!(maskRect && rowRect && maskRect.top <= rowRect.top + 2 && maskRect.bottom >= rowRect.bottom - 2),
-      verticalGapMaskToRow: (maskRect && rowRect) ? (rowRect.top - maskRect.top) : null,
-      heightDelta: (maskRect && rowRect) ? (maskRect.height - rowRect.height) : null
-    });
-
-    dbg('E', 'image media frame', {
-      mediaExists: !!media,
-      mediaTop: mediaRect ? mediaRect.top : null,
-      mediaHeight: mediaRect ? mediaRect.height : null,
-      objectFit: media ? getComputedStyle(media).objectFit : null,
-      objectPosition: media ? getComputedStyle(media).objectPosition : null,
-      estimatedImageFeaturesBandFromTop: mediaRect ? (mediaRect.top + mediaRect.height * 0.20) : null,
-      htmlRowTop: rowRect ? rowRect.top : null
-    });
-  }
-  function run() {
-    requestAnimationFrame(function () {
-      measureFeaturesDebug();
-      setTimeout(measureFeaturesDebug, 800);
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
-  window.addEventListener('load', function () { setTimeout(measureFeaturesDebug, 300); });
-  // #endregion
-})();
-</script>
 
 <script>
 (function () {
@@ -694,13 +509,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "default": "Bienvenido a Nuestra Tienda"
       },
       {
-        "type": "checkbox",
-        "id": "show_center_title",
-        "label": "Mostrar título/descripcion centrados",
-        "default": false,
-        "info": "Desactivado por defecto. Evita que un page_title guardado en el editor se superponga a la imagen del hero."
-      },
-      {
         "type": "image_picker",
         "id": "title_logo",
         "label": "Logo imagen (inline con el titulo)"
@@ -746,19 +554,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "id": "hover_text",
         "label": "Texto del hover",
         "default": "Texto"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_features_row",
-        "label": "Mostrar fila de features (HTML)",
-        "default": false,
-        "info": "Renderiza la línea de benefits en HTML con el icono i inline junto a WARRANTY. Mantén el título en la imagen."
-      },
-      {
-        "type": "text",
-        "id": "features_row_text",
-        "label": "Texto de la fila de features",
-        "default": "100% NATURAL • NO ADDED SUGAR OR SWEETENERS • NO MICROPLASTICS • 30-DAY WARRANTY"
       },
       {
         "type": "select",
