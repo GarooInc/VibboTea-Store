@@ -275,39 +275,6 @@
   })();
 </script>
 <script>
-  (function () {
-    var header = document.getElementById('main-header');
-    var topbar = document.querySelector('.topbar-wrapper');
-    if (!header) return;
-
-    var lastScrollY = 0;
-    var ticking = false;
-
-    function update() {
-      var topbarHeight = topbar ? topbar.offsetHeight : 0;
-      var currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        header.style.transform = 'translateY(calc(-100% - ' + topbarHeight + 'px))';
-        if (topbar) topbar.style.transform = 'translateY(-100%)';
-      } else if (currentScrollY < lastScrollY) {
-        header.style.transform = 'translateY(0)';
-        if (topbar) topbar.style.transform = 'translateY(0)';
-      }
-
-      lastScrollY = currentScrollY;
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-  })();
-</script>
-<script>
   function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
   const liston = document.getElementById('topbar-liston');
