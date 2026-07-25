@@ -347,6 +347,23 @@
     <div class="col-span-2 text-center text-sm text-gray-500">No product selected in section settings.</div>
   {% endif %}
 
+  <!-- Floating Add-to-Cart Button -->
+  <div class="product-floating-button" id="productFloatingButton">
+    <div class="product-floating-button__wrapper">
+      <form method="post" action="{{ routes.cart_add_url }}" id="floatingCartForm" class="w-full">
+        <input type="hidden" name="id" id="floatingVariantId">
+        <input type="hidden" name="quantity" value="1">
+        <button
+          type="submit"
+          id="floatingAddToCartBtn"
+          class="flex items-center justify-center w-full rounded-3xl py-3 hover:opacity-70 transition-opacity disabled:opacity-50 cursor-pointer"
+        >
+          <span class="font-bricolage text-sm uppercase font-light">{{ section.settings.text_kickstarter_button }}</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -383,6 +400,99 @@
     const ksBtn = document.getElementById('addToCartKickstarter');
     if (ksBtn) ksBtn.disabled = false;
   });
+
+  // Floating Add-to-Cart Button: Intersection Observer and State Sync
+  (function() {
+    const floatingButton = document.getElementById('productFloatingButton');
+    const floatingForm = document.getElementById('floatingCartForm');
+    const floatingVariantId = document.getElementById('floatingVariantId');
+    const floatingAddBtn = document.getElementById('floatingAddToCartBtn');
+
+    if (!floatingButton || !floatingForm || !floatingVariantId || !floatingAddBtn) return;
+
+    // Find main button to watch
+    const mainButton = document.getElementById('addToCartKickstarter') ||
+                       document.querySelector('form[action="{{ routes.cart_add_url }}"] button[type="submit"]');
+
+    if (!mainButton) return;
+
+    // Set up Intersection Observer to show/hide floating button
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          floatingButton.classList.add('is-visible');
+        } else {
+          floatingButton.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(mainButton);
+
+    // Sync variant selection between main form and floating form
+    function syncVariantToFloating() {
+      const ksInput = document.getElementById('kickstarterVariantId');
+      const regularInput = document.getElementById('variantInput');
+      const sourceInput = ksInput || regularInput;
+
+      if (sourceInput) {
+        floatingVariantId.value = sourceInput.value;
+      }
+    }
+
+    // Sync on variant selection
+    document.querySelectorAll('.variant-option').forEach(option => {
+      const originalClick = option.onclick;
+      option.addEventListener('click', syncVariantToFloating);
+    });
+
+    // Also watch when variant inputs change directly
+    const ksInput = document.getElementById('kickstarterVariantId');
+    const regularInput = document.getElementById('variantInput');
+
+    [ksInput, regularInput].forEach(input => {
+      if (input) {
+        const observer = new MutationObserver(syncVariantToFloating);
+        observer.observe(input, { attributes: true, attributeFilter: ['value'] });
+      }
+    });
+
+    // Sync button disabled state (sold out)
+    function syncButtonState() {
+      const mainBtn = document.getElementById('addToCartKickstarter') ||
+                      document.querySelector('form[action="{{ routes.cart_add_url }}"] button[type="submit"]');
+
+      if (mainBtn) {
+        if (mainBtn.disabled) {
+          floatingAddBtn.disabled = true;
+          floatingAddBtn.innerHTML = '<span class="font-bricolage text-sm uppercase font-light">{{ section.settings.sold_out_text }}</span>';
+        } else {
+          floatingAddBtn.disabled = false;
+          floatingAddBtn.innerHTML = '<span class="font-bricolage text-sm uppercase font-light">{{ section.settings.text_kickstarter_button }}</span>';
+        }
+      }
+    }
+
+    // Watch for button state changes
+    const mainBtn = document.getElementById('addToCartKickstarter');
+    if (mainBtn) {
+      const observer = new MutationObserver(syncButtonState);
+      observer.observe(mainBtn, { attributes: true, attributeFilter: ['disabled'] });
+    }
+
+    // Initial sync
+    syncVariantToFloating();
+    syncButtonState();
+
+    // Set up button colors from section settings (CSS custom properties)
+    const bgColor = document.querySelector('[style*="background-color"]')?.style.backgroundColor ||
+                    '{{ section.settings.per_serving_bg_color }}';
+    const textColor = document.querySelector('[style*="color"]')?.style.color ||
+                      '{{ section.settings.per_serving_text_color }}';
+
+    floatingAddBtn.style.backgroundColor = bgColor;
+    floatingAddBtn.style.color = textColor;
+  })();
 </script>
 
 <script>
@@ -546,6 +656,50 @@
     font-size: 0.7rem;
     font-weight: 600;
     color: rgba(26, 26, 26, 0.6);
+  }
+
+  /* Floating Add-to-Cart Button */
+  .product-floating-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 40;
+    background: white;
+    padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .product-floating-button.is-visible {
+    display: block;
+  }
+
+  .product-floating-button__wrapper {
+    max-width: 100%;
+  }
+
+  .product-floating-button button {
+    min-height: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .product-floating-button__wrapper {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 {% endstylesheet %}
 
