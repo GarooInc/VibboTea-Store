@@ -211,15 +211,21 @@
               {% assign product_intro = ingredients_split[0] %}
               {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
             {% else %}
-              {% assign ingredients_split = desc_html | split: '<strong>Ingredients:</strong>' %}
+              {% assign ingredients_split = desc_html | split: '<strong>Ingredients</strong><span>:' %}
               {% if ingredients_split.size > 1 %}
                 {% assign product_intro = ingredients_split[0] %}
                 {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
               {% else %}
-                {% assign ingredients_split = desc_html | split: 'Ingredients:' %}
+                {% assign ingredients_split = desc_html | split: '<strong>Ingredients:</strong>' %}
                 {% if ingredients_split.size > 1 %}
                   {% assign product_intro = ingredients_split[0] %}
                   {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
+                {% else %}
+                  {% assign ingredients_split = desc_html | split: 'Ingredients:' %}
+                  {% if ingredients_split.size > 1 %}
+                    {% assign product_intro = ingredients_split[0] %}
+                    {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
+                  {% endif %}
                 {% endif %}
               {% endif %}
             {% endif %}
