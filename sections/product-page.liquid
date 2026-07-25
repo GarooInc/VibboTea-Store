@@ -142,6 +142,38 @@
       <div class="product-info w-full flex flex-col justify-between items-start h-auto min-w-0">
         <div>
 
+          {% liquid
+            assign quote_text = ''
+            assign quote_author = ''
+            assign quote_verified = false
+            case product.handle
+              when 'hydra-boost-natural-energy'
+                assign quote_text = 'This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.'
+                assign quote_author = 'Andres B.'
+                assign quote_verified = true
+              when 'gut-bliss-natural-detox'
+                assign quote_text = "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas.."
+                assign quote_author = 'Silvia P.'
+              when 'chill-vibes-natural-relax'
+                assign quote_text = 'It is sooo delicious! Congrats! Great and healthy product!'
+                assign quote_author = 'Annabella V.'
+                assign quote_verified = true
+            endcase
+          %}
+          {% if quote_text != blank %}
+            <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
+              <div class="product-quote-box__stars" aria-hidden="true">★★★★★</div>
+              <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
+              <div class="product-quote-box__author-row">
+                <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
+                <span class="product-quote-box__author">{{ quote_author }}</span>
+                {% if quote_verified %}
+                  <span class="product-quote-box__verified">Verified</span>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+
           <!-- Judge.me reviews -->
           <div class="mb-4" style="margin-top: 24px;">
             <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
@@ -155,7 +187,7 @@
           </h1>
 
 
-        <div id="priceWrapper" class="py-4 flex flex-col gap-3 transition-all duration-300 w-full">
+        <div id="priceWrapper" class="py-2 flex flex-col gap-2 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
               <span class="text-3xl md:text-4xl text-black">
@@ -179,10 +211,16 @@
               {% assign product_intro = ingredients_split[0] %}
               {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
             {% else %}
-              {% assign ingredients_split = desc_html | split: 'Ingredients:' %}
+              {% assign ingredients_split = desc_html | split: '<strong>Ingredients:</strong>' %}
               {% if ingredients_split.size > 1 %}
                 {% assign product_intro = ingredients_split[0] %}
                 {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
+              {% else %}
+                {% assign ingredients_split = desc_html | split: 'Ingredients:' %}
+                {% if ingredients_split.size > 1 %}
+                  {% assign product_intro = ingredients_split[0] %}
+                  {% assign product_ingredients = ingredients_split[1] | strip_html | strip %}
+                {% endif %}
               {% endif %}
             {% endif %}
 
@@ -453,6 +491,65 @@
     btn.addEventListener('click', () => desktopGoTo(i));
   });
 </script>
+
+{% stylesheet %}
+  .product-quote-box {
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .product-quote-box__stars {
+    color: #1a1a1a;
+    font-size: 1.1rem;
+    letter-spacing: 0.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-quote-box__text {
+    font-family: var(--font-bricolage, sans-serif);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-quote-box__author-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .product-quote-box__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.12);
+    color: #1a1a1a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .product-quote-box__author {
+    font-family: var(--font-bricolage, sans-serif);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .product-quote-box__verified {
+    font-family: var(--font-bricolage, sans-serif);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(26, 26, 26, 0.6);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
