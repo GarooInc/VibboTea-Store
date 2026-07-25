@@ -404,94 +404,63 @@
   // Floating Add-to-Cart Button: Intersection Observer and State Sync
   (function() {
     const floatingButton = document.getElementById('productFloatingButton');
-    const floatingForm = document.getElementById('floatingCartForm');
     const floatingVariantId = document.getElementById('floatingVariantId');
     const floatingAddBtn = document.getElementById('floatingAddToCartBtn');
 
-    if (!floatingButton || !floatingForm || !floatingVariantId || !floatingAddBtn) return;
+    if (!floatingButton || !floatingVariantId || !floatingAddBtn) return;
 
     // Find main button to watch
-    const mainButton = document.getElementById('addToCartKickstarter') ||
-                       document.querySelector('form[action="{{ routes.cart_add_url }}"] button[type="submit"]');
-
+    const mainButton = document.getElementById('addToCartKickstarter');
     if (!mainButton) return;
 
     // Set up Intersection Observer to show/hide floating button
-    const observer = new IntersectionObserver((entries) => {
+    const intersectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          floatingButton.classList.add('is-visible');
-        } else {
-          floatingButton.classList.remove('is-visible');
-        }
+        floatingButton.classList.toggle('is-visible', !entry.isIntersecting);
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0 });
 
-    observer.observe(mainButton);
+    intersectionObserver.observe(mainButton);
 
-    // Sync variant selection between main form and floating form
-    function syncVariantToFloating() {
+    // Sync variant ID when variant selection changes
+    function syncVariantID() {
       const ksInput = document.getElementById('kickstarterVariantId');
-      const regularInput = document.getElementById('variantInput');
-      const sourceInput = ksInput || regularInput;
-
-      if (sourceInput) {
-        floatingVariantId.value = sourceInput.value;
+      if (ksInput) {
+        floatingVariantId.value = ksInput.value;
       }
     }
 
-    // Sync on variant selection
+    // Listen to variant clicks
     document.querySelectorAll('.variant-option').forEach(option => {
-      const originalClick = option.onclick;
-      option.addEventListener('click', syncVariantToFloating);
+      option.addEventListener('click', syncVariantID);
     });
 
-    // Also watch when variant inputs change directly
-    const ksInput = document.getElementById('kickstarterVariantId');
-    const regularInput = document.getElementById('variantInput');
-
-    [ksInput, regularInput].forEach(input => {
-      if (input) {
-        const observer = new MutationObserver(syncVariantToFloating);
-        observer.observe(input, { attributes: true, attributeFilter: ['value'] });
-      }
-    });
-
-    // Sync button disabled state (sold out)
+    // Sync button text and disabled state
     function syncButtonState() {
-      const mainBtn = document.getElementById('addToCartKickstarter') ||
-                      document.querySelector('form[action="{{ routes.cart_add_url }}"] button[type="submit"]');
-
-      if (mainBtn) {
-        if (mainBtn.disabled) {
-          floatingAddBtn.disabled = true;
-          floatingAddBtn.innerHTML = '<span class="font-bricolage text-sm uppercase font-light">{{ section.settings.sold_out_text }}</span>';
-        } else {
-          floatingAddBtn.disabled = false;
-          floatingAddBtn.innerHTML = '<span class="font-bricolage text-sm uppercase font-light">{{ section.settings.text_kickstarter_button }}</span>';
-        }
-      }
+      const isDisabled = mainButton.disabled;
+      floatingAddBtn.disabled = isDisabled;
+      floatingAddBtn.textContent = isDisabled ?
+        '{{ section.settings.sold_out_text }}' :
+        '{{ section.settings.text_kickstarter_button }}';
     }
 
-    // Watch for button state changes
-    const mainBtn = document.getElementById('addToCartKickstarter');
-    if (mainBtn) {
-      const observer = new MutationObserver(syncButtonState);
-      observer.observe(mainBtn, { attributes: true, attributeFilter: ['disabled'] });
+    // Watch main button disabled state
+    const stateObserver = new MutationObserver(syncButtonState);
+    stateObserver.observe(mainButton, { attributes: true, attributeFilter: ['disabled'] });
+
+    // Sync button colors from main button
+    function syncColors() {
+      const mainStyle = window.getComputedStyle(mainButton);
+      floatingAddBtn.style.backgroundColor = mainStyle.backgroundColor;
+      floatingAddBtn.style.color = mainStyle.color;
     }
 
-    // Initial sync
-    syncVariantToFloating();
+    syncVariantID();
     syncButtonState();
+    syncColors();
 
-    // Set up button colors from section settings (CSS custom properties)
-    const bgColor = document.querySelector('[style*="background-color"]')?.style.backgroundColor ||
-                    '{{ section.settings.per_serving_bg_color }}';
-    const textColor = document.querySelector('[style*="color"]')?.style.color ||
-                      '{{ section.settings.per_serving_text_color }}';
-
-    floatingAddBtn.style.backgroundColor = bgColor;
-    floatingAddBtn.style.color = textColor;
+    // Re-sync colors after a short delay to ensure styles are applied
+    setTimeout(syncColors, 100);
   })();
 </script>
 
