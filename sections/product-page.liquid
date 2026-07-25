@@ -162,7 +162,6 @@
           %}
           {% if quote_text != blank %}
             <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
-              <div class="product-quote-box__stars" aria-hidden="true">★★★★★</div>
               <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
               <div class="product-quote-box__author-row">
                 <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
@@ -504,13 +503,6 @@
     border-radius: 1rem;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1.25rem;
-  }
-
-  .product-quote-box__stars {
-    color: #1a1a1a;
-    font-size: 1.1rem;
-    letter-spacing: 0.15rem;
-    margin-bottom: 0.5rem;
   }
 
   .product-quote-box__text {
