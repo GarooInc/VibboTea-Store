@@ -43,10 +43,10 @@
     <!-- No Microplastics -->
     <div class="product-features-row__item">
       <div class="product-features-row__icon-wrap">
-        <img 
-          src="{{ 'no-microplastics.svg' | asset_url }}" 
-          alt="No Microplastics" 
-          class="product-features-row__icon"
+        <img
+          src="{{ 'no-microplastics.svg' | asset_url }}"
+          alt="No Microplastics"
+          class="product-features-row__icon product-features-row__icon--microplastics"
           width="96"
           height="96"
         >
@@ -57,10 +57,10 @@
     <!-- 30-Day Guarantee -->
     <div class="product-features-row__item">
       <div class="product-features-row__icon-wrap">
-        <img 
-          src="{{ '30-day-guarantee.svg' | asset_url }}" 
-          alt="30-Day Guarantee" 
-          class="product-features-row__icon"
+        <img
+          src="{{ '30-day-guarantee.svg' | asset_url }}"
+          alt="30-Day Guarantee"
+          class="product-features-row__icon product-features-row__icon--guarantee"
           width="96"
           height="96"
         >
@@ -122,6 +122,17 @@
     display: block;
     object-fit: contain;
     object-position: left center;
+  }
+
+  /* These two icons have asymmetric artwork (bottle cap, ribbon tails) that
+     sits off-center within their tight crop, so their visual "core" shape
+     needs a nudge to look level with the other icons. */
+  .product-features-row__icon--microplastics {
+    transform: translateY(-10%);
+  }
+
+  .product-features-row__icon--guarantee {
+    transform: translateY(14%);
   }
 
   .product-features-row__text {
