@@ -418,7 +418,7 @@
       entries.forEach(entry => {
         floatingButton.classList.toggle('is-visible', !entry.isIntersecting);
       });
-    }, { threshold: 0 });
+    }, { threshold: [0, 1] });
 
     intersectionObserver.observe(mainButton);
 
