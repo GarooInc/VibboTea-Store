@@ -1,0 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * Recipes Page Template
+ *
+ * This page template is used for the hidden recipes page.
+ * It disables the default page content and uses a custom
+ * recipes section with dropdown category filtering.
+ *
+ * To create this page in Shopify:
+ * 1. Go to Shopify Admin > Content > Pages
+ * 2. Click "Add page"
+ * 3. Enter title: "Recipes"
+ * 4. Leave content empty (can add SEO later)
+ * 5. Set visibility to "Hidden" (optional - not in nav by default)
+ * 6. Click "Save"
+ * 7. Shopify will automatically use this template
+ *
+ * The page will be accessible at: /recipes
+ * No menu link will be created unless manually added.
+ * --------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "recipes": {
+      "type": "recipes-page",
+      "name": "Recipes Page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "recipes"
+  ]
+}

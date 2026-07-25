@@ -1,0 +1,273 @@
+<div class="recipes-page w-full max-w-full min-w-0 md:px-5 md:py-10 md:pt-28 pt-32 pb-20">
+
+  <!-- Page Title -->
+  <div class="mb-12">
+    <h1 class="text-4xl md:text-5xl font-bricolage font-medium text-black">Recipes</h1>
+    <p class="text-lg md:text-xl text-gray-600 mt-4 font-bricolage">Discover delicious ways to enjoy your VIBBO tea</p>
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div class="mb-8">
+    <div class="relative inline-block w-full md:w-64">
+      <button
+        id="categoryDropdownTrigger"
+        class="w-full md:w-64 px-4 py-3 bg-white border-2 border-black rounded-lg font-bricolage font-semibold text-left flex justify-between items-center cursor-pointer hover:bg-gray-50 transition"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+      >
+        <span id="selectedCategoryText">Select Preparation Type</span>
+        <svg class="w-5 h-5 transition-transform" id="dropdownArrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </button>
+
+      <!-- Dropdown Menu Items -->
+      <div
+        id="categoryDropdownMenu"
+        class="absolute top-full left-0 w-full md:w-64 mt-2 bg-white border-2 border-black rounded-lg shadow-lg hidden z-10"
+        role="listbox"
+      >
+        <button
+          class="category-option w-full px-4 py-3 text-left font-bricolage font-semibold hover:bg-gray-100 transition border-b border-gray-200 first:rounded-t-sm"
+          data-category="hot"
+          role="option"
+        >
+          ☕ Hot
+        </button>
+        <button
+          class="category-option w-full px-4 py-3 text-left font-bricolage font-semibold hover:bg-gray-100 transition border-b border-gray-200"
+          data-category="iced"
+          role="option"
+        >
+          🧊 Iced
+        </button>
+        <button
+          class="category-option w-full px-4 py-3 text-left font-bricolage font-semibold hover:bg-gray-100 transition border-b border-gray-200"
+          data-category="mocktail"
+          role="option"
+        >
+          🍹 Mocktail
+        </button>
+        <button
+          class="category-option w-full px-4 py-3 text-left font-bricolage font-semibold hover:bg-gray-100 transition last:rounded-b-sm"
+          data-category="cocktail"
+          role="option"
+        >
+          🍸 Cocktail
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipe Containers -->
+  <div class="recipes-containers">
+
+    <!-- Hot Recipes -->
+    <div class="recipe-category hidden" data-category="hot" id="hot-recipes">
+      <h2 class="text-3xl font-bricolage font-medium text-black mb-8">Hot Recipes</h2>
+      <div class="recipe-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Iced Recipes -->
+    <div class="recipe-category hidden" data-category="iced" id="iced-recipes">
+      <h2 class="text-3xl font-bricolage font-medium text-black mb-8">Iced Recipes</h2>
+      <div class="recipe-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mocktail Recipes -->
+    <div class="recipe-category hidden" data-category="mocktail" id="mocktail-recipes">
+      <h2 class="text-3xl font-bricolage font-medium text-black mb-8">Mocktail Recipes</h2>
+      <div class="recipe-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cocktail Recipes -->
+    <div class="recipe-category hidden" data-category="cocktail" id="cocktail-recipes">
+      <h2 class="text-3xl font-bricolage font-medium text-black mb-8">Cocktail Recipes</h2>
+      <div class="recipe-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+
+        <div class="recipe-card bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+          <div class="h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400">
+            [Recipe Image]
+          </div>
+          <h3 class="text-xl font-bricolage font-semibold text-black mb-2">Recipe Title</h3>
+          <p class="text-gray-600 text-sm mb-4">Brief description of the recipe goes here</p>
+          <a href="#" class="text-black font-bricolage font-semibold hover:underline">View Recipe →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    const dropdownTrigger = document.getElementById('categoryDropdownTrigger');
+    const dropdownMenu = document.getElementById('categoryDropdownMenu');
+    const dropdownArrow = document.getElementById('dropdownArrow');
+    const categoryOptions = document.querySelectorAll('.category-option');
+    const recipeCategories = document.querySelectorAll('.recipe-category');
+    const selectedCategoryText = document.getElementById('selectedCategoryText');
+
+    // Toggle dropdown visibility
+    dropdownTrigger.addEventListener('click', () => {
+      const isOpen = !dropdownMenu.classList.contains('hidden');
+      if (isOpen) {
+        dropdownMenu.classList.add('hidden');
+        dropdownArrow.classList.remove('rotate-180');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+      } else {
+        dropdownMenu.classList.remove('hidden');
+        dropdownArrow.classList.add('rotate-180');
+        dropdownTrigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Handle category selection
+    categoryOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedCategory = option.getAttribute('data-category');
+        const categoryName = option.textContent.trim();
+
+        // Update dropdown text
+        selectedCategoryText.textContent = categoryName;
+
+        // Hide all recipe containers
+        recipeCategories.forEach(container => {
+          container.classList.add('hidden');
+        });
+
+        // Show selected recipe container
+        const selectedContainer = document.getElementById(`${selectedCategory}-recipes`);
+        if (selectedContainer) {
+          selectedContainer.classList.remove('hidden');
+        }
+
+        // Close dropdown
+        dropdownMenu.classList.add('hidden');
+        dropdownArrow.classList.remove('rotate-180');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.add('hidden');
+        dropdownArrow.classList.remove('rotate-180');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Recipes Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Recipes Page"
+    }
+  ]
+}
+{% endschema %}
