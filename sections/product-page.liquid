@@ -1,8 +1,50 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start w-full max-w-full min-w-0 overflow-hidden
-   md:px-5 md:py-10 md:pt-56 pt-40">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start md:items-center w-full max-w-full min-w-0 overflow-hidden
+   md:px-5 md:py-10 md:pt-16 pt-40">
 
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
+
+    {% liquid
+      assign quote_text = ''
+      assign quote_author = ''
+      assign quote_verified = false
+      case product.handle
+        when 'hydra-boost-natural-energy'
+          assign quote_text = 'This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.'
+          assign quote_author = 'Andres B.'
+          assign quote_verified = true
+        when 'gut-bliss-natural-detox'
+          assign quote_text = "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas.."
+          assign quote_author = 'Silvia P.'
+        when 'chill-vibes-natural-relax'
+          assign quote_text = 'It is sooo delicious! Congrats! Great and healthy product!'
+          assign quote_author = 'Annabella V.'
+          assign quote_verified = true
+      endcase
+    %}
+
+    <!-- MOBILE: Review card above image -->
+    <div class="md:hidden w-full">
+      {% if quote_text != blank %}
+        <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
+          <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
+          <div class="product-quote-box__author-row">
+            <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
+            <span class="product-quote-box__author">{{ quote_author }}</span>
+            {% if quote_verified %}
+              <span class="product-quote-box__verified">Verified</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Judge.me reviews -->
+      <div class="mb-4" style="margin-top: 24px;">
+        <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
+          {{ product.metafields.judgeme.badge }}
+        </div>
+      </div>
+    </div>
 
     {% if product.media.size > 1 %}
 
@@ -142,41 +184,25 @@
       <div class="product-info w-full flex flex-col justify-between items-start h-auto min-w-0">
         <div>
 
-          {% liquid
-            assign quote_text = ''
-            assign quote_author = ''
-            assign quote_verified = false
-            case product.handle
-              when 'hydra-boost-natural-energy'
-                assign quote_text = 'This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.'
-                assign quote_author = 'Andres B.'
-                assign quote_verified = true
-              when 'gut-bliss-natural-detox'
-                assign quote_text = "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas.."
-                assign quote_author = 'Silvia P.'
-              when 'chill-vibes-natural-relax'
-                assign quote_text = 'It is sooo delicious! Congrats! Great and healthy product!'
-                assign quote_author = 'Annabella V.'
-                assign quote_verified = true
-            endcase
-          %}
-          {% if quote_text != blank %}
-            <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
-              <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
-              <div class="product-quote-box__author-row">
-                <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
-                <span class="product-quote-box__author">{{ quote_author }}</span>
-                {% if quote_verified %}
-                  <span class="product-quote-box__verified">Verified</span>
-                {% endif %}
+          <div class="hidden md:block w-full">
+            {% if quote_text != blank %}
+              <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
+                <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
+                <div class="product-quote-box__author-row">
+                  <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
+                  <span class="product-quote-box__author">{{ quote_author }}</span>
+                  {% if quote_verified %}
+                    <span class="product-quote-box__verified">Verified</span>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
 
-          <!-- Judge.me reviews -->
-          <div class="mb-4" style="margin-top: 24px;">
-            <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
-              {{ product.metafields.judgeme.badge }}
+            <!-- Judge.me reviews -->
+            <div class="mb-4" style="margin-top: 24px;">
+              <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
+                {{ product.metafields.judgeme.badge }}
+              </div>
             </div>
           </div>
 
@@ -336,11 +362,13 @@
         </form>
       {% endunless %}
 
-      <div>
-        <p class="text-sm text-gray-500 font-bricolage italic pb-20">
-          {{ section.settings.disclaimer_kickstarter }}
-        </p>
-      </div>
+      {% if section.settings.disclaimer_kickstarter != blank %}
+        <div>
+          <p class="text-sm text-gray-500 font-bricolage italic pb-2">
+            {{ section.settings.disclaimer_kickstarter }}
+          </p>
+        </div>
+      {% endif %}
     </div>
 
   {% else %}
