@@ -129,7 +129,7 @@
       ],
       "name": "Header Slide",
       "settings": {
-        "autoplay": true,
+        "autoplay": false,
         "Time": 6000
       }
     },
