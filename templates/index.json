@@ -129,8 +129,8 @@
       ],
       "name": "Header Slide",
       "settings": {
-        "autoplay": false,
-        "Time": 5999
+        "autoplay": true,
+        "Time": 6000
       }
     },
     "cinta_newsletter_CmHQnG": {
