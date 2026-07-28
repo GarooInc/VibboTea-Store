@@ -29,7 +29,7 @@
         "slide_A84cL4": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/desktop_clear.png",
+            "image_desktop": "shopify://shop_images/desktop.png",
             "marca_agua": false,
             "texto_agua": "",
             "video_mp4": "",
