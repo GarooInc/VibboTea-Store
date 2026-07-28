@@ -1,0 +1,277 @@
+<div 
+    class="md:grid md:grid-cols-2 flex flex-col min-h-screen bg-[#F8F8F8]"
+    style="width: 100vw; margin-left: calc(50% - 50vw);">
+    <div class="flex md:pt-60 pt-40 md:pl-[15vw] pl-40 ">
+        <div class="text-black text-3xl font-bricolage font-semibold leading-[1.1] md:hidden">
+            {{ section.settings.mobile_title | newline_to_br }}
+        </div>
+        <div class="text-black text-7xl font-bricolage font-semibold leading-[1.1] hidden md:block">
+            {{ section.settings.title | newline_to_br }}
+        </div>
+        <div class="absolute bottom-0 md:right-[calc(50%-55px)]">
+            {% if section.settings.image1 %}
+                <img
+                    src="{{ section.settings.image1 | image_url: width: 600 }}"
+                    alt="Image 1"
+                    class="mt-10 md:ml-0 xl:w-[500px] md:w-[420px] object-cover rounded-2xl "
+                    width="600"
+                    height="600"
+                >
+            {% endif %}
+        </div>
+        <div class="absolute -top-10 md:bottom-0 left-0 w-52 md:w-96 overflow-hidden">
+            {% if section.settings.image2 %}
+                <img 
+                    src="{{ section.settings.image2 | image_url: width: 600 }}"
+                    alt="Image 2"
+                    width="600"
+                    height="600"
+                    class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl md:-translate-x-1/4"
+                >
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="md:w-7/9 pt-20 px-5 md:px-0 flex flex-col justify-center pb-60 md:pb-0">
+        <form id="ContactForm" data-n8n-webhook="https://agentsprod.redtec.ai/webhook/contactus-form">
+
+        <div class="md:grid flex md:grid-cols-2 gap-4 pb-4 ">
+            <!-- First name -->
+            <div>
+                <label for="ContactFormFirstName" class="block mb-1 font-medium font-bricolage pb-2">
+                    First name
+                </label>
+
+                <input
+                    type="text"
+                    name="contact[first_name]"
+                    id="ContactFormFirstName"
+                    placeholder="John"
+                    class="w-full border border-gray-300 bg-white px-4 py-3
+                        focus:outline-none focus:ring-2 focus:ring-black 
+                        rounded-2xl "
+                >
+                </div>
+
+
+            <!-- Last name -->
+            <div>
+            <label for="ContactFormLastName" class="block mb-1 font-medium  font-bricolage pb-2">Last name</label>
+            <input
+                type="text"
+                name="contact[last_name]"
+                id="ContactFormLastName"
+                placeholder="Doe"
+                class="w-full border border-gray-300 bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            >
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mt-5 pb-4">
+            <label for="ContactFormEmail" class="block mb-1 font-medium font-bricolage pb-2">Email address</label>
+            <input
+            type="email"
+            name="contact[email]"
+            id="ContactFormEmail"
+            placeholder="How else would we reach you?"
+            class="w-full border border-gray-300  bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            required
+            >
+        </div>
+
+        <!-- Reason for Contact -->
+        <div class="mt-5 pb-4">
+            <label for="ContactFormReason" class="block mb-1 font-medium font-bricolage pb-2">Reason for contact</label>
+            <select
+            name="contact[reason]"
+            id="ContactFormReason"
+            class="w-full border border-gray-300 bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            required
+            >
+                <option value="">Select an option</option>
+                <option value="General inquiry">General inquiry</option>
+                <option value="Orders">Orders</option>
+                <option value="Partnerships">Partnerships</option>
+                <option value="Affiliated marketing">Affiliated marketing</option>
+                <option value="Wholesale">Wholesale</option>
+            </select>
+        </div>
+
+        <!-- Message -->
+        <div class="mt-5 pb-4">
+            <label for="ContactFormMessage" class="block mb-1 font-medium  font-bricolage pb-2">How can we help?</label>
+            <textarea
+            name="contact[body]"
+            id="ContactFormMessage"
+            rows="5"
+            placeholder="Tell us everything, I mean not everything but you get it."
+            class="w-full border border-gray-300 rounded-lg bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+            ></textarea>
+        </div>
+
+        <!-- Checkbox Terms -->
+        <div class="py-6 flex items-start gap-3" style="position: relative; z-index: 50;">
+            <input
+                type="checkbox"
+                name="contact[terms_accepted]"
+                id="ContactFormTerms"
+                required
+                class="mt-1 w-5 h-5 border-2 border-gray-300 rounded cursor-pointer accent-black"
+            >
+            <label for="ContactFormTerms" class="text-sm text-gray-700 cursor-pointer">
+                I agree to the 
+                <a href="{{ section.settings.terms_link }}" class="underline hover:text-black" target="_blank">Terms of Service</a> 
+                and 
+                <a href="{{ section.settings.privacy_link }}" class="underline hover:text-black" target="_blank">Privacy Policy</a>
+            </label>
+        </div>
+
+        <!-- Honeypot (anti-spam) -->
+        <div style="display:none;" aria-hidden="true">
+            <input type="text" name="contact[website]" id="ContactFormHoneypot" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- Button -->
+        <div class="mt-10">
+            <button
+            type="submit"
+            class="w-full bg-black text-white py-3 rounded-full text-center hover:opacity-80 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+            Send
+            </button>
+        </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+(function(){
+    const form = document.getElementById("ContactForm");
+    if (!form) return;
+
+    const webhook = form.getAttribute("data-n8n-webhook");
+
+    function showMessage(type, text) {
+        let el = form.querySelector('.escuela-form-msg');
+        if (!el) {
+            el = document.createElement('p');
+            el.className = 'escuela-form-msg mt-4';
+            form.appendChild(el);
+        }
+        el.textContent = text;
+        el.style.color = (type === 'ok') ? '#16a34a' : '#dc2626';
+    }
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Honeypot check
+        const honeypot = form.querySelector('[name="contact[website]"]')?.value || '';
+        if (honeypot) return;
+
+        const nombre = form.querySelector('[name="contact[first_name]"]')?.value?.trim() || '';
+        const apellido = form.querySelector('[name="contact[last_name]"]')?.value?.trim() || '';
+        const email = form.querySelector('[name="contact[email]"]')?.value?.trim() || '';
+        const reason = form.querySelector('[name="contact[reason]"]')?.value?.trim() || '';
+        const comments = form.querySelector('[name="contact[body]"]')?.value?.trim() || '';
+
+        if (!nombre || !apellido || !email || !reason || !comments){
+            showMessage('err', 'Please fill in all fields.');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('err', 'Please enter a valid email address.');
+            return;
+        }
+
+        const payload = {
+            nombre,
+            apellido,
+            email,
+            reason,
+            comments,
+            submittedAt: new Date().toISOString()
+        };
+
+        try {
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) btn.disabled = true;
+
+            const res = await fetch(webhook, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                showMessage('ok', 'Thank you for reaching out! We will get back to you soon.');
+                form.reset();
+            } else {
+                throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            }
+
+            if (btn) btn.disabled = false;
+
+        } catch (error) {
+            console.error(error);
+            showMessage('err', 'No se pudo enviar. Intenta de nuevo en unos minutos.');
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) btn.disabled = false;
+        }
+    });
+})();
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Contact us",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title (Desktop)",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_title",
+      "label": "Title (Mobile)",
+      "default": "Title"
+    },
+    {
+     "type": "image_picker", 
+     "id": "image1", 
+      "label": "Image1"
+    },
+    {
+     "type": "image_picker", 
+     "id": "image2", 
+      "label": "Image2"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms of Service Link"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact us"
+    }
+  ]
+}
+{% endschema %}
