@@ -1,6 +1,6 @@
 <div
   class="slider-facts-{{ section.id }} custom-slider relative flex flex-col md:block
-         h-[55vh] lg:h-screen w-screen
+         w-screen
          mx-auto overflow-hidden"
   data-autoplay="{{ section.settings.autoplay }}"
   data-interval="{{ section.settings.Time }}"
@@ -13,12 +13,13 @@
   <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
   <div class="slides-wrapper hero-slides-wrapper relative w-full overflow-hidden">
     {% for block in section.blocks %}
-      <div class="slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
+      <div class="slide hero-slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
+        <div class="hero-media">
 
           
           {% if block.settings.video_mp4 != blank %}
             <video
-             class="hero-slide-media absolute inset-0 w-full h-full"
+             class="hero-slide-media"
               autoplay
               muted
               loop
@@ -30,21 +31,17 @@
           {% elsif block.settings.image_desktop %}
             <img
               src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
-              class="hero-slide-media absolute inset-0 w-full h-full"
+              class="hero-slide-media"
               alt="{{ block.settings.alt | escape }}"
               width="{{ section.settings.image_desktop.width }}"
               height="{{ section.settings.image_desktop.height }}"
             />
           {% endif %}
+        </div>
 
-          
-
-
-        <div class="slide-content hero-center-content absolute top-0 left-0 w-full h-[40vh] md:h-screen
-              flex flex-col items-center justify-center text-center overflow-hidden">
-          
+        <div class="slide-content hero-copy">
           {% if block.settings.page_title != blank %}
-            <h1 class="text-[8vw] md:text-4xl lg:text-5xl font-bold font-bricolage text-black leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+            <h1 class="hero-copy-title">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
                 <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
@@ -53,7 +50,7 @@
           {% endif %}
 
           {% if block.settings.page_descripction != blank %}
-            <p class="text-[4vw] md:text-lg lg:text-xl md:pt-4 pt-2 text-black font-bricolage leading-[0.9] ">
+            <p class="hero-copy-desc">
               {{- block.settings.page_descripction | newline_to_br -}}
               <span class="whitespace-nowrap">WARRANTY{%- if block.settings.link_popup -%}
                 <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 group ml-2">
@@ -139,17 +136,30 @@
 
 
 
-      <div class="absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
-        <a
-          href="{{ block.settings.button_link | default: '/collections/frontpage' }}"
-          class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center
-                rounded-3xl px-6 py-3 w-40 md:px-8 md:py-3 md:w-55 hover:opacity-70 transition-opacity"
-        >
-          <span class="font-bricolage text-black text-base md:text-xl uppercase font-normal">
-            {{block.settings.button_text}}
-          </span>
-        </a>
-      </div>
+      {% if position == 'bottom-center' %}
+        <div class="hero-cta-bottom-center">
+          <a
+            href="{{ block.settings.button_link | default: '/collections/frontpage' }}"
+            class="hero-cta-button"
+          >
+            <span class="hero-cta-label">
+              {{ block.settings.button_text }}
+            </span>
+          </a>
+        </div>
+      {% else %}
+        <div class="absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
+          <a
+            href="{{ block.settings.button_link | default: '/collections/frontpage' }}"
+            class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center
+                  rounded-3xl px-6 py-3 w-40 md:px-8 md:py-3 md:w-55 hover:opacity-70 transition-opacity"
+          >
+            <span class="font-bricolage text-black text-base md:text-xl uppercase font-normal">
+              {{block.settings.button_text}}
+            </span>
+          </a>
+        </div>
+      {% endif %}
 
     </div>
       
@@ -239,18 +249,106 @@
   inset: 0;
 }
 
+.hero-slide {
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
+}
+
+.hero-media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  order: 2;
+}
+
 .hero-slide-media {
-  min-width: 100%;
-  min-height: 100%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: top center;
+  transform: scale(var(--hero-zoom, 1));
+  transform-origin: center 58%;
 }
 
 @media (max-width: 767px) {
-  .hero-slide-media {
-    transform: scale(1.35);
-    transform-origin: center top;
+  .hero-media {
+    --hero-zoom: 1.25;
   }
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 20;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: visible;
+  padding: clamp(0.75rem, 3vh, 1.5rem) clamp(0.75rem, 4vw, 2rem) clamp(0.5rem, 2vh, 1rem);
+  gap: clamp(0.25rem, 1vh, 0.5rem);
+}
+
+.hero-copy-title {
+  margin: 0;
+  font-weight: 700;
+  font-family: 'Bricolage', serif;
+  color: #000;
+  line-height: 0.95;
+  font-size: clamp(1.25rem, 1.1rem + 3.2vw, 3.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-copy-desc {
+  margin: 0;
+  font-family: 'Bricolage', serif;
+  color: #000;
+  line-height: 1.3;
+  font-size: clamp(0.68rem, 0.55rem + 1.05vw, 1.15rem);
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.hero-cta-bottom-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1rem, 4vh, 3.25rem);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-cta-button {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFCD51;
+  border-radius: 1.5rem;
+  padding: clamp(0.5rem, 1.4vw, 0.75rem) clamp(1.25rem, 3.2vw, 2rem);
+  transition: opacity 0.2s ease;
+}
+
+.hero-cta-button:hover {
+  opacity: 0.7;
+}
+
+.hero-cta-label {
+  font-family: 'Bricolage', serif;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(0.75rem, 0.6rem + 0.9vw, 1.25rem);
 }
 
 .hero-slides-wrapper {
@@ -266,17 +364,19 @@
   }
 }
 
+.custom-slider {
+  height: clamp(560px, 72vh, 760px);
+}
+
+@media (min-width: 768px) {
+  .custom-slider {
+    height: 100vh;
+  }
+}
+
 @media (max-width: 767px) {
   .hero-title-logo {
     margin-left: -0.3em;
-  }
-
-  .custom-slider .hero-center-content p {
-    max-width: 100%;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    white-space: normal;
-    word-break: break-word;
   }
 }
 
