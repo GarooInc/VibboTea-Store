@@ -1,5 +1,5 @@
 <div
-  class="slider-facts-{{ section.id }} custom-slider relative 
+  class="slider-facts-{{ section.id }} custom-slider relative flex flex-col md:block
          h-[55vh] lg:h-screen w-screen
          mx-auto overflow-hidden"
   data-autoplay="{{ section.settings.autoplay }}"
@@ -44,7 +44,7 @@
               flex flex-col items-center justify-center text-center overflow-hidden">
           
           {% if block.settings.page_title != blank %}
-            <h1 class="text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+            <h1 class="text-[8.5vw] md:text-[7vw] font-bold font-bricolage text-white drop-shadow-lg leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
                 <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
@@ -52,9 +52,27 @@
             </h1>
           {% endif %}
 
-          {% if block.settings.page_descripction != blank %}    
-            <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
-              {{ block.settings.page_descripction | newline_to_br }}
+          {% if block.settings.page_descripction != blank %}
+            <p class="text-[4.8vw] md:text-[3.5vw] md:pt-4 pt-2 text-white font-bricolage drop-shadow-lg leading-[0.9] ">
+              {{ block.settings.page_descripction | newline_to_br }} WARRANTY
+              {% if block.settings.link_popup %}
+                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 group">
+                  <button
+                    type="button"
+                    class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
+                    aria-label="Show disclaimer"
+                    aria-expanded="false"
+                  >
+                    i
+                  </button>
+
+                  <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
+                    <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
+                      {{ block.settings.hover_text }}
+                    </span>
+                  </div>
+                </span>
+              {% endif %}
             </p>
           {% endif %}
 
@@ -124,34 +142,14 @@
       <div class="absolute inset-0 md:flex {{ position_classes }} z-50 pointer-events-none">
         <a
           href="{{ block.settings.button_link | default: '/collections/frontpage' }}"
-          class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center 
-                rounded-3xl md:px-8 md:py-3 py-2 w-25 md:w-55 hover:opacity-70 transition-opacity"
+          class="pointer-events-auto bg-[#FFCD51] flex items-center justify-center
+                rounded-3xl px-6 py-3 w-40 md:px-8 md:py-3 md:w-55 hover:opacity-70 transition-opacity"
         >
-          <span class="font-bricolage text-black md:text-xl text-xs uppercase font-normal">
+          <span class="font-bricolage text-black text-base md:text-xl uppercase font-normal">
             {{block.settings.button_text}}
           </span>
         </a>
       </div>
-
-        {% if block.settings.link_popup %}
-            <div class="hero-disclaimer-trigger absolute z-50 group">
-              <button
-                type="button"
-                class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
-                aria-label="Show disclaimer"
-                aria-expanded="false"
-              >
-                i
-              </button>
-
-              <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
-                  {{ block.settings.hover_text }}
-                </span>
-              </div>
-            </div>
-
-          {% endif %}
 
     </div>
       
@@ -204,8 +202,6 @@
 
 <style>
 .hero-disclaimer-trigger {
-  top: 34%;
-  right: 1rem;
   width: max-content;
   overflow: visible;
   padding: 0.75rem;
@@ -240,13 +236,6 @@
   opacity: 1;
 }
 
-@media (min-width: 768px) {
-  .hero-disclaimer-trigger {
-    top: 32%;
-    right: 2rem;
-  }
-}
-
 .custom-slider .slide {
   position: absolute;
   inset: 0;
@@ -259,13 +248,22 @@
   object-position: top center;
 }
 
+@media (max-width: 767px) {
+  .hero-slide-media {
+    transform: scale(1.35);
+    transform-origin: center top;
+  }
+}
+
 .hero-slides-wrapper {
-  height: 38vh;
+  flex: 1 1 auto;
+  height: auto;
   box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .hero-slides-wrapper {
+    flex: none;
     height: 100vh;
   }
 }
