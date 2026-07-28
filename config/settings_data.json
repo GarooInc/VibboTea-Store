@@ -79,7 +79,7 @@
       },
       "6693550514100872882": {
         "type": "shopify://apps/smart-faqs/blocks/chatbot-embed/019c53b8-9ac8-73a0-b273-7315aa04988c",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     }
