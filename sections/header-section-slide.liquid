@@ -44,7 +44,7 @@
               flex flex-col items-center justify-center text-center overflow-hidden">
           
           {% if block.settings.page_title != blank %}
-            <h1 class="text-[8.5vw] md:text-[7vw] font-bold font-bricolage text-black leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
+            <h1 class="text-[8vw] md:text-[7vw] font-bold font-bricolage text-black leading-[0.9] flex items-center justify-center gap-3 flex-wrap">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
                 <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
@@ -132,7 +132,7 @@
           {% assign position_classes = 'items-end justify-end pb-20 pr-10' %}
         {% else %}
         {% when 'bottom-center' %}
-          {% assign position_classes = 'items-end justify-center md:pb-20 pt-50 md:pl-0 pl-5 md:pt-0 md:left-0 left-1/3' %}
+          {% assign position_classes = 'items-end justify-center md:pb-20 pt-55 md:pl-0 pl-5 md:pt-0 md:left-0 left-1/3' %}
         {% else %}
           {% assign position_classes = 'items-end justify-center pb-20' %}
       {% endcase %}
