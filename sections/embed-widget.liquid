@@ -1,0 +1,31 @@
+<div class="embed-widget-section full-width">
+  <div class="embed-widget-section__content">
+    {{ section.settings.embed_code }}
+  </div>
+</div>
+
+{% stylesheet %}
+  .embed-widget-section__content {
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Embed Widget",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "embed_code",
+      "label": "Embed code (HTML/iframe)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Embed Widget"
+    }
+  ]
+}
+{% endschema %}

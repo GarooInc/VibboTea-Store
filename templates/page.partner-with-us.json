@@ -22,7 +22,7 @@
             "page_title": "Join",
             "title_logo": "shopify://shop_images/vibbowhite.svg",
             "title_backdrop": true,
-            "page_descripction": "Be a real influencer.\nPromote real wellness.",
+            "page_descripction": "Make a real impact.\nPromote real wellness.",
             "title_sec": "",
             "desc_sec": "",
             "button_text": "APPLY TODAY",
@@ -157,6 +157,12 @@
         "cards_visible": 2
       }
     },
+    "partner_faq_widget": {
+      "type": "embed-widget",
+      "settings": {
+        "embed_code": "<iframe scrolling=\"no\" width=\"100%\" height=\"600\" style=\"border: none;\" src=\"https://stack-backend.onrender.com/widget/embed/9e7de0a3-c5a4-44c2-9113-dd4e2381a20b\"></iframe>"
+      }
+    },
     "faq_partner": {
       "type": "faq",
       "blocks": {
@@ -228,6 +234,7 @@
     "partner_steps",
     "our_story",
     "testimonials_partner",
+    "partner_faq_widget",
     "faq_partner"
   ]
 }
