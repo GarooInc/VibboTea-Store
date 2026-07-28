@@ -69,7 +69,7 @@
           {% if block.settings.page_descripction != blank %}
             <p class="hero-copy-desc">
               {{- block.settings.page_descripction | newline_to_br -}}
-              <span class="whitespace-nowrap">&nbsp;WARRANTY{%- if block.settings.link_popup -%}
+              <span class="whitespace-nowrap">&nbsp;WARRANTY&nbsp;{%- if block.settings.link_popup -%}
                 <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 ml-2">
                   <button
                     type="button"
@@ -235,9 +235,9 @@
 }
 
 .hero-disclaimer-btn {
-  width: 1.4em;
-  height: 1.4em;
-  font-size: 0.85em;
+  width: 1.05em;
+  height: 1.05em;
+  font-size: 0.6em;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -311,7 +311,7 @@
 
 .hero-copy {
   position: relative;
-  z-index: 20;
+  z-index: 45;
   order: 1;
   display: flex;
   flex-direction: column;
@@ -334,7 +334,7 @@
   font-family: 'Bricolage', serif;
   color: #000;
   line-height: 1.05;
-  font-size: clamp(1.35rem, -0.1rem + 7.53vw, 3.25rem);
+  font-size: clamp(1.35rem, -0.1rem + 7.53vw, 7.43rem);
   display: block;
   text-align: center;
 }
@@ -349,12 +349,18 @@
   word-break: break-word;
 }
 
+@media (min-width: 712px) {
+  .hero-copy-desc {
+    font-size: clamp(1.02rem, -0.275rem + 2.904vw, 2.63rem);
+  }
+}
+
 .hero-cta-bottom-center {
   position: absolute;
   left: 0;
   right: 0;
   bottom: clamp(1rem, 4vh, 3.25rem);
-  z-index: 30;
+  z-index: 46;
   display: flex;
   justify-content: center;
   pointer-events: none;
@@ -381,6 +387,15 @@
   text-transform: uppercase;
   font-weight: 400;
   font-size: clamp(0.75rem, 0.6rem + 0.9vw, 1.25rem);
+}
+
+@media (max-width: 767px) {
+  .hero-cta-button {
+    padding: clamp(1rem, 2.8vw, 1.5rem) clamp(2.5rem, 6.4vw, 4rem);
+  }
+  .hero-cta-label {
+    font-size: clamp(1.5rem, 1.2rem + 1.8vw, 2.5rem);
+  }
 }
 
 .hero-slides-wrapper {
