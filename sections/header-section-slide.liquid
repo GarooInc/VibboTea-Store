@@ -61,7 +61,13 @@
             <h1 class="hero-copy-title">
               {{ block.settings.page_title | newline_to_br }}
               {% if block.settings.title_logo %}
-                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle; max-width: 40vw; margin-left: 0.3em;">
+                {% if block.settings.title_backdrop %}
+                  <span class="hero-title-backdrop">
+                    <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle;">
+                  </span>
+                {% else %}
+                  <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle; max-width: 40vw; margin-left: 0.3em;">
+                {% endif %}
               {% endif %}
             </h1>
           {% endif %}
@@ -69,24 +75,26 @@
           {% if block.settings.page_descripction != blank %}
             <p class="hero-copy-desc">
               {{- block.settings.page_descripction | newline_to_br -}}
-              <span class="whitespace-nowrap">&nbsp;WARRANTY&nbsp;{%- if block.settings.link_popup -%}
-                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 ml-2">
-                  <button
-                    type="button"
-                    class="hero-disclaimer-btn rounded-full border border-black bg-white text-black font-bricolage flex items-center justify-center"
-                    aria-label="Show disclaimer"
-                    aria-expanded="false"
-                  >
-                    i
-                  </button>
+              {%- if block.settings.link_popup -%}
+                <span class="whitespace-nowrap">&nbsp;WARRANTY&nbsp;
+                  <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 ml-2">
+                    <button
+                      type="button"
+                      class="hero-disclaimer-btn rounded-full border border-black bg-white text-black font-bricolage flex items-center justify-center"
+                      aria-label="Show disclaimer"
+                      aria-expanded="false"
+                    >
+                      i
+                    </button>
 
-                  <span class="hero-disclaimer-tooltip">
-                    <span class="hero-disclaimer-tooltip-inner">
-                      {{ block.settings.hover_text }}
+                    <span class="hero-disclaimer-tooltip">
+                      <span class="hero-disclaimer-tooltip-inner">
+                        {{ block.settings.hover_text }}
+                      </span>
                     </span>
                   </span>
                 </span>
-              {%- endif -%}</span>
+              {%- endif -%}
             </p>
           {% endif %}
 
@@ -337,6 +345,16 @@
   font-size: clamp(1.35rem, -0.1rem + 7.53vw, 3.25rem);
   display: block;
   text-align: center;
+}
+
+.hero-title-backdrop {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.34);
+  border-radius: 0.75rem;
+  padding: 0.15em 0.5em;
+  margin-left: 0.3em;
+  vertical-align: middle;
 }
 
 .hero-copy-desc {
@@ -758,6 +776,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "type": "image_picker",
         "id": "title_logo",
         "label": "Logo imagen (inline con el titulo)"
+      },
+      {
+        "type": "checkbox",
+        "id": "title_backdrop",
+        "label": "Fondo semi-transparente detrás del logo",
+        "info": "Útil cuando el logo es blanco y necesita contraste sobre la imagen de fondo.",
+        "default": false
       },
       {
         "type": "text",

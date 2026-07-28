@@ -28,7 +28,7 @@
             "button_link": "/pages/collab",
             "link_popup": false,
             "hover_text": "",
-            "button_position": "center"
+            "button_position": "bottom-center"
           }
         }
       },
