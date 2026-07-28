@@ -29,13 +29,30 @@
             </video>
 
           {% elsif block.settings.image_desktop %}
-            <img
-              src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
-              class="hero-slide-media"
-              alt="{{ block.settings.alt | escape }}"
-              width="{{ section.settings.image_desktop.width }}"
-              height="{{ section.settings.image_desktop.height }}"
-            />
+            {% if block.settings.image_mobile %}
+              <img
+                src="{{ block.settings.image_mobile | image_url: width: 1500 }}"
+                class="hero-slide-media md:hidden"
+                alt="{{ block.settings.alt | escape }}"
+                width="{{ block.settings.image_mobile.width }}"
+                height="{{ block.settings.image_mobile.height }}"
+              />
+              <img
+                src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
+                class="hero-slide-media hidden md:block"
+                alt="{{ block.settings.alt | escape }}"
+                width="{{ block.settings.image_desktop.width }}"
+                height="{{ block.settings.image_desktop.height }}"
+              />
+            {% else %}
+              <img
+                src="{{ block.settings.image_desktop | image_url: width: 3000 }}"
+                class="hero-slide-media"
+                alt="{{ block.settings.alt | escape }}"
+                width="{{ block.settings.image_desktop.width }}"
+                height="{{ block.settings.image_desktop.height }}"
+              />
+            {% endif %}
           {% endif %}
         </div>
 
@@ -274,15 +291,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center center;
   transform: scale(var(--hero-zoom, 1));
-  transform-origin: center 62%;
-}
-
-@media (max-width: 767px) {
-  .hero-media {
-    --hero-zoom: 1.5;
-  }
+  transform-origin: center 56%;
 }
 
 .hero-copy {
@@ -373,7 +384,8 @@
 }
 
 .custom-slider {
-  height: clamp(600px, 88vh, 900px);
+  height: 100vh;
+  height: 100svh;
 }
 
 @media (min-width: 768px) {
@@ -429,6 +441,40 @@
 
 <script>
 (function () {
+  var HERO_CONTENT_BAND = 0.52; // fraction of image height the product band should fill
+  var HERO_ZOOM_MIN = 1;
+  var HERO_ZOOM_MAX = 2.2;
+
+  function setHeroZoom() {
+    document.querySelectorAll('.hero-media').forEach(function (media) {
+      var mediaRect = media.getBoundingClientRect();
+      if (!mediaRect.width || !mediaRect.height) return;
+      var candidates = media.querySelectorAll('.hero-slide-media');
+      var img = null;
+      for (var i = 0; i < candidates.length; i++) {
+        if (candidates[i].offsetParent !== null) { img = candidates[i]; break; }
+      }
+      if (!img && candidates.length) img = candidates[0];
+      if (!img) return;
+      var naturalW, naturalH;
+      if (img.tagName === 'VIDEO') {
+        naturalW = img.videoWidth;
+        naturalH = img.videoHeight;
+      } else {
+        naturalW = img.naturalWidth;
+        naturalH = img.naturalHeight;
+      }
+      if (!naturalW || !naturalH) return;
+
+      var containerAspect = mediaRect.width / mediaRect.height;
+      var imgAspect = naturalW / naturalH;
+      var visibleFraction = containerAspect >= imgAspect ? (imgAspect / containerAspect) : 1;
+      var zoom = visibleFraction / HERO_CONTENT_BAND;
+      zoom = Math.min(HERO_ZOOM_MAX, Math.max(HERO_ZOOM_MIN, zoom));
+      media.style.setProperty('--hero-zoom', zoom.toFixed(3));
+    });
+  }
+
   function setHeroSpacer() {
     var header = document.getElementById('main-header');
     var topbar = document.querySelector('.topbar-wrapper');
@@ -437,6 +483,7 @@
     var topbarH = topbar ? topbar.offsetHeight : 0;
     var headerH = header.offsetHeight;
     if (slider) slider.style.setProperty('--hero-header-h', (topbarH + headerH) + 'px');
+    setHeroZoom();
     if (window.innerWidth >= 768) return;
     var spacer = document.getElementById('hero-header-spacer');
     if (!spacer) return;
@@ -444,7 +491,15 @@
   }
   requestAnimationFrame(setHeroSpacer);
   document.addEventListener('DOMContentLoaded', function () { requestAnimationFrame(setHeroSpacer); });
+  window.addEventListener('load', setHeroSpacer);
   window.addEventListener('resize', setHeroSpacer);
+  document.querySelectorAll('.hero-slide-media').forEach(function (media) {
+    if (media.tagName === 'IMG') {
+      media.addEventListener('load', setHeroSpacer);
+    } else if (media.tagName === 'VIDEO') {
+      media.addEventListener('loadedmetadata', setHeroSpacer);
+    }
+  });
 })();
 </script>
 
@@ -591,6 +646,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "type": "image_picker",
         "id": "image_desktop",
         "label": "Imagen Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Imagen Mobile (opcional, recorte vertical)",
+        "info": "Si se sube, reemplaza la imagen de escritorio solo en pantallas menores a 768px."
       },
       {
         "type": "checkbox",
