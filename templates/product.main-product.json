@@ -1,0 +1,417 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "disabled": true,
+      "settings": {}
+    },
+    "1779085771408971c2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_preview_badge_ww7Nzb": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_ww7Nzb"
+      ],
+      "settings": {}
+    },
+    "product_page_rNtVMj": {
+      "type": "product-page",
+      "blocks": {
+        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py": {
+          "type": "shopify://apps/appstle-subscription/blocks/appstle-subscription-product-page-widget/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "appstle_subscription_appstle_subscription_product_page_widget_cFf9py"
+      ],
+      "name": "Description product",
+      "settings": {
+        "text_button": "ADD TO CART",
+        "sold_out_text": "SOLD OUT",
+        "kickstarter_price": true,
+        "text_kickstarter_button": "ADD TO CART",
+        "per_serving_bg_color": "#fab801",
+        "per_serving_text_color": "#000000",
+        "disclaimer_kickstarter": "",
+        "presentation_text": "",
+        "steeping_instructions_text": "- Serving Size: 2-3 gr. (1 tsp. - 1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes"
+      }
+    },
+    "product_instructions_KU7cmG": {
+      "type": "product-instructions",
+      "blocks": {
+        "how_block_KaMDUb": {
+          "type": "how_block",
+          "settings": {
+            "gif_1": "shopify://shop_images/teablue_1_2e066eac-453e-4382-9d16-6fca645e3087.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/teablue_2.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/teablue_3_49818eed-cf9e-41df-be81-46ecd836dffc.gif",
+            "text_3": "",
+            "text_4": ""
+          }
+        },
+        "how_block_NNNFD4": {
+          "type": "how_block",
+          "settings": {
+            "gif_1": "shopify://shop_images/cold_cdef2cb3-4e77-44a3-820a-a1a5aa85d0c4.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/teablue_ed72cd9d-0cd7-4df0-9ac5-c5db15e92aba.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/cold.gif",
+            "text_3": "",
+            "text_4": ""
+          }
+        },
+        "how_block_rB8WTr": {
+          "type": "how_block",
+          "settings": {
+            "gif_1": "shopify://shop_images/drink_3.gif",
+            "text_1": "",
+            "gif_2": "shopify://shop_images/drink.gif",
+            "text_2": "",
+            "gif_3": "shopify://shop_images/drink_2.gif",
+            "text_3": "",
+            "text_4": ""
+          }
+        }
+      },
+      "block_order": [
+        "how_block_KaMDUb",
+        "how_block_NNNFD4",
+        "how_block_rB8WTr"
+      ],
+      "name": "Product how",
+      "settings": {
+        "title": "We won't show you how,\nbut these are some of the many."
+      }
+    },
+    "prodcut_ingredients_FXkDBr": {
+      "type": "prodcut-ingredients",
+      "blocks": {
+        "ingredient_block_hr7kfD": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/pinatrozos_1.png",
+            "title": "Pineapple pieces",
+            "text": "Add a bright, juicy taste with natural sweetness and vitamin C."
+          }
+        },
+        "ingredient_block_JwPmcy": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/black-tea.png",
+            "title": "Black tea",
+            "text": "Made with natural caffeine sources and plant compounds."
+          }
+        },
+        "ingredient_block_MMwqRy": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/hibisco.png",
+            "title": "Hibiscus",
+            "text": "Includes potassium, vitamin C, and plant-based ingredients in a naturally refreshing blend."
+          }
+        },
+        "ingredient_block_eyNiWw": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cascara_de_cacao_2.png",
+            "title": "Cocoa husk",
+            "text": "Features theobromine and naturally occurring plant compounds with a smooth, rounded taste."
+          }
+        },
+        "ingredient_block_izL4A4": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/coco__2.png",
+            "title": "Coconut",
+            "text": "Provides potassium, magnesium, and naturally derived fats from whole ingredients in a refreshing blend."
+          }
+        },
+        "ingredient_block_FJrDid": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/boldo_7404d7b1-332c-4540-b05f-82c1a62e2eb2.png",
+            "title": "Boldo",
+            "text": "Provides a deep, herbal flavor with earthy undertones."
+          }
+        },
+        "ingredient_block_cLx7iQ": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger_b13fed4e-15c8-40d4-ac97-8f0c9894a599.png",
+            "title": "Ginger",
+            "text": "Adds a bold, warm spice with a naturally vibrant kick."
+          }
+        },
+        "ingredient_block_ptkgRE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/mint_89c7f7ec-525a-4228-a154-9e8ce2462e64.png",
+            "title": "Mint",
+            "text": "Brings a cool, crisp taste with a refreshing finish."
+          }
+        },
+        "ingredient_block_Pcd4Kg": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/fennel_289cab45-014e-4b92-9498-eddfd13a5ed3.png",
+            "title": "Fennel seeds",
+            "text": "Known for their mild, slightly sweet flavor and aromatic profile."
+          }
+        },
+        "ingredient_block_JrDzV7": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/rosemary_cec86ebf-4d5c-4672-a88f-16e9d62720e2.png",
+            "title": "Rosemary",
+            "text": "Offers a fresh, herbal aroma with a crisp, uplifting taste."
+          }
+        },
+        "ingredient_block_c8tjjG": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/lavender_c25dce41-d533-4a09-ac00-486241444ff4.png",
+            "title": "Lavender",
+            "text": "Brings a soft, floral aroma with a smooth, calming flavor."
+          }
+        },
+        "ingredient_block_X98x6m": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/passionflower_9983e2b4-d4b9-40c8-8f74-83296ec872f1.png",
+            "title": "Passionflower",
+            "text": "Features a mild, earthy taste with a gentle, rounded profile."
+          }
+        },
+        "ingredient_block_QhxY3i": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/d25f5cef85437fa32cabcb6142df6846_1_1.png",
+            "title": "Lemon verbena",
+            "text": "Delivers bright citrus notes with a light, refreshing finish."
+          }
+        },
+        "ingredient_block_Lh9WYE": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/Adobe_Express_-_file_2_1_1.png",
+            "title": "Orange peel",
+            "text": "Adds vibrant citrus flavor with a naturally bright, zesty taste."
+          }
+        },
+        "ingredient_block_DGWGYK": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/ginger.png",
+            "title": "Ginger",
+            "text": "Adds a bold, warm spice with a naturally vibrant kick."
+          }
+        },
+        "ingredient_block_ekQykY": {
+          "type": "ingredient_block",
+          "settings": {
+            "image": "shopify://shop_images/cinnamon_2e274ecf-df1c-41e5-8f35-c5f9be2d49b4.png",
+            "title": "Cinnamon",
+            "text": "Adds a warm, spicy flavor with a smooth, comforting finish."
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_block_hr7kfD",
+        "ingredient_block_JwPmcy",
+        "ingredient_block_MMwqRy",
+        "ingredient_block_eyNiWw",
+        "ingredient_block_izL4A4",
+        "ingredient_block_FJrDid",
+        "ingredient_block_cLx7iQ",
+        "ingredient_block_ptkgRE",
+        "ingredient_block_Pcd4Kg",
+        "ingredient_block_JrDzV7",
+        "ingredient_block_c8tjjG",
+        "ingredient_block_X98x6m",
+        "ingredient_block_QhxY3i",
+        "ingredient_block_Lh9WYE",
+        "ingredient_block_DGWGYK",
+        "ingredient_block_ekQykY"
+      ],
+      "name": "Product Ingredients",
+      "settings": {
+        "title": "About our ingredients",
+        "imagen1": "shopify://shop_images/leaf2_1.png",
+        "imagen2": "shopify://shop_images/Frame_1321316210.png",
+        "imagen3": "shopify://shop_images/Guacamaya_meditando_1ab8e845-6c2d-442b-8d3b-e6b8a10c4c82.png"
+      }
+    },
+    "product_why_varios_DGAVp8": {
+      "type": "product-why-varios",
+      "name": "Why Vibbo Slidder",
+      "settings": {
+        "title": "Why choose Vibbo?",
+        "image": "shopify://shop_images/Group_13.png",
+        "image2": "shopify://shop_images/Group_56.png",
+        "image3": "shopify://shop_images/Group_57.png",
+        "image_mobile": "shopify://shop_images/Group_53.png",
+        "image_mobile2": "shopify://shop_images/Group_54_1.png",
+        "image_mobile3": "shopify://shop_images/Group_55_1.png"
+      }
+    },
+    "1779810531dada62b1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_9bJXk3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_9bJXk3"
+      ],
+      "settings": {}
+    },
+    "faq_7VfkjP": {
+      "type": "faq",
+      "blocks": {
+        "faq_4RH48d": {
+          "type": "faq",
+          "settings": {
+            "question": "Is VIBBO ethically sourced?",
+            "answer": "VIBBO is ethically sourced: we're actively working toward B Corp certification in the coming quarters, with all ingredients sustainably produced, fully traceable from the dirt to the cup— no B.S."
+          }
+        },
+        "faq_xUfMyA": {
+          "type": "faq",
+          "settings": {
+            "question": "Where do we sort our ingredients from?",
+            "answer": "VIBBO sources all ingredients 100% from Guatemala across various regions, directly from local farmers and supporting surrounding communities—embracing our roots from soil to steep. No jokes, come and find out, we dare you ;)."
+          }
+        },
+        "faq_YVfbax": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I drink it?",
+            "answer": "Follow the GIF steps above: hot, cold, or as a mocktail. We're not just boring tea, we're an ingredient meant to be had fun with. Or drink it however you want; quite honestly, we don't care."
+          }
+        },
+        "faq_TyxJfY": {
+          "type": "faq",
+          "settings": {
+            "question": "How much, when, and how often should I drink VIBBO?",
+            "answer": "Sip your chosen VIBBO blend daily, Hydra Boost mornings or mid-afternoon for smooth energy, Gut Bliss anytime you want a fresh reset ritual, Chill Vibes evenings or slow moments when you want to wind down: steeped hot, iced, or as a mocktail, max 3-4 per day based on your flow, or inner chaos."
+          }
+        },
+        "faq_t9PGRg": {
+          "type": "faq",
+          "settings": {
+            "question": "Are there any artificial flavors, sweeteners, or additives in our blends?",
+            "answer": "All natural baby."
+          }
+        },
+        "faq_Nbb6HX": {
+          "type": "faq",
+          "settings": {
+            "question": "What’s the shelf life and storage advice for our blends?",
+            "answer": "VIBBO goes vibbin' for 24 months post-packaging, stash at room temp in a fresh, dry spot, no humidity please."
+          }
+        }
+      },
+      "block_order": [
+        "faq_4RH48d",
+        "faq_xUfMyA",
+        "faq_YVfbax",
+        "faq_TyxJfY",
+        "faq_t9PGRg",
+        "faq_Nbb6HX"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "title": "FAQ's",
+        "id_section": "#faqContact",
+        "text_faq": "Read below for a good time.",
+        "image1": "shopify://shop_images/Mono_Colgado.png",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    },
+    "main_section_slidder_jcDeBE": {
+      "type": "main-section-slidder",
+      "blocks": {
+        "slide_FcaPYi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/caucasian-woman-holding-pink-hat-and-smiling-at-be-2025-01-10-05-17-58-utc_2.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_Hmzia6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315911.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_ykHjLc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315915.png",
+            "alt": "Imagen del slider"
+          }
+        },
+        "slide_bKBLqn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1321315913.png",
+            "alt": "Imagen del slider"
+          }
+        }
+      },
+      "block_order": [
+        "slide_FcaPYi",
+        "slide_Hmzia6",
+        "slide_ykHjLc",
+        "slide_bKBLqn"
+      ],
+      "disabled": true,
+      "name": "Slider Imágenes",
+      "settings": {
+        "title": "Real Stories, Real Style, Real Energy.",
+        "title_mobile": "Real Stories, Real\nStyle, Real Energy.",
+        "description_mobile": "Description Mobile",
+        "autoplay": true,
+        "interval": 5000
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1779085771408971c2",
+    "product_page_rNtVMj",
+    "product_instructions_KU7cmG",
+    "prodcut_ingredients_FXkDBr",
+    "product_why_varios_DGAVp8",
+    "1779810531dada62b1",
+    "faq_7VfkjP",
+    "main_section_slidder_jcDeBE"
+  ]
+}
