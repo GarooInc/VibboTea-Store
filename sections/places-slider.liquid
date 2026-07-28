@@ -14,8 +14,8 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
         
         <!-- Imagen del mapa -->
-          <img src="{{ map_img | img_url: '2000x2000' }}" 
-            class="max-w-[800px] h-auto sm:max-h-120 max-[375px]:max-h-50 md:max-h-200 object-contain mx-auto {% if forloop.first %}first-slide-map{% endif %}"
+          <img src="{{ map_img | img_url: '2000x2000' }}"
+            class="max-w-[1000px] h-auto object-contain mx-auto {% if forloop.first %}first-slide-map{% endif %}"
             width="{{ map_img.width }}" 
             height="{{ map_img.height }}" 
             alt="{{ block.settings.map_alt | escape }}"
@@ -173,7 +173,7 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   .custom-slider-places {
     height: 72vh;
     min-height: 540px;
-    max-height: 800px;
+    max-height: 1000px;
   }
   /* El mapa llena la altura de la section (al ras) sin agrandar el componente */
   .custom-slider-places .slide-content {
@@ -264,6 +264,36 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
   .custom-slider-places .slide.first-slide .first-slide-content > div:last-child {
     display: none;
   }
+
+  /* Non-first slides: headline -> map -> ingredients, stacked, no absolute overlay */
+  .custom-slider-places .slide:not(.first-slide) .slide-content {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) .richnameplace {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 1;
+    flex-shrink: 0;
+    max-width: none;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) > .slide-content > img {
+    order: 2;
+    width: calc(100% - 2rem);
+    max-width: 1000px;
+    height: auto;
+    max-height: none;
+    margin: 1rem auto;
+  }
+
+  .custom-slider-places .slide:not(.first-slide) .md\:absolute {
+    order: 3;
+    width: 100%;
+  }
 }
 
 @media (max-width: 390px) {
@@ -274,14 +304,6 @@ style="margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);">
 
   .custom-slider-places .slide-content {
     padding-top: 3.75rem;
-  }
-
-  .custom-slider-places .slide:not(.first-slide) .richnameplace {
-    top: 1.5rem;
-  }
-
-  .custom-slider-places .slide:not(.first-slide) > .slide-content > img {
-    max-height: 11.5rem;
   }
 
   .custom-slider-places .slide:not(.first-slide) .md\:absolute {
