@@ -293,6 +293,12 @@
   gap: clamp(0.25rem, 1vh, 0.5rem);
 }
 
+@media (min-width: 768px) {
+  .hero-copy {
+    padding-top: calc(var(--hero-header-h, 96px) + clamp(0.5rem, 2vh, 1.25rem));
+  }
+}
+
 .hero-copy-title {
   margin: 0;
   font-weight: 700;
@@ -422,13 +428,16 @@
 <script>
 (function () {
   function setHeroSpacer() {
-    if (window.innerWidth >= 768) return;
-    var spacer = document.getElementById('hero-header-spacer');
     var header = document.getElementById('main-header');
     var topbar = document.querySelector('.topbar-wrapper');
-    if (!spacer || !header) return;
+    var slider = document.querySelector('.custom-slider');
+    if (!header) return;
     var topbarH = topbar ? topbar.offsetHeight : 0;
     var headerH = header.offsetHeight;
+    if (slider) slider.style.setProperty('--hero-header-h', (topbarH + headerH) + 'px');
+    if (window.innerWidth >= 768) return;
+    var spacer = document.getElementById('hero-header-spacer');
+    if (!spacer) return;
     spacer.style.height = (topbarH + headerH) + 'px';
   }
   requestAnimationFrame(setHeroSpacer);
