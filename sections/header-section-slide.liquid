@@ -53,10 +53,10 @@
           {% endif %}
 
           {% if block.settings.page_descripction != blank %}
-            <p class="text-[4.8vw] md:text-[3.5vw] md:pt-4 pt-2 text-black font-bricolage leading-[0.9] ">
+            <p class="text-[4vw] md:text-[3.5vw] md:pt-4 pt-2 text-black font-bricolage leading-[0.9] ">
               {{ block.settings.page_descripction | newline_to_br }} WARRANTY
               {% if block.settings.link_popup %}
-                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 group">
+                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 group ml-2">
                   <button
                     type="button"
                     class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
@@ -204,8 +204,6 @@
 .hero-disclaimer-trigger {
   width: max-content;
   overflow: visible;
-  padding: 0.75rem;
-  margin: -0.75rem;
 }
 
 .hero-disclaimer-tooltip {
