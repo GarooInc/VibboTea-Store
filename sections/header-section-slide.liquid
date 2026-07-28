@@ -73,7 +73,7 @@
                 <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 ml-2">
                   <button
                     type="button"
-                    class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
+                    class="hero-disclaimer-btn rounded-full border border-black bg-white text-black font-bricolage flex items-center justify-center"
                     aria-label="Show disclaimer"
                     aria-expanded="false"
                   >
@@ -231,18 +231,28 @@
 .hero-disclaimer-trigger {
   width: max-content;
   overflow: visible;
+  font-size: inherit;
+}
+
+.hero-disclaimer-btn {
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 0.85em;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .hero-disclaimer-tooltip {
   display: block;
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
+  transform: translate(var(--tooltip-x, 0), var(--tooltip-y, 0));
 }
 
 .hero-disclaimer-tooltip-inner {
@@ -521,6 +531,36 @@
 
 <script>
 (function () {
+  var EDGE_MARGIN = 12;
+
+  function positionTooltip(trigger) {
+    var tooltip = trigger.querySelector('.hero-disclaimer-tooltip');
+    if (!tooltip) return;
+    var triggerRect = trigger.getBoundingClientRect();
+    var tooltipRect = tooltip.getBoundingClientRect();
+    var x = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2;
+    x = Math.min(Math.max(x, EDGE_MARGIN), window.innerWidth - tooltipRect.width - EDGE_MARGIN);
+    var y = triggerRect.bottom + 8;
+    tooltip.style.setProperty('--tooltip-x', x + 'px');
+    tooltip.style.setProperty('--tooltip-y', y + 'px');
+  }
+
+  function positionOpenTooltips() {
+    document.querySelectorAll('.hero-disclaimer-trigger').forEach(positionTooltip);
+  }
+
+  document.addEventListener('mouseenter', function (event) {
+    var trigger = event.target.closest && event.target.closest('.hero-disclaimer-trigger');
+    if (trigger) positionTooltip(trigger);
+  }, true);
+
+  document.addEventListener('focusin', function (event) {
+    var trigger = event.target.closest && event.target.closest('.hero-disclaimer-trigger');
+    if (trigger) positionTooltip(trigger);
+  });
+
+  window.addEventListener('resize', positionOpenTooltips);
+
   function closeOtherDisclaimers(currentTrigger) {
     document.querySelectorAll('.hero-disclaimer-trigger.is-open').forEach(function (trigger) {
       if (trigger === currentTrigger) return;
@@ -534,6 +574,7 @@
     var button = event.target.closest('.hero-disclaimer-trigger button');
     if (button) {
       var trigger = button.closest('.hero-disclaimer-trigger');
+      positionTooltip(trigger);
       var isOpen = trigger.classList.toggle('is-open');
       button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       closeOtherDisclaimers(trigger);
