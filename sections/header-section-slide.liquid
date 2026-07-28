@@ -42,9 +42,9 @@
         <div class="slide-content hero-copy">
           {% if block.settings.page_title != blank %}
             <h1 class="hero-copy-title">
-              <span>{{ block.settings.page_title | newline_to_br }}</span>
+              {{ block.settings.page_title | newline_to_br }}
               {% if block.settings.title_logo %}
-                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; max-width: 40vw; margin-top: -0.15em;">
+                <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle; max-width: 40vw; margin-left: 0.3em;">
               {% endif %}
             </h1>
           {% endif %}
@@ -52,8 +52,8 @@
           {% if block.settings.page_descripction != blank %}
             <p class="hero-copy-desc">
               {{- block.settings.page_descripction | newline_to_br -}}
-              <span class="whitespace-nowrap">WARRANTY{%- if block.settings.link_popup -%}
-                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 group ml-2">
+              <span class="whitespace-nowrap">&nbsp;WARRANTY{%- if block.settings.link_popup -%}
+                <span class="hero-disclaimer-trigger relative inline-block align-middle z-50 ml-2">
                   <button
                     type="button"
                     class="w-5 h-5 rounded-full border border-black bg-white text-black text-xs font-bricolage flex items-center justify-center"
@@ -63,11 +63,11 @@
                     i
                   </button>
 
-                  <div class="hero-disclaimer-tooltip absolute right-0 top-full mt-2 pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
-                    <span class="block bg-black text-white text-xs md:text-sm px-3 py-2 rounded-lg shadow-lg w-72 max-w-[calc(100vw-2rem)] text-left leading-snug">
+                  <span class="hero-disclaimer-tooltip">
+                    <span class="hero-disclaimer-tooltip-inner">
                       {{ block.settings.hover_text }}
                     </span>
-                  </div>
+                  </span>
                 </span>
               {%- endif -%}</span>
             </p>
@@ -217,13 +217,18 @@
 }
 
 .hero-disclaimer-tooltip {
+  display: block;
+  position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.hero-disclaimer-tooltip span {
+.hero-disclaimer-tooltip-inner {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -271,12 +276,12 @@
   object-fit: cover;
   object-position: top center;
   transform: scale(var(--hero-zoom, 1));
-  transform-origin: center 58%;
+  transform-origin: center 62%;
 }
 
 @media (max-width: 767px) {
   .hero-media {
-    --hero-zoom: 1.25;
+    --hero-zoom: 1.5;
   }
 }
 
@@ -304,13 +309,10 @@
   font-weight: 700;
   font-family: 'Bricolage', serif;
   color: #000;
-  line-height: 0.95;
-  font-size: clamp(1.25rem, 1.1rem + 3.2vw, 3.25rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  line-height: 1.05;
+  font-size: clamp(1.5rem, 0.07rem + 7.14vw, 3.25rem);
+  display: block;
+  text-align: center;
 }
 
 .hero-copy-desc {
@@ -371,7 +373,7 @@
 }
 
 .custom-slider {
-  height: clamp(560px, 72vh, 760px);
+  height: clamp(600px, 88vh, 900px);
 }
 
 @media (min-width: 768px) {
