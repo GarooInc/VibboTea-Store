@@ -253,6 +253,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   transform: translate(var(--tooltip-x, 0), var(--tooltip-y, 0));
+  white-space: normal;
 }
 
 .hero-disclaimer-tooltip-inner {
@@ -268,6 +269,8 @@
   font-size: 0.875rem;
   line-height: 1.35;
   text-align: left;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .hero-disclaimer-trigger:hover .hero-disclaimer-tooltip,
