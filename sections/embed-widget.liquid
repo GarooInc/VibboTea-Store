@@ -1,14 +1,52 @@
 <div class="embed-widget-section full-width">
-  <div class="embed-widget-section__content">
+  <div
+    class="embed-widget-section__content"
+    style="margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;"
+  >
+    {% if section.settings.heading != blank %}
+      <h2
+        class="embed-widget-section__heading text-black font-bricolage font-semibold leading-tight text-left"
+        style="font-size: {{ section.settings.heading_size }}px; margin-bottom: {{ section.settings.heading_gap }}px;"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
     {{ section.settings.embed_code }}
   </div>
 </div>
 
+{% style %}
+  /* CSS beats the iframe's height="" attribute, so the embed code needs no edits.
+     display:block removes the inline-baseline gap under the iframe. */
+  #shopify-section-{{ section.id }} .embed-widget-section__content iframe {
+    display: block;
+    width: 100%;
+    height: {{ section.settings.iframe_height_mobile }}px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .embed-widget-section__content iframe {
+      height: {{ section.settings.iframe_height }}px;
+    }
+  }
+{% endstyle %}
+
 {% stylesheet %}
   .embed-widget-section__content {
     max-width: var(--page-width, 1200px);
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0 1.5rem;
+  }
+
+  .embed-widget-section__heading {
+    margin-top: 0;
+  }
+
+  @media (max-width: 767px) {
+    .embed-widget-section__heading {
+      font-size: 8vw !important;
+    }
   }
 {% endstylesheet %}
 
@@ -17,9 +55,77 @@
   "name": "Embed Widget",
   "settings": [
     {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space below heading",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
       "type": "liquid",
       "id": "embed_code",
       "label": "Embed code (HTML/iframe)"
+    },
+    {
+      "type": "range",
+      "id": "iframe_height",
+      "label": "Widget height (desktop)",
+      "info": "The widget does not report its own height. Trim this until the blank space below disappears — too low will clip the content.",
+      "min": 200,
+      "max": 1200,
+      "step": 10,
+      "unit": "px",
+      "default": 490
+    },
+    {
+      "type": "range",
+      "id": "iframe_height_mobile",
+      "label": "Widget height (mobile)",
+      "info": "The card stacks vertically on mobile, so it needs more height than desktop.",
+      "min": 200,
+      "max": 1400,
+      "step": 10,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top margin",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom margin",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 0
     }
   ],
   "presets": [
