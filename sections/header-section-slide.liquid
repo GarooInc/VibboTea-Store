@@ -56,17 +56,17 @@
           {% endif %}
         </div>
 
-        <div class="slide-content hero-copy">
+        <div class="slide-content hero-copy{% if block.settings.copy_overlay %} hero-copy--overlay{% endif %}">
           {% if block.settings.page_title != blank %}
             <h1 class="hero-copy-title">
-              {{ block.settings.page_title | newline_to_br }}
+              <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
                 {% if block.settings.title_backdrop %}
                   <span class="hero-title-backdrop">
-                    <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle;">
+                    <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo">
                   </span>
                 {% else %}
-                  <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo" style="height: 0.85em; width: auto; display: inline-block; vertical-align: middle; max-width: 40vw; margin-left: 0.3em;">
+                  <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo hero-title-logo--bare">
                 {% endif %}
               {% endif %}
             </h1>
@@ -336,6 +336,68 @@
   }
 }
 
+/* Overlay variant: copy sits on top of the image instead of in a band above it,
+   so .hero-media takes the slide's full height. Opt-in per slide, because the
+   homepage hero relies on the stacked band with dark text.
+   Sizes and spacing mirror the earlier hero markup: title 7vw, description
+   4vw / 3.5vw, drop-shadow-lg, leading 0.9, and the logo as a flex sibling of
+   the title with a gap-3 between them. */
+.hero-copy--overlay {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  padding-top: 0;
+  gap: 0;
+  pointer-events: none;
+}
+
+.hero-copy--overlay .hero-disclaimer-trigger {
+  pointer-events: auto;
+}
+
+.hero-copy--overlay .hero-copy-title,
+.hero-copy--overlay .hero-copy-desc {
+  color: #fff;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  line-height: 0.9;
+}
+
+.hero-copy--overlay .hero-copy-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 7vw;
+}
+
+.hero-copy--overlay .hero-copy-desc {
+  font-size: 4vw;
+  padding-top: 0.5rem;
+}
+
+/* Flex item, so vertical-align does nothing and the gap replaces margin-left. */
+.hero-copy--overlay .hero-title-logo {
+  margin-left: 0;
+  margin-top: -0.15em;
+  max-width: 40vw;
+}
+
+@media (min-width: 768px) {
+  .hero-copy--overlay {
+    padding-top: 0;
+  }
+
+  .hero-copy--overlay .hero-copy-title {
+    font-size: 7vw;
+  }
+
+  .hero-copy--overlay .hero-copy-desc {
+    font-size: 3.5vw;
+    padding-top: 1rem;
+  }
+}
+
 .hero-copy-title {
   margin: 0;
   font-weight: 700;
@@ -355,6 +417,20 @@
   padding: 0.15em 0.5em;
   margin-left: 0.3em;
   vertical-align: middle;
+}
+
+/* Was inline on the <img>; moved here so the overlay variant can override it
+   without !important. */
+.hero-title-logo {
+  height: 0.85em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hero-title-logo--bare {
+  max-width: 40vw;
+  margin-left: 0.3em;
 }
 
 .hero-copy-desc {
@@ -497,6 +573,18 @@
 
   function setHeroZoom() {
     document.querySelectorAll('.hero-media').forEach(function (media) {
+      // Overlay slides show the whole image (plain object-cover, like the hero
+      // had before the stacked band). The content-band zoom below assumes the
+      // copy takes vertical space out of .hero-media; once the copy floats on
+      // top, .hero-media fills the slide and the same math zooms in hard --
+      // any landscape image ends up scaled, a wide one close to the 2.2 cap.
+      var slide = media.closest('.hero-slide');
+      if (slide && slide.querySelector('.hero-copy--overlay')) {
+        media.style.removeProperty('--hero-zoom');
+        media.style.removeProperty('--hero-zoom-origin');
+        return;
+      }
+
       var mediaRect = media.getBoundingClientRect();
       if (!mediaRect.width || !mediaRect.height) return;
       var candidates = media.querySelectorAll('.hero-slide-media');
@@ -776,6 +864,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "type": "image_picker",
         "id": "title_logo",
         "label": "Logo imagen (inline con el titulo)"
+      },
+      {
+        "type": "checkbox",
+        "id": "copy_overlay",
+        "label": "Texto sobre la imagen",
+        "info": "Activado: el titulo y la descripcion van encima de la imagen en blanco. Desactivado: van en una banda arriba de la imagen, en negro.",
+        "default": false
       },
       {
         "type": "checkbox",
