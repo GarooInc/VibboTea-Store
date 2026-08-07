@@ -1,4 +1,10 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start md:items-center w-full max-w-full min-w-0
+{% liquid
+  assign product_grid_align = 'items-start md:items-center'
+  if product.handle == 'all-day-bundle-pack'
+    assign product_grid_align = 'items-start'
+  endif
+%}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 {{ product_grid_align }} w-full max-w-full min-w-0
    md:px-5 md:py-10 md:pt-16 pt-20">
 
   {% if product %}
