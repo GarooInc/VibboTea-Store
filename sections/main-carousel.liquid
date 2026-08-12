@@ -84,6 +84,11 @@
                     Sold Out
                   </div>
                 {%- endif -%}
+                {%- if product.tags contains 'NEW' -%}
+                  <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+                    New
+                  </div>
+                {%- endif -%}
                 {% if primary_media %}
                   <img
                     src="{{ primary_media | image_url: width: 800 }}"
@@ -200,6 +205,11 @@
                 {%- if has_sold_out_tag or negative_stock -%}
                   <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
                     Sold Out
+                  </div>
+                {%- endif -%}
+                {%- if product.tags contains 'NEW' -%}
+                  <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+                    New
                   </div>
                 {%- endif -%}
                 {% if primary_media %}
