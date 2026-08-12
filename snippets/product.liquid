@@ -32,6 +32,12 @@
           Sale
         </div>
       {% endif %}
+      <!-- NEW BADGE -->
+      {% if product.tags contains 'NEW' %}
+      <div class="absolute top-3 left-3 bg-black text-white px-3 py-1 rounded-full text-xs font-semibold">
+      New
+      </div>
+      {% endif %}
     </div>
 
     <!-- PRODUCT INFO -->
