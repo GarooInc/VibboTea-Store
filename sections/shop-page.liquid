@@ -49,6 +49,11 @@
                 Sold Out
               </div>
             {%- endif -%}
+            {%- if product.tags contains 'NEW' -%}
+              <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+                New
+              </div>
+            {%- endif -%}
             {% liquid
               assign primary_media = product.media[0] | default: product.featured_media
               assign hover_media_index = 1
