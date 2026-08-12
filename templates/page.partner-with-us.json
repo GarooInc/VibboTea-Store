@@ -164,7 +164,7 @@
         "heading": "Wholesale",
         "heading_size": 48,
         "heading_gap": 8,
-        "embed_code": "<iframe scrolling=\"no\" width=\"100%\" height=\"600\" style=\"border: none;\" src=\"https://stack-backend.onrender.com/widget/embed/9e7de0a3-c5a4-44c2-9113-dd4e2381a20b\"></iframe>",
+        "embed_code": "<a id=\"wholesale\"></a>\n<iframe scrolling=\"no\" width=\"100%\" height=\"600\" style=\"border: none;\" src=\"https://stack-backend.onrender.com/widget/embed/9e7de0a3-c5a4-44c2-9113-dd4e2381a20b\"></iframe>",
         "iframe_height": 490,
         "iframe_height_mobile": 600,
         "margin_top": 0,
