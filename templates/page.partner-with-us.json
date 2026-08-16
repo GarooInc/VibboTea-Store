@@ -168,6 +168,19 @@
         "iframe_height": 490,
         "iframe_height_mobile": 600,
         "margin_top": 0,
+        "margin_bottom": 24
+      }
+    },
+    "partner_faire_widget": {
+      "type": "embed-widget",
+      "settings": {
+        "heading": "",
+        "heading_size": 48,
+        "heading_gap": 0,
+        "embed_code": "<iframe src=\"https://www.faire.com/embed/bw_yxm7agt3px\" width=\"900\" height=\"600\" scrolling=\"no\" style=\"margin: 0 auto; border: none; display: block; max-width: 100%;\"></iframe>",
+        "iframe_height": 490,
+        "iframe_height_mobile": 600,
+        "margin_top": 0,
         "margin_bottom": 64
       }
     },
@@ -243,6 +256,7 @@
     "our_story",
     "testimonials_partner",
     "partner_faq_widget",
+    "partner_faire_widget",
     "faq_partner"
   ]
 }
