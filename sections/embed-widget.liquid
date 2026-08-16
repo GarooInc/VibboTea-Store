@@ -5,7 +5,7 @@
   >
     {% if section.settings.heading != blank %}
       <h2
-        class="embed-widget-section__heading text-black font-bricolage font-semibold leading-tight text-left"
+        class="embed-widget-section__heading text-black font-bricolage font-semibold leading-tight text-center"
         style="font-size: {{ section.settings.heading_size }}px; margin-bottom: {{ section.settings.heading_gap }}px;"
       >
         {{ section.settings.heading }}
@@ -41,6 +41,7 @@
 
   .embed-widget-section__heading {
     margin-top: 0;
+    text-align: center;
   }
 
   @media (max-width: 767px) {
