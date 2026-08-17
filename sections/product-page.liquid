@@ -278,6 +278,7 @@
               </div>
             {% endif %}
 
+            <div id="product-atc-anchor" class="w-full">
             {%- for block in section.blocks -%}
               {%- if block.type == '@app' -%}
                 {% render block %}
@@ -304,6 +305,7 @@
                 </span>
               </button>
             </form>
+            </div>
 
           {% else %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
@@ -353,7 +355,7 @@
       </div>
 
       {% unless section.settings.kickstarter_price %}
-        <form method="post" action="{{ routes.cart_add_url }}" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
+        <form method="post" action="{{ routes.cart_add_url }}" id="product-atc-anchor" class="w-full py-4 items-end text-center mx-auto cursor-pointer">
           <input type="hidden" name="id" id="variantInput" value="{{ current_variant.id }}">
           <button
             type="submit"
@@ -385,6 +387,8 @@
     <div class="col-span-2 text-center text-sm text-gray-500">No product selected in section settings.</div>
   {% endif %}
 
+</div>
+
   <!-- Floating Add-to-Cart Button -->
   <div class="product-floating-button" id="productFloatingButton">
     <div class="product-floating-button__wrapper">
@@ -401,8 +405,6 @@
       </form>
     </div>
   </div>
-
-</div>
 
 <script>
   const variants = document.querySelectorAll('.variant-option');
@@ -447,18 +449,19 @@
 
     if (!floatingButton || !floatingVariantId || !floatingAddBtn) return;
 
-    // Find main button to watch
-    const mainButton = document.getElementById('addToCartKickstarter');
-    if (!mainButton) return;
+    const mainButton = document.getElementById('addToCartKickstarter') ||
+      document.querySelector('#product-atc-anchor button[type="submit"]') ||
+      document.querySelector('form:not(#floatingCartForm)[action*="/cart/add"] button[type="submit"]');
+    const anchor = document.getElementById('product-atc-anchor') || mainButton;
+    if (!anchor) return;
 
-    // Set up Intersection Observer to show/hide floating button
     const intersectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        floatingButton.classList.toggle('is-visible', !entry.isIntersecting);
-      });
-    }, { threshold: [0, 1] });
+      const entry = entries[0];
+      if (!entry) return;
+      floatingButton.classList.toggle('is-visible', !entry.isIntersecting);
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
 
-    intersectionObserver.observe(mainButton);
+    intersectionObserver.observe(anchor);
 
     // Sync variant ID when variant selection changes
     function syncVariantID() {
@@ -475,6 +478,7 @@
 
     // Sync button text and disabled state
     function syncButtonState() {
+      if (!mainButton) return;
       const isDisabled = mainButton.disabled;
       floatingAddBtn.disabled = isDisabled;
       floatingAddBtn.textContent = isDisabled ?
@@ -482,23 +486,21 @@
         '{{ section.settings.text_kickstarter_button }}';
     }
 
-    // Watch main button disabled state
-    const stateObserver = new MutationObserver(syncButtonState);
-    stateObserver.observe(mainButton, { attributes: true, attributeFilter: ['disabled'] });
-
-    // Sync button colors from main button
     function syncColors() {
+      if (!mainButton) return;
       const mainStyle = window.getComputedStyle(mainButton);
       floatingAddBtn.style.backgroundColor = mainStyle.backgroundColor;
       floatingAddBtn.style.color = mainStyle.color;
     }
 
     syncVariantID();
-    syncButtonState();
-    syncColors();
-
-    // Re-sync colors after a short delay to ensure styles are applied
-    setTimeout(syncColors, 100);
+    if (mainButton) {
+      const stateObserver = new MutationObserver(syncButtonState);
+      stateObserver.observe(mainButton, { attributes: true, attributeFilter: ['disabled'] });
+      syncButtonState();
+      syncColors();
+      setTimeout(syncColors, 100);
+    }
   })();
 </script>
 
@@ -671,16 +673,20 @@
     bottom: 0;
     left: 0;
     right: 0;
-    display: none;
     z-index: 40;
     background: white;
     padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-    animation: slideUp 0.3s ease-out;
+    transform: translateY(calc(100% + 12px));
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.3s ease-out, visibility 0.3s ease-out;
   }
 
   .product-floating-button.is-visible {
-    display: block;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .product-floating-button__wrapper {
@@ -695,17 +701,6 @@
     .product-floating-button__wrapper {
       max-width: 480px;
       margin: 0 auto;
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
     }
   }
 {% endstylesheet %}
