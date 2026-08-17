@@ -1,0 +1,56 @@
+{% comment %}
+  Quote carousel for All Day Bundle: Hydra / Gut Bliss / Chill featured reviews.
+  Accepts:
+  - bg_color: background color for quote boxes
+  - suffix: unique id suffix (e.g. mobile / desktop)
+{% endcomment %}
+
+{% assign quote_suffix = suffix | default: 'main' %}
+
+<div
+  class="product-quote-carousel"
+  id="product-quote-carousel-{{ quote_suffix }}"
+  data-quote-carousel
+>
+  <div class="product-quote-carousel__viewport overflow-hidden">
+    <div class="product-quote-carousel__track flex transition-transform duration-500 ease-in-out">
+      <div class="product-quote-carousel__slide w-full shrink-0">
+        <div class="product-quote-box" style="background-color: {{ bg_color }};">
+          <p class="product-quote-box__text">&ldquo;This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.&rdquo;</p>
+          <div class="product-quote-box__author-row">
+            <span class="product-quote-box__avatar">A</span>
+            <span class="product-quote-box__author">Andres B.</span>
+            <span class="product-quote-box__verified">Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-quote-carousel__slide w-full shrink-0">
+        <div class="product-quote-box" style="background-color: {{ bg_color }};">
+          <p class="product-quote-box__text">&ldquo;I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas..&rdquo;</p>
+          <div class="product-quote-box__author-row">
+            <span class="product-quote-box__avatar">S</span>
+            <span class="product-quote-box__author">Silvia P.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-quote-carousel__slide w-full shrink-0">
+        <div class="product-quote-box" style="background-color: {{ bg_color }};">
+          <p class="product-quote-box__text">&ldquo;It is sooo delicious! Congrats! Great and healthy product!&rdquo;</p>
+          <div class="product-quote-box__author-row">
+            <span class="product-quote-box__avatar">A</span>
+            <span class="product-quote-box__author">Annabella V.</span>
+            <span class="product-quote-box__verified">Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-quote-carousel__dots flex justify-center gap-2 mb-4" role="tablist" aria-label="Review quotes">
+    <button type="button" class="product-quote-carousel__dot is-active" data-index="0" aria-label="Quote 1"></button>
+    <button type="button" class="product-quote-carousel__dot" data-index="1" aria-label="Quote 2"></button>
+    <button type="button" class="product-quote-carousel__dot" data-index="2" aria-label="Quote 3"></button>
+  </div>
+</div>

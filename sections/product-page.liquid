@@ -8,6 +8,10 @@
       assign quote_text = ''
       assign quote_author = ''
       assign quote_verified = false
+      assign show_bundle_quotes = false
+      if product.handle == 'all-day-bundle-pack'
+        assign show_bundle_quotes = true
+      endif
       case product.handle
         when 'hydra-boost-natural-energy'
           assign quote_text = 'This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.'
@@ -25,7 +29,12 @@
 
     <!-- MOBILE: Review card above image -->
     <div class="md:hidden w-full">
-      {% if quote_text != blank %}
+      {% if show_bundle_quotes %}
+        {% render 'product-quote-carousel',
+          bg_color: section.settings.per_serving_bg_color,
+          suffix: 'mobile'
+        %}
+      {% elsif quote_text != blank %}
         <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
           <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
           <div class="product-quote-box__author-row">
@@ -185,7 +194,12 @@
         <div>
 
           <div class="hidden md:block w-full">
-            {% if quote_text != blank %}
+            {% if show_bundle_quotes %}
+              {% render 'product-quote-carousel',
+                bg_color: section.settings.per_serving_bg_color,
+                suffix: 'desktop'
+              %}
+            {% elsif quote_text != blank %}
               <div class="product-quote-box" style="background-color: {{ section.settings.per_serving_bg_color }};">
                 <p class="product-quote-box__text">&ldquo;{{ quote_text }}&rdquo;</p>
                 <div class="product-quote-box__author-row">
@@ -441,6 +455,53 @@
     if (ksBtn) ksBtn.disabled = false;
   });
 
+  // Bundle quote carousel (Hydra / Gut Bliss / Chill)
+  (function() {
+    document.querySelectorAll('[data-quote-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('.product-quote-carousel__track');
+      const dots = carousel.querySelectorAll('.product-quote-carousel__dot');
+      if (!track || !dots.length) return;
+
+      let index = 0;
+      let startX = 0;
+      let dragging = false;
+
+      function goTo(i) {
+        index = Math.max(0, Math.min(i, dots.length - 1));
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, d) => {
+          dot.classList.toggle('is-active', d === index);
+        });
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goTo(Number(dot.dataset.index) || 0);
+        });
+      });
+
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        dragging = true;
+      }, { passive: true });
+
+      track.addEventListener('touchmove', (e) => {
+        if (!dragging) return;
+        const diff = startX - e.touches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          goTo(diff > 0 ? index + 1 : index - 1);
+          dragging = false;
+        }
+      }, { passive: true });
+
+      track.addEventListener('touchend', () => {
+        dragging = false;
+      });
+
+      goTo(0);
+    });
+  })();
+
   // Floating Add-to-Cart Button: Intersection Observer and State Sync
   (function() {
     const floatingButton = document.getElementById('productFloatingButton');
@@ -665,6 +726,26 @@
     font-size: 0.7rem;
     font-weight: 600;
     color: rgba(26, 26, 26, 0.6);
+  }
+
+  .product-quote-carousel__slide .product-quote-box {
+    margin-bottom: 0.75rem;
+  }
+
+  .product-quote-carousel__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: #d1d5db;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: width 0.2s ease, background-color 0.2s ease;
+  }
+
+  .product-quote-carousel__dot.is-active {
+    width: 1.5rem;
+    background-color: #1a1a1a;
   }
 
   /* Floating Add-to-Cart Button */
