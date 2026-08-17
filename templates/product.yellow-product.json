@@ -194,6 +194,7 @@
       "settings": {
         "title": "Why choose Vibbo?",
         "theme_image": "why-choose-energy.png",
+        "theme_image_mobile": "why-choose-energy-mobile.png",
         "image": "shopify://shop_images/Group_13.png",
         "image_mobile": "shopify://shop_images/Group_53.png"
       }

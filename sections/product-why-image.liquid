@@ -13,7 +13,11 @@
   assign why_image_mobile_url = ''
   assign why_image_mobile_width = section.settings.image_mobile.width
   assign why_image_mobile_height = section.settings.image_mobile.height
-  if section.settings.image_mobile != blank
+  if section.settings.theme_image_mobile != blank
+    assign why_image_mobile_url = section.settings.theme_image_mobile | asset_url
+    assign why_image_mobile_width = 2688
+    assign why_image_mobile_height = 1896
+  elsif section.settings.image_mobile != blank
     assign why_image_mobile_url = section.settings.image_mobile | img_url: 'master'
   endif
 %}
@@ -118,7 +122,13 @@
       "type": "text",
       "id": "theme_image",
       "label": "Theme asset filename",
-      "info": "Optional PNG in assets/. When set, it overrides the desktop image picker. Mobile still uses Image Mobile."
+      "info": "Optional PNG in assets/. When set, it overrides the desktop image picker."
+    },
+    {
+      "type": "text",
+      "id": "theme_image_mobile",
+      "label": "Theme asset filename (mobile)",
+      "info": "Optional PNG in assets/. When set, it overrides the mobile image picker."
     },
     {
       "type": "image_picker",

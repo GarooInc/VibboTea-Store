@@ -195,6 +195,7 @@
       "settings": {
         "title": "Why choose Vibbo?",
         "theme_image": "why-choose-relax.png",
+        "theme_image_mobile": "why-choose-relax-mobile.png",
         "image": "shopify://shop_images/Group_56.png",
         "image_mobile": "shopify://shop_images/Group_54_1.png"
       }
