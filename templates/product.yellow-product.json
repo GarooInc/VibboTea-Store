@@ -193,6 +193,7 @@
       "name": "Product Why Vibbo Image",
       "settings": {
         "title": "Why choose Vibbo?",
+        "theme_image": "why-choose-energy.png",
         "image": "shopify://shop_images/Group_13.png",
         "image_mobile": "shopify://shop_images/Group_53.png"
       }

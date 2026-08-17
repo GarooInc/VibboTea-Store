@@ -264,6 +264,9 @@
       "name": "Why Vibbo Slidder",
       "settings": {
         "title": "Why choose Vibbo?",
+        "theme_image": "why-choose-energy.png",
+        "theme_image2": "why-choose-relax.png",
+        "theme_image3": "why-choose-detox.png",
         "image": "shopify://shop_images/Group_13.png",
         "image2": "shopify://shop_images/Group_56.png",
         "image3": "shopify://shop_images/Group_57.png",

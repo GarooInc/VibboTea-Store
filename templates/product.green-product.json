@@ -184,6 +184,7 @@
       "name": "Product Why Vibbo Image",
       "settings": {
         "title": "Why choose Vibbo?",
+        "theme_image": "why-choose-detox.png",
         "image": "shopify://shop_images/Group_57.png",
         "image_mobile": "shopify://shop_images/Group_55_1.png"
       }

@@ -1,3 +1,70 @@
+{% liquid
+  assign why_slide1_desktop = ''
+  assign why_slide1_mobile = ''
+  assign why_slide1_w = section.settings.image.width
+  assign why_slide1_h = section.settings.image.height
+  assign why_slide1_mw = section.settings.image_mobile.width
+  assign why_slide1_mh = section.settings.image_mobile.height
+  if section.settings.theme_image != blank
+    assign why_slide1_desktop = section.settings.theme_image | asset_url
+    assign why_slide1_mobile = why_slide1_desktop
+    assign why_slide1_w = 5120
+    assign why_slide1_h = 2300
+    assign why_slide1_mw = 5120
+    assign why_slide1_mh = 2300
+  else
+    if section.settings.image != blank
+      assign why_slide1_desktop = section.settings.image | img_url: '2000x2000'
+    endif
+    if section.settings.image_mobile != blank
+      assign why_slide1_mobile = section.settings.image_mobile | img_url: '2000x2000'
+    endif
+  endif
+
+  assign why_slide2_desktop = ''
+  assign why_slide2_mobile = ''
+  assign why_slide2_w = section.settings.image2.width
+  assign why_slide2_h = section.settings.image2.height
+  assign why_slide2_mw = section.settings.image_mobile2.width
+  assign why_slide2_mh = section.settings.image_mobile2.height
+  if section.settings.theme_image2 != blank
+    assign why_slide2_desktop = section.settings.theme_image2 | asset_url
+    assign why_slide2_mobile = why_slide2_desktop
+    assign why_slide2_w = 5120
+    assign why_slide2_h = 2300
+    assign why_slide2_mw = 5120
+    assign why_slide2_mh = 2300
+  else
+    if section.settings.image2 != blank
+      assign why_slide2_desktop = section.settings.image2 | img_url: '2000x2000'
+    endif
+    if section.settings.image_mobile2 != blank
+      assign why_slide2_mobile = section.settings.image_mobile2 | img_url: '2000x2000'
+    endif
+  endif
+
+  assign why_slide3_desktop = ''
+  assign why_slide3_mobile = ''
+  assign why_slide3_w = section.settings.image3.width
+  assign why_slide3_h = section.settings.image3.height
+  assign why_slide3_mw = section.settings.image_mobile3.width
+  assign why_slide3_mh = section.settings.image_mobile3.height
+  if section.settings.theme_image3 != blank
+    assign why_slide3_desktop = section.settings.theme_image3 | asset_url
+    assign why_slide3_mobile = why_slide3_desktop
+    assign why_slide3_w = 5120
+    assign why_slide3_h = 2300
+    assign why_slide3_mw = 5120
+    assign why_slide3_mh = 2300
+  else
+    if section.settings.image3 != blank
+      assign why_slide3_desktop = section.settings.image3 | img_url: '2000x2000'
+    endif
+    if section.settings.image_mobile3 != blank
+      assign why_slide3_mobile = section.settings.image_mobile3 | img_url: '2000x2000'
+    endif
+  endif
+%}
 <div class="w-full md:py-10 py-5 font-bricolage overflow-hidden">
 
   <!-- TITLE -->
@@ -11,30 +78,36 @@
   <div class="md:hidden carousel-wrapper-{{ section.id }} overflow-hidden px-4 md:px-20">
     <div class="carousel-track flex transition-transform duration-500 ease-in-out">
 
-      {% if section.settings.image %}
+      {% if why_slide1_mobile != blank %}
         <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
-          <img src="{{ section.settings.image_mobile | img_url: '2000x2000' }}"
-            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image_mobile.width }}"
-            height="{{ section.settings.image_mobile.height }}">
+          <img src="{{ why_slide1_mobile }}"
+            class="w-full h-[300px] md:h-[420px] object-contain rounded-xl"
+            width="{{ why_slide1_mw }}"
+            height="{{ why_slide1_mh }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
-      {% if section.settings.image2 %}
+      {% if why_slide2_mobile != blank %}
         <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
-          <img src="{{ section.settings.image_mobile2 | img_url: '2000x2000' }}"
-            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image_mobile2.width }}"
-            height="{{ section.settings.image_mobile2.height }}">
+          <img src="{{ why_slide2_mobile }}"
+            class="w-full h-[300px] md:h-[420px] object-contain rounded-xl"
+            width="{{ why_slide2_mw }}"
+            height="{{ why_slide2_mh }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
-      {% if section.settings.image3 %}
+      {% if why_slide3_mobile != blank %}
         <div class="carousel-slide w-full md:w-1/3 shrink-0 px-2">
-          <img src="{{ section.settings.image_mobile3 | img_url: '2000x2000' }}"
-            class="w-full h-[300px] md:h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image_mobile3.width }}"
-            height="{{ section.settings.image_mobile3.height }}">
+          <img src="{{ why_slide3_mobile }}"
+            class="w-full h-[300px] md:h-[420px] object-contain rounded-xl"
+            width="{{ why_slide3_mw }}"
+            height="{{ why_slide3_mh }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
@@ -52,30 +125,36 @@
   <div class="hidden md:block carousel-wrapper-desktop-{{ section.id }} overflow-hidden px-20">
     <div class="carousel-track-desktop flex transition-transform duration-500 ease-in-out">
 
-      {% if section.settings.image %}
+      {% if why_slide1_desktop != blank %}
         <div class="carousel-slide w-full shrink-0 px-2">
-          <img src="{{ section.settings.image | img_url: '2000x2000' }}"
-            class="w-full h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image.width }}"
-            height="{{ section.settings.image.height }}">
+          <img src="{{ why_slide1_desktop }}"
+            class="w-full h-auto object-contain rounded-xl"
+            width="{{ why_slide1_w }}"
+            height="{{ why_slide1_h }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
-      {% if section.settings.image2 %}
+      {% if why_slide2_desktop != blank %}
         <div class="carousel-slide w-full shrink-0 px-2">
-          <img src="{{ section.settings.image2 | img_url: '2000x2000' }}"
-            class="w-full h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image2.width }}"
-            height="{{ section.settings.image2.height }}">
+          <img src="{{ why_slide2_desktop }}"
+            class="w-full h-auto object-contain rounded-xl"
+            width="{{ why_slide2_w }}"
+            height="{{ why_slide2_h }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
-      {% if section.settings.image3 %}
+      {% if why_slide3_desktop != blank %}
         <div class="carousel-slide w-full shrink-0 px-2">
-          <img src="{{ section.settings.image3 | img_url: '2000x2000' }}"
-            class="w-full h-[420px] object-cover rounded-xl"
-            width="{{ section.settings.image3.width }}"
-            height="{{ section.settings.image3.height }}">
+          <img src="{{ why_slide3_desktop }}"
+            class="w-full h-auto object-contain rounded-xl"
+            width="{{ why_slide3_w }}"
+            height="{{ why_slide3_h }}"
+            loading="lazy"
+            alt="Why choose VIBBO">
         </div>
       {% endif %}
 
@@ -206,11 +285,27 @@ document.addEventListener('DOMContentLoaded', () => {
       "id": "title",
       "label": "Title",
       "default": "Why Vibbo?"
-    }, 
+    },
+    {
+      "type": "text",
+      "id": "theme_image",
+      "label": "Theme asset filename 1",
+      "info": "Optional PNG in assets/. When set, it overrides image pickers for this slide."
+    },
+    {
+      "type": "text",
+      "id": "theme_image2",
+      "label": "Theme asset filename 2"
+    },
+    {
+      "type": "text",
+      "id": "theme_image3",
+      "label": "Theme asset filename 3"
+    },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image",
+      "label": "Image"
     },
     {
       "type": "image_picker",

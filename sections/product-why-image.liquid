@@ -1,3 +1,24 @@
+{% liquid
+  assign why_image_url = ''
+  assign why_image_width = section.settings.image.width
+  assign why_image_height = section.settings.image.height
+  if section.settings.theme_image != blank
+    assign why_image_url = section.settings.theme_image | asset_url
+    assign why_image_width = 5120
+    assign why_image_height = 2300
+  elsif section.settings.image != blank
+    assign why_image_url = section.settings.image | img_url: 'master'
+  endif
+
+  assign why_image_mobile_url = why_image_url
+  assign why_image_mobile_width = why_image_width
+  assign why_image_mobile_height = why_image_height
+  if section.settings.theme_image == blank and section.settings.image_mobile != blank
+    assign why_image_mobile_url = section.settings.image_mobile | img_url: 'master'
+    assign why_image_mobile_width = section.settings.image_mobile.width
+    assign why_image_mobile_height = section.settings.image_mobile.height
+  endif
+%}
 <div class="w-full overflow-x-auto md:py-10 py-5 md:pt-30">
     <div class="md:block flex w-full md:justify-left justify-center md:pl-20">
       <h2 class="py-10 text-black text-[7vw] md:text-[3.4vw] 
@@ -7,24 +28,28 @@
         
       </h2>
       
-       
     </div>
+    {% if why_image_url != blank %}
     <div class="hidden md:flex justify-center items-center px-5 md:px-20">
-        <img src="{{ section.settings.image | img_url: 'master' }}" 
+        <img src="{{ why_image_url }}" 
             alt="Why Vibbo Image" 
             class="w-full h-auto max-w-lg md:max-w-none"
-            width="{{ section.settings.image.width }}"
-            height="{{ section.settings.image.height }}"
+            width="{{ why_image_width }}"
+            height="{{ why_image_height }}"
+            loading="lazy"
         />
     </div>
+    {% endif %}
 
+    {% if why_image_mobile_url != blank %}
     <div class="md:hidden flex justify-center items-center px-5 md:px-20">
         <div style="position: relative; display: inline-block; cursor: zoom-in;" id="why-vibbo-zoom-trigger">
-            <img src="{{ section.settings.image_mobile | img_url: 'master' }}"
+            <img src="{{ why_image_mobile_url }}"
                 alt="Why Vibbo Image"
                 class="w-full h-auto max-w-lg md:max-w-none"
-                width="{{ section.settings.image_mobile.width }}"
-                height="{{ section.settings.image_mobile.height }}"
+                width="{{ why_image_mobile_width }}"
+                height="{{ why_image_mobile_height }}"
+                loading="lazy"
             />
             <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.5); border-radius: 9999px; padding: 6px; pointer-events: none; display: flex; align-items: center; justify-content: center;">
                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px; display: block;" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
@@ -34,9 +59,11 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
 </div>
 
+{% if why_image_mobile_url != blank %}
 <!-- Lightbox overlay (fuera del contenedor para evitar conflictos con overflow) -->
 <div id="why-vibbo-lightbox" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center;">
     <button id="why-vibbo-close" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; border-radius: 9999px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10;">
@@ -45,7 +72,7 @@
             <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
     </button>
-    <img src="{{ section.settings.image_mobile | img_url: 'master' }}"
+    <img src="{{ why_image_mobile_url }}"
         alt="Why Vibbo Image"
         style="max-width: 100%; max-height: 100%; object-fit: contain; touch-action: pinch-zoom;"
     />
@@ -56,6 +83,7 @@
         var trigger = document.getElementById('why-vibbo-zoom-trigger');
         var lightbox = document.getElementById('why-vibbo-lightbox');
         var closeBtn = document.getElementById('why-vibbo-close');
+        if (!trigger || !lightbox || !closeBtn) return;
 
         trigger.addEventListener('click', function() {
             lightbox.style.display = 'flex';
@@ -76,11 +104,7 @@
         });
     })();
 </script>
-
-
-
-
-
+{% endif %}
 
 {% schema %}
 {
@@ -91,19 +115,24 @@
       "id": "title",
       "label": "Title",
       "default": "Why Vibbo?"
-    }, 
+    },
+    {
+      "type": "text",
+      "id": "theme_image",
+      "label": "Theme asset filename",
+      "info": "Optional PNG in assets/. When set, it overrides the image pickers for desktop and mobile."
+    },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image",
+      "label": "Image"
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Image Mobile",
+      "label": "Image Mobile"
     }
   ],
-  
   "presets": [
     {
       "name": "Product Why Vibbo Image"
