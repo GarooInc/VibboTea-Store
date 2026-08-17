@@ -10,13 +10,11 @@
     assign why_image_url = section.settings.image | img_url: 'master'
   endif
 
-  assign why_image_mobile_url = why_image_url
-  assign why_image_mobile_width = why_image_width
-  assign why_image_mobile_height = why_image_height
-  if section.settings.theme_image == blank and section.settings.image_mobile != blank
+  assign why_image_mobile_url = ''
+  assign why_image_mobile_width = section.settings.image_mobile.width
+  assign why_image_mobile_height = section.settings.image_mobile.height
+  if section.settings.image_mobile != blank
     assign why_image_mobile_url = section.settings.image_mobile | img_url: 'master'
-    assign why_image_mobile_width = section.settings.image_mobile.width
-    assign why_image_mobile_height = section.settings.image_mobile.height
   endif
 %}
 <div class="w-full overflow-x-auto md:py-10 py-5 md:pt-30">
@@ -120,7 +118,7 @@
       "type": "text",
       "id": "theme_image",
       "label": "Theme asset filename",
-      "info": "Optional PNG in assets/. When set, it overrides the image pickers for desktop and mobile."
+      "info": "Optional PNG in assets/. When set, it overrides the desktop image picker. Mobile still uses Image Mobile."
     },
     {
       "type": "image_picker",
