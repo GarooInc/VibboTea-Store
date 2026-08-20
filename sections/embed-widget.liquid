@@ -1,7 +1,7 @@
 {%- liquid
   assign frame_max = section.settings.iframe_max_width | times: 1
   if frame_max <= 0
-    assign frame_max = 856
+    assign frame_max = 860
   endif
 -%}
 <div
@@ -63,10 +63,10 @@
     scroll-margin-top: var(--header-offset, 7.5rem);
   }
 
-  /* Airgoods large card is ~856px and does not stretch. Faire fills its iframe. */
+  /* Airgoods large card is ~856px and does not stretch. Faire fills its iframe; 860px is the closest range step. */
   .embed-widget-section__frame {
     width: 100%;
-    max-width: 856px;
+    max-width: 860px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -153,11 +153,11 @@
       "id": "iframe_max_width",
       "label": "Widget max width",
       "info": "0 uses 856px (Airgoods large card). Faire fills this box.",
-      "min": 0,
+      "min": 400,
       "max": 1200,
-      "step": 2,
+      "step": 10,
       "unit": "px",
-      "default": 856
+      "default": 860
     },
     {
       "type": "range",
