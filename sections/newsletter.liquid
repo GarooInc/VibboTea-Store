@@ -38,28 +38,32 @@
   class="newsletter-section w-screen bg-[#EBEBEB] overflow-hidden"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
-  <!-- Grid: latas izquierda (solo desktop) + título + form derecha -->
-  <div class="md:grid md:grid-cols-[3fr_4fr] md:items-center flex flex-col">
+  <!-- Título: ancho completo, centrado en todo el widget -->
+  <div class="pt-3 pb-0 px-6">
+    <h2 class="hidden md:block text-5xl font-bold font-bricolage text-center leading-tight mb-2">
+      {{ section.settings.title }}
+    </h2>
+    <h2 class="md:hidden text-3xl font-bold font-bricolage text-center leading-tight mb-2">
+      {{ section.settings.title_mobile }}
+    </h2>
+  </div>
 
-    <!-- Imagen: solo desktop -->
-    <div class="hidden md:flex justify-center items-center">
+  <!-- Grid: latas al fondo (solo desktop) + form derecha -->
+  <div class="md:grid md:grid-cols-[3fr_4fr] md:items-stretch flex flex-col">
+
+    <!-- Imagen: anclada al borde inferior, escala a la altura del form -->
+    <div class="hidden md:flex h-full justify-center items-end">
       <img
         src="{{ section.settings.imagen | image_url: width: 600 }}"
         alt="Imagen"
-        class="w-[30vw] max-w-md max-h-[320px] object-contain block"
+        class="h-full w-auto max-w-full object-contain object-bottom block"
         width="{{ section.settings.background_image.width }}"
         height="{{ section.settings.background_image.height }}"
       >
     </div>
 
-    <!-- Título + Klaviyo form -->
-    <div class="flex flex-col px-6 md:px-10 pt-3 pb-3 md:pb-4">
-      <h2 class="hidden md:block text-5xl font-bold font-bricolage text-center leading-tight mb-2">
-        {{ section.settings.title }}
-      </h2>
-      <h2 class="md:hidden text-3xl font-bold font-bricolage text-center leading-tight mb-2">
-        {{ section.settings.title_mobile }}
-      </h2>
+    <!-- Klaviyo form -->
+    <div class="flex flex-col px-6 md:px-10 pb-3 md:pb-4">
       <div class="klaviyo-form-UcYx3V"></div>
     </div>
 
