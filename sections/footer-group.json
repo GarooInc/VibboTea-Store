@@ -15,10 +15,10 @@
       "type": "newsletter",
       "settings": {
         "imagen": "shopify://shop_images/latas.png",
-        "title": "What are you waiting for?",
+        "title": "Get updates",
         "texto1": "Sign up to our newsletter and be the first to know about our launch and exclusive offers.",
         "placeholder": "email address",
-        "title_mobile": "You know you want to"
+        "title_mobile": "Get updates"
       }
     },
     "footer": {
