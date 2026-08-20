@@ -3,16 +3,35 @@
   if section.settings.show_topbar
     assign topbar_height = 40
   endif
+  assign force_solid_header = false
+  if request.page_type == 'article' or request.page_type == 'blog'
+    assign force_solid_header = true
+  endif
+  assign header_offset_mobile = topbar_height | plus: section.settings.header_height_mobile | plus: 24
+  assign header_offset_desktop = topbar_height | plus: section.settings.header_height_desktop | plus: 24
 -%}
 
 <style>
+  :root {
+    --header-offset: {{ header_offset_mobile }}px;
+  }
   #main-header {
     height: {{ section.settings.header_height_mobile }}px;
   }
   @media (min-width: 768px) {
+    :root {
+      --header-offset: {{ header_offset_desktop }}px;
+    }
     #main-header {
       height: {{ section.settings.header_height_desktop }}px;
     }
+  }
+  .template-article #MainContent {
+    padding-top: var(--header-offset);
+  }
+  .template-article #main-header img,
+  .template-blog #main-header img {
+    filter: invert(1);
   }
 </style>
 
@@ -53,21 +72,21 @@
 
 <header
   id="main-header"
-  class="fixed left-0 w-full bg-cover bg-center flex items-center justify-center overflow-hidden z-[9999]"
+  class="fixed left-0 w-full bg-cover bg-center flex items-center justify-center overflow-hidden z-[9999]{% if force_solid_header %} bg-white{% endif %}"
   style="top: {{ topbar_height }}px;"
 >
 {%- capture background_class -%}
-  {%- if section.settings.header_background == 'transparent' -%}
-    bg-transparent
-  {%- elsif section.settings.header_background == 'white' -%}
+  {%- if force_solid_header or section.settings.header_background == 'white' -%}
     bg-white
+  {%- elsif section.settings.header_background == 'transparent' -%}
+    bg-transparent
   {%- else -%}
     bg-black/40
   {%- endif -%}
 {%- endcapture -%}
 
 {%- capture text_color -%}
-  {%- if section.settings.header_background == 'white' -%}
+  {%- if force_solid_header or section.settings.header_background == 'white' -%}
     text-black
   {%- else -%}
     text-white

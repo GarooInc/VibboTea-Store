@@ -45,10 +45,18 @@
     <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=Wujgaz"></script>
   </head>
 
-  <body{% if request.path contains '/apps/' %} class="page-app-route"{% endif %}>
+  {%- liquid
+    assign body_class = 'template-' | append: request.page_type
+    if request.path contains '/apps/'
+      assign body_class = body_class | append: ' page-app-route'
+    endif
+  -%}
+  <body class="{{ body_class }}">
     {% sections 'header-group' %}
 
-    {{ content_for_layout }}
+    <main id="MainContent">
+      {{ content_for_layout }}
+    </main>
 
     {% sections 'footer-group' %}
 
