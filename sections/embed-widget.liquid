@@ -20,23 +20,26 @@
   </div>
 </div>
 
+{%- liquid
+  assign iframe_max_width = section.settings.iframe_max_width | times: 1
+-%}
 {% style %}
-  /* CSS beats the iframe's height="" attribute, so the embed code needs no edits.
-     display:block removes the inline-baseline gap under the iframe. */
+  /* !important beats inline width/max-width on third-party embed code (Faire). */
   #shopify-section-{{ section.id }} .embed-widget-section__content iframe {
     display: block;
-    width: 100%;
-    height: {{ section.settings.iframe_height_mobile }}px;
-    {% if section.settings.iframe_max_width > 0 %}
-      max-width: {{ section.settings.iframe_max_width }}px;
-      margin-left: auto;
-      margin-right: auto;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: {{ section.settings.iframe_height_mobile }}px !important;
+    margin-left: auto;
+    margin-right: auto;
+    {% if iframe_max_width > 0 %}
+      max-width: {{ iframe_max_width }}px !important;
     {% endif %}
   }
 
   @media (min-width: 768px) {
     #shopify-section-{{ section.id }} .embed-widget-section__content iframe {
-      height: {{ section.settings.iframe_height }}px;
+      height: {{ section.settings.iframe_height }}px !important;
     }
   }
 {% endstyle %}
