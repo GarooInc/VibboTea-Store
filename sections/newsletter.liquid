@@ -2,14 +2,35 @@
 
 <style>
   /* Subtítulo Klaviyo más grande */
-  .klaviyo-form-UcYx3V p,
-  .klaviyo-form-UcYx3V div[data-testid="form-component"] p,
-  .klaviyo-form-UcYx3V span,
-  .klaviyo-form-UcYx3V div[class*="text"],
-  .klaviyo-form-UcYx3V div[class*="paragraph"] {
+  .newsletter-section .klaviyo-form-UcYx3V p,
+  .newsletter-section .klaviyo-form-UcYx3V div[data-testid="form-component"] p,
+  .newsletter-section .klaviyo-form-UcYx3V span,
+  .newsletter-section .klaviyo-form-UcYx3V div[class*="text"],
+  .newsletter-section .klaviyo-form-UcYx3V div[class*="paragraph"] {
     font-size: 17px !important;
     font-weight: 500 !important;
     line-height: 1.5 !important;
+  }
+
+  /* Compactar padding interno y gaps del form (Klaviyo pinta padding inline) */
+  .newsletter-section .klaviyo-form-UcYx3V form,
+  .newsletter-section .klaviyo-form-UcYx3V form > div,
+  .newsletter-section .klaviyo-form-UcYx3V [data-testid="klaviyo-form"] {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    row-gap: 0.5rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .newsletter-section .klaviyo-form-UcYx3V [data-testid="form-component"],
+  .newsletter-section .klaviyo-form-UcYx3V [data-testid="form-row"] {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .newsletter-section .klaviyo-form-UcYx3V [data-testid="form-component"]:last-child,
+  .newsletter-section .klaviyo-form-UcYx3V [data-testid="form-row"]:last-child {
+    margin-bottom: 0 !important;
   }
 </style>
 
@@ -17,32 +38,28 @@
   class="newsletter-section w-screen bg-[#EBEBEB] overflow-hidden"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
-  <!-- Título: ancho completo, centrado -->
-  <div class="pt-3 pb-0 px-6">
-    <h2 class="hidden md:block text-5xl font-bold font-bricolage text-center leading-tight mb-0">
-      {{ section.settings.title }}
-    </h2>
-    <h2 class="md:hidden text-3xl font-bold font-bricolage text-center leading-tight mb-0">
-      {{ section.settings.title_mobile }}
-    </h2>
-  </div>
+  <!-- Grid: latas izquierda (solo desktop) + título + form derecha -->
+  <div class="md:grid md:grid-cols-[3fr_4fr] md:items-center flex flex-col">
 
-  <!-- Grid: latas izquierda (solo desktop) + form derecha -->
-  <div class="md:grid md:grid-cols-[3fr_4fr] md:items-end flex flex-col">
-
-    <!-- Imagen: solo desktop, alineada al fondo -->
-    <div class="hidden md:flex justify-center items-end">
+    <!-- Imagen: solo desktop -->
+    <div class="hidden md:flex justify-center items-center">
       <img
         src="{{ section.settings.imagen | image_url: width: 600 }}"
         alt="Imagen"
-        class="w-[30vw] max-w-md object-contain block"
+        class="w-[30vw] max-w-md max-h-[320px] object-contain block"
         width="{{ section.settings.background_image.width }}"
         height="{{ section.settings.background_image.height }}"
       >
     </div>
 
-    <!-- Klaviyo form -->
-    <div class="flex flex-col justify-end px-10 pb-0 pt-1">
+    <!-- Título + Klaviyo form -->
+    <div class="flex flex-col px-6 md:px-10 pt-3 pb-3 md:pb-4">
+      <h2 class="hidden md:block text-5xl font-bold font-bricolage text-center leading-tight mb-2">
+        {{ section.settings.title }}
+      </h2>
+      <h2 class="md:hidden text-3xl font-bold font-bricolage text-center leading-tight mb-2">
+        {{ section.settings.title_mobile }}
+      </h2>
       <div class="klaviyo-form-UcYx3V"></div>
     </div>
 
