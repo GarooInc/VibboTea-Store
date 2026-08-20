@@ -1,4 +1,9 @@
-<div class="embed-widget-section full-width">
+<div
+  class="embed-widget-section full-width"
+  {% if section.settings.anchor_id != blank %}
+    id="{{ section.settings.anchor_id | handleize | escape }}"
+  {% endif %}
+>
   <div
     class="embed-widget-section__content"
     style="margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;"
@@ -43,6 +48,10 @@
     text-align: center;
   }
 
+  .embed-widget-section[id] {
+    scroll-margin-top: var(--header-offset, 7.5rem);
+  }
+
   @media (max-width: 767px) {
     .embed-widget-section__heading {
       font-size: 8vw !important;
@@ -79,6 +88,12 @@
       "step": 2,
       "unit": "px",
       "default": 48
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Optional. Example: wholesale — used for footer links like /partner-with-us#wholesale"
     },
     {
       "type": "liquid",

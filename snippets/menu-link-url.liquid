@@ -1,0 +1,20 @@
+{% doc %}
+  Returns a menu URL, appending #wholesale when the item is Wholesale on Partner with us.
+
+  @param {object} link - The navigation link
+
+  @example
+  <a href="{% render 'menu-link-url', link: link %}">{{ link.title }}</a>
+{% enddoc %}
+{%- liquid
+  assign href = link.url
+  assign title_down = link.title | downcase | strip
+  if title_down == 'wholesale'
+    unless href contains '#wholesale'
+      if href contains 'partner-with-us'
+        assign href = href | split: '#' | first | append: '#wholesale'
+      endif
+    endunless
+  endif
+-%}
+{{- href -}}
