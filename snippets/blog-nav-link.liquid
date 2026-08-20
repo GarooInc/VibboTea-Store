@@ -1,0 +1,35 @@
+{% doc %}
+  Renders a Blog navigation link when the store has a blog and `skip` is not true.
+
+  Prefers the `news` blog, then the first available blog.
+
+  @param {string} class - CSS classes for the anchor
+  @param {boolean} [skip] - When true, nothing is rendered (menu already has a blog link)
+  @param {string} [onclick] - Optional click handler, e.g. mobile menu close
+
+  @example
+  {% render 'blog-nav-link', class: 'nav-link', skip: skip_blog_nav %}
+  {% render 'blog-nav-link', class: 'nav-link', skip: skip_blog_nav, onclick: 'toggleMobileMenu()' %}
+{% enddoc %}
+
+{% liquid
+  assign nav_blog = blogs['news']
+  if nav_blog == empty
+    for store_blog in blogs
+      assign nav_blog = store_blog
+      break
+    endfor
+  endif
+%}
+
+{% if skip != true and nav_blog != empty %}
+  <a
+    href="{{ nav_blog.url }}"
+    class="{{ class }}"
+    {% if onclick != blank %}
+      onclick="{{ onclick }}"
+    {% endif %}
+  >
+    {{ 'blog.nav_title' | t }}
+  </a>
+{% endif %}

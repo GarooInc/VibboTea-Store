@@ -146,6 +146,16 @@
   </div>
 
   <!-- MENU desktop (col 2) -->
+  {%- liquid
+    assign skip_blog_nav = false
+    for link in section.settings.menu.links
+      if link.url contains '/blogs/'
+        assign skip_blog_nav = true
+        break
+      endif
+    endfor
+    assign blog_header_class = 'font-light font-bricolage text-sm lg:text-lg xl:text-xl p-4 tracking-wider uppercase hover:font-bold transition-colors duration-200 whitespace-nowrap ' | append: text_color | strip_newlines
+  -%}
   <nav class="hidden md:flex  md:justify-center space-x-8" style="margin-top: -4px;">
     {% for link in section.settings.menu.links %}
       <a
@@ -156,6 +166,7 @@
         {{ link.title }}
       </a>
     {% endfor %}
+    {% render 'blog-nav-link', skip: skip_blog_nav, class: blog_header_class %}
   </nav>
 
   <!-- Col 3 — Cart button desktop -->
@@ -206,6 +217,11 @@
         {{ link.title }}
       </a>
     {% endfor %}
+    {% render 'blog-nav-link',
+      skip: skip_blog_nav,
+      class: 'text-2xl tracking-wider text-white transition-colors duration-200 text-center py-2 font-bricolage',
+      onclick: 'toggleMobileMenu()'
+    %}
   </nav>
 </div>
 

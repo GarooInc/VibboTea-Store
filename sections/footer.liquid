@@ -1,3 +1,34 @@
+{%- liquid
+  assign skip_blog_nav = false
+  if section.settings.submenu1_footer != blank
+    for link in section.settings.submenu1_footer.links
+      if link.url contains '/blogs/'
+        assign skip_blog_nav = true
+      endif
+    endfor
+  endif
+  if section.settings.submenu2_footer != blank
+    for link in section.settings.submenu2_footer.links
+      if link.url contains '/blogs/'
+        assign skip_blog_nav = true
+      endif
+    endfor
+  endif
+  if section.settings.submenu3_footer != blank
+    for link in section.settings.submenu3_footer.links
+      if link.url contains '/blogs/'
+        assign skip_blog_nav = true
+      endif
+    endfor
+  endif
+  if section.settings.menu2_footer != blank and linklists[section.settings.menu2_footer].links.size > 0
+    for link in linklists[section.settings.menu2_footer].links
+      if link.url contains '/blogs/'
+        assign skip_blog_nav = true
+      endif
+    endfor
+  endif
+-%}
 <footer
   class="w-screen md:min-h-0 min-h-[40vh] bg-[#1D1D1B] text-white"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
@@ -66,6 +97,7 @@
           <a class="hover:opacity-70 whitespace-nowrap  text-sm pr-5">Terms of Service</a>
           <a class="hover:opacity-70 whitespace-nowrap  text-sm">Cookies Policy</a>
         {% endif %}
+        {% render 'blog-nav-link', skip: skip_blog_nav, class: 'hover:opacity-70 whitespace-nowrap text-sm transition-opacity pr-5' %}
       </div>
   </div>
 
@@ -137,6 +169,7 @@
             </a>
           {% endif %}
         {% endfor %}
+        {% render 'blog-nav-link', skip: skip_blog_nav, class: 'md:text-[1vw] text-[10px] font-bricolage opacity-80 mb-2 whitespace-nowrap hover:opacity-60 transition-opacity' %}
       </div>
 
       <div class="flex flex-col items-start">
