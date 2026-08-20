@@ -1,0 +1,153 @@
+{% comment %}
+  Intro heading, optional subtitle, and hero image for the blog index.
+{% endcomment %}
+
+{% liquid
+  assign heading = section.settings.heading | default: blog.title
+  assign hero_image = section.settings.image
+  assign hero_image_mobile = section.settings.image_mobile
+  assign heading_alt = heading
+%}
+
+<div class="blog-hero" {{ section.shopify_attributes }}>
+  <div class="blog-hero__intro">
+    {% if heading != blank %}
+      <h1 class="blog-hero__heading font-bricolage">{{ heading | escape }}</h1>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="blog-hero__subheading font-bricolage">{{ section.settings.subheading | escape }}</p>
+    {% endif %}
+  </div>
+
+  {% if hero_image %}
+    <div class="blog-hero__media">
+      {% if hero_image_mobile %}
+        {% assign mobile_alt = hero_image_mobile.alt | default: heading_alt %}
+        {{ hero_image_mobile
+          | image_url: width: 900, height: 1100, crop: 'center'
+          | image_tag:
+            loading: 'eager',
+            widths: '400, 600, 800, 900',
+            sizes: '100vw',
+            alt: mobile_alt,
+            class: 'blog-hero__image blog-hero__image--mobile'
+        }}
+      {% endif %}
+
+      {% assign desktop_alt = hero_image.alt | default: heading_alt %}
+      {{ hero_image
+        | image_url: width: 1800, height: 900, crop: 'center'
+        | image_tag:
+          loading: 'eager',
+          widths: '800, 1200, 1600, 1800',
+          sizes: '100vw',
+          alt: desktop_alt,
+          class: 'blog-hero__image blog-hero__image--desktop'
+      }}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .blog-hero {
+    padding: 8rem 0 2.5rem;
+  }
+
+  .blog-hero__intro {
+    margin-bottom: 1.75rem;
+  }
+
+  .blog-hero__heading {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .blog-hero__subheading {
+    margin: 0.85rem 0 0;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.4;
+    color: #444;
+  }
+
+  .blog-hero__media {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background-color: #f3f3f3;
+  }
+
+  .blog-hero__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .blog-hero__image--mobile {
+    aspect-ratio: 4 / 5;
+  }
+
+  .blog-hero__image--desktop {
+    aspect-ratio: 16 / 8;
+  }
+
+  @media (max-width: 767px) {
+    .blog-hero__media:has(.blog-hero__image--mobile) .blog-hero__image--desktop {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .blog-hero {
+      padding-top: 9rem;
+      padding-bottom: 3rem;
+    }
+
+    .blog-hero__image--mobile {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.blog_hero",
+  "tag": "section",
+  "class": "blog-hero-section",
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "The Blog"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "Stories, recipes, and tea culture — Vibbo style."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:labels.image_mobile"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.blog_hero"
+    }
+  ]
+}
+{% endschema %}

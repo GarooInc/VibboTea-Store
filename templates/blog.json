@@ -1,20 +1,40 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
+    "hero": {
+      "type": "blog-hero",
+      "settings": {
+        "heading": "The Blog",
+        "subheading": "Stories, recipes, and tea culture — Vibbo style."
+      }
+    },
+    "featured": {
+      "type": "blog-featured",
+      "settings": {
+        "featured_heading": "Featured Articles"
+      }
+    },
     "main": {
       "type": "blog",
-      "settings": {}
+      "settings": {
+        "heading": "More Articles",
+        "articles_per_page": 12,
+        "skip_latest_article": true
+      }
+    },
+    "socials": {
+      "type": "main-socials-section",
+      "name": "Section socials",
+      "settings": {
+        "title": "See what else we’re brewing.",
+        "text_socials": "Follow our socials, never miss a brew.",
+        "social": "@drinkvibbo"
+      }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "featured",
+    "main",
+    "socials"
   ]
 }

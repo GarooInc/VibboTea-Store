@@ -13,6 +13,8 @@
     "article": "Article",
     "block": "Block",
     "blog": "Blog",
+    "blog_featured": "Featured articles",
+    "blog_hero": "Blog hero",
     "cart": "Cart",
     "collection": "Collection",
     "collections": "Collections",
@@ -44,19 +46,36 @@
   },
   "labels": {
     "alignment": "Alignment",
+    "article": "Article",
+    "articles_per_page": "Articles per page",
     "background": "Background",
+    "exclude_article": "Exclude article",
+    "exclude_from_listing": "Hide featured articles from this grid",
+    "featured_article": "Featured article",
+    "featured_articles_heading": "Featured articles heading",
     "foreground": "Foreground",
     "grid_gap": "Grid spacing",
     "grid_item_width": "Grid item width",
+    "heading": "Heading",
+    "image": "Image",
+    "image_mobile": "Mobile image",
     "input_corner_radius": "Input corner radius",
     "layout_direction": "Layout direction",
     "menu": "Menu",
+    "more_articles_heading": "Listing heading",
     "padding": "Padding",
     "page_margin": "Page margin",
     "page_width": "Page width",
     "show_payment_icons": "Show payment icons",
+    "skip_latest_article": "Hide the latest article",
+    "subheading": "Subheading",
     "text_style": "Text style",
     "text": "Text"
+  },
+  "info": {
+    "exclude_featured_article": "Pick the same article shown in Featured so it is not repeated below. When set, the latest-article checkbox is ignored.",
+    "featured_article": "Leave blank to use the most recent blog post.",
+    "skip_latest_article": "On by default so the featured post is not repeated in More Articles. Turn off if you pick a different featured article."
   },
   "options": {
     "alignment": {
@@ -80,6 +99,6 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
-    },
+    }
   }
 }

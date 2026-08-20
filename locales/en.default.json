@@ -14,13 +14,21 @@
     "back_to_shopping": "Back to shopping"
   },
   "blog": {
+    "all": "All",
     "article_comments": "Comments",
     "article_metadata_html": "{{ date }} by {{ author }}",
     "comment_form_body": "Comment",
     "comment_form_email": "Email",
     "comment_form_name": "Name",
     "comment_form_submit": "Post",
-    "comment_form_title": "Add a comment"
+    "comment_form_title": "Add a comment",
+    "featured_articles": "Featured Articles",
+    "more_articles": "More Articles",
+    "pagination_label": "Blog pagination",
+    "pagination_next": "Next",
+    "pagination_previous": "Previous",
+    "read_more": "Read More",
+    "tag_filter_label": "Filter articles by tag"
   },
   "cart": {
     "checkout": "Checkout",

@@ -1,0 +1,253 @@
+{% comment %}
+  Featured article plus optional grid of highlighted posts on the blog index.
+{% endcomment %}
+
+{% liquid
+  assign featured = section.settings.featured_article
+  if featured == blank and blog.articles_count > 0
+    assign featured = blog.articles.first
+  endif
+
+  assign featured_handle = ''
+  assign featured_tag = ''
+  assign featured_excerpt = ''
+  assign featured_alt = ''
+  assign grid_count = 0
+
+  if featured != blank
+    assign featured_handle = featured.handle
+    assign featured_tag = featured.tags.first
+    assign featured_excerpt = featured.excerpt_or_content | strip_html | truncatewords: 40
+    if featured.image
+      assign featured_alt = featured.image.alt | default: featured.title
+    else
+      assign featured_alt = featured.title
+    endif
+  endif
+%}
+
+{% if featured != blank %}
+  <div class="blog-featured" {{ section.shopify_attributes }}>
+    <article class="blog-featured__hero">
+      {% if featured.image %}
+        <a class="blog-featured__media" href="{{ featured.url }}">
+          {{ featured.image
+            | image_url: width: 1600, height: 900, crop: 'center'
+            | image_tag:
+              loading: 'lazy',
+              widths: '600, 900, 1200, 1600',
+              sizes: '100vw',
+              alt: featured_alt,
+              class: 'blog-featured__image'
+          }}
+        </a>
+      {% endif %}
+
+      <div class="blog-featured__content">
+        {% if featured_tag != blank %}
+          <p class="blog-featured__tag">{{ featured_tag | escape }}</p>
+        {% endif %}
+
+        <h2 class="blog-featured__title font-bricolage">
+          <a href="{{ featured.url }}">{{ featured.title | escape }}</a>
+        </h2>
+
+        {% if featured_excerpt != blank %}
+          <p class="blog-featured__excerpt">{{ featured_excerpt | escape }}</p>
+        {% endif %}
+
+        <a class="blog-featured__link font-bricolage" href="{{ featured.url }}">
+          {{ 'blog.read_more' | t }}
+        </a>
+      </div>
+    </article>
+
+    {% liquid
+      for block in section.blocks
+        assign grid_article = block.settings.article
+        if grid_article != blank and grid_article.handle != featured_handle
+          assign grid_count = grid_count | plus: 1
+        endif
+      endfor
+    %}
+
+    {% if grid_count > 0 %}
+      <div class="blog-featured__grid-wrap">
+        <h2 class="blog-featured__grid-heading font-bricolage">
+          {{ section.settings.featured_heading | escape }}
+        </h2>
+        <div class="blog-featured__grid">
+          {% for block in section.blocks %}
+            {% assign grid_article = block.settings.article %}
+            {% if grid_article != blank and grid_article.handle != featured_handle %}
+              <div class="blog-featured__item" {{ block.shopify_attributes }}>
+                {% render 'article-card', article: grid_article, loading: 'lazy' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .blog-featured {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .blog-featured__hero {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .blog-featured__media {
+    display: block;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background-color: #f3f3f3;
+  }
+
+  .blog-featured__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .blog-featured__hero:hover .blog-featured__image {
+    transform: scale(1.03);
+  }
+
+  .blog-featured__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    max-width: 46rem;
+  }
+
+  .blog-featured__tag {
+    margin: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    color: #444;
+  }
+
+  .blog-featured__title {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #000;
+  }
+
+  .blog-featured__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .blog-featured__title a:hover,
+  .blog-featured__title a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .blog-featured__excerpt {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #444;
+  }
+
+  .blog-featured__link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .blog-featured__link:hover,
+  .blog-featured__link:focus-visible {
+    opacity: 0.7;
+  }
+
+  .blog-featured__grid-wrap {
+    margin-top: 3.5rem;
+  }
+
+  .blog-featured__grid-heading {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: #000;
+  }
+
+  .blog-featured__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .blog-featured__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blog-featured {
+      padding-bottom: 4rem;
+    }
+
+    .blog-featured__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.blog_featured",
+  "tag": "section",
+  "class": "blog-featured-section",
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "article",
+      "id": "featured_article",
+      "label": "t:labels.featured_article",
+      "info": "t:info.featured_article"
+    },
+    {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "t:labels.featured_articles_heading",
+      "default": "Featured Articles"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "t:general.article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "t:labels.article"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "t:general.blog_featured"
+    }
+  ]
+}
+{% endschema %}

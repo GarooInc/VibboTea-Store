@@ -1,0 +1,153 @@
+{% doc %}
+  Renders a blog article card with image, first tag, title, excerpt, and link.
+
+  @param {article} article - The article to render
+  @param {string} [loading] - Image loading attribute: `eager` or `lazy`. Defaults to `lazy`
+  @param {string} [sizes] - Optional sizes attribute for the article image
+  @param {string} [heading_level] - Heading level for the title. Defaults to `h3`
+
+  @example
+  {% render 'article-card', article: article %}
+  {% render 'article-card', article: article, loading: 'eager', heading_level: 'h2' %}
+{% enddoc %}
+
+{% if article != blank %}
+{% liquid
+  assign loading = loading | default: 'lazy'
+  assign heading_level = heading_level | default: 'h3'
+  if heading_level != 'h2' and heading_level != 'h3'
+    assign heading_level = 'h3'
+  endif
+  assign image_sizes = sizes | default: '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw'
+  assign card_tag = article.tags.first
+  assign card_excerpt = article.excerpt_or_content | strip_html | truncatewords: 22
+  assign image_alt = article.title
+  if article.image
+    assign image_alt = article.image.alt | default: article.title
+  endif
+%}
+
+<article class="article-card">
+  <a class="article-card__media" href="{{ article.url }}">
+    {% if article.image %}
+      {{ article.image
+        | image_url: width: 900, height: 675, crop: 'center'
+        | image_tag:
+          loading: loading,
+          widths: '400, 600, 800, 900',
+          sizes: image_sizes,
+          alt: image_alt,
+          class: 'article-card__image'
+      }}
+    {% else %}
+      <div class="article-card__placeholder" aria-hidden="true"></div>
+    {% endif %}
+  </a>
+
+  <div class="article-card__body">
+    {% if card_tag != blank %}
+      <p class="article-card__tag">{{ card_tag | escape }}</p>
+    {% endif %}
+
+    <{{ heading_level }} class="article-card__title font-bricolage">
+      <a href="{{ article.url }}">{{ article.title | escape }}</a>
+    </{{ heading_level }}>
+
+    {% if card_excerpt != blank %}
+      <p class="article-card__excerpt">{{ card_excerpt | escape }}</p>
+    {% endif %}
+
+    <a class="article-card__link font-bricolage" href="{{ article.url }}">
+      {{ 'blog.read_more' | t }}
+    </a>
+  </div>
+</article>
+{% endif %}
+
+{% stylesheet %}
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .article-card__media {
+    display: block;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: #f3f3f3;
+    aspect-ratio: 4 / 3;
+  }
+
+  .article-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .article-card:hover .article-card__image {
+    transform: scale(1.04);
+  }
+
+  .article-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #ececec;
+  }
+
+  .article-card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .article-card__tag {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    color: #444;
+  }
+
+  .article-card__title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  .article-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .article-card__title a:hover,
+  .article-card__title a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .article-card__excerpt {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  .article-card__link {
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .article-card__link:hover,
+  .article-card__link:focus-visible {
+    opacity: 0.7;
+  }
+{% endstylesheet %}
