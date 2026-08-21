@@ -77,6 +77,55 @@
         </div>
        
       </div>
+
+    <!-- NAV: mismas columnas que desktop -->
+    <nav class="w-full flex flex-col items-center gap-8 py-8">
+      {% if section.settings.submenu1_footer != blank %}
+        <div class="flex flex-col items-center">
+          {% for link in section.settings.submenu1_footer.links %}
+            {% if forloop.first %}
+              <h2 class="text-lg font-bricolage mb-3">{{ link.title }}</h2>
+            {% else %}
+              <a href="{% render 'menu-link-url', link: link %}" class="text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.submenu2_footer != blank %}
+        <div class="flex flex-col items-center">
+          {% for link in section.settings.submenu2_footer.links %}
+            {% if forloop.first %}
+              <a href="{% render 'menu-link-url', link: link %}" class="text-lg font-bricolage mb-3">
+                {{ link.title }}
+              </a>
+            {% else %}
+              <a href="{% render 'menu-link-url', link: link %}" class="text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+          {% endfor %}
+          {% render 'blog-nav-link', skip: skip_blog_nav, class: 'text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity' %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.submenu3_footer != blank %}
+        <div class="flex flex-col items-center">
+          {% for link in section.settings.submenu3_footer.links %}
+            {% if forloop.first %}
+              <h2 class="text-lg font-bricolage mb-3">{{ link.title }}</h2>
+            {% else %}
+              <a href="{% render 'menu-link-url', link: link %}" class="text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity">
+                {{ link.title }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </nav>
+
       <div>
         {% if section.settings.descripcion2 %}
           <p class=" md:text-sm text-xs w-screen
@@ -97,7 +146,6 @@
           <a class="hover:opacity-70 whitespace-nowrap  text-sm pr-5">Terms of Service</a>
           <a class="hover:opacity-70 whitespace-nowrap  text-sm">Cookies Policy</a>
         {% endif %}
-        {% render 'blog-nav-link', skip: skip_blog_nav, class: 'hover:opacity-70 whitespace-nowrap text-sm transition-opacity pr-5' %}
       </div>
   </div>
 
