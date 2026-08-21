@@ -75,6 +75,15 @@
               {%- render 'tiktok' -%}
             </a>
         </div>
+        {% if section.settings.x_url != blank %}
+        <div class="flex justify-end md:justify-between ">
+            <a href="{{ section.settings.x_url }}" target="_blank" rel="noopener"
+              class="footer-icon hover:opacity-70 transition-opacity scale-70"
+              aria-label="X">
+              {%- render 'x' -%}
+            </a>
+        </div>
+        {% endif %}
        
       </div>
 
@@ -112,6 +121,8 @@
       {% endif %}
 
       {% if section.settings.submenu3_footer != blank %}
+        {% assign submenu3_heading = section.settings.submenu3_footer.links.first.title | downcase %}
+        {% unless submenu3_heading == 'social' %}
         <div class="flex flex-col items-center">
           {% for link in section.settings.submenu3_footer.links %}
             {% if forloop.first %}
@@ -123,6 +134,7 @@
             {% endif %}
           {% endfor %}
         </div>
+        {% endunless %}
       {% endif %}
     </nav>
 
@@ -344,6 +356,11 @@
       "type": "url",
       "id": "tiktok_url",
       "label": "Tiktok URL"
+    },
+    {
+      "type": "url",
+      "id": "x_url",
+      "label": "X URL"
     },
   ]
 }
