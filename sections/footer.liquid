@@ -52,43 +52,8 @@
       </p>
     {% endif %}
     </div>
-     <!-- SOCIALS -->
-    <div class="flex pl-2 gap-4 md:pb-20 ">
-        <div class="flex justify-end md:justify-between ">
-            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-              aria-label="Facebook">
-              {%- render 'fb' -%}
-            </a>
-        </div>
-        <div class="flex justify-end md:justify-between ">
-            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-70" 
-              aria-label="Instagram">
-              {%- render 'ig' -%}
-            </a>
-        </div>
-        <div class="flex justify-end md:justify-between ">
-            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" 
-              class="footer-icon hover:opacity-70 transition-opacity scale-80" 
-              aria-label="Tiktok">
-              {%- render 'tiktok' -%}
-            </a>
-        </div>
-        {% if section.settings.x_url != blank %}
-        <div class="flex justify-end md:justify-between ">
-            <a href="{{ section.settings.x_url }}" target="_blank" rel="noopener"
-              class="footer-icon hover:opacity-70 transition-opacity scale-70"
-              aria-label="X">
-              {%- render 'x' -%}
-            </a>
-        </div>
-        {% endif %}
-       
-      </div>
-
-    <!-- NAV: mismas columnas que desktop -->
-    <nav class="w-full flex flex-col items-center gap-8 py-8">
+     <!-- NAV: Shop y About lado a lado -->
+    <nav class="w-full grid grid-cols-2 justify-items-center gap-x-8 py-8 max-w-md mx-auto">
       {% if section.settings.submenu1_footer != blank %}
         <div class="flex flex-col items-center">
           {% for link in section.settings.submenu1_footer.links %}
@@ -100,12 +65,26 @@
               </a>
             {% endif %}
           {% endfor %}
+          {% if section.settings.submenu2_footer != blank %}
+            {% for link in section.settings.submenu2_footer.links %}
+              {% assign link_title_down = link.title | downcase | strip %}
+              {% if link_title_down == 'wholesale' %}
+                <a href="{% render 'menu-link-url', link: link %}" class="text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity">
+                  {{ link.title }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
       {% endif %}
 
       {% if section.settings.submenu2_footer != blank %}
         <div class="flex flex-col items-center">
           {% for link in section.settings.submenu2_footer.links %}
+            {% assign link_title_down = link.title | downcase | strip %}
+            {% if link_title_down == 'wholesale' %}
+              {% continue %}
+            {% endif %}
             {% if forloop.first %}
               <a href="{% render 'menu-link-url', link: link %}" class="text-lg font-bricolage mb-3">
                 {{ link.title }}
@@ -119,24 +98,52 @@
           {% render 'blog-nav-link', skip: skip_blog_nav, class: 'text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity' %}
         </div>
       {% endif %}
-
-      {% if section.settings.submenu3_footer != blank %}
-        {% assign submenu3_heading = section.settings.submenu3_footer.links.first.title | downcase %}
-        {% unless submenu3_heading == 'social' %}
-        <div class="flex flex-col items-center">
-          {% for link in section.settings.submenu3_footer.links %}
-            {% if forloop.first %}
-              <h2 class="text-lg font-bricolage mb-3">{{ link.title }}</h2>
-            {% else %}
-              <a href="{% render 'menu-link-url', link: link %}" class="text-sm font-bricolage opacity-80 mb-2 hover:opacity-60 transition-opacity">
-                {{ link.title }}
-              </a>
-            {% endif %}
-          {% endfor %}
-        </div>
-        {% endunless %}
-      {% endif %}
     </nav>
+
+    {%- liquid
+      assign x_href = section.settings.x_url
+      if section.settings.submenu3_footer != blank
+        for link in section.settings.submenu3_footer.links
+          assign social_title = link.title | downcase | strip
+          if social_title == 'x' or social_title == 'twitter'
+            assign x_href = link.url
+          endif
+        endfor
+      endif
+      if x_href == blank
+        assign x_href = 'https://x.com/drinkvibbo'
+      endif
+    -%}
+
+    <!-- SOCIALS: debajo de Shop y About -->
+    <div class="flex items-center justify-center gap-4 py-4">
+        {% if section.settings.facebook_url != blank %}
+        <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener"
+          class="footer-icon hover:opacity-70 transition-opacity scale-70"
+          aria-label="Facebook">
+          {%- render 'fb' -%}
+        </a>
+        {% endif %}
+        {% if section.settings.instagram_url != blank %}
+        <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener"
+          class="footer-icon hover:opacity-70 transition-opacity scale-70"
+          aria-label="Instagram">
+          {%- render 'ig' -%}
+        </a>
+        {% endif %}
+        {% if section.settings.tiktok_url != blank %}
+        <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener"
+          class="footer-icon hover:opacity-70 transition-opacity scale-80"
+          aria-label="Tiktok">
+          {%- render 'tiktok' -%}
+        </a>
+        {% endif %}
+        <a href="{{ x_href }}" target="_blank" rel="noopener"
+          class="footer-icon hover:opacity-70 transition-opacity scale-70"
+          aria-label="X">
+          {%- render 'x' -%}
+        </a>
+      </div>
 
       <div>
         {% if section.settings.descripcion2 %}
