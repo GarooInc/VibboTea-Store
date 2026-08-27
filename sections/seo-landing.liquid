@@ -64,6 +64,15 @@
     padding: 3rem 0;
   }
 
+  /*
+    El header es fijo y solo .template-article empuja el contenido. Cuando esta
+    seccion abre la pagina se despeja sola con la misma variable que usa el
+    header, asi sigue el ritmo si cambian su altura.
+  */
+  #MainContent > .seo-landing-section:first-child .seo-landing {
+    padding-top: calc(var(--header-offset, 7.5rem) + 1.5rem);
+  }
+
   .seo-landing__inner {
     max-width: var(--page-width, 1200px);
     margin: 0 auto;
@@ -147,6 +156,10 @@
   @media (min-width: 768px) {
     .seo-landing {
       padding: 4.5rem 0;
+    }
+
+    #MainContent > .seo-landing-section:first-child .seo-landing {
+      padding-top: calc(var(--header-offset, 7.5rem) + 2.5rem);
     }
 
     .seo-landing__blocks {
