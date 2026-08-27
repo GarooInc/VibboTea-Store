@@ -229,8 +229,14 @@
         <div id="priceWrapper" class="py-2 flex flex-col gap-2 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
-              <span class="text-3xl md:text-4xl text-black">
+              <span data-price-current class="text-3xl md:text-4xl text-black">
                 {{ current_variant.price | money }}
+              </span>
+              <span
+                data-price-compare
+                class="text-2xl md:text-3xl text-gray-400 line-through{% unless current_variant.compare_at_price > current_variant.price %} hidden{% endunless %}"
+              >
+                {{ current_variant.compare_at_price | money }}
               </span>
               {% if section.settings.discount_badge_text != blank %}
                 <span class="text-xs md:text-sm font-semibold uppercase bg-red-500 text-white px-2 py-1 rounded-full whitespace-nowrap">
@@ -323,8 +329,14 @@
 
           {% else %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
-              <span class="text-2xl md:text-3xl text-gray-700">
+              <span data-price-current class="text-2xl md:text-3xl {% if current_variant.compare_at_price > current_variant.price %}text-red-700{% else %}text-gray-700{% endif %}">
                 {{ current_variant.price | money }}
+              </span>
+              <span
+                data-price-compare
+                class="text-xl md:text-2xl text-gray-400 line-through{% unless current_variant.compare_at_price > current_variant.price %} hidden{% endunless %}"
+              >
+                {{ current_variant.compare_at_price | money }}
               </span>
               {% if section.settings.discount_badge_text != blank %}
                 <span class="text-xs md:text-sm font-semibold uppercase bg-red-500 text-white px-2 py-1 rounded-full whitespace-nowrap">
@@ -353,6 +365,7 @@
                 data-variant-id="{{ variant.id }}"
                 data-price="{{ variant.price | money }}"
                 data-price-raw="{{ variant.price }}"
+                data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% endif %}"
               >
                 <div class="w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
                   <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
@@ -441,8 +454,23 @@
       if (priceDisplay) {
         priceDisplay.classList.add('opacity-0', 'translate-y-2');
         setTimeout(() => {
-          const price = option.dataset.price;
-          priceDisplay.innerHTML = `<span class="text-3xl md:text-4xl text-black">${price}</span>`;
+          const compare = option.dataset.compare;
+          const currentEl = priceDisplay.querySelector('[data-price-current]');
+          const compareEl = priceDisplay.querySelector('[data-price-compare]');
+
+          if (currentEl) {
+            currentEl.textContent = option.dataset.price;
+            // Solo el layout estándar colorea el precio en oferta
+            if (currentEl.classList.contains('text-red-700') || currentEl.classList.contains('text-gray-700')) {
+              currentEl.classList.toggle('text-red-700', Boolean(compare));
+              currentEl.classList.toggle('text-gray-700', !compare);
+            }
+          }
+          if (compareEl) {
+            compareEl.textContent = compare || '';
+            compareEl.classList.toggle('hidden', !compare);
+          }
+
           priceDisplay.classList.remove('opacity-0', 'translate-y-2');
         }, 200);
       }
