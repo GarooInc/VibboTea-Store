@@ -235,9 +235,29 @@ body {
   --jdgm-star-empty-color: #D1D5DB;
 }
 
+.product-description {
+  line-height: 1.7;
+}
+
+/* Shopify emite la descripcion con <p> o con <br>; separamos ambos casos */
+.product-description p {
+  margin-bottom: 0.85em;
+}
+
+.product-description p:last-child {
+  margin-bottom: 0;
+}
+
+.product-description br {
+  content: "";
+  display: block;
+  margin-bottom: 0.6em;
+}
+
 .product-description li {
   list-style-type: disc;
   margin-left: 20px;
+  margin-bottom: 0.35em;
 }
 
 form#captcha_form {
