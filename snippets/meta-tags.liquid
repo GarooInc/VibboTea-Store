@@ -132,8 +132,9 @@
   sincronizacion de GitHub de Shopify no subia el archivo nuevo y cada pagina
   quedaba con un Liquid error en el <head>.
 
-  - Organization + WebSite: solo en la home, que es donde Google espera la
-    entidad de marca. Repetirlo en cada URL no aporta y ensucia.
+  - Organization: solo en la home, que es donde Google espera la entidad de
+    marca. Repetirlo en cada URL no aporta y ensucia. Sin WebSite/SearchAction:
+    Google retiro el sitelinks searchbox en 2024.
   - BreadcrumbList: en producto, coleccion, blog y articulo.
   - Article: en las paginas de articulo.
   El `product | structured_data` de arriba cubre las fichas de producto.
@@ -182,24 +183,6 @@
     }
   </script>
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": {{ request.origin | append: '/#website' | json }},
-      "name": {{ shop.name | json }},
-      "url": {{ request.origin | json }},
-      "publisher": { "@id": {{ request.origin | append: '/#organization' | json }} },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": {{ request.origin | append: '/search?q={search_term_string}' | json }}
-        },
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
 {%- endif -%}
 
 {%- if request.page_type == 'article' and article != blank -%}
