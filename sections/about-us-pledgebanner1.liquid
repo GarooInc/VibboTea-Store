@@ -37,7 +37,7 @@
     <div class="w-full">
       <img
         src="{{ section.settings.image | image_url }}"
-        alt=""
+        alt="{{ section.settings.image.alt | escape }}"
         class="zero-bs-image"
         width="{{ section.settings.image.width }}"
         height="{{ section.settings.image.height }}">

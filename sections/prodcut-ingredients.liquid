@@ -75,7 +75,7 @@
   <div class="absolute md:top-5 md:-translate-y-30 -translate-y-25 right-0 transform ">
     <img
       src="{{ section.settings.imagen1 | image_url: width: 1000 }}"
-      alt="Imagen 1"
+      alt="{{ section.settings.imagen1.alt | escape }}"
       class="md:w-[15vw] w-[25vw] object-cover "
       width="{{ section.settings.imagen1.width }}"
       height="{{ section.settings.imagen1.height }}"
@@ -86,7 +86,7 @@
   <div class="absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
     <img
       src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
-      alt="Imagen 2"
+      alt="{{ section.settings.imagen2.alt | escape }}"
       class="md:w-[35vw] w-[65vw] object-cover block"
       width="{{ section.settings.imagen2.width }}"
       height="{{ section.settings.imagen2.height }}"
@@ -97,7 +97,7 @@
   <div class="hidden md:block absolute right-20 translate-y-35 -bottom-12 transform">
     <img
       src="{{ section.settings.imagen3 | image_url: width: 1000 }}"
-      alt="Imagen 3"
+      alt="{{ section.settings.imagen3.alt | escape }}"
       class="w-[35vw] object-cover block"
       width="{{ section.settings.imagen3.width }}"
       height="{{ section.settings.imagen3.height }}"

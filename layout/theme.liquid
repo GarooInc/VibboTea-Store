@@ -29,6 +29,9 @@
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 
+    {% # JSON-LD: Organization, WebSite, Article y BreadcrumbList %}
+    {% render 'structured-data' %}
+
     {{ content_for_header }}
     <script>
       (function() {

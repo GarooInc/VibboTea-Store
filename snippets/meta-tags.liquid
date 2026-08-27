@@ -3,10 +3,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 {%- liquid
+  assign meta_description = page_description
+  if meta_description == blank
+    case request.page_type
+      when 'product'
+        assign meta_description = product.description | strip_html | strip | truncate: 155
+      when 'collection'
+        assign meta_description = collection.description | strip_html | strip | truncate: 155
+      when 'article'
+        assign meta_description = article.excerpt_or_content | strip_html | strip | truncate: 155
+      when 'page'
+        assign meta_description = page.content | strip_html | strip | truncate: 155
+      when 'blog'
+        assign meta_description = blog.title | append: ' — ' | append: shop.name
+    endcase
+  endif
+  if meta_description == blank
+    assign meta_description = shop.description
+  endif
+
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = meta_description | default: shop.name
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -101,9 +120,9 @@
   <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 64 }}" type="image/png">
 {%- endif -%}
 
-{% if page_description %}
+{% if meta_description != blank %}
   <meta
     name="description"
-    content="{{ page_description | escape }}"
+    content="{{ meta_description | escape }}"
   >
 {% endif %}

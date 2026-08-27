@@ -9,12 +9,12 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   
             <img 
                 src="{{ section.settings.imagen2 | image_url: width: 600 }}" 
-                alt="Imagen 2"
+                alt="{{ section.settings.imagen2.alt | escape }}"
                 class="pl-[11vw] pb-10"
             >
             <img 
                 src="{{ section.settings.imagen | image_url: width: 400 }}" 
-                alt="Imagen 1"
+                alt="{{ section.settings.imagen.alt | escape }}"
                 class="absolute left-0 bottom-0"
             >
 

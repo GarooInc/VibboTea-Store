@@ -13,6 +13,16 @@
   <div id="hero-header-spacer" class="md:hidden relative w-full bg-white"></div>
   <div class="slides-wrapper hero-slides-wrapper relative w-full overflow-hidden">
     {% for block in section.blocks %}
+      {%- comment -%}
+        SEO: una pagina debe tener un solo H1. Solo el titulo del primer slide lo
+        es; el resto de slides y los titulos secundarios (que ademas se duplican
+        en variante movil y desktop) van como h2.
+      {%- endcomment -%}
+      {% if forloop.first %}
+        {% assign hero_title_tag = 'h1' %}
+      {% else %}
+        {% assign hero_title_tag = 'h2' %}
+      {% endif %}
       <div class="slide hero-slide absolute inset-0 w-full h-full {% if forloop.first %}active{% endif %}">
         <div class="hero-media">
 
@@ -58,7 +68,7 @@
 
         <div class="slide-content hero-copy{% if block.settings.copy_overlay %} hero-copy--overlay{% endif %}">
           {% if block.settings.page_title != blank %}
-            <h1 class="hero-copy-title">
+            <{{ hero_title_tag }} class="hero-copy-title">
               <span>{{ block.settings.page_title | newline_to_br }}</span>
               {% if block.settings.title_logo %}
                 {% if block.settings.title_backdrop %}
@@ -69,7 +79,7 @@
                   <img src="{{ block.settings.title_logo | image_url: width: 800 }}" alt="VIBBO" width="800" height="200" class="hero-title-logo hero-title-logo--bare">
                 {% endif %}
               {% endif %}
-            </h1>
+            </{{ hero_title_tag }}>
           {% endif %}
 
           {% if block.settings.page_descripction != blank %}
@@ -104,9 +114,9 @@
             items-start px-5 md:px-10 z-40">
           
           {% if block.settings.title_sec != blank %}
-            <h1 class="text-2xl md:text-5xl lg:text-7xl font-bricolage font-bold text-white leading-tight">
+            <h2 class="text-2xl md:text-5xl lg:text-7xl font-bricolage font-bold text-white leading-tight">
               {{ block.settings.title_sec | newline_to_br }}
-            </h1>
+            </h2>
           {% endif %}
 
           {% if block.settings.desc_sec != blank %}
@@ -120,10 +130,10 @@
               md:flex flex-col items-left justify-center text-left overflow-hidden ">
           
           {% if block.settings.title_sec != blank %}    
-            <h1 class="lg:text-7xl md:text-5xl text-2xl font-bold font-bricolage text-white
+            <h2 class="lg:text-7xl md:text-5xl text-2xl font-bold font-bricolage text-white
               drop-shadow-lg leading-[0.9] ">
               {{ block.settings.title_sec | newline_to_br  }}
-            </h1>
+            </h2>
           {% endif %}
 
           {% if block.settings.desc_sec != blank %}    

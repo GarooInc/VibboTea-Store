@@ -55,7 +55,7 @@
     <div class="hidden md:flex h-full justify-center items-end">
       <img
         src="{{ section.settings.imagen | image_url: width: 600 }}"
-        alt="Imagen"
+        alt="{{ section.settings.imagen.alt | escape }}"
         class="h-full w-auto max-w-full object-contain object-bottom block"
         width="{{ section.settings.background_image.width }}"
         height="{{ section.settings.background_image.height }}"

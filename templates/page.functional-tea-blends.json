@@ -1,0 +1,134 @@
+{
+  "sections": {
+    "intro": {
+      "type": "seo-landing",
+      "name": "Functional tea blends intro",
+      "settings": {
+        "use_as_page_heading": true,
+        "eyebrow": "Handcrafted in Guatemala",
+        "heading": "Functional Tea Blends",
+        "intro": "<p>VIBBO makes functional tea blends from whole, traceable ingredients grown in Guatemala — never powders, never \"natural flavors\", never added sugar. Each blend is built around a purpose: energy, digestion, or rest.</p><p>A functional tea is one where the ingredients are chosen for what they do, not only for how they taste. Ours are loose-leaf and biodegradable tea bags, blended in small batches, with every ingredient printed on the tin.</p>",
+        "cta_label": "SHOP ALL BLENDS",
+        "cta_url": "/collections/shop"
+      },
+      "blocks": {
+        "energy": {
+          "type": "topic",
+          "settings": {
+            "title": "Energy & Hydration",
+            "text": "<p>A black tea blend with cocoa husk, coconut, dried black lemon, hibiscus, pineapple and raisins. Caffeine that lifts without the crash, built for mornings and long afternoons.</p>",
+            "link_label": "Shop Energy & Hydration",
+            "link_url": "/products/hydra-boost-natural-energy"
+          }
+        },
+        "detox": {
+          "type": "topic",
+          "settings": {
+            "title": "Detox & Digestion",
+            "text": "<p>Fennel, mint, ginger, coriander, boldo and pineapple. An earthy, refreshing herbal blend made to drink after meals.</p>",
+            "link_label": "Shop Detox",
+            "link_url": "/products/gut-bliss-natural-detox"
+          }
+        },
+        "calm": {
+          "type": "topic",
+          "settings": {
+            "title": "Calm & Rest",
+            "text": "<p>Rosemary, lavender, passionflower, lemon verbena, orange peel, ginger and cinnamon. Caffeine-free and aromatic, for slowing down at the end of the day.</p>",
+            "link_label": "Shop Calm",
+            "link_url": "/products/chill-vibes-natural-relax"
+          }
+        },
+        "sourcing": {
+          "type": "topic",
+          "settings": {
+            "title": "Traceable from the source",
+            "text": "<p>We buy directly from Guatemalan growers and print where each ingredient comes from. Traceability is what separates a functional tea blend from flavored tea dust.</p>",
+            "link_label": "Read our story",
+            "link_url": "/pages/about-us"
+          }
+        }
+      },
+      "block_order": [
+        "energy",
+        "detox",
+        "calm",
+        "sourcing"
+      ]
+    },
+    "products": {
+      "type": "main-carousel",
+      "name": "Shop the blends",
+      "settings": {
+        "section_title": "Shop our functional tea blends",
+        "section_desc": "Three blends, three purposes. Whole ingredients, traceable to the Guatemalan farms that grow them.",
+        "text_button": "find your daily tea ritual",
+        "text_button_add": "SHOP ALL PRODUCTS",
+        "redireccionamiento": true,
+        "collection": "shop",
+        "limit": 12,
+        "autoplay": true,
+        "interval": 5000
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "name": "FAQ",
+      "blocks": {
+        "what": {
+          "type": "faq",
+          "settings": {
+            "question": "What is a functional tea blend?",
+            "answer": "A functional tea blend is a tea whose ingredients are chosen for a specific effect — energy, digestion, or rest — rather than flavor alone. VIBBO blends use whole botanicals such as hibiscus, fennel, ginger and passionflower, with no added sugar, no sweeteners and no artificial flavoring."
+          }
+        },
+        "difference": {
+          "type": "faq",
+          "settings": {
+            "question": "How are functional teas different from regular tea?",
+            "answer": "Regular tea is usually a single leaf picked for taste. A functional blend combines that leaf with botanicals that support a purpose, in quantities that actually matter. Ours are blended in small batches and every ingredient is listed on the tin."
+          }
+        },
+        "caffeine": {
+          "type": "faq",
+          "settings": {
+            "question": "Do your functional tea blends contain caffeine?",
+            "answer": "Energy &amp; Hydration is built on a black tea base, so it does contain caffeine. Detox and Calm are herbal blends and are caffeine-free."
+          }
+        },
+        "when": {
+          "type": "faq",
+          "settings": {
+            "question": "When should I drink each blend?",
+            "answer": "Energy &amp; Hydration in the morning or early afternoon. Detox after meals. Calm in the evening, since it is caffeine-free."
+          }
+        },
+        "sourcing": {
+          "type": "faq",
+          "settings": {
+            "question": "Where are your ingredients grown?",
+            "answer": "In Guatemala, bought directly from growers we work with. We print the origin of each ingredient so you can trace what is in your cup."
+          }
+        }
+      },
+      "block_order": [
+        "what",
+        "difference",
+        "caffeine",
+        "when",
+        "sourcing"
+      ],
+      "settings": {
+        "title": "Functional tea, answered",
+        "text_faq": "The questions we get asked most.",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "products",
+    "faq"
+  ]
+}

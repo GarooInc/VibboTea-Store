@@ -10,6 +10,11 @@
 {
   "current": {
     "favicon": "shopify://shop_images/Icon_transparent_1.png",
+  "seo_logo": "shopify://shop_images/logo_vibbo.png",
+  "social_instagram": "https://www.instagram.com/drinkvibbo/",
+  "social_facebook": "https://www.facebook.com/drinkvibbo",
+  "social_tiktok": "https://www.tiktok.com/@drinkvibbo",
+  "social_x": "https://x.com/drinkvibbo",
     "content_for_index": [],
     "blocks": {
       "14060646107696862457": {

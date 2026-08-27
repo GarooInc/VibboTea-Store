@@ -1,0 +1,232 @@
+{% comment %}
+  Bloque de contenido para landings de SEO.
+
+  Existe porque las secciones del tema son casi todas visuales y Google necesita
+  texto real: un H1, parrafos de intro y bloques con subtitulo (h2) donde caben
+  el termino objetivo y sus variantes. Todo es editable desde el theme editor.
+{% endcomment %}
+
+{%- liquid
+  assign heading_tag = 'h2'
+  if section.settings.use_as_page_heading
+    assign heading_tag = 'h1'
+  endif
+-%}
+
+<section class="seo-landing" {{ section.shopify_attributes }}>
+  <div class="seo-landing__inner">
+    {% if section.settings.eyebrow != blank %}
+      <p class="seo-landing__eyebrow font-bricolage">{{ section.settings.eyebrow | escape }}</p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <{{ heading_tag }} class="seo-landing__heading font-bricolage">
+        {{ section.settings.heading | escape }}
+      </{{ heading_tag }}>
+    {% endif %}
+
+    {% if section.settings.intro != blank %}
+      <div class="seo-landing__intro font-bricolage rte">
+        {{ section.settings.intro }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="seo-landing__blocks">
+        {% for block in section.blocks %}
+          <div class="seo-landing__block" {{ block.shopify_attributes }}>
+            {% if block.settings.title != blank %}
+              <h3 class="seo-landing__block-title font-bricolage">{{ block.settings.title | escape }}</h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="seo-landing__block-text font-bricolage rte">{{ block.settings.text }}</div>
+            {% endif %}
+            {% if block.settings.link_label != blank and block.settings.link_url != blank %}
+              <a class="seo-landing__block-link font-bricolage" href="{{ block.settings.link_url }}">
+                {{ block.settings.link_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.cta_label != blank and section.settings.cta_url != blank %}
+      <a class="seo-landing__cta font-bricolage" href="{{ section.settings.cta_url }}">
+        {{ section.settings.cta_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .seo-landing {
+    padding: 3rem 0;
+  }
+
+  .seo-landing__inner {
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .seo-landing__eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #575757;
+  }
+
+  .seo-landing__heading {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .seo-landing__intro {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .seo-landing__intro p {
+    margin: 0 0 0.85em;
+  }
+
+  .seo-landing__blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2.75rem;
+  }
+
+  .seo-landing__block-title {
+    margin: 0 0 0.6rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .seo-landing__block-text {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #444;
+  }
+
+  .seo-landing__block-text p {
+    margin: 0 0 0.75em;
+  }
+
+  .seo-landing__block-link,
+  .seo-landing__cta {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .seo-landing__cta {
+    margin-top: 2.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    background: #1d1d1b;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .seo-landing__block-link:hover,
+  .seo-landing__cta:hover {
+    opacity: 0.75;
+  }
+
+  @media (min-width: 768px) {
+    .seo-landing {
+      padding: 4.5rem 0;
+    }
+
+    .seo-landing__blocks {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem 3rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "SEO landing content",
+  "tag": "section",
+  "class": "seo-landing-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_as_page_heading",
+      "label": "Use heading as the page H1",
+      "info": "Activar solo si ninguna otra seccion de la pagina aporta el H1.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "topic",
+      "name": "Topic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Subheading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SEO landing content"
+    }
+  ]
+}
+{% endschema %}

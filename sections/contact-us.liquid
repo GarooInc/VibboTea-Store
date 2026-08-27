@@ -5,14 +5,14 @@
         <div class="text-black text-3xl font-bricolage font-semibold leading-[1.1] md:hidden">
             {{ section.settings.mobile_title | newline_to_br }}
         </div>
-        <div class="text-black text-7xl font-bricolage font-semibold leading-[1.1] hidden md:block">
+        <h1 class="text-black text-7xl font-bricolage font-semibold leading-[1.1] hidden md:block">
             {{ section.settings.title | newline_to_br }}
-        </div>
+        </h1>
         <div class="absolute bottom-0 md:right-[calc(50%-55px)]">
             {% if section.settings.image1 %}
                 <img
                     src="{{ section.settings.image1 | image_url: width: 600 }}"
-                    alt="Image 1"
+                    alt="{{ section.settings.image1.alt | default: section.settings.title | strip_newlines | escape }}"
                     class="mt-10 md:ml-0 xl:w-[500px] md:w-[420px] object-cover rounded-2xl "
                     width="600"
                     height="600"
@@ -23,7 +23,7 @@
             {% if section.settings.image2 %}
                 <img 
                     src="{{ section.settings.image2 | image_url: width: 600 }}"
-                    alt="Image 2"
+                    alt="{{ section.settings.image2.alt | default: section.settings.title | strip_newlines | escape }}"
                     width="600"
                     height="600"
                     class="mt-10 w-[200%] md:w-[200%] object-cover rounded-2xl md:-translate-x-1/4"

@@ -59,7 +59,7 @@
                         <div class="relative h-[400px] w-full overflow-hidden rounded-xl pb-5">
                           <img
                             src="{{ gif | image_url: width: 1200 }}"
-                            alt=""
+                            alt="{{ gif.alt | default: text | strip_html | escape }}"
                             class="w-full md:h-[400px]! h-80 object-cover object-center rounded-xl "
                             width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"
@@ -98,7 +98,7 @@
                             <div class="relative w-full h-full overflow-hidden rounded-2xl pb-5">
                             <img
                                 src="{{ gif | image_url: width: 1200 }}"
-                                alt=""
+                                alt="{{ gif.alt | default: text | strip_html | escape }}"
                                 class="w-full  object-cover rounded-2xl block h-80! object-center"
                                 width="{{ block.settings.gif.width }}"
                             height="{{ block.settings.gif.height }}"

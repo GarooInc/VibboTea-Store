@@ -90,5 +90,40 @@
         "default": 4
       }
     ]
+  },
+  {
+    "name": "Brand & SEO",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Alimenta el structured data (JSON-LD) que Google usa para el panel de marca y los rich results."
+      },
+      {
+        "type": "image_picker",
+        "id": "seo_logo",
+        "label": "Brand logo for search results",
+        "info": "Cuadrado o rectangular, minimo 112px de alto. Si se deja vacio se usa el favicon."
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "social_x",
+        "label": "X (Twitter) URL"
+      }
+    ]
   }
 ]

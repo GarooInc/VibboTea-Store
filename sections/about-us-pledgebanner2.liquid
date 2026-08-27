@@ -29,7 +29,7 @@
       <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image | image_url: width: 1200 }}"
-          alt="Imagen 1"
+          alt="{{ section.settings.image.alt | escape }}"
           class="h-full w-auto aspect-square max-h-[280px] md:max-h-[360px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
           width="{{ section.settings.image.width }}"
@@ -41,7 +41,7 @@
       <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image2 | image_url: width: 1200 }}"
-          alt="Imagen 2"
+          alt="{{ section.settings.image2.alt | escape }}"
           class="h-full w-auto aspect-square max-h-[280px] md:max-h-[360px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
           width="{{ section.settings.image2.width }}"
@@ -53,7 +53,7 @@
       <div class="pledge-card flex items-center justify-center h-[320px] md:h-[400px]">
         <img
           src="{{ section.settings.image3 | image_url: width: 1200 }}"
-          alt="Imagen 3"
+          alt="{{ section.settings.image3.alt | escape }}"
           class="h-full w-auto aspect-square max-h-[280px] md:max-h-[360px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
           width="{{ section.settings.image3.width }}"
@@ -71,7 +71,7 @@
               <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image | image_url: width: 1200 }}"
-                  alt="Imagen 1"
+                  alt="{{ section.settings.image.alt | escape }}"
                   class="h-full w-auto aspect-square max-h-[230px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
                   width="{{ section.settings.image.width }}"
@@ -85,7 +85,7 @@
               <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image2 | image_url: width: 1200 }}"
-                  alt="Imagen 2"
+                  alt="{{ section.settings.image2.alt | escape }}"
                   class="h-full w-auto aspect-square max-h-[230px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
                   width="{{ section.settings.image2.width }}"
@@ -99,7 +99,7 @@
               <div class="pledge-scroll-card min-w-[72vw] flex items-center justify-center h-[260px]">
                 <img
                   src="{{ section.settings.image3 | image_url: width: 1200 }}"
-                  alt="Imagen 3"
+                  alt="{{ section.settings.image3.alt | escape }}"
                   class="h-full w-auto aspect-square max-h-[230px] object-cover object-center rounded-3xl"
           style="border-radius: 2.5rem;"
                   width="{{ section.settings.image3.width }}"
