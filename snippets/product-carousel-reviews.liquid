@@ -1,5 +1,5 @@
 {% comment %}
-  Product carousel review row: stars + "reviews" or "No reviews" (no count).
+  Product carousel review row: stars + the review count, or "No reviews".
 
   Accepts:
   - product: {Product} The product to show review info for
@@ -32,7 +32,7 @@
   {% render 'star-rating', rating: rating_value, size_class: 'w-4 h-4 md:w-5 md:h-5' %}
   <span class="font-bricolage text-sm text-[#575757]">
     {% if review_count > 0 %}
-      reviews
+      {{ review_count }} review{% unless review_count == 1 %}s{% endunless %}
     {% else %}
       No reviews
     {% endif %}
