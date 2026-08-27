@@ -40,7 +40,7 @@
     endfor
   %}
 
-  {% if shown_count > 0 or blog.all_tags.size > 0 %}
+  {% if shown_count > 0 or current_tags %}
     <div class="blog-listing" {{ section.shopify_attributes }}>
       {% if heading != blank %}
         <h2 class="blog-listing__heading font-bricolage">{{ heading | escape }}</h2>
@@ -79,6 +79,10 @@
             {% endunless %}
           {% endfor %}
         </div>
+      {% endif %}
+
+      {% if shown_count == 0 %}
+        <p class="blog-listing__empty font-bricolage">{{ 'blog.no_articles' | t }}</p>
       {% endif %}
 
       {% if paginate.pages > 1 %}
@@ -152,6 +156,12 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem 1.5rem;
+  }
+
+  .blog-listing__empty {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
   }
 
   .blog-listing__pagination {

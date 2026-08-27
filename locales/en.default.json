@@ -26,6 +26,7 @@
     "featured_articles": "Featured Articles",
     "more_articles": "More Articles",
     "nav_title": "Blog",
+    "no_articles": "No articles here yet.",
     "pagination_label": "Blog pagination",
     "pagination_next": "Next",
     "pagination_previous": "Previous",
