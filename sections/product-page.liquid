@@ -637,7 +637,7 @@
   }
 
   function startAutoplay() {
-    autoplayInterval = setInterval(slideNext, 3500);
+    autoplayInterval = setInterval(slideNext, {{ section.settings.gallery_interval | default: 5500 }});
   }
 
   function stopAutoplay() {
@@ -823,6 +823,17 @@
       "id": "text_button",
       "label": "Text button",
       "default": "ADD TO CART"
+    },
+    {
+      "type": "range",
+      "id": "gallery_interval",
+      "label": "Mobile gallery speed",
+      "info": "Tiempo que cada imagen queda a la vista en el carrusel movil.",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "unit": "ms",
+      "default": 5500
     },
     {
       "type": "text",

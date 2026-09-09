@@ -172,7 +172,7 @@
 
     requestAnimationFrame(() => {
       const half = track.scrollWidth / 2;
-      const speed = 120; // px por segundo
+      const speed = {{ section.settings.scroll_speed | default: 70 }}; // px por segundo
       const duration = half / speed;
 
       track.style.animation = 'none';
@@ -232,6 +232,17 @@
       "id": "title",
       "label": "Title",
       "default": "Product Ingredients"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "info": "Pixeles por segundo. Mas bajo = mas lento y mas facil de leer.",
+      "min": 30,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 70
     },
     {
       "type": "image_picker",

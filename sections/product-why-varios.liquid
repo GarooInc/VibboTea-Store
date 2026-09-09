@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startAutoplay() {
       autoplay = setInterval(() => {
         updateCarousel(index + 1 >= dots.length ? 0 : index + 1);
-      }, 3000);
+      }, {{ section.settings.carousel_interval | default: 5000 }});
     }
 
     function stopAutoplay() {
@@ -282,6 +282,17 @@ document.addEventListener('DOMContentLoaded', () => {
       "id": "title",
       "label": "Title",
       "default": "Why Vibbo?"
+    },
+    {
+      "type": "range",
+      "id": "carousel_interval",
+      "label": "Carousel speed",
+      "info": "Tiempo que cada lamina queda a la vista.",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "unit": "ms",
+      "default": 5000
     },
     {
       "type": "text",
