@@ -1,0 +1,17 @@
+/* Bricolage */
+@font-face {
+  font-family: 'Bricolage';
+  src: url('/cdn/shop/files/BricolageGrotesque-VariableFont_opsz_wdth_wght.ttf?v=1763478269') format('opentype');
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Grafika */
+@font-face {
+  font-family: 'Grafika';
+  src: url('/cdn/shop/files/grafika-grafika-400.ttf?v=1766560782')
+       format('truetype');
+  font-style: normal;
+  font-display: swap;
+}

@@ -6,7 +6,7 @@
 <div class="w-full h-full mx-auto flex flex-col items-center justify-center ">
 
   {% if section.settings.title %}
-  <h2 class="text-center md:text-5xl text-[8vw] text-black font-normal font-bricolage md:pb-20 pb-15">
+  <h2 class="text-center md:text-5xl text-[8vw] text-black font-normal font-grafika md:pb-20 pb-15">
     {{ section.settings.title }}
   </h2>
   {% endif %}
@@ -177,7 +177,7 @@
       // El ajuste esta en segundos que tarda la tira en avanzar el ancho de una
       // pantalla. Referido al viewport, la velocidad percibida es la misma en
       // un movil que en un monitor grande.
-      const secondsPerScreen = {{ section.settings.scroll_seconds | default: 22 }};
+      const secondsPerScreen = {{ section.settings.scroll_seconds | default: 34 }};
       const screen = window.innerWidth || 1440;
       const speed = screen / secondsPerScreen; // px por segundo
       const duration = half / speed;
@@ -265,10 +265,10 @@
       "label": "Tiempo para leer",
       "info": "Segundos que tarda la tira en recorrer el ancho de una pantalla. Mas alto = se mueve mas despacio y da mas tiempo de leer cada ingrediente. No afecta la calidad de las imagenes.",
       "min": 8,
-      "max": 45,
+      "max": 60,
       "step": 1,
       "unit": "s",
-      "default": 22
+      "default": 34
     },
     {
       "type": "image_picker",
