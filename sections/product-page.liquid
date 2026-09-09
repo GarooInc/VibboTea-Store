@@ -637,7 +637,7 @@
   }
 
   function startAutoplay() {
-    autoplayInterval = setInterval(slideNext, {{ section.settings.gallery_interval | default: 5500 }});
+    autoplayInterval = setInterval(slideNext, {{ section.settings.gallery_seconds | default: 6 | times: 1000 }});
   }
 
   function stopAutoplay() {
@@ -826,14 +826,14 @@
     },
     {
       "type": "range",
-      "id": "gallery_interval",
-      "label": "Mobile gallery speed",
-      "info": "Tiempo que cada imagen queda a la vista en el carrusel movil.",
-      "min": 2000,
-      "max": 9000,
-      "step": 500,
-      "unit": "ms",
-      "default": 5500
+      "id": "gallery_seconds",
+      "label": "Tiempo por imagen",
+      "info": "Segundos que cada foto del producto queda a la vista en el carrusel movil. Mas alto = cambia mas despacio.",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "default": 6
     },
     {
       "type": "text",

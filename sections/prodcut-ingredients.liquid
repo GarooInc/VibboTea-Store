@@ -172,8 +172,21 @@
 
     requestAnimationFrame(() => {
       const half = track.scrollWidth / 2;
-      const speed = {{ section.settings.scroll_speed | default: 70 }}; // px por segundo
+      if (!half) return;
+
+      // El ajuste esta en segundos que tarda la tira en avanzar el ancho de una
+      // pantalla. Referido al viewport, la velocidad percibida es la misma en
+      // un movil que en un monitor grande.
+      const secondsPerScreen = {{ section.settings.scroll_seconds | default: 22 }};
+      const screen = window.innerWidth || 1440;
+      const speed = screen / secondsPerScreen; // px por segundo
       const duration = half / speed;
+
+      // Reiniciar la animacion la manda al inicio de la tira, asi que solo se
+      // hace cuando la duracion cambia de verdad. Sin esto, el observador de
+      // abajo produciria un salto visible cada vez que carga una imagen.
+      const prev = parseFloat(track.style.getPropertyValue('--scroll-duration'));
+      if (prev && Math.abs(prev - duration) < 0.5) return;
 
       track.style.animation = 'none';
       track.offsetHeight;
@@ -183,8 +196,21 @@
     });
   }
 
+  // Se llama de inmediato y no solo en `load`: el editor de temas re-renderiza
+  // la seccion sin volver a disparar ese evento, y sin esta llamada la duracion
+  // se quedaba en el valor por defecto del CSS. Movias el control y no pasaba
+  // nada hasta recargar la pagina entera.
+  setInfiniteScrollSpeed();
   window.addEventListener('load', setInfiniteScrollSpeed);
   window.addEventListener('resize', setInfiniteScrollSpeed);
+  document.addEventListener('shopify:section:load', setInfiniteScrollSpeed);
+
+  // El ancho de la tira crece cuando terminan de cargar las imagenes y las
+  // tipografias, y de eso depende el calculo.
+  if (window.ResizeObserver) {
+    const observed = document.getElementById('ingredientsTrack');
+    if (observed) new ResizeObserver(setInfiniteScrollSpeed).observe(observed);
+  }
 </script>
 
 <script>
@@ -235,14 +261,14 @@
     },
     {
       "type": "range",
-      "id": "scroll_speed",
-      "label": "Scroll speed",
-      "info": "Pixeles por segundo. Mas bajo = mas lento y mas facil de leer.",
-      "min": 30,
-      "max": 160,
-      "step": 5,
-      "unit": "px",
-      "default": 70
+      "id": "scroll_seconds",
+      "label": "Tiempo para leer",
+      "info": "Segundos que tarda la tira en recorrer el ancho de una pantalla. Mas alto = se mueve mas despacio y da mas tiempo de leer cada ingrediente. No afecta la calidad de las imagenes.",
+      "min": 8,
+      "max": 45,
+      "step": 1,
+      "unit": "s",
+      "default": 22
     },
     {
       "type": "image_picker",

@@ -171,7 +171,16 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+// Antes esto solo escuchaba DOMContentLoaded, que en el editor de temas ya se
+// disparo cuando Shopify vuelve a renderizar la seccion: el carrusel no se
+// reiniciaba y el ajuste de tiempo parecia no hacer nada hasta recargar.
+(function onReady(run) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run, { once: true });
+  } else {
+    run();
+  }
+})(() => {
 
   function initCarousel(wrapperSelector, trackSelector, dotSelector) {
     const wrapper = document.querySelector(wrapperSelector);
@@ -197,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startAutoplay() {
       autoplay = setInterval(() => {
         updateCarousel(index + 1 >= dots.length ? 0 : index + 1);
-      }, {{ section.settings.carousel_interval | default: 5000 }});
+      }, {{ section.settings.carousel_seconds | default: 5 | times: 1000 }});
     }
 
     function stopAutoplay() {
@@ -285,14 +294,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       "type": "range",
-      "id": "carousel_interval",
-      "label": "Carousel speed",
-      "info": "Tiempo que cada lamina queda a la vista.",
-      "min": 2000,
-      "max": 9000,
-      "step": 500,
-      "unit": "ms",
-      "default": 5000
+      "id": "carousel_seconds",
+      "label": "Tiempo por lamina",
+      "info": "Segundos que cada lamina queda a la vista. Mas alto = cambia mas despacio.",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "default": 5
     },
     {
       "type": "text",
