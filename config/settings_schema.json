@@ -123,6 +123,28 @@
         "type": "url",
         "id": "social_x",
         "label": "X (Twitter) URL"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "brand_alt_names",
+        "label": "Brand alternate names",
+        "info": "Separados por coma. Ayudan a Google a asociar variantes del nombre con la marca."
+      },
+      {
+        "type": "text",
+        "id": "brand_founding_country",
+        "label": "Country of origin"
+      },
+      {
+        "type": "text",
+        "id": "brand_areas_served",
+        "label": "Markets served",
+        "info": "Separados por coma."
       }
     ]
   }

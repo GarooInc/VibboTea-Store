@@ -156,6 +156,9 @@
   if settings.social_x != blank
     assign socials = socials | append: settings.social_x | append: '|'
   endif
+  if settings.social_youtube != blank
+    assign socials = socials | append: settings.social_youtube | append: '|'
+  endif
   assign social_list = socials | split: '|'
 -%}
 
@@ -172,6 +175,37 @@
       {%- endif -%}
       {%- if shop.description != blank -%}
         ,"description": {{ shop.description | json }}
+      {%- endif -%}
+      {%- if settings.brand_alt_names != blank -%}
+        ,"alternateName": [
+          {%- assign alt_names = settings.brand_alt_names | split: ',' -%}
+          {%- for alt in alt_names -%}
+            {{ alt | strip | json }}{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      {%- endif -%}
+      {%- if settings.brand_founding_country != blank -%}
+        ,"foundingLocation": {
+          "@type": "Country",
+          "name": {{ settings.brand_founding_country | json }}
+        }
+      {%- endif -%}
+      {%- if settings.brand_areas_served != blank -%}
+        ,"areaServed": [
+          {%- assign areas = settings.brand_areas_served | split: ',' -%}
+          {%- for area in areas -%}
+            { "@type": "Country", "name": {{ area | strip | json }} }
+            {%- unless forloop.last %},{% endunless -%}
+          {%- endfor -%}
+        ]
+      {%- endif -%}
+      {%- if shop.email != blank -%}
+        ,"contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": {{ shop.email | json }},
+          "url": {{ request.origin | append: '/pages/contact-us' | json }}
+        }
       {%- endif -%}
       {%- if social_list.size > 0 -%}
         ,"sameAs": [

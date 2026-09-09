@@ -1,4 +1,14 @@
 {% assign padding_top = section.settings.margin_top_image | default: 50 %}
+{%- comment -%}
+  Cuando el FAQ es la unica seccion de la pagina no hay quien aporte el H1, asi
+  que el titulo puede subir a h1. Por defecto sigue siendo h2, para no meter un
+  segundo H1 en las paginas donde el FAQ acompana a otras secciones.
+{%- endcomment -%}
+{% if section.settings.use_as_page_heading %}
+  {% assign faq_title_tag = 'h1' %}
+{% else %}
+  {% assign faq_title_tag = 'h2' %}
+{% endif %}
 <section id="{{ section.settings.id_section }}" class="faq-section" style="position: relative; z-index: 20;">
 <div class="faq-section__wrap w-full bg-white flex flex-col items-center">
   <div class="faq-section__inner min-w-sm mx-auto text-center px-5 md:px-4">
@@ -34,9 +44,9 @@
     <!-- Header: título/subtítulo centered -->
     <div class="faq-section__header w-full text-center">
       {% if section.settings.title != blank %}
-        <h2 class="text-black text-[8vw] md:text-[3.7vw] font-bricolage font-semibold leading-tight mb-7 md:mb-8">
+        <{{ faq_title_tag }} class="text-black text-[8vw] md:text-[3.7vw] font-bricolage font-semibold leading-tight mb-7 md:mb-8">
           {{ section.settings.title }}
-        </h2>
+        </{{ faq_title_tag }}>
       {% endif %}
       <p class="faq-section__subtitle text-xl font-bricolage">
         {{ section.settings.text_faq }}
@@ -83,6 +93,34 @@
   </div>
 </div>
 </section>
+
+{%- comment -%}
+  FAQPage para que las preguntas sean legibles por maquina. Google ya casi no
+  muestra resultados enriquecidos de FAQ, pero los sistemas de IA siguen
+  leyendo este bloque para citar respuestas.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank and block.settings.answer != blank -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | strip_html | json }},
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ block.settings.answer | json }}
+              }
+            }{% unless forloop.last %},{% endunless %}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
 
 <style>
   .faq-section__wrap {
@@ -167,6 +205,13 @@
       "id": "title",
       "label": "Título principal",
       "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_as_page_heading",
+      "label": "Use title as the page H1",
+      "info": "Activar solo si el FAQ es la unica seccion de la pagina.",
+      "default": false
     },
     {
       "type": "text",

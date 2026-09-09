@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "faq_main": {
+      "type": "faq",
+      "name": "FAQ",
+      "blocks": {
+        "faq_01_how_can_i_track_my_order": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "Check your mailbox :) We'll hook you up with a confirmation email right after purchase, once your package ships, you’ll get a follow-up with the tracking number. If you did not receive an email from us, head over to the <a href=\"/pages/contact-us\">Contact Us</a> page."
+          }
+        },
+        "faq_02_how_do_i_apply_a_discount_code": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I apply a discount code?",
+            "answer": "To apply a discount, just drop your code into the “Discount code” box on your cart or checkout page, hit apply, and watch your total chill out a bit."
+          }
+        },
+        "faq_03_is_vibbo_ethically_sourced": {
+          "type": "faq",
+          "settings": {
+            "question": "Is VIBBO ethically sourced?",
+            "answer": "VIBBO is 100% ethically sourced, we support over 400 Guatemalan producers per year, with fair market prices only. We're actively working toward B Corp certification in the coming quarters, with all ingredients sustainably produced, fully traceable from the dirt to the cup— no B.S."
+          }
+        },
+        "faq_04_where_do_we_sort_our_ingredients_from": {
+          "type": "faq",
+          "settings": {
+            "question": "Where do we sort our ingredients from?",
+            "answer": "VIBBO sources all ingredients 100% from Guatemala across various regions, directly from local farmers and supporting surrounding communities—embracing our roots from soil to steep. No jokes, come and find out, we dare you ;). To find out more about our traceability, head over to our <a href=\"/pages/about-us\">About Us</a> page."
+          }
+        },
+        "faq_05_how_much_when_and_how_often_should_i_drin": {
+          "type": "faq",
+          "settings": {
+            "question": "How much, when, and how often should I drink VIBBO?",
+            "answer": "Sip your chosen VIBBO blend daily, Hydra Boost mornings or mid-afternoon for smooth energy, Gut Bliss anytime you want a fresh reset ritual, Chill Vibes evenings or slow moments when you want to wind down: steeped hot, iced, or as a mocktail, max 3-4 per day based on your flow, or inner chaos."
+          }
+        },
+        "faq_06_are_there_any_artificial_flavors_sweetene": {
+          "type": "faq",
+          "settings": {
+            "question": "Are there any artificial flavors, sweeteners, or additives in our blends?",
+            "answer": "All natural baby, no harming and gimmick-full chemicals (yes, the amazing smell when you open our cans is completely real)."
+          }
+        },
+        "faq_07_want_to_reach_out_to_the_support_team": {
+          "type": "faq",
+          "settings": {
+            "question": "Want to reach out to the support team?",
+            "answer": "Head over to the <a href=\"/pages/contact-us\">Contact Us</a> tab, one member of the team will be happy to help ya!"
+          }
+        }
+      },
+      "block_order": [
+        "faq_01_how_can_i_track_my_order",
+        "faq_02_how_do_i_apply_a_discount_code",
+        "faq_03_is_vibbo_ethically_sourced",
+        "faq_04_where_do_we_sort_our_ingredients_from",
+        "faq_05_how_much_when_and_how_often_should_i_drin",
+        "faq_06_are_there_any_artificial_flavors_sweetene",
+        "faq_07_want_to_reach_out_to_the_support_team"
+      ],
+      "settings": {
+        "use_as_page_heading": true,
+        "title": "Frequently Asked Questions",
+        "text_faq": "Everything about the blends, the sourcing, and your order.",
+        "id_section": "#faq",
+        "image1": "shopify://shop_images/mono_sentado.png",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    }
+  },
+  "order": [
+    "faq_main"
+  ]
+}
