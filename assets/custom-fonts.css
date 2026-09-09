@@ -1,7 +1,15 @@
+/*
+  Los dos archivos terminan en .ttf, pero Shopify los sirve como WOFF2 (se puede
+  comprobar por los bytes de cabecera: wOF2). El format() tiene que declarar el
+  contenido real, no la extension: con un formato que no coincide el navegador
+  puede descartar la fuente y caer al respaldo, y entonces .font-bricolage se ve
+  en serif y .font-grafika en sans-serif del sistema.
+*/
+
 /* Bricolage */
 @font-face {
   font-family: 'Bricolage';
-  src: url('/cdn/shop/files/BricolageGrotesque-VariableFont_opsz_wdth_wght.ttf?v=1763478269') format('opentype');
+  src: url('/cdn/shop/files/BricolageGrotesque-VariableFont_opsz_wdth_wght.ttf?v=1763478269') format('woff2');
   font-style: normal;
   font-display: swap;
 }
@@ -11,7 +19,7 @@
 @font-face {
   font-family: 'Grafika';
   src: url('/cdn/shop/files/grafika-grafika-400.ttf?v=1766560782')
-       format('truetype');
+       format('woff2');
   font-style: normal;
   font-display: swap;
 }
