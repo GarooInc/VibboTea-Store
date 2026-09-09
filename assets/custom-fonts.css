@@ -6,20 +6,32 @@
   en serif y .font-grafika en sans-serif del sistema.
 */
 
-/* Bricolage */
+/*
+  Bricolage es una fuente variable. Sus ejes reales, leidos del archivo:
+    wght  200 - 800   (instancia por defecto: 800)
+    wdth   75 - 100
+    opsz   12 - 96
+  Sin declarar el rango, el navegador toma la cara como peso 400 unico y para
+  font-semibold o font-bold engorda las letras el mismo (negrita sintetica) en
+  vez de usar los pesos que la fuente ya trae. Declarando el rango, cada peso
+  del CSS se sirve del eje. El texto normal no cambia: sigue en 400.
+*/
 @font-face {
   font-family: 'Bricolage';
   src: url('/cdn/shop/files/BricolageGrotesque-VariableFont_opsz_wdth_wght.ttf?v=1763478269') format('woff2');
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
   font-style: normal;
   font-display: swap;
 }
 
 
-/* Grafika */
+/* Grafika: estatica, un solo peso (usWeightClass 400) */
 @font-face {
   font-family: 'Grafika';
   src: url('/cdn/shop/files/grafika-grafika-400.ttf?v=1766560782')
        format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
