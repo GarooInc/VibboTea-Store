@@ -250,17 +250,6 @@
   .visible {
     visibility: visible;
   }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border-width: 0;
-  }
   .absolute {
     position: absolute;
   }
@@ -2522,11 +2511,6 @@
       min-height: 8vw;
     }
   }
-  .md\:min-h-\[50vh\] {
-    @media (width >= 48rem) {
-      min-height: 50vh;
-    }
-  }
   .md\:min-h-\[90vh\] {
     @media (width >= 48rem) {
       min-height: 90vh;
@@ -3327,11 +3311,6 @@
       display: none;
     }
   }
-  .lg\:min-h-\[90vh\] {
-    @media (width >= 64rem) {
-      min-height: 90vh;
-    }
-  }
   .lg\:w-160 {
     @media (width >= 64rem) {
       width: calc(var(--spacing) * 160);
@@ -3390,11 +3369,6 @@
   .lg\:pt-20 {
     @media (width >= 64rem) {
       padding-top: calc(var(--spacing) * 20);
-    }
-  }
-  .lg\:pb-20 {
-    @media (width >= 64rem) {
-      padding-bottom: calc(var(--spacing) * 20);
     }
   }
   .lg\:pl-10 {

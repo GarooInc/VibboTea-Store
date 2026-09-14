@@ -1,0 +1,205 @@
+{%- comment -%}
+  Banda de sellos de confianza. Vive en el footer-group para que salga al final
+  de cada pagina, justo debajo de la ultima seccion de contenido (el FAQ donde
+  lo hay) y encima del newsletter.
+
+  Los mismos cuatro iconos que ya usa 'product-features-row' en la ficha de
+  producto, aqui a lo ancho de la pantalla.
+{%- endcomment -%}
+
+{%- liquid
+  assign bg = section.settings.background_color | default: '#FFFFFF'
+  assign fg = section.settings.text_color | default: '#1A1A1A'
+-%}
+
+{%- comment -%}
+  'full-width' es la utilidad del tema para escapar de la columna central del
+  grid de .shopify-section; sin ella la banda se quedaria del ancho del texto.
+{%- endcomment -%}
+<div
+  class="trust-badges full-width"
+  style="--trust-badges-bg: {{ bg }}; --trust-badges-fg: {{ fg }}; --trust-badges-icon: {{ section.settings.icon_size | default: 44 }}px;"
+>
+  <div class="trust-badges__inner">
+    {%- for i in (1..4) -%}
+      {%- liquid
+        case i
+          when 1
+            assign icon = '100-natural.svg'
+            assign fallback = 'product_features.natural' | t
+            assign label = section.settings.text_1
+          when 2
+            assign icon = 'no-added-sugar.svg'
+            assign fallback = 'product_features.no_sugar' | t
+            assign label = section.settings.text_2
+          when 3
+            assign icon = 'no-microplastics.svg'
+            assign fallback = 'product_features.no_microplastics' | t
+            assign label = section.settings.text_3
+          when 4
+            assign icon = '30-day-guarantee.svg'
+            assign fallback = 'product_features.guarantee' | t
+            assign label = section.settings.text_4
+        endcase
+
+        if label == blank
+          assign label = fallback
+        endif
+      -%}
+      <div class="trust-badges__item">
+        <img
+          src="{{ icon | asset_url }}"
+          alt=""
+          class="trust-badges__icon"
+          width="96"
+          height="96"
+          loading="lazy"
+        >
+        <span class="trust-badges__text">{{ label }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .trust-badges {
+    width: 100%;
+    background-color: var(--trust-badges-bg, #ffffff);
+    padding: 0.75rem 1.25rem 1.25rem;
+  }
+
+  .trust-badges__inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+    width: min(94vw, 1240px);
+    margin: 0 auto;
+  }
+
+  .trust-badges__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .trust-badges__icon {
+    width: calc(var(--trust-badges-icon, 44px) * 0.8);
+    height: calc(var(--trust-badges-icon, 44px) * 0.8);
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+  }
+
+  .trust-badges__text {
+    font-family: 'Bricolage', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--trust-badges-fg, #1a1a1a);
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .trust-badges {
+      padding: 0.5rem 1.5rem 1.25rem;
+    }
+
+    .trust-badges__inner {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .trust-badges__item {
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .trust-badges__icon {
+      width: var(--trust-badges-icon, 44px);
+      height: var(--trust-badges-icon, 44px);
+    }
+
+    .trust-badges__text {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .trust-badges {
+      padding: 0.5rem 2rem 1.5rem;
+    }
+
+    .trust-badges__text {
+      font-size: 0.9rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sellos de confianza",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color del texto",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Tamano del icono (px)",
+      "min": 28,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Sello 1 (100% Natural)",
+      "info": "Vacio usa el texto por defecto del idioma."
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Sello 2 (No Added Sugar)",
+      "info": "Vacio usa el texto por defecto del idioma."
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Sello 3 (No Microplastics)",
+      "info": "Vacio usa el texto por defecto del idioma."
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Sello 4 (30-Day Guarantee)",
+      "info": "Vacio usa el texto por defecto del idioma."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sellos de confianza"
+    }
+  ]
+}
+{% endschema %}

@@ -11,6 +11,14 @@
   "type": "footer",
   "name": "t:general.footer",
   "sections": {
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "text_color": "#1A1A1A",
+        "icon_size": 44
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -41,6 +49,7 @@
     }
   },
   "order": [
+    "trust_badges",
     "newsletter",
     "footer"
   ]
