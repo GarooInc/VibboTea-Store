@@ -245,11 +245,6 @@
               {% endif %}
             </div>
 
-            <!-- Product Features Row (exclude Filter Bags) -->
-            {% unless product.handle == 'filter-bags' %}
-              {% render 'product-features-row' %}
-            {% endunless %}
-
             <!-- Descripción con widget embebido donde dice ProductDrop -->
             {% assign desc_parts = product.description | split: 'ProductDrop' %}
             {% assign desc_html = desc_parts[0] | default: '' %}
@@ -279,6 +274,16 @@
                 {% endif %}
               {% endif %}
             {% endif %}
+
+            <!-- Product Features Row (exclude Filter Bags) -->
+            {% unless product.handle == 'filter-bags' %}
+              {%- comment -%}
+                Sin descripcion, la fila de iconos queda pegada al acordeon con
+                todo ese blanco y nada en medio: el Reset Bundle se veia vacio.
+                En ese caso el aire de abajo se reduce a la mitad.
+              {%- endcomment -%}
+              {% render 'product-features-row', tight_bottom: product_intro == blank %}
+            {% endunless %}
 
             {% if product_intro != blank %}
               <div class="text-sm text-black font-bricolage product-description md:pr-10">

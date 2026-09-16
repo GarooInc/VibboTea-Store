@@ -6,10 +6,15 @@
   2x2 grid on mobile/tablet and a single horizontal row on large desktop.
 
   @example
+  @param {boolean} [tight_bottom] - Halves the space below the row. For
+    products with no description, where the row would otherwise sit above the
+    accordion with a large empty gap and nothing between them.
+
   {% render 'product-features-row' %}
+  {% render 'product-features-row', tight_bottom: true %}
 {% enddoc %}
 
-<div class="product-features-row">
+<div class="product-features-row{% if tight_bottom %} product-features-row--tight-bottom{% endif %}">
   <div class="product-features-row__grid">
     
     <!-- 100% Natural -->
@@ -85,6 +90,10 @@
     overflow: hidden;
   }
 
+  .product-features-row--tight-bottom {
+    padding-bottom: 1rem;
+  }
+
   .product-features-row__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -98,6 +107,10 @@
     .product-features-row {
       padding: 3.5rem 0;
       margin: 0;
+    }
+
+    .product-features-row--tight-bottom {
+      padding-bottom: 1.75rem;
     }
   }
 
