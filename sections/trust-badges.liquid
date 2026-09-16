@@ -8,8 +8,8 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign bg = section.settings.background_color | default: '#1D1D1B'
-  assign fg = section.settings.text_color | default: '#FFFFFF'
+  assign bg = section.settings.background_color | default: '#FBBB00'
+  assign fg = section.settings.text_color | default: '#1A1A1A'
 
   comment
     Los cuatro SVG son negros puros y entran por <img>, asi que el CSS no puede
@@ -75,7 +75,7 @@
 {% stylesheet %}
   .trust-badges {
     width: 100%;
-    background-color: var(--trust-badges-bg, #1d1d1b);
+    background-color: var(--trust-badges-bg, #fbbb00);
     padding: 1.25rem;
   }
 
@@ -83,8 +83,8 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem 1rem;
-    width: min(94vw, 1240px);
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
   }
 
   .trust-badges__item {
@@ -161,20 +161,20 @@
       "type": "color",
       "id": "background_color",
       "label": "Color de fondo",
-      "default": "#1D1D1B"
+      "default": "#FBBB00"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Color del texto",
-      "default": "#FFFFFF"
+      "default": "#1A1A1A"
     },
     {
       "type": "checkbox",
       "id": "invert_icons",
       "label": "Iconos en blanco",
-      "info": "Los iconos son negros. Activar sobre fondos oscuros, desactivar sobre fondos claros.",
-      "default": true
+      "info": "Los iconos son negros. Activar solo sobre fondos oscuros.",
+      "default": false
     },
     {
       "type": "range",
