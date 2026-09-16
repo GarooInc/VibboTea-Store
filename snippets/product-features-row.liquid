@@ -83,15 +83,16 @@
     min-width: 0;
     /* Mismo aire arriba que abajo, y del mismo tamano que el hueco que la
        descripcion deja antes del acordeon: medido sobre la ficha en vivo ese
-       hueco es de 67px, y 56px de padding deja los tres parejos. */
-    padding: 2rem 0;
+       hueco es de 67px. 56px de padding los dejaba parejos, pero con tan poco
+       texto en la columna se leia vacio, asi que se bajo a 44px. */
+    padding: 1.25rem 0;
     margin: 0;
     background-color: #ffffff;
     overflow: hidden;
   }
 
   .product-features-row--tight-bottom {
-    padding-bottom: 1rem;
+    padding-bottom: 0.625rem;
   }
 
   .product-features-row__grid {
@@ -105,12 +106,12 @@
 
   @media (min-width: 768px) {
     .product-features-row {
-      padding: 3.5rem 0;
+      padding: 2.75rem 0;
       margin: 0;
     }
 
     .product-features-row--tight-bottom {
-      padding-bottom: 1.75rem;
+      padding-bottom: 1.375rem;
     }
   }
 
