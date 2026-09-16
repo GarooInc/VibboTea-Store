@@ -33,10 +33,41 @@
   .template-blog #main-header img {
     filter: invert(1);
   }
+
+{%- if section.settings.hide_header_on_scroll -%}
+  /*
+    Auto-hide: al bajar el header se va, al subir vuelve.
+
+    Los dos elementos (topbar y header) son fixed e independientes, con tops
+    distintos. Desplazando los dos la MISMA cantidad -la altura del par- la
+    pila sube junta y el header queda justo fuera de pantalla; mover cada uno
+    su propia altura los desincronizaria.
+
+    --site-header-offset lo mide el JS de abajo; --header-offset es el valor
+    de liquid por si el JS aun no corrio.
+  */
+  #site-topbar,
+  #main-header {
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .site-header-hidden #site-topbar,
+  .site-header-hidden #main-header {
+    transform: translateY(calc(-1 * var(--site-header-offset, var(--header-offset, 110px))));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #site-topbar,
+    #main-header {
+      transition: none;
+    }
+  }
+{%- endif -%}
 </style>
 
 {% if section.settings.show_topbar %}
-<div class="topbar-wrapper blinkBW full-width py-1 cursor-pointer
+<div id="site-topbar" class="topbar-wrapper blinkBW full-width py-1 cursor-pointer
       fixed top-0 w-full z-[9999] font-bricolage bg-white overflow-hidden">
 
   <a href="{{ section.settings.topbar_link }}" class="block w-full">
@@ -292,6 +323,68 @@
       });
     }, { passive: true });
   })();
+
+{%- if section.settings.hide_header_on_scroll -%}
+  (function () {
+    var root = document.documentElement;
+    var HIDDEN = 'site-header-hidden';
+    var lastY = window.pageYOffset || 0;
+    var ticking = false;
+
+    function stackHeight() {
+      var raw = getComputedStyle(root).getPropertyValue('--site-header-offset');
+      var px = parseInt(raw, 10);
+      return px > 0 ? px : 110;
+    }
+
+    // Con el menu movil o el buscador abiertos el header se queda quieto: si
+    // no, cerrarlos te puede dejar sin nav.
+    function overlayOpen() {
+      var menu = document.getElementById('mobile-menu');
+      var search = document.getElementById('searchOverlay');
+      return (menu && !menu.classList.contains('hidden')) ||
+             (search && !search.classList.contains('hidden'));
+    }
+
+    function update() {
+      ticking = false;
+      var y = window.pageYOffset || 0;
+      var delta = y - lastY;
+
+      if (overlayOpen()) {
+        root.classList.remove(HIDDEN);
+        lastY = y;
+        return;
+      }
+
+      // Arriba del todo siempre visible. Ademas evita que el rebote elastico
+      // de iOS (scrollY negativo) lo deje escondido.
+      if (y <= stackHeight()) {
+        root.classList.remove(HIDDEN);
+        lastY = y;
+        return;
+      }
+
+      // Sin actualizar lastY: los microdesplazamientos se acumulan hasta el
+      // umbral en vez de perderse.
+      if (delta > -6 && delta < 6) return;
+
+      if (delta > 0) {
+        root.classList.add(HIDDEN);
+      } else {
+        root.classList.remove(HIDDEN);
+      }
+
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+  })();
+{%- endif -%}
 </script>
 <script>
   function toggleMobileMenu() {
@@ -443,13 +536,6 @@
     animation-play-state: paused;
   }
 
-  #main-header {
-    transition: transform 0.3s ease;
-  }
-
-  .topbar-wrapper {
-    transition: transform 0.3s ease;
-  }
 
 
 
@@ -496,6 +582,13 @@
     {
       "type": "header",
       "content": "Header Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_header_on_scroll",
+      "label": "Ocultar el header al bajar",
+      "info": "Al hacer scroll hacia abajo el header se esconde y al subir vuelve a aparecer.",
+      "default": true
     },
     {
       "type": "link_list",

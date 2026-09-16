@@ -15,6 +15,7 @@
       "type": "header",
       "settings": {
         "show_topbar": true,
+        "hide_header_on_scroll": true,
         "isotipe": "shopify://shop_images/isotipo_black.png",
         "topbar_announcement_text": "<p>Get your mystery discount</p>",
         "topbar_announcement_text_2": "<p>Get your mystery discount</p>",
