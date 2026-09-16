@@ -8,19 +8,8 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign bg = section.settings.background_color | default: '#FBBB00'
+  assign bg = section.settings.background_color | default: '#FFFFFF'
   assign fg = section.settings.text_color | default: '#1A1A1A'
-
-  comment
-    Los cuatro SVG son negros puros y entran por <img>, asi que el CSS no puede
-    recolorearlos: sobre un fondo oscuro se perderian. invert(1) los deja
-    blancos limpios. Es el mismo recurso que ya usa el header en las plantillas
-    de blog y articulo.
-  endcomment
-  assign icon_filter = 'none'
-  if section.settings.invert_icons
-    assign icon_filter = 'invert(1)'
-  endif
 -%}
 
 {%- comment -%}
@@ -29,7 +18,7 @@
 {%- endcomment -%}
 <div
   class="trust-badges full-width"
-  style="--trust-badges-bg: {{ bg }}; --trust-badges-fg: {{ fg }}; --trust-badges-icon: {{ section.settings.icon_size | default: 44 }}px; --trust-badges-icon-filter: {{ icon_filter }};"
+  style="--trust-badges-bg: {{ bg }}; --trust-badges-fg: {{ fg }}; --trust-badges-icon: {{ section.settings.icon_size | default: 44 }}px;"
 >
   <div class="trust-badges__inner">
     {%- for i in (1..4) -%}
@@ -75,8 +64,8 @@
 {% stylesheet %}
   .trust-badges {
     width: 100%;
-    background-color: var(--trust-badges-bg, #fbbb00);
-    padding: 1.25rem;
+    background-color: var(--trust-badges-bg, #ffffff);
+    padding: 0.75rem 1.25rem 1.25rem;
   }
 
   .trust-badges__inner {
@@ -101,7 +90,6 @@
     flex-shrink: 0;
     display: block;
     object-fit: contain;
-    filter: var(--trust-badges-icon-filter, none);
   }
 
   .trust-badges__text {
@@ -117,7 +105,7 @@
 
   @media (min-width: 768px) {
     .trust-badges {
-      padding: 1.5rem;
+      padding: 0.5rem 1.5rem 1.25rem;
     }
 
     .trust-badges__inner {
@@ -143,7 +131,7 @@
 
   @media (min-width: 1280px) {
     .trust-badges {
-      padding: 1.75rem 2rem;
+      padding: 0.5rem 2rem 1.5rem;
     }
 
     .trust-badges__text {
@@ -161,20 +149,13 @@
       "type": "color",
       "id": "background_color",
       "label": "Color de fondo",
-      "default": "#FBBB00"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Color del texto",
       "default": "#1A1A1A"
-    },
-    {
-      "type": "checkbox",
-      "id": "invert_icons",
-      "label": "Iconos en blanco",
-      "info": "Los iconos son negros. Activar solo sobre fondos oscuros.",
-      "default": false
     },
     {
       "type": "range",

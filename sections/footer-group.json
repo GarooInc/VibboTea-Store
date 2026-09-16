@@ -14,9 +14,8 @@
     "trust_badges": {
       "type": "trust-badges",
       "settings": {
-        "background_color": "#FBBB00",
+        "background_color": "#FFFFFF",
         "text_color": "#1A1A1A",
-        "invert_icons": false,
         "icon_size": 44
       }
     },
