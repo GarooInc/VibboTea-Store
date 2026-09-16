@@ -1,7 +1,7 @@
 <div class="relative w-full">
-  <div class="flex md:flex-row flex-col gap-6 md:gap-10 p-0">
+  <div class="flex md:flex-row flex-col gap-6 md:gap-14 p-0">
     
-    <div class="relative md:w-1/2 w-full text-center md:pr-6">
+    <div class="relative md:w-7/12 w-full text-center md:pr-8">
       {% assign title_lines = section.settings.title | split: ', but ' %}
       <h2 class="product-how-title font-bricolage font-semibold">
         {% if title_lines.size == 2 %}
@@ -13,7 +13,7 @@
       </h2>
     </div>
 
-    <div class="md:w-1/2 w-full grid grid-cols-3 xl:gap-8 gap-3 pt-5 h-full">
+    <div class="md:w-5/12 w-full grid grid-cols-3 xl:gap-8 gap-3 pt-5 h-full">
             <div class="bg-[#F5F5F5] rounded-xl min-h-[6vw] w-full grid grid-cols-2 
               items-center justify-center drink-option is-hot is-selected cursor-pointer" data-index="0">
             <div class="w-full flex items-center justify-center md:scale-115 scale-80">
