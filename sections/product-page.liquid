@@ -275,6 +275,17 @@
               {% endif %}
             {% endif %}
 
+            {%- liquid
+              assign intro_text = product_intro | strip_html | strip
+              assign intro_is_empty = false
+              if intro_text == blank
+                assign intro_is_empty = true
+                if product_intro contains '<img' or product_intro contains '<iframe'
+                  assign intro_is_empty = false
+                endif
+              endif
+            -%}
+
             <!-- Product Features Row (exclude Filter Bags) -->
             {% unless product.handle == 'filter-bags' %}
               {%- comment -%}
@@ -282,14 +293,14 @@
                 todo ese blanco y nada en medio: el Reset Bundle se veia vacio.
                 En ese caso el aire de abajo se reduce a la mitad.
               {%- endcomment -%}
-              {% render 'product-features-row', tight_bottom: product_intro == blank %}
+              {% render 'product-features-row', tight_bottom: intro_is_empty %}
             {% endunless %}
 
-            {% if product_intro != blank %}
+            {% unless intro_is_empty %}
               <div class="text-sm text-black font-bricolage product-description md:pr-10">
                 {{ product_intro }}
               </div>
-            {% endif %}
+            {% endunless %}
 
             {% render 'product-details-accordion',
               ingredients: product_ingredients,
