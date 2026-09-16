@@ -76,9 +76,10 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    /* Mismo aire arriba que abajo: la fila iba pegada al precio y a la
-       descripcion, sin blanco que la separara de ninguno de los dos. */
-    padding: 1.5rem 0;
+    /* Mismo aire arriba que abajo, y del mismo tamano que el hueco que la
+       descripcion deja antes del acordeon: medido sobre la ficha en vivo ese
+       hueco es de 67px, y 56px de padding deja los tres parejos. */
+    padding: 2rem 0;
     margin: 0;
     background-color: #ffffff;
     overflow: hidden;
@@ -95,7 +96,7 @@
 
   @media (min-width: 768px) {
     .product-features-row {
-      padding: 2rem 0;
+      padding: 3.5rem 0;
       margin: 0;
     }
   }
