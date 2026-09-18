@@ -66,6 +66,14 @@
       width: auto !important;
       aspect-ratio: 0.558;
       object-fit: cover !important;
+      /*
+        El contenedor mide 650px fijos, no se ajusta al contenido. Como esta
+        imagen es angosta, quedaba pegada a su borde izquierdo y las esquinas
+        redondeadas del contenedor caian lejos de ella. El radio va en la imagen
+        y `margin-left: auto` la lleva al borde derecho.
+      */
+      border-radius: 0.75rem;
+      margin-left: auto;
     }
     .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
       width: auto !important;
