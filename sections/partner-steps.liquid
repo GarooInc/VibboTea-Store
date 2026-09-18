@@ -52,16 +52,20 @@
       1 el tercero- y object-cover recorta. Asi el tamano de la caja ya no
       depende de la foto que se suba.
     */
+    /*
+      La foto de este paso es vertical (0.558). Con cover se perdia todo menos
+      la boca y el vaso; con contain se veia completa pero flotando, con blanco
+      a los dos lados y sin llegar al margen derecho.
+
+      La caja toma el aspecto de la foto y la misma altura que los otros pasos,
+      asi que se ve completa, sin blanco sobrante, y `justify-self: end` la
+      alinea al borde derecho como las demas.
+    */
     .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
-      height: auto !important;
-      aspect-ratio: 1.706;
-      /*
-        La foto de este paso es vertical (0.558) dentro de una caja horizontal
-        (1.706): con cover se perdia casi todo menos la boca y el vaso. Con
-        contain se ve completa y la caja conserva sus medidas; la foto queda
-        centrada y a los lados entra el blanco de la seccion.
-      */
-      object-fit: contain !important;
+      height: clamp(360px, 30vw, 460px) !important;
+      width: auto !important;
+      aspect-ratio: 0.558;
+      object-fit: cover !important;
     }
     .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
       width: auto !important;
