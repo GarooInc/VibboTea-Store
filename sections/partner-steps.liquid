@@ -73,9 +73,13 @@
         y `margin-left: auto` la lleva al borde derecho.
       */
       border-radius: 0.75rem;
-      /* auto la lleva a la derecha; los 50px la despegan de ese borde */
+      /*
+        auto la empuja a la derecha y el margen derecho la trae de vuelta. 250px
+        la dejan donde se pidio: el contenedor mide 650px y la foto 257, asi que
+        hay espacio de sobra y no se desborda.
+      */
       margin-left: auto;
-      margin-right: 50px;
+      margin-right: 250px;
     }
     .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
       width: auto !important;
