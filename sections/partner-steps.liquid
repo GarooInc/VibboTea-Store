@@ -98,7 +98,7 @@
           {% if block.settings.image != blank %}
             <div class="partner-step-img-wrap rounded-xl overflow-hidden">
               <img
-                src="{{ block.settings.image | image_url: width: 800 }}"
+                src="{{ block.settings.image | image_url: width: 800, format: 'jpg' }}"
                 alt="{{ block.settings.title }}"
                 class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 300px;"
                 width="800" height="460"
@@ -133,7 +133,7 @@
           {% if block.settings.image != blank %}
             <div class="partner-step-img-right rounded-xl overflow-hidden">
               <img
-                src="{{ block.settings.image | image_url: width: 800 }}"
+                src="{{ block.settings.image | image_url: width: 800, format: 'jpg' }}"
                 alt="{{ block.settings.title }}"
                 class="partner-step-img step-img-{{ step_index }} w-full object-cover" style="height: 300px;"
                 width="800" height="460"
