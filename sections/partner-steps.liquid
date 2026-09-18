@@ -41,6 +41,25 @@
     .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
       height: 100% !important;
     }
+    /*
+      Las cajas se dimensionan por su contenido (justify-self), asi que hasta
+      ahora el aspecto de cada foto decidia el tamano. Con fotos horizontales
+      salia bien por casualidad; con una vertical, el `height: 100%` de arriba
+      resuelve a auto contra un padre de altura indefinida y la imagen crece al
+      ancho de la columna por su aspecto natural: ~1400px de alto.
+
+      Se fija el aspecto que tenian las imagenes anteriores -1.71 el primer paso,
+      1 el tercero- y object-cover recorta. Asi el tamano de la caja ya no
+      depende de la foto que se suba.
+    */
+    .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
+      height: auto !important;
+      aspect-ratio: 1.706;
+    }
+    .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
+      width: auto !important;
+      aspect-ratio: 1;
+    }
     .partner-step-copy {
       max-width: 650px;
       padding-top: 0.5rem;
