@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "intro": {
+      "type": "collection-intro",
+      "name": "Collection intro",
+      "settings": {
+        "eyebrow": "Handcrafted in Guatemala"
+      }
+    },
+    "grid": {
+      "type": "shop-page",
+      "name": "Products",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "grid"
+  ]
+}

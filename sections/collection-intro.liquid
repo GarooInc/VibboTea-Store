@@ -1,0 +1,122 @@
+{% comment %}
+  Encabezado con texto para paginas de coleccion.
+
+  La seccion `collection` solo pinta un h1 y la lista de productos, y `shop-page`
+  la rejilla: ninguna muestra la descripcion de la coleccion, asi que las
+  colecciones salen sin una linea de texto que Google pueda leer. Los
+  competidores rankean por "functional tea", "tea blends" y demas justamente con
+  paginas de coleccion.
+
+  El titulo y el texto salen del propio objeto `collection`, es decir del admin
+  de Shopify, no de la plantilla. Asi cada coleccion tiene su copy aunque varias
+  compartan plantilla.
+{% endcomment %}
+
+{%- liquid
+  assign heading = section.settings.heading_override | default: collection.title
+  assign body = section.settings.intro_override | default: collection.description
+-%}
+
+<section class="collection-intro" {{ section.shopify_attributes }}>
+  <div class="collection-intro__inner">
+    {% if section.settings.eyebrow != blank %}
+      <p class="collection-intro__eyebrow font-bricolage">{{ section.settings.eyebrow | escape }}</p>
+    {% endif %}
+
+    {% if heading != blank %}
+      <h1 class="collection-intro__heading font-bricolage">{{ heading | escape }}</h1>
+    {% endif %}
+
+    {% if body != blank %}
+      <div class="collection-intro__body font-bricolage rte">{{ body }}</div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .collection-intro {
+    /* El header es fijo y solo .template-article empuja el contenido, asi que
+       esta seccion se despeja sola con la variable que publica el header. */
+    padding: calc(var(--header-offset, 7.5rem) + 1.5rem) 0 1.5rem;
+  }
+
+  .collection-intro__inner {
+    max-width: var(--page-width, 1200px);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .collection-intro__eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #575757;
+  }
+
+  .collection-intro__heading {
+    margin: 0 0 1rem;
+    font-size: clamp(1.9rem, 4.5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .collection-intro__body {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .collection-intro__body p {
+    margin: 0 0 0.85em;
+  }
+
+  .collection-intro__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .collection-intro {
+      padding-top: calc(var(--header-offset, 7.5rem) + 2.5rem);
+      padding-bottom: 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection intro",
+  "tag": "section",
+  "class": "collection-intro-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Por defecto usa el titulo y la descripcion de la coleccion, que se editan en el admin de Shopify. Asi cada coleccion tiene su propio texto aunque compartan plantilla."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading_override",
+      "label": "Titulo (opcional)",
+      "info": "Vacio usa el titulo de la coleccion."
+    },
+    {
+      "type": "richtext",
+      "id": "intro_override",
+      "label": "Texto (opcional)",
+      "info": "Vacio usa la descripcion de la coleccion."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection intro"
+    }
+  ]
+}
+{% endschema %}

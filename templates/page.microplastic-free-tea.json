@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "intro": {
+      "type": "seo-landing",
+      "name": "Microplastic free tea intro",
+      "settings": {
+        "use_as_page_heading": true,
+        "eyebrow": "No plastic in your cup",
+        "heading": "Microplastic-Free Tea",
+        "intro": "<p>Most tea bags are not just paper. Many are sealed or woven with plastic, and published research has found that a single plastic tea bag can shed billions of microplastic particles into one cup at brewing temperature.</p><p>VIBBO is microplastic-free tea: whole, traceable botanicals in biodegradable bags, with no added sugar, no sweeteners and no artificial flavoring. You can also brew any of our blends loose leaf, with no bag at all.</p>",
+        "cta_label": "SHOP MICROPLASTIC-FREE BLENDS",
+        "cta_url": "/collections/shop"
+      },
+      "blocks": {
+        "where": {
+          "type": "topic",
+          "settings": {
+            "title": "Where microplastics in tea come from",
+            "text": "<p>Two places. The mesh itself, when the bag is made from nylon or PET rather than plant fibre. And the seal, since many paper bags are heat-sealed with a thin plastic layer. Hot water is what releases the particles, which is exactly what brewing does.</p>"
+          }
+        },
+        "bags": {
+          "type": "topic",
+          "settings": {
+            "title": "What our bags are made of",
+            "text": "<p>VIBBO bags are biodegradable and plastic-free, so there is no plastic mesh and no plastic seal to break down in the cup.</p>"
+          }
+        },
+        "loose": {
+          "type": "topic",
+          "settings": {
+            "title": "Or skip the bag entirely",
+            "text": "<p>Every blend works loose leaf in an infuser or a pot. Whole ingredients, nothing to steep but the botanicals themselves.</p>",
+            "link_label": "See brewing instructions",
+            "link_url": "/collections/shop"
+          }
+        },
+        "check": {
+          "type": "topic",
+          "settings": {
+            "title": "How to check any brand",
+            "text": "<p>Ask what the bag is made of and how it is sealed. A brand that cannot answer in one sentence is usually using plastic somewhere. Silky pyramid bags are the most common culprit.</p>",
+            "link_label": "Read our story",
+            "link_url": "/pages/about-us"
+          }
+        }
+      },
+      "block_order": [
+        "where",
+        "bags",
+        "loose",
+        "check"
+      ]
+    },
+    "products": {
+      "type": "main-carousel",
+      "name": "Shop the blends",
+      "settings": {
+        "section_title": "Tea without the plastic",
+        "section_desc": "Three functional blends in biodegradable bags, traceable to the Guatemalan farms that grow them.",
+        "text_button": "find your daily tea ritual",
+        "text_button_add": "SHOP ALL PRODUCTS",
+        "redireccionamiento": true,
+        "collection": "shop",
+        "limit": 12,
+        "autoplay": true,
+        "interval": 5000
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "name": "FAQ",
+      "blocks": {
+        "do_bags": {
+          "type": "faq",
+          "settings": {
+            "question": "Do tea bags contain plastic?",
+            "answer": "Many do. Nylon and PET mesh bags are plastic outright, and a lot of paper bags use a thin plastic layer to heat-seal the edges. Hot water releases particles from both."
+          }
+        },
+        "how_many": {
+          "type": "faq",
+          "settings": {
+            "question": "How many microplastics does a plastic tea bag release?",
+            "answer": "Published research has measured billions of microplastic and nanoplastic particles released from a single plastic tea bag steeped at brewing temperature. The figure varies by study and by bag."
+          }
+        },
+        "vibbo": {
+          "type": "faq",
+          "settings": {
+            "question": "Are VIBBO tea bags microplastic-free?",
+            "answer": "Yes. Our bags are biodegradable and plastic-free, with no plastic mesh and no plastic seal. Every blend can also be brewed loose leaf if you prefer no bag at all."
+          }
+        },
+        "spot": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I tell if a tea bag has plastic in it?",
+            "answer": "Silky, translucent pyramid bags are usually nylon or PET. Paper bags can still be heat-sealed with plastic, so the reliable test is to ask the brand what the bag is made of and how it is sealed."
+          }
+        },
+        "compost": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I compost VIBBO tea bags?",
+            "answer": "The bags are biodegradable, so they break down rather than leaving plastic behind. Check your local composting rules for what they accept."
+          }
+        }
+      },
+      "block_order": [
+        "do_bags",
+        "how_many",
+        "vibbo",
+        "spot",
+        "compost"
+      ],
+      "settings": {
+        "title": "Microplastics in tea, answered",
+        "text_faq": "What to ask before you buy any tea.",
+        "image_alignment": "right",
+        "margin_top_image": 50
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "products",
+    "faq"
+  ]
+}
