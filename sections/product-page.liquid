@@ -12,19 +12,19 @@
       if product.handle == 'all-day-bundle-pack'
         assign show_bundle_quotes = true
       endif
-      case product.handle
-        when 'hydra-boost-natural-energy'
-          assign quote_text = 'This tea is absolutely 10/10 in flavor — rich, smooth, and incredibly enjoyable with every cup. The tea bags are super practical and make preparing tea quick, easy, and mess-free.'
-          assign quote_author = 'Andres B.'
-          assign quote_verified = true
-        when 'gut-bliss-natural-detox'
-          assign quote_text = "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas.."
-          assign quote_author = 'Silvia P.'
-        when 'chill-vibes-natural-relax'
-          assign quote_text = 'It is sooo delicious! Congrats! Great and healthy product!'
-          assign quote_author = 'Annabella V.'
-          assign quote_verified = true
-      endcase
+      comment
+        La cita salia escrita en el codigo, una por handle de producto, asi que
+        cambiarla exigia tocar el tema. Ahora son ajustes de la seccion y se
+        editan desde el editor de temas.
+
+        Ojo: los ajustes viven en la plantilla, no en el producto. blue, green y
+        yellow los usa un solo producto cada una, pero main-product la comparten
+        el All Day Bundle, el Reset Bundle y Filter Bags: lo que se escriba ahi
+        sale en los tres. Por eso esa plantilla queda sin cita, igual que hoy.
+      endcomment
+      assign quote_text = section.settings.quote_text
+      assign quote_author = section.settings.quote_author
+      assign quote_verified = section.settings.quote_verified
     %}
 
     <!-- MOBILE: Review card above image -->
@@ -850,6 +850,28 @@
       "step": 1,
       "unit": "s",
       "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Cita destacada"
+    },
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Texto de la cita",
+      "info": "Vacio oculta el cuadro. Se aplica a todos los productos que usen esta plantilla."
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "Autor"
+    },
+    {
+      "type": "checkbox",
+      "id": "quote_verified",
+      "label": "Mostrar \"Verified\"",
+      "info": "Activar solo si la resena viene de una compra verificada.",
+      "default": false
     },
     {
       "type": "text",
