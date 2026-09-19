@@ -40,7 +40,9 @@
           <div class="product-quote-box__author-row">
             <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
             <span class="product-quote-box__author">{{ quote_author }}</span>
-            <span class="product-quote-box__verified"{% unless quote_verified %} hidden{% endunless %}>Verified</span>
+            {% if quote_verified %}
+              <span class="product-quote-box__verified">Verified</span>
+            {% endif %}
           </div>
         </div>
       {% endif %}
@@ -203,7 +205,9 @@
                 <div class="product-quote-box__author-row">
                   <span class="product-quote-box__avatar">{{ quote_author | slice: 0 }}</span>
                   <span class="product-quote-box__author">{{ quote_author }}</span>
-                  <span class="product-quote-box__verified"{% unless quote_verified %} hidden{% endunless %}>Verified</span>
+                  {% if quote_verified %}
+                    <span class="product-quote-box__verified">Verified</span>
+                  {% endif %}
                 </div>
               </div>
             {% endif %}
@@ -825,60 +829,6 @@
     }
   }
 {% endstylesheet %}
-
-<script>
-  /*
-    La cita destacada sale de Judge.me, no del tema: el equipo fija (pin) la
-    resena que quiere en el panel de la app y aparece aqui sola.
-
-    Judge.me no expone resenas sueltas a Liquid -solo el badge de estrellas-,
-    pero si deja sus datos en la pagina en jdgm.data.reviewWidget[<id>], y cada
-    resena trae un campo `pinned`. Al fijar una, Judge.me la sube al principio,
-    asi que entra en la primera pagina de datos aunque antes no estuviera.
-
-    Si no hay ninguna fijada no se toca nada y queda el texto del tema, que
-    sirve de respaldo.
-  */
-  (function () {
-    var PRODUCT_ID = {{ product.id | json }};
-    var tries = 0;
-
-    function pinnedReview() {
-      var data = window.jdgm && jdgm.data && jdgm.data.reviewWidget;
-      var entry = data && (data[PRODUCT_ID] || data[String(PRODUCT_ID)]);
-      if (!entry || !entry.reviews) return null;
-      for (var i = 0; i < entry.reviews.length; i++) {
-        if (entry.reviews[i].pinned) return entry.reviews[i];
-      }
-      return null;
-    }
-
-    function apply(review) {
-      var body = (review.body || '').trim();
-      if (!body) return;
-      document.querySelectorAll('.product-quote-box').forEach(function (box) {
-        var text = box.querySelector('.product-quote-box__text');
-        var author = box.querySelector('.product-quote-box__author');
-        var avatar = box.querySelector('.product-quote-box__avatar');
-        var verified = box.querySelector('.product-quote-box__verified');
-        var name = review.reviewer_name || '';
-        if (text) text.textContent = '“' + body + '”';
-        if (author) author.textContent = name;
-        if (avatar) avatar.textContent = review.reviewer_initial || name.charAt(0);
-        if (verified) verified.hidden = !review.verified_buyer;
-      });
-    }
-
-    function poll() {
-      var review = pinnedReview();
-      if (review) { apply(review); return; }
-      // Judge.me carga asincrono; se reintenta ~10s y despues se deja el respaldo
-      if (++tries < 50) setTimeout(poll, 200);
-    }
-
-    poll();
-  })();
-</script>
 
 {% schema %}
 {
