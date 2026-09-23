@@ -10,6 +10,7 @@
 {%- liquid
   assign bg = section.settings.background_color | default: '#FFFFFF'
   assign fg = section.settings.text_color | default: '#1A1A1A'
+  assign rule = section.settings.rule_color | default: '#E2E2DD'
 -%}
 
 {%- comment -%}
@@ -18,7 +19,7 @@
 {%- endcomment -%}
 <div
   class="trust-badges full-width"
-  style="--trust-badges-bg: {{ bg }}; --trust-badges-fg: {{ fg }}; --trust-badges-icon: {{ section.settings.icon_size | default: 44 }}px;"
+  style="--trust-badges-bg: {{ bg }}; --trust-badges-fg: {{ fg }}; --trust-badges-rule: {{ rule }}; --trust-badges-icon: {{ section.settings.icon_size | default: 44 }}px;"
 >
   <div class="trust-badges__inner">
     {%- for i in (1..4) -%}
@@ -62,10 +63,18 @@
 </div>
 
 {% stylesheet %}
+  /*
+    La banda es blanca como el resto del pie, asi que se perdia entre el FAQ y
+    el newsletter. Dos filetes a todo lo ancho la enmarcan sin cambiarle el
+    fondo, y el margen le da aire por fuera; el padding, por dentro.
+  */
   .trust-badges {
     width: 100%;
     background-color: var(--trust-badges-bg, #ffffff);
-    padding: 0.75rem 1.25rem 1.25rem;
+    padding: 1.25rem;
+    margin: 1.75rem 0;
+    border-top: 1px solid var(--trust-badges-rule, #e2e2dd);
+    border-bottom: 1px solid var(--trust-badges-rule, #e2e2dd);
   }
 
   .trust-badges__inner {
@@ -105,7 +114,8 @@
 
   @media (min-width: 768px) {
     .trust-badges {
-      padding: 0.5rem 1.5rem 1.25rem;
+      padding: 1.5rem;
+      margin: 2.5rem 0;
     }
 
     .trust-badges__inner {
@@ -131,11 +141,12 @@
 
   @media (min-width: 1280px) {
     .trust-badges {
-      padding: 0.5rem 2rem 1.5rem;
+      padding: 1.75rem 2rem;
+      margin: 3rem 0;
     }
 
     .trust-badges__text {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
   }
 {% endstylesheet %}
@@ -156,6 +167,12 @@
       "id": "text_color",
       "label": "Color del texto",
       "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "rule_color",
+      "label": "Color de las lineas",
+      "default": "#E2E2DD"
     },
     {
       "type": "range",
