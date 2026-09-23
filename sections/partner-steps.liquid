@@ -9,19 +9,16 @@
     .cta-title { text-align: center !important; margin-bottom: 1rem !important; }
     .cta-text { text-align: center !important; }
     /*
-      La foto de este paso es vertical. Con una altura fija de 150px y cover,
-      en movil solo se veia la boca y el vaso.
+      La foto de este paso es vertical. Con 150px de alto el recorte se comia
+      todo menos la boca y el vaso; dejandola completa quedaba mas angosta que
+      su columna y desalineada con las fotos de los otros pasos.
 
-      Se fija el alto y el ancho sale del aspecto de la foto, asi que se ve
-      completa. Queda mas angosta que su columna: `margin-left: auto` la pega
-      al borde derecho y el radio va en la imagen, porque el del contenedor
-      caeria lejos de sus esquinas izquierdas.
+      Ocupa el ancho de la columna, como las demas, y el recorte sale de abajo
+      (`object-position: top`) para que la cara quede entera.
     */
     .step-img-1 {
-      height: 250px !important;
-      width: auto !important;
-      margin-left: auto;
-      border-radius: 0.75rem;
+      height: 200px !important;
+      object-position: center top !important;
     }
     .step-img-2 { height: 180px !important; }
     .step-img-3 { height: 210px !important; }
@@ -78,8 +75,15 @@
     .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
       height: clamp(360px, 30vw, 460px) !important;
       width: auto !important;
-      aspect-ratio: 0.558;
+      /*
+        La foto es 0.558 de ancho. A ese aspecto la caja salia angosta; con
+        0.75 queda mas cuadrada y ocupa mas horizontal. Como no hay mas foto
+        que mostrar a los lados, ensanchar implica acercar y recortar: el
+        recorte se lleva el pie de la foto y `top` deja la cara entera.
+      */
+      aspect-ratio: 0.75;
       object-fit: cover !important;
+      object-position: center top !important;
       /*
         El contenedor mide 650px fijos, no se ajusta al contenido. Como esta
         imagen es angosta, quedaba pegada a su borde izquierdo y las esquinas
@@ -88,12 +92,13 @@
       */
       border-radius: 0.75rem;
       /*
-        auto la empuja a la derecha y el margen derecho la trae de vuelta. 250px
-        la dejan donde se pidio: el contenedor mide 650px y la foto 257, asi que
-        hay espacio de sobra y no se desborda.
+        `auto` la empuja a la derecha y el margen derecho la trae de vuelta:
+        250px la dejan donde se pidio. Pero la columna se angosta por debajo de
+        ~1280px y con el margen fijo la foto se salia por la izquierda, asi que
+        el tope lo recorta cuando ya no cabe.
       */
       margin-left: auto;
-      margin-right: 250px;
+      margin-right: min(250px, calc(100% - 360px));
     }
     .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
       width: auto !important;
