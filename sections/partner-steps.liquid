@@ -8,7 +8,12 @@
     .partner-step-img-wrap { max-width: 100% !important; margin-left: 0 !important; }
     .cta-title { text-align: center !important; margin-bottom: 1rem !important; }
     .cta-text { text-align: center !important; }
-    .step-img-1 { height: 150px !important; }
+    /*
+      La foto de este paso es vertical. Con una altura fija de 150px y cover,
+      en movil solo se veia la boca y el vaso. Con height auto la caja toma el
+      alto que pida la foto y se ve completa, sea cual sea la que se suba.
+    */
+    .step-img-1 { height: auto !important; }
     .step-img-2 { height: 180px !important; }
     .step-img-3 { height: 210px !important; }
   }
