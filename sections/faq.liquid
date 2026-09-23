@@ -78,8 +78,17 @@
       {% endfor %}
     </div>
 
+    {% comment %}
+      En movil la mascota no puede ir superpuesta como en escritorio, asi que
+      baja al final de las tarjetas. Con el margen que traia quedaba suelta en
+      un hueco blanco entre el FAQ y los sellos; el margen negativo la recuesta
+      contra la ultima pregunta para que se lea como parte del bloque.
+
+      Va en `style` y no en clases de Tailwind porque el CSS del tema se
+      compila aparte y una clase nueva no existiria hasta regenerarlo.
+    {% endcomment %}
     {% if section.settings.image1 %}
-    <div class="md:hidden flex justify-end mt-8">
+    <div class="md:hidden flex justify-end" style="margin-top: -1.5rem;">
       <img
         src="{{ section.settings.image1 | image_url: width: 400 }}"
         alt="{{ section.settings.title }}"
