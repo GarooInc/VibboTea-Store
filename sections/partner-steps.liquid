@@ -10,10 +10,19 @@
     .cta-text { text-align: center !important; }
     /*
       La foto de este paso es vertical. Con una altura fija de 150px y cover,
-      en movil solo se veia la boca y el vaso. Con height auto la caja toma el
-      alto que pida la foto y se ve completa, sea cual sea la que se suba.
+      en movil solo se veia la boca y el vaso.
+
+      Se fija el alto y el ancho sale del aspecto de la foto, asi que se ve
+      completa. Queda mas angosta que su columna: `margin-left: auto` la pega
+      al borde derecho y el radio va en la imagen, porque el del contenedor
+      caeria lejos de sus esquinas izquierdas.
     */
-    .step-img-1 { height: auto !important; }
+    .step-img-1 {
+      height: 250px !important;
+      width: auto !important;
+      margin-left: auto;
+      border-radius: 0.75rem;
+    }
     .step-img-2 { height: 180px !important; }
     .step-img-3 { height: 210px !important; }
   }
