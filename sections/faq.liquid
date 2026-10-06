@@ -97,12 +97,17 @@
         {% endcomment %}
         {% if last_with_mascot %}
           <div class="md:hidden faq-section__mascot">
+            {%- comment -%}
+              width/height salen de la imagen real: estaban fijos en 400x400 y
+              no todas las mascotas son cuadradas (las de los monos colgados son
+              400x502), asi que el navegador reservaba una proporcion que no era.
+            {%- endcomment -%}
             <img
               src="{{ section.settings.image1 | image_url: width: 400 }}"
               alt=""
               class="w-full object-contain"
-              width="400"
-              height="400"
+              width="{{ section.settings.image1.width }}"
+              height="{{ section.settings.image1.height }}"
             >
           </div>
         {% endif %}
@@ -169,27 +174,37 @@
     }
 
     /*
-      Hueco al pie de la ultima tarjeta (80px): es la franja donde entra el
-      torso del mono. Al ser fijo, la separacion con la pregunta es la misma
-      tenga una linea o tres, y tambien con la respuesta abierta.
+      Hueco al pie de la ultima tarjeta (96px): es la franja donde entra el
+      cuerpo de la mascota. Al ser fijo, la separacion con la pregunta es la
+      misma tenga una linea o tres, y tambien con la respuesta abierta.
     */
     .faq-section__item--mascot .faq-card {
-      padding-bottom: 5rem;
+      padding-bottom: 6rem;
     }
 
     .faq-section__mascot {
       position: absolute;
       right: 0.25rem;
       /*
-        La imagen mide 116px y el mono se sienta a ~66% de su alto, asi que le
-        quedan ~39px de piernas: con bottom -19px (el item ya trae pb-5 = 20px)
-        la cadera cae justo sobre el borde inferior de la tarjeta y las piernas
-        cuelgan por fuera.
+        El item ya trae pb-5 (20px), asi que con -20px la mascota baja 40px por
+        debajo del borde de la tarjeta: lo justo para que se apoye en el y
+        asome por fuera. Los 128px de alto menos esos 40 dan 88px por dentro,
+        que entran en los 96px de hueco reservado arriba.
       */
-      bottom: -19px;
-      width: 116px;
+      bottom: -20px;
       pointer-events: none;
       z-index: 3;
+    }
+
+    /*
+      Se fija el ALTO y no el ancho: cada plantilla pone su propia mascota
+      (mono sentado, guacamaya, jaguar, monos colgados) y no todas tienen la
+      misma proporcion. Atando el alto, lo que invade la tarjeta es siempre lo
+      mismo y ninguna llega a pisar la pregunta.
+    */
+    .faq-section__mascot img {
+      width: auto;
+      height: 8rem;
     }
   }
 
