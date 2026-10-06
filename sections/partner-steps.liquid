@@ -31,85 +31,75 @@
       padding-left: calc(var(--spacing) * 6);
       padding-right: calc(var(--spacing) * 6);
     }
+    /*
+      La caja manda, no la foto. Antes el alto estaba topado en 460px mientras
+      el ancho seguia creciendo, asi que la relacion se iba ensanchando con la
+      pantalla y el recorte empeoraba solo. Con `aspect-ratio` la relacion es
+      la misma a cualquier ancho.
+
+      Cuadrada porque es la que trata bien a las tres fotos: de la vertical
+      deja ver el 56% -cara, vaso y hombros- en vez del 40% que dejaba una
+      caja apaisada.
+    */
     .partner-step-img-wrap,
     .partner-step-img-right {
       width: min(100%, 650px);
       max-width: none;
+      aspect-ratio: 1;
     }
     .partner-step-img {
-      height: clamp(360px, 30vw, 460px) !important;
+      height: 100% !important;
     }
     .partner-step-img-wrap { justify-self: start; }
     .partner-step-img-right { justify-self: end; }
-    .partner-step-row { align-items: start !important; margin-bottom: 2rem !important; }
+    /*
+      El texto es corto contra una foto de 650px, asi que alineado arriba
+      dejaba un hueco muerto debajo de cada bloque. Centrado reparte ese aire
+      a los dos lados y las dos columnas se leen como un par.
+    */
+    .partner-step-row { align-items: center !important; margin-bottom: 2rem !important; }
+    /*
+      La hoja y el titulo se disputan la esquina superior izquierda: antes no
+      chocaban porque la columna de texto bajaba 150px, que es justo el hueco
+      que quitamos al centrar.
+
+      El markup trae `w-20 md:w-80`: 80px en movil y un salto seco a 320px
+      fijos desde 768. Las fotos escalan con su columna, la hoja no, asi que en
+      tablet se montaba sobre el titulo. Aqui escala igual que ellas.
+
+      La recta va de 128px a 1024 hasta 320px a 1920, que son los maximos que
+      no tocan el texto -medidos cruzando los pixeles de la hoja con los de la
+      tipografia, no el recuadro del PNG: su esquina inferior derecha esta
+      vacia y es por ahi por donde pasa "Apply"-. El minimo iguala los 80px de
+      movil para que no encoja al cruzar el breakpoint.
+    */
+    .partner-deco-tl {
+      width: clamp(8rem, 21.4vw - 91px, 20rem) !important;
+      /*
+        En tablet el texto es mas alto que la foto, asi que el titulo arranca
+        pegado arriba y casi no queda aire. Pero si queda a su izquierda: el
+        titulo va centrado en su columna. Correrla hacia alla deja subir el
+        minimo de 80 a 128px. Vuelve a 0 en escritorio, donde no hace falta.
+      */
+      left: clamp(-90px, 17.6vw - 225px, 0px) !important;
+    }
     .partner-step-row > * {
       min-width: 0;
     }
-    /* La imagen de la primera fila se estira para llenar la altura de la columna de texto (evita banda vacía) */
-    .partner-step-row:first-of-type .partner-step-img-right {
-      align-self: stretch;
-    }
-    .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
-      height: 100% !important;
-    }
     /*
-      Las cajas se dimensionan por su contenido (justify-self), asi que hasta
-      ahora el aspecto de cada foto decidia el tamano. Con fotos horizontales
-      salia bien por casualidad; con una vertical, el `height: 100%` de arriba
-      resuelve a auto contra un padre de altura indefinida y la imagen crece al
-      ancho de la columna por su aspecto natural: ~1400px de alto.
+      Las tres fotos comparten la caja de arriba. Antes cada paso se
+      dimensionaba por el aspecto de su propia foto, asi que los tres salian de
+      tamanos distintos y la seccion se leia accidental en vez de disenada.
 
-      Se fija el aspecto que tenian las imagenes anteriores -1.71 el primer paso,
-      1 el tercero- y object-cover recorta. Asi el tamano de la caja ya no
-      depende de la foto que se suba.
-    */
-    /*
-      La foto de este paso es vertical (0.558). Con cover se perdia todo menos
-      la boca y el vaso; con contain se veia completa pero flotando, con blanco
-      a los dos lados y sin llegar al margen derecho.
-
-      La caja toma el aspecto de la foto y la misma altura que los otros pasos,
-      asi que se ve completa, sin blanco sobrante, y `justify-self: end` la
-      alinea al borde derecho como las demas.
+      Esta es la unica vertical (0.558), asi que aun cuadrada hay que recortar:
+      `center 25%` centra la cara y deja el vaso. Una foto cuadrada o apaisada
+      para este hueco se veria mejor que cualquier recorte.
     */
     .partner-step-row:first-of-type .partner-step-img-right .partner-step-img {
-      height: clamp(360px, 30vw, 460px) !important;
-      width: auto !important;
-      /*
-        La foto es 0.558 de ancho. A ese aspecto la caja salia angosta; con
-        0.75 queda mas cuadrada y ocupa mas horizontal. Como no hay mas foto
-        que mostrar a los lados, ensanchar implica acercar y recortar: el
-        recorte se lleva el pie de la foto y `top` deja la cara entera.
-      */
-      aspect-ratio: 0.75;
-      object-fit: cover !important;
-      object-position: center top !important;
-      /*
-        El contenedor mide 650px fijos, no se ajusta al contenido. Como esta
-        imagen es angosta, quedaba pegada a su borde izquierdo y las esquinas
-        redondeadas del contenedor caian lejos de ella. El radio va en la imagen
-        y `margin-left: auto` la lleva al borde derecho.
-      */
-      border-radius: 0.75rem;
-      /*
-        `auto` la empuja a la derecha y el margen derecho la trae de vuelta:
-        250px la dejan donde se pidio. Pero la columna se angosta por debajo de
-        ~1280px y con el margen fijo la foto se salia por la izquierda, asi que
-        el tope lo recorta cuando ya no cabe.
-      */
-      margin-left: auto;
-      margin-right: min(250px, calc(100% - 360px));
-      /* La fila alinea arriba y la columna de texto baja 150px; la foto se
-         baja un poco para no quedar tan arriba respecto del titulo. */
-      margin-top: 60px;
-    }
-    .partner-step-row:last-of-type .partner-step-img-right .partner-step-img {
-      width: auto !important;
-      aspect-ratio: 1;
+      object-position: center 25%;
     }
     .partner-step-copy {
       max-width: 650px;
-      padding-top: 0.5rem;
     }
     .partner-step-copy-right {
       justify-self: end;
@@ -118,12 +108,29 @@
       justify-self: start;
     }
     .partner-step-title { text-align: center !important; margin-bottom: 3rem !important; }
-    /* Baja solo la columna de texto de la primera fila para que quede debajo de la hoja */
-    .partner-step-row:first-of-type .partner-step-copy {
-      padding-top: 150px;
-    }
     .cta-title { text-align: center !important; }
     .cta-text { text-align: center !important; max-width: 950px; margin-left: auto; margin-right: auto; }
+  }
+
+  /*
+    El markup trae `lg:mb-40`: 160px de hueco entre el titulo y su parrafo.
+    Ese era el espacio muerto, no el tamano de la letra.
+
+    El cuerpo sube de 30 a 36px. No mas: 36px (`text-4xl`) es el parrafo mas
+    grande que usa el tema -about-us-pledgebanner1, about-us-tribebanner,
+    newsletter-page-, que son las otras bandas editoriales. Pasarse dejaba a
+    esta seccion por encima de todo lo demas del sitio.
+
+    Va aqui y no en clases de Tailwind porque este CSS es inline: entra sin
+    regenerar application.css.
+  */
+  @media (min-width: 1024px) {
+    .partner-step-title {
+      margin-bottom: 2.5rem !important;
+    }
+    .partner-step-text {
+      font-size: 2.25rem !important;
+    }
   }
 
   @media (min-width: 1280px) {
@@ -137,7 +144,7 @@
 <div class="w-full bg-white pt-10 md:pt-16 pb-2 md:pb-4 relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
 
   {% if section.settings.deco_top_left %}
-    <div class="absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-0">
+    <div class="partner-deco-tl absolute top-0 left-0 w-20 md:w-80 pointer-events-none z-0">
       <img src="{{ section.settings.deco_top_left | image_url: width: 400 }}" alt="" width="400" height="400" class="w-full object-contain">
     </div>
   {% endif %}
