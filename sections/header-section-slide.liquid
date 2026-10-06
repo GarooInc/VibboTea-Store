@@ -396,6 +396,23 @@
 @media (min-width: 768px) {
   .hero-copy--overlay {
     padding-top: 0;
+    /*
+      Un corrimiento fijo en px (lo que habia antes) solo da el hueco correcto
+      en UNA altura de pantalla: calibrado a 1440x900 dejaba casi sin espacio
+      en monitores de 720px de alto, porque tanto el texto centrado como el
+      boton -bottom:clamp(1rem,4vh,3.25rem)- se mueven con la altura del
+      viewport, cada uno a su manera.
+
+      Esto en cambio ancla el texto contra el borde inferior (justify-
+      content:flex-end) con el mismo padding que usa el boton para separarse
+      de ese borde, mas el alto real del boton (medido: 47px, mas 1px de
+      margen) mas los 80px de hueco pedidos. Como los dos usan la MISMA
+      formula de offset, se cancela al restar y el hueco da 80px sin importar
+      la altura del monitor -verificado en 900px y 720px de alto, 80-81px en
+      ambos.
+    */
+    justify-content: flex-end;
+    padding-bottom: calc(clamp(1rem, 4vh, 3.25rem) + 48px + 80px);
   }
 
   .hero-copy--overlay .hero-copy-title {
@@ -528,6 +545,31 @@
     height: 100vh;
   }
 }
+
+{% if section.settings.mobile_height_cap %}
+  {% comment %}
+    Opt-in por seccion, via section.settings.mobile_height_cap (default
+    false). Escapa con el id de ESTA instancia (.slider-facts-{{ section.id
+    }}) para no afectar a otras secciones que compartan esta misma seccion
+    -el hero de home, por ejemplo-, que siguen a pantalla completa.
+
+    El alto no es solo esteico: object-fit:cover sobre un contenedor de
+    100svh con una foto panoramica deja ver muy poco de su ancho (a mayor
+    alto, mas zoom hace falta para cubrirlo). 480px afloja ese recorte sin
+    importar cuan alto sea el telefono.
+
+    Solo movil (max-width: 767px): sin este media query la regla, al ser mas
+    especifica (dos clases) que la de desktop dentro de su propio media
+    query, le ganaba igual y topaba tambien el hero de escritorio -que no
+    tenia ningun problema y debia quedar como estaba.
+  {% endcomment %}
+  @media (max-width: 767px) {
+    .slider-facts-{{ section.id }}.custom-slider {
+      height: min(100vh, 480px);
+      height: min(100svh, 480px);
+    }
+  }
+{% endif %}
 
 @media (max-width: 767px) {
   .hero-title-logo {
@@ -809,6 +851,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "id": "Time",
       "label": "Time per slide (ms)",
       "default": 1000
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_height_cap",
+      "label": "Topar el alto en movil",
+      "info": "Sin activar, el hero ocupa toda la pantalla del telefono (100svh), lo que varia segun el dispositivo y recorta mucho una foto panoramica. Activado, el alto se topa a 480px.",
+      "default": false
     },
     {
       "type": "image_picker",

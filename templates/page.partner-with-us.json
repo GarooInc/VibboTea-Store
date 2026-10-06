@@ -40,7 +40,8 @@
       "name": "Partner Hero",
       "settings": {
         "autoplay": false,
-        "Time": 6000
+        "Time": 6000,
+        "mobile_height_cap": true
       }
     },
     "cinta_partner": {
