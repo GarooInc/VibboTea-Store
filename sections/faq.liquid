@@ -55,7 +55,16 @@
 
     <div class="faq-section__list w-full text-left">
       {% for block in section.blocks %}
-      <div class="faq-section__item w-full pb-5" {{ block.shopify_attributes }}>
+      {%- comment -%}
+        El modificador --mascot va solo en la ultima pregunta y solo si hay
+        imagen: es el que ancla al mono y le reserva el hueco. Asi el hueco no
+        se abre en las paginas donde el FAQ va sin mascota.
+      {%- endcomment -%}
+      {% assign last_with_mascot = false %}
+      {% if forloop.last and section.settings.image1 %}
+        {% assign last_with_mascot = true %}
+      {% endif %}
+      <div class="faq-section__item w-full pb-5{% if last_with_mascot %} faq-section__item--mascot{% endif %}" {{ block.shopify_attributes }}>
         <div
           class="faq-card border border-gray-300 rounded-xl px-5 py-5 cursor-pointer"
           data-faq
@@ -74,30 +83,32 @@
             </p>
           </div>
         </div>
+        {% comment %}
+          En movil la mascota se posiciona como en escritorio: absoluta, sin
+          ocupar sitio en el flujo. Antes iba como bloque suelto al final del
+          listado y, por mas que se la subiera con margen negativo, abria una
+          banda blanca propia y se leia flotando. Ahora cuelga de la ultima
+          pregunta y se sienta en el borde inferior de su tarjeta.
+
+          Es decorativa (alt vacio) y va con pointer-events:none para no robarle
+          el clic al acordeon. El posicionamiento esta en el <style> de la
+          seccion porque el CSS del tema se compila aparte y una clase nueva de
+          Tailwind no existiria hasta regenerarlo.
+        {% endcomment %}
+        {% if last_with_mascot %}
+          <div class="md:hidden faq-section__mascot">
+            <img
+              src="{{ section.settings.image1 | image_url: width: 400 }}"
+              alt=""
+              class="w-full object-contain"
+              width="400"
+              height="400"
+            >
+          </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
-
-    {% comment %}
-      En movil la mascota no puede ir superpuesta como en escritorio, asi que
-      baja al final de las tarjetas. Con el margen que traia quedaba suelta en
-      un hueco blanco entre el FAQ y los sellos; el margen negativo la recuesta
-      contra la ultima pregunta para que se lea como parte del bloque.
-
-      Va en `style` y no en clases de Tailwind porque el CSS del tema se
-      compila aparte y una clase nueva no existiria hasta regenerarlo.
-    {% endcomment %}
-    {% if section.settings.image1 %}
-    <div class="md:hidden flex justify-end" style="margin-top: -1.5rem;">
-      <img
-        src="{{ section.settings.image1 | image_url: width: 400 }}"
-        alt="{{ section.settings.title }}"
-        class="w-40 object-cover"
-        width="400"
-        height="400"
-      >
-    </div>
-    {% endif %}
 
   </div>
 </div>
@@ -134,11 +145,52 @@
 <style>
   .faq-section__wrap {
     padding-top: 1rem;
-    padding-bottom: 1.25rem;
+    /* en movil las piernas del mono sobresalen de la ultima tarjeta: este
+       padding es el que evita que invadan la seccion siguiente */
+    padding-bottom: 2.25rem;
   }
 
   .faq-section__header {
     margin-bottom: 2.75rem;
+  }
+
+  /*
+    Mascota en movil. En escritorio va absoluta sobre la esquina superior
+    derecha; aca se hace lo mismo contra el bloque de preguntas para que no
+    abra una banda blanca propia debajo del listado.
+
+    Se reserva espacio dentro de la ultima tarjeta (padding-bottom) para que el
+    mono tenga donde sentarse sin pisar ni la pregunta ni la respuesta abierta,
+    y la imagen se apoya en el borde inferior de esa tarjeta.
+  */
+  @media (max-width: 767px) {
+    .faq-section__item--mascot {
+      position: relative;
+    }
+
+    /*
+      Hueco al pie de la ultima tarjeta (80px): es la franja donde entra el
+      torso del mono. Al ser fijo, la separacion con la pregunta es la misma
+      tenga una linea o tres, y tambien con la respuesta abierta.
+    */
+    .faq-section__item--mascot .faq-card {
+      padding-bottom: 5rem;
+    }
+
+    .faq-section__mascot {
+      position: absolute;
+      right: 0.25rem;
+      /*
+        La imagen mide 116px y el mono se sienta a ~66% de su alto, asi que le
+        quedan ~39px de piernas: con bottom -19px (el item ya trae pb-5 = 20px)
+        la cadera cae justo sobre el borde inferior de la tarjeta y las piernas
+        cuelgan por fuera.
+      */
+      bottom: -19px;
+      width: 116px;
+      pointer-events: none;
+      z-index: 3;
+    }
   }
 
   @media (min-width: 768px) {
