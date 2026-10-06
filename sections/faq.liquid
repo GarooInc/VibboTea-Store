@@ -28,9 +28,16 @@
       {% endif %}
     {% endif %}
 
-    <!-- Mascot: absolutely positioned, doesn't affect layout -->
+    {% comment %}
+      Mascota: absoluta sobre la esquina superior derecha del bloque, igual en
+      movil que en escritorio (se superpone sobre el inicio del listado, nunca
+      metida dentro de una tarjeta). No ocupa espacio en el flujo ni roba
+      clics. El tamano responsive sale de .faq-section__mascot en el <style>
+      de abajo, no de clases de Tailwind nuevas (el CSS del tema se compila
+      aparte).
+    {% endcomment %}
     {% if section.settings.image1 %}
-      <div class="hidden md:block absolute top-0 right-0 pointer-events-none" style="width: 220px; margin-top: {{ padding_top }}px; z-index: 2;">
+      <div class="faq-section__mascot" style="margin-top: {{ padding_top }}px;">
         <img
           src="{{ section.settings.image1 | image_url: width: target_w }}"
           alt=""
@@ -55,16 +62,7 @@
 
     <div class="faq-section__list w-full text-left">
       {% for block in section.blocks %}
-      {%- comment -%}
-        El modificador --mascot va solo en la ultima pregunta y solo si hay
-        imagen: es el que ancla al mono y le reserva el hueco. Asi el hueco no
-        se abre en las paginas donde el FAQ va sin mascota.
-      {%- endcomment -%}
-      {% assign last_with_mascot = false %}
-      {% if forloop.last and section.settings.image1 %}
-        {% assign last_with_mascot = true %}
-      {% endif %}
-      <div class="faq-section__item w-full pb-5{% if last_with_mascot %} faq-section__item--mascot{% endif %}" {{ block.shopify_attributes }}>
+      <div class="faq-section__item w-full pb-5" {{ block.shopify_attributes }}>
         <div
           class="faq-card border border-gray-300 rounded-xl px-5 py-5 cursor-pointer"
           data-faq
@@ -83,34 +81,6 @@
             </p>
           </div>
         </div>
-        {% comment %}
-          En movil la mascota se posiciona como en escritorio: absoluta, sin
-          ocupar sitio en el flujo. Antes iba como bloque suelto al final del
-          listado y, por mas que se la subiera con margen negativo, abria una
-          banda blanca propia y se leia flotando. Ahora cuelga de la ultima
-          pregunta y se sienta en el borde inferior de su tarjeta.
-
-          Es decorativa (alt vacio) y va con pointer-events:none para no robarle
-          el clic al acordeon. El posicionamiento esta en el <style> de la
-          seccion porque el CSS del tema se compila aparte y una clase nueva de
-          Tailwind no existiria hasta regenerarlo.
-        {% endcomment %}
-        {% if last_with_mascot %}
-          <div class="md:hidden faq-section__mascot">
-            {%- comment -%}
-              width/height salen de la imagen real: estaban fijos en 400x400 y
-              no todas las mascotas son cuadradas (las de los monos colgados son
-              400x502), asi que el navegador reservaba una proporcion que no era.
-            {%- endcomment -%}
-            <img
-              src="{{ section.settings.image1 | image_url: width: 400 }}"
-              alt=""
-              class="w-full object-contain"
-              width="{{ section.settings.image1.width }}"
-              height="{{ section.settings.image1.height }}"
-            >
-          </div>
-        {% endif %}
       </div>
       {% endfor %}
     </div>
@@ -150,9 +120,7 @@
 <style>
   .faq-section__wrap {
     padding-top: 1rem;
-    /* en movil las piernas del mono sobresalen de la ultima tarjeta: este
-       padding es el que evita que invadan la seccion siguiente */
-    padding-bottom: 2.25rem;
+    padding-bottom: 1.25rem;
   }
 
   .faq-section__header {
@@ -160,55 +128,27 @@
   }
 
   /*
-    Mascota en movil. En escritorio va absoluta sobre la esquina superior
-    derecha; aca se hace lo mismo contra el bloque de preguntas para que no
-    abra una banda blanca propia debajo del listado.
-
-    Se reserva espacio dentro de la ultima tarjeta (padding-bottom) para que el
-    mono tenga donde sentarse sin pisar ni la pregunta ni la respuesta abierta,
-    y la imagen se apoya en el borde inferior de esa tarjeta.
+    Mascota: absoluta sobre la esquina superior derecha de todo el bloque
+    (titulo + listado), igual en movil que en escritorio. Se superpone sobre
+    el borde superior de la primera pregunta, nunca metida dentro de una
+    tarjeta, y no depende de cuantas preguntas haya porque no esta anclada a
+    ningun item puntual. pointer-events: none para no robarle el clic al
+    acordeon.
   */
-  @media (max-width: 767px) {
-    .faq-section__item--mascot {
-      position: relative;
-    }
-
-    /*
-      Hueco al pie de la ultima tarjeta (96px): es la franja donde entra el
-      cuerpo de la mascota. Al ser fijo, la separacion con la pregunta es la
-      misma tenga una linea o tres, y tambien con la respuesta abierta.
-    */
-    .faq-section__item--mascot .faq-card {
-      padding-bottom: 6rem;
-    }
-
-    .faq-section__mascot {
-      position: absolute;
-      right: 0.25rem;
-      /*
-        El item ya trae pb-5 (20px), asi que con -20px la mascota baja 40px por
-        debajo del borde de la tarjeta: lo justo para que se apoye en el y
-        asome por fuera. Los 128px de alto menos esos 40 dan 88px por dentro,
-        que entran en los 96px de hueco reservado arriba.
-      */
-      bottom: -20px;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    /*
-      Se fija el ALTO y no el ancho: cada plantilla pone su propia mascota
-      (mono sentado, guacamaya, jaguar, monos colgados) y no todas tienen la
-      misma proporcion. Atando el alto, lo que invade la tarjeta es siempre lo
-      mismo y ninguna llega a pisar la pregunta.
-    */
-    .faq-section__mascot img {
-      width: auto;
-      height: 8rem;
-    }
+  .faq-section__mascot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    pointer-events: none;
+    z-index: 2;
   }
 
   @media (min-width: 768px) {
+    .faq-section__mascot {
+      width: 220px;
+    }
+
     .faq-section__wrap {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
