@@ -29,15 +29,14 @@
     {% endif %}
 
     {% comment %}
-      Mascota: absoluta sobre la esquina superior derecha del bloque, igual en
-      movil que en escritorio (se superpone sobre el inicio del listado, nunca
-      metida dentro de una tarjeta). No ocupa espacio en el flujo ni roba
-      clics. El tamano responsive sale de .faq-section__mascot en el <style>
-      de abajo, no de clases de Tailwind nuevas (el CSS del tema se compila
-      aparte).
+      Mascota de escritorio: markup original (commit 33f8279), restaurado tal
+      cual. Anclada a la esquina superior derecha de toda la seccion, no del
+      listado -separada a proposito del bloque movil de abajo, porque cada una
+      necesita su propio punto de referencia y su propio offset vertical; no
+      comparten mecanismo aunque sean la misma imagen.
     {% endcomment %}
     {% if section.settings.image1 %}
-      <div class="faq-section__mascot" style="margin-top: {{ padding_top }}px;">
+      <div class="hidden md:block absolute top-0 right-0 pointer-events-none" style="width: 220px; margin-top: 50px; z-index: 2;">
         <img
           src="{{ section.settings.image1 | image_url: width: target_w }}"
           alt=""
@@ -60,7 +59,28 @@
       </p>
     </div>
 
-    <div class="faq-section__list w-full text-left">
+    <div class="faq-section__list w-full text-left" style="position: relative;">
+      {% comment %}
+        Mascota de movil: separada de la de escritorio (ver arriba). Esta va
+        md:hidden, anclada a la esquina superior derecha del LISTADO, no de
+        toda la seccion -el titulo usa text-[8vw] y crece con el ancho de
+        pantalla, asi que anclarla contra el inicio de la seccion la hacia
+        caer encima del subtitulo en pantallas angostas. "Arriba" aqui es
+        literalmente donde arranca la primera pregunta. padding_top sigue
+        siendo configurable: es cuanto se mete hacia abajo desde ese punto
+        (negativo = sube y se asoma sobre el borde de la primera tarjeta).
+      {% endcomment %}
+      {% if section.settings.image1 %}
+        <div class="md:hidden faq-section__mascot" style="margin-top: {{ padding_top }}px;">
+          <img
+            src="{{ section.settings.image1 | image_url: width: target_w }}"
+            alt=""
+            class="w-full object-contain"
+            width="{{ target_w }}"
+            height="{{ target_h }}"
+          >
+        </div>
+      {% endif %}
       {% for block in section.blocks %}
       <div class="faq-section__item w-full pb-5" {{ block.shopify_attributes }}>
         <div
@@ -128,27 +148,28 @@
   }
 
   /*
-    Mascota: absoluta sobre la esquina superior derecha de todo el bloque
-    (titulo + listado), igual en movil que en escritorio. Se superpone sobre
-    el borde superior de la primera pregunta, nunca metida dentro de una
-    tarjeta, y no depende de cuantas preguntas haya porque no esta anclada a
-    ningun item puntual. pointer-events: none para no robarle el clic al
-    acordeon.
+    Mascota de movil (la de escritorio es la original: inline style, sin esta
+    clase). Absoluta sobre la esquina superior derecha del LISTADO -no de toda
+    la seccion- para que no dependa del alto que termine ocupando el titulo.
+
+    El listado mide 390px de viewport con 20px de margen a cada lado (medido
+    con getBoundingClientRect: el borde del listado cae en x=370). right:-20px
+    es el maximo que sangra hasta el borde de pantalla sin salirse: mas
+    negativo saca la mascota del viewport y la recorta o genera scroll
+    horizontal, porque la seccion no tiene overflow-hidden.
+
+    pointer-events: none para no robarle el clic al acordeon.
   */
   .faq-section__mascot {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -20px;
     width: 100px;
     pointer-events: none;
     z-index: 2;
   }
 
   @media (min-width: 768px) {
-    .faq-section__mascot {
-      width: 220px;
-    }
-
     .faq-section__wrap {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
@@ -261,8 +282,9 @@
     {
       "type": "number",
       "id": "margin_top_image",
-      "label": "Padding por deceto (px)",
-      "default": 50
+      "label": "Posicion vertical de la mascota (px)",
+      "info": "Se mide desde donde arranca la primera pregunta, no desde arriba de toda la seccion. Negativo la sube para que se asome sobre el borde de la tarjeta.",
+      "default": -58
     }
   ],
   "blocks": [

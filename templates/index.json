@@ -462,7 +462,7 @@
         "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image_alignment": "right",
-        "margin_top_image": 50
+        "margin_top_image": -58
       }
     }
   },

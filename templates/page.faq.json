@@ -70,7 +70,7 @@
         "id_section": "#faq",
         "image1": "shopify://shop_images/mono_sentado.png",
         "image_alignment": "right",
-        "margin_top_image": 50
+        "margin_top_image": -58
       }
     }
   },
