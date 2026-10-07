@@ -23,7 +23,7 @@
 %}
 <div class="w-full overflow-x-auto md:py-10 py-5 md:pt-30">
     <div class="md:block flex w-full md:justify-left justify-center md:pl-20">
-      <h2 class="py-10 text-black text-[7vw] md:text-[3.4vw] 
+      <h2 class="why-title py-10 text-black text-[7vw] md:text-[3.4vw] 
         font-bricolage font-semibold leading-[1.1] md:text-left text-center">
         {{ section.settings.title | newline_to_br
          | replace: 'Vibbo', '<span class=" uppercase font-grafika font-normal  text-[6.5vw] md:text-[3.4vw]">VIBBO</span>' }}
@@ -107,6 +107,13 @@
     })();
 </script>
 {% endif %}
+
+<style>
+  /* Mobile: el titulo tenia 60px de aire arriba (py-5 + py-10) */
+  @media (max-width: 767px) {
+    .why-title { padding-top: 12px; padding-bottom: 24px; }
+  }
+</style>
 
 {% schema %}
 {

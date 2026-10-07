@@ -13,7 +13,7 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
 
   <!-- CONTENIDO -->
   <div class="w-full h-full flex justify-center items-center">
-      <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 pt-5 md:pb-10">
+      <div class="universe-grid grid grid-cols-1 md:grid-cols-3 w-full gap-5 p-5 md:px-20 pt-5 md:pb-10">
 
         {% for block in section.blocks %}
           <div class="relative w-full aspect-square md:aspect-5/7 overflow-hidden rounded-2xl">
@@ -55,6 +55,13 @@ style="width: 100vw; margin-left: calc(50% - 50vw);"
   </div>
 
 </div>
+<style>
+  /* Mobile: mismo aire arriba que el que deja el carrusel de productos encima (40px) */
+  @media (max-width: 767px) {
+    .universe-grid { padding-top: 40px; }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Section Universe",

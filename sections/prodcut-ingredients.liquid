@@ -1,5 +1,5 @@
 <div
-  class="w-full xl:py-10 py-15 {% if section.settings.imagen2 or section.settings.imagen3 %}xl:pb-40 pb-25{% else %}xl:pb-16 pb-12{% endif %} overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
+  class="ingredients-section w-full xl:py-10 py-15 {% if section.settings.imagen2 or section.settings.imagen3 %}xl:pb-40 pb-25{% else %}xl:pb-16 pb-12{% endif %} overflow-hidden bg-[#F5F5F5] relative flex flex-col items-center justify-center"
   style="width: 100vw; margin-left: calc(50% - 50vw);"
 >
 
@@ -12,11 +12,12 @@
   {% endif %}
 
   <!-- WRAPPER DEL CARRUSEL -->
-  <div class="relative w-full overflow-visible flex items-center">
+  <div class="relative w-full overflow-visible flex items-center" data-snap-slider data-snap-loop data-snap-focus>
 
     <!-- Botón Prev -->
     <button
-      onclick="ingredientsPrev()"
+      type="button"
+      data-snap-prev
       class="absolute left-2 md:left-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
       aria-label="Anterior"
     >
@@ -27,11 +28,11 @@
       </svg>
     </button>
 
-    <!-- TRACK QUE SE MUEVE -->
-    <div id="ingredientsTrack" class="flex md:gap-10 gap-8 animate-infinite-scroll items-center">
-      {% for i in (1..4) %}
+    <!-- TRACK: scroll manual (dedo o flechas), 3 copias para el loop -->
+    <div class="snap-track flex md:gap-10 gap-8 items-center" data-snap-track>
+      {% for i in (1..3) %}
           {% for block in section.blocks %}
-          <div class="ingredient-card md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white
+          <div {% if i != 2 %}aria-hidden="true" {% endif %}class="ingredient-card md:min-w-[20vw] min-w-[60vw] xs:min-h-[45vw] w-full bg-white
             rounded-xl flex flex-col items-center justify-center card-focus
             {% if block.settings.title == 'Raisins' %}card-raisins{% endif %}">
             <div class="md:h-[18vw] h-[50vw] items-center justify-center flex">
@@ -55,7 +56,8 @@
 
     <!-- Botón Next -->
     <button
-      onclick="ingredientsNext()"
+      type="button"
+      data-snap-next
       class="absolute right-2 md:right-6 z-10 hover:opacity-70 transition-opacity scale-75 md:scale-90"
       aria-label="Siguiente"
     >
@@ -83,7 +85,7 @@
   </div>
 {% endif %}
 {% if section.settings.imagen2 %}
-  <div class="absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
+  <div class="ingredients-leaf absolute md:left-0 bottom-0 md:translate-y-[25vw] translate-y-[45vw] md:-translate-x-15 -translate-x-20 transform">
     <img
       src="{{ section.settings.imagen2 | image_url: width: 1000 }}"
       alt="{{ section.settings.imagen2.alt | escape }}"
@@ -106,18 +108,28 @@
 {% endif %}
 
 <style>
-  @keyframes infinite-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  {%- unless section.settings.imagen2 or section.settings.imagen3 %}
+  /* Mobile: el aire de abajo ya lo da el padding del slider; sin esto quedaba
+     casi el doble de espacio bajo las tarjetas que sobre el titulo. */
+  /* y menos aire arriba y entre titulo y tarjetas */
+  @media (max-width: 767px) {
+    .ingredients-section { padding-top: 40px; padding-bottom: 0; }
+    .ingredients-section h2 { padding-bottom: 24px; }
   }
-
-  .animate-infinite-scroll {
-    display: flex;
-    animation: infinite-scroll var(--scroll-duration, 60s) var(--scroll-delay, 0s) linear infinite;
+  {%- else %}
+  /* Con ilustraciones (paginas de producto): mismo ajuste de arriba. La hoja
+     inferior va encima de las tarjetas, asi que abajo ya no hace falta reservarle
+     espacio. */
+  @media (max-width: 767px) {
+    .ingredients-section { padding-top: 40px; padding-bottom: 8px; }
+    .ingredients-section h2 { padding-bottom: 24px; }
   }
+  {%- endunless %}
 
-  .animate-infinite-scroll:hover {
-    animation-play-state: paused;
+  @media (max-width: 767px) {
+    /* La hoja va encima de las tarjetas, montada sobre la esquina inferior
+       izquierda (asi lo pidio el cliente). Los toques pasan a traves. */
+    .ingredients-leaf { z-index: 20; pointer-events: none; bottom: -50px; }
   }
 
   .card-focus {
@@ -144,110 +156,7 @@
   }
 </style>
 
-<script>
-  function detectCenterCard() {
-    const cards = document.querySelectorAll('.card-focus');
-    const viewportCenter = window.innerWidth / 2;
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const distance = Math.abs(viewportCenter - cardCenter);
-      const activationRange = rect.width * 0.25;
-      if (distance < activationRange) {
-        card.classList.add('is-center');
-      } else {
-        card.classList.remove('is-center');
-      }
-    });
-    requestAnimationFrame(detectCenterCard);
-  }
-
-  requestAnimationFrame(detectCenterCard);
-</script>
-
-<script>
-  function setInfiniteScrollSpeed() {
-    const track = document.getElementById('ingredientsTrack');
-    if (!track) return;
-
-    requestAnimationFrame(() => {
-      const half = track.scrollWidth / 2;
-      if (!half) return;
-
-      // El ajuste esta en segundos que tarda la tira en avanzar el ancho de una
-      // pantalla. Referido al viewport, la velocidad percibida es la misma en
-      // un movil que en un monitor grande.
-      const secondsPerScreen = {{ section.settings.scroll_seconds | default: 34 }};
-      const screen = window.innerWidth || 1440;
-      const speed = screen / secondsPerScreen; // px por segundo
-      const duration = half / speed;
-
-      // Reiniciar la animacion la manda al inicio de la tira, asi que solo se
-      // hace cuando la duracion cambia de verdad. Sin esto, el observador de
-      // abajo produciria un salto visible cada vez que carga una imagen.
-      const prev = parseFloat(track.style.getPropertyValue('--scroll-duration'));
-      if (prev && Math.abs(prev - duration) < 0.5) return;
-
-      track.style.animation = 'none';
-      track.offsetHeight;
-      track.style.setProperty('--scroll-duration', `${duration}s`);
-      track.style.setProperty('--scroll-delay', '0s');
-      track.style.animation = '';
-    });
-  }
-
-  // Se llama de inmediato y no solo en `load`: el editor de temas re-renderiza
-  // la seccion sin volver a disparar ese evento, y sin esta llamada la duracion
-  // se quedaba en el valor por defecto del CSS. Movias el control y no pasaba
-  // nada hasta recargar la pagina entera.
-  setInfiniteScrollSpeed();
-  window.addEventListener('load', setInfiniteScrollSpeed);
-  window.addEventListener('resize', setInfiniteScrollSpeed);
-  document.addEventListener('shopify:section:load', setInfiniteScrollSpeed);
-
-  // El ancho de la tira crece cuando terminan de cargar las imagenes y las
-  // tipografias, y de eso depende el calculo.
-  if (window.ResizeObserver) {
-    const observed = document.getElementById('ingredientsTrack');
-    if (observed) new ResizeObserver(setInfiniteScrollSpeed).observe(observed);
-  }
-</script>
-
-<script>
-  function getIngredientCardStep() {
-    const card = document.querySelector('.ingredient-card');
-    if (!card) return 200;
-    const gap = window.innerWidth >= 768 ? 40 : 32;
-    return card.offsetWidth + gap;
-  }
-
-  function jumpIngredients(direction) {
-    const track = document.getElementById('ingredientsTrack');
-    if (!track) return;
-
-    const matrix = new DOMMatrix(getComputedStyle(track).transform);
-    const currentX = matrix.m41;
-    const half = track.scrollWidth / 2;
-    const cardStep = getIngredientCardStep();
-
-    let targetX = currentX - direction * cardStep;
-    if (targetX > 0) targetX -= half;
-    if (targetX < -half) targetX += half;
-
-    const durationStr = getComputedStyle(track).getPropertyValue('--scroll-duration').trim();
-    const duration = parseFloat(durationStr) || (half / 120);
-    const progress = Math.abs(targetX) / half;
-    const newDelay = -(progress * duration);
-
-    track.style.animation = 'none';
-    track.offsetHeight;
-    track.style.setProperty('--scroll-delay', `${newDelay}s`);
-    track.style.animation = '';
-  }
-
-  window.ingredientsNext = function () { jumpIngredients(1); };
-  window.ingredientsPrev = function () { jumpIngredients(-1); };
-</script>
+{% render 'snap-slider' %}
 
 {% schema %}
 {
@@ -258,17 +167,6 @@
       "id": "title",
       "label": "Title",
       "default": "Product Ingredients"
-    },
-    {
-      "type": "range",
-      "id": "scroll_seconds",
-      "label": "Tiempo para leer",
-      "info": "Segundos que tarda la tira en recorrer el ancho de una pantalla. Mas alto = se mueve mas despacio y da mas tiempo de leer cada ingrediente. No afecta la calidad de las imagenes.",
-      "min": 8,
-      "max": 60,
-      "step": 1,
-      "unit": "s",
-      "default": 34
     },
     {
       "type": "image_picker",

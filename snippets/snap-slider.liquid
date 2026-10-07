@@ -1,0 +1,35 @@
+{%- comment -%}
+  Estilos y script compartidos de los sliders manuales (ingredientes, reviews,
+  productos). Ver assets/snap-slider.js para el markup esperado.
+
+  La tarjeta mide 60vw en movil y 20vw desde md. Un track puede cambiar ese
+  ancho con --snap-card / --snap-card-md.
+{%- endcomment -%}
+<style>
+  /* Scroll manual: swipe nativo + snap. Sin animacion automatica. */
+  .snap-track {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* aire para que la tarjeta central escalada no se corte */
+    padding-block: var(--snap-pad, 3rem);
+  }
+  .snap-track::-webkit-scrollbar { display: none; }
+  @media (max-width: 767px) {
+    /* en movil la tarjeta central crece ~35px por lado; 40px le alcanzan */
+    .snap-track { padding-block: var(--snap-pad, 2.5rem); }
+  }
+  /* ancho fijo de tarjeta: el w-full del markup no aplica dentro del track */
+  .snap-track > * {
+    flex: 0 0 var(--snap-card, 60vw);
+    scroll-snap-align: var(--snap-align, center);
+  }
+  @media (min-width: 768px) {
+    .snap-track > * { flex-basis: var(--snap-card-md, 20vw); }
+  }
+</style>
+<script src="{{ 'snap-slider.js' | asset_url }}" defer></script>

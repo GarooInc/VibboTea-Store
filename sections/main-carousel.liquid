@@ -34,19 +34,12 @@
 
 <section
   class="relative w-full  pt-4"
-  x-data="carousel({
-    autoplay: {{ section.settings.autoplay }},
-    interval: {{ section.settings.interval | default: 5000 }},
-    count: {{ products_count }}
-  })"
-  x-init="init()"
   aria-roledescription="carousel"
 >
   <!-- Desktop: 3 imágenes visibles -->
-  <div class="hidden md:block relative overflow-hidden py-8 ">
-    <div id="sliderTrack"
-      class="flex transition-transform duration-500 ease-out" 
-      :style="`transform: translateX(-${index * 33.33}%)`">
+  <div class="hidden md:block relative overflow-hidden py-8 " data-snap-slider>
+    <div class="snap-track flex" data-snap-track
+      style="--snap-card-md: 33.333%; --snap-align: start; --snap-pad: 0;">
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
           {% assign product_image_class = 'absolute inset-0 w-full h-full object-cover object-center' %}
@@ -149,14 +142,14 @@
 
     <!-- Flechas Desktop -->
     <div class="flex items-center justify-between absolute inset-0 px-6 pointer-events-none">
-      <button onclick="slidePrev()" class="-translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
+      <button type="button" data-snap-prev aria-label="Previous products" class="-translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
         {% render 'arrow-slidder2' %}
       </button>
 
       
       
 
-      <button onclick="slideNext()" class="translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
+      <button type="button" data-snap-next aria-label="Next products" class="translate-x-5 scale-120 pointer-events-auto hover:opacity-70 transition-opacity">
         {% render 'arrow-slidder' %}
       </button>
     </div>
@@ -164,12 +157,11 @@
   </div>
 
  <!-- Mobile: 1 imagen visible -->
-<div class="md:hidden relative ">
+<div class="md:hidden relative " data-snap-slider>
   <!-- Contenedor del carrusel -->
-  <div class="relative overflow-hidden h-[630px] ">
-      <div id="sliderTrackMobile"
-       class="flex transition-transform duration-1000 ease-out "
-       :style="`transform: translateX(-${index * 100}%)`" >
+  <div class="relative overflow-hidden" style="padding-bottom: 40px;">
+      <div class="snap-track flex" data-snap-track
+       style="--snap-card: 100%; --snap-align: start; --snap-pad: 0;">
       {% if coll %}
         {% for product in coll.products limit: section.settings.limit %}
           {% assign product_image_class = 'absolute inset-0 w-full h-full object-cover object-center' %}
@@ -258,13 +250,13 @@
 
 
 
-  <!-- Flechas Mobile -->
-  <div class="absolute inset-0 flex items-center justify-between pointer-events-none">
-    <button onclick="slidePrevMobile()" class="-translate-y-20 pointer-events-auto">
+  <!-- Flechas Mobile: centradas sobre la foto cuadrada (ancho de pantalla menos px-4) -->
+  <div class="absolute inset-x-0 top-0 flex items-center justify-between pointer-events-none" style="height: calc(100vw - 2rem);">
+    <button type="button" data-snap-prev aria-label="Previous product" class="pointer-events-auto">
       {% render 'arrow-slidder2' %}
     </button>
 
-    <button onclick="slideNextMobile()" class="-translate-y-20 pointer-events-auto">
+    <button type="button" data-snap-next aria-label="Next product" class="pointer-events-auto">
       {% render 'arrow-slidder' %}
     </button>
   </div>
@@ -275,98 +267,7 @@
 </section>
 
 
-<script>
-  let currentSlide = 0;
-  let autoplayTimer = null;
-
-  function getMaxIndex() {
-    const track = document.getElementById("sliderTrack");
-    if (!track) return 0;
-    const slides = track.children.length;
-    return Math.max(slides - 3, 0); // 3 visibles
-  }
-
-  function updateSlide() {
-    const track = document.getElementById("sliderTrack");
-    if (!track) return;
-    track.style.transform = `translateX(-${currentSlide * 33.33}%)`;
-  }
-
-  function slideNext() {
-    const maxIndex = getMaxIndex();
-    currentSlide = currentSlide >= maxIndex ? 0 : currentSlide + 1;
-    updateSlide();
-  }
-
-  function slidePrev() {
-    const maxIndex = getMaxIndex();
-    currentSlide = currentSlide <= 0 ? maxIndex : currentSlide - 1;
-    updateSlide();
-  }
-
-  function startAutoplay(interval) {
-    stopAutoplay();
-    autoplayTimer = setInterval(slideNext, interval);
-  }
-
-  function stopAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    {% if section.settings.autoplay %}
-      startAutoplay({{ section.settings.interval | default: 5000 }});
-    {% endif %}
-  });
-
-
-</script>
-
-<script>
-  let currentSlideMobile = 0;
-  let autoplayTimerMobile = null;
-
-  function getMaxIndexMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return 0;
-    return Math.max(track.children.length - 1, 0);
-  }
-
-  function updateSlideMobile() {
-    const track = document.getElementById("sliderTrackMobile");
-    if (!track) return;
-    track.style.transform = `translateX(-${currentSlideMobile * 100}%)`;
-  }
-
-  function slideNextMobile() {
-    const maxIndex = getMaxIndexMobile();
-    currentSlideMobile =
-      currentSlideMobile >= maxIndex ? 0 : currentSlideMobile + 1;
-    updateSlideMobile();
-  }
-
-  function slidePrevMobile() {
-    const maxIndex = getMaxIndexMobile();
-    currentSlideMobile =
-      currentSlideMobile <= 0 ? maxIndex : currentSlideMobile - 1;
-    updateSlideMobile();
-  }
-
-  function startAutoplayMobile(interval) {
-    stopAutoplayMobile();
-    autoplayTimerMobile = setInterval(slideNextMobile, interval);
-  }
-
-  function stopAutoplayMobile() {
-    if (autoplayTimerMobile) clearInterval(autoplayTimerMobile);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    {% if section.settings.autoplay %}
-      startAutoplayMobile({{ section.settings.interval | default: 5000 }});
-    {% endif %}
-  });
-</script>
+{% render 'snap-slider' %}
 
 
 {% schema %}
@@ -414,21 +315,6 @@
       "id": "limit",
       "label": "Número máximo de productos",
       "default": 12
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Autoplay",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "interval",
-      "label": "Intervalo (ms)",
-      "min": 2000,
-      "max": 9500,
-      "step": 500,
-      "default": 5000
     }
   ],
   

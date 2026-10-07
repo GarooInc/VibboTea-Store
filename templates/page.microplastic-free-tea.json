@@ -62,9 +62,7 @@
         "text_button_add": "SHOP ALL PRODUCTS",
         "redireccionamiento": true,
         "collection": "shop",
-        "limit": 12,
-        "autoplay": true,
-        "interval": 5000
+        "limit": 12
       }
     },
     "faq": {
