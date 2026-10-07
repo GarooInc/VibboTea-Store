@@ -53,6 +53,21 @@
       height: {{ section.settings.iframe_height }}px !important;
     }
   }
+
+  {%- comment -%}
+    Margen superior propio para mobile, opcional. Vacio hereda margin_top.
+    Existe porque el iframe de arriba (Airgoods) deja ~56px libres al final
+    solo en mobile -su contenido se apila distinto- y ese espacio no se puede
+    recortar sin cortarle el boton. El mismo margen se veia bien en desktop
+    y vacio en el celular. Lleva !important porque margin_top va inline.
+  {%- endcomment -%}
+  {% if section.settings.margin_top_mobile != blank %}
+    @media (max-width: 767px) {
+      #shopify-section-{{ section.id }} .embed-widget-section__content {
+        margin-top: {{ section.settings.margin_top_mobile }}px !important;
+      }
+    }
+  {% endif %}
 {% endstyle %}
 
 {% stylesheet %}
@@ -202,6 +217,12 @@
       "step": 5,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "number",
+      "id": "margin_top_mobile",
+      "label": "Top margin (mobile)",
+      "info": "Opcional. Vacio usa el Top margin de arriba. Solo aplica en pantallas menores a 768px."
     },
     {
       "type": "range",
