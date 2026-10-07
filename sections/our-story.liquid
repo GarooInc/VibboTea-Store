@@ -18,7 +18,10 @@
     /* En mobile, mostrar la imagen derecha ANTES de su texto para un orden visual limpio */
     .our-story-text-2 { order: 2 !important; }
     .our-story-img-right-wrap { order: 1 !important; margin-top: 0 !important; }
-    .deco-top-left-img { width: 140px !important; top: -45px !important; left: 10px !important; }
+    /* Fila 1: el titulo va arriba de la imagen; el resto del texto debajo */
+    .our-story-text-1 { display: contents; }
+    .our-story-text-1 .our-story-heading { order: -1; text-align: center; margin-top: 0.5rem; }
+    .deco-top-left-img { width: 140px !important; top: -55px !important; left: 0 !important; }
     .our-story-deco { width: 50px !important; }
     .our-story-deco-tr { top: auto !important; bottom: 0; width: 80px !important; }
   }
@@ -100,7 +103,7 @@
       </div>
 
       <!-- Heading + textos -->
-      <div class="flex flex-col justify-center gap-5">
+      <div class="flex flex-col justify-center gap-5 our-story-text-1">
         {% if section.settings.heading != blank %}
           <h2
             class="our-story-heading font-bricolage font-bold leading-none text-black"
