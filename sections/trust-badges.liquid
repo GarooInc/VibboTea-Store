@@ -70,8 +70,12 @@
   .trust-badges {
     width: 100%;
     background-color: var(--trust-badges-bg, #ffffff);
-    padding: 1.25rem;
-    margin: 1rem 0;
+    /* Movil: sin margen ni padding arriba. El FAQ que va justo encima ya
+       deja ~40px propios (su ultima pregunta + su padding inferior); sumado
+       a los 36px de la banda se leia como un hueco. Desktop tiene sus
+       propios valores en el media query de abajo. */
+    padding: 0 1.25rem 1.25rem;
+    margin: 0 0 1rem;
   }
 
   .trust-badges__inner {
@@ -97,9 +101,11 @@
     min-width: 0;
   }
 
+  /* Movil: 0.42 del tamano de desktop (~27px con 64). A 0.85 (~54px) el
+     icono pesaba mas que su etiqueta en pantalla chica. */
   .trust-badges__icon {
-    width: calc(var(--trust-badges-icon, 64px) * 0.85);
-    height: calc(var(--trust-badges-icon, 64px) * 0.85);
+    width: calc(var(--trust-badges-icon, 64px) * 0.42);
+    height: calc(var(--trust-badges-icon, 64px) * 0.42);
     flex-shrink: 0;
     display: block;
     object-fit: contain;
