@@ -61,9 +61,14 @@
 </section>
 
 <style>
+  /*
+    El topbar y el header son fixed y quedan encima del contenido.
+    --header-offset lo define sections/header.liquid (topbar + header + 24px)
+    y ya cambia entre movil y escritorio.
+  */
   .ingredients-pdf {
     background: #fff;
-    padding: 2.5rem 1.25rem 3rem;
+    padding: calc(var(--header-offset, 110px) + 1rem) 1.25rem 3rem;
   }
 
   .ingredients-pdf__inner {
@@ -153,7 +158,7 @@
 
   @media (min-width: 768px) {
     .ingredients-pdf {
-      padding: 3.5rem 2rem 4.5rem;
+      padding: calc(var(--header-offset, 110px) + 1.5rem) 2rem 4.5rem;
     }
 
     .ingredients-pdf__title {
