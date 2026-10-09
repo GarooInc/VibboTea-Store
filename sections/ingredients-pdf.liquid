@@ -4,8 +4,10 @@
   se pega en el setting "pdf_url".
 
   En iOS y en la mayoria de navegadores moviles el <iframe> de un PDF solo
-  pinta la primera pagina (o nada), asi que en movil se oculta el visor y se
-  muestran los botones de abrir/descargar a pantalla completa.
+  pinta la primera pagina (o nada), asi que en movil el iframe se oculta y las
+  paginas se dibujan en <canvas> con PDF.js. Cada pagina se pinta al acercarse
+  al viewport: el PDF pesa ~12MB y pintarlo entero de golpe congela el telefono.
+  Funciona porque cdn.shopify.com responde con access-control-allow-origin: *.
 
   CSS propio en lugar de clases Tailwind nuevas: una clase que no exista ya en
   application.css no hace nada sin regenerar y commitear el CSS.
@@ -51,6 +53,10 @@
           title="{{ section.settings.title | default: page.title | escape }}"
           loading="lazy"
         ></iframe>
+      </div>
+
+      <div class="ingredients-pdf__mobile" data-ingredients-pdf="{{ pdf_url }}">
+        <p class="ingredients-pdf__loading font-bricolage">Loading preview…</p>
       </div>
     {%- elsif request.design_mode -%}
       <p class="ingredients-pdf__empty">
@@ -143,9 +149,39 @@
     border: 1.5px solid #000;
   }
 
-  /* En movil el visor no sirve (ver comentario arriba): solo botones. */
+  /* En movil el iframe no sirve (ver comentario arriba): se usa el de PDF.js. */
   .ingredients-pdf__viewer {
     display: none;
+  }
+
+  .ingredients-pdf__mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    background: #F5F5F5;
+    border: 1px solid #EBEBEB;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .ingredients-pdf__page {
+    width: 100%;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .ingredients-pdf__page canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ingredients-pdf__loading {
+    text-align: center;
+    color: #575757;
+    padding: 2rem 0;
   }
 
   .ingredients-pdf__empty {
@@ -176,6 +212,10 @@
       margin-bottom: 2rem;
     }
 
+    .ingredients-pdf__mobile {
+      display: none;
+    }
+
     .ingredients-pdf__viewer {
       display: block;
       background: #F5F5F5;
@@ -196,6 +236,70 @@
     }
   }
 </style>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-ingredients-pdf]');
+    if (!root || !window.matchMedia('(max-width: 767px)').matches) return;
+
+    var PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+    var script = document.createElement('script');
+    script.src = PDFJS + 'pdf.min.js';
+    script.onload = start;
+    script.onerror = fail;
+    document.head.appendChild(script);
+
+    function fail() {
+      root.innerHTML = '';
+      root.style.display = 'none';
+    }
+
+    function start() {
+      var pdfjs = window.pdfjsLib;
+      pdfjs.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js';
+
+      pdfjs.getDocument({ url: root.dataset.ingredientsPdf, disableAutoFetch: true }).promise.then(function (pdf) {
+        return pdf.getPage(1).then(function (first) {
+          // Todas las paginas reservan el alto de la primera para que el
+          // scroll no salte mientras se van pintando.
+          var base = first.getViewport({ scale: 1 });
+          root.innerHTML = '';
+
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              observer.unobserve(entry.target);
+              render(pdf, entry.target);
+            });
+          }, { rootMargin: '600px 0px' });
+
+          for (var i = 1; i <= pdf.numPages; i++) {
+            var page = document.createElement('div');
+            page.className = 'ingredients-pdf__page';
+            page.dataset.page = i;
+            page.style.aspectRatio = base.width + ' / ' + base.height;
+            root.appendChild(page);
+            observer.observe(page);
+          }
+        });
+      }).catch(fail);
+    }
+
+    function render(pdf, holder) {
+      pdf.getPage(Number(holder.dataset.page)).then(function (page) {
+        var ratio = Math.min(window.devicePixelRatio || 1, 2);
+        var unscaled = page.getViewport({ scale: 1 });
+        var viewport = page.getViewport({ scale: (holder.clientWidth / unscaled.width) * ratio });
+        var canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        holder.style.aspectRatio = unscaled.width + ' / ' + unscaled.height;
+        holder.appendChild(canvas);
+        page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport });
+      });
+    }
+  })();
+</script>
 
 {% schema %}
 {
