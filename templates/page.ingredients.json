@@ -4,9 +4,9 @@
       "type": "ingredients-pdf",
       "settings": {
         "pdf_url": "https://cdn.shopify.com/s/files/1/0751/5966/6915/files/This_is_VIBBO_11.pdf",
-        "eyebrow": "100% from Guatemala",
+        "eyebrow": "",
         "title": "Our Ingredients",
-        "text": "<p>Everything that goes into your cup, no secrets. Real, natural ingredients, fully traceable from the soil to your steep.</p>",
+        "text": "",
         "open_label": "Open full PDF",
         "download_label": "Download PDF"
       }
