@@ -1,0 +1,243 @@
+{%- comment -%}
+  Pagina de ingredientes: muestra el PDF dentro del sitio para que el visitante
+  no salga a la URL cruda del CDN. El PDF se sube en Content > Files y su URL
+  se pega en el setting "pdf_url".
+
+  En iOS y en la mayoria de navegadores moviles el <iframe> de un PDF solo
+  pinta la primera pagina (o nada), asi que en movil se oculta el visor y se
+  muestran los botones de abrir/descargar a pantalla completa.
+
+  CSS propio en lugar de clases Tailwind nuevas: una clase que no exista ya en
+  application.css no hace nada sin regenerar y commitear el CSS.
+{%- endcomment -%}
+{%- assign pdf_url = section.settings.pdf_url -%}
+
+<section class="ingredients-pdf" id="ingredients">
+  <div class="ingredients-pdf__inner">
+    <div class="ingredients-pdf__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ingredients-pdf__eyebrow font-bricolage">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="ingredients-pdf__title font-bricolage">
+        {{ section.settings.title | default: page.title }}
+      </h1>
+      {%- if section.settings.text != blank -%}
+        <div class="ingredients-pdf__text font-bricolage">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if pdf_url != blank -%}
+      <div class="ingredients-pdf__actions">
+        <a
+          href="{{ pdf_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ingredients-pdf__btn ingredients-pdf__btn--primary font-bricolage"
+        >
+          {{ section.settings.open_label }}
+        </a>
+        <a
+          href="{{ pdf_url }}"
+          download
+          class="ingredients-pdf__btn ingredients-pdf__btn--secondary font-bricolage"
+        >
+          {{ section.settings.download_label }}
+        </a>
+      </div>
+
+      <div class="ingredients-pdf__viewer">
+        <iframe
+          src="{{ pdf_url }}#view=FitH&toolbar=1&navpanes=0"
+          title="{{ section.settings.title | default: page.title | escape }}"
+          loading="lazy"
+        ></iframe>
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="ingredients-pdf__empty">
+        Pega la URL del PDF (Content &gt; Files) en los ajustes de esta seccion.
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .ingredients-pdf {
+    background: #fff;
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .ingredients-pdf__inner {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .ingredients-pdf__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .ingredients-pdf__eyebrow {
+    display: inline-block;
+    background: #FFCD51;
+    color: #1D1D1B;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .ingredients-pdf__title {
+    color: #000;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .ingredients-pdf__text {
+    color: #575757;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .ingredients-pdf__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .ingredients-pdf__btn {
+    display: block;
+    text-align: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .ingredients-pdf__btn:hover {
+    opacity: 0.8;
+  }
+
+  .ingredients-pdf__btn--primary {
+    background: #000;
+    color: #fff;
+  }
+
+  .ingredients-pdf__btn--secondary {
+    background: #fff;
+    color: #000;
+    border: 1.5px solid #000;
+  }
+
+  /* En movil el visor no sirve (ver comentario arriba): solo botones. */
+  .ingredients-pdf__viewer {
+    display: none;
+  }
+
+  .ingredients-pdf__empty {
+    text-align: center;
+    color: #575757;
+    border: 1px dashed #c7c7c7;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .ingredients-pdf {
+      padding: 3.5rem 2rem 4.5rem;
+    }
+
+    .ingredients-pdf__title {
+      font-size: 3.25rem;
+    }
+
+    .ingredients-pdf__text {
+      font-size: 1.2rem;
+    }
+
+    .ingredients-pdf__actions {
+      flex-direction: row;
+      justify-content: center;
+      max-width: none;
+      margin-bottom: 2rem;
+    }
+
+    .ingredients-pdf__viewer {
+      display: block;
+      background: #F5F5F5;
+      border: 1px solid #EBEBEB;
+      border-radius: 1.25rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .ingredients-pdf__viewer iframe {
+      display: block;
+      width: 100%;
+      height: 85vh;
+      min-height: 640px;
+      border: 0;
+      border-radius: 0.75rem;
+      background: #fff;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Ingredients PDF",
+  "settings": [
+    {
+      "type": "url",
+      "id": "pdf_url",
+      "label": "URL del PDF",
+      "info": "Sube el PDF en Content > Files y pega aqui su URL."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etiqueta superior",
+      "default": "100% from Guatemala"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo (H1)",
+      "info": "Si se deja vacio usa el titulo de la pagina.",
+      "default": "Our Ingredients"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Everything that goes into your cup, no secrets. Real, natural ingredients, fully traceable from the soil to your steep.</p>"
+    },
+    {
+      "type": "text",
+      "id": "open_label",
+      "label": "Texto del boton abrir",
+      "default": "Open full PDF"
+    },
+    {
+      "type": "text",
+      "id": "download_label",
+      "label": "Texto del boton descargar",
+      "default": "Download PDF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients PDF"
+    }
+  ]
+}
+{% endschema %}
