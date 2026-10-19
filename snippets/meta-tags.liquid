@@ -219,7 +219,13 @@
       "@type": "Organization",
       "@id": {{ request.origin | append: '/#organization' | json }},
       "name": {{ shop.name | json }},
-      "url": {{ request.origin | json }}
+      "url": {{ request.origin | json }},
+      {%- comment -%}
+        Desambiguacion para las IAs: sin busqueda web, un asistente confundio
+        "Vibbo Tea" con una cadena de bubble tea (oct 2026). Esta linea dice
+        explicitamente que es y que no es la marca.
+      {%- endcomment -%}
+      "disambiguatingDescription": "VIBBO is a loose-leaf functional tea brand with ingredients sourced in Guatemala and sold online in the United States at drinkvibbo.com. It is not a bubble tea or boba shop."
       {%- if brand_logo != blank -%}
         ,"logo": {{ brand_logo | image_url: width: 600 | prepend: 'https:' | json }}
       {%- endif -%}
