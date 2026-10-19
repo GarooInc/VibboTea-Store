@@ -81,6 +81,46 @@
     {{ product | structured_data }}
   </script>
 
+  {%- comment -%}
+    Datos de la etiqueta (metafields seo_facts.*, cargados en el admin) para
+    Google y los buscadores con IA. No se muestran en la pagina: el cliente no
+    aprueba cambios visibles, asi que esto suma contexto sin tocar textos.
+    Mismo @id que el Product de structured_data y de Judge.me, para que Google
+    los una en un solo producto en vez de verlos como tres.
+  {%- endcomment -%}
+  {%- assign facts = product.metafields.seo_facts -%}
+  {%- if facts.ingredients != blank -%}
+    {%- assign net_weight = facts.net_weight.value -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "@id": {{ '/products/' | append: product.handle | append: '#product' | json }},
+        "countryOfOrigin": { "@type": "Country", "name": "Guatemala" },
+        {%- if net_weight -%}
+          "weight": {
+            "@type": "QuantitativeValue",
+            "value": {{ net_weight.value | json }},
+            "unitText": {{ net_weight.unit | json }}
+          },
+        {%- endif -%}
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Ingredients", "value": {{ facts.ingredients.value | json }} }
+          {%- if facts.caffeine != blank -%}
+            ,{ "@type": "PropertyValue", "name": "Caffeine", "value": {{ facts.caffeine.value | json }} }
+          {%- endif -%}
+          {%- if facts.servings != blank -%}
+            ,{ "@type": "PropertyValue", "name": "Servings per container", "value": {{ facts.servings.value | json }} }
+          {%- endif -%}
+          {%- if facts.calories != blank -%}
+            ,{ "@type": "PropertyValue", "name": "Calories per serving", "value": {{ facts.calories.value | json }} }
+          {%- endif -%}
+          ,{ "@type": "PropertyValue", "name": "Format", "value": "Loose-leaf tea with biodegradable tea bags" }
+        ]
+      }
+    </script>
+  {%- endif -%}
+
   <meta
     property="og:price:amount"
     content="{{ product.price | money_without_currency | strip_html }}"
