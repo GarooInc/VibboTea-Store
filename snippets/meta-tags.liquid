@@ -96,6 +96,16 @@
         "@context": "https://schema.org",
         "@type": "Product",
         "@id": {{ '/products/' | append: product.handle | append: '#product' | json }},
+        {%- comment -%}
+          Mismo nombre que manda structured_data (el Vendor, "Vibbo-tea") para
+          no contradecirlo; "VIBBO" va como nombre alterno, que es como la
+          gente conoce la marca.
+        {%- endcomment -%}
+        "brand": {
+          "@type": "Brand",
+          "name": {{ product.vendor | json }},
+          "alternateName": ["VIBBO", "VIBBO Tea"]
+        },
         "countryOfOrigin": { "@type": "Country", "name": "Guatemala" },
         {%- if net_weight -%}
           "weight": {
