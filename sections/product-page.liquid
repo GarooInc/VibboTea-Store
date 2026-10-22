@@ -366,12 +366,24 @@
         <!-- Variantes -->
         {% unless product.has_only_default_variant %}
           {% assign first_variant = product.selected_or_first_available_variant %}
-          <p class="font-bricolage md:text-lg text-sm pt-3">Quantity:</p>
+          {%- comment -%}
+            Dos formatos de variante: "Descuento / Gramos" (los packs de
+            Kickstarter, dos opciones) o una sola opcion como Size ("70 g",
+            "500 g"). Con una sola opcion la barra oscura muestra el tamano y
+            la parte de abajo el precio, en vez de quedar vacia.
+          {%- endcomment -%}
+          {% assign combo_variants = product.variants.first.title contains '/' %}
+          <p class="font-bricolage md:text-lg text-sm pt-3">{% if combo_variants %}Quantity{% else %}{{ product.options.first }}{% endif %}:</p>
           <div class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5">
             {% for variant in product.variants %}
-              {% assign parts = variant.title | split: '/' %}
-              {% assign descount = parts[0] | strip %}
-              {% assign cant = parts[1] | strip | remove: 'gr' | strip %}
+              {% if combo_variants %}
+                {% assign parts = variant.title | split: '/' %}
+                {% assign descount = parts[0] | strip %}
+                {% assign cant = parts[1] | strip | remove: 'gr' | strip %}
+              {% else %}
+                {% assign descount = variant.title %}
+                {% assign cant = variant.price | money %}
+              {% endif %}
 
               <div
                 class="variant-option rounded-xl w-full h-full flex flex-col
