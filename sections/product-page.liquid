@@ -226,6 +226,85 @@
           </h1>
 
 
+        <!-- Variantes -->
+        {%- comment -%}
+          Dos formatos de variante: "Descuento / Gramos" (los packs de
+          Kickstarter, dos opciones) o una sola opcion como Size ("70 g",
+          "500 g"). En modo kickstarter el selector va arriba de Purchase
+          Options (Appstle), con su misma letra; si no, debajo del precio.
+        {%- endcomment -%}
+        {% capture variant_picker %}
+          {% unless product.has_only_default_variant %}
+            {% assign first_variant = product.selected_or_first_available_variant %}
+            {% assign combo_variants = product.variants.first.title contains '/' %}
+            {% if combo_variants %}
+              <p class="font-bricolage md:text-lg text-sm pt-3">Quantity:</p>
+              <div class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5">
+            {% else %}
+              <p class="product-size-picker__label">{{ product.options.first }}</p>
+              {% assign size_cols = product.variants.size | at_most: 4 %}
+              <div class="product-size-picker" style="grid-template-columns: repeat({{ size_cols }}, minmax(0, 1fr));">
+            {% endif %}
+              {% for variant in product.variants %}
+                {% if combo_variants %}
+                  {% assign parts = variant.title | split: '/' %}
+                  {% assign descount = parts[0] | strip %}
+                  {% assign cant = parts[1] | strip | remove: 'gr' | strip %}
+                {% else %}
+                  {% assign descount = variant.title %}
+                  {% assign cant = variant.price | money %}
+                {% endif %}
+
+                <div
+                  class="variant-option rounded-xl w-full h-full flex flex-col
+                        cursor-pointer border border-gray-400
+                        transition-all duration-300 overflow-hidden
+                        {% if variant.id == first_variant.id %}ring-2 ring-black scale-105{% endif %}"
+                  data-variant-id="{{ variant.id }}"
+                  data-price="{{ variant.price | money }}"
+                  data-price-raw="{{ variant.price }}"
+                  data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% endif %}"
+                >
+                  <div class="variant-option__bar w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
+                    <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
+                      {{ descount }}
+                    </p>
+                  </div>
+                  <div class="flex-1 w-full flex items-center justify-center py-2">
+                    <p class="font-bricolage md:text-lg text-sm">{{ cant }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endunless %}
+        {% endcapture %}
+
+        <style>
+          .product-size-picker__label {
+            font-family: "Work Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #333;
+            margin: 16px 0 10px;
+          }
+          .product-size-picker {
+            display: grid;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 16px;
+          }
+          .product-size-picker .variant-option { text-align: center; }
+          .product-size-picker .variant-option__bar {
+            background-color: #e5e7eb;
+            height: 44px;
+          }
+          .product-size-picker .variant-option__bar p {
+            color: #333;
+            font-family: "Work Sans", sans-serif;
+            font-size: 16px;
+          }
+        </style>
+
         <div id="priceWrapper" class="py-2 flex flex-col gap-2 transition-all duration-300 w-full">
           {% if section.settings.kickstarter_price %}
             <div id="priceDisplay" class="flex items-center gap-4 transition-all duration-300">
@@ -314,6 +393,8 @@
               </div>
             {% endif %}
 
+            {{ variant_picker }}
+
             <div id="product-atc-anchor" class="w-full">
             {%- for block in section.blocks -%}
               {%- if block.type == '@app' -%}
@@ -363,49 +444,8 @@
           {% endif %}
         </div>
 
-        <!-- Variantes -->
-        {% unless product.has_only_default_variant %}
-          {% assign first_variant = product.selected_or_first_available_variant %}
-          {%- comment -%}
-            Dos formatos de variante: "Descuento / Gramos" (los packs de
-            Kickstarter, dos opciones) o una sola opcion como Size ("70 g",
-            "500 g"). Con una sola opcion la barra oscura muestra el tamano y
-            la parte de abajo el precio, en vez de quedar vacia.
-          {%- endcomment -%}
-          {% assign combo_variants = product.variants.first.title contains '/' %}
-          <p class="font-bricolage md:text-lg text-sm pt-3">{% if combo_variants %}Quantity{% else %}{{ product.options.first }}{% endif %}:</p>
-          <div class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5">
-            {% for variant in product.variants %}
-              {% if combo_variants %}
-                {% assign parts = variant.title | split: '/' %}
-                {% assign descount = parts[0] | strip %}
-                {% assign cant = parts[1] | strip | remove: 'gr' | strip %}
-              {% else %}
-                {% assign descount = variant.title %}
-                {% assign cant = variant.price | money %}
-              {% endif %}
-
-              <div
-                class="variant-option rounded-xl w-full h-full flex flex-col
-                      cursor-pointer border border-gray-400
-                      transition-all duration-300 overflow-hidden
-                      {% if variant.id == first_variant.id %}ring-2 ring-black scale-105{% endif %}"
-                data-variant-id="{{ variant.id }}"
-                data-price="{{ variant.price | money }}"
-                data-price-raw="{{ variant.price }}"
-                data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% endif %}"
-              >
-                <div class="w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
-                  <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
-                    {{ descount }}
-                  </p>
-                </div>
-                <div class="flex-1 w-full flex items-center justify-center py-2">
-                  <p class="font-bricolage md:text-lg text-sm">{{ cant }}</p>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
+        {% unless section.settings.kickstarter_price %}
+          {{ variant_picker }}
         {% endunless %}
       </div>
 
@@ -477,6 +517,14 @@
       // Actualizar form kickstarter
       const ksVariantInput = document.getElementById('kickstarterVariantId');
       if (ksVariantInput) ksVariantInput.value = option.dataset.variantId;
+
+      // Appstle (Purchase Options) escucha el change del input "id" para
+      // mostrar el precio de la variante elegida
+      const idInput = ksVariantInput || variantInput;
+      if (idInput) idInput.dispatchEvent(new Event('change', { bubbles: true }));
+      const url = new URL(window.location.href);
+      url.searchParams.set('variant', option.dataset.variantId);
+      history.replaceState(null, '', url);
 
       const priceDisplay = document.getElementById('priceDisplay');
       if (priceDisplay) {
