@@ -236,15 +236,26 @@
         {% capture variant_picker %}
           {% unless product.has_only_default_variant %}
             {% assign first_variant = product.selected_or_first_available_variant %}
-            {% assign combo_variants = product.variants.first.title contains '/' %}
+            {%- liquid
+              assign combo_variants = false
+              if product.variants.first.title contains '/'
+                assign combo_variants = true
+              endif
+              assign size_cols = product.variants.size | at_most: 4
+            -%}
             {% if combo_variants %}
               <p class="font-bricolage md:text-lg text-sm pt-3">Quantity:</p>
-              <div class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5">
             {% else %}
               <p class="product-size-picker__label">{{ product.options.first }}</p>
-              {% assign size_cols = product.variants.size | at_most: 4 %}
-              <div class="product-size-picker" style="grid-template-columns: repeat({{ size_cols }}, minmax(0, 1fr));">
             {% endif %}
+            <div
+              {% if combo_variants %}
+                class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5"
+              {% else %}
+                class="product-size-picker"
+                style="grid-template-columns: repeat({{ size_cols }}, minmax(0, 1fr));"
+              {% endif %}
+            >
               {% for variant in product.variants %}
                 {% if combo_variants %}
                   {% assign parts = variant.title | split: '/' %}
