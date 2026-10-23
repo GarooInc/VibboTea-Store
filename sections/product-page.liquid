@@ -241,7 +241,6 @@
               if product.variants.first.title contains '/'
                 assign combo_variants = true
               endif
-              assign size_cols = product.variants.size | at_most: 4
             -%}
             {% if combo_variants %}
               <p class="font-bricolage md:text-lg text-sm pt-3">Quantity:</p>
@@ -253,7 +252,6 @@
                 class="w-full grid grid-cols-4 md:gap-4 gap-3 pt-5"
               {% else %}
                 class="product-size-picker"
-                style="grid-template-columns: repeat({{ size_cols }}, minmax(0, 1fr));"
               {% endif %}
             >
               {% for variant in product.variants %}
@@ -299,21 +297,30 @@
             margin: 16px 0 10px;
           }
           .product-size-picker {
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
             gap: 12px;
-            width: 100%;
             margin-bottom: 16px;
           }
-          .product-size-picker .variant-option { text-align: center; }
+          /* Botones compactos; el seleccionado se marca solo con el borde (sin
+             agrandarse, que encimaba al de al lado) */
+          .product-size-picker .variant-option {
+            width: 120px;
+            height: auto;
+            text-align: center;
+            transform: none;
+            scale: none;
+          }
           .product-size-picker .variant-option__bar {
             background-color: #e5e7eb;
-            height: 44px;
+            height: 30px;
           }
-          .product-size-picker .variant-option__bar p {
+          .product-size-picker .variant-option p {
             color: #333;
             font-family: "Work Sans", sans-serif;
-            font-size: 16px;
+            font-size: 14px;
           }
+          .product-size-picker .variant-option > div:last-child { padding: 6px 0; }
         </style>
 
         <div id="priceWrapper" class="py-2 flex flex-col gap-2 transition-all duration-300 w-full">
