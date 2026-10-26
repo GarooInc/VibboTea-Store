@@ -274,6 +274,7 @@
                   data-price-raw="{{ variant.price }}"
                   data-compare="{% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% endif %}"
                   data-media-index="{% if variant.featured_media %}{{ variant.featured_media.position | minus: 1 }}{% else %}0{% endif %}"
+                  data-presentation="{% if variant.title contains '500' and section.settings.presentation_text_500 != blank %}{{ section.settings.presentation_text_500 | escape }}{% else %}{{ section.settings.presentation_text | escape }}{% endif %}"
                 >
                   <div class="variant-option__bar w-full bg-gray-800 flex items-center justify-center h-15 md:h-14">
                     <p class="font-bricolage md:text-md text-xs text-center text-white px-2 leading-tight">
@@ -401,9 +402,15 @@
               </div>
             {% endunless %}
 
+            {%- liquid
+              assign presentation_current = section.settings.presentation_text
+              if current_variant.title contains '500' and section.settings.presentation_text_500 != blank
+                assign presentation_current = section.settings.presentation_text_500
+              endif
+            -%}
             {% render 'product-details-accordion',
               ingredients: product_ingredients,
-              presentation: section.settings.presentation_text,
+              presentation: presentation_current,
               steeping: section.settings.steeping_instructions_text
             %}
 
@@ -547,6 +554,12 @@
       if (!Number.isNaN(mediaIndex)) {
         if (typeof desktopGoTo === 'function' && document.querySelector('.desktop-thumb')) desktopGoTo(mediaIndex);
         if (typeof goToSlide === 'function' && document.getElementById('sliderTrack')) goToSlide(mediaIndex);
+      }
+
+      // Texto de Presentation segun el tamano (70 g lata / 500 g bolsa)
+      const presentationEl = document.querySelector('[data-presentation-text]');
+      if (presentationEl && option.dataset.presentation) {
+        presentationEl.textContent = option.dataset.presentation;
       }
 
       const url = new URL(window.location.href);
@@ -1005,6 +1018,12 @@
       "type": "textarea",
       "id": "presentation_text",
       "label": "Presentation text"
+    },
+    {
+      "type": "textarea",
+      "id": "presentation_text_500",
+      "label": "Presentation text (500 g bag)",
+      "info": "Se muestra cuando el cliente elige la variante de 500 g"
     },
     {
       "type": "textarea",
