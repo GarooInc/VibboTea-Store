@@ -578,6 +578,9 @@
       const idInput = ksVariantInput || variantInput;
       if (idInput) idInput.dispatchEvent(new Event('change', { bubbles: true }));
       // Mostrar la foto de la variante (la bolsa en 500 g, la lata en 70 g)
+      // y que el carrusel de mobile ya no avance solo y la cambie
+      window.galleryAutoplayOff = true;
+      if (typeof stopAutoplay === 'function') stopAutoplay();
       const mediaIndex = Number(option.dataset.mediaIndex);
       if (!Number.isNaN(mediaIndex)) {
         if (typeof desktopGoTo === 'function' && document.querySelector('.desktop-thumb')) desktopGoTo(mediaIndex);
@@ -590,9 +593,6 @@
         presentationEl.textContent = option.dataset.presentation;
       }
 
-      const url = new URL(window.location.href);
-      url.searchParams.set('variant', option.dataset.variantId);
-      history.replaceState(null, '', url);
 
       const priceDisplay = document.getElementById('priceDisplay');
       if (priceDisplay) {
@@ -781,6 +781,9 @@
   }
 
   function startAutoplay() {
+    // Tras elegir un tamano el carrusel se queda en la foto de esa variante
+    if (window.galleryAutoplayOff) return;
+    clearInterval(autoplayInterval);
     autoplayInterval = setInterval(slideNext, {{ section.settings.gallery_seconds | default: 6 | times: 1000 }});
   }
 
@@ -847,6 +850,18 @@
   desktopThumbs.forEach((btn, i) => {
     btn.addEventListener('click', () => desktopGoTo(i));
   });
+
+  // Si la pagina abre con un tamano ya elegido (?variant=, p. ej. desde
+  // Google Shopping) mostrar su foto desde el inicio
+  (function() {
+    const selected = document.querySelector('.variant-option.ring-2');
+    const index = selected ? Number(selected.dataset.mediaIndex) : 0;
+    if (!index) return;
+    window.galleryAutoplayOff = true;
+    stopAutoplay();
+    if (desktopThumbs.length) desktopGoTo(index);
+    if (document.getElementById('sliderTrack')) goToSlide(index);
+  })();
 </script>
 
 {% stylesheet %}
