@@ -291,6 +291,27 @@
         {% endcapture %}
 
         <style>
+          /* Galeria siempre cuadrada: las fotos de las bolsas de 500 g son
+             verticales y estiraban la imagen principal. "contain" las muestra
+             completas sobre el mismo gris claro del fondo de la foto.
+             Solo en productos con tamanos: el Reset Bundle tiene fotos 4:5
+             que deben seguir viendose como antes. */
+          {% unless product.has_only_default_variant %}
+          #mainImageDesktop {
+            aspect-ratio: 1 / 1;
+            background-color: #f4f4f3;
+          }
+          #mainImageDesktop > img,
+          #mainImageDesktop > video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+          #sliderTrack img {
+            object-fit: contain;
+            background-color: #f4f4f3;
+          }
+          {% endunless %}
           .product-size-picker__label {
             font-family: "Work Sans", sans-serif;
             font-size: 16px;
