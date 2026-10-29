@@ -248,15 +248,6 @@
             "text": "Provides potassium, magnesium, and naturally derived fats from whole ingredients in a refreshing blend."
           }
         },
-        "ingredient_block_jxKxef": {
-          "type": "ingredient_block",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/bayas-sauco_1_9d735e7f-50ab-4f21-af76-0e1b2e8ad847.png",
-            "title": "Elderberry",
-            "text": "Anti-inflammatory, as well as being rich in antioxidants."
-          }
-        },
         "ingredient_block_gUR3Mc": {
           "type": "ingredient_block",
           "settings": {
@@ -297,7 +288,6 @@
         "ingredient_block_FFfHTV",
         "ingredient_block_p9aUGY",
         "ingredient_block_tGiAJf",
-        "ingredient_block_jxKxef",
         "ingredient_block_gUR3Mc",
         "ingredient_block_pLmmg7",
         "ingredient_block_cNRjp8",
