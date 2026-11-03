@@ -309,9 +309,26 @@
     border-radius: 1rem;
   }
 
+  /* Videos (YouTube/Vimeo) en proporcion 16:9: con min-height fijo salian
+     franjas negras enormes en celular */
   .article-page__content iframe {
     width: 100%;
-    min-height: 24rem;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  /* Videos subidos a Shopify (<video>): ancho completo, y los verticales sin
+     pasar del alto de la pantalla */
+  .article-page__content video {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    background-color: #000;
+  }
+
+  /* Videos verticales: agregar data-vertical al iframe en el HTML del post */
+  .article-page__content iframe[data-vertical] {
+    max-width: 22rem;
+    aspect-ratio: 9 / 16;
   }
 
   .article-page__content h2,
