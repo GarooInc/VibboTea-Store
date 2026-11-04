@@ -24,6 +24,7 @@
     "socials": {
       "type": "main-socials-section",
       "name": "Section socials",
+      "disabled": true,
       "settings": {
         "title": "See what else we’re brewing.",
         "text_socials": "Follow our socials, never miss a brew.",
