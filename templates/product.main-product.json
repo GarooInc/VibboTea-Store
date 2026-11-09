@@ -407,6 +407,18 @@
         "autoplay": true,
         "interval": 5000
       }
+    },
+    "bundle_reviews": {
+      "type": "bundle-reviews",
+      "settings": {
+        "title": "What people say about the teas inside",
+        "products": [
+          "hydra-boost-natural-energy",
+          "gut-bliss-natural-detox",
+          "chill-vibes-natural-relax"
+        ],
+        "reviews_per_product": 2
+      }
     }
   },
   "order": [
@@ -417,6 +429,7 @@
     "prodcut_ingredients_FXkDBr",
     "product_why_varios_DGAVp8",
     "1779810531dada62b1",
+    "bundle_reviews",
     "faq_7VfkjP",
     "main_section_slidder_jcDeBE"
   ]
