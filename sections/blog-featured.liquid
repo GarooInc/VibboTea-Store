@@ -119,6 +119,14 @@
     transition: transform 0.4s ease;
   }
 
+  /* En celular la foto va en su forma original: dentro del 16:9 una foto
+     cuadrada quedaba muy chica */
+  @media (max-width: 767px) {
+    .blog-featured__image {
+      aspect-ratio: auto;
+    }
+  }
+
   .blog-featured__hero:hover .blog-featured__image {
     transform: scale(1.03);
   }
