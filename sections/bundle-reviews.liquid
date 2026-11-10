@@ -1,0 +1,115 @@
+{%- comment -%}
+  Reseñas de los tés que trae un bundle. Shopify registra un bundle como sus
+  latas por separado, así que las reseñas llegan a cada lata y no al paquete.
+  Esta sección lee de Judge.me (metafields de cada producto elegido) el promedio
+  y algunas reseñas, y las muestra en la página del bundle. Solo es visual: no
+  agrega datos estructurados, porque Google no permite marcar reseñas de otro
+  producto como si fueran del bundle.
+{%- endcomment -%}
+
+{%- liquid
+  assign total_count = 0
+  assign weighted_sum = 0.0
+  for p in section.settings.products
+    assign p_count = p.metafields.reviews.rating_count.value | plus: 0
+    if p_count > 0
+      assign p_rating = p.metafields.reviews.rating.value.rating | plus: 0.0
+      assign weighted_sum = p_rating | times: p_count | plus: weighted_sum
+      assign total_count = total_count | plus: p_count
+    endif
+  endfor
+-%}
+
+{%- if total_count > 0 -%}
+  {%- liquid
+    assign average = weighted_sum | divided_by: total_count | round: 1
+    assign average_stars = average | round
+    assign per_product = section.settings.reviews_per_product
+  -%}
+  <style>
+    .bundle-reviews { background: #F5F5F5; padding: 3.5rem 1rem; }
+    .bundle-reviews__inner { max-width: 1200px; margin: 0 auto; }
+    .bundle-reviews__title { text-align: center; font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.15; }
+    .bundle-reviews__summary {
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      margin: 1rem 0 2.5rem; flex-wrap: wrap; text-align: center; color: #333;
+    }
+    .bundle-reviews__grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 768px) {
+      .bundle-reviews__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    }
+    .bundle-reviews__card {
+      background: #fff; border-radius: 1rem; padding: 1.5rem;
+      display: flex; flex-direction: column; gap: .75rem;
+    }
+    .bundle-reviews__body { color: #1f1f1f; font-size: .95rem; line-height: 1.5; flex: 1; }
+    .bundle-reviews__meta { font-size: .85rem; color: #5f6368; }
+    .bundle-reviews__meta strong { color: #1f1f1f; font-weight: 600; }
+  </style>
+
+  <section class="bundle-reviews" {{ section.shopify_attributes }}>
+    <div class="bundle-reviews__inner">
+      {%- if section.settings.title != blank -%}
+        <h2 class="bundle-reviews__title font-bricolage">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      <div class="bundle-reviews__summary font-bricolage">
+        {% render 'star-rating', rating: average_stars, size_class: 'w-5 h-5' %}
+        <span><strong>{{ average }}</strong> / 5 · {{ total_count }} reviews</span>
+      </div>
+
+      <div class="bundle-reviews__grid">
+        {%- for p in section.settings.products -%}
+          {%- assign data = p.metafields.judgeme.review_widget_data.value -%}
+          {%- assign shown = 0 -%}
+          {%- for review in data.reviews -%}
+            {%- if shown >= per_product -%}{%- break -%}{%- endif -%}
+            {%- assign review_text = review.body | strip_html | strip -%}
+            {%- if review_text == blank or review.rating < 4 -%}{%- continue -%}{%- endif -%}
+            <article class="bundle-reviews__card">
+              {% render 'star-rating', rating: review.rating, size_class: 'w-4 h-4' %}
+              <p class="bundle-reviews__body font-bricolage">{{ review_text | truncatewords: 40 }}</p>
+              <p class="bundle-reviews__meta font-bricolage">
+                <strong>{{ review.reviewer_name }}</strong> · {{ p.title }}
+              </p>
+            </article>
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bundle reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What people say about the teas inside"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products in the bundle",
+      "info": "Muestra las reseñas de Judge.me de estos productos",
+      "limit": 6
+    },
+    {
+      "type": "range",
+      "id": "reviews_per_product",
+      "label": "Reviews per product",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    }
+  ],
+  "presets": [
+    { "name": "Bundle reviews" }
+  ]
+}
+{% endschema %}

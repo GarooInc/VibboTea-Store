@@ -32,7 +32,7 @@
       {% if featured.image %}
         <a class="blog-featured__media" href="{{ featured.url }}">
           {{ featured.image
-            | image_url: width: 1600, height: 900, crop: 'center'
+            | image_url: width: 1600
             | image_tag:
               loading: 'lazy',
               widths: '600, 900, 1200, 1600',
@@ -101,18 +101,21 @@
     gap: 1.5rem;
   }
 
+  /* La imagen se muestra completa (contain) dentro del 16:9: con cover y
+     crop las fotos cuadradas (p. ej. las 3 latas) se cortaban arriba y abajo.
+     Fondo blanco porque las fotos de producto tienen fondo blanco. */
   .blog-featured__media {
     display: block;
     overflow: hidden;
     border-radius: 1.25rem;
-    background-color: #f3f3f3;
+    background-color: #fff;
   }
 
   .blog-featured__image {
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.4s ease;
   }
 
