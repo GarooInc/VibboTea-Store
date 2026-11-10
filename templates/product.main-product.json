@@ -410,6 +410,7 @@
     },
     "bundle_reviews": {
       "type": "bundle-reviews",
+      "name": "Bundle reviews",
       "settings": {
         "title": "What people say about the teas inside",
         "products": [
