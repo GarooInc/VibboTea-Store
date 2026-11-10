@@ -17,6 +17,8 @@
       "type": "blog",
       "settings": {
         "heading": "More Articles",
+        "switcher_tag": "How to",
+        "switcher_main_label": "Vi-Blog",
         "articles_per_page": 12,
         "skip_latest_article": true
       }

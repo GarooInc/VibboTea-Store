@@ -46,7 +46,22 @@
         <h2 class="blog-listing__heading font-bricolage">{{ heading | escape }}</h2>
       {% endif %}
 
-      {% if blog.all_tags.size > 0 %}
+      {%- comment -%}
+        Con "switcher_tag" (p. ej. "How to") el menu de etiquetas se cambia por
+        dos botones como los de tamaño del producto: los posts con esa etiqueta
+        van en el segundo boton y todo lo demas en el primero (Vi-Blog).
+      {%- endcomment -%}
+      {% assign switcher_tag = section.settings.switcher_tag | strip %}
+      {% if switcher_tag != blank and current_tags == blank %}
+        <div class="blog-switcher" role="tablist" aria-label="{{ 'blog.tag_filter_label' | t }}">
+          <button type="button" role="tab" class="blog-switcher__option font-bricolage is-active" aria-selected="true" data-blog-group="main">
+            {{ section.settings.switcher_main_label | escape }}
+          </button>
+          <button type="button" role="tab" class="blog-switcher__option font-bricolage" aria-selected="false" data-blog-group="tagged">
+            {{ switcher_tag | escape }}
+          </button>
+        </div>
+      {% elsif blog.all_tags.size > 0 %}
         <nav class="blog-listing__tags" aria-label="{{ 'blog.tag_filter_label' | t }}">
           <a
             href="{{ blog.url }}"
@@ -73,12 +88,45 @@
           {% for article in blog.articles %}
             {% assign handle_token = ',' | append: article.handle | append: ',' %}
             {% unless excluded contains handle_token %}
-              <div class="blog-listing__item">
+              {%- liquid
+                assign article_group = 'main'
+                if switcher_tag != blank and article.tags contains switcher_tag
+                  assign article_group = 'tagged'
+                endif
+              -%}
+              <div
+                class="blog-listing__item"
+                data-blog-item="{{ article_group }}"
+                {% if switcher_tag != blank and current_tags == blank and article_group == 'tagged' %}hidden{% endif %}
+              >
                 {% render 'article-card', article: article, loading: 'lazy' %}
               </div>
             {% endunless %}
           {% endfor %}
         </div>
+
+        {% if switcher_tag != blank and current_tags == blank %}
+          <script>
+            (function () {
+              var root = document.currentScript.closest('.blog-listing');
+              var options = root.querySelectorAll('[data-blog-group]');
+              var items = root.querySelectorAll('[data-blog-item]');
+              options.forEach(function (option) {
+                option.addEventListener('click', function () {
+                  var group = option.dataset.blogGroup;
+                  options.forEach(function (o) {
+                    var active = o === option;
+                    o.classList.toggle('is-active', active);
+                    o.setAttribute('aria-selected', active ? 'true' : 'false');
+                  });
+                  items.forEach(function (item) {
+                    item.hidden = item.dataset.blogItem !== group;
+                  });
+                });
+              });
+            })();
+          </script>
+        {% endif %}
       {% endif %}
 
       {% if shown_count == 0 %}
@@ -158,6 +206,36 @@
     gap: 2rem 1.5rem;
   }
 
+  .blog-listing__item[hidden] {
+    display: none;
+  }
+
+  /* Mismo estilo que los botones de tamaño (70 g / 500 g) del producto */
+  .blog-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .blog-switcher__option {
+    width: 180px;
+    height: 46px;
+    border: 1px solid #9ca3af;
+    border-radius: 0.75rem;
+    background-color: #e5e7eb;
+    color: #333;
+    font-family: "Work Sans", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .blog-switcher__option.is-active {
+    box-shadow: 0 0 0 2px #000;
+  }
+
   .blog-listing__empty {
     margin: 0;
     font-size: 1rem;
@@ -225,6 +303,18 @@
       "id": "heading",
       "label": "t:labels.more_articles_heading",
       "default": "More Articles"
+    },
+    {
+      "type": "text",
+      "id": "switcher_tag",
+      "label": "Second button tag",
+      "info": "Etiqueta de los posts que van en el segundo boton (p. ej. How to). Vacio = menu de etiquetas normal."
+    },
+    {
+      "type": "text",
+      "id": "switcher_main_label",
+      "label": "First button label",
+      "default": "Vi-Blog"
     },
     {
       "type": "range",
