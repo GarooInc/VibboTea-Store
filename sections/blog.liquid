@@ -220,12 +220,40 @@
     margin-bottom: 2.5rem;
   }
 
-  /* Con el selector, los posts van uno debajo del otro, centrados */
+  /* Con el selector, los posts van uno debajo del otro. En computadora cada
+     post es horizontal (imagen a la izquierda, texto a la derecha) para usar
+     el ancho de la pantalla en vez de dejar los lados vacios. */
   .blog-listing__grid.blog-listing__grid--stacked {
     grid-template-columns: 1fr;
-    max-width: 46rem;
+    max-width: 72rem;
     margin: 0 auto;
-    gap: 3rem;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .blog-listing__grid--stacked .article-card {
+      flex-direction: row;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .blog-listing__grid--stacked .article-card__media {
+      flex: 0 0 45%;
+    }
+
+    .blog-listing__grid--stacked .article-card__body {
+      flex: 1;
+      padding-top: 0;
+    }
+
+    .blog-listing__grid--stacked .article-card__title {
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+    }
+  }
+
+  /* Menos aire entre el titulo del blog y los botones */
+  .blog-listing:has(.blog-switcher) {
+    padding-top: 0;
   }
 
   .blog-switcher__option {
