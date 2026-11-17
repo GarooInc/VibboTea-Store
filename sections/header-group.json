@@ -13,13 +13,14 @@
   "sections": {
     "header": {
       "type": "header",
+      "custom_css": [],
       "settings": {
         "show_topbar": true,
-        "hide_header_on_scroll": true,
         "isotipe": "shopify://shop_images/isotipo_black.png",
-        "topbar_announcement_text": "<p>Get your mystery discount</p>",
-        "topbar_announcement_text_2": "<p>Get your mystery discount</p>",
+        "topbar_announcement_text": "<p>BLACK FRIDAY IS HERE</p>",
+        "topbar_announcement_text_2": "<p>25% OFF Sitewide</p>",
         "topbar_link": "shopify://pages/newsletter",
+        "hide_header_on_scroll": true,
         "menu": "main-menu-1",
         "logo": "shopify://shop_images/Logotipo_Blanco_Vibbo.png",
         "logo_size_desktop": 120,
