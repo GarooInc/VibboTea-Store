@@ -51,8 +51,44 @@
         dos botones como los de tamaño del producto: los posts con esa etiqueta
         van en el segundo boton y todo lo demas en el primero (Vi-Blog).
       {%- endcomment -%}
-      {% assign switcher_tag = section.settings.switcher_tag | strip %}
-      {% if switcher_tag != blank and current_tags == blank %}
+      {%- comment -%}
+        Si hay blogs elegidos en "switcher_main_blog" / "switcher_tagged_blog",
+        los botones son enlaces a esos blogs (p. ej. /blogs/news y
+        /blogs/preparation) en vez de filtrar en la misma pagina.
+      {%- endcomment -%}
+      {% liquid
+        assign switcher_tag = section.settings.switcher_tag | strip
+        assign switcher_links = false
+        assign on_tagged_blog = false
+        if section.settings.switcher_tagged_blog != blank
+          assign switcher_links = true
+          if blog.handle == section.settings.switcher_tagged_blog.handle
+            assign on_tagged_blog = true
+          endif
+        endif
+        assign switcher_main_url = blog.url
+        if section.settings.switcher_main_blog != blank
+          assign switcher_main_url = section.settings.switcher_main_blog.url
+        endif
+      %}
+      {% if switcher_tag != blank and current_tags == blank and switcher_links %}
+        <nav class="blog-switcher" aria-label="{{ 'blog.tag_filter_label' | t }}">
+          <a
+            href="{{ switcher_main_url }}"
+            class="blog-switcher__option font-bricolage{% unless on_tagged_blog %} is-active{% endunless %}"
+            {% unless on_tagged_blog %}aria-current="page"{% endunless %}
+          >
+            {{ section.settings.switcher_main_label | escape }}
+          </a>
+          <a
+            href="{{ section.settings.switcher_tagged_blog.url }}"
+            class="blog-switcher__option font-bricolage{% if on_tagged_blog %} is-active{% endif %}"
+            {% if on_tagged_blog %}aria-current="page"{% endif %}
+          >
+            {{ switcher_tag | escape }}
+          </a>
+        </nav>
+      {% elsif switcher_tag != blank and current_tags == blank %}
         <div class="blog-switcher" role="tablist" aria-label="{{ 'blog.tag_filter_label' | t }}">
           <button type="button" role="tab" class="blog-switcher__option font-bricolage is-active" aria-selected="true" data-blog-group="main">
             {{ section.settings.switcher_main_label | escape }}
@@ -97,7 +133,7 @@
               <div
                 class="blog-listing__item"
                 data-blog-item="{{ article_group }}"
-                {% if switcher_tag != blank and current_tags == blank and article_group == 'tagged' %}hidden{% endif %}
+                {% if switcher_tag != blank and current_tags == blank and article_group == 'tagged' and on_tagged_blog == false %}hidden{% endif %}
               >
                 {% render 'article-card', article: article, loading: 'lazy' %}
               </div>
@@ -105,7 +141,7 @@
           {% endfor %}
         </div>
 
-        {% if switcher_tag != blank and current_tags == blank %}
+        {% if switcher_tag != blank and current_tags == blank and switcher_links == false %}
           <script>
             (function () {
               var root = document.currentScript.closest('.blog-listing');
@@ -267,6 +303,7 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
@@ -358,6 +395,18 @@
       "id": "switcher_main_label",
       "label": "First button label",
       "default": "Vi-Blog"
+    },
+    {
+      "type": "blog",
+      "id": "switcher_main_blog",
+      "label": "First button blog",
+      "info": "Blog al que lleva el primer boton (p. ej. News)."
+    },
+    {
+      "type": "blog",
+      "id": "switcher_tagged_blog",
+      "label": "Second button blog",
+      "info": "Blog al que lleva el segundo boton (p. ej. Preparation). Vacio = el boton solo filtra en la misma pagina."
     },
     {
       "type": "range",
