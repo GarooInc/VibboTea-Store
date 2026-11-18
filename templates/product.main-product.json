@@ -41,14 +41,20 @@
       "name": "Description product",
       "settings": {
         "text_button": "ADD TO CART",
+        "gallery_seconds": 6,
+        "quote_text": "",
+        "quote_author": "",
+        "quote_verified": false,
         "sold_out_text": "SOLD OUT",
+        "discount_badge_text": "",
         "kickstarter_price": true,
         "text_kickstarter_button": "ADD TO CART",
         "per_serving_bg_color": "#fab801",
         "per_serving_text_color": "#000000",
         "disclaimer_kickstarter": "",
         "presentation_text": "",
-        "steeping_instructions_text": "- Serving Size: 2-3 gr. (1 tsp. - 1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes"
+        "presentation_text_500": "",
+        "steeping_instructions_text": "- Serving Size: 4-5 gr. (1 small kitchen spoon)\n- Heat water to 175F\n- Steep for 5-8 minutes"
       }
     },
     "product_instructions_KU7cmG": {
@@ -264,6 +270,7 @@
       "name": "Why Vibbo Slidder",
       "settings": {
         "title": "Why choose Vibbo?",
+        "carousel_seconds": 5,
         "theme_image": "why-choose-energy.png",
         "theme_image2": "why-choose-relax.png",
         "theme_image3": "why-choose-detox.png",
@@ -295,6 +302,19 @@
         "judge_me_reviews_review_widget_9bJXk3"
       ],
       "settings": {}
+    },
+    "bundle_reviews": {
+      "type": "bundle-reviews",
+      "name": "Bundle reviews",
+      "settings": {
+        "title": "What people say about the teas inside",
+        "products": [
+          "hydra-boost-natural-energy",
+          "gut-bliss-natural-detox",
+          "chill-vibes-natural-relax"
+        ],
+        "reviews_per_product": 2
+      }
     },
     "faq_7VfkjP": {
       "type": "faq",
@@ -353,6 +373,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "use_as_page_heading": false,
         "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Mono_Colgado.png",
@@ -406,19 +427,6 @@
         "description_mobile": "Description Mobile",
         "autoplay": true,
         "interval": 5000
-      }
-    },
-    "bundle_reviews": {
-      "type": "bundle-reviews",
-      "name": "Bundle reviews",
-      "settings": {
-        "title": "What people say about the teas inside",
-        "products": [
-          "hydra-boost-natural-energy",
-          "gut-bliss-natural-detox",
-          "chill-vibes-natural-relax"
-        ],
-        "reviews_per_product": 2
       }
     }
   },
