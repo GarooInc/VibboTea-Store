@@ -107,7 +107,7 @@
             "page_title": "",
             "page_descripction": "",
             "title_sec": "UNWIND YOURSELF\nWITHOUT KNOCKOUT",
-            "desc_sec": "NATURAL RELAX",
+            "desc_sec": "NATURAL CALM",
             "button_text": "SHOP NOW",
             "button_link": "https://drinkvibbo.com/products/chill-vibes-natural-relax",
             "link_popup": false,
@@ -160,7 +160,7 @@
           "type": "video_block",
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/f063cd0361e1435cb1447501a4e8cdc6.mp4",
-            "text": "Rise",
+            "text": "Energy",
             "button_text": "get energized",
             "button_url": "shopify://products/hydra-boost-natural-energy"
           }
@@ -169,16 +169,16 @@
           "type": "video_block",
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fcc7eb468c244609a93068c66441f623.mp4",
-            "text": "Reset",
+            "text": "Detox",
             "button_text": "get detoxed",
-            "button_url": "shopify://products/gut-bliss-detox"
+            "button_url": "shopify://products/gut-bliss-natural-detox"
           }
         },
         "video_block_4YGmdY": {
           "type": "video_block",
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/da37492e8a904306a2d1e3fd8430020f.mp4",
-            "text": "Rest & Relax",
+            "text": "Calm",
             "button_text": "get relaxed",
             "button_url": "shopify://products/chill-vibes-natural-relax"
           }
