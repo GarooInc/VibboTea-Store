@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -32,7 +41,12 @@
       "name": "Description product",
       "settings": {
         "text_button": "ADD TO CART",
+        "gallery_seconds": 6,
+        "quote_text": "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas..",
+        "quote_author": "Silvia P.",
+        "quote_verified": false,
         "sold_out_text": "SOLD OUT",
+        "discount_badge_text": "",
         "kickstarter_price": true,
         "text_kickstarter_button": "ADD TO CART",
         "per_serving_bg_color": "#dffa7d",
@@ -40,10 +54,7 @@
         "disclaimer_kickstarter": "",
         "presentation_text": "70gr. of loose leaf tea with 25 biodegradable woodpulp tea bags inside.",
         "presentation_text_500": "500 g. of loose leaf tea",
-        "steeping_instructions_text": "- Serving Size: 2-3 gr. (1 tsp. - 1 1/2 tsp.)\n- Heat water to 175F\n- Steep for 2-3 minutes",
-        "quote_text": "I've been drinking this after meals and it really feels clean and easy on my stomach. It has a fresh taste and doesn't feel heavy to me like other herbal teas..",
-        "quote_author": "Silvia P.",
-        "quote_verified": false
+        "steeping_instructions_text": "- Serving Size: 4-5 gr. (1 small kitchen spoon)\n- Heat water to 175F\n- Steep for 5-8 minutes"
       }
     },
     "product_instructions_color_arUrcX": {
@@ -54,9 +65,9 @@
           "settings": {
             "gifs_count": 3,
             "gif_1": "shopify://shop_images/icedteaverde_3.gif",
-            "text_1": "Add 2 grams (1 teaspoon) of Detox blend to your sachet, heat 6–8 oz. of water to 175°F.",
+            "text_1": "Add 4-5 grams (1 small kitchen spoon) of Detox blend to your sachet, heat 6–8 oz. of water to 175°F.",
             "gif_2": "shopify://shop_images/Diseno_sin_titulo_0b13b58f-e00b-463d-90fe-cda30b55dc56.gif",
-            "text_2": "Steep for 2-3 minutes, watch the magic happen",
+            "text_2": "Steep for 5-8 minutes, watch the magic happen",
             "gif_3": "shopify://shop_images/Diseno_sin_titulo_2.gif",
             "text_3": "You’re welcome",
             "text_4": "Description 4",
@@ -102,7 +113,7 @@
       ],
       "name": "Product how color",
       "settings": {
-        "title": "We won't show you how,\nbut these are some of the many.",
+        "title": "We won't show you how, but these are some of the many.",
         "color": "#dffa7d"
       }
     },
@@ -260,6 +271,7 @@
       "name": "FAQ",
       "settings": {
         "title": "FAQ's",
+        "use_as_page_heading": false,
         "id_section": "#faqContact",
         "text_faq": "Read below for a good time.",
         "image1": "shopify://shop_images/Mono_deCabeza_1.png",
