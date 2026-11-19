@@ -1,0 +1,309 @@
+{%- comment -%}
+  Pagina de ingredientes: muestra el PDF dentro del sitio para que el visitante
+  no salga a la URL cruda del CDN. El PDF se sube en Content > Files y su URL
+  se pega en el setting "pdf_url".
+
+  En iOS y en la mayoria de navegadores moviles el <iframe> de un PDF solo
+  pinta la primera pagina (o nada), asi que en movil el iframe se oculta y las
+  paginas se dibujan en <canvas> con PDF.js. Cada pagina se pinta al acercarse
+  al viewport: el PDF pesa ~12MB y pintarlo entero de golpe congela el telefono.
+  Funciona porque cdn.shopify.com responde con access-control-allow-origin: *.
+
+  CSS propio en lugar de clases Tailwind nuevas: una clase que no exista ya en
+  application.css no hace nada sin regenerar y commitear el CSS.
+{%- endcomment -%}
+{%- assign pdf_url = section.settings.pdf_url -%}
+
+<section class="ingredients-pdf" id="ingredients">
+  <div class="ingredients-pdf__inner">
+    <div class="ingredients-pdf__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ingredients-pdf__eyebrow font-bricolage">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1 class="ingredients-pdf__title font-bricolage">
+        {{ section.settings.title | default: page.title }}
+      </h1>
+      {%- if section.settings.text != blank -%}
+        <div class="ingredients-pdf__text font-bricolage">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if pdf_url != blank -%}
+      <div class="ingredients-pdf__actions">
+        <a
+          href="{{ pdf_url }}"
+          target="_blank"
+          rel="noopener"
+          class="ingredients-pdf__btn ingredients-pdf__btn--primary font-bricolage"
+        >
+          {{ section.settings.open_label }}
+        </a>
+        <a
+          href="{{ pdf_url }}"
+          download
+          class="ingredients-pdf__btn ingredients-pdf__btn--secondary font-bricolage"
+        >
+          {{ section.settings.download_label }}
+        </a>
+      </div>
+
+      <div class="ingredients-pdf__viewer">
+        <iframe
+          src="{{ pdf_url }}#zoom=100&toolbar=1&navpanes=0"
+          title="{{ section.settings.title | default: page.title | escape }}"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="ingredients-pdf__mobile" data-ingredients-pdf="{{ pdf_url }}">
+        <p class="ingredients-pdf__loading font-bricolage">Loading preview…</p>
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="ingredients-pdf__empty">
+        Pega la URL del PDF (Content &gt; Files) en los ajustes de esta seccion.
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .ingredients-pdf {
+    background: #fff;
+    padding: calc(var(--header-offset, 110px) + 1rem) 1.25rem 3rem;
+  }
+
+  .ingredients-pdf__inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ingredients-pdf__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .ingredients-pdf__eyebrow {
+    display: inline-block;
+    background: #FFCD51;
+    color: #1D1D1B;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .ingredients-pdf__title {
+    color: #000;
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .ingredients-pdf__text {
+    color: #575757;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .ingredients-pdf__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .ingredients-pdf__btn {
+    display: block;
+    text-align: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .ingredients-pdf__btn:hover {
+    opacity: 0.8;
+  }
+
+  .ingredients-pdf__btn--primary {
+    background: #000;
+    color: #fff;
+  }
+
+  .ingredients-pdf__btn--secondary {
+    background: #fff;
+    color: #000;
+    border: 1.5px solid #000;
+  }
+
+  .ingredients-pdf__viewer {
+    display: none;
+  }
+
+  .ingredients-pdf__mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    background: #F5F5F5;
+    border: 1px solid #EBEBEB;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .ingredients-pdf__page {
+    width: 100%;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .ingredients-pdf__page canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ingredients-pdf__loading {
+    text-align: center;
+    color: #575757;
+    padding: 2rem 0;
+  }
+
+  .ingredients-pdf__empty {
+    text-align: center;
+    color: #575757;
+    border: 1px dashed #c7c7c7;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .ingredients-pdf {
+      padding: calc(var(--header-offset, 110px) + 1.5rem) 2rem 4.5rem;
+    }
+
+    .ingredients-pdf__title {
+      font-size: 3.25rem;
+    }
+
+    .ingredients-pdf__text {
+      font-size: 1.2rem;
+    }
+
+    .ingredients-pdf__actions {
+      flex-direction: row;
+      justify-content: center;
+      max-width: none;
+      margin-bottom: 2rem;
+    }
+
+    .ingredients-pdf__mobile {
+      display: none;
+    }
+
+    .ingredients-pdf__viewer {
+      display: block;
+      background: #F5F5F5;
+      border: 1px solid #EBEBEB;
+      border-radius: 1.25rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .ingredients-pdf__viewer iframe {
+      display: block;
+      width: 100%;
+      height: 85vh;
+      min-height: 640px;
+      border: 0;
+      border-radius: 0.75rem;
+      background: #fff;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-ingredients-pdf]');
+    if (!root || !window.matchMedia('(max-width: 767px)').matches) return;
+
+    var PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+    var script = document.createElement('script');
+    script.src = PDFJS + 'pdf.min.js';
+    script.onload = start;
+    script.onerror = fail;
+    document.head.appendChild(script);
+
+    function fail() {
+      root.innerHTML = '';
+      root.style.display = 'none';
+    }
+
+    function start() {
+      var pdfjs = window.pdfjsLib;
+      pdfjs.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js';
+
+      pdfjs.getDocument({ url: root.dataset.ingredientsPdf, disableAutoFetch: true }).promise.then(function (pdf) {
+        return pdf.getPage(1).then(function (first) {
+          var base = first.getViewport({ scale: 1 });
+          root.innerHTML = '';
+
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              observer.unobserve(entry.target);
+              render(pdf, entry.target);
+            });
+          }, { rootMargin: '600px 0px' });
+
+          for (var i = 1; i <= pdf.numPages; i++) {
+            var page = document.createElement('div');
+            page.className = 'ingredients-pdf__page';
+            page.dataset.page = i;
+            page.style.aspectRatio = base.width + ' / ' + base.height;
+            root.appendChild(page);
+            observer.observe(page);
+          }
+        });
+      }).catch(fail);
+    }
+
+    function render(pdf, holder) {
+      pdf.getPage(Number(holder.dataset.page)).then(function (page) {
+        var ratio = Math.min(window.devicePixelRatio || 1, 2);
+        var unscaled = page.getViewport({ scale: 1 });
+        var viewport = page.getViewport({ scale: (holder.clientWidth / unscaled.width) * ratio });
+        var canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        holder.style.aspectRatio = unscaled.width + ' / ' + unscaled.height;
+        holder.appendChild(canvas);
+        page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport });
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ingredients PDF",
+  "settings": [
+    { "type": "url", "id": "pdf_url", "label": "URL del PDF", "info": "Sube el PDF en Content > Files y pega aqui su URL." },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior" },
+    { "type": "text", "id": "title", "label": "Titulo (H1)", "info": "Si se deja vacio usa el titulo de la pagina." },
+    { "type": "richtext", "id": "text", "label": "Texto" },
+    { "type": "text", "id": "open_label", "label": "Texto del boton abrir", "default": "Open full PDF" },
+    { "type": "text", "id": "download_label", "label": "Texto del boton descargar", "default": "Download PDF" }
+  ],
+  "presets": [{ "name": "Ingredients PDF" }]
+}
+{% endschema %}
