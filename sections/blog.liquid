@@ -135,7 +135,13 @@
                 data-blog-item="{{ article_group }}"
                 {% if switcher_tag != blank and current_tags == blank and article_group == 'tagged' and on_tagged_blog == false %}hidden{% endif %}
               >
-                {% render 'article-card', article: article, loading: 'lazy' %}
+                {%- liquid
+                  assign full_image = false
+                  if switcher_tag != blank and current_tags == blank
+                    assign full_image = true
+                  endif
+                -%}
+                {% render 'article-card', article: article, loading: 'lazy', full_image: full_image %}
               </div>
             {% endunless %}
           {% endfor %}

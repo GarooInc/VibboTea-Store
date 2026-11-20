@@ -5,6 +5,7 @@
   @param {string} [loading] - Image loading attribute: `eager` or `lazy`. Defaults to `lazy`
   @param {string} [sizes] - Optional sizes attribute for the article image
   @param {string} [heading_level] - Heading level for the title. Defaults to `h3`
+  @param {boolean} [full_image] - Show the whole image at its own proportion instead of cropping it to 4:3
 
   @example
   {% render 'article-card', article: article %}
@@ -28,8 +29,18 @@
 %}
 
 <article class="article-card">
-  <a class="article-card__media" href="{{ article.url }}">
-    {% if article.image %}
+  <a class="article-card__media{% if full_image %} article-card__media--full{% endif %}" href="{{ article.url }}">
+    {% if article.image and full_image %}
+      {{ article.image
+        | image_url: width: 900
+        | image_tag:
+          loading: loading,
+          widths: '400, 600, 800, 900',
+          sizes: image_sizes,
+          alt: image_alt,
+          class: 'article-card__image'
+      }}
+    {% elsif article.image %}
       {{ article.image
         | image_url: width: 900, height: 675, crop: 'center'
         | image_tag:
@@ -84,6 +95,16 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
+  }
+
+  /* Imagen completa, sin recortar: la caja toma la proporcion de la foto */
+  .article-card__media--full {
+    aspect-ratio: auto;
+  }
+
+  .article-card__media--full .article-card__image {
+    display: block;
+    height: auto;
   }
 
   .article-card:hover .article-card__image {
