@@ -44,14 +44,36 @@
                 {%- break -%}
               {%- endif -%}
             {%- endfor -%}
+            {%- assign is_sold_out = false -%}
             {%- if has_sold_out_tag or negative_stock -%}
-              <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+              {%- assign is_sold_out = true -%}
+            {%- endif -%}
+            {%- if is_sold_out -%}
+              <div class="absolute z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="top: 18px; left: 18px; background-color: #fab801;">
                 Sold Out
               </div>
             {%- endif -%}
-            {%- if product.tags contains 'NEW' -%}
-              <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+            {%- comment -%}
+              Promo badges (Black Friday): shown on every in-stock product while
+              the texts are filled in the section settings. Clear both texts to
+              go back to the NEW badge.
+            {%- endcomment -%}
+            {%- assign show_promo = false -%}
+            {%- if is_sold_out == false and section.settings.promo_badge != blank -%}
+              {%- assign show_promo = true -%}
+            {%- endif -%}
+            {%- if show_promo -%}
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="top: 18px; right: 18px;">
+                {{ section.settings.promo_badge }}
+              </div>
+            {%- elsif product.tags contains 'NEW' -%}
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="top: 18px; right: 18px;">
                 New
+              </div>
+            {%- endif -%}
+            {%- if is_sold_out == false and section.settings.promo_corner != blank -%}
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="bottom: 18px; left: 18px;">
+                {{ section.settings.promo_corner }}
               </div>
             {%- endif -%}
             {% liquid
@@ -109,9 +131,19 @@
           {{ product.metafields.judgeme.badge }}
         </div>
 
+        {%- assign promo_pct = section.settings.promo_percent | default: 0 -%}
+        {%- if promo_pct > 0 and is_sold_out == false -%}
+          {%- assign promo_off = product.price | times: promo_pct | plus: 50 | divided_by: 100 -%}
+          {%- assign promo_price = product.price | minus: promo_off -%}
+          <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
+            <s class="text-[#575757] font-normal" style="color: #8a8a8a; font-weight: 400; margin-right: 8px;">{{ product.price | money }}</s>
+            <span>{{ promo_price | money }}</span>
+          </p>
+        {%- else -%}
         <p class="font-bricolage text-xl md:text-2xl text-black font-medium">
           {{ product.price | money }}
         </p>
+        {%- endif -%}
 
         <!-- ADD TO CART -->
         <form method="post" action="{{ routes.cart_add_url }}" class="pt-3">
@@ -145,40 +177,18 @@
 {
   "name": "Main Shop",
   "settings": [
-    {
-      "type": "textarea",
-      "id": "section_title",
-      "label": "Title"
-    },
-    {
-      "type": "textarea",
-      "id": "desc",
-      "label": "Descripcion"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Colección"
-    },
-    {
-      "type": "number",
-      "id": "limit",
-      "label": "Número máximo de productos",
-      "default": 12
-    },
-    {
-      "type": "text",
-      "id": "text_add",
-      "label": "Texto del boton de añadir",
-      "default": "ADD TO CART"
-    }
-
+    { "type": "textarea", "id": "section_title", "label": "Title" },
+    { "type": "textarea", "id": "desc", "label": "Descripcion" },
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "number", "id": "limit", "label": "Número máximo de productos", "default": 12 },
+    { "type": "text", "id": "text_add", "label": "Texto del boton de añadir", "default": "ADD TO CART" },
+    { "type": "header", "content": "Promo (Black Friday)" },
+    { "type": "text", "id": "promo_badge", "label": "Badge arriba a la derecha", "info": "Se muestra en todos los productos con stock, en lugar de NEW. Dejar vacio para quitarlo.", "default": "25% OFF" },
+    { "type": "text", "id": "promo_corner", "label": "Badge abajo a la izquierda", "info": "Dejar vacio para quitarlo.", "default": "BLACK FRIDAY" },
+    { "type": "range", "id": "promo_percent", "label": "Descuento a mostrar en el precio (%)", "info": "Tacha el precio normal y muestra el precio con descuento en los productos con stock. 0 para apagarlo.", "min": 0, "max": 50, "step": 5, "default": 25 }
   ],
   "presets": [
-    {
-      "name": "Main Shop",
-      "category": "Productos"
-    }
+    { "name": "Main Shop", "category": "Productos" }
   ]
 }
 {% endschema %}
