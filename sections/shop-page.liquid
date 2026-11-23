@@ -49,7 +49,7 @@
               {%- assign is_sold_out = true -%}
             {%- endif -%}
             {%- if is_sold_out -%}
-              <div class="absolute top-[22px] left-3 z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="background-color: #fab801;">
+              <div class="absolute z-10 text-black text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full" style="top: 18px; left: 18px; background-color: #fab801;">
                 Sold Out
               </div>
             {%- endif -%}
@@ -63,16 +63,16 @@
               {%- assign show_promo = true -%}
             {%- endif -%}
             {%- if show_promo -%}
-              <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="top: 18px; right: 18px;">
                 {{ section.settings.promo_badge }}
               </div>
             {%- elsif product.tags contains 'NEW' -%}
-              <div class="absolute top-[22px] right-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black">
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="top: 18px; right: 18px;">
                 New
               </div>
             {%- endif -%}
             {%- if is_sold_out == false and section.settings.promo_corner != blank -%}
-              <div class="absolute left-3 z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="bottom: 22px;">
+              <div class="absolute z-10 text-white text-sm md:text-base font-bricolage uppercase px-4 py-1.5 rounded-full bg-black" style="bottom: 18px; left: 18px;">
                 {{ section.settings.promo_corner }}
               </div>
             {%- endif -%}
