@@ -4,6 +4,42 @@
   {% if product %}
     {% assign current_variant = product.selected_or_first_available_variant %}
 
+    {%- comment -%}
+      Bundles: Judge.me pide reseña de cada lata, asi que el bundle queda con
+      "No reviews". Si la plantilla tiene "Bundle products" y el bundle no tiene
+      reseñas propias, arriba se muestra el promedio de esos tes (el mismo de
+      la seccion Bundle reviews) y lleva a esa seccion.
+    {%- endcomment -%}
+    {%- liquid
+      assign bundle_review_count = 0
+      assign own_review_count = product.metafields.reviews.rating_count.value | plus: 0
+      comment
+        La plantilla main-product tambien la usa Filter Bags: solo aplica a
+        productos con "bundle" en el handle.
+      endcomment
+      if section.settings.bundle_products != blank and own_review_count == 0 and product.handle contains 'bundle'
+        assign bundle_weighted_sum = 0.0
+        for p in section.settings.bundle_products
+          assign p_count = p.metafields.reviews.rating_count.value | plus: 0
+          if p_count > 0
+            assign p_rating = p.metafields.reviews.rating.value.rating | plus: 0.0
+            assign bundle_weighted_sum = p_rating | times: p_count | plus: bundle_weighted_sum
+            assign bundle_review_count = bundle_review_count | plus: p_count
+          endif
+        endfor
+      endif
+    -%}
+    {%- if bundle_review_count > 0 -%}
+      {%- assign bundle_average = bundle_weighted_sum | divided_by: bundle_review_count | round: 1 -%}
+      {%- assign bundle_average_stars = bundle_average | round -%}
+      {%- capture bundle_badge -%}
+        <a href="#bundle-reviews" class="flex items-center gap-2 font-bricolage" style="font-size: 1.1rem; color: inherit; text-decoration: none;">
+          {% render 'star-rating', rating: bundle_average_stars, size_class: 'w-5 h-5' %}
+          <span>{{ bundle_review_count }} reviews</span>
+        </a>
+      {%- endcapture -%}
+    {%- endif -%}
+
     {% liquid
       assign quote_text = ''
       assign quote_author = ''
@@ -49,9 +85,13 @@
 
       <!-- Judge.me reviews -->
       <div class="mb-4" style="margin-top: 24px;">
+        {% if bundle_review_count > 0 %}
+          {{ bundle_badge }}
+        {% else %}
         <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
           {{ product.metafields.judgeme.badge }}
         </div>
+        {% endif %}
       </div>
     </div>
 
@@ -214,9 +254,13 @@
 
             <!-- Judge.me reviews -->
             <div class="mb-4" style="margin-top: 24px;">
+              {% if bundle_review_count > 0 %}
+                {{ bundle_badge }}
+              {% else %}
               <div class='jdgm-widget jdgm-preview-badge jdgm--done' data-id='{{ product.id }}' style="font-size: 1.3rem;">
                 {{ product.metafields.judgeme.badge }}
               </div>
+              {% endif %}
             </div>
           </div>
 
@@ -1076,6 +1120,13 @@
 {
   "name": "Description product",
   "settings": [
+    {
+      "type": "product_list",
+      "id": "bundle_products",
+      "label": "Bundle products",
+      "info": "Solo para bundles: si el bundle no tiene reseñas propias, arriba se muestra el promedio de estos productos.",
+      "limit": 6
+    },
     {
       "type": "text",
       "id": "text_button",

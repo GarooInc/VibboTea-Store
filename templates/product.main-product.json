@@ -40,6 +40,11 @@
       ],
       "name": "Description product",
       "settings": {
+        "bundle_products": [
+          "hydra-boost-natural-energy",
+          "gut-bliss-natural-detox",
+          "chill-vibes-natural-relax"
+        ],
         "text_button": "ADD TO CART",
         "gallery_seconds": 6,
         "quote_text": "",

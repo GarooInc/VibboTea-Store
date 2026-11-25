@@ -10,7 +10,15 @@
 {%- liquid
   assign total_count = 0
   assign weighted_sum = 0.0
-  for p in section.settings.products
+  assign review_products = section.settings.products
+  comment
+    La plantilla main-product tambien la usa Filter Bags; ahi no van las
+    reseñas de los tes. Solo se muestra en productos con "bundle" en el handle.
+  endcomment
+  unless product.handle contains 'bundle'
+    assign review_products = nil
+  endunless
+  for p in review_products
     assign p_count = p.metafields.reviews.rating_count.value | plus: 0
     if p_count > 0
       assign p_rating = p.metafields.reviews.rating.value.rating | plus: 0.0
@@ -47,7 +55,7 @@
     .bundle-reviews__meta strong { color: #1f1f1f; font-weight: 600; }
   </style>
 
-  <section class="bundle-reviews" {{ section.shopify_attributes }}>
+  <section id="bundle-reviews" class="bundle-reviews" {{ section.shopify_attributes }}>
     <div class="bundle-reviews__inner">
       {%- if section.settings.title != blank -%}
         <h2 class="bundle-reviews__title font-bricolage">{{ section.settings.title }}</h2>
